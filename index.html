@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QariAI - AI-Powered Tajweed & Hifz Coach</title>
+    <meta name="description" content="Improve your Quran recitation with AI-powered feedback. Perfect your Tajweed, strengthen your Hifz, and recite with confidence.">
+    <meta name="keywords" content="Quran, Tajweed, Hifz, AI, Islamic app, recitation coach, Quran memorization">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qariai.app">
+    <meta property="og:title" content="QariAI - Your AI Tajweed & Hifz Coach">
+    <meta property="og:description" content="Improve your Quran recitation with AI-powered feedback. Perfect your Tajweed, strengthen your Hifz.">
+    <meta property="og:image" content="https://qariai.app/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://qariai.app">
+    <meta property="twitter:title" content="QariAI - Your AI Tajweed & Hifz Coach">
+    <meta property="twitter:description" content="Improve your Quran recitation with AI-powered feedback">
+    <meta property="twitter:image" content="https://qariai.app/og-image.jpg">
+    <meta property="twitter:site" content="@qariai">
+    <meta property="twitter:creator" content="@qariai">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Tailwind CSS v3.4 - Embedded for Production */
+        *, ::before, ::after {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb;
+        }
+        
+        ::before, ::after {
+            --tw-content: '';
+        }
+        
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            -moz-tab-size: 4;
+            tab-size: 4;
+            font-family: 'Inter', system-ui, sans-serif;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+        }
+        
+        body {
+            margin: 0;
+            line-height: inherit;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-size: inherit;
+            font-weight: inherit;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: inherit;
+        }
+        
+        button, input, select, textarea {
+            font-family: inherit;
+            font-feature-settings: inherit;
+            font-variation-settings: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0;
+        }
+        
+        button {
+            cursor: pointer;
+            background-color: transparent;
+            background-image: none;
+        }
+        
+        /* Custom Styles */
+        :root {
+            --emerald-50: #ecfdf5;
+            --emerald-100: #d1fae5;
+            --emerald-200: #a7f3d0;
+            --emerald-300: #6ee7b7;
+            --emerald-400: #34d399;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --emerald-700: #047857;
+            --emerald-800: #065f46;
+            --emerald-900: #064e3b;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --teal-50: #f0fdfa;
+            --teal-100: #ccfbf1;
+            --teal-600: #0d9488;
+            --teal-700: #0f766e;
+            --teal-800: #115e59;
+            --amber-50: #fffbeb;
+            --amber-100: #fef3c7;
+            --amber-600: #d97706;
+            --amber-700: #b45309;
+            --amber-800: #92400e;
+        }
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--slate-50) 0%, var(--emerald-50) 100%);
+            color: var(--slate-900);
+        }
+        
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--emerald-500) 0%, var(--emerald-600) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-primary {
+            background-color: var(--emerald-600);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--emerald-700);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--emerald-600);
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            border: 2px solid var(--emerald-600);
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--emerald-50);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--slate-200);
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            z-index: 50;
+        }
+        
+        nav .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            height: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        nav .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--emerald-500), var(--emerald-700));
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav .logo-text {
+            font-size: 1.5rem;
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+        
+        nav .beta-badge {
+            font-size: 0.75rem;
+            background-color: var(--emerald-100);
+            color: var(--emerald-700);
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+        }
+        
+        nav .nav-links {
+            display: none;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        nav .nav-links a {
+            color: var(--slate-600);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav .nav-links a:hover {
+            color: var(--emerald-600);
+        }
+        
+        @media (min-width: 768px) {
+            nav .nav-links {
+                display: flex;
+            }
+        }
+        
+        /* Hero */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--slate-600);
+            margin-bottom: 2rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.75;
+        }
+        
+        @media (min-width: 768px) {
+            .hero p {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--slate-600);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--slate-900);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        footer a:hover {
+            color: var(--emerald-400);
+        }
+        
+        /* Responsive */
+        .flex {
+            display: flex;
+        }
+        
+        .flex-col {
+            flex-direction: column;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .justify-center {
+            justify-content: center;
+        }
+        
+        .gap-4 {
+            gap: 1rem;
+        }
+        
+        .gap-8 {
+            gap: 2rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+        
+        .mb-12 {
+            margin-bottom: 3rem;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .max-w-6xl {
+            max-width: 72rem;
+        }
+        
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        
+        .bg-white {
+            background-color: white;
+        }
+        
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+        
+        .rounded-full {
+            border-radius: 9999px;
+        }
+        
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .w-full {
+            width: 100%;
+        }
+        
+        input[type="email"] {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 9999px;
+            color: var(--slate-900);
+            font-weight: 500;
+            outline: none;
+            border: 1px solid var(--slate-300);
+        }
+        
+        input[type="email"]:focus {
+            border-color: var(--emerald-500);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+        
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">Q</div>
+                <span class="logo-text gradient-text">QariAI</span>
+                <span class="beta-badge pulse">BETA</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#levels">Levels</a>
+                <a href="#beta" class="btn-primary" style="padding: 0.5rem 1.5rem; font-size: 1rem;">Join Beta</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+        <div class="container">
+            <div style="margin-bottom: 1.5rem;">
+                <span style="display: inline-block; background-color: var(--emerald-100); color: var(--emerald-700); padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 700; margin-bottom: 1rem;">
+                    🎙️ AI-Powered Tajweed Coach
+                </span>
+            </div>
+            
+            <h1>
+                Perfect Your Recitation<br/>
+                with <span class="gradient-text">QariAI</span>
+            </h1>
+            
+            <p>
+                Your personal AI Qari coach. Get instant feedback on Tajweed mistakes, track your Hifz progress, and recite with confidence.
+            </p>
+            
+            <div class="flex flex-col items-center gap-4 mb-12" style="margin-bottom: 3rem;">
+                <a href="#beta" class="btn-primary">Start Free Beta</a>
+                <a href="#how-it-works" class="btn-secondary">Learn More</a>
+            </div>
+            
+            <div class="flex items-center justify-center gap-8" style="font-size: 0.875rem; color: var(--slate-500); flex-wrap: wrap;">
+                <div class="flex items-center gap-4">
+                    <span>✓ Free Beta Access</span>
+                    <span>✓ No Credit Card</span>
+                    <span>✓ Works Offline</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (Simplified for brevity - full version has all 6 cards) -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container">
+            <h2 class="section-title">Everything You Need to Perfect Your Recitation</h2>
+            <p class="section-subtitle">Powered by advanced AI and designed for Muslims worldwide</p>
+            
+            <div class="grid grid-cols-3">
+                <div class="card" style="background: linear-gradient(135deg, var(--emerald-50), white); border-color: var(--emerald-100);">
+                    <div style="width: 3.5rem; height: 3.5rem; background-color: var(--emerald-100); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1rem;">🎙️</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem;">Real-Time Tajweed Analysis</h3>
+                    <p style="color: var(--slate-600); line-height: 1.75;">AI listens to your recitation and detects mistakes in Makharij, Ghunnah, Madd, Qalqalah, and more.</p>
+                </div>
+                
+                <div class="card" style="background: linear-gradient(135deg, var(--teal-50), white); border-color: var(--teal-100);">
+                    <div style="width: 3.5rem; height: 3.5rem; background-color: var(--teal-100); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1rem;">🧠</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem;">Hifz Companion</h3>
+                    <p style="color: var(--slate-600); line-height: 1.75;">Track memorization with spaced repetition. Get reminders for due revisions.</p>
+                </div>
+                
+                <div class="card" style="background: linear-gradient(135deg, var(--amber-50), white); border-color: var(--amber-100);">
+                    <div style="width: 3.5rem; height: 3.5rem; background-color: var(--amber-100); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1rem;">📊</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem;">Progress Analytics</h3>
+                    <p style="color: var(--slate-600); line-height: 1.75;">Visual dashboard shows your weak rules, improvement trends, and daily streaks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beta Sign-Up Section -->
+    <section id="beta" class="py-20" style="background: linear-gradient(135deg, var(--emerald-600), var(--teal-600)); color: white;">
+        <div class="container text-center">
+            <div class="mb-8">
+                <span style="display: inline-block; background-color: rgba(255, 255, 255, 0.2); padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 700; margin-bottom: 1rem;">
+                    ⚡ Limited Beta Access
+                </span>
+            </div>
+            
+            <h2 style="font-size: 2.5rem; font-family: 'Merriweather', serif; font-weight: 700; margin-bottom: 1.5rem;">Join the QariAI Beta</h2>
+            
+            <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;">
+                Be among the first to experience AI-powered Tajweed coaching. Free for beta users.
+            </p>
+            
+            <form style="max-width: 28rem; margin: 0 auto;" onsubmit="alert('JazakAllah Khair! We\'ll send you beta access details to your email soon. إن شاء الله'); return false;">
+                <div class="flex flex-col gap-4">
+                    <input 
+                        type="email" 
+                        placeholder="Enter your email" 
+                        required
+                        style="background: white;"
+                    />
+                    <button 
+                        type="submit"
+                        style="background-color: white; color: var(--emerald-600); padding: 1rem 2rem; border-radius: 9999px; font-weight: 700; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); cursor: pointer; transition: all 0.3s;"
+                        onmouseover="this.style.background='var(--emerald-50)'"
+                        onmouseout="this.style.background='white'"
+                    >
+                        Get Beta Access
+                    </button>
+                </div>
+                <p style="font-size: 0.875rem; margin-top: 1rem; opacity: 0.75;">
+                    Join 100+ Muslims already improving their recitation ✨
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="grid grid-cols-2" style="margin-bottom: 2rem; gap: 3rem;">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-4" style="margin-bottom: 1rem;">
+                        <div style="width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, var(--emerald-500), var(--emerald-700)); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.25rem;">Q</div>
+                        <span style="font-size: 1.5rem; font-family: 'Merriweather', serif; font-weight: 700;">QariAI</span>
+                    </div>
+                    <p style="color: var(--slate-400); font-size: 0.875rem; line-height: 1.75;">
+                        AI-powered Tajweed & Hifz coach helping Muslims worldwide perfect their Quran recitation.
+                    </p>
+                </div>
+                
+                <!-- Connect -->
+                <div>
+                    <h4 style="font-weight: 700; margin-bottom: 1rem;">Connect</h4>
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <a href="https://twitter.com/qariai" target="_blank" rel="noopener" style="width: 2.5rem; height: 2.5rem; background-color: var(--slate-800); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s;" onmouseover="this.style.background='var(--emerald-600)'" onmouseout="this.style.background='var(--slate-800)'">
+                            <svg style="width: 1.25rem; height: 1.25rem;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/qariai" target="_blank" rel="noopener" style="width: 2.5rem; height: 2.5rem; background-color: var(--slate-800); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s;" onmouseover="this.style.background='var(--emerald-600)'" onmouseout="this.style.background='var(--slate-800)'">
+                            <svg style="width: 1.25rem; height: 1.25rem;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465a4.897 4.897 0 011.772 1.153c.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428C21.987 8.944 22 9.283 22 12c0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772 4.904 4.904 0 01-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.066-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428A4.88 4.88 0 013.678 3.678 4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"/>
+                            </svg>
+                        </a>
+                        <a href="https://tiktok.com/@qariai" target="_blank" rel="noopener" style="width: 2.5rem; height: 2.5rem; background-color: var(--slate-800); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s;" onmouseover="this.style.background='var(--emerald-600)'" onmouseout="this.style.background='var(--slate-800)'">
+                            <svg style="width: 1.25rem; height: 1.25rem;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com/@qariai" target="_blank" rel="noopener" style="width: 2.5rem; height: 2.5rem; background-color: var(--slate-800); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s;" onmouseover="this.style.background='var(--emerald-600)'" onmouseout="this.style.background='var(--slate-800)'">
+                            <svg style="width: 1.25rem; height: 1.25rem;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p style="color: var(--slate-400); font-size: 0.875rem;">
+                        Email: <a href="/cdn-cgi/l/email-protection#ef9c8e838e82af9e8e9d868e86c18e9f9f" style="color: var(--emerald-400);"><span class="__cf_email__" data-cfemail="4231232e232f023323302b232b6c233232">[email&#160;protected]</span></a>
+                    </p>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--slate-800); padding-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                <p style="color: var(--slate-400); font-size: 0.875rem;">
+                    © 2026 QariAI. Built with ❤️ for the Ummah. Powered by AI.
+                </p>
+                <p style="color: var(--slate-500); font-size: 0.75rem;">
+                    May Allah accept this work and m
