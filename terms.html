@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — QariAI</title>
+    <meta name="description" content="QariAI Terms of Service — the rules and agreements for using QariAI.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+    <style>
+        *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { line-height: 1.5; scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%); color: #0f172a; min-height: 100vh; }
+        a { color: inherit; text-decoration: none; }
+        img, svg { display: block; }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap');
+
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            z-index: 50;
+        }
+        .nav-inner {
+            max-width: 80rem; margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 4rem;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+        .nav-logo-icon {
+            width: 2.5rem; height: 2.5rem;
+            background: linear-gradient(135deg, #10b981, #047857);
+            border-radius: 0.75rem;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 1.25rem;
+            box-shadow: 0 4px 12px rgba(16,185,129,0.3);
+        }
+        .nav-brand { font-family: 'Merriweather', Georgia, serif; font-size: 1.5rem; font-weight: 700; }
+        .nav-badge {
+            font-size: 0.7rem; background: #d1fae5; color: #065f46;
+            padding: 0.2rem 0.5rem; border-radius: 9999px; font-weight: 700;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.7; } }
+        .nav-link {
+            color: #475569; font-weight: 500; font-size: 0.9rem;
+            transition: color 0.15s;
+        }
+        .nav-link:hover { color: #059669; }
+        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-cta {
+            background: #059669; color: white;
+            padding: 0.5rem 1.25rem; border-radius: 9999px;
+            font-weight: 700; font-size: 0.9rem;
+            transition: background 0.15s;
+        }
+        .nav-cta:hover { background: #047857; }
+
+        /* CONTENT */
+        .page-wrapper {
+            max-width: 52rem; margin: 0 auto;
+            padding: 7rem 1.5rem 5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.7s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity:0; transform: translateY(24px); }
+            to   { opacity:1; transform: translateY(0); }
+        }
+        .page-tag {
+            display: inline-block;
+            background: #d1fae5; color: #065f46;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+            padding: 0.35rem 1rem; border-radius: 9999px;
+            margin-bottom: 1rem;
+        }
+        .page-title {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 2.5rem; font-weight: 900; line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        .page-subtitle { color: #64748b; font-size: 0.95rem; }
+
+        /* CARD */
+        .policy-card {
+            background: white;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .section { margin-bottom: 2.25rem; }
+        .section:last-child { margin-bottom: 0; }
+
+        .section-title {
+            font-size: 1.125rem; font-weight: 700;
+            color: #065f46;
+            display: flex; align-items: center; gap: 0.6rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #d1fae5;
+        }
+        .section-icon {
+            width: 1.75rem; height: 1.75rem;
+            background: #ecfdf5; border-radius: 0.4rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .policy-card p { color: #334155; line-height: 1.75; margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .policy-card p:last-child { margin-bottom: 0; }
+        .policy-card ul { padding-left: 1.25rem; list-style: disc; }
+        .policy-card ul li { color: #334155; line-height: 1.75; margin-bottom: 0.4rem; font-size: 0.95rem; }
+        .policy-card a { color: #059669; text-decoration: underline; }
+        .policy-card a:hover { color: #047857; }
+
+        .highlight-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 0.75rem;
+            padding: 1rem 1.25rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem; color: #065f46;
+            line-height: 1.65;
+        }
+        .highlight-box strong { font-weight: 700; }
+
+        .warning-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 0.75rem;
+            padding: 1rem 1.25rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem; color: #7c2d12;
+            line-height: 1.65;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 3rem 1.5rem 2rem;
+            margin-top: 4rem;
+        }
+        .footer-inner { max-width: 80rem; margin: 0 auto; }
+        .footer-top {
+            display: flex; flex-wrap: wrap; gap: 2.5rem;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #1e293b;
+        }
+        .footer-brand-col { max-width: 18rem; }
+        .footer-brand { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+        .footer-brand-icon {
+            width: 2rem; height: 2rem;
+            background: linear-gradient(135deg, #10b981, #047857);
+            border-radius: 0.5rem;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 1rem;
+        }
+        .footer-brand-name { font-family: 'Merriweather', serif; font-size: 1.25rem; font-weight: 700; }
+        .footer-tagline { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
+        .footer-links-col h4 { font-weight: 700; margin-bottom: 0.75rem; font-size: 0.9rem; }
+        .footer-links-col ul { list-style: none; padding: 0; }
+        .footer-links-col ul li { margin-bottom: 0.4rem; }
+        .footer-links-col ul li a { font-size: 0.85rem; color: #94a3b8; transition: color 0.15s; }
+        .footer-links-col ul li a:hover { color: #34d399; }
+        .footer-bottom {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            justify-content: space-between; align-items: center;
+        }
+        .footer-copy { font-size: 0.82rem; color: #94a3b8; }
+        .footer-dua { font-size: 0.75rem; color: #475569; }
+
+        @media (max-width: 640px) {
+            .page-title { font-size: 1.8rem; }
+            .policy-card { padding: 1.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-inner">
+        <div class="nav-logo">
+            <div class="nav-logo-icon">Q</div>
+            <span class="nav-brand gradient-text">QariAI</span>
+            <span class="nav-badge">BETA</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/#features" class="nav-link">Features</a>
+            <a href="/#how-it-works" class="nav-link">How It Works</a>
+            <a href="/#beta" class="nav-cta">Join Beta</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="page-wrapper">
+    <div class="page-header">
+        <span class="page-tag">📜 Legal</span>
+        <h1 class="page-title">Terms of <span class="gradient-text">Service</span></h1>
+        <p class="page-subtitle">Last updated: February 26, 2026 &nbsp;·&nbsp; Effective: February 26, 2026</p>
+    </div>
+
+    <div class="policy-card">
+
+        <div class="highlight-box" style="margin-bottom:2rem;">
+            <strong>Please read these Terms carefully.</strong> By accessing or using QariAI, you agree to be bound by these Terms of Service. If you do not agree, please do not use our service. We've written these in plain language wherever possible to keep things clear. بارك الله فيكم
+        </div>
+
+        <!-- 1 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">👋</span> 1. Acceptance of Terms
+            </h2>
+            <p>These Terms of Service ("Terms") govern your use of QariAI, including the website at <a href="https://qariai.app">qariai.app</a> and any associated mobile applications (collectively, "the Service"), operated by QariAI ("we", "us", "our").</p>
+            <p>By creating an account, accessing the beta programme, or otherwise using the Service, you confirm that you are at least 13 years old (or that a parent/guardian has consented on your behalf) and that you agree to these Terms.</p>
+        </div>
+
+        <!-- 2 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎓</span> 2. Description of Service
+            </h2>
+            <p>QariAI provides an AI-powered Tajweed and Hifz coaching platform that enables users to:</p>
+            <ul>
+                <li>Record and submit Quran recitations for automated Tajweed analysis and feedback.</li>
+                <li>Track memorisation progress (Hifz) across different Surahs and Juz.</li>
+                <li>Progress through structured learning levels (Beginner, Intermediate, Advanced).</li>
+                <li>Earn XP, streaks, and achievements as they improve their recitation.</li>
+            </ul>
+            <p>The Service is currently in <strong>Beta</strong>. Features, availability, and performance may change as we continue development. We appreciate your patience and feedback during this phase.</p>
+        </div>
+
+        <!-- 3 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">✅</span> 3. User Accounts
+            </h2>
+            <p>To access certain features, you must create an account. You agree to:</p>
+            <ul>
+                <li>Provide accurate and complete registration information.</li>
+                <li>Keep your password confidential and not share account access with others.</li>
+                <li>Notify us immediately at <a href="mailto:salam@qariai.app">salam@qariai.app</a> if you suspect unauthorised access to your account.</li>
+                <li>Accept responsibility for all activity that occurs under your account.</li>
+            </ul>
+            <p>We reserve the right to suspend or terminate accounts that violate these Terms or are found to be used fraudulently.</p>
+        </div>
+
+        <!-- 4 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🕌</span> 4. Appropriate Use
+            </h2>
+            <p>QariAI is designed as a sincere educational tool for those wishing to improve their Quran recitation. You agree to use the Service respectfully and only for its intended purpose. You must not:</p>
+            <ul>
+                <li>Use the Service for any purpose that is unlawful, harmful, or disrespectful to the Quran or Islamic values.</li>
+                <li>Submit audio content unrelated to Quran recitation in an attempt to deceive or abuse the AI system.</li>
+                <li>Attempt to reverse-engineer, scrape, or extract data from the Service.</li>
+                <li>Use automated scripts or bots to interact with the Service.</li>
+                <li>Harass, impersonate, or harm other users.</li>
+                <li>Upload any content that is offensive, inappropriate, or violates the rights of others.</li>
+            </ul>
+            <div class="warning-box">
+                ⚠️ Violations of these terms may result in immediate account suspension without prior notice.
+            </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🤖</span> 5. AI Accuracy & Disclaimer
+            </h2>
+            <p>QariAI uses artificial intelligence to analyse Quran recitation. While we strive for high accuracy, please be aware of the following:</p>
+            <ul>
+                <li>Our AI feedback is intended as a <strong>learning aid</strong>, not a substitute for a qualified Qari or Islamic scholar.</li>
+                <li>AI-generated Tajweed analysis may occasionally contain errors, particularly for rare recitation styles or regional dialects.</li>
+                <li>We continuously improve our models, but we cannot guarantee 100% accuracy at all times.</li>
+            </ul>
+            <div class="highlight-box">
+                🌟 <strong>We always recommend supplementing QariAI with guidance from a qualified teacher (Ustadh/Ustadha).</strong> May Allah grant you the best of both.
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">💳</span> 6. Beta Access & Pricing
+            </h2>
+            <p>During the beta phase, QariAI is available free of charge to approved beta users. We reserve the right to introduce paid plans, subscriptions, or premium features in the future. You will be given reasonable notice before any free tier changes take effect.</p>
+            <p>Any future payments will be processed by a secure third-party payment provider. QariAI does not store your payment card details.</p>
+        </div>
+
+        <!-- 7 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">©️</span> 7. Intellectual Property
+            </h2>
+            <p>All content, technology, AI models, designs, branding, and features within QariAI are owned by or licensed to QariAI and are protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works from any part of the Service without our express written permission.</p>
+            <p>The Quran itself belongs to Allah ﷻ and is not claimed or owned by QariAI. Our AI models and training methodologies are proprietary.</p>
+            <p>You retain ownership of any audio recordings you submit. By submitting recordings, you grant us a limited, non-exclusive licence to process them for the purpose of delivering the Service to you.</p>
+        </div>
+
+        <!-- 8 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🔗</span> 8. Third-Party Links & Services
+            </h2>
+            <p>The Service may contain links to third-party websites or services. These are provided for your convenience only. QariAI is not responsible for the content, privacy practices, or terms of any third-party services. Your use of such services is entirely at your own risk.</p>
+        </div>
+
+        <!-- 9 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚖️</span> 9. Limitation of Liability
+            </h2>
+            <p>To the fullest extent permitted by applicable law, QariAI and its team members shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Service, including but not limited to loss of data, service interruptions, or reliance on AI-generated feedback.</p>
+            <p>Our total liability to you for any claims arising out of your use of the Service shall not exceed the amount you have paid to us in the 12 months preceding the claim (or £50 if no payment has been made).</p>
+        </div>
+
+        <!-- 10 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🛑</span> 10. Termination
+            </h2>
+            <p>You may delete your account at any time by contacting us at <a href="mailto:salam@qariai.app">salam@qariai.app</a>. We may suspend or terminate your access to the Service at our discretion if you violate these Terms or if we discontinue the Service.</p>
+            <p>Upon termination, your right to use the Service ceases immediately. Sections of these Terms that by nature should survive termination (such as intellectual property, limitation of liability, and governing law) will continue to apply.</p>
+        </div>
+
+        <!-- 11 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">✏️</span> 11. Changes to These Terms
+            </h2>
+            <p>We may revise these Terms from time to time. When we make significant changes, we will notify you by email or via an in-app notification. The updated Terms will be effective from the date indicated at the top of this page. Continued use of the Service after changes constitutes your acceptance of the revised Terms.</p>
+        </div>
+
+        <!-- 12 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🌍</span> 12. Governing Law
+            </h2>
+            <p>These Terms shall be governed by and construed in accordance with applicable law. Any disputes arising from these Terms or your use of the Service shall be resolved through good-faith negotiation in the first instance. If resolution cannot be reached, disputes may be referred to the appropriate jurisdiction as required.</p>
+        </div>
+
+        <!-- 13 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">✉️</span> 13. Contact Us
+            </h2>
+            <p>If you have any questions about these Terms, or wish to report a concern, please contact us:</p>
+            <div class="highlight-box">
+                📧 <strong>Email:</strong> <a href="mailto:salam@qariai.app">salam@qariai.app</a><br>
+                🌐 <strong>Website:</strong> <a href="https://qariai.app">qariai.app</a>
+            </div>
+            <p style="margin-top:0.75rem;">We will do our best to respond promptly. جزاك الله خيرًا</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand-col">
+                <div class="footer-brand">
+                    <div class="footer-brand-icon">Q</div>
+                    <span class="footer-brand-name gradient-text">QariAI</span>
+                </div>
+                <p class="footer-tagline">AI-Powered Tajweed &amp; Hifz Coach. Built with ❤️ for the Ummah.</p>
+            </div>
+            <div class="footer-links-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="mailto:salam@qariai.app">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#how-it-works">How It Works</a></li>
+                    <li><a href="/#levels">Levels</a></li>
+                    <li><a href="/#beta">Join Beta</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2026 QariAI. Built with ❤️ for the Ummah. Powered by AI.</p>
+            <p class="footer-dua">May Allah accept this work and make it beneficial • إن شاء الله</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
