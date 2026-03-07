@@ -1253,4 +1253,13 @@ Keep responses concise — 2-4 sentences unless explaining something complex. Be
 
             function onKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }
             function resize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 90) + 'px'; }
-            function scrollBot() { const el = document.
+            function scrollBot() { const el = document.getElementById('qariai-messages'); setTimeout(() => el.scrollTop = el.scrollHeight, 50); }
+
+            if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+
+            return { toggle, send, onKey, resize };
+        })();
+    </script>
+
+</body>
+</html>
