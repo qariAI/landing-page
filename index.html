@@ -250,4 +250,10 @@ function sendMsg(text){if(isTyping)return;document.getElementById('qariai-qr').i
 fetch('https://qariai-proxy.salam-22f.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:512,system:SYSTEM,messages:history})}).then(function(res){return res.json();}).then(function(data){if(data.error)throw new Error(data.error.message);var reply=data.content[0].text;history.push({role:'assistant',content:reply});hideTyping();addMsg('bot',reply);if(history.length>=2)setTimeout(function(){showQR(QR_FOLLOWUP);},400);}).catch(function(err){hideTyping();addMsg('bot','JazakAllah Khair for your patience — I\'m having a little trouble connecting. Please try again or email salam@qariai.app 🤲');console.error('QariAI agent error:',err);}).finally(function(){isTyping=false;document.getElementById('qariai-send').disabled=false;document.getElementById('qariai-input').focus();});}
 function onKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}}
 function resize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,90)+'px';}
-function
+function scrollBot(){var el=document.getElementById('qariai-messages');setTimeout(function(){el.scrollTop=el.scrollHeight;},50);}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+return{toggle:toggle,send:send,onKey:onKey,resize:resize};
+})();
+</script>
+</body>
+</html>
