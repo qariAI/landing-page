@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QariAI Beta Feedback</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 100%); min-height: 100vh; padding: 24px 16px; }
+        .container { max-width: 560px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #059669, #0d9488); border-radius: 20px; padding: 32px 24px; text-align: center; margin-bottom: 24px; color: white; }
+        .logo { width: 56px; height: 56px; background: rgba(255,255,255,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; }
+        .header h1 { font-family: 'Merriweather', serif; font-size: 22px; margin-bottom: 6px; }
+        .header p { font-size: 14px; opacity: 0.85; line-height: 1.5; }
+        .gift-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 14px; padding: 16px 20px; margin-bottom: 24px; display: flex; gap: 12px; align-items: center; }
+        .gift-box .icon { font-size: 28px; flex-shrink: 0; }
+        .gift-box p { font-size: 14px; color: #92400e; line-height: 1.5; }
+        .gift-box strong { color: #78350f; }
+        .card { background: white; border-radius: 16px; padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .question-num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: #d1fae5; color: #065f46; border-radius: 50%; font-size: 12px; font-weight: 700; margin-right: 8px; flex-shrink: 0; }
+        .question-title { display: flex; align-items: center; font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 14px; }
+        .options { display: flex; flex-direction: column; gap: 8px; }
+        .option { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 10px; cursor: pointer; transition: all 0.15s; font-size: 14px; color: #334155; }
+        .option:hover { border-color: #059669; background: #f0fdf4; }
+        .option input[type="radio"] { accent-color: #059669; width: 16px; height: 16px; flex-shrink: 0; }
+        .option.selected { border-color: #059669; background: #f0fdf4; color: #065f46; font-weight: 600; }
+        .option-emoji { font-size: 18px; }
+        select { width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 14px; color: #334155; font-family: inherit; outline: none; transition: border-color 0.15s; background: white; cursor: pointer; }
+        select:focus { border-color: #059669; }
+        textarea { width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 14px; color: #334155; font-family: inherit; outline: none; resize: vertical; min-height: 80px; transition: border-color 0.15s; }
+        textarea:focus { border-color: #059669; }
+        textarea::placeholder { color: #94a3b8; }
+        input[type="email"] { width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 14px; color: #334155; font-family: inherit; outline: none; transition: border-color 0.15s; }
+        input[type="email"]:focus { border-color: #059669; }
+        .stars { display: flex; gap: 8px; justify-content: center; margin-top: 4px; }
+        .star { font-size: 32px; cursor: pointer; transition: transform 0.1s; filter: grayscale(1); opacity: 0.4; }
+        .star:hover, .star.active { filter: grayscale(0); opacity: 1; transform: scale(1.2); }
+        .submit-btn { width: 100%; background: linear-gradient(135deg, #059669, #047857); color: white; border: none; padding: 16px; border-radius: 12px; font-size: 17px; font-weight: 700; font-family: inherit; cursor: pointer; transition: opacity 0.15s; margin-top: 8px; }
+        .submit-btn:hover { opacity: 0.9; }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .note { font-size: 12px; color: #94a3b8; text-align: center; margin-top: 12px; line-height: 1.5; }
+        .note a { color: #059669; text-decoration: none; }
+        .success { display: none; background: white; border-radius: 20px; padding: 40px 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .success .emoji { font-size: 64px; margin-bottom: 16px; }
+        .success h2 { font-family: 'Merriweather', serif; font-size: 22px; color: #0f172a; margin-bottom: 8px; }
+        .success p { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 16px; }
+        .premium-badge { background: #d1fae5; border: 1px solid #a7f3d0; border-radius: 100px; padding: 8px 20px; font-size: 14px; font-weight: 700; color: #065f46; display: inline-block; margin-bottom: 20px; }
+        .back-btn { display: inline-block; background: linear-gradient(135deg, #059669, #047857); color: white; text-decoration: none; padding: 12px 28px; border-radius: 100px; font-weight: 700; font-size: 14px; }
+        .label { font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 8px; display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎙️</div>
+            <h1>QariAI Beta Feedback</h1>
+            <p>Help us improve before launch — takes only 2 minutes إن شاء الله 🤲</p>
+        </div>
+        <div class="gift-box">
+            <div class="icon">🎁</div>
+            <p><strong>Free 1 Month Premium!</strong><br>Complete this feedback and receive 1 month FREE Premium access (worth £4.99) at launch إن شاء الله</p>
+        </div>
+        <form id="feedback-form">
+            <div class="card">
+                <div class="question-title"><span class="question-num">1</span>How smoothly does the app run on your device?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="performance" value="very_smooth" required><span class="option-emoji">🟢</span> Very smooth — no issues at all</label>
+                    <label class="option"><input type="radio" name="performance" value="mostly_smooth"><span class="option-emoji">🟡</span> Mostly smooth — minor glitches</label>
+                    <label class="option"><input type="radio" name="performance" value="slow"><span class="option-emoji">🟠</span> A bit slow or laggy</label>
+                    <label class="option"><input type="radio" name="performance" value="crashes"><span class="option-emoji">🔴</span> App crashes or won't open</label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="question-title"><span class="question-num">2</span>How useful was the Tajweed feedback?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="tajweed" value="very_useful" required><span class="option-emoji">🌟</span> Very useful — clear and accurate</label>
+                    <label class="option"><input type="radio" name="tajweed" value="somewhat"><span class="option-emoji">👍</span> Somewhat useful — could be clearer</label>
+                    <label class="option"><input type="radio" name="tajweed" value="not_sure"><span class="option-emoji">🤔</span> Not sure — I need more practice</label>
+                    <label class="option"><input type="radio" name="tajweed" value="not_useful"><span class="option-emoji">👎</span> Not useful — feedback was confusing</label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="question-title"><span class="question-num">3</span>What's your favourite feature so far?</div>
+                <select name="favourite_feature" required>
+                    <option value="">— Select one —</option>
+                    <option value="tajweed_coach">🎙️ Tajweed Coach (real-time feedback)</option>
+                    <option value="hifz_mode">🧠 Hifz Mode (memorisation tracking)</option>
+                    <option value="levels">📈 Levels system (Beginner to Advanced)</option>
+                    <option value="drills">🎯 Personalised drills</option>
+                    <option value="streaks">🔥 Daily streaks and XP</option>
+                    <option value="dashboard">📊 Progress dashboard</option>
+                </select>
+            </div>
+            <div class="card">
+                <div class="question-title"><span class="question-num">4</span>What's the ONE thing you'd most like us to improve?</div>
+                <select name="improvement" required>
+                    <option value="">— Select one —</option>
+                    <option value="accuracy">🎯 More accurate Tajweed detection</option>
+                    <option value="speed">⚡ Faster response time</option>
+                    <option value="ui">🎨 Better design / easier to use</option>
+                    <option value="more_surahs">📖 More Surahs available</option>
+                    <option value="arabic">🌍 Arabic language support</option>
+                    <option value="offline">📴 Offline mode</option>
+                    <option value="explanations">📚 More detailed explanations</option>
+                    <option value="nothing">✅ Nothing — it's great as is!</option>
+                </select>
+            </div>
+            <div class="card">
+                <div class="question-title"><span class="question-num">5</span>Would you recommend QariAI to a fellow Muslim?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="recommend" value="definitely" required><span class="option-emoji">💚</span> Definitely yes!</label>
+                    <label class="option"><input type="radio" name="recommend" value="probably"><span class="option-emoji">👍</span> Probably yes</label>
+                    <label class="option"><input type="radio" name="recommend" value="not_sure"><span class="option-emoji">🤔</span> Not sure yet</label>
+                    <label class="option"><input type="radio" name="recommend" value="no"><span class="option-emoji">👎</span> Not yet — needs more work</label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="question-title"><span class="question-num">6</span>Overall star rating</div>
+                <div class="stars" id="stars">
+                    <span class="star" data-val="1">⭐</span>
+                    <span class="star" data-val="2">⭐</span>
+                    <span class="star" data-val="3">⭐</span>
+                    <span class="star" data-val="4">⭐</span>
+                    <span class="star" data-val="5">⭐</span>
+                </div>
+                <input type="hidden" name="rating" id="rating-val" value="0">
+            </div>
+            <div class="card">
+                <div class="question-title"><span class="question-num">7</span>Any other comments? (optional)</div>
+                <textarea name="comments" placeholder="Tell us anything else — bugs, ideas, or just a kind word 🤲"></textarea>
+            </div>
+            <div class="card">
+                <label class="label">📧 Your email (to receive your free Premium)</label>
+                <input type="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <button type="submit" class="submit-btn" id="submit-btn">🎙️ Submit Feedback &amp; Claim Free Premium</button>
+            <p class="note">Questions? Email <a href="mailto:salam@qariai.app">salam@qariai.app</a> | <a href="https://qariai.app/privacy">Privacy Policy</a></p>
+        </form>
+        <div class="success" id="success">
+            <div class="emoji">🎉</div>
+            <h2>JazakAllah Khair!</h2>
+            <p>Your feedback has been received. May Allah reward you for helping improve QariAI for the Ummah 🤲</p>
+            <div class="premium-badge">🎁 1 Month FREE Premium confirmed!</div>
+            <p>We'll send your Premium access to your email when QariAI launches إن شاء الله</p>
+            <br><br>
+            <a href="https://qariai.app" class="back-btn">Back to QariAI</a>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.option input').forEach(function(input) {
+            input.addEventListener('change', function() {
+                var name = this.name;
+                document.querySelectorAll('.option input[name="' + name + '"]').forEach(function(i) {
+                    i.closest('.option').classList.remove('selected');
+                });
+                this.closest('.option').classList.add('selected');
+            });
+        });
+        var stars = document.querySelectorAll('.star');
+        stars.forEach(function(star) {
+            star.addEventListener('click', function() {
+                var val = this.dataset.val;
+                document.getElementById('rating-val').value = val;
+                stars.forEach(function(s, i) {
+                    s.classList.toggle('active', i < val);
+                });
+            });
+        });
+        document.getElementById('feedback-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            var data = new FormData(this);
+            var payload = {};
+            data.forEach(function(v, k) { payload[k] = v; });
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    access_key: '49a0b4bc-6c09-427d-b8f9-9e3235a06b80',
+                    subject: 'New QariAI Beta Feedback from ' + payload.email,
+                    from_name: 'QariAI Feedback',
+                    email: payload.email,
+                    performance: payload.performance,
+                    tajweed: payload.tajweed,
+                    favourite: payload.favourite_feature,
+                    improvement: payload.improvement,
+                    recommend: payload.recommend,
+                    rating: payload.rating + '/5',
+                    comments: payload.comments || 'None'
+                })
+            }).finally(function() {
+                document.getElementById('feedback-form').style.display = 'none';
+                document.getElementById('success').style.display = 'block';
+                window.scrollTo(0, 0);
+            });
+        });
+    </script>
+</body>
+</html>
