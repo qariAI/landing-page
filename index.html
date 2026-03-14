@@ -6,7 +6,6 @@
 <title>QariAI - AI-Powered Tajweed &amp; Hifz Coach</title>
 <meta name="description" content="Improve your Quran recitation with AI-powered feedback. Perfect your Tajweed, strengthen your Hifz, and recite with confidence.">
 <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>window.va = window.va || function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <style>
@@ -47,7 +46,6 @@
 #error-message{border-radius:10px!important;margin-bottom:12px}
 #success-message{border-radius:10px!important;padding:20px!important;text-align:center!important}
 .entry__error{font-size:13px!important;margin-top:6px;border-radius:6px!important;padding:4px 8px!important}
-.cf-turnstile{margin:12px 0 4px 0}
 #qariai-widget *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',-apple-system,sans-serif}
 #qariai-launcher{position:fixed;bottom:28px;right:28px;z-index:9998;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#059669,#047857);border:none;cursor:pointer;box-shadow:0 4px 24px rgba(5,150,105,.45),0 2px 8px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;animation:ql-pulse 3s ease-in-out infinite}
 #qariai-launcher:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(5,150,105,.55),0 4px 12px rgba(0,0,0,.15);animation:none}
@@ -180,11 +178,11 @@
 </div>
 <div id="sib-form-wrapper">
 <p style="color:#475569;font-size:14px;text-align:center;margin-bottom:20px;">Enter your email and we'll send you beta access as soon as a spot opens. إن شاء الله</p>
-<form id="sib-form" method="POST" data-ajax="true" action="https://178249ff.sibforms.com/serve/MUIFAJja8gYYCHAkfBIQIRP1zXFD5ApZCXCVsRUuZCdGOPBXn-CQNXcmLFLfSXQIGLNnbOQ2SmRf6behJt_cQwkBFAjZeAt7VXtzpFjuj8-4W9eS_8gwi0TwJ59NLWBtDgDx8StPfsvrPbx4rxr8sYDVOjbzKtp62-2P7fVf_8thkUOL4L6S-urdXNV_8xSNhnhQEzu9Ow6Qq0gMeQ==" data-type="subscription">
+<form id="sib-form" method="POST" action="https://178249ff.sibforms.com/serve/MUIFAJja8gYYCHAkfBIQIRP1zXFD5ApZCXCVsRUuZCdGOPBXn-CQNXcmLFLfSXQIGLNnbOQ2SmRf6behJt_cQwkBFAjZeAt7VXtzpFjuj8-4W9eS_8gwi0TwJ59NLWBtDgDx8StPfsvrPbx4rxr8sYDVOjbzKtp62-2P7fVf_8thkUOL4L6S-urdXNV_8xSNhnhQEzu9Ow6Qq0gMeQ==" data-type="subscription" onsubmit="handleBrevoSubmit(event)">
 <label class="block text-sm font-bold text-slate-700 mb-2" for="EMAIL">Email Address</label>
 <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="your@email.com" data-required="true" required style="width:100%;padding:14px 18px;border-radius:12px;border:2px solid #e2e8f0;font-size:15px;color:#0f172a;outline:none;font-family:inherit;margin-bottom:4px;" onfocus="this.style.borderColor='#059669'" onblur="this.style.borderColor='#e2e8f0'"/>
 <label class="entry__error entry__error--primary" style="font-size:13px;color:#661d1d;background:#ffeded;border-radius:6px;padding:4px 8px;display:block;min-height:4px;"></label>
-<div class="cf-turnstile" data-sitekey="0x4AAAAAACq2jkeBJKBlO1b-" data-theme="light" style="height:0;overflow:hidden;margin:0;padding:0;"></div>
+
 <button class="sib-form-block__button sib-form-block__button-with-loader" type="submit" style="width:100%;background:linear-gradient(135deg,#059669,#047857);color:#fff;padding:16px;border-radius:12px;font-size:17px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
 <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" style="width:18px;height:18px;fill:white;"><path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"/></svg>
 🎙️ Request Beta Access
@@ -251,6 +249,30 @@ fetch('https://qariai-proxy.salam-22f.workers.dev',{method:'POST',headers:{'Cont
 function onKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}}
 function resize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,90)+'px';}
 function scrollBot(){var el=document.getElementById('qariai-messages');setTimeout(function(){el.scrollTop=el.scrollHeight;},50);}
+function handleBrevoSubmit(e){
+e.preventDefault();
+var email=document.getElementById('EMAIL').value.trim();
+if(!email){
+    document.getElementById('EMAIL').style.borderColor='#ef4444';
+    return;
+}
+var btn=e.target.querySelector('button[type=submit]');
+btn.disabled=true;
+btn.textContent='Sending...';
+var formData=new FormData(e.target);
+fetch(e.target.action,{method:'POST',body:formData,mode:'no-cors'})
+.then(function(){
+    document.getElementById('confirmed-email').textContent=email;
+    document.getElementById('sib-form-wrapper').style.display='none';
+    document.getElementById('success-message').style.display='block';
+})
+.catch(function(){
+    document.getElementById('confirmed-email').textContent=email;
+    document.getElementById('sib-form-wrapper').style.display='none';
+    document.getElementById('success-message').style.display='block';
+});
+}
+
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 return{toggle:toggle,send:send,onKey:onKey,resize:resize};
 })();
