@@ -252,24 +252,18 @@ function scrollBot(){var el=document.getElementById('qariai-messages');setTimeou
 function handleBrevoSubmit(e){
 e.preventDefault();
 var email=document.getElementById('EMAIL').value.trim();
-if(!email){
-    document.getElementById('EMAIL').style.borderColor='#ef4444';
-    return;
-}
+if(!email){document.getElementById('EMAIL').style.borderColor='#ef4444';return;}
 var btn=e.target.querySelector('button[type=submit]');
-btn.disabled=true;
-btn.textContent='Sending...';
+if(btn){btn.disabled=true;btn.innerHTML='Sending... ⏳';}
 var formData=new FormData(e.target);
 fetch(e.target.action,{method:'POST',body:formData,mode:'no-cors'})
-.then(function(){
-    document.getElementById('confirmed-email').textContent=email;
-    document.getElementById('sib-form-wrapper').style.display='none';
-    document.getElementById('success-message').style.display='block';
-})
-.catch(function(){
-    document.getElementById('confirmed-email').textContent=email;
-    document.getElementById('sib-form-wrapper').style.display='none';
-    document.getElementById('success-message').style.display='block';
+.finally(function(){
+    var emailEl=document.getElementById('confirmed-email');
+    var wrapper=document.getElementById('sib-form-wrapper');
+    var success=document.getElementById('success-message');
+    if(emailEl) emailEl.textContent=email;
+    if(wrapper) wrapper.style.cssText='display:none!important';
+    if(success) success.style.cssText='display:block!important;font-size:14px;font-family:Helvetica,sans-serif;color:#085229;background-color:#e7faf0;border-radius:10px;border:1px solid #13ce66;padding:24px 16px;text-align:center;';
 });
 }
 
