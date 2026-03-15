@@ -136,7 +136,7 @@
                 <input type="email" name="email" placeholder="your@email.com" required>
             </div>
             <button type="submit" class="submit-btn" id="submit-btn">🎙️ Submit Feedback &amp; Claim Free Premium</button>
-            <p class="note">Questions? Email <a href="mailto:salam@qariai.app">salam@qariai.app</a> | <a href="https://qariai.app/privacy">Privacy Policy</a></p>
+            <p class="note">Questions? Email <a href="/cdn-cgi/l/email-protection#a0d3c1ccc1cde0d1c1d2c9c1c98ec1d0d0"><span class="__cf_email__" data-cfemail="5d2e3c313c301d2c3c2f343c34733c2d2d">[email&#160;protected]</span></a> | <a href="https://qariai.app/privacy">Privacy Policy</a></p>
         </form>
         <div class="success" id="success">
             <div class="emoji">🎉</div>
@@ -148,7 +148,7 @@
             <a href="https://qariai.app" class="back-btn">Back to QariAI</a>
         </div>
     </div>
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         document.querySelectorAll('.option input').forEach(function(input) {
             input.addEventListener('change', function() {
                 var name = this.name;
@@ -176,28 +176,9 @@
             var data = new FormData(this);
             var payload = {};
             data.forEach(function(v, k) { payload[k] = v; });
-            fetch('https://api.web3forms.com/submit', {
+            fetch('https://qariai-proxy.salam-22f.workers.dev/feedback', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    access_key: '49a0b4bc-6c09-427d-b8f9-9e3235a06b80',
-                    subject: 'New QariAI Beta Feedback from ' + payload.email,
-                    from_name: 'QariAI Feedback',
-                    email: payload.email,
-                    performance: payload.performance,
-                    tajweed: payload.tajweed,
-                    favourite: payload.favourite_feature,
-                    improvement: payload.improvement,
-                    recommend: payload.recommend,
-                    rating: payload.rating + '/5',
-                    comments: payload.comments || 'None'
-                })
+                body: JSON.stringify(payload)
             }).finally(function() {
-                document.getElementById('feedback-form').style.display = 'none';
-                document.getElementById('success').style.display = 'block';
-                window.scrollTo(0, 0);
-            });
-        });
-    </script>
-</body>
-</html>
+                d
