@@ -149,6 +149,7 @@
         </div>
     </div>
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Style selected options
         document.querySelectorAll('.option input').forEach(function(input) {
             input.addEventListener('change', function() {
                 var name = this.name;
@@ -158,16 +159,21 @@
                 this.closest('.option').classList.add('selected');
             });
         });
+
+        // Star rating
         var stars = document.querySelectorAll('.star');
         stars.forEach(function(star) {
             star.addEventListener('click', function() {
-                var val = this.dataset.val;
+                var val = parseInt(this.dataset.val);
                 document.getElementById('rating-val').value = val;
                 stars.forEach(function(s, i) {
-                    s.classList.toggle('active', i < val);
+                    if(i < val) { s.classList.add('active'); }
+                    else { s.classList.remove('active'); }
                 });
             });
         });
+
+        // Form submit
         document.getElementById('feedback-form').addEventListener('submit', function(e) {
             e.preventDefault();
             var btn = document.getElementById('submit-btn');
@@ -176,9 +182,20 @@
             var data = new FormData(this);
             var payload = {};
             data.forEach(function(v, k) { payload[k] = v; });
+
             fetch('https://qariai-proxy.salam-22f.workers.dev/feedback', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Origin': 'https://qariai.app'
+                },
                 body: JSON.stringify(payload)
             }).finally(function() {
-                d
+                document.getElementById('feedback-form').style.display = 'none';
+                document.getElementById('success').style.display = 'block';
+                window.scrollTo(0, 0);
+            });
+        });
+    </script>
+</body>
+</html>
