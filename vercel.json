@@ -2,9 +2,12 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/privacy",                  "destination": "/privacy.html"                  },
-    { "source": "/terms",                    "destination": "/terms.html"                    },
-    { "source": "/about",                    "destination": "/about.html"                    },
-    { "source": "/tajweed-mistakes-checker", "destination": "/tajweed-mistakes-checker.html" }
+    { "source": "/privacy",                        "destination": "/privacy.html"                   },
+    { "source": "/terms",                          "destination": "/terms.html"                     },
+    { "source": "/about",                          "destination": "/about.html"                     },
+    { "source": "/tajweed-mistakes-checker",       "destination": "/tajweed-mistakes-checker.html"  },
+    { "source": "/learn/common-tajweed-mistakes",  "destination": "/common-tajweed-mistakes.html"   },
+    { "source": "/learn/pronounce-ayn",            "destination": "/pronounce-ayn.html"             },
+    { "source": "/learn/qalqalah-explained",       "destination": "/qalqalah-explained.html"        }
   ]
 }
