@@ -9,6 +9,7 @@
     { "source": "/tajweed-mistakes-checker",       "destination": "/tajweed-mistakes-checker.html"  },
     { "source": "/learn/common-tajweed-mistakes",  "destination": "/common-tajweed-mistakes.html"   },
     { "source": "/learn/pronounce-ayn",            "destination": "/pronounce-ayn.html"             },
-    { "source": "/learn/qalqalah-explained",       "destination": "/qalqalah-explained.html"        }
+    { "source": "/learn/qalqalah-explained",       "destination": "/qalqalah-explained.html"        },
+    { "source": "/compare/qari-ai-vs-tarteel",     "destination": "/qari-ai-vs-tarteel.html"        }
   ]
 }
