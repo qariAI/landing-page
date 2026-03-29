@@ -2,14 +2,15 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/privacy",                        "destination": "/privacy.html"                   },
-    { "source": "/terms",                          "destination": "/terms.html"                     },
-    { "source": "/about",                          "destination": "/about.html"                     },
-    { "source": "/ar",                             "destination": "/ar.html"                        },
-    { "source": "/tajweed-mistakes-checker",       "destination": "/tajweed-mistakes-checker.html"  },
-    { "source": "/learn/common-tajweed-mistakes",  "destination": "/common-tajweed-mistakes.html"   },
-    { "source": "/learn/pronounce-ayn",            "destination": "/pronounce-ayn.html"             },
-    { "source": "/learn/qalqalah-explained",       "destination": "/qalqalah-explained.html"        },
-    { "source": "/compare/qari-ai-vs-tarteel",     "destination": "/qari-ai-vs-tarteel.html"        }
+    { "source": "/privacy",                          "destination": "/privacy.html"                     },
+    { "source": "/terms",                            "destination": "/terms.html"                       },
+    { "source": "/about",                            "destination": "/about.html"                       },
+    { "source": "/ar",                               "destination": "/ar.html"                          },
+    { "source": "/tajweed-mistakes-checker",         "destination": "/tajweed-mistakes-checker.html"    },
+    { "source": "/learn/common-tajweed-mistakes",    "destination": "/common-tajweed-mistakes.html"     },
+    { "source": "/learn/pronounce-ayn",              "destination": "/pronounce-ayn.html"               },
+    { "source": "/learn/qalqalah-explained",         "destination": "/qalqalah-explained.html"          },
+    { "source": "/compare/qari-ai-vs-tarteel",       "destination": "/qari-ai-vs-tarteel.html"          },
+    { "source": "/compare/qari-ai-vs-tajweedmate",   "destination": "/qari-ai-vs-tajweedmate.html"      }
   ]
 }
