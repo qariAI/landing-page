@@ -301,7 +301,7 @@ footer{background:#0f172a;color:#e2e8f0;padding:3rem 1.5rem 2rem}
           <li><a href="/about">من نحن</a></li>
           <li><a href="/privacy">سياسة الخصوصية</a></li>
           <li><a href="/terms">شروط الاستخدام</a></li>
-          <li><a href="mailto:salam@qariai.app">تواصل معنا</a></li>
+          <li><a href="mailto:salam@qariai.app" data-cfemail="protected">تواصل معنا</a></li>
         </ul>
       </div>
       <div class="fc2">
@@ -309,7 +309,7 @@ footer{background:#0f172a;color:#e2e8f0;padding:3rem 1.5rem 2rem}
         <a href="https://x.com/ai_qari" target="_blank" style="display:inline-flex;width:2.5rem;height:2.5rem;background:#1e293b;border-radius:.5rem;align-items:center;justify-content:center;margin-bottom:.75rem" onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#1e293b'">
           <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <p style="font-size:.875rem;color:#94a3b8;margin-bottom:.75rem">البريد: <a href="mailto:salam@qariai.app" style="color:#34d399">salam@qariai.app</a></p>
+        <p style="font-size:.875rem;color:#94a3b8;margin-bottom:.75rem">البريد: <a href="mailto:salam@qariai.app" data-cfemail="protected" style="color:#34d399"><span class="__cf_email__" data-cfemail="6e1d0f020f032e1f0f1c070f07400f1e1e">[email&#160;protected]</span></a></p>
         <a href="/" style="border:1.5px solid #475569;color:#94a3b8;padding:5px 12px;border-radius:9999px;font-size:.8rem;font-weight:700;display:inline-block">EN</a>
       </div>
     </div>
@@ -320,7 +320,7 @@ footer{background:#0f172a;color:#e2e8f0;padding:3rem 1.5rem 2rem}
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function openBetaAr(){document.getElementById('beta-modal-ar').style.display='flex';document.body.style.overflow='hidden'}
 function closeBetaAr(){document.getElementById('beta-modal-ar').style.display='none';document.body.style.overflow=''}
 document.getElementById('beta-modal-ar').addEventListener('click',function(e){if(e.target===this)closeBetaAr()});
@@ -347,11 +347,4 @@ async function handleIosAr(e){
     fd.append('subject','iOS Waitlist AR');
     fd.append('email',document.getElementById('ios-email-ar').value);
     var r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
-    var d=await r.json();
-    if(d.success){document.querySelector('#ios-form-ar .flex').style.display='none';document.getElementById('ios-ok-ar').style.display='block'}
-    else throw new Error();
-  }catch(err){btn.textContent='حاول مجدداً';btn.disabled=false}
-}
-</script>
-</body>
-</html>
+    var d=await r.json(
