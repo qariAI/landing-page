@@ -388,6 +388,15 @@ footer a:hover{text-decoration:underline}
   </div>
 
   <!-- CTA -->
+  <div class="internal-links">
+    <h4>📚 Related Pages</h4>
+    <ul>
+      <li><a href="/best-ai-quran-app">→ Best AI Quran Apps 2026</a></li>
+      <li><a href="/compare/qari-ai-vs-tarteel">→ Qari AI vs Tarteel</a></li>
+      <li><a href="/apps-like-tarteel">→ Apps Like Tarteel</a></li>
+      <li><a href="/tajweed-mistakes-checker">→ Free Tajweed Checker</a></li>
+    </ul>
+  </div>
   <div class="cta-box">
     <h3>Try Qari AI — Free</h3>
     <p>Experience the difference for yourself. Download QariAI on Android and get real-time Tajweed feedback from your very first recitation.</p>
