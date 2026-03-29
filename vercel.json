@@ -5,6 +5,7 @@
     { "source": "/privacy",                        "destination": "/privacy.html"                   },
     { "source": "/terms",                          "destination": "/terms.html"                     },
     { "source": "/about",                          "destination": "/about.html"                     },
+    { "source": "/ar",                             "destination": "/ar.html"                        },
     { "source": "/tajweed-mistakes-checker",       "destination": "/tajweed-mistakes-checker.html"  },
     { "source": "/learn/common-tajweed-mistakes",  "destination": "/common-tajweed-mistakes.html"   },
     { "source": "/learn/pronounce-ayn",            "destination": "/pronounce-ayn.html"             },
