@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qari AI vs TajweedMate: Which App Is Better for Learning Tajweed? | QariAI</title>
+<meta name="description" content="Compare Qari AI vs TajweedMate for Tajweed correction, pronunciation, and Hifz. See which AI Quran app delivers faster real-world improvement.">
+<meta name="keywords" content="qari ai vs tajweedmate, tajweedmate alternative, best tajweed app, ai quran recitation, tajweed correction app">
+<meta property="og:title" content="Qari AI vs TajweedMate: Which App Is Better for Tajweed?">
+<meta property="og:url" content="https://qariai.app/compare/qari-ai-vs-tajweedmate">
+<link rel="canonical" href="https://qariai.app/compare/qari-ai-vs-tajweedmate">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Qari AI better than TajweedMate?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Qari AI is better for real-time Tajweed correction and pronunciation improvement during recitation. TajweedMate is better for structured learning of Tajweed rules and theory. For most users who want to improve actual recitation, Qari AI delivers faster results through its feedback loop."}
+    },
+    {
+      "@type": "Question",
+      "name": "Does Qari AI teach Tajweed?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes — but through real-time feedback during recitation rather than traditional lessons. You recite, the AI detects mistakes instantly, and you correct them on the spot. This learn-by-reciting model produces faster practical improvement."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can TajweedMate correct pronunciation mistakes?",
+      "acceptedAnswer": {"@type": "Answer", "text": "TajweedMate provides guidance and explanations of Tajweed rules, but does not offer the same level of real-time phonetic correction as Qari AI. It is more suitable for learning theory than correcting live recitation mistakes."}
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg:#080e12; --bg2:#0d1820;
+  --emerald:#10b981; --emerald2:#059669; --emerald3:#047857;
+  --gold:#d4af37; --text:#e8f0eb; --muted:#6b8a7a;
+  --border:rgba(16,185,129,0.15); --card:rgba(13,24,32,0.85);
+}
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+html{line-height:1.6;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(16,185,129,0.04)' stroke-width='0.8'%3E%3Cpolygon points='40,4 72,22 72,58 40,76 8,58 8,22'/%3E%3Cpolygon points='40,14 64,27 64,53 40,66 16,53 16,27'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:80px 80px}
+a{color:inherit;text-decoration:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.08);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-link{color:#475569;font-size:0.85rem;transition:color 0.2s;font-weight:500}
+.nav-link:hover{color:#059669}
+.nav-cta{background:#059669;color:#fff;padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600;transition:background 0.2s}
+.nav-cta:hover{background:#047857}
+
+.page-wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:90px 2rem 80px}
+
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);border-radius:100px;padding:5px 14px;font-size:0.72rem;font-weight:600;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:20px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,5vw,3rem);font-weight:700;line-height:1.15;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--emerald)}
+.lead{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:40px;max-width:640px}
+
+.verdict-banner{background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(5,150,105,0.15));border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:48px;display:flex;align-items:center;gap:16px}
+.verdict-icon{font-size:2rem;flex-shrink:0}
+.verdict-text{font-size:0.95rem;color:#a8c0b0;line-height:1.6}
+.verdict-text strong{color:var(--text)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:24px 0 40px;border-radius:14px;overflow:hidden}
+.compare-table th{padding:14px 18px;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase}
+.compare-table th:first-child{background:var(--bg2);color:var(--muted);text-align:left;width:38%}
+.compare-table th.col-tm{background:rgba(255,255,255,0.04);color:#94a3b8;text-align:center}
+.compare-table th.col-qari{background:rgba(16,185,129,0.12);color:var(--emerald);text-align:center}
+.compare-table td{padding:13px 18px;font-size:0.875rem;border-top:1px solid rgba(255,255,255,0.05)}
+.compare-table td:first-child{color:var(--muted);font-weight:500}
+.compare-table td.col-tm{background:rgba(255,255,255,0.02);text-align:center;color:#94a3b8}
+.compare-table td.col-qari{background:rgba(16,185,129,0.05);text-align:center;color:#34d399;font-weight:600}
+.check{color:var(--emerald);font-size:1.1rem}
+.cross{color:#475569;font-size:1.1rem}
+
+h2{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:700;margin:48px 0 16px;color:var(--text)}
+h2::before{content:'';display:block;width:40px;height:2px;background:var(--emerald2);margin-bottom:12px;border-radius:2px}
+p{color:#a8c0b0;line-height:1.8;margin-bottom:14px;font-size:0.93rem}
+p:last-child{margin-bottom:0}
+strong{color:var(--text);font-weight:600}
+
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px 20px}
+.card.qari{border-color:rgba(16,185,129,0.2);background:rgba(16,185,129,0.05)}
+.card.tm{border-color:rgba(255,255,255,0.08)}
+.card-label{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px}
+.card.qari .card-label{color:var(--emerald)}
+.card.tm .card-label{color:#64748b}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.card ul li{font-size:0.85rem;color:#a8c0b0;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.card ul li::before{content:'→';flex-shrink:0;margin-top:1px}
+.card.qari ul li::before{color:var(--emerald)}
+.card.tm ul li::before{color:#475569}
+
+.highlight{background:rgba(16,185,129,0.06);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin:20px 0}
+.highlight p{margin:0;font-size:0.9rem}
+
+.feedback-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.feedback-box{background:var(--card);border-radius:12px;padding:16px 18px;border:1px solid rgba(255,255,255,0.06)}
+.feedback-box.bad{border-left:3px solid #ef4444}
+.feedback-box.good{border-left:3px solid var(--emerald)}
+.fb-label{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.feedback-box.bad .fb-label{color:#ef4444}
+.feedback-box.good .fb-label{color:var(--emerald)}
+.fb-text{font-size:0.88rem;color:#a8c0b0;line-height:1.5;font-style:italic}
+
+.use-table{width:100%;border-collapse:collapse;margin:20px 0}
+.use-table th{background:var(--bg2);padding:12px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-align:left}
+.use-table td{padding:12px 16px;font-size:0.875rem;border-top:1px solid rgba(255,255,255,0.05);color:#a8c0b0}
+.use-table td:last-child{font-weight:600;color:var(--emerald)}
+
+.choose-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.choose-box{background:var(--card);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px}
+.choose-box.recommended{border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.06)}
+.choose-title{font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px}
+.choose-box.recommended .choose-title{color:var(--emerald)}
+.choose-box:not(.recommended) .choose-title{color:#64748b}
+.choose-box ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.choose-box ul li{font-size:0.85rem;color:#a8c0b0;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+
+.faq-item{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:12px}
+.faq-item h3{font-size:0.95rem;font-weight:700;margin-bottom:8px;color:var(--text);font-family:'DM Sans',sans-serif}
+.faq-item h3::before{content:none}
+.faq-item p{font-size:0.875rem;color:var(--muted);margin:0;line-height:1.7}
+
+.internal-links{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin:40px 0}
+.internal-links h4{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.internal-links ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.internal-links ul li a{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.08);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:0.8rem;color:var(--emerald);transition:all 0.2s}
+.internal-links ul li a:hover{background:rgba(16,185,129,0.15);border-color:var(--emerald)}
+
+.cta-box{background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(5,150,105,0.15));border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;margin-top:48px}
+.cta-box h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;margin-bottom:10px}
+.cta-box p{color:var(--muted);font-size:0.88rem;margin-bottom:20px}
+.cta-primary{display:inline-flex;align-items:center;gap:8px;background:var(--emerald2);color:#fff;padding:13px 26px;border-radius:100px;font-weight:700;font-size:0.9rem;transition:all 0.2s}
+.cta-primary:hover{background:var(--emerald3);transform:translateY(-1px)}
+.cta-secondary{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:0.82rem;margin-top:12px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:2px}
+.cta-secondary:hover{color:var(--text)}
+
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 2rem;text-align:center;color:var(--muted);font-size:0.78rem}
+footer a{color:var(--emerald)}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:640px){
+  .card-grid,.feedback-compare,.choose-grid{grid-template-columns:1fr}
+  .nav-right .nav-link{display:none}
+  h1{font-size:1.7rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/"><img src="data:image/png;base64,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" alt="QariAI" style="height:44px;width:auto;object-fit:contain"></a>
+  <div class="nav-right">
+    <a href="/tajweed-mistakes-checker" class="nav-link">Free Checker</a>
+    <a href="/learn/common-tajweed-mistakes" class="nav-link">Learn Tajweed</a>
+    <a href="/compare/qari-ai-vs-tarteel" class="nav-link">vs Tarteel</a>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" class="nav-cta">Download Free</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="hero-tag">⚖️ App Comparison</div>
+  <h1>Qari AI vs TajweedMate:<br><em>Which App Is Better for Tajweed?</em></h1>
+  <p class="lead">Both apps aim to help users improve Tajweed — but they take fundamentally different approaches. TajweedMate focuses on structured lessons and theory. Qari AI focuses on real-time correction during actual recitation. This difference determines how quickly you improve.</p>
+
+  <div class="verdict-banner">
+    <div class="verdict-icon">🏆</div>
+    <div class="verdict-text">
+      <strong>Core difference:</strong> TajweedMate helps you learn Tajweed rules. Qari AI helps you apply them correctly in real recitation — with instant feedback every time you recite. If you want practical improvement, not just theoretical knowledge, that distinction is everything.
+    </div>
+  </div>
+
+  <h2>Side-by-Side Comparison</h2>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th class="col-tm">TajweedMate</th>
+        <th class="col-qari">Qari AI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Structured Tajweed Lessons</td><td class="col-tm"><span class="check">✓</span></td><td class="col-qari">Via feedback</td></tr>
+      <tr><td>Real-Time Recitation Analysis</td><td class="col-tm"><span class="cross">✗</span></td><td class="col-qari"><span class="check">✓</span></td></tr>
+      <tr><td>Phoneme-Level Error Detection</td><td class="col-tm"><span class="cross">✗</span></td><td class="col-qari"><span class="check">✓</span></td></tr>
+      <tr><td>Makharij Error Classification</td><td class="col-tm">Conceptual</td><td class="col-qari">Live detection</td></tr>
+      <tr><td>Ikhfa / Idgham / Qalqalah</td><td class="col-tm">Theory only</td><td class="col-qari">Live detection</td></tr>
+      <tr><td>Actionable Correction Guidance</td><td class="col-tm"><span class="cross">✗</span></td><td class="col-qari"><span class="check">✓</span></td></tr>
+      <tr><td>Guided Practice Drills</td><td class="col-tm">Exercises</td><td class="col-qari">AI-generated</td></tr>
+      <tr><td>Hifz / Memorization Mode</td><td class="col-tm"><span class="cross">✗</span></td><td class="col-qari"><span class="check">✓</span></td></tr>
+      <tr><td>XP & Progress Tracking</td><td class="col-tm"><span class="cross">✗</span></td><td class="col-qari"><span class="check">✓</span></td></tr>
+      <tr><td>Free to Use</td><td class="col-tm">Freemium</td><td class="col-qari">Free Beta</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Learning Approach</h2>
+  <div class="card-grid">
+    <div class="card tm">
+      <div class="card-label">TajweedMate Approach</div>
+      <ul>
+        <li>Lessons explaining Tajweed rules</li>
+        <li>Examples of correct pronunciation</li>
+        <li>Structured practice exercises</li>
+        <li>Learning happens before recitation</li>
+      </ul>
+    </div>
+    <div class="card qari">
+      <div class="card-label">Qari AI Approach</div>
+      <ul>
+        <li>You recite — AI analyzes instantly</li>
+        <li>Mistakes detected in real time</li>
+        <li>Corrections applied immediately</li>
+        <li>Learning happens during recitation</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight">
+    <p><strong>Qari AI teaches Tajweed during recitation, not before it.</strong> This creates a faster feedback loop — you hear the mistake, understand why, and correct it on the spot. Theory becomes practice immediately.</p>
+  </div>
+
+  <h2>Real-Time Feedback Quality</h2>
+  <p>The speed and specificity of feedback is what separates apps that teach you about Tajweed from apps that actually improve your Tajweed.</p>
+  <div class="feedback-compare">
+    <div class="feedback-box bad">
+      <div class="fb-label">❌ Theory-based feedback</div>
+      <p class="fb-text">"Review the rule for Qalb before continuing"</p>
+    </div>
+    <div class="feedback-box good">
+      <div class="fb-label">✅ Qari AI feedback</div>
+      <p class="fb-text">"Incorrect pronunciation of 'ق' — adjust tongue position at the back of the palate"</p>
+    </div>
+  </div>
+  <p>Qari AI provides <strong>specific, actionable correction</strong> at the moment of recitation — not a reminder to review a lesson later.</p>
+
+  <h2>Makharij Training</h2>
+  <div class="card-grid">
+    <div class="card tm">
+      <div class="card-label">TajweedMate</div>
+      <ul>
+        <li>Teaches Makharij conceptually</li>
+        <li>Uses diagrams and explanations</li>
+        <li>Good for understanding theory</li>
+      </ul>
+    </div>
+    <div class="card qari">
+      <div class="card-label">Qari AI</div>
+      <ul>
+        <li>Detects Makharij errors live during recitation</li>
+        <li>Classifies mistakes into actionable categories</li>
+        <li>Corrects articulation in real time</li>
+        <li>Generates targeted drills for weak letters</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight">
+    <p><strong>Knowing Makharij is different from applying Makharij.</strong> TajweedMate teaches you where letters come from. Qari AI tells you when you're getting them wrong — while you're reciting.</p>
+  </div>
+
+  <h2>Hifz (Memorization) Support</h2>
+  <p>TajweedMate is primarily focused on Tajweed learning and has limited memorization tracking. Qari AI includes a dedicated Hifz mode that combines memorization with Tajweed correction simultaneously.</p>
+  <div class="card-grid">
+    <div class="card tm">
+      <div class="card-label">TajweedMate Hifz</div>
+      <ul>
+        <li>Not a primary focus</li>
+        <li>Limited memorization tracking</li>
+      </ul>
+    </div>
+    <div class="card qari">
+      <div class="card-label">Qari AI Hifz Mode</div>
+      <ul>
+        <li>Recite from memory with live AI checks</li>
+        <li>Real-time mistake detection</li>
+        <li>Tajweed correction during Hifz session</li>
+        <li>Spaced repetition revision reminders</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Use Case Comparison</h2>
+  <table class="use-table">
+    <thead><tr><th>Use Case</th><th>Best App</th></tr></thead>
+    <tbody>
+      <tr><td>Learning Tajweed rules and theory</td><td>TajweedMate</td></tr>
+      <tr><td>Understanding Tajweed concepts</td><td>TajweedMate</td></tr>
+      <tr><td>Applying Tajweed during recitation</td><td>Qari AI</td></tr>
+      <tr><td>Real-time pronunciation correction</td><td>Qari AI</td></tr>
+      <tr><td>Memorization (Hifz)</td><td>Qari AI</td></tr>
+      <tr><td>Pronunciation improvement</td><td>Qari AI</td></tr>
+      <tr><td>Hifz + Tajweed correction combined</td><td>Qari AI</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Which App Should You Choose?</h2>
+  <div class="choose-grid">
+    <div class="choose-box">
+      <div class="choose-title">Choose TajweedMate if:</div>
+      <ul>
+        <li><span>→</span> You want structured Tajweed lessons</li>
+        <li><span>→</span> You are starting from theory</li>
+        <li><span>→</span> You prefer guided course-style learning</li>
+      </ul>
+    </div>
+    <div class="choose-box recommended">
+      <div class="choose-title">✅ Choose Qari AI if:</div>
+      <ul>
+        <li><span style="color:var(--emerald)">→</span> You want to improve while actually reciting</li>
+        <li><span style="color:var(--emerald)">→</span> You want real-time correction</li>
+        <li><span style="color:var(--emerald)">→</span> You want Tajweed + Hifz in one app</li>
+        <li><span style="color:var(--emerald)">→</span> You want faster, feedback-driven progress</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight" style="margin-top:20px">
+    <p>For most users, the fastest improvement comes from <strong>learning + real-time correction together</strong>. TajweedMate gives you the theory. Qari AI gives you the practice. That's where Qari AI stands out.</p>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <h3>Is Qari AI better than TajweedMate?</h3>
+    <p>Qari AI is better for real-time Tajweed correction and pronunciation improvement during recitation. TajweedMate is better for structured learning of Tajweed rules and theory. For most users who want to improve actual recitation, Qari AI delivers faster results through its real-time feedback loop.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Does Qari AI teach Tajweed?</h3>
+    <p>Yes — but through real-time feedback during recitation rather than traditional lessons. You recite, the AI detects mistakes instantly, and you correct them on the spot. This learn-by-reciting model produces faster practical improvement than theory-first approaches.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Can TajweedMate correct pronunciation mistakes?</h3>
+    <p>TajweedMate provides guidance and explanations of Tajweed rules, but does not offer the same level of real-time phonetic correction as Qari AI. It is better suited for learning theory than correcting live recitation mistakes.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Which app is better for Hifz?</h3>
+    <p>Qari AI includes a dedicated Hifz mode with real-time mistake detection and integrated Tajweed correction during memorization sessions. TajweedMate is primarily a Tajweed learning tool with limited memorization tracking.</p>
+  </div>
+
+  <div class="internal-links">
+    <h4>📚 Related Pages</h4>
+    <ul>
+      <li><a href="/compare/qari-ai-vs-tarteel">→ Qari AI vs Tarteel</a></li>
+      <li><a href="/tajweed-mistakes-checker">→ Free Tajweed Checker</a></li>
+      <li><a href="/learn/common-tajweed-mistakes">→ Common Tajweed Mistakes</a></li>
+      <li><a href="/learn/pronounce-ayn">→ How to Pronounce 'Ayn (ع)</a></li>
+      <li><a href="/learn/qalqalah-explained">→ Qalqalah Explained</a></li>
+    </ul>
+  </div>
+
+  <div class="cta-box">
+    <h3>Experience the Difference</h3>
+    <p>Try Qari AI free on Android. Real-time Tajweed feedback from your very first recitation — no credit card needed.</p>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" class="cta-primary">📲 Download Free on Google Play</a>
+    <div style="margin-top:12px"><a href="/tajweed-mistakes-checker" class="cta-secondary">Or try the free Tajweed checker first →</a></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 QariAI · <a href="/">Home</a> · <a href="/compare/qari-ai-vs-tarteel">vs Tarteel</a> · <a href="/tajweed-mistakes-checker">Free Checker</a> · <a href="/learn/common-tajweed-mistakes">Learn Tajweed</a> · <a href="/privacy">Privacy</a></p>
+  <p style="margin-top:6px">This comparison is based on publicly available information and our own product analysis.</p>
+</footer>
+
+</body>
+</html>
