@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قاري AI — مدرّبك الذكي لتحسين التجويد والحفظ</title>
+<meta name="description" content="حسّن تلاوتك للقرآن الكريم بالذكاء الاصطناعي. احصل على تغذية راجعة فورية على أخطاء التجويد، وتتبّع تقدّمك في الحفظ.">
+<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<script>window.va = window.va || function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>
+*,::before,::after{box-sizing:border-box;margin:0;padding:0;border:0 solid #e5e7eb}
+html{line-height:1.6;scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:linear-gradient(135deg,#f8fafc 0%,#ecfdf5 100%);color:#0f172a;direction:rtl}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.gradient-text{background:linear-gradient(135deg,#10b981,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-fade{animation:fadeInUp .8s ease-out}
+.beta-badge{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+@keyframes modalIn{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.animate-modal{animation:modalIn .25s cubic-bezier(.34,1.56,.64,1) both}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);box-shadow:0 1px 3px rgba(0,0,0,0.08);z-index:50}
+.nav-inner{max-width:80rem;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:104px}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-link{color:#475569;font-weight:600;font-size:0.9rem;transition:color 0.15s}
+.nav-link:hover{color:#059669}
+.nav-cta{background:#059669;color:white;padding:.5rem 1.25rem;border-radius:9999px;font-weight:700;font-size:.9rem;transition:background .15s}
+.nav-cta:hover{background:#047857}
+.lang-btn{border:1.5px solid #059669;color:#059669;padding:5px 12px;border-radius:9999px;font-size:.8rem;font-weight:700;transition:all .15s}
+.lang-btn:hover{background:#059669;color:white}
+
+/* BANNER */
+#launch-banner{position:fixed;top:104px;left:0;right:0;z-index:200;overflow:hidden;background:linear-gradient(135deg,#064e3b,#065f46,#064e3b);border-bottom:2px solid rgba(212,175,55,0.4)}
+.banner-pat{position:absolute;inset:0;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='0.8'%3E%3Cpolygon points='30,2 56,16 56,44 30,58 4,44 4,16'/%3E%3Cpolygon points='30,10 50,21 50,43 30,54 10,43 10,21'/%3E%3C/g%3E%3C/svg%3E");background-size:60px 60px}
+.banner-in{position:relative;max-width:80rem;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;font-size:.875rem;padding:10px 40px}
+.banner-close{position:absolute;left:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(212,175,55,0.6);font-size:1rem;cursor:pointer;line-height:1}
+
+/* HERO */
+.hero{padding-top:18rem;padding-bottom:5rem;padding-right:1rem;padding-left:1rem;text-align:center}
+.hero-inner{max-width:64rem;margin:0 auto}
+
+/* SECTIONS */
+.section-white{background:white;padding:5rem 1rem}
+.section-tinted{background:linear-gradient(135deg,#f8fafc,#ecfdf5);padding:5rem 1rem}
+.section-dark{background:linear-gradient(135deg,#059669,#0d9488);color:white;padding:5rem 1rem;text-align:center}
+.section-slate{background:#0f172a;color:white;padding:4rem 1rem}
+.max-w{max-width:80rem;margin:0 auto}
+.max-w-4{max-width:56rem;margin:0 auto}
+h2.section-h{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:.75rem;text-align:center}
+p.section-sub{color:#475569;font-size:1.05rem;text-align:center;margin-bottom:3rem}
+
+/* GRID */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem}
+.feature-card{padding:2rem;border-radius:1rem;border:1px solid;transition:box-shadow .2s}
+.feature-card:hover{box-shadow:0 20px 40px rgba(0,0,0,.08)}
+.f-icon{width:3.5rem;height:3.5rem;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.75rem;margin-bottom:1rem}
+.feature-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.6rem}
+.feature-card p{color:#475569;line-height:1.7;font-size:.93rem}
+
+/* STEPS */
+.step-card{position:relative;background:white;padding:2rem;border-radius:1rem;border:2px solid #d1fae5}
+.step-num{position:absolute;top:-1rem;right:-1rem;width:3rem;height:3rem;background:#059669;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;font-family:'Cairo',sans-serif}
+.step-emoji{font-size:3rem;margin-bottom:1rem}
+.step-card h3{font-size:1.2rem;font-weight:700;margin-bottom:.6rem}
+.step-card p{color:#475569;line-height:1.7}
+
+/* BETA */
+.beta-btn{background:white;color:#059669;padding:1.25rem 2.5rem;border-radius:9999px;font-weight:700;font-size:1.2rem;cursor:pointer;border:none;transition:all .2s;box-shadow:0 25px 50px rgba(0,0,0,.25);display:inline-flex;align-items:center;gap:.75rem}
+.beta-btn:hover{background:#ecfdf5;transform:scale(1.04)}
+
+/* iOS SECTION */
+.ios-section{background:#0f172a;color:white;padding:4rem 1rem;text-align:center}
+.ios-input{flex:1;padding:.9rem 1.25rem;border-radius:9999px;background:#1e293b;border:2px solid #334155;color:white;font-size:.95rem;font-family:'Cairo',sans-serif;outline:none;transition:border .15s;direction:rtl}
+.ios-input:focus{border-color:#059669}
+.ios-input::placeholder{color:#64748b}
+.ios-submit{background:#059669;color:white;padding:.9rem 1.5rem;border-radius:9999px;font-weight:700;font-size:.9rem;border:none;cursor:pointer;transition:background .15s;font-family:'Cairo',sans-serif;white-space:nowrap}
+.ios-submit:hover{background:#047857}
+
+/* CHECKER BANNER */
+.checker-banner{background:linear-gradient(135deg,#065f46,#0f766e);padding:3rem 1rem;text-align:center}
+
+/* FAQ */
+.faq-item{background:#f8fafc;padding:1.5rem;border-radius:.75rem;border:1px solid #e2e8f0;margin-bottom:1rem}
+.faq-item h3{font-size:1.05rem;font-weight:700;margin-bottom:.6rem}
+.faq-item p{color:#475569;line-height:1.7;font-size:.93rem}
+
+/* MODAL */
+#beta-modal{fixed:0;position:fixed;inset:0;z-index:200;items-center:center;justify-content:center;padding:1rem;display:none;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px)}
+.modal-box{background:white;border-radius:1.5rem;box-shadow:0 25px 50px rgba(0,0,0,.25);max-width:28rem;width:100%;overflow:hidden}
+.modal-header{background:linear-gradient(135deg,#059669,#0d9488);padding:2rem;color:white;text-align:center;position:relative}
+.modal-body{padding:1.5rem}
+#sib-container{background:transparent!important;border:none!important;max-width:100%!important}
+#sib-form input.input{width:100%;padding:14px 18px;border-radius:12px;border:2px solid #e2e8f0;font-size:15px;color:#0f172a;outline:none;transition:border-color .15s;font-family:'Cairo',sans-serif;direction:rtl}
+#sib-form input.input:focus{border-color:#059669}
+.sib-form-block__button{width:100%;background:linear-gradient(135deg,#059669,#047857)!important;color:#fff!important;padding:16px!important;border-radius:12px!important;font-size:17px!important;font-weight:700!important;font-family:'Cairo',sans-serif!important;border:none!important;cursor:pointer;margin-top:8px}
+.sib-form-block__button:hover{opacity:.92}
+#error-message{border-radius:10px!important;margin-bottom:12px}
+#success-message{border-radius:10px!important;padding:20px!important;text-align:center!important}
+
+/* FOOTER */
+footer{background:#0f172a;color:#e2e8f0;padding:3rem 1.5rem 2rem}
+.footer-top{display:flex;flex-wrap:wrap;gap:2.5rem;justify-content:space-between;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid #1e293b}
+.footer-col h4{font-weight:700;margin-bottom:.75rem;font-size:.9rem}
+.footer-col ul li{margin-bottom:.4rem}
+.footer-col ul li a{font-size:.875rem;color:#94a3b8;transition:color .15s}
+.footer-col ul li a:hover{color:#34d399}
+.footer-bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+
+/* GP BADGE */
+.gp-badge{display:inline-flex;align-items:center;gap:14px;background:#0f172a;border:2px solid #1e293b;border-radius:14px;padding:14px 24px;text-decoration:none;transition:all .2s;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.gp-badge:hover{border-color:#10b981;transform:scale(1.03)}
+
+@media(max-width:768px){.nav-links{display:none}.grid-3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div id="launch-banner">
+  <div class="banner-pat"></div>
+  <div class="banner-in">
+    <span style="color:rgba(212,175,55,0.9);font-size:.82rem">✨ <strong style="color:#fef3c7;font-weight:700">قاري AI متاح الآن على Google Play!</strong></span>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.5);border-radius:9999px;padding:5px 14px;color:#fbbf24;font-weight:700;font-size:.78rem">تحميل مجاني ↙</a>
+    <button class="banner-close" onclick="document.getElementById('launch-banner').style.display='none'">✕</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div><a href="/ar"><img src="data:image/png;base64,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" alt="قاري AI" style="height:96px;width:auto;object-fit:contain"></a></div>
+    <div class="nav-links">
+      <a href="#features" class="nav-link">المميزات</a>
+      <a href="#how" class="nav-link">كيف يعمل</a>
+      <a href="/tajweed-mistakes-checker" class="nav-link">فاحص التجويد</a>
+      <a href="/learn/common-tajweed-mistakes" class="nav-link">تعلّم</a>
+      <a href="/" class="lang-btn">🇬🇧 EN</a>
+      <a href="#beta" class="nav-cta">انضم للبيتا</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero section-fade">
+  <div class="hero-inner">
+    <div class="mb-6"><span class="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-bold mb-4 beta-badge" style="background:#d1fae5;color:#065f46;padding:.5rem 1.25rem;border-radius:9999px;font-size:.875rem;font-weight:700;margin-bottom:1.5rem;display:inline-block">🎙️ مدرّب التجويد بالذكاء الاصطناعي</span></div>
+    <h1 style="font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;line-height:1.2;margin-bottom:1.5rem">أتقن تلاوتك<br>مع <span class="gradient-text">قاري AI</span></h1>
+    <p style="font-size:1.15rem;color:#475569;margin-bottom:2rem;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.8">مدرّبك الشخصي للقرآن الكريم. احصل على تغذية راجعة فورية على أخطاء التجويد، تتبّع تقدّمك في الحفظ، وارتقِ بتلاوتك بثقة.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:3rem">
+      <a href="#beta" style="background:#059669;color:white;padding:1rem 2rem;border-radius:9999px;font-weight:700;font-size:1.1rem;transition:all .2s;box-shadow:0 20px 40px rgba(5,150,105,0.3)">ابدأ البيتا مجاناً</a>
+      <a href="#how" style="background:white;color:#059669;padding:1rem 2rem;border-radius:9999px;font-weight:700;font-size:1.1rem;border:2px solid #059669">اعرف المزيد</a>
+      <a href="/tajweed-mistakes-checker" style="background:rgba(255,255,255,0.8);color:#334155;padding:1rem 2rem;border-radius:9999px;font-weight:700;font-size:1.1rem;border:2px solid #e2e8f0">🎙️ فاحص التجويد المجاني</a>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem;font-size:.875rem;color:#64748b">
+      <div style="display:flex;align-items:center;gap:.5rem"><svg style="width:1.25rem;height:1.25rem;color:#10b981" fill="#10b981" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>وصول مجاني للبيتا</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg style="width:1.25rem;height:1.25rem" fill="#10b981" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>بدون بطاقة ائتمان</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg style="width:1.25rem;height:1.25rem" fill="#10b981" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>لا عذر</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="section-white">
+  <div class="max-w">
+    <h2 class="section-h">كل ما تحتاجه لإتقان تلاوتك</h2>
+    <p class="section-sub">مدعوم بالذكاء الاصطناعي المتقدم، مصمم للمسلمين في كل مكان</p>
+    <div class="grid-3">
+      <div class="feature-card" style="background:linear-gradient(135deg,#ecfdf5,white);border-color:#d1fae5"><div class="f-icon" style="background:#d1fae5">🎙️</div><h3>تحليل التجويد الفوري</h3><p>يستمع الذكاء الاصطناعي لتلاوتك ويكشف الأخطاء في المخارج والغنة والمد والقلقلة وغيرها — تغذية راجعة فورية على كل حرف.</p></div>
+      <div class="feature-card" style="background:linear-gradient(135deg,#f0fdfa,white);border-color:#99f6e4"><div class="f-icon" style="background:#ccfbf1">🧠</div><h3>رفيق الحفظ</h3><p>تتبّع المراجعة بنظام التكرار المتباعد. احصل على تذكيرات للمراجعات المستحقة وعزّز استيعابك تلقائياً.</p></div>
+      <div class="feature-card" style="background:linear-gradient(135deg,#fffbeb,white);border-color:#fde68a"><div class="f-icon" style="background:#fef3c7">📊</div><h3>تحليلات التقدم</h3><p>لوحة تحكم بصرية تعرض نقاط ضعفك والأنماط التحسينية والإنجازات اليومية. اعرف بالضبط ما تحتاج للتدريب عليه.</p></div>
+      <div class="feature-card" style="background:linear-gradient(135deg,#faf5ff,white);border-color:#e9d5ff"><div class="f-icon" style="background:#f3e8ff">🎯</div><h3>تدريبات مخصصة</h3><p>يولّد الذكاء الاصطناعي تمارين مخصصة تستهدف أضعف قواعد التجويد لديك. اضغط "إعادة توليد" للتدريبات غير المحدودة.</p></div>
+      <div class="feature-card" style="background:linear-gradient(135deg,#fff1f2,white);border-color:#ffe4e6"><div class="f-icon" style="background:#ffe4e6">🔥</div><h3>التعلم بالتحفيز</h3><p>اكسب نقاط XP، حافظ على سلاسل يومية، ارتقِ من مبتدئ إلى متقدم. ابقَ متحفزاً مع تتبع الإنجازات.</p></div>
+      <div class="feature-card" style="background:linear-gradient(135deg,#eff6ff,white);border-color:#dbeafe"><div class="f-icon" style="background:#dbeafe">🤲</div><h3>منسجم مع قيمنا الإسلامية</h3><p>مبني بالإخلاص والترتيل في الذهن. تكنولوجيا في خدمة دينك.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section-tinted">
+  <div class="max-w">
+    <h2 class="section-h">كيف يعمل قاري AI</h2>
+    <p class="section-sub">ثلاث خطوات بسيطة نحو تلاوة أفضل</p>
+    <div class="grid-3" style="max-width:64rem;margin:0 auto">
+      <div class="step-card" style="border-color:#d1fae5"><div class="step-num">١</div><div class="step-emoji">🎤</div><h3>سجّل تلاوتك</h3><p>اضغط على المايكروفون وتلُ أي آية من القرآن الكريم. اختر وضع التجويد أو وضع الحفظ حسب هدفك.</p></div>
+      <div class="step-card" style="border-color:#99f6e4"><div class="step-num">٢</div><div class="step-emoji">🤖</div><h3>الذكاء الاصطناعي يحلّل فوراً</h3><p>يفحص الذكاء الاصطناعي النطق والتوقيت وخصائص الحروف ويقارنها بالتلاوة القرآنية الصحيحة.</p></div>
+      <div class="step-card" style="border-color:#fde68a"><div class="step-num">٣</div><div class="step-emoji">📈</div><h3>احصل على تغذية راجعة مفصّلة</h3><p>اعرف بالضبط أي الحروف تحتاج عمل، اكسب نقاط XP للتحسينات، وتتبّع تقدّمك بمرور الوقت.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKER SECTION -->
+<section style="background:linear-gradient(135deg,#065f46,#0f766e);padding:4rem 1rem;text-align:center;color:white">
+  <div style="max-width:48rem;margin:0 auto">
+    <span style="background:rgba(255,255,255,0.2);color:white;padding:.5rem 1.25rem;border-radius:9999px;font-size:.875rem;font-weight:700;display:inline-block;margin-bottom:1.5rem">🎙️ أداة مجانية</span>
+    <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:1rem">اكتشف أخطاء تجويدك في 30 ثانية</h2>
+    <p style="font-size:1.05rem;opacity:.9;margin-bottom:2rem;line-height:1.8">اختر سورة، اتلُ أو اضغط تحليل، واحصل على تقرير فوري عن أخطاء المخارج والغنة والمد والقلقلة — مجاناً تماماً.</p>
+    <a href="/tajweed-mistakes-checker" style="background:white;color:#059669;padding:1rem 2.5rem;border-radius:9999px;font-weight:700;font-size:1.1rem;display:inline-block;transition:all .2s;box-shadow:0 20px 40px rgba(0,0,0,.2)">🎙️ استخدم الفاحص المجاني</a>
+    <div style="margin-top:2rem;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem">
+      <a href="/learn/common-tajweed-mistakes" style="color:rgba(255,255,255,0.8);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px">📖 أكثر أخطاء التجويد شيوعاً</a>
+      <a href="/learn/pronounce-ayn" style="color:rgba(255,255,255,0.8);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px">🗣️ كيف تنطق حرف العين</a>
+      <a href="/learn/qalqalah-explained" style="color:rgba(255,255,255,0.8);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px">🔔 حروف القلقلة</a>
+    </div>
+  </div>
+</section>
+
+<!-- BETA SECTION -->
+<section id="beta" style="background:linear-gradient(135deg,#059669,#0d9488);color:white;padding:5rem 1rem;text-align:center">
+  <div style="max-width:56rem;margin:0 auto">
+    <div style="margin-bottom:2rem"><span style="background:rgba(255,255,255,0.2);color:white;padding:.5rem 1.25rem;border-radius:9999px;font-size:.875rem;font-weight:700">⚡ وصول محدود للبيتا</span></div>
+    <h2 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:1.5rem">انضم لبيتا قاري AI</h2>
+    <p style="font-size:1.1rem;opacity:.9;margin-bottom:2.5rem;max-width:42rem;margin-left:auto;margin-right:auto">كن من أوائل من يجرّب تدريب التجويد بالذكاء الاصطناعي. مجاني لمستخدمي البيتا. لا يلزم بطاقة ائتمان.</p>
+    <button onclick="openBetaModalAr()" class="beta-btn"><span>🎙️</span> احصل على وصول مجاني للبيتا</button>
+    <p style="font-size:.875rem;margin-top:1.5rem;opacity:.7">انضم للمسلمين حول العالم الذين يحسّنون تلاوتهم ✨</p>
+  </div>
+</section>
+
+<!-- iOS SECTION -->
+<section style="background:#0f172a;color:white;padding:4rem 1rem;text-align:center">
+  <div style="max-width:48rem;margin:0 auto">
+    <span style="background:#1e293b;color:#94a3b8;padding:.5rem 1.25rem;border-radius:9999px;font-size:.875rem;font-weight:700;display:inline-block;margin-bottom:1.5rem">🍎 قريباً</span>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:1rem">إصدار iOS قريباً</h2>
+    <p style="color:#94a3b8;font-size:1rem;line-height:1.8;margin-bottom:2rem">نختبر حالياً الإصدار الأندرويد من قاري AI. سجّل في قائمة الانتظار لتُعلَم عند إطلاق إصدار iOS.</p>
+    <form id="ios-form-ar" onsubmit="handleIosSubmitAr(event)" style="max-width:28rem;margin:0 auto">
+      <div style="display:flex;flex-direction:row-reverse;gap:.75rem;flex-wrap:wrap">
+        <input type="email" id="ios-email-ar" required placeholder="بريدك الإلكتروني" class="ios-input">
+        <button type="submit" id="ios-btn-ar" class="ios-submit"><span id="ios-btn-text-ar">أعلمني عند إطلاق iOS</span></button>
+      </div>
+      <div id="ios-success-ar" style="display:none;margin-top:1rem;background:rgba(16,185,129,0.15);border:1px solid #059669;border-radius:1rem;padding:1rem;color:#34d399;font-size:.875rem">✅ جزاك الله خيراً! سنعلمك عند إطلاق iOS إن شاء الله</div>
+      <p style="font-size:.75rem;color:#475569;margin-top:.75rem">🔒 لا بريد مزعج. سنراسلك فقط عند الإطلاق.</p>
+    </form>
+  </div>
+</section>
+
+<!-- BETA MODAL -->
+<div id="beta-modal-ar" style="position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px)">
+  <div style="background:white;border-radius:1.5rem;box-shadow:0 25px 50px rgba(0,0,0,.25);max-width:28rem;width:100%;overflow:hidden" class="animate-modal">
+    <div style="background:linear-gradient(135deg,#059669,#0d9488);padding:2rem;color:white;text-align:center;position:relative">
+      <button onclick="closeBetaModalAr()" style="position:absolute;top:1rem;left:1rem;background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.5rem;cursor:pointer;line-height:1;font-weight:700">✕</button>
+      <div style="width:4rem;height:4rem;background:rgba(255,255,255,0.2);border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 1rem">🎙️</div>
+      <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:.25rem">انضم للبيتا</h3>
+      <p style="color:#d1fae5;font-size:.875rem">وصول مجاني · بدون بطاقة ائتمان · تأكيد فوري</p>
+    </div>
+    <div style="padding:1.5rem">
+      <div id="sib-form-container-ar">
+        <div id="error-message-ar" style="display:none;font-size:14px;color:#661d1d;background:#ffeded;border-radius:10px;border:1px solid #ff4949;padding:12px 16px;margin-bottom:12px">⚠️ حدث خطأ. يرجى المحاولة مجدداً.</div>
+        <div id="success-message-ar" style="display:none;text-align:center;padding:1rem">
+          <div style="font-size:3rem;margin-bottom:.75rem">🎉</div>
+          <p style="font-weight:700;font-size:1.1rem;margin-bottom:.4rem">جزاك الله خيراً!</p>
+          <p style="color:#64748b;font-size:.875rem;margin-bottom:.75rem">أنت في القائمة! سنرسل لك وصول البيتا على بريدك إن شاء الله.</p>
+          <div style="background:#f0fdf4;border-radius:.5rem;padding:.75rem;margin-bottom:1rem;text-align:right">
+            <p style="font-size:.82rem;color:#475569;margin-bottom:.4rem">📬 تحقق من صندوق الوارد — بريد التأكيد في طريقه إن شاء الله</p>
+            <p style="font-size:.82rem;color:#475569">📁 لم تجده؟ تحقق من مجلد الرسائل المزعجة</p>
+          </div>
+          <button onclick="closeBetaModalAr()" style="background:linear-gradient(135deg,#059669,#047857);color:white;padding:.75rem 2rem;border-radius:9999px;font-weight:700;font-size:.95rem;border:none;cursor:pointer;width:100%;font-family:'Cairo',sans-serif">تم 🤲</button>
+        </div>
+        <div id="sib-form-wrapper-ar">
+          <p style="color:#475569;font-size:.875rem;text-align:center;margin-bottom:1.25rem">أدخل بريدك الإلكتروني وسنرسل لك وصول البيتا فور توفر مقعد. إن شاء الله</p>
+          <form id="sib-form-ar" method="POST" action="https://178249ff.sibforms.com/serve/MUIFAJja8gYYCHAkfBIQIRP1zXFD5ApZCXCVsRUuZCdGOPBXn-CQNXcmLFLfSXQIGLNnbOQ2SmRf6behJt_cQwkBFAjZeAt7VXtzpFjuj8-4W9eS_8gwi0TwJ59NLWBtDgDx8StPfsvrPbx4rxr8sYDVOjbzKtp62-2P7fVf_8thkUOL4L6S-urdXNV_8xSNhnhQEzu9Ow6Qq0gMeQ==" data-type="subscription" onsubmit="handleBrevoSubmitAr(event)">
+            <label style="display:block;font-size:.875rem;font-weight:700;color:#334155;margin-bottom:.5rem">البريد الإلكتروني</label>
+            <input class="input" type="text" id="EMAIL-AR" name="EMAIL" autocomplete="off" placeholder="بريدك@مثال.com" data-required="true" required style="width:100%;padding:14px 18px;border-radius:12px;border:2px solid #e2e8f0;font-size:15px;color:#0f172a;outline:none;font-family:'Cairo',sans-serif;margin-bottom:4px;direction:rtl" onfocus="this.style.borderColor='#059669'" onblur="this.style.borderColor='#e2e8f0'"/>
+            <button class="sib-form-block__button" type="submit" style="width:100%;background:linear-gradient(135deg,#059669,#047857);color:#fff;padding:16px;border-radius:12px;font-size:17px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Cairo',sans-serif">🎙️ طلب وصول البيتا</button>
+            <input type="text" name="email_address_check" value="" style="display:none">
+            <input type="hidden" name="locale" value="ar">
+          </form>
+          <p style="font-size:.75rem;color:#94a3b8;text-align:center;margin-top:.75rem">🔒 بريدك في أمان. لا رسائل مزعجة. إلغاء الاشتراك في أي وقت.</p>
+          <p style="font-size:.75rem;color:#94a3b8;text-align:center;margin-top:.4rem">📬 لم يصلك بريدنا؟ تحقق من الرسائل المزعجة أو أضف <span style="color:#059669">salam@qariai.app</span> لجهات الاتصال.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section style="background:white;padding:5rem 1rem">
+  <div class="max-w-4">
+    <h2 class="section-h">أسئلة شائعة</h2>
+    <p class="section-sub" style="margin-bottom:2rem">كل ما تريد معرفته عن قاري AI</p>
+    <div class="faq-item"><h3>كيف يحلّل قاري AI تلاوتي؟</h3><p>يستخدم قاري AI تقنية التعرف على الصوت المدرّبة على التلاوة القرآنية. يحلّل نطقك على مستوى الحروف، ويفحص المخارج والتوقيت والصفات، ثم يقارنها بتلاوة القرّاء المتقنين لتزويدك بتغذية راجعة دقيقة.</p></div>
+    <div class="faq-item"><h3>هل يناسب المبتدئين؟</h3><p>بالتأكيد! قاري AI يضم مستوى المبتدئين المخصص للمهارات الأساسية كالنطق الصحيح وحركات الحروف. يوفر الذكاء الاصطناعي تغذية راجعة لطيفة وتمارين موجّهة لبناء ثقتك تدريجياً.</p></div>
+    <div class="faq-item"><h3>هل يمكنني استخدامه للحفظ؟</h3><p>نعم! يتضمن قاري AI وضع الحفظ المخصص بنظام التكرار المتباعد. يفحص الذكاء الاصطناعي دقة حفظك وتجويدك في آنٍ واحد، مع تذكيرات للمراجعات المستحقة وتحليلات مفصّلة لقوة الاستيعاب.</p></div>
+    <div class="faq-item"><h3>هل بياناتي الصوتية آمنة؟</h3><p>نعم! خصوصيتك أولويتنا. تُعالَج التسجيلات الصوتية فقط للتحليل ولا تُخزَّن بشكل دائم على خوادمنا إلا إذا حفظتها أنت. نستخدم تشفيراً من المستوى المؤسسي. راجع <a href="/privacy" style="color:#059669">سياسة الخصوصية</a> للتفاصيل.</p></div>
+    <div class="faq-item"><h3>هل يُغني قاري AI عن المعلم؟</h3><p>قاري AI مكمّل لا بديل عن المعلم المؤهل. بينما يوفر الذكاء الاصطناعي تغذية راجعة فورية ودقيقة على الجانب التقني للتجويد، يوفر المعلم الإنساني التوجيه الروحي والسياق والإرشاد الشخصي الذي لا يمكن للتكنولوجيا أن تحلّ محله.</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="max-width:80rem;margin:0 auto">
+    <div class="footer-top">
+      <div>
+        <img src="data:image/png;base64,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" alt="قاري AI" style="height:52px;width:auto;object-fit:contain;margin-bottom:.5rem">
+        <p style="font-size:.875rem;color:#94a3b8;line-height:1.6;margin-top:.5rem">مدرّب التجويد والحفظ بالذكاء الاصطناعي<br>مبني بـ ❤️ للأمة الإسلامية</p>
+      </div>
+      <div class="footer-col">
+        <h4>المنتج</h4>
+        <ul>
+          <li><a href="#features">المميزات</a></li>
+          <li><a href="#how">كيف يعمل</a></li>
+          <li><a href="/tajweed-mistakes-checker">فاحص التجويد المجاني</a></li>
+          <li><a href="#beta">انضم للبيتا</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>تعلّم</h4>
+        <ul>
+          <li><a href="/learn/common-tajweed-mistakes">أخطاء التجويد الشائعة</a></li>
+          <li><a href="/learn/pronounce-ayn">كيف تنطق العين</a></li>
+          <li><a href="/learn/qalqalah-explained">حروف القلقلة</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>الشركة</h4>
+        <ul>
+          <li><a href="/about">من نحن</a></li>
+          <li><a href="/privacy">سياسة الخصوصية</a></li>
+          <li><a href="/terms">شروط الاستخدام</a></li>
+          <li><a href="mailto:salam@qariai.app">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل</h4>
+        <div style="margin-bottom:1rem">
+          <a href="https://x.com/ai_qari" target="_blank" style="display:inline-flex;width:2.5rem;height:2.5rem;background:#1e293b;border-radius:.5rem;align-items:center;justify-content:center;transition:background .15s" onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#1e293b'">
+            <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+        <p style="font-size:.875rem;color:#94a3b8;margin-bottom:.75rem">البريد: <a href="mailto:salam@qariai.app" style="color:#34d399">salam@qariai.app</a></p>
+        <a href="/" style="border:1.5px solid #475569;color:#94a3b8;padding:5px 12px;border-radius:9999px;font-size:.8rem;font-weight:700;display:inline-block">🇬🇧 English</a>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center">
+      <p style="font-size:.82rem;color:#94a3b8">© 2026 قاري AI. مبني بـ ❤️ للأمة. مدعوم بالذكاء الاصطناعي.</p>
+      <p style="font-size:.75rem;color:#475569">تقبّل الله هذا العمل وجعله نافعاً • إن شاء الله</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Beta modal
+function openBetaModalAr() {
+  var m = document.getElementById('beta-modal-ar');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeBetaModalAr() {
+  document.getElementById('beta-modal-ar').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('beta-modal-ar').addEventListener('click', function(e) {
+  if (e.target === this) closeBetaModalAr();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeBetaModalAr();
+});
+
+// Brevo submit
+function handleBrevoSubmitAr(e) {
+  e.preventDefault();
+  var email = document.getElementById('EMAIL-AR').value.trim();
+  if (!email) return;
+  var btn = e.target.querySelector('button[type=submit]');
+  if (btn) { btn.disabled = true; btn.innerHTML = 'جارٍ الإرسال... ⏳'; }
+  fetch(e.target.action, {method:'POST', body:new FormData(e.target), mode:'no-cors'})
+  .finally(function() {
+    document.getElementById('sib-form-wrapper-ar').style.cssText = 'display:none!important';
+    document.getElementById('success-message-ar').style.cssText = 'display:block!important';
+  });
+}
+
+// iOS submit
+async function handleIosSubmitAr(e) {
+  e.preventDefault();
+  var btn = document.getElementById('ios-btn-ar');
+  var text = document.getElementById('ios-btn-text-ar');
+  btn.disabled = true; text.textContent = 'جارٍ الإرسال...';
+  try {
+    var fd = new FormData();
+    fd.append('access_key','49a0b4bc-6c09-427d-b8f9-9e3235a06b80');
+    fd.append('subject','🍎 iOS Waitlist - Arabic');
+    fd.append('from_name','QariAI iOS Waitlist AR');
+    fd.append('email', document.getElementById('ios-email-ar').value);
+    var res = await fetch('https://api.web3forms.com/submit', {method:'POST',body:fd});
+    var data = await res.json();
+    if (data.success) {
+      document.querySelector('#ios-form-ar .flex').style.display = 'none';
+      document.getElementById('ios-success-ar').style.display = 'block';
+    } else throw new Error();
+  } catch(err) {
+    text.textContent = 'حاول مجدداً';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
