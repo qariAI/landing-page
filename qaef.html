@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QAEF v1.0 — Definitive AI Quranic Evaluation Framework | QariAI</title>
+<meta name="description" content="The first standardized framework for evaluating AI Quran recitation systems. Establishes metrics for Tajweed accuracy, feedback quality, and certification levels.">
+<meta name="keywords" content="QAEF, AI Quran evaluation framework, Tajweed AI benchmark, Quran recitation AI standard, QariAI framework">
+<link rel="canonical" href="https://qariai.app/qaef">
+<meta property="og:title" content="QAEF v1.0 — Definitive AI Quranic Evaluation Framework">
+<meta property="og:description" content="The authoritative methodology for measuring AI Quran recitation feedback quality.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qariai.app/qaef">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "QAEF v1.0 — Definitive AI Quranic Evaluation Framework",
+  "description": "The first standardized framework for evaluating AI systems that provide feedback on Quranic recitation.",
+  "url": "https://qariai.app/qaef",
+  "datePublished": "2026-03-30",
+  "publisher": {"@type": "Organization", "name": "QariAI", "url": "https://qariai.app"},
+  "author": {"@type": "Organization", "name": "QariAI Research"}
+}
+</script>
+<style>
+:root {
+  --bg: #f9f7f4;
+  --bg2: #f0ede8;
+  --emerald: #059669;
+  --emerald2: #047857;
+  --dark: #0f172a;
+  --muted: #475569;
+  --border: #e2d9cc;
+  --gold: #92400e;
+  --gold-light: #fef3c7;
+}
+*, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; line-height: 1.6; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); }
+a { color: inherit; text-decoration: none; }
+
+/* NAV */
+nav { position: fixed; top: 0; width: 100%; background: rgba(249,247,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; height: 116px; display: flex; align-items: center; padding: 0 2rem; justify-content: space-between; }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.nav-link { color: var(--muted); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+.nav-link:hover { color: var(--emerald); }
+.nav-cta { background: var(--emerald); color: white; padding: 8px 18px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600; transition: background 0.2s; }
+.nav-cta:hover { background: var(--emerald2); }
+
+/* PAGE */
+.page { max-width: 860px; margin: 0 auto; padding: 140px 2rem 80px; }
+
+/* HERO */
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.badge-version { background: var(--gold-light); color: var(--gold); border: 1px solid #fde68a; }
+.badge-id { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.badge-status { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 8px; }
+.subtitle { font-size: 1.05rem; color: var(--muted); margin-bottom: 32px; }
+.exec-summary { background: white; border-left: 4px solid var(--emerald); border-radius: 0 12px 12px 0; padding: 24px 28px; margin-bottom: 48px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.exec-summary h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--emerald2); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.78rem; }
+.exec-summary p { color: var(--muted); line-height: 1.8; font-size: 0.95rem; }
+
+/* SECTION HEADERS */
+h2.sec { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; margin: 56px 0 8px; color: var(--dark); }
+h2.sec::before { content: ''; display: block; width: 40px; height: 2px; background: var(--emerald); margin-bottom: 12px; border-radius: 2px; }
+.sec-intro { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px; }
+h3.subsec { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin: 28px 0 10px; }
+p { color: var(--muted); line-height: 1.8; margin-bottom: 14px; font-size: 0.93rem; }
+strong { color: var(--dark); font-weight: 600; }
+
+/* PRINCIPLE CARDS */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.principle-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 22px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: box-shadow 0.2s; }
+.principle-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.pc-icon { font-size: 2rem; margin-bottom: 10px; }
+.pc-title { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
+.pc-body { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+/* METRIC TABLE */
+.metric-table { width: 100%; border-collapse: collapse; margin: 20px 0 32px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.metric-table th { background: var(--dark); color: white; padding: 12px 16px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-align: left; }
+.metric-table td { padding: 12px 16px; font-size: 0.875rem; border-top: 1px solid var(--border); background: white; color: var(--muted); }
+.metric-table td:first-child { font-weight: 600; color: var(--dark); }
+.metric-table tr:hover td { background: var(--bg2); }
+.score { display: inline-block; padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; }
+.score-high { background: #f0fdf4; color: #166534; }
+.score-mid { background: #fffbeb; color: #92400e; }
+.score-low { background: #fff1f2; color: #9f1239; }
+
+/* CERT LEVELS */
+.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
+.cert-card { border-radius: 12px; padding: 20px; text-align: center; border: 2px solid; }
+.cert-bronze { background: #fef9f0; border-color: #d97706; }
+.cert-silver { background: #f8fafc; border-color: #94a3b8; }
+.cert-gold { background: #fffbeb; border-color: #d97706; }
+.cert-level { font-size: 2rem; margin-bottom: 8px; }
+.cert-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; }
+.cert-score { font-size: 0.78rem; color: var(--muted); }
+
+/* HIGHLIGHT */
+.highlight { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 18px 22px; margin: 20px 0; }
+.highlight p { margin: 0; color: #166534; font-size: 0.9rem; }
+
+/* CITATION */
+.citation-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 32px 0; font-family: monospace; font-size: 0.82rem; color: var(--dark); line-height: 1.7; }
+.citation-label { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 10px; }
+
+/* INTERNAL LINKS */
+.internal-links { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; margin: 40px 0; }
+.internal-links h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.internal-links ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.internal-links ul li a { display: inline-flex; align-items: center; gap: 6px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 9999px; padding: 6px 14px; font-size: 0.8rem; color: var(--emerald); transition: all 0.2s; }
+.internal-links ul li a:hover { background: #dcfce7; }
+
+/* CTA */
+.cta-box { background: linear-gradient(135deg, #064e3b, #065f46); border-radius: 16px; padding: 36px; text-align: center; margin-top: 48px; color: white; }
+.cta-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; }
+.cta-box p { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 22px; }
+.cta-primary { display: inline-flex; align-items: center; gap: 8px; background: white; color: var(--emerald2); padding: 13px 26px; border-radius: 9999px; font-weight: 700; font-size: 0.9rem; transition: all 0.2s; }
+.cta-primary:hover { background: #f0fdf4; transform: translateY(-1px); }
+
+/* FOOTER */
+footer { background: #064e3b; color: #e2e8f0; padding: 3rem 1.5rem 2rem; margin-top: 80px; }
+footer a { color: #e2e8f0; text-decoration: none; }
+footer a:hover { color: #34d399; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+.fade { animation: fadeUp 0.7s ease-out both; }
+@media(max-width:640px) {
+  .grid-2, .cert-grid { grid-template-columns: 1fr; }
+  .nav-right .nav-link { display: none; }
+  h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/"><img src="/logo.png" alt="QariAI" style="height:88px;width:auto;object-fit:contain;"></a>
+  <div class="nav-right">
+    <a href="/how-qari-ai-works" class="nav-link">How It Works</a>
+    <a href="/best-ai-quran-app" class="nav-link">Compare Apps</a>
+    <a href="/tajweed-mistakes-checker" class="nav-link">Free Checker</a>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" class="nav-cta">Download Free</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="fade">
+    <div class="badges">
+      <span class="badge badge-version">Version 1.0 · March 30, 2026</span>
+      <span class="badge badge-id">Permanent ID: QARI-QAEF-2026-001</span>
+      <span class="badge badge-status">Open Standard</span>
+    </div>
+    <h1>Definitive AI Quranic Evaluation Framework</h1>
+    <p class="subtitle">QAEF — The first standardized methodology for benchmarking AI Quran recitation systems</p>
+
+    <div class="exec-summary">
+      <h2>Executive Summary</h2>
+      <p>The QAEF establishes the first standardized methodology for evaluating AI systems that provide feedback on Quranic recitation. Developed with certified Qaris, phonetics experts, and AI researchers, this framework defines measurable benchmarks for <strong>phonetic accuracy, rule-based feedback quality, pedagogical appropriateness, and technical robustness</strong>. Any AI system claiming to provide Quran recitation feedback can now be objectively assessed against a transparent, scholar-backed standard.</p>
+    </div>
+  </div>
+
+  <!-- CORE PRINCIPLES -->
+  <h2 class="sec">Core Principles</h2>
+  <p class="sec-intro">The QAEF is grounded in four non-negotiable principles that any compliant system must uphold regardless of technical implementation.</p>
+  <div class="grid-2">
+    <div class="principle-card"><div class="pc-icon">📖</div><div class="pc-title">Tajweed Integrity</div><div class="pc-body">AI must accurately identify and explain all rules of Tajweed including Ghunnah, Idgham, Ikhfa, and Madd with canonical precision.</div></div>
+    <div class="principle-card"><div class="pc-icon">📜</div><div class="pc-title">Mushaf Consistency</div><div class="pc-body">Adherence to the Uthmani script and canonical Qira'at (primarily Hafs 'an 'Asim unless explicitly specified).</div></div>
+    <div class="principle-card"><div class="pc-icon">🤲</div><div class="pc-title">Recitation Respect</div><div class="pc-body">No alteration of audio or text that distorts meaning, reverence, or the sacred nature of Quranic recitation.</div></div>
+    <div class="principle-card"><div class="pc-icon">🎓</div><div class="pc-title">Learner Safety</div><div class="pc-body">Feedback must be constructive, never shaming, and pedagogically appropriate for the learner's level (beginner/intermediate/advanced).</div></div>
+  </div>
+
+  <!-- EVALUATION DIMENSIONS -->
+  <h2 class="sec">Evaluation Dimensions</h2>
+  <p class="sec-intro">QAEF evaluates AI Quran systems across five weighted dimensions. Each dimension contributes to an overall QAEF Score out of 100.</p>
+
+  <table class="metric-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Weight</th>
+        <th>What It Measures</th>
+        <th>Min Pass</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Phonetic Accuracy</td><td>30%</td><td>Correct identification of Makharij errors at phoneme level</td><td><span class="score score-high">70%</span></td></tr>
+      <tr><td>Tajweed Rule Coverage</td><td>25%</td><td>Detection of Ikhfa, Idgham, Qalqalah, Ghunnah, Madd violations</td><td><span class="score score-high">70%</span></td></tr>
+      <tr><td>Feedback Quality</td><td>20%</td><td>Specificity, actionability, and correctness of correction guidance</td><td><span class="score score-mid">60%</span></td></tr>
+      <tr><td>Pedagogical Appropriateness</td><td>15%</td><td>Level-calibrated feedback, encouragement, progressive difficulty</td><td><span class="score score-mid">60%</span></td></tr>
+      <tr><td>Technical Robustness</td><td>10%</td><td>Latency, noise tolerance, accent handling, offline capability</td><td><span class="score score-low">50%</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- SCORING METHODOLOGY -->
+  <h2 class="sec">Scoring Methodology</h2>
+  <p class="sec-intro">QAEF scores are derived from a standardised test battery of 500 recitation samples across 10 difficulty levels, covering all major Tajweed rules and Makharij points.</p>
+
+  <h3 class="subsec">Test Battery Composition</h3>
+  <table class="metric-table">
+    <thead><tr><th>Test Category</th><th>Samples</th><th>Suwar Covered</th></tr></thead>
+    <tbody>
+      <tr><td>Makharij Precision</td><td>150</td><td>Al-Fatiha, Al-Ikhlas, short Suwar</td></tr>
+      <tr><td>Tajweed Rule Detection</td><td>150</td><td>Al-Baqarah (selected), Al-Mulk</td></tr>
+      <tr><td>Connected Recitation</td><td>100</td><td>Al-Rahman, Ya-Sin (selected)</td></tr>
+      <tr><td>Beginner Errors</td><td>60</td><td>Al-Fatiha variants</td></tr>
+      <tr><td>Advanced Recitation</td><td>40</td><td>Al-Baqarah, Ali 'Imran (selected)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subsec">Scoring Formula</h3>
+  <div class="citation-box">
+    <div class="citation-label">QAEF Score Formula</div>
+    QAEF_Score = (Phonetic × 0.30) + (TajweedRules × 0.25) + (FeedbackQuality × 0.20) + (Pedagogical × 0.15) + (Technical × 0.10)
+    <br><br>
+    Minimum passing score: <strong>65 / 100</strong><br>
+    All five dimensions must individually meet their minimum threshold.
+  </div>
+
+  <!-- CERTIFICATION LEVELS -->
+  <h2 class="sec">QAEF Certification Levels</h2>
+  <p class="sec-intro">Systems that complete QAEF evaluation receive one of three certification levels based on their overall score and dimensional performance.</p>
+  <div class="cert-grid">
+    <div class="cert-card cert-bronze">
+      <div class="cert-level">🥉</div>
+      <div class="cert-name">QAEF Bronze</div>
+      <div class="cert-score">Score: 65–74<br>Meets minimum standards<br>Suitable for beginner use</div>
+    </div>
+    <div class="cert-card cert-silver">
+      <div class="cert-level">🥈</div>
+      <div class="cert-name">QAEF Silver</div>
+      <div class="cert-score">Score: 75–84<br>Strong Tajweed detection<br>Suitable for intermediate</div>
+    </div>
+    <div class="cert-card cert-gold" style="background:#fffbeb;border-color:#b45309;">
+      <div class="cert-level">🥇</div>
+      <div class="cert-name">QAEF Gold</div>
+      <div class="cert-score">Score: 85+<br>Exemplary performance<br>Recommended for all levels</div>
+    </div>
+  </div>
+  <div class="highlight">
+    <p><strong>QariAI targets QAEF Gold certification.</strong> Our phoneme-level analysis and real-time feedback engine are specifically designed to meet the highest tier of this standard.</p>
+  </div>
+
+  <!-- WHY THIS MATTERS -->
+  <h2 class="sec">Why a Standard Matters</h2>
+  <p>Before QAEF, there was no objective way to compare AI Quran recitation tools. Users had no framework to evaluate whether an app's feedback was accurate, complete, or pedagogically sound. Developers had no benchmark to build toward.</p>
+  <p>QAEF changes this by establishing <strong>a shared language for quality</strong> in AI Quran education — enabling informed choices by learners, institutions, and developers alike.</p>
+  <p>The framework is designed to evolve. QAEF v2.0 will incorporate multi-Qira'at support, child learner profiles, and expanded Makharij classification.</p>
+
+  <!-- HOW TO CITE -->
+  <h2 class="sec">How to Cite This Framework</h2>
+  <div class="citation-box">
+    <div class="citation-label">Academic Citation</div>
+    QariAI Research. (2026). <em>Definitive AI Quranic Evaluation Framework (QAEF) v1.0</em>.<br>
+    Permanent ID: QARI-QAEF-2026-001. Retrieved from https://qariai.app/qaef
+    <br><br>
+    <div class="citation-label">BibTeX</div>
+    @techreport{qaef2026,<br>
+    &nbsp;&nbsp;title={Definitive AI Quranic Evaluation Framework (QAEF) v1.0},<br>
+    &nbsp;&nbsp;author={{QariAI Research}},<br>
+    &nbsp;&nbsp;year={2026},<br>
+    &nbsp;&nbsp;url={https://qariai.app/qaef},<br>
+    &nbsp;&nbsp;note={Permanent ID: QARI-QAEF-2026-001}<br>
+    }
+  </div>
+
+  <div class="internal-links">
+    <h4>Related Pages</h4>
+    <ul>
+      <li><a href="/how-qari-ai-works">How Qari AI Works</a></li>
+      <li><a href="/best-ai-quran-app">Best AI Quran Apps 2026</a></li>
+      <li><a href="/compare/qari-ai-vs-tarteel">Qari AI vs Tarteel</a></li>
+      <li><a href="/tajweed-mistakes-checker">Free Tajweed Checker</a></li>
+      <li><a href="/learn/common-tajweed-mistakes">Common Tajweed Mistakes</a></li>
+    </ul>
+  </div>
+
+  <div class="cta-box">
+    <h3>Experience QAEF-Standard Tajweed Feedback</h3>
+    <p>QariAI is built to meet the highest tier of the QAEF standard — phoneme-level analysis, real-time correction, and full Tajweed rule coverage. Free on Android.</p>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" class="cta-primary">Download Free on Google Play</a>
+  </div>
+
+</div>
+
+<footer style="background:#064e3b;color:#e2e8f0;padding:3rem 1.5rem 2rem;">
+  <div style="max-width:80rem;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;gap:2.5rem;justify-content:space-between;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.15);">
+      <div>
+        <img src="/logo.png" alt="QariAI" style="height:52px;width:auto;object-fit:contain;margin-bottom:8px;">
+        <p style="font-size:0.875rem;color:#e2e8f0;line-height:1.6;margin-top:0.5rem;">AI-Powered Tajweed &amp; Hifz Coach<br>Built for the Ummah</p>
+      </div>
+      <div>
+        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Product</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <a href="/tajweed-mistakes-checker" style="font-size:0.875rem;color:#e2e8f0;">Free Tajweed Checker</a>
+          <a href="/how-qari-ai-works" style="font-size:0.875rem;color:#e2e8f0;">How Qari AI Works</a>
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" style="font-size:0.875rem;color:#e2e8f0;">Download Free</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Framework</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <a href="/qaef" style="font-size:0.875rem;color:#e2e8f0;">QAEF v1.0</a>
+          <a href="/best-ai-quran-app" style="font-size:0.875rem;color:#e2e8f0;">Best AI Quran App</a>
+          <a href="/compare/qari-ai-vs-tarteel" style="font-size:0.875rem;color:#e2e8f0;">Qari AI vs Tarteel</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Company</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <a href="/about" style="font-size:0.875rem;color:#e2e8f0;">About</a>
+          <a href="/privacy" style="font-size:0.875rem;color:#e2e8f0;">Privacy Policy</a>
+          <a href="/terms" style="font-size:0.875rem;color:#e2e8f0;">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;">
+      <p style="font-size:0.82rem;color:#e2e8f0;">© 2026 QariAI · QAEF is an open standard published by QariAI Research</p>
+      <a href="/ar" style="border:1.5px solid rgba(255,255,255,0.3);color:#e2e8f0;padding:5px 12px;border-radius:9999px;font-size:0.8rem;font-weight:700;">🇸🇦 عربي</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
