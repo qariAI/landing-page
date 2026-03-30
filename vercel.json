@@ -5,6 +5,7 @@
     { "source": "/about", "destination": "/about.html" },
     { "source": "/ar", "destination": "/ar.html" },
     { "source": "/media-kit", "destination": "/media-kit.html" },
+    { "source": "/qaef", "destination": "/qaef.html" },
     { "source": "/how-qari-ai-works", "destination": "/how-qari-ai-works.html" },
     { "source": "/tajweed-mistakes-checker", "destination": "/tajweed-mistakes-checker.html" },
     { "source": "/best-ai-quran-app", "destination": "/best-ai-quran-app.html" },
