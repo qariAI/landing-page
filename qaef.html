@@ -273,6 +273,236 @@ footer a:hover { color: #34d399; }
     }
   </div>
 
+
+  <!-- SECTION 3: DETAILED EVALUATION DIMENSIONS -->
+  <h2 class="sec">Evaluation Dimensions &amp; Metrics</h2>
+  <p class="sec-intro">Every AI Quranic recitation system is evaluated across four weighted dimensions. Scores are normalised to 100 points per dimension, with overall score calculated as a weighted average.</p>
+  <table class="metric-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Weight</th>
+        <th>Key Metrics</th>
+        <th>Tier 2 Target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Phonetic Accuracy</td>
+        <td>40%</td>
+        <td>Makharij precision (F1 vs expert panel), Sifaat detection, Madd lengths ±0.05s</td>
+        <td><span class="score score-high">≥ 92%</span></td>
+      </tr>
+      <tr>
+        <td>Rule-Based Feedback Quality</td>
+        <td>30%</td>
+        <td>Error localisation ≤0.5s, 20+ Tajweed rules identified, corrective suggestion clarity</td>
+        <td><span class="score score-high">≥ 90%</span></td>
+      </tr>
+      <tr>
+        <td>Pedagogical Appropriateness</td>
+        <td>20%</td>
+        <td>Level adaptation, positive reinforcement ratio ≥3:1, zero false negatives on major errors</td>
+        <td><span class="score score-mid">≥ 85%</span></td>
+      </tr>
+      <tr>
+        <td>Technical Robustness</td>
+        <td>10%</td>
+        <td>Latency &lt;2s per 10s recitation, SNR 20dB noise tolerance, device independence</td>
+        <td><span class="score score-high">≥ 95%</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="highlight">
+    <p><strong>Measurement basis:</strong> 200 expert-labelled recitations · 5 certified Qaris (ICC standard) · Inter-rater reliability ≥0.92 · 95% confidence interval required for certification</p>
+  </div>
+
+  <!-- SECTION 4: RFS STANDARD -->
+  <h2 class="sec">Recitation Feedback Standard (RFS)</h2>
+  <p class="sec-intro">All QAEF-compliant AI systems <strong>MUST</strong> output feedback in the following standardised structure to ensure interoperability and auditability.</p>
+  <div style="background:#0f172a;border-radius:12px;padding:24px 28px;margin:20px 0;overflow-x:auto;">
+    <pre style="color:#4ade80;font-size:0.78rem;font-family:monospace;line-height:1.7;margin:0;">{
+  "version": "1.0",
+  "verse_reference": "2:255",
+  "timestamp": "2026-03-30T10:30:00Z",
+  "overall_score": 92.3,
+  "dimension_scores": {
+    "phonetic_accuracy": 94,
+    "rule_based_feedback": 90,
+    "pedagogical_appropriateness": 88,
+    "technical_robustness": 97
+  },
+  "errors": [
+    {
+      "word_position": 5,
+      "rule": "Madd Munfasil",
+      "expected_length": 4,
+      "actual_length": 2,
+      "severity": "medium",
+      "explanation": "Madd Munfasil occurs when a Madd letter appears at the end of one word and a hamza at the start of the next."
+    }
+  ],
+  "corrective_feedback": "Lengthen the Madd in 'أولئك' to 4 counts.",
+  "positive_notes": [
+    "Correct Ikhfa on 'من قبل' with proper nasalisation.",
+    "Excellent Ghunnah duration on the noon mushaddad."
+  ],
+  "session_id": "sess_xyz789"
+}</pre>
+  </div>
+  <div class="grid-2" style="margin:20px 0;">
+    <div class="principle-card">
+      <div class="pc-title" style="margin-bottom:10px;">Required Fields</div>
+      <div class="pc-body">
+        <code>verse_reference</code> — Surah:ayah format<br>
+        <code>overall_score</code> — 0–100 weighted average<br>
+        <code>dimension_scores</code> — All four dimensions<br>
+        <code>errors</code> — position, rule, severity<br>
+        <code>corrective_feedback</code> — Human-readable
+      </div>
+    </div>
+    <div class="principle-card">
+      <div class="pc-title" style="margin-bottom:10px;">Severity Definitions</div>
+      <div class="pc-body">
+        <strong>Critical</strong> — Changes meaning (letter substitution)<br>
+        <strong>High</strong> — Major Tajweed rule violation<br>
+        <strong>Medium</strong> — Rule applied imperfectly<br>
+        <strong>Low</strong> — Minor improvement opportunity
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: DETAILED CERTIFICATION -->
+  <h2 class="sec">Certification Tiers</h2>
+  <p class="sec-intro">AI systems are classified into three tiers based on objective performance. Certification is valid for 12 months with quarterly monitoring.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;">
+    <div style="border:2px solid #d97706;border-radius:12px;overflow:hidden;">
+      <div style="background:#fef3c7;padding:16px;border-bottom:1px solid #fde68a;">
+        <div style="font-weight:700;color:#92400e;font-size:1rem;">Tier 3 — Basic</div>
+        <div style="font-size:0.78rem;color:#b45309;">Entry-level certification</div>
+      </div>
+      <div style="padding:16px;background:white;">
+        <div style="font-size:0.82rem;color:var(--muted);line-height:1.8;">
+          Phonetic accuracy ≥ 85%<br>
+          Identifies 5+ major Tajweed rules<br>
+          Basic error localisation (±2s)<br>
+          Beginner-level feedback only
+        </div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:0.75rem;color:var(--muted);text-align:center;">Basic pronunciation checkers</div>
+      </div>
+    </div>
+    <div style="border:2px solid #3b82f6;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(59,130,246,0.15);">
+      <div style="background:#eff6ff;padding:16px;border-bottom:1px solid #bfdbfe;position:relative;">
+        <div style="position:absolute;top:0;right:0;background:#3b82f6;color:white;font-size:0.65rem;font-weight:700;padding:3px 8px;border-bottom-left-radius:8px;">MOST COMMON</div>
+        <div style="font-weight:700;color:#1d4ed8;font-size:1rem;">Tier 2 — Advanced</div>
+        <div style="font-size:0.78rem;color:#2563eb;">Professional-grade</div>
+      </div>
+      <div style="padding:16px;background:white;">
+        <div style="font-size:0.82rem;color:var(--muted);line-height:1.8;">
+          Phonetic accuracy ≥ 92%<br>
+          Identifies 20+ Tajweed rules<br>
+          Error localisation ≤ 0.5s<br>
+          Level-adaptive feedback<br>
+          Positive reinforcement ≥3:1
+        </div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:0.75rem;color:var(--muted);text-align:center;">Learning apps, school curriculum</div>
+      </div>
+    </div>
+    <div style="border:2px solid #b45309;border-radius:12px;overflow:hidden;">
+      <div style="background:#fffbeb;padding:16px;border-bottom:1px solid #fde68a;">
+        <div style="font-weight:700;color:#92400e;font-size:1rem;">Tier 1 — Ijazah-Grade</div>
+        <div style="font-size:0.78rem;color:#b45309;">Scholar-approved</div>
+      </div>
+      <div style="padding:16px;background:white;">
+        <div style="font-size:0.82rem;color:var(--muted);line-height:1.8;">
+          Phonetic accuracy ≥ 97%<br>
+          Multiple Qira'at comparison<br>
+          Teacher override feature<br>
+          Certified by 3+ ICC scholars<br>
+          Annual public audit report
+        </div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:0.75rem;color:var(--muted);text-align:center;">Ijazah programs, Dar al-Uloom</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: TESTING PROTOCOL -->
+  <h2 class="sec">Testing Protocol &amp; Benchmark Dataset</h2>
+  <div class="grid-2" style="margin:20px 0;">
+    <div class="principle-card">
+      <div class="pc-title">Benchmark Dataset v1.0</div>
+      <div class="pc-body" style="margin-top:10px;line-height:1.9;">
+        <strong>200 recitations</strong> total<br>
+        100 beginner (major error frequency)<br>
+        60 intermediate (subtle rule variations)<br>
+        40 advanced (Qira'at comparisons)<br>
+        10 common error types per level<br>
+        Labelled by <strong>5 certified Qaris</strong><br>
+        Inter-rater reliability: <strong>0.94</strong> (Cohen's Kappa)
+      </div>
+    </div>
+    <div class="principle-card">
+      <div class="pc-title">Evaluation Process</div>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:var(--dark);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;">1</div>
+          <div><div style="font-weight:600;font-size:0.875rem;">Silent Test</div><div style="font-size:0.8rem;color:var(--muted);">AI output vs ground truth. Automated scoring across all metrics.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:var(--dark);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;">2</div>
+          <div><div style="font-weight:600;font-size:0.875rem;">User Study</div><div style="font-size:0.8rem;color:var(--muted);">n=30 learners + 5 teachers evaluate feedback usefulness and clarity.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="background:var(--dark);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;">3</div>
+          <div><div style="font-weight:600;font-size:0.875rem;">Scholar Review</div><div style="font-size:0.8rem;color:var(--muted);">Panel reviews for theological accuracy and fiqh-related feedback.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:20px 24px;margin:20px 0;">
+    <div style="font-weight:700;color:#92400e;margin-bottom:10px;">Adversarial Testing — Deliberate Error Insertions</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:12px;">
+      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Letter substitution:</strong> "قل" vs "قال"</div>
+      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Madd violations:</strong> 2 counts instead of 4</div>
+      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Ghunnah omissions:</strong> No nasalisation on ن and م</div>
+      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Ikhfa vs Izhar:</strong> Deliberate mixing</div>
+      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Waqf violations:</strong> Stopping at impermissible points</div>
+    </div>
+    <div style="font-size:0.82rem;color:#92400e;">Systems must achieve <strong>&gt;95% detection rate</strong> on adversarial tests for Tier 2 certification.</div>
+  </div>
+
+  <!-- SECTION 7: GOVERNANCE -->
+  <h2 class="sec">Governance &amp; Versioning</h2>
+  <div class="grid-2" style="margin:20px 0;">
+    <div class="principle-card">
+      <div class="pc-title">Steering Committee</div>
+      <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:0.83rem;color:var(--muted);"><strong style="color:var(--dark);">3 Quranic Scholars</strong> — ICC-recognised, min 10 years teaching</div>
+        <div style="font-size:0.83rem;color:var(--muted);"><strong style="color:var(--dark);">2 Phonetics Experts</strong> — Arabic phonology and Makharij</div>
+        <div style="font-size:0.83rem;color:var(--muted);"><strong style="color:var(--dark);">1 AI Ethicist</strong> — Learner safety and algorithmic bias</div>
+        <div style="font-size:0.83rem;color:var(--muted);"><strong style="color:var(--dark);">1 Industry Representative</strong> — Rotating from certified orgs</div>
+      </div>
+    </div>
+    <div class="principle-card">
+      <div class="pc-title">Versioning Policy</div>
+      <div style="margin-top:10px;display:flex;flex-direction:column;gap:12px;">
+        <div><div style="font-weight:600;font-size:0.875rem;">Major (v1.0 → v2.0) <span style="font-weight:400;color:var(--muted);">· Every 2 years</span></div><div style="font-size:0.8rem;color:var(--muted);">Structural changes, new dimensions. Requires 5/6 supermajority.</div></div>
+        <div><div style="font-weight:600;font-size:0.875rem;">Minor (v1.0 → v1.1) <span style="font-weight:400;color:var(--muted);">· Annually</span></div><div style="font-size:0.8rem;color:var(--muted);">Metric refinements, benchmark updates, clarifications.</div></div>
+        <div><div style="font-weight:600;font-size:0.875rem;">Patches (v1.0.1) <span style="font-weight:400;color:var(--muted);">· As needed</span></div><div style="font-size:0.8rem;color:var(--muted);">Typo fixes, non-substantive corrections.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PUBLIC REGISTRY -->
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:20px 0;">
+    <div style="font-weight:700;margin-bottom:10px;">Public Compliance Registry</div>
+    <p style="font-size:0.875rem;color:var(--muted);margin-bottom:16px;">All QAEF-certified systems are listed publicly with certification status, audit reports, and scores.</p>
+    <div style="display:flex;align-items:center;justify-content:space-between;background:white;border-radius:10px;padding:14px 18px;border:1px solid var(--border);">
+      <div><span style="font-weight:700;">QariAI</span> <span style="font-size:0.82rem;color:var(--muted);margin-left:8px;">Tier 2 — Advanced</span></div>
+      <span style="font-size:0.82rem;color:#166534;font-weight:600;">Certified until June 2027</span>
+    </div>
+  </div>
+
   <div class="internal-links">
     <h4>Related Pages</h4>
     <ul>
