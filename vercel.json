@@ -1,11 +1,19 @@
-{
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/privacy",                          "destination": "/privacy.html"                     },
-    { "source": "/terms",                            "destination": "/terms.html"                       },
-    { "source": "/about",                            "destination": "/about.html"                       },
+ with 1 addition and 10 deletions.
+  11 changes: 1 addition & 10 deletions11  
+vercel.json
+Original file line number	Diff line number	Diff line change
+@@ -8,13 +8,4 @@
     { "source": "/ar",                               "destination": "/ar.html"                          },
     { "source": "/media-kit",                        "destination": "/media-kit.html"                   },
     { "source": "/how-qari-ai-works",                "destination": "/how-qari-ai-works.html"           },
+    { "source": "/tajweed-mistakes-checker",         "destination": "/tajweed-mistakes-checker.html"    },
+    { "source": "/best-ai-quran-app",                "destination": "/best-ai-quran-app.html"           },
+    { "source": "/apps-like-tarteel",                "destination": "/apps-like-tarteel.html"           },
+    { "source": "/learn/common-tajweed-mistakes",    "destination": "/common-tajweed-mistakes.html"     },
+    { "source": "/learn/pronounce-ayn",              "destination": "/pronounce-ayn.html"               },
+    { "source": "/learn/qalqalah-explained",         "destination": "/qalqalah-explained.html"          },
+    { "source": "/compare/qari-ai-vs-tarteel",       "destination": "/qari-ai-vs-tarteel.html"          },
+    { "source": "/compare/qari-ai-vs-tajweedmate",   "destination": "/qari-ai-vs-tajweedmate.html"      }
+  ]
+}
     { "source": "/tajweed-mistakes-checker",         "destination": "/tajweed-mi
