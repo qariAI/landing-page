@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qariai.app/sitemap.xml
