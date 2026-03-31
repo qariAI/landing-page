@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Evaluation Methodology for AI Quran Recitation Tools | QariAI</title>
+<link rel="canonical" href="https://qariai.app/open-methodology">
+<meta name="description" content="A free, reproducible framework for evaluating AI-powered Quran recitation tools across 5 dimensions: phoneme accuracy, Tajweed detection, timing, feedback quality, and demographic robustness.">
+<meta name="keywords" content="quran recitation evaluation, tajweed ai evaluation, quran speech recognition benchmark, ai quran app methodology, open tajweed benchmark">
+<meta property="og:title" content="Open Evaluation Methodology for AI Quran Recitation Tools | QariAI">
+<meta property="og:description" content="A reproducible, openly licensed framework for evaluating AI-powered Quran recitation tools. Free to adopt, cite, and improve.">
+<meta property="og:url" content="https://qariai.app/open-methodology">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Open Evaluation Methodology for AI-Powered Quranic Recitation Tools",
+  "description": "A reproducible, openly licensed framework for evaluating AI Quran recitation tools across five dimensions: phoneme accuracy, tajweed rule detection, timing and prosody, feedback quality, and demographic robustness.",
+  "author": {"@type": "Organization", "name": "QariAI", "url": "https://qariai.app"},
+  "publisher": {"@type": "Organization", "name": "QariAI", "url": "https://qariai.app"},
+  "datePublished": "2026-03-01",
+  "dateModified": "2026-03-31",
+  "url": "https://qariai.app/open-methodology",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": ["Quran recitation", "Tajweed", "AI evaluation", "speech recognition", "Islamic education technology"]
+}
+</script>
+<style>
+:root {
+  --bg:#080e12; --bg2:#0d1820; --bg3:#111f2a;
+  --emerald:#10b981; --emerald2:#059669; --emerald3:#047857;
+  --gold:#d4af37; --text:#e8f0eb; --muted:#6b8a7a;
+  --border:rgba(16,185,129,0.15); --card:rgba(13,24,32,0.85);
+}
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+html{line-height:1.6;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(16,185,129,0.04)' stroke-width='0.8'%3E%3Cpolygon points='40,4 72,22 72,58 40,76 8,58 8,22'/%3E%3Cpolygon points='40,14 64,27 64,53 40,66 16,53 16,27'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:80px 80px}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,14,18,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(16,185,129,0.1);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--text)}
+.nav-logo span{color:var(--emerald)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-link{color:var(--muted);font-size:0.85rem;transition:color 0.2s}
+.nav-link:hover{color:var(--emerald)}
+.nav-cta{background:var(--emerald2);color:#fff;padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600;transition:background 0.2s}
+.nav-cta:hover{background:var(--emerald3)}
+.page-wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:110px 2rem 80px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);border-radius:100px;padding:5px 14px;font-size:0.72rem;font-weight:600;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:20px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--emerald)}
+.meta-row{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0 32px;font-size:0.8rem;color:var(--muted)}
+.meta-row span{display:flex;align-items:center;gap:6px}
+.lead{color:var(--muted);font-size:1.05rem;line-height:1.75;margin-bottom:32px;max-width:660px}
+.disclosure{background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.2);border-left:3px solid var(--gold);border-radius:10px;padding:16px 20px;margin-bottom:40px;font-size:0.88rem;color:#c8b882}
+.disclosure strong{color:var(--gold)}
+h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;margin:48px 0 16px;color:var(--text)}
+h2::before{content:'';display:block;width:40px;height:2px;background:var(--emerald2);margin-bottom:12px;border-radius:2px}
+h3{font-size:1rem;font-weight:600;color:var(--text);margin:24px 0 10px}
+p{color:#a8c0b0;line-height:1.8;margin-bottom:14px;font-size:0.95rem}
+strong{color:var(--text);font-weight:600}
+ul,ol{color:#a8c0b0;font-size:0.93rem;line-height:1.8;padding-left:1.4rem;margin-bottom:16px}
+li{margin-bottom:6px}
+.dim-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.88rem}
+.dim-table th{background:rgba(16,185,129,0.08);border:1px solid var(--border);padding:10px 14px;text-align:left;color:var(--emerald);font-weight:600;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em}
+.dim-table td{border:1px solid var(--border);padding:10px 14px;color:#a8c0b0;vertical-align:top}
+.dim-table tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+.score-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.88rem}
+.score-table th{background:rgba(16,185,129,0.08);border:1px solid var(--border);padding:8px 14px;text-align:left;color:var(--emerald);font-weight:600;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em}
+.score-table td{border:1px solid var(--border);padding:8px 14px;color:#a8c0b0}
+.score-table td:first-child{text-align:center;font-weight:700;color:var(--text);width:50px}
+.score-table tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+.dim-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin:32px 0}
+.dim-card .dim-num{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--emerald);margin-bottom:8px}
+.dim-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;margin:0 0 12px;color:var(--text)}
+.cite-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:32px 0;font-size:0.85rem}
+.cite-box h4{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cite-box p{margin-bottom:8px;font-size:0.83rem;color:#7a9e8e}
+.cite-box p:last-child{margin-bottom:0}
+.license-box{background:rgba(16,185,129,0.05);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:32px 0;font-size:0.88rem}
+.license-box strong{color:var(--emerald)}
+.share-row{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0}
+.share-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:100px;font-size:0.82rem;font-weight:600;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;transition:all 0.2s;text-decoration:none}
+.share-btn:hover{border-color:var(--emerald);color:var(--emerald)}
+.share-btn.primary{background:var(--emerald2);border-color:var(--emerald2);color:#fff}
+.share-btn.primary:hover{background:var(--emerald3);border-color:var(--emerald3);color:#fff}
+.internal-links{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin:40px 0}
+.internal-links h4{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.internal-links ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.internal-links ul li a{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.08);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:0.8rem;color:var(--emerald);transition:all 0.2s}
+.internal-links ul li a:hover{background:rgba(16,185,129,0.15);border-color:var(--emerald)}
+.cta-box{background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(5,150,105,0.15));border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;margin-top:48px}
+.cta-box h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;margin-bottom:10px}
+.cta-box p{color:var(--muted);font-size:0.9rem;margin-bottom:22px}
+.cta-box a{display:inline-flex;align-items:center;gap:8px;background:var(--emerald2);color:#fff;padding:12px 28px;border-radius:100px;font-weight:600;font-size:0.9rem;transition:background 0.2s}
+.cta-box a:hover{background:var(--emerald3)}
+footer{position:relative;z-index:1;text-align:center;padding:32px 2rem;color:var(--muted);font-size:0.78rem;border-top:1px solid var(--border);margin-top:40px}
+footer a{color:var(--emerald);margin:0 6px}
+@media(max-width:640px){.page-wrap{padding:100px 1.2rem 60px}.meta-row{gap:10px}.share-row{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Qari<span>AI</span></a>
+  <div class="nav-right">
+    <a href="/learn/common-tajweed-mistakes" class="nav-link">Learn</a>
+    <a href="/tajweed-mistakes-checker" class="nav-link">Free Checker</a>
+    <a href="https://app.qariai.app" class="nav-cta">Try Free</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="hero-tag">📄 Open Methodology · v1.0 · March 2026</div>
+  <h1>Open Evaluation Framework for <em>AI Quran Recitation</em> Tools</h1>
+
+  <div class="meta-row">
+    <span>📅 Published March 2026</span>
+    <span>🏛️ QariAI Research</span>
+    <span>⚖️ CC BY 4.0 — Free to use and cite</span>
+    <span>🔗 qariai.app/open-methodology</span>
+  </div>
+
+  <p class="lead">A reproducible, openly licensed protocol for evaluating AI-powered Quranic recitation tools across five dimensions. Anyone — developers, researchers, educators, or users — can apply these tests to any tool.</p>
+
+  <div class="disclosure">
+    <strong>DISCLOSURE:</strong> QariAI is both the publisher and a subject of this evaluation methodology. We believe transparency about this dual role strengthens rather than undermines it. We invite independent researchers, scholars, and competing products to adopt, critique, and improve these criteria.
+  </div>
+
+  <div class="share-row">
+    <a href="mailto:?subject=Open Evaluation Methodology for AI Quran Tools&body=Thought you might find this useful: https://qariai.app/open-methodology" class="share-btn">✉️ Share by Email</a>
+    <a href="https://twitter.com/intent/tweet?text=QariAI published an open evaluation framework for AI Quran recitation tools — free to use, cite, and improve.&url=https://qariai.app/open-methodology" target="_blank" rel="noopener" class="share-btn">𝕏 Share on X</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://qariai.app/open-methodology" target="_blank" rel="noopener" class="share-btn">in Share on LinkedIn</a>
+    <a href="https://qariai.app/open-methodology" class="share-btn primary" onclick="navigator.clipboard.writeText('https://qariai.app/open-methodology');this.textContent='✓ Copied!';setTimeout(()=>this.textContent='🔗 Copy Link',2000);return false;">🔗 Copy Link</a>
+  </div>
+
+  <h2>1. Purpose &amp; Scope</h2>
+  <p>This document defines a <strong>practical testing protocol</strong> that anyone can apply to assess how well a recitation tool performs its stated functions. It is not a certification or seal of approval. It draws on established research in Quranic speech recognition, including work on the Ar-DAD dataset and the knowledge-centric evaluation approach described in Hakami et al. (2025, arXiv:2510.12858).</p>
+
+  <h3>What this document is</h3>
+  <ul>
+    <li><strong>A testing protocol</strong> — specific, repeatable tests anyone can run against any tool</li>
+    <li><strong>Transparent</strong> — published openly; QariAI's own results published alongside competitor results</li>
+    <li><strong>Improvable</strong> — community contributions and critiques are welcomed</li>
+  </ul>
+
+  <h3>What this document is not</h3>
+  <ul>
+    <li><strong>Not a certification</strong> — no product "passes" or "fails"; results are scored on specific dimensions</li>
+    <li><strong>Not independent</strong> — QariAI authored this; independent adoption would strengthen it</li>
+    <li><strong>Not a substitute for scholars</strong> — no automated evaluation replaces a qualified Qari with an ijazah</li>
+  </ul>
+
+  <h2>2. Evaluation Dimensions</h2>
+  <p>The methodology assesses recitation tools across five dimensions, each scored on a 1–5 scale.</p>
+
+  <table class="dim-table">
+    <thead><tr><th>Dimension</th><th>What It Measures</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Phoneme Accuracy</strong></td><td>Correct identification of individual Arabic phonemes, especially minimal pairs</td></tr>
+      <tr><td><strong>Tajweed Rule Detection</strong></td><td>Detecting Ghunnah, Idghaam, Ikhfaa, Qalqalah, Madd, and Laam rules</td></tr>
+      <tr><td><strong>Timing &amp; Prosody</strong></td><td>Madd duration, waqf/ibtidaa, recitation speed classification</td></tr>
+      <tr><td><strong>Feedback Quality</strong></td><td>Specificity, actionability, and pedagogical accuracy of AI feedback</td></tr>
+      <tr><td><strong>Demographic Robustness</strong></td><td>Equal performance across accents, ages, and genders</td></tr>
+    </tbody>
+  </table>
+
+  <div class="dim-card">
+    <div class="dim-num">Dimension 1</div>
+    <h3>Phoneme Accuracy</h3>
+    <p>Measures whether the AI can correctly distinguish individual Arabic sounds, particularly those that are phonetically close and commonly confused by learners. Test set: minimum 120 isolated phoneme pairs covering ص/س, ض/د, ط/ت, ظ/ذ, ع/أ, غ/خ, ق/ك, ث/س, ذ/ز. Minimum 3 speakers per pair: native Arab, non-native intermediate, beginner.</p>
+    <table class="score-table">
+      <thead><tr><th>Score</th><th>Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>5</td><td>95%+ correct identification across all categories and speaker types</td></tr>
+        <tr><td>4</td><td>85–94% accuracy; occasional errors on hardest pairs</td></tr>
+        <tr><td>3</td><td>70–84% accuracy; reliable on emphatic pairs but weak on halqi distinctions</td></tr>
+        <tr><td>2</td><td>50–69% accuracy; frequent confusion on 2+ phoneme categories</td></tr>
+        <tr><td>1</td><td>Below 50%; effectively guessing or using word-level ASR without phoneme analysis</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dim-card">
+    <div class="dim-num">Dimension 2</div>
+    <h3>Tajweed Rule Detection</h3>
+    <p>Evaluates whether the tool can detect application or misapplication of specific tajweed rules during connected recitation. Mandatory rules: Ghunnah, Idghaam (with/without ghunnah), Ikhfaa (before 15 letters), Qalqalah (قطبجد at sukoon/waqf), Madd (natural 2, connected 4–5, necessary 6 counts), Laam tafkheem/tarqeeq in "Allah".</p>
+    <table class="score-table">
+      <thead><tr><th>Score</th><th>Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>5</td><td>Detects and names all 6 mandatory rules with 90%+ accuracy</td></tr>
+        <tr><td>4</td><td>Detects 5/6 rules reliably; occasional misses on subtle rules</td></tr>
+        <tr><td>3</td><td>Detects 3–4 rules; typically catches ghunnah and qalqalah</td></tr>
+        <tr><td>2</td><td>Detects 1–2 rules; mostly word-level error detection</td></tr>
+        <tr><td>1</td><td>No tajweed-specific detection; tool only identifies word substitutions</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dim-card">
+    <div class="dim-num">Dimension 3</div>
+    <h3>Timing &amp; Prosody</h3>
+    <p>Assesses rhythmic and durational aspects: madd duration measurement, ghunnah duration, waqf/ibtidaa, and recitation speed classification (tahqeeq, tadweer, hadr). Tests use 10 verses with madd of different lengths, recorded at three speeds, with deliberately shortened/extended madd.</p>
+    <table class="score-table">
+      <thead><tr><th>Score</th><th>Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>5</td><td>Measures duration within 0.5 count; adapts to speed; identifies waqf appropriateness</td></tr>
+        <tr><td>3</td><td>Detects major timing errors but lacks precision on borderline cases</td></tr>
+        <tr><td>1</td><td>No timing analysis; tool only evaluates at word/phoneme level</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dim-card">
+    <div class="dim-num">Dimension 4</div>
+    <h3>Feedback Quality</h3>
+    <p>A tool's detection capability is only useful if translated into clear, actionable, pedagogically appropriate feedback. Criteria: Specificity (exact location, rule, error nature), Actionability (what to do differently), Pedagogical sensitivity (adapts to user level), Accuracy (correctly describes the issue).</p>
+    <table class="score-table">
+      <thead><tr><th>Score</th><th>Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>5</td><td>90%+ feedback rated accurate and actionable by reviewing scholar; adapts to user level</td></tr>
+        <tr><td>3</td><td>Mostly accurate but often vague; user knows something is wrong but not what to fix</td></tr>
+        <tr><td>1</td><td>Generic feedback ("good"/"needs improvement") or frequently inaccurate</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dim-card">
+    <div class="dim-num">Dimension 5</div>
+    <h3>Demographic Robustness</h3>
+    <p>AI speech systems are biased toward the demographic composition of their training data. This dimension ensures global accessibility across Arabic dialects, South Asian, Southeast Asian, African, and Western backgrounds; all genders; children, adolescents, adults, and elderly speakers; beginner to advanced proficiency.</p>
+    <table class="score-table">
+      <thead><tr><th>Score</th><th>Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>5</td><td>No demographic group drops more than 5% below overall average; tested across 6+ language backgrounds</td></tr>
+        <tr><td>3</td><td>1–2 demographic groups show 10–15% accuracy drops; tested across 3–4 language backgrounds</td></tr>
+        <tr><td>1</td><td>Large accuracy gaps (&gt;20%) across demographics, or only tested on a single demographic group</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3. Limitations</h2>
+  <ul>
+    <li>No existing tool scores 5/5 across all dimensions.</li>
+    <li>Dataset bias is a real problem — most training datasets are dominated by adult male Arab voices.</li>
+    <li>Tajweed rule detection is significantly harder than word recognition.</li>
+    <li>Human teachers remain essential; AI tools cannot replace the spiritual and pedagogical dimensions of human instruction.</li>
+  </ul>
+
+  <h2>4. Academic References</h2>
+  <div class="cite-box">
+    <h4>References</h4>
+    <p>• Hakami et al. (2025). "A Critical Review of the Need for Knowledge-Centric Evaluation of Quranic Recitation." arXiv:2510.12858.</p>
+    <p>• Atef et al. (2023). "Quran Recitation Recognition using End-to-End Deep Learning." arXiv:2305.07034.</p>
+    <p>• Al-Ayyoub et al. (2023). "Speech Recognition Models for Holy Quran Recitation." IJACSA, Vol. 14, No. 12.</p>
+    <p>• TajweedAI (2025). "A Hybrid ASR-Classifier for Real-Time Qalqalah Detection." NeurIPS 2025.</p>
+    <p>• Tarteel AI (2024–2025). ML Journey blog series.</p>
+  </div>
+
+  <div class="license-box">
+    <p><strong>License:</strong> Released under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color:var(--emerald)">Creative Commons Attribution 4.0 (CC BY 4.0)</a>. Free to share, adapt, and build upon with appropriate credit: <em>"QariAI Open Evaluation Methodology v1.0, qariai.app/open-methodology"</em></p>
+  </div>
+
+  <div class="share-row">
+    <a href="mailto:?subject=Open Evaluation Methodology for AI Quran Tools&body=Thought you might find this useful: https://qariai.app/open-methodology" class="share-btn">✉️ Share by Email</a>
+    <a href="https://twitter.com/intent/tweet?text=QariAI published an open evaluation framework for AI Quran recitation tools — free to use, cite, and improve.&url=https://qariai.app/open-methodology" target="_blank" rel="noopener" class="share-btn">𝕏 Share on X</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://qariai.app/open-methodology" target="_blank" rel="noopener" class="share-btn">in Share on LinkedIn</a>
+    <a href="https://qariai.app/open-methodology" class="share-btn primary" onclick="navigator.clipboard.writeText('https://qariai.app/open-methodology');this.textContent='✓ Copied!';setTimeout(()=>this.textContent='🔗 Copy Link',2000);return false;">🔗 Copy Link</a>
+  </div>
+
+  <div class="internal-links">
+    <h4>Related Resources</h4>
+    <ul>
+      <li><a href="/learn/common-tajweed-mistakes">→ Common Tajweed Mistakes</a></li>
+      <li><a href="/learn/qalqalah-explained">→ Qalqalah Explained</a></li>
+      <li><a href="/tajweed-mistakes-checker">→ Free Tajweed Checker</a></li>
+      <li><a href="/best-ai-quran-app">→ Best AI Quran Apps Compared</a></li>
+      <li><a href="/compare/qari-ai-vs-tarteel">→ QariAI vs Tarteel</a></li>
+    </ul>
+  </div>
+
+  <div class="cta-box">
+    <h3>Try QariAI Free</h3>
+    <p>The app this methodology was built around. Check your Tajweed in real time — no signup needed.</p>
+    <a href="https://app.qariai.app">Start Reciting →</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>QariAI Open Evaluation Methodology v1.0 — March 2026 &nbsp;·&nbsp; <a href="/">qariai.app</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a></p>
+</footer>
+
+</body>
+</html>

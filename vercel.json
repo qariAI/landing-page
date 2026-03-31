@@ -13,6 +13,7 @@
     { "source": "/learn/pronounce-ayn", "destination": "/pronounce-ayn.html" },
     { "source": "/learn/qalqalah-explained", "destination": "/qalqalah-explained.html" },
     { "source": "/compare/qari-ai-vs-tarteel", "destination": "/qari-ai-vs-tarteel.html" },
-    { "source": "/compare/qari-ai-vs-tajweedmate", "destination": "/qari-ai-vs-tajweedmate.html" }
+    { "source": "/compare/qari-ai-vs-tajweedmate", "destination": "/qari-ai-vs-tajweedmate.html" },
+    { "source": "/open-methodology", "destination": "/open-methodology.html" }
   ]
 }
