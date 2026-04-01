@@ -2,11 +2,37 @@
   "headers": [
     {
       "source": "/(.*).html",
-      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
     },
     {
       "source": "/",
-      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/screenshots/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/logo.png",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*).js",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*).css",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ],
   "rewrites": [
@@ -24,6 +50,7 @@
     { "source": "/learn/qalqalah-explained", "destination": "/qalqalah-explained.html" },
     { "source": "/compare/qari-ai-vs-tarteel", "destination": "/qari-ai-vs-tarteel.html" },
     { "source": "/compare/qari-ai-vs-tajweedmate", "destination": "/qari-ai-vs-tajweedmate.html" },
-    { "source": "/open-methodology", "destination": "/open-methodology.html" }
+    { "source": "/open-methodology", "destination": "/open-methodology.html" },
+    { "source": "/tajweed-rules", "destination": "/tajweed-rules.html" }
   ]
 }
