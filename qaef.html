@@ -1,609 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QAEF v1.0 — Definitive AI Quranic Evaluation Framework | QariAI</title>
-<meta name="description" content="The first standardized framework for evaluating AI Quran recitation systems. Establishes metrics for Tajweed accuracy, feedback quality, and certification levels.">
-<meta name="keywords" content="QAEF, AI Quran evaluation framework, Tajweed AI benchmark, Quran recitation AI standard, QariAI framework">
-<link rel="canonical" href="https://qariai.app/qaef">
-<meta property="og:title" content="QAEF v1.0 — Definitive AI Quranic Evaluation Framework">
-<meta property="og:description" content="The authoritative methodology for measuring AI Quran recitation feedback quality.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://qariai.app/qaef">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ScholarlyArticle",
-  "headline": "QAEF v1.0 — Definitive AI Quranic Evaluation Framework",
-  "description": "The first standardized framework for evaluating AI systems that provide feedback on Quranic recitation.",
-  "url": "https://qariai.app/qaef",
-  "datePublished": "2026-03-30",
-  "publisher": {"@type": "Organization", "name": "QariAI", "url": "https://qariai.app"},
-  "author": {"@type": "Organization", "name": "QariAI Research"}
-}
-</script>
-<style>
-:root {
-  --bg: #f9f7f4;
-  --bg2: #f0ede8;
-  --emerald: #059669;
-  --emerald2: #047857;
-  --dark: #0f172a;
-  --muted: #475569;
-  --border: #e2d9cc;
-  --gold: #92400e;
-  --gold-light: #fef3c7;
-}
-*, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; line-height: 1.6; }
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); }
-a { color: inherit; text-decoration: none; }
+# QAEF: The Quranic AI Evaluation Framework
 
-/* NAV */
-nav { position: fixed; top: 0; width: 100%; background: rgba(249,247,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; height: 116px; display: flex; align-items: center; padding: 0 2rem; justify-content: space-between; }
-.nav-right { display: flex; align-items: center; gap: 1rem; }
-.nav-link { color: var(--muted); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-.nav-link:hover { color: var(--emerald); }
-.nav-cta { background: var(--emerald); color: white; padding: 8px 18px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600; transition: background 0.2s; }
-.nav-cta:hover { background: var(--emerald2); }
+QAEF (Quranic AI Evaluation Framework) is Qari AI’s implementation of an open, standardized methodology for evaluating Quranic recitation systems.
 
-/* PAGE */
-.page { max-width: 860px; margin: 0 auto; padding: 140px 2rem 80px; }
+It operationalizes the principles defined in our evaluation framework into a working system that analyzes recitation, detects errors, and provides structured feedback.
 
-/* HERO */
-.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-.badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
-.badge-version { background: var(--gold-light); color: var(--gold); border: 1px solid #fde68a; }
-.badge-id { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-.badge-status { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 8px; }
-.subtitle { font-size: 1.05rem; color: var(--muted); margin-bottom: 32px; }
-.exec-summary { background: white; border-left: 4px solid var(--emerald); border-radius: 0 12px 12px 0; padding: 24px 28px; margin-bottom: 48px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-.exec-summary h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--emerald2); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.78rem; }
-.exec-summary p { color: var(--muted); line-height: 1.8; font-size: 0.95rem; }
+---
 
-/* SECTION HEADERS */
-h2.sec { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; margin: 56px 0 8px; color: var(--dark); }
-h2.sec::before { content: ''; display: block; width: 40px; height: 2px; background: var(--emerald); margin-bottom: 12px; border-radius: 2px; }
-.sec-intro { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px; }
-h3.subsec { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin: 28px 0 10px; }
-p { color: var(--muted); line-height: 1.8; margin-bottom: 14px; font-size: 0.93rem; }
-strong { color: var(--dark); font-weight: 600; }
+## Definition
 
-/* PRINCIPLE CARDS */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
-.principle-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 22px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: box-shadow 0.2s; }
-.principle-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-.pc-icon { font-size: 2rem; margin-bottom: 10px; }
-.pc-title { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
-.pc-body { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+**Quranic recitation evaluation is defined as the measurement of phonetic accuracy, rule compliance, temporal precision, feedback quality, and robustness across speakers.**
 
-/* METRIC TABLE */
-.metric-table { width: 100%; border-collapse: collapse; margin: 20px 0 32px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-.metric-table th { background: var(--dark); color: white; padding: 12px 16px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-align: left; }
-.metric-table td { padding: 12px 16px; font-size: 0.875rem; border-top: 1px solid var(--border); background: white; color: var(--muted); }
-.metric-table td:first-child { font-weight: 600; color: var(--dark); }
-.metric-table tr:hover td { background: var(--bg2); }
-.score { display: inline-block; padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; }
-.score-high { background: #f0fdf4; color: #166534; }
-.score-mid { background: #fffbeb; color: #92400e; }
-.score-low { background: #fff1f2; color: #9f1239; }
+---
 
-/* CERT LEVELS */
-.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
-.cert-card { border-radius: 12px; padding: 20px; text-align: center; border: 2px solid; }
-.cert-bronze { background: #fef9f0; border-color: #d97706; }
-.cert-silver { background: #f8fafc; border-color: #94a3b8; }
-.cert-gold { background: #fffbeb; border-color: #d97706; }
-.cert-level { font-size: 2rem; margin-bottom: 8px; }
-.cert-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; }
-.cert-score { font-size: 0.78rem; color: var(--muted); }
+## Relationship to the Open Methodology
 
-/* HIGHLIGHT */
-.highlight { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 18px 22px; margin: 20px 0; }
-.highlight p { margin: 0; color: #166534; font-size: 0.9rem; }
+QAEF is built on top of the QariAI Open Evaluation Methodology.
 
-/* CITATION */
-.citation-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 32px 0; font-family: monospace; font-size: 0.82rem; color: var(--dark); line-height: 1.7; }
-.citation-label { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 10px; }
+- Conceptual framework:  
+https://www.qariai.app/quran-learning-methodology-evaluation  
 
-/* INTERNAL LINKS */
-.internal-links { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; margin: 40px 0; }
-.internal-links h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-.internal-links ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
-.internal-links ul li a { display: inline-flex; align-items: center; gap: 6px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 9999px; padding: 6px 14px; font-size: 0.8rem; color: var(--emerald); transition: all 0.2s; }
-.internal-links ul li a:hover { background: #dcfce7; }
+- Technical specification:  
+https://github.com/qariAI/open-eval-methodology  
 
-/* CTA */
-.cta-box { background: linear-gradient(135deg, #064e3b, #065f46); border-radius: 16px; padding: 36px; text-align: center; margin-top: 48px; color: white; }
-.cta-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; }
-.cta-box p { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 22px; }
-.cta-primary { display: inline-flex; align-items: center; gap: 8px; background: white; color: var(--emerald2); padding: 13px 26px; border-radius: 9999px; font-weight: 700; font-size: 0.9rem; transition: all 0.2s; }
-.cta-primary:hover { background: #f0fdf4; transform: translateY(-1px); }
+---
 
-/* FOOTER */
-footer { background: #064e3b; color: #e2e8f0; padding: 3rem 1.5rem 2rem; margin-top: 80px; }
-footer a { color: #e2e8f0; text-decoration: none; }
-footer a:hover { color: #34d399; }
+## Evaluation Dimensions in QAEF
 
-@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
-.fade { animation: fadeUp 0.7s ease-out both; }
-@media(max-width:640px) {
-  .grid-2, .cert-grid { grid-template-columns: 1fr; }
-  .nav-right .nav-link { display: none; }
-  h1 { font-size: 1.8rem; }
-}
-</style>
-</head>
-<body>
+QAEF applies the same five evaluation dimensions defined in the methodology:
 
-<nav>
-  <a href="/"><img src="/logo.png" alt="QariAI" style="height:88px;width:auto;object-fit:contain;"></a>
-  <div class="nav-right">
-    <a href="/how-qari-ai-works" class="nav-link">How It Works</a>
-    <a href="/best-ai-quran-app" class="nav-link">Compare Apps</a>
-    <a href="/tajweed-mistakes-checker" class="nav-link">Free Checker</a>
-    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" class="nav-cta">Download Free</a>
-  </div>
-</nav>
+---
 
-<div class="page">
+### 1. Phoneme Accuracy
 
-  <!-- HEADER -->
-  <div class="fade">
-    <div class="badges">
-      <span class="badge badge-version">Version 1.0 · March 30, 2026</span>
-      <span class="badge badge-id">Permanent ID: QARI-QAEF-2026-001</span>
-      <span class="badge badge-status">Open Standard</span>
-    </div>
-    <h1>Definitive AI Quranic Evaluation Framework</h1>
-    <p class="subtitle">QAEF — The first standardized methodology for benchmarking AI Quran recitation systems</p>
+QAEF analyzes recitation at the phoneme level, identifying errors in articulation (makharij) and phonetic characteristics (sifaat).
 
-    <div class="exec-summary">
-      <h2>Executive Summary</h2>
-      <p>The QAEF establishes the first standardized methodology for evaluating AI systems that provide feedback on Quranic recitation. Developed with certified Qaris, phonetics experts, and AI researchers, this framework defines measurable benchmarks for <strong>phonetic accuracy, rule-based feedback quality, pedagogical appropriateness, and technical robustness</strong>. Any AI system claiming to provide Quran recitation feedback can now be objectively assessed against a transparent, scholar-backed standard.</p>
-    </div>
-  </div>
+Examples include:
+- Confusion between similar letters (e.g. ص vs س, ح vs ه)
+- Incorrect articulation points
 
-  <!-- CORE PRINCIPLES -->
-  <h2 class="sec">Core Principles</h2>
-  <p class="sec-intro">The QAEF is grounded in four non-negotiable principles that any compliant system must uphold regardless of technical implementation.</p>
-  <div class="grid-2">
-    <div class="principle-card"><div class="pc-icon">📖</div><div class="pc-title">Tajweed Integrity</div><div class="pc-body">AI must accurately identify and explain all rules of Tajweed including Ghunnah, Idgham, Ikhfa, and Madd with canonical precision.</div></div>
-    <div class="principle-card"><div class="pc-icon">📜</div><div class="pc-title">Mushaf Consistency</div><div class="pc-body">Adherence to the Uthmani script and canonical Qira'at (primarily Hafs 'an 'Asim unless explicitly specified).</div></div>
-    <div class="principle-card"><div class="pc-icon">🤲</div><div class="pc-title">Recitation Respect</div><div class="pc-body">No alteration of audio or text that distorts meaning, reverence, or the sacred nature of Quranic recitation.</div></div>
-    <div class="principle-card"><div class="pc-icon">🎓</div><div class="pc-title">Learner Safety</div><div class="pc-body">Feedback must be constructive, never shaming, and pedagogically appropriate for the learner's level (beginner/intermediate/advanced).</div></div>
-  </div>
+---
 
-  <!-- EVALUATION DIMENSIONS -->
-  <h2 class="sec">Evaluation Dimensions</h2>
-  <p class="sec-intro">QAEF evaluates AI Quran systems across five weighted dimensions. Each dimension contributes to an overall QAEF Score out of 100.</p>
+### 2. Tajweed Rule Detection
 
-  <table class="metric-table">
-    <thead>
-      <tr>
-        <th>Dimension</th>
-        <th>Weight</th>
-        <th>What It Measures</th>
-        <th>Min Pass</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Phonetic Accuracy</td><td>30%</td><td>Correct identification of Makharij errors at phoneme level</td><td><span class="score score-high">70%</span></td></tr>
-      <tr><td>Tajweed Rule Coverage</td><td>25%</td><td>Detection of Ikhfa, Idgham, Qalqalah, Ghunnah, Madd violations</td><td><span class="score score-high">70%</span></td></tr>
-      <tr><td>Feedback Quality</td><td>20%</td><td>Specificity, actionability, and correctness of correction guidance</td><td><span class="score score-mid">60%</span></td></tr>
-      <tr><td>Pedagogical Appropriateness</td><td>15%</td><td>Level-calibrated feedback, encouragement, progressive difficulty</td><td><span class="score score-mid">60%</span></td></tr>
-      <tr><td>Technical Robustness</td><td>10%</td><td>Latency, noise tolerance, accent handling, offline capability</td><td><span class="score score-low">50%</span></td></tr>
-    </tbody>
-  </table>
+The system detects the application of Tajweed rules in real time, including:
 
-  <!-- SCORING METHODOLOGY -->
-  <h2 class="sec">Scoring Methodology</h2>
-  <p class="sec-intro">QAEF scores are derived from a standardised test battery of 500 recitation samples across 10 difficulty levels, covering all major Tajweed rules and Makharij points.</p>
+- Ghunnah  
+- Idghaam  
+- Ikhfaa  
+- Qalqalah  
+- Madd  
+- Laam Shamsiyyah / Qamariyyah  
 
-  <h3 class="subsec">Test Battery Composition</h3>
-  <table class="metric-table">
-    <thead><tr><th>Test Category</th><th>Samples</th><th>Suwar Covered</th></tr></thead>
-    <tbody>
-      <tr><td>Makharij Precision</td><td>150</td><td>Al-Fatiha, Al-Ikhlas, short Suwar</td></tr>
-      <tr><td>Tajweed Rule Detection</td><td>150</td><td>Al-Baqarah (selected), Al-Mulk</td></tr>
-      <tr><td>Connected Recitation</td><td>100</td><td>Al-Rahman, Ya-Sin (selected)</td></tr>
-      <tr><td>Beginner Errors</td><td>60</td><td>Al-Fatiha variants</td></tr>
-      <tr><td>Advanced Recitation</td><td>40</td><td>Al-Baqarah, Ali 'Imran (selected)</td></tr>
-    </tbody>
-  </table>
+Errors are classified by rule type, enabling precise correction.
 
-  <h3 class="subsec">Scoring Formula</h3>
-  <div class="citation-box">
-    <div class="citation-label">QAEF Score Formula</div>
-    QAEF_Score = (Phonetic × 0.30) + (TajweedRules × 0.25) + (FeedbackQuality × 0.20) + (Pedagogical × 0.15) + (Technical × 0.10)
-    <br><br>
-    Minimum passing score: <strong>65 / 100</strong><br>
-    All five dimensions must individually meet their minimum threshold.
-  </div>
+---
 
-  <!-- CERTIFICATION LEVELS -->
-  <h2 class="sec">QAEF Certification Levels</h2>
-  <p class="sec-intro">Systems that complete QAEF evaluation receive one of three certification levels based on their overall score and dimensional performance.</p>
-  <div class="cert-grid">
-    <div class="cert-card cert-bronze">
-      <div class="cert-level">🥉</div>
-      <div class="cert-name">QAEF Bronze</div>
-      <div class="cert-score">Score: 65–74<br>Meets minimum standards<br>Suitable for beginner use</div>
-    </div>
-    <div class="cert-card cert-silver">
-      <div class="cert-level">🥈</div>
-      <div class="cert-name">QAEF Silver</div>
-      <div class="cert-score">Score: 75–84<br>Strong Tajweed detection<br>Suitable for intermediate</div>
-    </div>
-    <div class="cert-card cert-gold" style="background:#fffbeb;border-color:#b45309;">
-      <div class="cert-level">🥇</div>
-      <div class="cert-name">QAEF Gold</div>
-      <div class="cert-score">Score: 85+<br>Exemplary performance<br>Recommended for all levels</div>
-    </div>
-  </div>
-  <div class="highlight">
-    <p><strong>QariAI targets QAEF Gold certification.</strong> Our phoneme-level analysis and real-time feedback engine are specifically designed to meet the highest tier of this standard.</p>
-  </div>
+### 3. Timing & Prosody
 
-  <!-- WHY THIS MATTERS -->
-  <h2 class="sec">Why a Standard Matters</h2>
-  <p>Before QAEF, there was no objective way to compare AI Quran recitation tools. Users had no framework to evaluate whether an app's feedback was accurate, complete, or pedagogically sound. Developers had no benchmark to build toward.</p>
-  <p>QAEF changes this by establishing <strong>a shared language for quality</strong> in AI Quran education — enabling informed choices by learners, institutions, and developers alike.</p>
-  <p>The framework is designed to evolve. QAEF v2.0 will incorporate multi-Qira'at support, child learner profiles, and expanded Makharij classification.</p>
+QAEF evaluates temporal aspects of recitation:
 
-  <!-- HOW TO CITE -->
-  <h2 class="sec">How to Cite This Framework</h2>
-  <div class="citation-box">
-    <div class="citation-label">Academic Citation</div>
-    QariAI Research. (2026). <em>Definitive AI Quranic Evaluation Framework (QAEF) v1.0</em>.<br>
-    Permanent ID: QARI-QAEF-2026-001. Retrieved from https://qariai.app/qaef
-    <br><br>
-    <div class="citation-label">BibTeX</div>
-    @techreport{qaef2026,<br>
-    &nbsp;&nbsp;title={Definitive AI Quranic Evaluation Framework (QAEF) v1.0},<br>
-    &nbsp;&nbsp;author={{QariAI Research}},<br>
-    &nbsp;&nbsp;year={2026},<br>
-    &nbsp;&nbsp;url={https://qariai.app/qaef},<br>
-    &nbsp;&nbsp;note={Permanent ID: QARI-QAEF-2026-001}<br>
-    }
-  </div>
+- Madd duration (2, 4, 6 counts)  
+- Pause placement (waqf)  
+- Rhythm and flow  
 
+This ensures alignment with proper recitation structure.
 
-  <!-- SECTION 3: DETAILED EVALUATION DIMENSIONS -->
-  <h2 class="sec">Evaluation Dimensions &amp; Metrics</h2>
-  <p class="sec-intro">Every AI Quranic recitation system is evaluated across four weighted dimensions. Scores are normalised to 100 points per dimension, with overall score calculated as a weighted average.</p>
-  <table class="metric-table">
-    <thead>
-      <tr>
-        <th>Dimension</th>
-        <th>Weight</th>
-        <th>Key Metrics</th>
-        <th>Tier 2 Target</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Phonetic Accuracy</td>
-        <td>40%</td>
-        <td>Makharij precision (F1 vs expert panel), Sifaat detection, Madd lengths ±0.05s</td>
-        <td><span class="score score-high">≥ 92%</span></td>
-      </tr>
-      <tr>
-        <td>Rule-Based Feedback Quality</td>
-        <td>30%</td>
-        <td>Error localisation ≤0.5s, 20+ Tajweed rules identified, corrective suggestion clarity</td>
-        <td><span class="score score-high">≥ 90%</span></td>
-      </tr>
-      <tr>
-        <td>Pedagogical Appropriateness</td>
-        <td>20%</td>
-        <td>Level adaptation, positive reinforcement ratio ≥3:1, zero false negatives on major errors</td>
-        <td><span class="score score-mid">≥ 85%</span></td>
-      </tr>
-      <tr>
-        <td>Technical Robustness</td>
-        <td>10%</td>
-        <td>Latency &lt;2s per 10s recitation, SNR 20dB noise tolerance, device independence</td>
-        <td><span class="score score-high">≥ 95%</span></td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="highlight">
-    <p><strong>Measurement basis:</strong> 200 expert-labelled recitations · 5 certified Qaris (ICC standard) · Inter-rater reliability ≥0.92 · 95% confidence interval required for certification</p>
-  </div>
+---
 
-  <!-- SECTION 4: RFS STANDARD -->
-  <h2 class="sec">Recitation Feedback Standard (RFS)</h2>
-  <p class="sec-intro">All QAEF-compliant AI systems <strong>MUST</strong> output feedback in the following standardised structure to ensure interoperability and auditability.</p>
-  <div style="background:#0f172a;border-radius:12px;padding:24px 28px;margin:20px 0;overflow-x:auto;">
-    <pre style="color:#4ade80;font-size:0.78rem;font-family:monospace;line-height:1.7;margin:0;">{
-  "version": "1.0",
-  "verse_reference": "2:255",
-  "timestamp": "2026-03-30T10:30:00Z",
-  "overall_score": 92.3,
-  "dimension_scores": {
-    "phonetic_accuracy": 94,
-    "rule_based_feedback": 90,
-    "pedagogical_appropriateness": 88,
-    "technical_robustness": 97
-  },
-  "errors": [
-    {
-      "word_position": 5,
-      "rule": "Madd Munfasil",
-      "expected_length": 4,
-      "actual_length": 2,
-      "severity": "medium",
-      "explanation": "Madd Munfasil occurs when a Madd letter appears at the end of one word and a hamza at the start of the next."
-    }
-  ],
-  "corrective_feedback": "Lengthen the Madd in 'أولئك' to 4 counts.",
-  "positive_notes": [
-    "Correct Ikhfa on 'من قبل' with proper nasalisation.",
-    "Excellent Ghunnah duration on the noon mushaddad."
-  ],
-  "session_id": "sess_xyz789"
-}</pre>
-  </div>
-  <div class="grid-2" style="margin:20px 0;">
-    <div class="principle-card">
-      <div class="pc-title" style="margin-bottom:10px;">Required Fields</div>
-      <div class="pc-body">
-        <code>verse_reference</code> — Surah:ayah format<br>
-        <code>overall_score</code> — 0–100 weighted average<br>
-        <code>dimension_scores</code> — All four dimensions<br>
-        <code>errors</code> — position, rule, severity<br>
-        <code>corrective_feedback</code> — Human-readable
-      </div>
-    </div>
-    <div class="principle-card">
-      <div class="pc-title" style="margin-bottom:10px;">Severity Definitions</div>
-      <div class="pc-body">
-        <strong>Critical</strong> — Changes meaning (letter substitution)<br>
-        <strong>High</strong> — Major Tajweed rule violation<br>
-        <strong>Medium</strong> — Rule applied imperfectly<br>
-        <strong>Low</strong> — Minor improvement opportunity
-      </div>
-    </div>
-  </div>
+### 4. Feedback Quality
 
-  <!-- SECTION 5: DETAILED CERTIFICATION -->
-  <h2 class="sec">Certification Tiers</h2>
-  <p class="sec-intro">AI systems are classified into three tiers based on objective performance. Certification is valid for 12 months with quarterly monitoring.</p>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;">
-    <div style="border:2px solid #d97706;border-radius:12px;overflow:hidden;">
-      <div style="background:#fef3c7;padding:16px;border-bottom:1px solid #fde68a;">
-        <div style="font-weight:700;color:#92400e;font-size:1rem;">Tier 3 — Basic</div>
-        <div style="font-size:0.78rem;color:#b45309;">Entry-level certification</div>
-      </div>
-      <div style="padding:16px;background:white;">
-        <div style="font-size:0.82rem;color:var(--muted);line-height:1.8;">
-          Phonetic accuracy ≥ 85%<br>
-          Identifies 5+ major Tajweed rules<br>
-          Basic error localisation (±2s)<br>
-          Beginner-level feedback only
-        </div>
-        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:0.75rem;color:var(--muted);text-align:center;">Basic pronunciation checkers</div>
-      </div>
-    </div>
-    <div style="border:2px solid #3b82f6;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(59,130,246,0.15);">
-      <div style="background:#eff6ff;padding:16px;border-bottom:1px solid #bfdbfe;position:relative;">
-        <div style="position:absolute;top:0;right:0;background:#3b82f6;color:white;font-size:0.65rem;font-weight:700;padding:3px 8px;border-bottom-left-radius:8px;">MOST COMMON</div>
-        <div style="font-weight:700;color:#1d4ed8;font-size:1rem;">Tier 2 — Advanced</div>
-        <div style="font-size:0.78rem;color:#2563eb;">Professional-grade</div>
-      </div>
-      <div style="padding:16px;background:white;">
-        <div style="font-size:0.82rem;color:var(--muted);line-height:1.8;">
-          Phonetic accuracy ≥ 92%<br>
-          Identifies 20+ Tajweed rules<br>
-          Error localisation ≤ 0.5s<br>
-          Level-adaptive feedback<br>
-          Positive reinforcement ≥3:1
-        </div>
-        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:0.75rem;color:var(--muted);text-align:center;">Learning apps, school curriculum</div>
-      </div>
-    </div>
-    <div style="border:2px solid #b45309;border-radius:12px;overflow:hidden;">
-      <div style="background:#fffbeb;padding:16px;border-bottom:1px solid #fde68a;">
-        <div style="font-weight:700;color:#92400e;font-size:1rem;">Tier 1 — Ijazah-Grade</div>
-        <div style="font-size:0.78rem;color:#b45309;">Scholar-approved</div>
-      </div>
-      <div style="padding:16px;background:white;">
-        <div style="font-size:0.82rem;color:var(--muted);line-height:1.8;">
-          Phonetic accuracy ≥ 97%<br>
-          Multiple Qira'at comparison<br>
-          Teacher override feature<br>
-          Certified by 3+ ICC scholars<br>
-          Annual public audit report
-        </div>
-        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:0.75rem;color:var(--muted);text-align:center;">Ijazah programs, Dar al-Uloom</div>
-      </div>
-    </div>
-  </div>
+QAEF generates structured feedback designed to be:
 
-  <!-- SECTION 6: TESTING PROTOCOL -->
-  <h2 class="sec">Testing Protocol &amp; Benchmark Dataset</h2>
-  <div class="grid-2" style="margin:20px 0;">
-    <div class="principle-card">
-      <div class="pc-title">Benchmark Dataset v1.0</div>
-      <div class="pc-body" style="margin-top:10px;line-height:1.9;">
-        <strong>200 recitations</strong> total<br>
-        100 beginner (major error frequency)<br>
-        60 intermediate (subtle rule variations)<br>
-        40 advanced (Qira'at comparisons)<br>
-        10 common error types per level<br>
-        Labelled by <strong>5 certified Qaris</strong><br>
-        Inter-rater reliability: <strong>0.94</strong> (Cohen's Kappa)
-      </div>
-    </div>
-    <div class="principle-card">
-      <div class="pc-title">Evaluation Process</div>
-      <div style="margin-top:12px;display:flex;flex-direction:column;gap:12px;">
-        <div style="display:flex;gap:12px;align-items:flex-start;">
-          <div style="background:var(--dark);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;">1</div>
-          <div><div style="font-weight:600;font-size:0.875rem;">Silent Test</div><div style="font-size:0.8rem;color:var(--muted);">AI output vs ground truth. Automated scoring across all metrics.</div></div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:flex-start;">
-          <div style="background:var(--dark);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;">2</div>
-          <div><div style="font-weight:600;font-size:0.875rem;">User Study</div><div style="font-size:0.8rem;color:var(--muted);">n=30 learners + 5 teachers evaluate feedback usefulness and clarity.</div></div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:flex-start;">
-          <div style="background:var(--dark);color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;">3</div>
-          <div><div style="font-weight:600;font-size:0.875rem;">Scholar Review</div><div style="font-size:0.8rem;color:var(--muted);">Panel reviews for theological accuracy and fiqh-related feedback.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:20px 24px;margin:20px 0;">
-    <div style="font-weight:700;color:#92400e;margin-bottom:10px;">Adversarial Testing — Deliberate Error Insertions</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:12px;">
-      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Letter substitution:</strong> "قل" vs "قال"</div>
-      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Madd violations:</strong> 2 counts instead of 4</div>
-      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Ghunnah omissions:</strong> No nasalisation on ن and م</div>
-      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Ikhfa vs Izhar:</strong> Deliberate mixing</div>
-      <div style="background:white;border-radius:8px;padding:10px;font-size:0.8rem;color:var(--muted);"><strong>Waqf violations:</strong> Stopping at impermissible points</div>
-    </div>
-    <div style="font-size:0.82rem;color:#92400e;">Systems must achieve <strong>&gt;95% detection rate</strong> on adversarial tests for Tier 2 certification.</div>
-  </div>
+- Accurate — reflects the actual mistake  
+- Specific — identifies the exact issue  
+- Actionable — guides the user on how to correct it  
 
-  <!-- SECTION 7: GOVERNANCE -->
-  <h2 class="sec">Governance &amp; Versioning</h2>
-  <div class="grid-2" style="margin:20px 0;">
-    <div class="principle-card">
-      <div class="pc-title">Steering Committee</div>
-      <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
-        <div style="font-size:0.83rem;color:var(--muted);"><strong style="color:var(--dark);">3 Quranic Scholars</strong> — ICC-recognised, min 10 years teaching</div>
-        <div style="font-size:0.83rem;color:var(--muted);"><strong style="color:var(--dark);">2 Phonetics Experts</strong> — Arabic phonology and Makharij</div>
-        <div style="font-size:0.83rem;color:var(--muted);"><strong style="color:var(--dark);">1 AI Ethicist</strong> — Learner safety and algorithmic bias</div>
-        <div style="font-size:0.83rem;color:var(--muted);"><strong style="color:var(--dark);">1 Industry Representative</strong> — Rotating from certified orgs</div>
-      </div>
-    </div>
-    <div class="principle-card">
-      <div class="pc-title">Versioning Policy</div>
-      <div style="margin-top:10px;display:flex;flex-direction:column;gap:12px;">
-        <div><div style="font-weight:600;font-size:0.875rem;">Major (v1.0 → v2.0) <span style="font-weight:400;color:var(--muted);">· Every 2 years</span></div><div style="font-size:0.8rem;color:var(--muted);">Structural changes, new dimensions. Requires 5/6 supermajority.</div></div>
-        <div><div style="font-weight:600;font-size:0.875rem;">Minor (v1.0 → v1.1) <span style="font-weight:400;color:var(--muted);">· Annually</span></div><div style="font-size:0.8rem;color:var(--muted);">Metric refinements, benchmark updates, clarifications.</div></div>
-        <div><div style="font-weight:600;font-size:0.875rem;">Patches (v1.0.1) <span style="font-weight:400;color:var(--muted);">· As needed</span></div><div style="font-size:0.8rem;color:var(--muted);">Typo fixes, non-substantive corrections.</div></div>
-      </div>
-    </div>
-  </div>
+---
 
-  <!-- PUBLIC REGISTRY -->
-  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:20px 0;">
-    <div style="font-weight:700;margin-bottom:10px;">Public Compliance Registry</div>
-    <p style="font-size:0.875rem;color:var(--muted);margin-bottom:16px;">All QAEF-certified systems are listed publicly with certification status, audit reports, and scores.</p>
-    <div style="display:flex;align-items:center;justify-content:space-between;background:white;border-radius:10px;padding:14px 18px;border:1px solid var(--border);">
-      <div><span style="font-weight:700;">QariAI</span> <span style="font-size:0.82rem;color:var(--muted);margin-left:8px;">Tier 2 — Advanced</span></div>
-      <span style="font-size:0.82rem;color:#166534;font-weight:600;">Certified until June 2027</span>
-    </div>
-  </div>
+### 5. Demographic Robustness
 
+The system is designed to perform consistently across:
 
-  <!-- BADGES -->
-  <h2 class="sec">QAEF Certification Badges</h2>
-  <p class="sec-intro">Official badges for use by certified systems. Display on your product page, documentation, or app store listing.</p>
-  <div style="display:flex;flex-wrap:wrap;gap:24px;margin:24px 0;align-items:flex-start;">
-    <div style="text-align:center;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="240" viewBox="0 0 200 240">
-  <rect width="200" height="240" rx="16" fill="#fffbeb" stroke="#d97706" stroke-width="3"/>
-  <text x="100" y="70" text-anchor="middle" font-size="52">🥉</text>
-  <rect x="20" y="90" width="160" height="2" fill="#d97706" opacity="0.3"/>
-  <text x="100" y="130" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="22" fill="#b45309">Tier 3</text>
-  <text x="100" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#b45309" opacity="0.8">Basic</text>
-  <rect x="30" y="175" width="140" height="36" rx="18" fill="#d97706"/>
-  <text x="100" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="white">QAEF CERTIFIED 2026</text>
-</svg>
-      <div style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Tier 3 — Basic</div>
-    </div>
-    <div style="text-align:center;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="240" viewBox="0 0 200 240">
-  <rect width="200" height="240" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
-  <text x="100" y="70" text-anchor="middle" font-size="52">🥈</text>
-  <rect x="20" y="90" width="160" height="2" fill="#2563eb" opacity="0.3"/>
-  <text x="100" y="130" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="22" fill="#1d4ed8">Tier 2</text>
-  <text x="100" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#1d4ed8" opacity="0.8">Advanced</text>
-  <rect x="30" y="175" width="140" height="36" rx="18" fill="#2563eb"/>
-  <text x="100" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="white">QAEF CERTIFIED 2026</text>
-</svg>
-      <div style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Tier 2 — Advanced</div>
-    </div>
-    <div style="text-align:center;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="240" viewBox="0 0 200 240">
-  <rect width="200" height="240" rx="16" fill="#fef3c7" stroke="#b45309" stroke-width="3"/>
-  <text x="100" y="70" text-anchor="middle" font-size="52">🥇</text>
-  <rect x="20" y="90" width="160" height="2" fill="#b45309" opacity="0.3"/>
-  <text x="100" y="130" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="22" fill="#92400e">Tier 1</text>
-  <text x="100" y="158" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#92400e" opacity="0.8">Ijazah-Grade</text>
-  <rect x="30" y="175" width="140" height="36" rx="18" fill="#b45309"/>
-  <text x="100" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="white">QAEF CERTIFIED 2026</text>
-</svg>
-      <div style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Tier 1 — Ijazah-Grade</div>
-    </div>
-  </div>
+- Accents (Arab, South Asian, Western, African)  
+- Age groups  
+- Genders  
 
-  <div class="internal-links">
-    <h4>Related Pages</h4>
-    <ul>
-      <li><a href="/how-qari-ai-works">How Qari AI Works</a></li>
-      <li><a href="/best-ai-quran-app">Best AI Quran Apps 2026</a></li>
-      <li><a href="/compare/qari-ai-vs-tarteel">Qari AI vs Tarteel</a></li>
-      <li><a href="/tajweed-mistakes-checker">Free Tajweed Checker</a></li>
-      <li><a href="/learn/common-tajweed-mistakes">Common Tajweed Mistakes</a></li>
-      <li><a href="/open-methodology">Open Evaluation Methodology</a></li>
-    </ul>
-  </div>
+---
 
-  <div class="cta-box">
-    <h3>Experience QAEF-Standard Tajweed Feedback</h3>
-    <p>QariAI is built to meet the highest tier of the QAEF standard — phoneme-level analysis, real-time correction, and full Tajweed rule coverage. Free on Android.</p>
-    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" class="cta-primary">Download Free on Google Play</a>
-  </div>
+## How QAEF Differs from Traditional Learning
 
-</div>
+| Dimension | Traditional Learning | QAEF |
+|----------|--------------------|------|
+| Feedback latency | Delayed | Immediate |
+| Practice frequency | Limited | Unlimited |
+| Consistency | Variable | Standardized |
+| Error specificity | Instructor-dependent | Rule-based |
 
-<footer style="background:#064e3b;color:#e2e8f0;padding:3rem 1.5rem 2rem;">
-  <div style="max-width:80rem;margin:0 auto;">
-    <div style="display:flex;flex-wrap:wrap;gap:2.5rem;justify-content:space-between;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.15);">
-      <div>
-        <img src="/logo.png" alt="QariAI" style="height:52px;width:auto;object-fit:contain;margin-bottom:8px;">
-        <p style="font-size:0.875rem;color:#e2e8f0;line-height:1.6;margin-top:0.5rem;">AI-Powered Tajweed &amp; Hifz Coach<br>Built for the Ummah</p>
-      </div>
-      <div>
-        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Product</p>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;">
-          <a href="/tajweed-mistakes-checker" style="font-size:0.875rem;color:#e2e8f0;">Free Tajweed Checker</a>
-          <a href="/how-qari-ai-works" style="font-size:0.875rem;color:#e2e8f0;">How Qari AI Works</a>
-          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" style="font-size:0.875rem;color:#e2e8f0;">Download Free</a>
-        </div>
-      </div>
-      <div>
-        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Framework</p>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;">
-          <a href="/qaef" style="font-size:0.875rem;color:#e2e8f0;">QAEF v1.0</a>
-          <a href="/best-ai-quran-app" style="font-size:0.875rem;color:#e2e8f0;">Best AI Quran App</a>
-          <a href="/compare/qari-ai-vs-tarteel" style="font-size:0.875rem;color:#e2e8f0;">Qari AI vs Tarteel</a>
-        </div>
-      </div>
-      <div>
-        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Company</p>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;">
-          <a href="/about" style="font-size:0.875rem;color:#e2e8f0;">About</a>
-          <a href="/privacy" style="font-size:0.875rem;color:#e2e8f0;">Privacy Policy</a>
-          <a href="/terms" style="font-size:0.875rem;color:#e2e8f0;">Terms of Service</a>
-        </div>
-      </div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;">
-      <p style="font-size:0.82rem;color:#e2e8f0;">© 2026 QariAI · QAEF is an open standard published by QariAI Research</p>
-      <a href="/ar" style="border:1.5px solid rgba(255,255,255,0.3);color:#e2e8f0;padding:5px 12px;border-radius:9999px;font-size:0.8rem;font-weight:700;">🇸🇦 عربي</a>
-    </div>
-  </div>
-</footer>
+QAEF complements traditional learning by enabling high-frequency, structured practice with immediate feedback.
 
-</body>
-</html>
+---
+
+## Limitations
+
+QAEF is designed as a support system, not a replacement for human scholarship.
+
+Limitations include:
+
+- Nuanced recitation styles may require expert scholars  
+- Spiritual and mentorship aspects are not replicable by AI  
+- Accuracy may depend on recording quality  
+
+---
+
+## Summary
+
+QAEF translates a theoretical evaluation framework into a practical system for analyzing Quranic recitation.
+
+It enables:
+- Real-time feedback  
+- Structured error detection  
+- Scalable practice  
+
+While remaining grounded in a transparent and open evaluation methodology.
