@@ -1,124 +1,263 @@
-# QAEF: The Quranic AI Evaluation Framework
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QAEF — Quranic AI Evaluation Framework | QariAI</title>
+<link rel="canonical" href="https://qariai.app/qaef">
+<meta name="description" content="QAEF is QariAI's implementation of an open evaluation framework for Quranic recitation analysis — measuring phoneme accuracy, Tajweed detection, timing, feedback quality, and robustness.">
+<meta name="keywords" content="QAEF, quran ai evaluation, tajweed evaluation framework, quran recitation benchmark, ai tajweed checker methodology, qari ai framework">
+<meta property="og:title" content="QAEF — Quranic AI Evaluation Framework | QariAI">
+<meta property="og:description" content="The first standardized framework for evaluating AI Quranic recitation systems. Open, reproducible, and grounded in classical Tajweed scholarship.">
+<meta property="og:url" content="https://qariai.app/qaef">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://qariai.app/screenshots/s2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QAEF — Quranic AI Evaluation Framework">
+<meta name="twitter:description" content="Open, standardized methodology for benchmarking AI Quran recitation systems.">
+<meta name="twitter:image" content="https://qariai.app/screenshots/s2.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "QAEF: The Quranic AI Evaluation Framework",
+  "description": "QAEF is QariAI's implementation of an open, standardized methodology for evaluating Quranic recitation systems across five dimensions.",
+  "author": {"@type": "Organization", "name": "QariAI", "url": "https://qariai.app"},
+  "publisher": {"@type": "Organization", "name": "QariAI", "url": "https://qariai.app"},
+  "datePublished": "2026-03-30",
+  "dateModified": "2026-04-01",
+  "url": "https://qariai.app/qaef",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": ["QAEF", "Quran recitation", "Tajweed", "AI evaluation", "Islamic education technology"]
+}
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>
+:root{
+  --bg:#080e12;--bg2:#0d1820;--bg3:#111f2a;
+  --emerald:#10b981;--emerald2:#059669;--emerald3:#047857;
+  --gold:#d4af37;--text:#e8f0eb;--muted:#6b8a7a;
+  --border:rgba(16,185,129,0.15);--card:rgba(13,24,32,0.85);
+}
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+html{line-height:1.6;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(16,185,129,0.04)' stroke-width='0.8'%3E%3Cpolygon points='40,4 72,22 72,58 40,76 8,58 8,22'/%3E%3Cpolygon points='40,14 64,27 64,53 40,66 16,53 16,27'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:80px 80px}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,14,18,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(16,185,129,0.1);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--text)}
+.nav-logo span{color:var(--emerald)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-link{color:var(--muted);font-size:0.85rem;transition:color 0.2s}
+.nav-link:hover{color:var(--emerald)}
+.nav-cta{background:var(--emerald2);color:#fff;padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600;transition:background 0.2s}
+.nav-cta:hover{background:var(--emerald3)}
+.page-wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:110px 2rem 80px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);border-radius:100px;padding:5px 14px;font-size:0.72rem;font-weight:600;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:20px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--emerald)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:100px;font-size:0.72rem;font-weight:600;letter-spacing:0.04em}
+.badge-version{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);color:var(--emerald)}
+.badge-id{background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);color:var(--gold)}
+.badge-status{background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);color:var(--emerald)}
+.subtitle{color:var(--muted);font-size:1.05rem;line-height:1.75;margin-bottom:8px;max-width:640px}
+.github-link{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:0.88rem;text-decoration:underline;text-underline-offset:3px;margin-bottom:36px}
+.definition-box{background:rgba(212,175,55,0.05);border:1px solid rgba(212,175,55,0.2);border-left:3px solid var(--gold);border-radius:10px;padding:20px 24px;margin-bottom:48px}
+.definition-box p{font-size:0.95rem;color:#c8b882;line-height:1.7;font-style:italic}
+.section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--emerald);margin:52px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;margin-bottom:14px;color:var(--text)}
+h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:10px}
+.dim-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px;display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;transition:border-color 0.2s}
+.dim-card:hover{border-color:rgba(16,185,129,0.3)}
+.dim-num{width:36px;height:36px;border-radius:50%;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;color:var(--emerald)}
+.dim-body h3{margin-bottom:6px}
+.dim-body p{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:10px}
+.dim-examples{display:flex;flex-wrap:wrap;gap:6px}
+.dim-tag{display:inline-block;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);border-radius:6px;padding:2px 10px;font-size:0.76rem;color:var(--emerald)}
+.compare-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:0.875rem}
+.compare-table th{text-align:left;padding:10px 14px;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.compare-table td{padding:12px 14px;border-bottom:1px solid rgba(16,185,129,0.06);color:var(--text)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table td:first-child{color:var(--muted)}
+.compare-table td:last-child{color:var(--emerald);font-weight:500}
+.limitations-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.limitations-list li{display:flex;align-items:flex-start;gap:12px;font-size:0.9rem;color:var(--muted);line-height:1.6}
+.limitations-list li::before{content:'—';color:var(--border);flex-shrink:0;margin-top:2px}
+.methodology-link-block{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin:40px 0;display:flex;flex-direction:column;gap:12px}
+.methodology-link-block p{font-size:0.88rem;color:var(--muted)}
+.methodology-link-block a{color:var(--emerald);text-decoration:underline;text-underline-offset:3px}
+.cta-block{background:rgba(212,175,55,0.05);border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:32px;text-align:center;margin-top:56px}
+.cta-block h2{font-size:1.6rem;margin-bottom:10px}
+.cta-block p{color:var(--muted);font-size:0.95rem;margin-bottom:24px;max-width:440px;margin-left:auto;margin-right:auto}
+.cta-btn{display:inline-block;background:var(--emerald2);color:#fff;padding:12px 28px;border-radius:100px;font-size:0.9rem;font-weight:600;transition:background 0.2s}
+.cta-btn:hover{background:var(--emerald3)}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:32px 2rem;text-align:center;font-size:0.8rem;color:var(--muted)}
+footer a{color:var(--emerald)}
+@media(max-width:600px){.dim-card{grid-template-columns:1fr}.dim-num{width:28px;height:28px;font-size:0.72rem}}
+</style>
+</head>
+<body>
 
-QAEF (Quranic AI Evaluation Framework) is Qari AI’s implementation of an open, standardized methodology for evaluating Quranic recitation systems.
+<nav>
+  <a href="https://qariai.app" class="nav-logo">Qari<span>AI</span></a>
+  <div class="nav-right">
+    <a href="https://qariai.app/tajweed-rules" class="nav-link">Tajweed Rules</a>
+    <a href="https://qariai.app/open-methodology" class="nav-link">Methodology</a>
+    <a href="https://qariai.app" class="nav-cta">Try Free</a>
+  </div>
+</nav>
 
-It operationalizes the principles defined in our evaluation framework into a working system that analyzes recitation, detects errors, and provides structured feedback.
+<div class="page-wrap">
 
----
+  <div class="hero-tag">Open Standard · Version 1.0</div>
 
-## Definition
+  <div class="badges">
+    <span class="badge badge-version">Version 1.0 · March 30, 2026</span>
+    <span class="badge badge-id">ID: QARI-QAEF-2026-001</span>
+    <span class="badge badge-status">Open Standard</span>
+  </div>
 
-**Quranic recitation evaluation is defined as the measurement of phonetic accuracy, rule compliance, temporal precision, feedback quality, and robustness across speakers.**
+  <h1>Quranic AI <em>Evaluation Framework</em></h1>
+  <p class="subtitle">QAEF is QariAI's implementation of an open, standardized methodology for evaluating AI Quranic recitation systems — the first of its kind.</p>
+  <a href="https://github.com/qariAI/open-eval-methodology" target="_blank" rel="noopener noreferrer" class="github-link">
+    Technical specification on GitHub →
+  </a>
 
----
+  <!-- DEFINITION -->
+  <div class="definition-box">
+    <p><strong style="color:var(--gold)">Definition:</strong> Quranic recitation evaluation is the measurement of phonetic accuracy, rule compliance, temporal precision, feedback quality, and robustness across speakers.</p>
+  </div>
 
-## Relationship to the Open Methodology
+  <!-- DIMENSIONS -->
+  <div class="section-label">Five Evaluation Dimensions</div>
 
-QAEF is built on top of the QariAI Open Evaluation Methodology.
+  <div class="dim-card">
+    <div class="dim-num">1</div>
+    <div class="dim-body">
+      <h3>Phoneme Accuracy</h3>
+      <p>QAEF analyzes recitation at the phoneme level, identifying errors in articulation points (makharij) and phonetic characteristics (sifaat).</p>
+      <div class="dim-examples">
+        <span class="dim-tag">ص vs س confusion</span>
+        <span class="dim-tag">ح vs ه confusion</span>
+        <span class="dim-tag">Incorrect makhraj</span>
+      </div>
+    </div>
+  </div>
 
-- Conceptual framework:  
-https://www.qariai.app/quran-learning-methodology-evaluation  
+  <div class="dim-card">
+    <div class="dim-num">2</div>
+    <div class="dim-body">
+      <h3>Tajweed Rule Detection</h3>
+      <p>The system detects application of Tajweed rules in real time and classifies errors by rule type, enabling precise correction.</p>
+      <div class="dim-examples">
+        <span class="dim-tag">Ghunnah</span>
+        <span class="dim-tag">Idgham</span>
+        <span class="dim-tag">Ikhfa</span>
+        <span class="dim-tag">Qalqalah</span>
+        <span class="dim-tag">Madd</span>
+        <span class="dim-tag">Lam Shamsiyyah</span>
+      </div>
+    </div>
+  </div>
 
-- Technical specification:  
-https://github.com/qariAI/open-eval-methodology  
+  <div class="dim-card">
+    <div class="dim-num">3</div>
+    <div class="dim-body">
+      <h3>Timing &amp; Prosody</h3>
+      <p>QAEF evaluates temporal aspects of recitation to ensure alignment with proper recitation structure.</p>
+      <div class="dim-examples">
+        <span class="dim-tag">Madd duration (2, 4, 6 counts)</span>
+        <span class="dim-tag">Waqf placement</span>
+        <span class="dim-tag">Rhythm &amp; flow</span>
+      </div>
+    </div>
+  </div>
 
----
+  <div class="dim-card">
+    <div class="dim-num">4</div>
+    <div class="dim-body">
+      <h3>Feedback Quality</h3>
+      <p>QAEF generates structured feedback designed to be pedagogically actionable — not just flagging errors, but guiding correction.</p>
+      <div class="dim-examples">
+        <span class="dim-tag">Accurate</span>
+        <span class="dim-tag">Specific</span>
+        <span class="dim-tag">Actionable</span>
+      </div>
+    </div>
+  </div>
 
-## Evaluation Dimensions in QAEF
+  <div class="dim-card">
+    <div class="dim-num">5</div>
+    <div class="dim-body">
+      <h3>Demographic Robustness</h3>
+      <p>The system is designed to perform consistently regardless of speaker background.</p>
+      <div class="dim-examples">
+        <span class="dim-tag">Arab accents</span>
+        <span class="dim-tag">South Asian accents</span>
+        <span class="dim-tag">Western accents</span>
+        <span class="dim-tag">All age groups</span>
+      </div>
+    </div>
+  </div>
 
-QAEF applies the same five evaluation dimensions defined in the methodology:
+  <!-- COMPARISON -->
+  <div class="section-label">QAEF vs Traditional Learning</div>
 
----
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Traditional Learning</th>
+        <th>QAEF</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Feedback latency</td><td>Delayed</td><td>Immediate</td></tr>
+      <tr><td>Practice frequency</td><td>Limited</td><td>Unlimited</td></tr>
+      <tr><td>Consistency</td><td>Variable</td><td>Standardized</td></tr>
+      <tr><td>Error specificity</td><td>Instructor-dependent</td><td>Rule-based</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.85rem;color:var(--muted);margin-top:-8px">QAEF complements traditional learning — it enables high-frequency structured practice, not a replacement for scholarship.</p>
 
-### 1. Phoneme Accuracy
+  <!-- LIMITATIONS -->
+  <div class="section-label">Limitations</div>
+  <p style="font-size:0.9rem;color:var(--muted);margin-bottom:16px">QAEF is a support system, not a replacement for human scholarship.</p>
+  <ul class="limitations-list">
+    <li>Nuanced recitation styles and qira'at variations may require expert scholars</li>
+    <li>Spiritual and mentorship aspects of Tajweed are not replicable by AI</li>
+    <li>Accuracy depends on recording quality and ambient noise conditions</li>
+  </ul>
 
-QAEF analyzes recitation at the phoneme level, identifying errors in articulation (makharij) and phonetic characteristics (sifaat).
+  <!-- METHODOLOGY LINK -->
+  <div class="methodology-link-block">
+    <p><strong style="color:var(--text)">Built on the Open Evaluation Methodology</strong></p>
+    <p>QAEF operationalizes the principles defined in QariAI's open methodology. Both documents are publicly licensed (CC BY 4.0) to enable transparent, reproducible benchmarking.</p>
+    <div>
+      <a href="https://qariai.app/open-methodology">Conceptual overview →</a>
+      &nbsp;&nbsp;
+      <a href="https://github.com/qariAI/open-eval-methodology" target="_blank" rel="noopener noreferrer">Technical specification on GitHub →</a>
+    </div>
+  </div>
 
-Examples include:
-- Confusion between similar letters (e.g. ص vs س, ح vs ه)
-- Incorrect articulation points
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>See QAEF in action</h2>
+    <p>QariAI applies QAEF to your recitation in real time — identify your weak rules and improve systematically.</p>
+    <a href="https://qariai.app" class="cta-btn">Try QariAI free</a>
+  </div>
 
----
+</div>
 
-### 2. Tajweed Rule Detection
+<footer>
+  <p>© 2026 QariAI · <a href="https://qariai.app/tajweed-rules">Tajweed Rules</a> · <a href="https://qariai.app/open-methodology">Open Methodology</a> · <a href="https://github.com/qariAI/open-eval-methodology">GitHub</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
 
-The system detects the application of Tajweed rules in real time, including:
-
-- Ghunnah  
-- Idghaam  
-- Ikhfaa  
-- Qalqalah  
-- Madd  
-- Laam Shamsiyyah / Qamariyyah  
-
-Errors are classified by rule type, enabling precise correction.
-
----
-
-### 3. Timing & Prosody
-
-QAEF evaluates temporal aspects of recitation:
-
-- Madd duration (2, 4, 6 counts)  
-- Pause placement (waqf)  
-- Rhythm and flow  
-
-This ensures alignment with proper recitation structure.
-
----
-
-### 4. Feedback Quality
-
-QAEF generates structured feedback designed to be:
-
-- Accurate — reflects the actual mistake  
-- Specific — identifies the exact issue  
-- Actionable — guides the user on how to correct it  
-
----
-
-### 5. Demographic Robustness
-
-The system is designed to perform consistently across:
-
-- Accents (Arab, South Asian, Western, African)  
-- Age groups  
-- Genders  
-
----
-
-## How QAEF Differs from Traditional Learning
-
-| Dimension | Traditional Learning | QAEF |
-|----------|--------------------|------|
-| Feedback latency | Delayed | Immediate |
-| Practice frequency | Limited | Unlimited |
-| Consistency | Variable | Standardized |
-| Error specificity | Instructor-dependent | Rule-based |
-
-QAEF complements traditional learning by enabling high-frequency, structured practice with immediate feedback.
-
----
-
-## Limitations
-
-QAEF is designed as a support system, not a replacement for human scholarship.
-
-Limitations include:
-
-- Nuanced recitation styles may require expert scholars  
-- Spiritual and mentorship aspects are not replicable by AI  
-- Accuracy may depend on recording quality  
-
----
-
-## Summary
-
-QAEF translates a theoretical evaluation framework into a practical system for analyzing Quranic recitation.
-
-It enables:
-- Real-time feedback  
-- Structured error detection  
-- Scalable practice  
-
-While remaining grounded in a transparent and open evaluation methodology.
+</body>
+</html>

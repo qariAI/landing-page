@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  OG IMAGE TEMPLATE — 1200 x 630px
+  HOW TO SCREENSHOT:
+  1. Open this file in Chrome
+  2. Open DevTools → press Ctrl+Shift+P → type "Set device dimensions"
+  3. Set width=1200, height=630, Device pixel ratio=2
+  4. Ctrl+Shift+P → "Capture screenshot" → save as og-image.png
+  5. Place og-image.png in the /screenshots/ folder
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:#080e12;
+  color:#e8f0eb;
+  position:relative;
+}
+body::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(16,185,129,0.06)' stroke-width='0.8'%3E%3Cpolygon points='40,4 72,22 72,58 40,76 8,58 8,22'/%3E%3Cpolygon points='40,14 64,27 64,53 40,66 16,53 16,27'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:80px 80px;
+  pointer-events:none;
+}
+/* glow blobs */
+body::after{
+  content:'';position:absolute;
+  top:-100px;right:-100px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(16,185,129,0.12) 0%,transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+}
+.wrap{
+  position:relative;z-index:1;
+  width:1200px;height:630px;
+  display:grid;
+  grid-template-columns:1fr 420px;
+  gap:0;
+}
+.left{
+  padding:72px 64px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(212,175,55,0.1);
+  border:1px solid rgba(212,175,55,0.25);
+  border-radius:100px;padding:5px 16px;
+  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:#d4af37;margin-bottom:28px;width:fit-content;
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:700;
+  color:#e8f0eb;margin-bottom:20px;
+  display:flex;align-items:center;gap:6px;
+}
+.logo span{color:#10b981}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:62px;font-weight:700;line-height:1.08;
+  margin-bottom:20px;
+}
+h1 em{font-style:normal;color:#10b981}
+.sub{
+  font-size:16px;color:#6b8a7a;line-height:1.6;
+  max-width:480px;margin-bottom:36px;
+}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(16,185,129,0.08);
+  border:1px solid rgba(16,185,129,0.2);
+  border-radius:100px;padding:6px 16px;
+  font-size:13px;font-weight:500;color:#10b981;
+}
+.right{
+  background:rgba(13,24,32,0.7);
+  border-left:1px solid rgba(16,185,129,0.12);
+  padding:64px 40px;
+  display:flex;flex-direction:column;justify-content:center;gap:20px;
+}
+.stat-card{
+  background:rgba(8,14,18,0.8);
+  border:1px solid rgba(16,185,129,0.15);
+  border-radius:14px;padding:20px 22px;
+}
+.stat-label{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b8a7a;margin-bottom:6px}
+.stat-value{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#e8f0eb;margin-bottom:4px}
+.stat-sub{font-size:12px;color:#6b8a7a}
+.bottom-glow{
+  position:absolute;bottom:-80px;left:200px;
+  width:400px;height:200px;
+  background:radial-gradient(ellipse,rgba(16,185,129,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="left">
+    <div class="logo">Qari<span>AI</span></div>
+    <div class="tag">AI · Tajweed · Arabic Recitation</div>
+    <h1>AI Quran<br><em>Recitation</em><br>Coach</h1>
+    <p class="sub">Get instant, rule-based feedback on your Tajweed. Covers all 16 rules — Madd, Ghunnah, Ikhfa, Qalqalah, Idgham and more.</p>
+    <div class="pills">
+      <span class="pill">Free to try</span>
+      <span class="pill">16 Tajweed rules</span>
+      <span class="pill">Real-time AI feedback</span>
+    </div>
+  </div>
+  <div class="right">
+    <div class="stat-card">
+      <div class="stat-label">Coverage</div>
+      <div class="stat-value">16 Rules</div>
+      <div class="stat-sub">Complete Tajweed taxonomy</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Feedback</div>
+      <div class="stat-value">Real-time</div>
+      <div class="stat-sub">Instant after each recitation</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Standard</div>
+      <div class="stat-value">Open</div>
+      <div class="stat-sub">QAEF · CC BY 4.0</div>
+    </div>
+  </div>
+</div>
+<div class="bottom-glow"></div>
+</body>
+</html>
