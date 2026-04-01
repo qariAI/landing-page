@@ -2,11 +2,17 @@
 // Deploy to: jolly-firefly-cb72 (Cloudflare Workers)
 // Secret required: GEMINI_API_KEY
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': 'https://qariai.app',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
+const ALLOWED_ORIGINS = ['https://qariai.app', 'https://www.qariai.app'];
+
+function getCorsHeaders(request) {
+  const origin = request.headers.get('Origin') || '';
+  const allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    'Access-Control-Allow-Origin': allowed,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
 
 const AYAHS = {
   'fatiha-1': { arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', ref: 'Al-Fatiha 1:1' },
@@ -77,13 +83,15 @@ Be encouraging but honest. Score 90+ only for near-perfect tajweed.`;
 
 export default {
   async fetch(request, env) {
+    const cors = getCorsHeaders(request);
+
     // Handle preflight
     if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: CORS_HEADERS });
+      return new Response(null, { headers: cors });
     }
 
     if (request.method !== 'POST') {
-      return new Response('Method not allowed', { status: 405, headers: CORS_HEADERS });
+      return new Response('Method not allowed', { status: 405, headers: cors });
     }
 
     // Rate limiting
@@ -91,7 +99,7 @@ export default {
     if (isRateLimited(ip)) {
       return new Response(JSON.stringify({ error: 'Too many requests. Try again shortly.' }), {
         status: 429,
-        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+        headers: { ...cors, 'Content-Type': 'application/json' }
       });
     }
 
@@ -102,7 +110,7 @@ export default {
       if (!audio || !mimeType || !ayahId) {
         return new Response(JSON.stringify({ error: 'Missing required fields' }), {
           status: 400,
-          headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+          headers: { ...cors, 'Content-Type': 'application/json' }
         });
       }
 
@@ -110,21 +118,21 @@ export default {
       if (!ayah) {
         return new Response(JSON.stringify({ error: 'Unknown ayah' }), {
           status: 400,
-          headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+          headers: { ...cors, 'Content-Type': 'application/json' }
         });
       }
 
       const result = await analyzeRecitation(audio, mimeType, ayah, env.GEMINI_API_KEY);
 
       return new Response(JSON.stringify(result), {
-        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+        headers: { ...cors, 'Content-Type': 'application/json' }
       });
 
     } catch (err) {
       console.error(err);
       return new Response(JSON.stringify({ error: 'Analysis failed. Please try again.' }), {
         status: 500,
-        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+        headers: { ...cors, 'Content-Type': 'application/json' }
       });
     }
   }
