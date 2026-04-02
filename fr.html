@@ -111,6 +111,9 @@
   .phone-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
   .phone-slide.active { opacity: 1; }
   .phone-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .phone-slide-cap { position: absolute; top: 0; left: 0; right: 0; background: linear-gradient(to bottom, rgba(5,40,18,0.82) 0%, transparent 100%); padding: 13px 12px 30px; z-index: 5; pointer-events: none; }
+  .phone-slide-cap strong { display: block; font-size: 0.57rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.10em; line-height: 1.35; text-shadow: 0 1px 5px rgba(0,0,0,0.6); }
+  .phone-slide-cap span { display: block; font-size: 0.48rem; color: rgba(255,255,255,0.78); font-weight: 500; margin-top: 2px; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
   .phone-dots { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
   .phone-dot { width: 7px; height: 7px; border-radius: 50%; background: #cbd5e1; cursor: pointer; transition: background 0.2s; }
   .phone-dot.active { background: #059669; }
@@ -267,15 +270,42 @@
         <div class="phone-notch"></div>
         <div class="phone-screen">
           <div class="phone-slides" id="phoneSlides">
-            <div class="phone-slide active"><img src="/screenshots/c1.png" alt="Télécharger QariAI" loading="eager"></div>
-            <div class="phone-slide"><img src="/screenshots/c2.png" alt="Arabe et Français" loading="lazy"></div>
-            <div class="phone-slide"><img src="/screenshots/c3.png" alt="IA écoute en temps réel" loading="lazy"></div>
-            <div class="phone-slide"><img src="/screenshots/c4.png" alt="Score Tajweed" loading="lazy"></div>
-            <div class="phone-slide"><img src="/screenshots/c5.png" alt="Mémoriser avec confiance" loading="lazy"></div>
-            <div class="phone-slide"><img src="/screenshots/c6.png" alt="Coaching approfondi" loading="lazy"></div>
-            <div class="phone-slide"><img src="/screenshots/c7.png" alt="Corriger la récitation" loading="lazy"></div>
-            <div class="phone-slide"><img src="/screenshots/c8.png" alt="Connaître les lettres faibles" loading="lazy"></div>
-            <div class="phone-slide"><img src="/screenshots/c9.png" alt="Suivre votre parcours" loading="lazy"></div>
+            <div class="phone-slide active">
+              <div class="phone-slide-cap"><strong>Votre Coach Coran IA</strong><span>Écouter · Réciter · Progresser</span></div>
+              <img src="/screenshots/c1.png" alt="QariAI — coach Coran IA" loading="eager">
+            </div>
+            <div class="phone-slide">
+              <div class="phone-slide-cap"><strong>Écoute en Temps Réel</strong><span>Détecte chaque erreur de Tajweed</span></div>
+              <img src="/screenshots/c2.png" alt="QariAI écoute en temps réel" loading="lazy">
+            </div>
+            <div class="phone-slide">
+              <div class="phone-slide-cap"><strong>Score Tajweed Instantané</strong><span>Noté sur 100 en quelques secondes</span></div>
+              <img src="/screenshots/c3.png" alt="QariAI score Tajweed" loading="lazy">
+            </div>
+            <div class="phone-slide">
+              <div class="phone-slide-cap"><strong>24 Règles de Tajweed</strong><span>Analyse mot par mot</span></div>
+              <img src="/screenshots/c4.png" alt="QariAI règles Tajweed" loading="lazy">
+            </div>
+            <div class="phone-slide">
+              <div class="phone-slide-cap"><strong>Compagnon de Hifdh IA</strong><span>Mémorisez avec confiance</span></div>
+              <img src="/screenshots/c5.png" alt="QariAI Hifdh mémorisation" loading="lazy">
+            </div>
+            <div class="phone-slide">
+              <div class="phone-slide-cap"><strong>Coaching Approfondi</strong><span>Sachez exactement quoi corriger</span></div>
+              <img src="/screenshots/c6.png" alt="QariAI coaching approfondi" loading="lazy">
+            </div>
+            <div class="phone-slide">
+              <div class="phone-slide-cap"><strong>Suivre &amp; Répéter</strong><span>Écouter · Répéter · Améliorer</span></div>
+              <img src="/screenshots/c7.png" alt="QariAI Follow Along" loading="lazy">
+            </div>
+            <div class="phone-slide">
+              <div class="phone-slide-cap"><strong>Suivre vos Progrès</strong><span>Identifiez vos points faibles</span></div>
+              <img src="/screenshots/c8.png" alt="QariAI suivi progrès" loading="lazy">
+            </div>
+            <div class="phone-slide">
+              <div class="phone-slide-cap"><strong>Gratuit pour Commencer</strong><span>Sans connexion · Sans carte bancaire</span></div>
+              <img src="/screenshots/c9.png" alt="QariAI gratuit" loading="lazy">
+            </div>
           </div>
         </div>
       </div>
