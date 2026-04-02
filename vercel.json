@@ -51,6 +51,7 @@
     { "source": "/compare/qari-ai-vs-tarteel", "destination": "/qari-ai-vs-tarteel.html" },
     { "source": "/compare/qari-ai-vs-tajweedmate", "destination": "/qari-ai-vs-tajweedmate.html" },
     { "source": "/open-methodology", "destination": "/open-methodology.html" },
-    { "source": "/tajweed-rules", "destination": "/tajweed-rules.html" }
+    { "source": "/tajweed-rules", "destination": "/tajweed-rules.html" },
+    { "source": "/.well-known/security.txt", "destination": "/.well-known/security.txt" }
   ]
 }
