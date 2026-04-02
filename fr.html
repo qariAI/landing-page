@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>QariAI – Application IA de Récitation du Coran et Tajweed</title>
+<link rel="canonical" href="https://qariai.app/fr">
+<link rel="alternate" hreflang="fr" href="https://qariai.app/fr">
+<link rel="alternate" hreflang="en" href="https://qariai.app/">
+<link rel="alternate" hreflang="ar" href="https://qariai.app/ar">
+<meta name="description" content="QariAI utilise l'IA pour corriger votre récitation du Coran et votre Tajweed en temps réel. Obtenez un retour instantané sur Makharij, Ghunnah, Madd, Qalqalah et plus encore. Gratuit.">
+<meta name="keywords" content="application coran ia, correction tajweed, application récitation coran, apprendre tajweed, application hifz, correction tajweed ia, application pratique coran, musulmans france">
+<!-- Open Graph -->
+<meta property="og:title" content="QariAI – Application IA de Récitation du Coran et Tajweed">
+<meta property="og:description" content="QariAI utilise l'IA pour corriger votre récitation du Coran en temps réel. Retour instantané sur le Tajweed. Gratuit.">
+<meta property="og:url" content="https://qariai.app/fr">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://qariai.app/screenshots/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="QariAI">
+<meta property="og:locale" content="fr_FR">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QariAI – Application IA de Récitation du Coran">
+<meta name="twitter:description" content="Retour IA sur votre Tajweed en temps réel. Gratuit.">
+<meta name="twitter:image" content="https://qariai.app/screenshots/og-image.png">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet"/></noscript>
+<style>
+  :root {
+    --mint: #ecfdf5;
+    --mint-mid: #a7f3d0;
+    --green: #059669;
+    --green-bright: #10b981;
+    --green-dark: #065f46;
+    --accent: #34d399;
+    --sand: #fef9c3;
+    --text: #0f172a;
+    --text-mid: #334155;
+    --text-light: #64748b;
+    --white: #ffffff;
+    --radius: 20px;
+    --phone-w: 300px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--mint); color: var(--text); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 68px;
+    background: rgba(232,247,240,0.88); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(39,199,111,0.12);
+  }
+  .nav-logo { text-decoration: none; display: flex; align-items: center; }
+  .nav-logo img { height: 60px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta { display: flex; align-items: center; gap: 10px; }
+  .btn-ghost { font-size: 0.875rem; font-weight: 500; color: var(--green); text-decoration: none; padding: 8px 16px; border: 1.5px solid rgba(39,199,111,0.4); border-radius: 50px; transition: all 0.2s; }
+  .btn-ghost:hover { background: rgba(39,199,111,0.08); }
+  .btn-primary { font-size: 0.875rem; font-weight: 600; color: var(--white); text-decoration: none; padding: 10px 20px; background: var(--green); border-radius: 50px; transition: all 0.2s; box-shadow: 0 4px 14px rgba(26,122,74,0.3); }
+  .btn-primary:hover { background: var(--green-bright); transform: translateY(-1px); }
+
+  .hero {
+    min-height: 100vh; padding: 100px 5vw 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center; position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; top: -120px; right: -120px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(39,199,111,0.18) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: -80px; left: -80px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(197,237,218,0.5) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+  .hero-left { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(5,150,105,0.1); border: 1px solid rgba(5,150,105,0.25); color: #059669; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: 50px; margin-bottom: 24px; }
+  .hero-title { font-family: 'Merriweather', Georgia, serif; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.12; color: #0f172a; margin-bottom: 20px; font-weight: 900; }
+  .hero-title em { font-style: italic; color: #059669; }
+  .hero-sub { font-size: 1.05rem; font-weight: 400; color: #334155; line-height: 1.7; max-width: 480px; margin-bottom: 22px; }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; justify-content: center; }
+  .hero-pill { font-size: 0.78rem; font-weight: 600; color: #059669; background: rgba(5,150,105,0.1); border: 1px solid rgba(5,150,105,0.25); padding: 5px 13px; border-radius: 50px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; justify-content: center; }
+  .btn-hero { display: inline-flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 600; padding: 14px 26px; border-radius: 50px; text-decoration: none; transition: all 0.25s; }
+  .btn-hero-solid { background: #059669; color: #fff; box-shadow: 0 6px 22px rgba(5,150,105,0.35); }
+  .btn-hero-solid:hover { background: #047857; transform: translateY(-2px); }
+  .btn-hero-outline { background: transparent; color: #0f172a; border: 1.5px solid #cbd5e1; }
+  .btn-hero-outline:hover { border-color: #059669; color: #059669; }
+  .trust-row { display: flex; align-items: center; gap: 12px; justify-content: center; }
+  .trust-avatars { display: flex; }
+  .trust-avatars span { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--mint); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 700; color: #fff; margin-left: -7px; }
+  .trust-avatars span:first-child { margin-left: 0; }
+  .trust-avatars span:nth-child(1) { background: #059669; }
+  .trust-avatars span:nth-child(2) { background: #047857; }
+  .trust-avatars span:nth-child(3) { background: #10b981; }
+  .trust-avatars span:nth-child(4) { background: #065f46; }
+  .trust-text { font-size: 0.8rem; color: #64748b; }
+  .trust-text strong { color: #334155; font-weight: 700; }
+
+  .hero-right { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
+  .phone-wrap { position: relative; width: var(--phone-w); }
+  .phone-blob { position: absolute; border-radius: 50%; pointer-events: none; }
+  .phone-blob-1 { width: 320px; height: 320px; background: radial-gradient(circle, rgba(52,211,153,0.25) 0%, transparent 70%); top: -60px; left: -60px; }
+  .phone-blob-2 { width: 250px; height: 250px; background: radial-gradient(circle, rgba(5,150,105,0.15) 0%, transparent 70%); bottom: -40px; right: -50px; }
+  .phone-device { position: relative; width: var(--phone-w); border-radius: 36px; background: #111827; padding: 10px; box-shadow: 0 30px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08); }
+  .phone-notch { width: 80px; height: 22px; background: #111827; border-radius: 0 0 16px 16px; margin: 0 auto 6px; }
+  .phone-screen { border-radius: 26px; overflow: hidden; aspect-ratio: 9/19.5; background: #000; position: relative; }
+  .phone-slides { position: relative; width: 100%; height: 100%; }
+  .phone-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
+  .phone-slide.active { opacity: 1; }
+  .phone-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .phone-dots { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
+  .phone-dot { width: 7px; height: 7px; border-radius: 50%; background: #cbd5e1; cursor: pointer; transition: background 0.2s; }
+  .phone-dot.active { background: #059669; }
+  .phone-pill { position: absolute; display: flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.96); border-radius: 50px; padding: 8px 14px; font-size: 0.72rem; font-weight: 700; color: #0f172a; box-shadow: 0 4px 18px rgba(0,0,0,0.14); white-space: nowrap; z-index: 5; }
+  .pill-dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; animation: pulse 1.4s infinite; }
+  .pill-left { left: -60px; top: 30%; }
+  .pill-right { right: -60px; top: 55%; }
+
+  /* FEATURES */
+  .features { padding: 80px 5vw; background: #fff; }
+  .section-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #059669; margin-bottom: 12px; text-align: center; }
+  .section-title { font-family: 'Merriweather', Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900; color: #0f172a; margin-bottom: 14px; text-align: center; }
+  .section-sub { font-size: 1rem; color: #64748b; text-align: center; max-width: 560px; margin: 0 auto 52px; line-height: 1.7; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .feat-card { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 20px; padding: 28px 24px; transition: all 0.25s; }
+  .feat-card:hover { border-color: #a7f3d0; box-shadow: 0 8px 32px rgba(5,150,105,0.1); transform: translateY(-3px); }
+  .feat-icon { font-size: 2rem; margin-bottom: 16px; }
+  .feat-title { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+  .feat-desc { font-size: 0.875rem; color: #64748b; line-height: 1.65; }
+
+  /* HOW IT WORKS */
+  .how { padding: 80px 5vw; background: var(--mint); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 960px; margin: 0 auto; }
+  .step { text-align: center; }
+  .step-num { width: 48px; height: 48px; border-radius: 50%; background: #059669; color: #fff; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .step-title { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+  .step-desc { font-size: 0.875rem; color: #64748b; line-height: 1.65; }
+
+  /* TAJWEED RULES STRIP */
+  .rules-strip { padding: 56px 5vw; background: #fff; }
+  .rules-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 900px; margin: 32px auto 0; }
+  .rule-chip { background: rgba(5,150,105,0.08); border: 1px solid rgba(5,150,105,0.2); color: #065f46; font-size: 0.8rem; font-weight: 600; padding: 7px 16px; border-radius: 50px; }
+
+  /* CTA */
+  .cta { padding: 80px 5vw; background: linear-gradient(135deg, #065f46 0%, #047857 100%); text-align: center; }
+  .cta h2 { font-family: 'Merriweather', Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900; color: #fff; margin-bottom: 16px; }
+  .cta p { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .gplay-badge { display: inline-flex; align-items: center; gap: 12px; background: #0f172a; border: 2px solid #1e293b; border-radius: 14px; padding: 12px 18px; text-decoration: none; transition: border-color 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+  .gplay-badge:hover { border-color: #34d399; }
+  .gplay-sub { display: block; font-size: 0.6rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+  .gplay-name { display: block; font-size: 1rem; font-weight: 800; color: #fff; }
+
+  /* FOOTER */
+  footer { background: #0f172a; padding: 48px 5vw 24px; color: #94a3b8; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #1e293b; }
+  .footer-logo img { height: 36px; width: auto; filter: brightness(0) invert(1); margin-bottom: 10px; display: block; }
+  .footer-tagline { font-size: 0.8rem; color: #64748b; line-height: 1.6; max-width: 260px; }
+  .footer-links { display: flex; gap: 48px; flex-wrap: wrap; }
+  .footer-col h4 { font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul a { font-size: 0.8rem; color: #64748b; text-decoration: none; transition: color 0.2s; }
+  .footer-col ul a:hover { color: #34d399; }
+  .footer-bottom { padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .footer-bottom p { font-size: 0.75rem; color: #64748b; }
+
+  /* ANIMATIONS */
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { order: 1; } .phone-pill { display: none; } :root { --phone-w: 220px; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .footer-top { flex-direction: column; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0 20px; } .nav-links { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Qari AI",
+  "description": "Application IA de récitation du Coran qui écoute votre tajweed en temps réel, note votre récitation et vous donne un coaching personnalisé.",
+  "url": "https://qariai.app",
+  "applicationCategory": "EducationApplication",
+  "operatingSystem": "Android",
+  "inLanguage": ["fr", "ar", "en"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "installUrl": "https://play.google.com/store/apps/details?id=app.qari.ai",
+  "author": { "@type": "Organization", "name": "Qari AI", "url": "https://qariai.app" }
+}
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/fr">
+    <img src="/logo.png" alt="QariAI"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+    <li><a href="#comment">Comment ça marche</a></li>
+    <li><a href="https://qariai.app/about" target="_blank" rel="noopener">À propos</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="/" class="btn-ghost">EN</a>
+    <a href="/ar" class="btn-ghost">عربي</a>
+    <a href="#telecharger" class="btn-primary">Télécharger gratuitement</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">✦ Disponible sur Android · iOS bientôt</div>
+
+    <h1 class="hero-title">
+      L'application IA Tajweed qui<br/>
+      <em>écoute, corrige &amp;</em><br/>
+      enseigne instantanément
+    </h1>
+
+    <p class="hero-sub">
+      Récitez n'importe quel verset — QariAI entend chaque erreur et vous donne un retour Tajweed précis en secondes. Sans inscription. Sans abonnement. Récitez simplement.
+    </p>
+
+    <div class="hero-pills">
+      <span class="hero-pill">✓ Sans inscription</span>
+      <span class="hero-pill">✓ Gratuit</span>
+      <span class="hero-pill">✓ Retour IA instantané</span>
+    </div>
+
+    <div class="hero-actions">
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" class="btn-hero btn-hero-solid" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 0 2.75.74l12.6-7.28-3.07-3.07-12.28 9.61zm16.49-10.54L16.3 10.9 5.28.42A2 2 0 0 0 2 2.18v19.64l13.14-8.6 4.53.0zM21.6 10.2l-3.28-1.9-3.18 3.18 3.18 3.18 3.3-1.9a2 2 0 0 0 0-2.56zM5.28 23.58 16.3 13.1l3.37 3.37-12.6 7.28a2 2 0 0 1-1.8-.17z"/></svg>
+        Télécharger sur Google Play
+      </a>
+      <a href="#comment" class="btn-hero btn-hero-outline">Voir comment ça marche</a>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-avatars">
+        <span>AM</span><span>YB</span><span>KD</span><span>MR</span>
+      </div>
+      <p class="trust-text"><strong>Des milliers de musulmans</strong> améliorent leur récitation</p>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="phone-wrap">
+      <div class="phone-blob phone-blob-1"></div>
+      <div class="phone-blob phone-blob-2"></div>
+      <div class="phone-pill pill-left"><span class="pill-dot"></span>IA en écoute…</div>
+      <div class="phone-pill pill-right">⭐ +50 XP Gagné</div>
+      <div class="phone-device">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-slides" id="phoneSlides">
+            <div class="phone-slide active"><img src="/screenshots/c1.png" alt="Télécharger QariAI" loading="eager"></div>
+            <div class="phone-slide"><img src="/screenshots/c2.png" alt="Arabe et Français" loading="lazy"></div>
+            <div class="phone-slide"><img src="/screenshots/c3.png" alt="IA écoute en temps réel" loading="lazy"></div>
+            <div class="phone-slide"><img src="/screenshots/c4.png" alt="Score Tajweed" loading="lazy"></div>
+            <div class="phone-slide"><img src="/screenshots/c5.png" alt="Mémoriser avec confiance" loading="lazy"></div>
+            <div class="phone-slide"><img src="/screenshots/c6.png" alt="Coaching approfondi" loading="lazy"></div>
+            <div class="phone-slide"><img src="/screenshots/c7.png" alt="Corriger la récitation" loading="lazy"></div>
+            <div class="phone-slide"><img src="/screenshots/c8.png" alt="Connaître les lettres faibles" loading="lazy"></div>
+            <div class="phone-slide"><img src="/screenshots/c9.png" alt="Suivre votre parcours" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-dots" id="phoneDots">
+        <div class="phone-dot active" onclick="goSlide(0)"></div>
+        <div class="phone-dot" onclick="goSlide(1)"></div>
+        <div class="phone-dot" onclick="goSlide(2)"></div>
+        <div class="phone-dot" onclick="goSlide(3)"></div>
+        <div class="phone-dot" onclick="goSlide(4)"></div>
+        <div class="phone-dot" onclick="goSlide(5)"></div>
+        <div class="phone-dot" onclick="goSlide(6)"></div>
+        <div class="phone-dot" onclick="goSlide(7)"></div>
+        <div class="phone-dot" onclick="goSlide(8)"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="fonctionnalites">
+  <p class="section-label">Fonctionnalités</p>
+  <h2 class="section-title">Tout ce dont vous avez besoin pour perfectionner votre récitation</h2>
+  <p class="section-sub">De l'analyse en temps réel au suivi de mémorisation, QariAI couvre tout votre parcours coranique.</p>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🎙️</div>
+      <div class="feat-title">Correction Tajweed en temps réel</div>
+      <div class="feat-desc">Récitez n'importe quel verset et obtenez une note détaillée sur Makharij, Madd, Ghunnah et Qalqalah en quelques secondes.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🧠</div>
+      <div class="feat-title">Coaching IA personnalisé</div>
+      <div class="feat-desc">L'IA identifie vos erreurs spécifiques et vous donne des instructions précises sur la forme de la bouche, la position de la langue et le flux d'air.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📖</div>
+      <div class="feat-title">Compagnon de Hifz</div>
+      <div class="feat-desc">Récitez de mémoire et QariAI vérifie votre précision. Suivez vos sourates mémorisées avec révision espacée intégrée.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">👆</div>
+      <div class="feat-title">Audio mot par mot</div>
+      <div class="feat-desc">Appuyez sur n'importe quel mot dans le retour pour entendre la prononciation correcte de ce mot précis par le Cheikh Alafasy.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⚡</div>
+      <div class="feat-title">Exercices de Tajweed</div>
+      <div class="feat-desc">Exercices de Madd, Qalqalah Tap et Ghunnah pour renforcer chaque règle par la pratique active, pas seulement la théorie.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📊</div>
+      <div class="feat-title">Statistiques de progression</div>
+      <div class="feat-desc">Suivez vos séries de jours, niveaux XP, lettres faibles et évolution du score dans le temps. Voyez vos progrès réels.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="comment">
+  <p class="section-label">Comment ça marche</p>
+  <h2 class="section-title">Simple comme bonjour</h2>
+  <p class="section-sub">Pas de configuration complexe. Récitez et recevez un retour immédiat.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Téléchargez QariAI</div>
+      <div class="step-desc">Disponible gratuitement sur Google Play. Aucune inscription requise pour commencer.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Récitez n'importe quel verset</div>
+      <div class="step-desc">Appuyez sur le microphone et récitez. L'IA écoute votre Tajweed en temps réel.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Obtenez un retour précis</div>
+      <div class="step-desc">Recevez une note détaillée et des instructions pour corriger chaque erreur. Progressez à chaque séance.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RULES STRIP -->
+<section class="rules-strip">
+  <p class="section-label">Règles couvertes</p>
+  <h2 class="section-title">Toutes les règles du Tajweed</h2>
+  <p class="section-sub">QariAI détecte et explique toutes les règles fondamentales du Tajweed.</p>
+  <div class="rules-grid">
+    <span class="rule-chip">Makharij الحروف</span>
+    <span class="rule-chip">Ghunnah الغنة</span>
+    <span class="rule-chip">Madd المد</span>
+    <span class="rule-chip">Qalqalah القلقلة</span>
+    <span class="rule-chip">Idgham الإدغام</span>
+    <span class="rule-chip">Ikhfa الإخفاء</span>
+    <span class="rule-chip">Iqlab الإقلاب</span>
+    <span class="rule-chip">Idhar الإظهار</span>
+    <span class="rule-chip">Tafkhim التفخيم</span>
+    <span class="rule-chip">Tarqiq الترقيق</span>
+    <span class="rule-chip">Waqf الوقف</span>
+    <span class="rule-chip">Sifaat الصفات</span>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="telecharger">
+  <h2>Commencez à améliorer votre récitation dès aujourd'hui</h2>
+  <p>Gratuit sur Android. Des milliers de Muslims utilisent déjà QariAI pour améliorer leur Tajweed.</p>
+  <a href="https://play.google.com/store/apps/details?id=app.qari.ai" class="gplay-badge" target="_blank" rel="noopener">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76a2 2 0 0 0 2.75.74l12.6-7.28-3.07-3.07-12.28 9.61zm16.49-10.54L16.3 10.9 5.28.42A2 2 0 0 0 2 2.18v19.64l13.14-8.6 4.53.0zM21.6 10.2l-3.28-1.9-3.18 3.18 3.18 3.18 3.3-1.9a2 2 0 0 0 0-2.56zM5.28 23.58 16.3 13.1l3.37 3.37-12.6 7.28a2 2 0 0 1-1.8-.17z"/></svg>
+    <div>
+      <span class="gplay-sub">Disponible sur</span>
+      <span class="gplay-name">Google Play</span>
+    </div>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="/fr" class="footer-logo"><img src="/logo.png" alt="QariAI"/></a>
+        <p class="footer-tagline">L'intelligence de prononciation au service de votre récitation coranique.</p>
+        <p style="font-size:0.75rem;color:#64748b;margin-top:8px;">Contact : <a href="mailto:salam@qariai.app" style="color:#34d399;text-decoration:none;">salam@qariai.app</a></p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Application</h4>
+          <ul>
+            <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+            <li><a href="#comment">Comment ça marche</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">Google Play</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Ressources</h4>
+          <ul>
+            <li><a href="/tajweed-rules">Règles du Tajweed</a></li>
+            <li><a href="/open-methodology">Méthodologie</a></li>
+            <li><a href="/about">À propos</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Langue</h4>
+          <ul>
+            <li><a href="/">English</a></li>
+            <li><a href="/ar">العربية</a></li>
+            <li><a href="/fr">Français</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 QariAI · Intelligence de prononciation</p>
+      <p><a href="/privacy" style="color:#64748b;text-decoration:none;margin-right:16px;">Confidentialité</a><a href="/terms" style="color:#64748b;text-decoration:none;">Conditions</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+let cur = 0;
+const slides = document.querySelectorAll('.phone-slide');
+const dots = document.querySelectorAll('.phone-dot');
+function goSlide(n) {
+  slides[cur].classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur = (n + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  dots[cur].classList.add('active');
+}
+setInterval(() => goSlide(cur + 1), 3000);
+</script>
+</body>
+</html>
