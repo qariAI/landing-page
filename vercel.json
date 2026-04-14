@@ -55,6 +55,9 @@
     { "source": "/tajweed-app-evaluation", "destination": "/tajweed-app-evaluation.html" },
     { "source": "/ai-quran-education-2026", "destination": "/ai-quran-education-2026.html" },
     { "source": "/teachers-guide-ai-tajweed", "destination": "/teachers-guide-ai-tajweed.html" },
+    { "source": "/ar/tajweed-rules", "destination": "/ar/tajweed-rules.html" },
+    { "source": "/ar/tajweed-mistakes", "destination": "/ar/tajweed-mistakes.html" },
+    { "source": "/ar/how-qari-ai-works", "destination": "/ar/how-qari-ai-works.html" },
     { "source": "/.well-known/security.txt", "destination": "/.well-known/security.txt" },
     { "source": "/fr", "destination": "/fr.html" }
   ]
