@@ -59,6 +59,8 @@
     { "source": "/ar/tajweed-mistakes", "destination": "/ar/tajweed-mistakes.html" },
     { "source": "/ar/how-qari-ai-works", "destination": "/ar/how-qari-ai-works.html" },
     { "source": "/maqamat-quran-guide", "destination": "/maqamat-quran-guide.html" },
+    { "source": "/al-nabr-tajweed", "destination": "/al-nabr-tajweed.html" },
+    { "source": "/ar/al-nabr", "destination": "/ar/al-nabr.html" },
     { "source": "/.well-known/security.txt", "destination": "/.well-known/security.txt" },
     { "source": "/fr", "destination": "/fr.html" }
   ]
