@@ -61,6 +61,7 @@
     { "source": "/maqamat-quran-guide", "destination": "/maqamat-quran-guide.html" },
     { "source": "/al-nabr-tajweed", "destination": "/al-nabr-tajweed.html" },
     { "source": "/ar/al-nabr", "destination": "/ar/al-nabr.html" },
+    { "source": "/quran-app-comparison-2026", "destination": "/quran-app-comparison-2026.html" },
     { "source": "/.well-known/security.txt", "destination": "/.well-known/security.txt" },
     { "source": "/fr", "destination": "/fr.html" }
   ]
