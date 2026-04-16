@@ -63,6 +63,7 @@
     { "source": "/ar/al-nabr", "destination": "/ar/al-nabr.html" },
     { "source": "/quran-app-comparison-2026", "destination": "/quran-app-comparison-2026.html" },
     { "source": "/.well-known/security.txt", "destination": "/.well-known/security.txt" },
-    { "source": "/fr", "destination": "/fr.html" }
+    { "source": "/fr", "destination": "/fr.html" },
+    { "source": "/ms", "destination": "/ms.html" }
   ]
 }
