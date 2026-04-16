@@ -237,33 +237,84 @@
     margin-bottom: 16px;
   }
   .features-header p { font-size: 17px; color: #57534e; }
+  /* Hero feature card */
+  .feature-hero {
+    background: linear-gradient(160deg, #052e2b 0%, #065f46 100%);
+    border-radius: 28px;
+    padding: 48px 40px;
+    color: white;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature-hero::after {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .feature-hero h3 {
+    font-size: 28px; font-weight: 900; margin-bottom: 12px;
+    letter-spacing: -0.01em; line-height: 1.2;
+  }
+  .feature-hero p { font-size: 16px; line-height: 1.6; opacity: 0.85; max-width: 520px; }
+  .feature-hero .feature-icon {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .feature-hero .feature-icon svg { stroke: #d4af37; }
+  /* Supporting grid */
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
   .feature-card {
     background: white;
     border: 1px solid #e7e5e4;
-    border-radius: 24px;
-    padding: 32px;
+    border-radius: 20px;
+    padding: 28px;
     transition: all 0.2s ease;
   }
   .feature-card:hover {
     border-color: #047857;
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.05);
   }
+  .feature-card:nth-child(odd) { background: #fafaf9; }
   .feature-icon {
-    width: 56px; height: 56px;
-    background: linear-gradient(160deg, rgba(4,120,87,0.1), rgba(251,191,36,0.1));
-    border-radius: 16px;
+    width: 48px; height: 48px;
+    background: #ecfdf5;
+    border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   .feature-icon svg { display: block; }
-  .feature-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+  .feature-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
   .feature-card p { color: #57534e; font-size: 14px; line-height: 1.6; }
+  .features-cta {
+    text-align: center;
+    margin-top: 48px;
+  }
+  .features-cta a {
+    display: inline-block;
+    background: #059669;
+    color: white;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 16px 40px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .features-cta a:hover { background: #047857; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(4,120,87,0.25); }
+  .features-trust {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #78716c;
+  }
 
   /* ─── And much more ─── */
   .more-strip { margin-top: 60px; padding-top: 50px; border-top: 1px solid #e7e5e4; }
@@ -482,44 +533,74 @@
 <section class="features" id="features">
   <div class="container">
     <div class="features-header">
-      <h2>Built for the way you actually practice</h2>
-      <p>Three things every other Quran app gets wrong — and how QariAI fixes them.</p>
+      <h2>Your AI Tajweed Coach</h2>
+      <p>Real outcomes, not just features. Here's what changes when you recite with QariAI.</p>
     </div>
+
+    <!-- Hero feature — the #1 outcome -->
+    <div class="feature-hero">
+      <div class="feature-icon" style="margin-bottom:20px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l1.5 5.5L19 10l-5.5 1.5L12 17l-1.5-5.5L5 10l5.5-1.5z"/>
+          <path d="M19 4l.5 1.5L21 6l-1.5.5L19 8l-.5-1.5L17 6l1.5-.5z"/>
+        </svg>
+      </div>
+      <h3>Fix mistakes instantly — on every recitation</h3>
+      <p>Record any verse, get letter-level tajweed corrections in seconds. 24 rules analysed, with mouth-position guidance so you know exactly how to adjust. No teacher scheduling, no waiting.</p>
+    </div>
+
+    <!-- 4 supporting outcome cards -->
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3l1.5 5.5L19 10l-5.5 1.5L12 17l-1.5-5.5L5 10l5.5-1.5z"/>
-            <path d="M19 4l.5 1.5L21 6l-1.5.5L19 8l-.5-1.5L17 6l1.5-.5z"/>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
           </svg>
         </div>
-        <h3>Tajweed, scored fairly</h3>
-        <p>Letter-level feedback across 24 rules — makharij, ghunnah, ikhfa, qalqalah, madd, shaddah. See exactly where you went wrong, with mouth and tongue coaching.</p>
+        <h3>Perfect every letter</h3>
+        <p>Makharij, ghunnah, ikhfa, qalqalah — each rule scored individually with coaching on where your tongue, lips, and breath should be.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="9" y="2" width="6" height="13" rx="3"/>
             <path d="M19 11v2a7 7 0 0 1-14 0v-2"/>
             <line x1="12" y1="20" x2="12" y2="22"/>
           </svg>
         </div>
-        <h3>Hifz, scored separately</h3>
-        <p>Memory mode tracks which exact word you missed — not a vague "70/100". Stop being penalised for memorisation slips on tajweed grading.</p>
+        <h3>Recite with confidence</h3>
+        <p>Separate tajweed and hifz scoring means you know exactly what to improve — memorisation gaps vs pronunciation errors, tracked independently.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="6" height="6" rx="1.2"/>
-            <rect x="11" y="3" width="6" height="6" rx="1.2" fill="#047857" fill-opacity="0.15"/>
-            <rect x="3" y="11" width="6" height="6" rx="1.2" fill="#047857" fill-opacity="0.35"/>
-            <rect x="11" y="11" width="6" height="6" rx="1.2" fill="#047857" fill-opacity="0.6"/>
-            <rect x="15" y="15" width="6" height="6" rx="1.2" fill="#047857"/>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
           </svg>
         </div>
-        <h3>Heatmap memory</h3>
-        <p>Every word you've ever recited gets coloured by how often you've stumbled on it. Over weeks, your weak spots emerge as a living map — so tomorrow's wird targets exactly where it should.</p>
+        <h3>Track your weak spots automatically</h3>
+        <p>A living heatmap shows which words and rules you consistently miss. No guessing — your practice sessions build on real data from every recitation.</p>
       </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 20V10"/>
+            <path d="M12 20V4"/>
+            <path d="M6 20v-6"/>
+          </svg>
+        </div>
+        <h3>Improve daily — without a teacher</h3>
+        <p>Streaks, 11 interactive lessons, voice warmups, and a personal AI companion that knows your patterns. 5 minutes a day builds mastery.</p>
+      </div>
+    </div>
+
+    <!-- CTA + trust -->
+    <div class="features-cta">
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai&referrer=utm_source%3Dqariai.app%26utm_medium%3Dfeatures">Start reciting in 30 seconds</a>
+    </div>
+    <div class="features-trust">
+      Used by 700+ learners in 42 countries · Designed with Tajweed teachers
     </div>
 
     <div class="more-strip">
