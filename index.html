@@ -634,6 +634,98 @@
     .hiw-head h2 { font-size: 26px; }
   }
 
+  /* ─── Why QariAI ─── */
+  .why-qari {
+    padding: 80px 0 72px;
+    background: linear-gradient(180deg, #fafaf9 0%, #ffffff 100%);
+    border-top: 1px solid rgba(0,0,0,0.04);
+  }
+  .why-head { text-align: center; max-width: 760px; margin: 0 auto 44px; }
+  .why-eyebrow {
+    display: inline-block;
+    font-size: 11px; font-weight: 900;
+    letter-spacing: 3px;
+    color: #047857;
+    margin-bottom: 14px;
+  }
+  .why-head h2 {
+    font-size: 36px; font-weight: 900;
+    letter-spacing: -0.02em; line-height: 1.12;
+    color: #1c1917;
+  }
+  .why-accent {
+    color: #047857;
+    font-style: italic;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+  .why-card {
+    background: #fafaf9;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 20px;
+    padding: 24px 22px;
+    position: relative;
+  }
+  .why-card-us {
+    background: linear-gradient(180deg, #fffcf2 0%, #ffffff 100%);
+    border: 2px solid #d4af37;
+    box-shadow: 0 12px 32px rgba(212,175,55,0.12);
+  }
+  .why-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #a8a29e;
+    margin-bottom: 10px;
+  }
+  .why-tag-us {
+    color: #b8902a;
+  }
+  .why-card p {
+    font-size: 15px;
+    color: #44403c;
+    line-height: 1.6;
+  }
+  .why-card strong { color: #1c1917; }
+  .why-card-us p strong { color: #047857; }
+  .why-bullets {
+    list-style: none;
+    padding: 0;
+    max-width: 620px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 28px;
+  }
+  .why-bullets li {
+    font-size: 14px;
+    color: #1c1917;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.45;
+  }
+  .why-check {
+    color: #047857;
+    font-weight: 900;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  @media (max-width: 760px) {
+    .why-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .why-bullets { grid-template-columns: 1fr; max-width: 380px; }
+    .why-head h2 { font-size: 28px; }
+  }
+
   /* ─── Mosque Evolution ─── */
   .mosque-evo {
     padding: 88px 0 96px;
@@ -985,7 +1077,6 @@
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
-      <a href="#screenshots">Screenshots</a>
       <a href="/how-qari-ai-works">How it works</a>
       <a href="https://play.google.com/store/apps/details?id=app.qari.ai&referrer=utm_source%3Dqariai.app%26utm_medium%3Dnav" class="nav-cta">Get the app</a>
     </div>
@@ -1088,20 +1179,6 @@
   </div>
 </section>
 
-<!-- ─── Mosque Path Banner ─── -->
-<div style="background: linear-gradient(135deg, #10b981, #34d399); border-top: 1px solid rgba(212,175,55,0.3); border-bottom: 1px solid rgba(212,175,55,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);">
-  <div class="container" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 18px; padding-bottom: 18px; flex-wrap: wrap;">
-    <div style="display: flex; align-items: center; gap: 16px;">
-      <span style="font-size: 28px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">🕌</span>
-      <div>
-        <p style="font-size: 15px; font-weight: 800; color: white; letter-spacing: -0.2px; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">Mosque Path — NEW</p>
-        <p style="font-size: 12px; color: rgba(254,243,199,0.9);">Tajweed progression layer · 10 sacred mosques · Foundation → Illumination → Grandeur</p>
-      </div>
-    </div>
-    <a href="#mosque-challenge" style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 13px; text-decoration: none; background: linear-gradient(135deg, #fde68a, #d4af37); color: #1c2e1c; white-space: nowrap; transition: transform 0.15s; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">See the journey ↓</a>
-  </div>
-</div>
-
 <!-- ─── Trust strip ─── -->
 <div class="strip">
   <div class="container">
@@ -1154,6 +1231,32 @@
         <p>Every session earns XP. Watch your mosque evolve from dim stone to radiant gold.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ─── Why QariAI ─── -->
+<section class="why-qari">
+  <div class="container">
+    <div class="why-head">
+      <div class="why-eyebrow">WHY QARIAI</div>
+      <h2>Most apps confuse pronunciation with memory.<br><span class="why-accent">We don't.</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-tag">MOST APPS</div>
+        <p>Lump <strong>tajweed</strong> and <strong>hifz</strong> into one score. A forgotten word drags your pronunciation score down. A mispronounced letter makes your memory look worse than it is. You never know what to actually work on.</p>
+      </div>
+      <div class="why-card why-card-us">
+        <div class="why-tag why-tag-us">QARIAI</div>
+        <p>Two modes, scored independently. <strong>Tajweed mode</strong> measures how you sound. <strong>Hifz mode</strong> tracks which words you remembered. Letter-level feedback on pronunciation, word-level heatmap for memorization — so you always know where to practice next.</p>
+      </div>
+    </div>
+    <ul class="why-bullets">
+      <li><span class="why-check">✓</span> Letter-level scoring across all 24 tajweed rules</li>
+      <li><span class="why-check">✓</span> Word-by-word hifz accuracy tracking</li>
+      <li><span class="why-check">✓</span> AI coach explains mouth position and tongue placement in plain language</li>
+      <li><span class="why-check">✓</span> No account, no ads, works offline after install</li>
+    </ul>
   </div>
 </section>
 
@@ -1687,22 +1790,6 @@
     <!-- CTA -->
     <div style="text-align: center; margin-top: 36px;">
       <a href="https://play.google.com/store/apps/details?id=app.qari.ai&referrer=utm_source%3Dqariai.app%26utm_medium%3Dmosque-challenge" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 14px; font-weight: 800; font-size: 15px; text-decoration: none; background: linear-gradient(135deg, #d4af37, #b8962e); color: white; box-shadow: 0 8px 24px rgba(212,175,55,0.3); transition: transform 0.15s ease;">Start your journey at the Kaaba →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ─── Screenshots ─── -->
-<section class="shots" id="screenshots">
-  <div class="container">
-    <div class="shots-header">
-      <h2>See it in action</h2>
-    </div>
-    <div class="shots-grid">
-      <div class="shot-card"><img src="/screenshots/v20_hero.jpeg" alt="QariAI home — Mosque Path hero" loading="lazy" /></div>
-      <div class="shot-card"><img src="/screenshots/v20_recite.jpeg" alt="QariAI — reciting inside a sacred mosque with tajweed-coloured verse" loading="lazy" /></div>
-      <div class="shot-card"><img src="/screenshots/v20_learn.jpeg" alt="QariAI — 11 Tajweed Lessons tab" loading="lazy" /></div>
-      <div class="shot-card"><img src="/screenshots/v20_score.jpeg" alt="QariAI — score panel with XP and streak" loading="lazy" /></div>
-      <div class="shot-card"><img src="/screenshots/v20_journey.jpeg" alt="QariAI — Your Journey grid of 10 sacred mosques" loading="lazy" /></div>
     </div>
   </div>
 </section>
