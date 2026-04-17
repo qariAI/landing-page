@@ -180,81 +180,6 @@
   }
   .phone img { width: 100%; display: block; object-fit: contain; background: white; }
 
-  /* ─── Carousel inside phone ─── */
-  .carousel {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 9 / 20;
-    overflow: hidden;
-    background: #0a1a14;
-  }
-  .carousel .slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 700ms ease;
-    pointer-events: none;
-  }
-  .carousel .slide.active { opacity: 1; pointer-events: auto; }
-  .carousel .slide img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    background: white;
-  }
-  .carousel .caption {
-    position: absolute;
-    left: 50%;
-    bottom: 46px;
-    transform: translateX(-50%);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    background: rgba(12, 46, 30, 0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(212, 175, 55, 0.45);
-    border-radius: 999px;
-    font-size: 10px;
-    font-weight: 800;
-    color: #fde68a;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-  }
-  .carousel .caption::before {
-    content: '';
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: #d4af37;
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
-  }
-  .carousel-dots {
-    position: absolute;
-    left: 0; right: 0;
-    bottom: 14px;
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    z-index: 5;
-  }
-  .carousel-dots .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    transition: all 300ms ease;
-  }
-  .carousel-dots .dot.active {
-    width: 22px;
-    border-radius: 3px;
-    background: #d4af37;
-  }
   .badge-floating {
     position: absolute;
     background: white;
@@ -1219,31 +1144,7 @@
         </div>
       </div>
       <div class="phone">
-        <div class="carousel" id="heroCarousel" aria-roledescription="carousel" aria-label="QariAI app preview">
-          <div class="slide active" data-caption="Recite Inside Sacred Mosques">
-            <img src="/screenshots/v20_recite.jpeg" alt="Recite a verse inside a painted sacred mosque scene" />
-          </div>
-          <div class="slide" data-caption="Your Daily Practice">
-            <img src="/screenshots/v20_hero.jpeg" alt="Daily practice home with streak and XP progress" />
-          </div>
-          <div class="slide" data-caption="AI Tajweed Scoring">
-            <img src="/screenshots/v20_score.jpeg" alt="AI-graded recitation score with XP and streak" />
-          </div>
-          <div class="slide" data-caption="24 Tajweed Lessons">
-            <img src="/screenshots/v20_learn.jpeg" alt="Tajweed micro-lessons covering shaddah, madd and more" />
-          </div>
-          <div class="slide" data-caption="10 Mosques to Grow">
-            <img src="/screenshots/v20_journey.jpeg" alt="Your journey grid of 10 sacred mosques to unlock" />
-          </div>
-          <div class="caption" id="heroCaption">Recite Inside Sacred Mosques</div>
-          <div class="carousel-dots" id="heroDots">
-            <button class="dot active" type="button" data-slide="0" aria-label="Slide 1"></button>
-            <button class="dot" type="button" data-slide="1" aria-label="Slide 2"></button>
-            <button class="dot" type="button" data-slide="2" aria-label="Slide 3"></button>
-            <button class="dot" type="button" data-slide="3" aria-label="Slide 4"></button>
-            <button class="dot" type="button" data-slide="4" aria-label="Slide 5"></button>
-          </div>
-        </div>
+        <img src="/screenshots/v20_recite.jpeg" alt="QariAI — reciting inside a sacred mosque with color-coded tajweed" />
       </div>
       <div class="badge-floating badge-2">
         <div class="badge-icon">
@@ -2220,39 +2121,6 @@
   </div>
 </footer>
 
-<script>
-  (function() {
-    var carousel = document.getElementById('heroCarousel');
-    if (!carousel) return;
-    var slides = carousel.querySelectorAll('.slide');
-    var dots = carousel.querySelectorAll('.dot');
-    var caption = document.getElementById('heroCaption');
-    var idx = 0;
-    var timer = null;
-    var INTERVAL = 3200;
-
-    function go(next) {
-      slides[idx].classList.remove('active');
-      dots[idx].classList.remove('active');
-      idx = (next + slides.length) % slides.length;
-      slides[idx].classList.add('active');
-      dots[idx].classList.add('active');
-      if (caption) caption.textContent = slides[idx].getAttribute('data-caption') || '';
-    }
-    function start() { timer = setInterval(function() { go(idx + 1); }, INTERVAL); }
-    function stop() { if (timer) { clearInterval(timer); timer = null; } }
-
-    dots.forEach(function(d, i) {
-      d.addEventListener('click', function() { stop(); go(i); start(); });
-    });
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-
-    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      start();
-    }
-  })();
-</script>
 
 </body>
 </html>
