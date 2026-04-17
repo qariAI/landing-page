@@ -371,6 +371,144 @@
   .strip-text { font-size: 15px; color: #d6d3d1; }
   .strip-text strong { color: #fbbf24; font-weight: 900; }
 
+  /* ─── Mosque Evolution ─── */
+  .mosque-evo {
+    padding: 88px 0 96px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,175,55,0.08), transparent 60%),
+      linear-gradient(180deg, #fafaf9 0%, #f5efe2 100%);
+    border-top: 1px solid rgba(212,175,55,0.15);
+  }
+  .me-head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+  .me-eyebrow {
+    display: inline-block;
+    font-size: 11px; font-weight: 900;
+    letter-spacing: 3px;
+    color: #b8902a;
+    margin-bottom: 18px;
+  }
+  .me-head h2 {
+    font-size: 40px; font-weight: 900;
+    letter-spacing: -0.02em; line-height: 1.1;
+    color: #1c1917;
+    margin-bottom: 14px;
+  }
+  .me-head p { font-size: 17px; color: #57534e; line-height: 1.6; }
+
+  .me-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 20px;
+    align-items: center;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .me-stage {
+    text-align: center;
+    padding: 4px;
+  }
+  .me-scene {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 400 / 260;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+      0 14px 36px rgba(0,0,0,0.22),
+      0 4px 10px rgba(0,0,0,0.1),
+      inset 0 0 0 1px rgba(212,175,55,0.18);
+    background: #0a0a08;
+  }
+  .me-scene svg { display: block; width: 100%; height: 100%; }
+
+  .stage-radiant .me-scene {
+    box-shadow:
+      0 0 0 2px rgba(212,175,55,0.55),
+      0 18px 48px rgba(212,175,55,0.28),
+      0 8px 20px rgba(0,0,0,0.22),
+      inset 0 0 0 1px rgba(253,230,138,0.35);
+    animation: radiantPulse 3.2s ease-in-out infinite;
+  }
+  @keyframes radiantPulse {
+    0%, 100% { box-shadow: 0 0 0 2px rgba(212,175,55,0.55), 0 18px 48px rgba(212,175,55,0.28), 0 8px 20px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(253,230,138,0.35); }
+    50%      { box-shadow: 0 0 0 2px rgba(212,175,55,0.8),  0 22px 56px rgba(212,175,55,0.42), 0 8px 20px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(253,230,138,0.55); }
+  }
+  .me-crown {
+    position: absolute;
+    top: 10px; right: 12px;
+    font-size: 18px;
+    color: #fde68a;
+    text-shadow: 0 0 8px rgba(253,230,138,0.8);
+    animation: crownTwinkle 2.4s ease-in-out infinite;
+  }
+  @keyframes crownTwinkle {
+    0%, 100% { opacity: 0.65; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.18); }
+  }
+
+  .me-stage-label {
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+  }
+  .me-numeral {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 900;
+    color: #b8902a;
+    line-height: 1;
+    font-style: italic;
+    min-width: 32px;
+  }
+  .stage-dim .me-numeral { color: #a8a29e; }
+  .me-stage-name {
+    font-size: 18px; font-weight: 900;
+    color: #1c1917;
+    letter-spacing: -0.02em;
+  }
+  .me-stage-xp {
+    font-size: 12px; font-weight: 700;
+    color: #78716c;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .me-stage-desc {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #57534e;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .me-arrow {
+    font-size: 28px;
+    color: #d4af37;
+    font-weight: 300;
+    align-self: center;
+    padding-bottom: 60px;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 900px) {
+    .me-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      max-width: 420px;
+    }
+    .me-arrow {
+      transform: rotate(90deg);
+      padding-bottom: 0;
+      margin: -8px auto;
+    }
+    .me-head h2 { font-size: 30px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stage-radiant .me-scene,
+    .me-crown { animation: none !important; }
+  }
+
   /* ─── Features ─── */
   .features { padding: 100px 0 80px; }
   .features-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
@@ -708,6 +846,250 @@
     </div>
   </div>
 </div>
+
+<!-- ─── Mosque Evolution ─── -->
+<section class="mosque-evo">
+  <div class="container">
+    <div class="me-head">
+      <div class="me-eyebrow">✦ THE MOSQUE PATH ✦</div>
+      <h2>Every session raises your stage.</h2>
+      <p>Your mosque starts dim. As you practice, light fills the arches — a visible record of your consistency.</p>
+    </div>
+
+    <div class="me-grid">
+      <!-- Stage I: Foundation (Dim) -->
+      <div class="me-stage stage-dim">
+        <div class="me-scene">
+          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="skyDim" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0a1820"/>
+                <stop offset="100%" stop-color="#162028"/>
+              </linearGradient>
+              <linearGradient id="groundDim" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0e1a14"/>
+                <stop offset="100%" stop-color="#050a08"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="260" fill="url(#skyDim)"/>
+            <!-- Faint stars -->
+            <circle cx="60" cy="40" r="0.8" fill="#d4af37" opacity="0.3"/>
+            <circle cx="140" cy="70" r="0.6" fill="#d4af37" opacity="0.25"/>
+            <circle cx="330" cy="50" r="0.7" fill="#d4af37" opacity="0.3"/>
+            <!-- Palm trees -->
+            <g opacity="0.55">
+              <rect x="24" y="160" width="3" height="50" fill="#1a2820"/>
+              <path d="M 25 160 Q 15 150 10 145 M 25 160 Q 35 150 42 147 M 25 160 Q 18 152 12 155 M 25 160 Q 30 150 38 158" stroke="#2a3a30" stroke-width="2" fill="none"/>
+              <rect x="370" y="165" width="3" height="45" fill="#1a2820"/>
+              <path d="M 371 165 Q 360 155 355 150 M 371 165 Q 382 155 388 152 M 371 165 Q 365 158 358 160" stroke="#2a3a30" stroke-width="2" fill="none"/>
+            </g>
+            <!-- Mosque silhouette -->
+            <g>
+              <!-- Minaret -->
+              <rect x="310" y="90" width="14" height="110" fill="#1a2a22"/>
+              <polygon points="310,90 324,90 317,75" fill="#1a2a22"/>
+              <rect x="313" y="95" width="2" height="4" fill="#3a4a3a" opacity="0.5"/>
+              <!-- Main building -->
+              <rect x="80" y="130" width="220" height="70" fill="#1a2a22"/>
+              <!-- Dome -->
+              <path d="M 140 130 Q 190 90 240 130 Z" fill="#1a2a22"/>
+              <rect x="187" y="80" width="6" height="12" fill="#1a2a22"/>
+              <circle cx="190" cy="78" r="2" fill="#1a2a22"/>
+              <!-- Arches (dark, barely lit) -->
+              <path d="M 92 200 L 92 170 Q 102 155 112 170 L 112 200 Z" fill="#0a1410"/>
+              <path d="M 122 200 L 122 170 Q 132 155 142 170 L 142 200 Z" fill="#0a1410"/>
+              <path d="M 152 200 L 152 170 Q 162 155 172 170 L 172 200 Z" fill="#0a1410"/>
+              <path d="M 182 200 L 182 170 Q 192 155 202 170 L 202 200 Z" fill="#0a1410"/>
+              <path d="M 212 200 L 212 170 Q 222 155 232 170 L 232 200 Z" fill="#0a1410"/>
+              <path d="M 242 200 L 242 170 Q 252 155 262 170 L 262 200 Z" fill="#0a1410"/>
+              <path d="M 272 200 L 272 170 Q 282 155 292 170 L 292 200 Z" fill="#0a1410"/>
+            </g>
+            <!-- Ground -->
+            <rect x="0" y="200" width="400" height="60" fill="url(#groundDim)"/>
+          </svg>
+        </div>
+        <div class="me-stage-label">
+          <span class="me-numeral">I</span>
+          <div>
+            <div class="me-stage-name">Foundation</div>
+            <div class="me-stage-xp">0–99 XP</div>
+          </div>
+        </div>
+        <p class="me-stage-desc">Begin your journey. Raw stone, quiet arches.</p>
+      </div>
+
+      <div class="me-arrow">→</div>
+
+      <!-- Stage II: Illumination (Glowing) -->
+      <div class="me-stage stage-glow">
+        <div class="me-scene">
+          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="skyGlow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1a1008"/>
+                <stop offset="100%" stop-color="#2a1810"/>
+              </linearGradient>
+              <radialGradient id="haloGlow" cx="50%" cy="95%" r="60%">
+                <stop offset="0%" stop-color="#d4af37" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="rayGlow" x1="0.5" y1="0" x2="0.5" y2="1">
+                <stop offset="0%" stop-color="#fde68a" stop-opacity="0.0"/>
+                <stop offset="100%" stop-color="#fde68a" stop-opacity="0.22"/>
+              </linearGradient>
+              <linearGradient id="groundGlow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1a120a"/>
+                <stop offset="100%" stop-color="#0a0604"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="260" fill="url(#skyGlow)"/>
+            <!-- God-ray -->
+            <polygon points="170,0 230,0 260,260 140,260" fill="url(#rayGlow)"/>
+            <!-- Halo behind dome -->
+            <ellipse cx="190" cy="130" rx="130" ry="50" fill="url(#haloGlow)"/>
+            <!-- Stars -->
+            <circle cx="50" cy="35" r="1" fill="#fde68a" opacity="0.7"/>
+            <circle cx="110" cy="60" r="0.7" fill="#fde68a" opacity="0.6"/>
+            <circle cx="280" cy="40" r="0.9" fill="#fde68a" opacity="0.7"/>
+            <circle cx="350" cy="65" r="0.7" fill="#fde68a" opacity="0.6"/>
+            <circle cx="75" cy="90" r="0.6" fill="#fde68a" opacity="0.5"/>
+            <!-- Palm trees -->
+            <g opacity="0.7">
+              <rect x="24" y="160" width="3" height="50" fill="#2a1810"/>
+              <path d="M 25 160 Q 15 150 10 145 M 25 160 Q 35 150 42 147 M 25 160 Q 18 152 12 155 M 25 160 Q 30 150 38 158" stroke="#4a2e1c" stroke-width="2" fill="none"/>
+              <rect x="370" y="165" width="3" height="45" fill="#2a1810"/>
+              <path d="M 371 165 Q 360 155 355 150 M 371 165 Q 382 155 388 152 M 371 165 Q 365 158 358 160" stroke="#4a2e1c" stroke-width="2" fill="none"/>
+            </g>
+            <!-- Mosque -->
+            <g>
+              <rect x="310" y="90" width="14" height="110" fill="#3a2a1a"/>
+              <polygon points="310,90 324,90 317,75" fill="#3a2a1a"/>
+              <rect x="313" y="95" width="2" height="4" fill="#fde68a" opacity="0.8"/>
+              <rect x="80" y="130" width="220" height="70" fill="#3a2a1a"/>
+              <path d="M 140 130 Q 190 90 240 130 Z" fill="#3a2a1a"/>
+              <rect x="187" y="80" width="6" height="12" fill="#3a2a1a"/>
+              <circle cx="190" cy="78" r="2" fill="#d4af37"/>
+              <!-- Glowing arches -->
+              <path d="M 92 200 L 92 170 Q 102 155 112 170 L 112 200 Z" fill="#c88d2c"/>
+              <path d="M 122 200 L 122 170 Q 132 155 142 170 L 142 200 Z" fill="#d49a38"/>
+              <path d="M 152 200 L 152 170 Q 162 155 172 170 L 172 200 Z" fill="#e0a840"/>
+              <path d="M 182 200 L 182 170 Q 192 155 202 170 L 202 200 Z" fill="#e8b24a"/>
+              <path d="M 212 200 L 212 170 Q 222 155 232 170 L 232 200 Z" fill="#e0a840"/>
+              <path d="M 242 200 L 242 170 Q 252 155 262 170 L 262 200 Z" fill="#d49a38"/>
+              <path d="M 272 200 L 272 170 Q 282 155 292 170 L 292 200 Z" fill="#c88d2c"/>
+            </g>
+            <!-- Ground -->
+            <rect x="0" y="200" width="400" height="60" fill="url(#groundGlow)"/>
+            <ellipse cx="190" cy="210" rx="120" ry="10" fill="#fde68a" opacity="0.12"/>
+          </svg>
+        </div>
+        <div class="me-stage-label">
+          <span class="me-numeral">II</span>
+          <div>
+            <div class="me-stage-name">Illumination</div>
+            <div class="me-stage-xp">100–299 XP</div>
+          </div>
+        </div>
+        <p class="me-stage-desc">Windows glow. Your recitation finds rhythm.</p>
+      </div>
+
+      <div class="me-arrow">→</div>
+
+      <!-- Stage III: Grandeur (Radiant) -->
+      <div class="me-stage stage-radiant">
+        <div class="me-scene">
+          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="skyRad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2a1808"/>
+                <stop offset="60%" stop-color="#5a3010"/>
+                <stop offset="100%" stop-color="#3a1808"/>
+              </linearGradient>
+              <radialGradient id="haloRad" cx="50%" cy="95%" r="70%">
+                <stop offset="0%" stop-color="#fde68a" stop-opacity="0.7"/>
+                <stop offset="50%" stop-color="#d4af37" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="rayRad" x1="0.5" y1="0" x2="0.5" y2="1">
+                <stop offset="0%" stop-color="#fde68a" stop-opacity="0.0"/>
+                <stop offset="100%" stop-color="#fde68a" stop-opacity="0.55"/>
+              </linearGradient>
+              <linearGradient id="groundRad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3a2010"/>
+                <stop offset="100%" stop-color="#1a0c04"/>
+              </linearGradient>
+              <filter id="archGlow">
+                <feGaussianBlur stdDeviation="2"/>
+                <feComponentTransfer><feFuncA type="linear" slope="1.6"/></feComponentTransfer>
+                <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <rect width="400" height="260" fill="url(#skyRad)"/>
+            <!-- God-ray (intense) -->
+            <polygon points="160,0 240,0 280,260 120,260" fill="url(#rayRad)"/>
+            <polygon points="180,0 220,0 250,260 150,260" fill="#fde68a" opacity="0.18"/>
+            <!-- Halo -->
+            <ellipse cx="190" cy="130" rx="170" ry="70" fill="url(#haloRad)"/>
+            <!-- Many stars -->
+            <circle cx="40" cy="30" r="1.2" fill="#fde68a"/>
+            <circle cx="90" cy="55" r="0.9" fill="#fde68a"/>
+            <circle cx="130" cy="35" r="0.7" fill="#fde68a" opacity="0.8"/>
+            <circle cx="70" cy="90" r="0.8" fill="#fde68a" opacity="0.9"/>
+            <circle cx="270" cy="35" r="1.1" fill="#fde68a"/>
+            <circle cx="310" cy="55" r="0.9" fill="#fde68a"/>
+            <circle cx="350" cy="30" r="0.8" fill="#fde68a" opacity="0.9"/>
+            <circle cx="370" cy="85" r="0.7" fill="#fde68a" opacity="0.8"/>
+            <circle cx="115" cy="90" r="0.5" fill="#fde68a" opacity="0.7"/>
+            <circle cx="290" cy="90" r="0.6" fill="#fde68a" opacity="0.7"/>
+            <!-- Palm trees -->
+            <g opacity="0.85">
+              <rect x="24" y="160" width="3" height="50" fill="#3a1c08"/>
+              <path d="M 25 160 Q 15 150 10 145 M 25 160 Q 35 150 42 147 M 25 160 Q 18 152 12 155 M 25 160 Q 30 150 38 158" stroke="#6a3a18" stroke-width="2" fill="none"/>
+              <rect x="370" y="165" width="3" height="45" fill="#3a1c08"/>
+              <path d="M 371 165 Q 360 155 355 150 M 371 165 Q 382 155 388 152 M 371 165 Q 365 158 358 160" stroke="#6a3a18" stroke-width="2" fill="none"/>
+            </g>
+            <!-- Mosque -->
+            <g>
+              <rect x="310" y="90" width="14" height="110" fill="#4a3018"/>
+              <polygon points="310,90 324,90 317,75" fill="#4a3018"/>
+              <rect x="313" y="95" width="2" height="4" fill="#fef9e0" opacity="1"/>
+              <rect x="80" y="130" width="220" height="70" fill="#4a3018"/>
+              <path d="M 140 130 Q 190 90 240 130 Z" fill="#4a3018"/>
+              <!-- Dome highlight -->
+              <path d="M 150 125 Q 190 95 230 125" stroke="#d4af37" stroke-width="1.5" fill="none" opacity="0.6"/>
+              <rect x="187" y="80" width="6" height="12" fill="#4a3018"/>
+              <circle cx="190" cy="78" r="3" fill="#fde68a"/>
+              <circle cx="190" cy="78" r="6" fill="#fde68a" opacity="0.4"/>
+              <!-- Radiant arches -->
+              <g filter="url(#archGlow)">
+                <path d="M 92 200 L 92 170 Q 102 155 112 170 L 112 200 Z" fill="#fde68a"/>
+                <path d="M 122 200 L 122 170 Q 132 155 142 170 L 142 200 Z" fill="#fef3c7"/>
+                <path d="M 152 200 L 152 170 Q 162 155 172 170 L 172 200 Z" fill="#fef9e0"/>
+                <path d="M 182 200 L 182 170 Q 192 155 202 170 L 202 200 Z" fill="#ffffff"/>
+                <path d="M 212 200 L 212 170 Q 222 155 232 170 L 232 200 Z" fill="#fef9e0"/>
+                <path d="M 242 200 L 242 170 Q 252 155 262 170 L 262 200 Z" fill="#fef3c7"/>
+                <path d="M 272 200 L 272 170 Q 282 155 292 170 L 292 200 Z" fill="#fde68a"/>
+              </g>
+            </g>
+            <!-- Ground with big light spill -->
+            <rect x="0" y="200" width="400" height="60" fill="url(#groundRad)"/>
+            <ellipse cx="190" cy="212" rx="160" ry="16" fill="#fde68a" opacity="0.28"/>
+            <ellipse cx="190" cy="214" rx="100" ry="8" fill="#ffffff" opacity="0.18"/>
+          </svg>
+          <span class="me-crown">★</span>
+        </div>
+        <div class="me-stage-label">
+          <span class="me-numeral">III</span>
+          <div>
+            <div class="me-stage-name">Grandeur</div>
+            <div class="me-stage-xp">300+ XP</div>
+          </div>
+        </div>
+        <p class="me-stage-desc">Radiant. Mastery, measured in sessions.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ─── Features ─── -->
 <section class="features" id="features">
