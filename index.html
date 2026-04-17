@@ -175,9 +175,86 @@
       0 32px 80px rgba(0,0,0,0.25);
     overflow: hidden;
     transform: rotate(-3deg);
-    background: white;
+    background: #0a1a14;
+    position: relative;
   }
   .phone img { width: 100%; display: block; object-fit: contain; background: white; }
+
+  /* ─── Carousel inside phone ─── */
+  .carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 20;
+    overflow: hidden;
+    background: #0a1a14;
+  }
+  .carousel .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 700ms ease;
+    pointer-events: none;
+  }
+  .carousel .slide.active { opacity: 1; pointer-events: auto; }
+  .carousel .slide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background: white;
+  }
+  .carousel .caption {
+    position: absolute;
+    left: 50%;
+    bottom: 46px;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(12, 46, 30, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    color: #fde68a;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  }
+  .carousel .caption::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
+  }
+  .carousel-dots {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    z-index: 5;
+  }
+  .carousel-dots .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    transition: all 300ms ease;
+  }
+  .carousel-dots .dot.active {
+    width: 22px;
+    border-radius: 3px;
+    background: #d4af37;
+  }
   .badge-floating {
     position: absolute;
     background: white;
@@ -187,13 +264,79 @@
     display: flex; align-items: center; gap: 12px;
     font-size: 13px; font-weight: 700;
     z-index: 20;
+    opacity: 0;
+    animation: badgeIn 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
-  .badge-1 { top: 130px; left: -30px; transform: rotate(-4deg); }
-  .badge-2 { bottom: -10px; left: -30px; transform: rotate(-3deg); }
+  .badge-1 {
+    top: 130px; left: -30px;
+    --rot: -4deg;
+    animation-delay: 300ms;
+  }
+  .badge-2 {
+    bottom: -10px; left: -30px;
+    --rot: -3deg;
+    animation-delay: 600ms;
+  }
   .badge-3 {
-    top: 80px; right: -50px; transform: rotate(2deg);
+    top: 80px; right: -50px;
+    --rot: 2deg;
     max-width: 220px; flex-direction: column; align-items: flex-start;
     gap: 8px; padding: 14px 16px;
+    animation-delay: 900ms;
+  }
+  /* Per-badge entry start-state (slides in from near edge) */
+  .badge-1 { transform: rotate(-4deg) translateX(-24px); }
+  .badge-2 { transform: rotate(-3deg) translateX(-24px); }
+  .badge-3 { transform: rotate(2deg) translateX(24px); }
+
+  @keyframes badgeIn {
+    to { opacity: 1; transform: rotate(var(--rot)) translateX(0); }
+  }
+
+  /* Gentle float loop (starts after entry completes) */
+  .badge-1 .badge-icon,
+  .badge-2 .badge-icon {
+    animation: iconPulse 2.8s ease-in-out infinite;
+  }
+  @keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.08); }
+  }
+
+  .badge-floating::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 18px;
+    pointer-events: none;
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+  .badge-1, .badge-2, .badge-3 {
+    animation-fill-mode: forwards;
+  }
+
+  /* Chat bubbles type-in for badge-3 */
+  .badge-3 .chat-bubble {
+    opacity: 0;
+    animation: bubbleIn 500ms ease-out forwards;
+  }
+  .badge-3 .chat-bubble.user { animation-delay: 1400ms; }
+  .badge-3 .chat-bubble.bot  { animation-delay: 2000ms; }
+  @keyframes bubbleIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .badge-floating,
+    .badge-1 .badge-icon, .badge-2 .badge-icon,
+    .badge-3 .chat-bubble {
+      animation: none !important;
+      opacity: 1 !important;
+    }
+    .badge-1 { transform: rotate(-4deg); }
+    .badge-2 { transform: rotate(-3deg); }
+    .badge-3 { transform: rotate(2deg); }
   }
   .chat-row { display: flex; align-items: center; gap: 8px; width: 100%; }
   .chat-row .badge-icon { width: 28px; height: 28px; border-radius: 8px; }
@@ -483,7 +626,31 @@
         </div>
       </div>
       <div class="phone">
-        <img src="/screenshots/v20_hero.jpeg" alt="QariAI — Mosque Path home, Tajweed + Hifz coach" />
+        <div class="carousel" id="heroCarousel" aria-roledescription="carousel" aria-label="QariAI app preview">
+          <div class="slide active" data-caption="The Journey">
+            <img src="/screenshots/v20_hero.jpeg" alt="QariAI home — Mosque Path hero with Tajweed + Hifz coach" />
+          </div>
+          <div class="slide" data-caption="Recite Inside">
+            <img src="/screenshots/v20_recite.jpeg" alt="Recite a verse inside a sacred mosque scene" />
+          </div>
+          <div class="slide" data-caption="10 Mosques">
+            <img src="/screenshots/v20_journey.jpeg" alt="Your journey grid across 10 sacred mosques" />
+          </div>
+          <div class="slide" data-caption="Tajweed Lessons">
+            <img src="/screenshots/v20_learn.jpeg" alt="Tajweed micro-lessons inside the Learn tab" />
+          </div>
+          <div class="slide" data-caption="Track Growth">
+            <img src="/screenshots/v20_score.jpeg" alt="Score panel with XP breakdown and stage progress" />
+          </div>
+          <div class="caption" id="heroCaption">The Journey</div>
+          <div class="carousel-dots" id="heroDots">
+            <button class="dot active" type="button" data-slide="0" aria-label="Slide 1"></button>
+            <button class="dot" type="button" data-slide="1" aria-label="Slide 2"></button>
+            <button class="dot" type="button" data-slide="2" aria-label="Slide 3"></button>
+            <button class="dot" type="button" data-slide="3" aria-label="Slide 4"></button>
+            <button class="dot" type="button" data-slide="4" aria-label="Slide 5"></button>
+          </div>
+        </div>
       </div>
       <div class="badge-floating badge-2">
         <div class="badge-icon">
@@ -1038,6 +1205,40 @@
     </div>
   </div>
 </footer>
+
+<script>
+  (function() {
+    var carousel = document.getElementById('heroCarousel');
+    if (!carousel) return;
+    var slides = carousel.querySelectorAll('.slide');
+    var dots = carousel.querySelectorAll('.dot');
+    var caption = document.getElementById('heroCaption');
+    var idx = 0;
+    var timer = null;
+    var INTERVAL = 3200;
+
+    function go(next) {
+      slides[idx].classList.remove('active');
+      dots[idx].classList.remove('active');
+      idx = (next + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+      dots[idx].classList.add('active');
+      if (caption) caption.textContent = slides[idx].getAttribute('data-caption') || '';
+    }
+    function start() { timer = setInterval(function() { go(idx + 1); }, INTERVAL); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { stop(); go(i); start(); });
+    });
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      start();
+    }
+  })();
+</script>
 
 </body>
 </html>
