@@ -371,6 +371,107 @@
   .strip-text { font-size: 15px; color: #d6d3d1; }
   .strip-text strong { color: #fbbf24; font-weight: 900; }
 
+  /* ─── Reviews ─── */
+  .reviews {
+    padding: 80px 0 72px;
+    background: #ffffff;
+    border-top: 1px solid rgba(0,0,0,0.04);
+  }
+  .reviews-head { text-align: center; max-width: 680px; margin: 0 auto 40px; }
+  .reviews-stars {
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #f59e0b;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 0 rgba(245,158,11,0.2);
+  }
+  .reviews-rating {
+    font-size: 13px;
+    color: #57534e;
+    margin-bottom: 18px;
+  }
+  .reviews-rating strong {
+    font-size: 16px;
+    color: #1c1917;
+    font-weight: 900;
+  }
+  .reviews-head h2 {
+    font-size: 32px; font-weight: 900;
+    letter-spacing: -0.02em; line-height: 1.15;
+    color: #1c1917;
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 920px;
+    margin: 0 auto 28px;
+  }
+  .review-card {
+    position: relative;
+    background: linear-gradient(180deg, #fafaf9 0%, #ffffff 100%);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 20px;
+    padding: 26px 24px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    margin: 0;
+  }
+  .review-stars {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #f59e0b;
+    margin-bottom: 12px;
+  }
+  .review-card blockquote {
+    margin: 0 0 16px;
+  }
+  .review-card blockquote p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #1c1917;
+    font-weight: 500;
+  }
+  .review-mark, .review-mark-close {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #d4af37;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 0;
+    vertical-align: -4px;
+  }
+  .review-mark { margin-right: 2px; }
+  .review-mark-close { margin-left: 2px; }
+  .review-card figcaption {
+    border-top: 1px solid rgba(0,0,0,0.06);
+    padding-top: 14px;
+  }
+  .review-author {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1c1917;
+  }
+  .review-meta {
+    font-size: 12px;
+    color: #78716c;
+    margin-top: 2px;
+  }
+  .reviews-foot {
+    text-align: center;
+    font-size: 14px;
+    color: #78716c;
+    margin-top: 12px;
+  }
+  .reviews-foot a {
+    color: #047857;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .reviews-foot a:hover { text-decoration: underline; }
+  @media (max-width: 760px) {
+    .reviews-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .reviews-head h2 { font-size: 26px; }
+  }
+
   /* ─── Pricing ─── */
   .pricing {
     padding: 88px 0 96px;
@@ -1835,6 +1936,40 @@
 }
 </script>
 
+<!-- Reviews Schema.org markup — surfaces stars in Google results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "QariAI",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Android",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "ratingCount": "2",
+    "bestRating": "5"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Matti-Ur Rehman" },
+      "datePublished": "2026-03-07",
+      "reviewBody": "Barakallahu Feekum. An incredible app. I've tested both Hifz and Tajweed mode and they work great. I have it set to Advanced and it works perfectly — picking up any small mistakes."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Sayeed Ahmed" },
+      "datePublished": "2026-04-15",
+      "reviewBody": "I think it is very nice and accurate, Mashallah."
+    }
+  ]
+}
+</script>
+
 <!-- ─── Resources grid — strong internal linking for SEO ─── -->
 <section id="resources" style="padding: 64px 0; background: #fafaf9;">
   <div class="container" style="max-width: 1000px;">
@@ -1916,6 +2051,44 @@
       </a>
 
     </div>
+  </div>
+</section>
+
+<!-- ─── Reviews ─── -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="reviews-head">
+      <div class="reviews-stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <div class="reviews-rating"><strong>5.0</strong> on Google Play</div>
+      <h2>Early users are feeling it.</h2>
+    </div>
+    <div class="reviews-grid">
+      <!-- Review 1 — Matti-Ur Rehman -->
+      <figure class="review-card">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <blockquote>
+          <p><span class="review-mark">“</span>Barakallahu Feekum. An incredible app. I've tested both Hifz and Tajweed mode and they work great. I have it set to Advanced and it works perfectly — picking up any small mistakes.<span class="review-mark-close">”</span></p>
+        </blockquote>
+        <figcaption>
+          <div class="review-author">Matti-Ur Rehman</div>
+          <div class="review-meta">Google Play · March 2026</div>
+        </figcaption>
+      </figure>
+      <!-- Review 2 — Sayeed Ahmed -->
+      <figure class="review-card">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <blockquote>
+          <p><span class="review-mark">“</span>I think it is very nice and accurate, Mashallah.<span class="review-mark-close">”</span></p>
+        </blockquote>
+        <figcaption>
+          <div class="review-author">Sayeed Ahmed</div>
+          <div class="review-meta">Google Play · April 2026</div>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="reviews-foot">
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">Read all reviews on Google Play →</a>
+    </p>
   </div>
 </section>
 
