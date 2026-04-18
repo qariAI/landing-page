@@ -64,6 +64,7 @@
     { "source": "/quran-app-comparison-2026", "destination": "/quran-app-comparison-2026.html" },
     { "source": "/.well-known/security.txt", "destination": "/.well-known/security.txt" },
     { "source": "/fr", "destination": "/fr.html" },
-    { "source": "/ms", "destination": "/ms.html" }
+    { "source": "/ms", "destination": "/ms.html" },
+    { "source": "/challenge", "destination": "/challenge.html" }
   ]
 }
