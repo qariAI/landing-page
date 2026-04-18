@@ -183,100 +183,50 @@
   .badge-floating {
     position: absolute;
     background: white;
-    padding: 14px 18px;
-    border-radius: 16px;
+    padding: 12px 16px;
+    border-radius: 14px;
     box-shadow: 0 12px 32px rgba(0,0,0,0.18);
-    display: flex; align-items: center; gap: 12px;
+    display: flex; align-items: center; gap: 10px;
     font-size: 13px; font-weight: 700;
     z-index: 20;
     opacity: 0;
-    animation: badgeIn 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    /* cycling fade in/out — each badge visible ~5s then hides ~4s, cycle = 9s */
+    animation: badgeCycle 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
   .badge-1 {
-    top: 130px; left: -30px;
+    top: 120px; left: -24px;
     --rot: -4deg;
-    animation-delay: 300ms;
+    animation-delay: 0s;
   }
   .badge-2 {
-    bottom: -10px; left: -30px;
+    bottom: 40px; left: -24px;
     --rot: -3deg;
-    animation-delay: 600ms;
+    animation-delay: 3s;
   }
   .badge-3 {
-    top: 80px; right: -50px;
+    top: 90px; right: -28px;
     --rot: 2deg;
-    max-width: 220px; flex-direction: column; align-items: flex-start;
-    gap: 8px; padding: 14px 16px;
-    animation-delay: 900ms;
-  }
-  /* Per-badge entry start-state (slides in from near edge) */
-  .badge-1 { transform: rotate(-4deg) translateX(-24px); }
-  .badge-2 { transform: rotate(-3deg) translateX(-24px); }
-  .badge-3 { transform: rotate(2deg) translateX(24px); }
-
-  @keyframes badgeIn {
-    to { opacity: 1; transform: rotate(var(--rot)) translateX(0); }
+    animation-delay: 6s;
   }
 
-  /* Gentle float loop (starts after entry completes) */
-  .badge-1 .badge-icon,
-  .badge-2 .badge-icon {
-    animation: iconPulse 2.8s ease-in-out infinite;
-  }
-  @keyframes iconPulse {
-    0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.08); }
-  }
-
-  .badge-floating::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 18px;
-    pointer-events: none;
-    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
-  }
-  .badge-1, .badge-2, .badge-3 {
-    animation-fill-mode: forwards;
-  }
-
-  /* Chat bubbles type-in for badge-3 */
-  .badge-3 .chat-bubble {
-    opacity: 0;
-    animation: bubbleIn 500ms ease-out forwards;
-  }
-  .badge-3 .chat-bubble.user { animation-delay: 1400ms; }
-  .badge-3 .chat-bubble.bot  { animation-delay: 2000ms; }
-  @keyframes bubbleIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
+  @keyframes badgeCycle {
+    /* 0–8%: fade in from edge */
+    0%    { opacity: 0; transform: rotate(var(--rot)) translateY(8px) scale(0.92); }
+    8%    { opacity: 1; transform: rotate(var(--rot)) translateY(0) scale(1); }
+    /* 8–55%: visible, stable */
+    55%   { opacity: 1; transform: rotate(var(--rot)) translateY(0) scale(1); }
+    /* 55–66%: fade out */
+    66%   { opacity: 0; transform: rotate(var(--rot)) translateY(-6px) scale(0.94); }
+    /* 66–100%: hidden */
+    100%  { opacity: 0; transform: rotate(var(--rot)) translateY(8px) scale(0.92); }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .badge-floating,
-    .badge-1 .badge-icon, .badge-2 .badge-icon,
-    .badge-3 .chat-bubble {
-      animation: none !important;
-      opacity: 1 !important;
-    }
+    .badge-floating { animation: none !important; opacity: 1 !important; }
     .badge-1 { transform: rotate(-4deg); }
     .badge-2 { transform: rotate(-3deg); }
     .badge-3 { transform: rotate(2deg); }
   }
-  .chat-row { display: flex; align-items: center; gap: 8px; width: 100%; }
-  .chat-row .badge-icon { width: 28px; height: 28px; border-radius: 8px; }
-  .chat-bubble {
-    background: #f5f5f4;
-    border-radius: 12px;
-    padding: 8px 11px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #44403c;
-    line-height: 1.4;
-    max-width: 100%;
-  }
-  .chat-bubble.user { background: #047857; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-  .chat-bubble.bot { border-bottom-left-radius: 4px; }
   .badge-icon {
     width: 36px; height: 36px;
     border-radius: 10px;
@@ -285,7 +235,6 @@
   .badge-1 .badge-icon { background: rgba(4,120,87,0.12); }
   .badge-2 .badge-icon { background: rgba(251,191,36,0.15); }
   .badge-icon svg { display: block; }
-  .badge-meta { font-size: 11px; color: #78716c; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
 
   /* ─── Trust strip ─── */
   .strip {
@@ -1138,10 +1087,7 @@
             <polyline points="14 7 21 7 21 14"/>
           </svg>
         </div>
-        <div>
-          <div>+15% Makharij</div>
-          <div class="badge-meta">this week</div>
-        </div>
+        <div>+15% Makharij</div>
       </div>
       <div class="phone">
         <img src="/screenshots/v20_journey.jpeg" alt="QariAI — your journey through 10 sacred mosques with daily progress" />
@@ -1153,29 +1099,22 @@
             <path d="M12 14a3 3 0 0 0 3 3"/>
           </svg>
         </div>
-        <div>
-          <div>4-day streak</div>
-          <div class="badge-meta">Keep it going 🔥</div>
-        </div>
+        <div>4-day streak</div>
       </div>
       <div class="badge-floating badge-3">
-        <div class="chat-row">
-          <div class="badge-icon" style="background: rgba(120,113,108,0.12);">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#57534e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="14" y1="3" x2="15" y2="6"/>
-              <line x1="16" y1="2.5" x2="16" y2="6"/>
-              <line x1="18" y1="3" x2="17" y2="6"/>
-              <ellipse cx="14" cy="14" rx="6" ry="5"/>
-              <circle cx="9" cy="10" r="3.5"/>
-              <path d="M5.5 11 L2 12 L5.5 12"/>
-              <path d="M19 16 L22 19 L20 18Z"/>
-              <circle cx="8" cy="10" r="0.6" fill="#57534e"/>
-            </svg>
-          </div>
-          <div style="font-size: 11px; color: #78716c; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">Ask HudHud</div>
+        <div class="badge-icon" style="background: rgba(120,113,108,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#57534e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="14" y1="3" x2="15" y2="6"/>
+            <line x1="16" y1="2.5" x2="16" y2="6"/>
+            <line x1="18" y1="3" x2="17" y2="6"/>
+            <ellipse cx="14" cy="14" rx="6" ry="5"/>
+            <circle cx="9" cy="10" r="3.5"/>
+            <path d="M5.5 11 L2 12 L5.5 12"/>
+            <path d="M19 16 L22 19 L20 18Z"/>
+            <circle cx="8" cy="10" r="0.6" fill="#57534e"/>
+          </svg>
         </div>
-        <div class="chat-bubble user">How am I doing?</div>
-        <div class="chat-bubble bot">You're getting more consistent — qalqalah up 12% this week.</div>
+        <div>Qalqalah +12%</div>
       </div>
     </div>
   </div>
