@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>10 Masjids Challenge — QariAI</title>
 <link rel="canonical" href="https://qariai.app/challenge">
-<meta name="description" content="Recite one sūrah inside a different sacred masjid every day for 10 days. AI tajweed feedback, shareable completion card, #10MasjidsChallenge. Free.">
+<meta name="description" content="Recite one sūrah inside a different masjid every day for 10 days. AI tajweed feedback, shareable completion card, #10MasjidsChallenge. Free.">
 
 <!-- Open Graph -->
 <meta property="og:title" content="10 Masjids Challenge — 10 Days · 10 Masjids · Beautify Your Voice">
@@ -530,32 +530,169 @@
 </head>
 <body>
 
-<!-- SVG sprite (mosque dome icon, used in masjid grid) -->
+<!-- SVG sprite: 10 distinct masjid silhouettes, one per card -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="ic-mosque" viewBox="0 0 64 64">
+    <!-- 1. Al-Masjid an-Nabawi (Madinah) — large dome + 2 tall thin minarets, finial -->
+    <symbol id="ic-nabawi" viewBox="0 0 64 64">
       <g fill="currentColor">
-        <!-- left minaret -->
-        <rect x="8" y="22" width="5" height="32" rx="1"/>
-        <polygon points="6,22 10.5,14 15,22"/>
-        <circle cx="10.5" cy="11" r="1.8"/>
-        <!-- right minaret -->
-        <rect x="51" y="22" width="5" height="32" rx="1"/>
-        <polygon points="49,22 53.5,14 58,22"/>
-        <circle cx="53.5" cy="11" r="1.8"/>
-        <!-- main building -->
-        <rect x="16" y="36" width="32" height="18" rx="1"/>
-        <!-- main dome -->
-        <path d="M16 36 Q32 12 48 36 Z"/>
-        <!-- dome finial -->
-        <rect x="31" y="6" width="2" height="6"/>
-        <circle cx="32" cy="4" r="2"/>
-        <!-- side small domes -->
-        <path d="M18 36 Q24 28 30 36 Z" opacity="0.85"/>
-        <path d="M34 36 Q40 28 46 36 Z" opacity="0.85"/>
+        <rect x="9" y="14" width="3" height="40"/>
+        <polygon points="8,14 10.5,8 13,14"/>
+        <circle cx="10.5" cy="6" r="1.5"/>
+        <rect x="52" y="14" width="3" height="40"/>
+        <polygon points="51,14 53.5,8 56,14"/>
+        <circle cx="53.5" cy="6" r="1.5"/>
+        <rect x="16" y="38" width="32" height="16"/>
+        <path d="M16 38 Q32 8 48 38 Z"/>
+        <rect x="31" y="4" width="2" height="6"/>
+        <circle cx="32" cy="2.5" r="2"/>
       </g>
-      <!-- arched door (negative, white-ish) -->
-      <path d="M29 54 V44 Q32 39 35 44 V54 Z" fill="#ffffff" opacity="0.95"/>
+      <path d="M28 54 V44 Q32 38 36 44 V54 Z" fill="#fff" opacity="0.95"/>
+    </symbol>
+
+    <!-- 2. Al-Masjid al-Ḥarām (Makkah) — Kaaba cube central + 2 minarets flanking -->
+    <symbol id="ic-haram" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="5" y="12" width="3" height="42"/>
+        <polygon points="4,12 6.5,6 9,12"/>
+        <circle cx="6.5" cy="4" r="1.5"/>
+        <rect x="56" y="12" width="3" height="42"/>
+        <polygon points="55,12 57.5,6 60,12"/>
+        <circle cx="57.5" cy="4" r="1.5"/>
+        <rect x="14" y="50" width="36" height="4"/>
+        <rect x="22" y="22" width="20" height="28"/>
+      </g>
+      <rect x="22" y="32" width="20" height="2" fill="#fff" opacity="0.55"/>
+      <rect x="22" y="36" width="20" height="1" fill="#fff" opacity="0.4"/>
+    </symbol>
+
+    <!-- 3. Masjid al-Aqṣā (Al-Quds) — twin domes side-by-side (Aqṣā + Dome of the Rock) -->
+    <symbol id="ic-aqsa" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="3" y="50" width="58" height="4"/>
+        <rect x="6" y="36" width="22" height="14"/>
+        <path d="M6 36 Q17 18 28 36 Z"/>
+        <rect x="16" y="14" width="2" height="6"/>
+        <circle cx="17" cy="13" r="1.4"/>
+        <rect x="36" y="38" width="22" height="12"/>
+        <path d="M36 38 Q47 24 58 38 Z" opacity="0.78"/>
+        <rect x="46" y="18" width="2" height="6"/>
+        <circle cx="47" cy="17" r="1.4"/>
+      </g>
+    </symbol>
+
+    <!-- 4. Süleymaniye (Istanbul) — central dome cascading semi-domes + 4 pencil minarets -->
+    <symbol id="ic-suleymaniye" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="4" y="14" width="1.8" height="40"/>
+        <polygon points="3,14 4.9,8 6.8,14"/>
+        <rect x="14" y="20" width="1.8" height="34"/>
+        <polygon points="13,20 14.9,14 16.8,20"/>
+        <rect x="48" y="20" width="1.8" height="34"/>
+        <polygon points="47,20 48.9,14 50.8,20"/>
+        <rect x="58.2" y="14" width="1.8" height="40"/>
+        <polygon points="57.2,14 59.1,8 61,14"/>
+        <rect x="18" y="40" width="28" height="14"/>
+        <path d="M18 40 Q32 16 46 40 Z"/>
+        <path d="M22 40 Q26 32 30 40 Z" opacity="0.78"/>
+        <path d="M34 40 Q38 32 42 40 Z" opacity="0.78"/>
+        <rect x="31" y="12" width="2" height="6"/>
+        <circle cx="32" cy="11" r="1.4"/>
+      </g>
+    </symbol>
+
+    <!-- 5. Sheikh Zayed (Abu Dhabi) — massive white dome + 4 dome-capped corner minarets -->
+    <symbol id="ic-zayed" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="5" y="22" width="3" height="32"/>
+        <circle cx="6.5" cy="20" r="2.5"/>
+        <rect x="14" y="22" width="3" height="32"/>
+        <circle cx="15.5" cy="20" r="2.5"/>
+        <rect x="47" y="22" width="3" height="32"/>
+        <circle cx="48.5" cy="20" r="2.5"/>
+        <rect x="56" y="22" width="3" height="32"/>
+        <circle cx="57.5" cy="20" r="2.5"/>
+        <rect x="22" y="40" width="20" height="14"/>
+        <path d="M22 40 Q32 12 42 40 Z"/>
+        <rect x="31" y="8" width="2" height="6"/>
+        <circle cx="32" cy="7" r="1.5"/>
+      </g>
+    </symbol>
+
+    <!-- 6. Hassan II (Casablanca) — single dominant square tower minaret (world's tallest) -->
+    <symbol id="ic-hassan2" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="6" y="40" width="34" height="14"/>
+        <path d="M10 40 Q19 30 28 40 Z" opacity="0.85"/>
+        <rect x="42" y="6" width="14" height="48"/>
+        <rect x="42" y="3" width="14" height="3"/>
+      </g>
+      <rect x="42" y="16" width="14" height="1.5" fill="#fff" opacity="0.5"/>
+      <rect x="42" y="28" width="14" height="1.5" fill="#fff" opacity="0.5"/>
+      <rect x="42" y="40" width="14" height="1.5" fill="#fff" opacity="0.5"/>
+    </symbol>
+
+    <!-- 7. Badshahi (Lahore) — 3 onion domes in a row + 4 corner minarets -->
+    <symbol id="ic-badshahi" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="4" y="24" width="2.5" height="30"/>
+        <polygon points="3,24 5.25,18 7.5,24"/>
+        <circle cx="5.25" cy="16" r="1.2"/>
+        <rect x="13" y="24" width="2.5" height="30"/>
+        <polygon points="12,24 14.25,18 16.5,24"/>
+        <circle cx="14.25" cy="16" r="1.2"/>
+        <rect x="48.5" y="24" width="2.5" height="30"/>
+        <polygon points="47.5,24 49.75,18 52,24"/>
+        <circle cx="49.75" cy="16" r="1.2"/>
+        <rect x="57.5" y="24" width="2.5" height="30"/>
+        <polygon points="56.5,24 58.75,18 61,24"/>
+        <circle cx="58.75" cy="16" r="1.2"/>
+        <rect x="18" y="42" width="28" height="12"/>
+        <path d="M19 42 Q23 30 27 42 Z"/>
+        <path d="M28 42 Q32 22 36 42 Z"/>
+        <path d="M37 42 Q41 30 45 42 Z"/>
+      </g>
+    </symbol>
+
+    <!-- 8. Istiqlal (Jakarta) — single hemispherical dome on cubic base + 1 minaret -->
+    <symbol id="ic-istiqlal" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="51" y="8" width="3" height="46"/>
+        <polygon points="50,8 52.5,2 55,8"/>
+        <circle cx="52.5" cy="0.5" r="1.5"/>
+        <rect x="6" y="34" width="38" height="20"/>
+        <path d="M6 34 Q25 16 44 34 Z"/>
+        <rect x="24" y="12" width="2" height="6"/>
+        <polygon points="22,12 25,6 28,12"/>
+      </g>
+    </symbol>
+
+    <!-- 9. Qarawiyyin (Fez) — Maghrebi square pyramid-tower minaret + low arched riwāq -->
+    <symbol id="ic-qarawiyyin" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="6" y="40" width="36" height="14"/>
+        <rect x="42" y="14" width="14" height="40"/>
+        <polygon points="42,14 49,4 56,14"/>
+      </g>
+      <path d="M10 54 V46 Q14 42 18 46 V54 Z" fill="#fff" opacity="0.85"/>
+      <path d="M22 54 V46 Q26 42 30 46 V54 Z" fill="#fff" opacity="0.85"/>
+      <path d="M32 54 V46 Q36 42 40 46 V54 Z" fill="#fff" opacity="0.85"/>
+      <rect x="42" y="24" width="14" height="1.5" fill="#fff" opacity="0.5"/>
+      <rect x="42" y="34" width="14" height="1.5" fill="#fff" opacity="0.5"/>
+    </symbol>
+
+    <!-- 10. Mezquita (Cordoba) — bell tower (former minaret) + horseshoe-arch arcade -->
+    <symbol id="ic-mezquita" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="46" y="14" width="12" height="40"/>
+        <rect x="48" y="8" width="8" height="6"/>
+        <polygon points="46,8 52,2 58,8"/>
+        <rect x="4" y="34" width="40" height="20"/>
+      </g>
+      <path d="M8 54 V42 Q12 36 16 42 V54 Z" fill="#fff" opacity="0.92"/>
+      <path d="M18 54 V42 Q22 36 26 42 V54 Z" fill="#fff" opacity="0.92"/>
+      <path d="M28 54 V42 Q32 36 36 42 V54 Z" fill="#fff" opacity="0.92"/>
+      <circle cx="52" cy="20" r="2.5" fill="#fff" opacity="0.5"/>
     </symbol>
   </defs>
 </svg>
@@ -573,7 +710,7 @@
 <section class="hero">
   <div class="hero-badge"><span class="dot"></span>Community Challenge · Live Now</div>
   <h1>10 Days.<br>10 Masjids.<br><span class="accent">Beautify your voice.</span></h1>
-  <p>Recite inside a different sacred masjid every day — with AI Tajweed feedback at your side.</p>
+  <p>Recite inside a different masjid every day — with AI Tajweed feedback at your side.</p>
 
   <div class="hero-actions">
     <a href="https://play.google.com/store/apps/details?id=app.qari.ai?utm_source=challenge-page&utm_medium=web&utm_campaign=10masjids" class="btn-hero btn-hero-solid">
@@ -591,7 +728,7 @@
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="hero-stat-num">10</div>
-      <div class="hero-stat-lbl">Sacred masjids</div>
+      <div class="hero-stat-lbl">Masjids</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">10</div>
@@ -665,7 +802,7 @@
         <img src="/screenshots/challenge-masjid.jpg" alt="Recite inside Süleymaniye masjid in QariAI" loading="lazy"/>
       </div>
       <div class="preview-cap">Recite inside the masjid</div>
-      <div class="preview-sub">Open Süleymaniye, Al-Aqṣā, or any of 10 sacred environments and tap the mic.</div>
+      <div class="preview-sub">Open Süleymaniye, Al-Aqṣā, or any of 10 masjid environments and tap the mic.</div>
     </div>
     <div class="preview-card">
       <div class="phone-frame">
@@ -704,12 +841,6 @@
   </div>
 </section>
 
-<!-- HADITH spiritual gravity -->
-<section class="hadith-block">
-  <p class="hadith-quote">The one who is proficient with the Qur'ān is with the noble righteous scribes; and the one who recites the Qur'ān and stumbles in it, finding it difficult, will have a double reward.</p>
-  <p class="hadith-attr">Sahih al-Bukhārī &amp; Muslim · narrated by ʿĀ'ishah (RA)</p>
-</section>
-
 <!-- HOW -->
 <section class="pad how" id="how">
   <p class="eyebrow">How it works</p>
@@ -720,7 +851,7 @@
     <div class="step">
       <div class="step-num">1</div>
       <h3>Download QariAI</h3>
-      <p>Install free on Google Play. Open the app and pick your starting masjid — ten sacred environments, from Al-Masjid an-Nabawi to Süleymaniye.</p>
+      <p>Install free on Google Play. Open the app and pick your starting masjid — ten masjid environments, from Al-Masjid an-Nabawi to Süleymaniye.</p>
     </div>
     <div class="step">
       <div class="step-num">2</div>
@@ -738,20 +869,20 @@
 <!-- MOSQUES -->
 <section class="pad masjids">
   <p class="eyebrow">The Path</p>
-  <h2 class="h2">Ten sacred spaces, one journey</h2>
+  <h2 class="h2">Ten masjid spaces, one journey</h2>
   <p class="h2-sub">Pick your order, switch between them freely — the challenge is yours to shape.</p>
 
   <div class="masjid-grid">
-    <div class="masjid"><div class="masjid-day">1</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Al-Masjid<br>an-Nabawi</div><div class="masjid-sub">Madinah</div></div>
-    <div class="masjid"><div class="masjid-day">2</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Al-Masjid<br>al-Ḥarām</div><div class="masjid-sub">Makkah</div></div>
-    <div class="masjid"><div class="masjid-day">3</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Masjid<br>al-Aqṣā</div><div class="masjid-sub">Al-Quds</div></div>
-    <div class="masjid"><div class="masjid-day">4</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Süleymaniye</div><div class="masjid-sub">Istanbul</div></div>
-    <div class="masjid"><div class="masjid-day">5</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Sheikh Zayed</div><div class="masjid-sub">Abu Dhabi</div></div>
-    <div class="masjid"><div class="masjid-day">6</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Hassan II</div><div class="masjid-sub">Casablanca</div></div>
-    <div class="masjid"><div class="masjid-day">7</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Badshahi</div><div class="masjid-sub">Lahore</div></div>
-    <div class="masjid"><div class="masjid-day">8</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Istiqlal</div><div class="masjid-sub">Jakarta</div></div>
-    <div class="masjid"><div class="masjid-day">9</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Qarawiyyin</div><div class="masjid-sub">Fez</div></div>
-    <div class="masjid"><div class="masjid-day">10</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Cordoba<br>Mezquita</div><div class="masjid-sub">Andalusia</div></div>
+    <div class="masjid"><div class="masjid-day">1</div><div class="masjid-icon"><svg><use href="#ic-nabawi"/></svg></div><div class="masjid-name">Al-Masjid<br>an-Nabawi</div><div class="masjid-sub">Madinah</div></div>
+    <div class="masjid"><div class="masjid-day">2</div><div class="masjid-icon"><svg><use href="#ic-haram"/></svg></div><div class="masjid-name">Al-Masjid<br>al-Ḥarām</div><div class="masjid-sub">Makkah</div></div>
+    <div class="masjid"><div class="masjid-day">3</div><div class="masjid-icon"><svg><use href="#ic-aqsa"/></svg></div><div class="masjid-name">Masjid<br>al-Aqṣā</div><div class="masjid-sub">Al-Quds</div></div>
+    <div class="masjid"><div class="masjid-day">4</div><div class="masjid-icon"><svg><use href="#ic-suleymaniye"/></svg></div><div class="masjid-name">Süleymaniye</div><div class="masjid-sub">Istanbul</div></div>
+    <div class="masjid"><div class="masjid-day">5</div><div class="masjid-icon"><svg><use href="#ic-zayed"/></svg></div><div class="masjid-name">Sheikh Zayed</div><div class="masjid-sub">Abu Dhabi</div></div>
+    <div class="masjid"><div class="masjid-day">6</div><div class="masjid-icon"><svg><use href="#ic-hassan2"/></svg></div><div class="masjid-name">Hassan II</div><div class="masjid-sub">Casablanca</div></div>
+    <div class="masjid"><div class="masjid-day">7</div><div class="masjid-icon"><svg><use href="#ic-badshahi"/></svg></div><div class="masjid-name">Badshahi</div><div class="masjid-sub">Lahore</div></div>
+    <div class="masjid"><div class="masjid-day">8</div><div class="masjid-icon"><svg><use href="#ic-istiqlal"/></svg></div><div class="masjid-name">Istiqlal</div><div class="masjid-sub">Jakarta</div></div>
+    <div class="masjid"><div class="masjid-day">9</div><div class="masjid-icon"><svg><use href="#ic-qarawiyyin"/></svg></div><div class="masjid-name">Qarawiyyin</div><div class="masjid-sub">Fez</div></div>
+    <div class="masjid"><div class="masjid-day">10</div><div class="masjid-icon"><svg><use href="#ic-mezquita"/></svg></div><div class="masjid-name">Cordoba<br>Mezquita</div><div class="masjid-sub">Andalusia</div></div>
   </div>
 </section>
 
