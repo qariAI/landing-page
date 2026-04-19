@@ -83,6 +83,14 @@
     background: radial-gradient(circle, rgba(16,185,129,0.20) 0%, transparent 70%);
     pointer-events: none;
   }
+  .hero-skyline {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 140px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.18;
+  }
+  .hero-skyline svg { width: 100%; height: 100%; display: block; }
   .hero-badge {
     position: relative; z-index: 2;
     display: inline-flex; align-items: center; gap: 10px;
@@ -193,6 +201,46 @@
     text-align: center; line-height: 1.6;
   }
 
+  /* PREVIEW (in-app screenshots) */
+  .preview { background: #fff; padding: 90px 5vw 70px; }
+  .preview-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    max-width: 1100px; margin: 0 auto;
+    align-items: end;
+  }
+  .preview-card { text-align: center; }
+  .phone-frame {
+    position: relative;
+    margin: 0 auto 20px;
+    width: 240px; padding: 8px;
+    background: linear-gradient(145deg, #ffffff 0%, #f4f0e4 50%, #ffffff 100%);
+    border-radius: 36px;
+    box-shadow:
+      inset 0 0 0 1px rgba(210,180,120,0.45),
+      inset 0 0 0 2px rgba(255,255,255,0.7),
+      0 22px 50px -16px rgba(0,0,0,0.20),
+      0 8px 18px -6px rgba(0,0,0,0.10);
+    overflow: hidden;
+  }
+  .phone-frame img {
+    display: block; width: 100%; height: auto;
+    border-radius: 28px;
+  }
+  .phone-frame.tilt-left { transform: rotate(-3deg); }
+  .phone-frame.tilt-right { transform: rotate(3deg); }
+  .preview-cap {
+    font-size: 16px; font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .preview-sub {
+    font-size: 14px; font-weight: 500;
+    color: var(--text-light);
+    line-height: 1.5;
+    max-width: 280px; margin: 0 auto;
+  }
+
   /* HOW */
   .how { background: #fff; }
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1040px; margin: 0 auto; }
@@ -235,7 +283,14 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 13px; font-weight: 800;
   }
-  .masjid-icon { font-size: 34px; margin-bottom: 10px; }
+  .masjid-icon {
+    width: 44px; height: 44px;
+    margin: 0 auto 10px;
+    color: var(--green);
+    transition: color 0.25s;
+  }
+  .masjid:hover .masjid-icon { color: var(--gold); }
+  .masjid-icon svg { width: 100%; height: 100%; display: block; }
   .masjid-name { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 3px; }
   .masjid-sub { font-size: 11px; color: var(--text-light); font-weight: 500; }
 
@@ -320,6 +375,9 @@
     .rules-grid { grid-template-columns: 1fr; }
     .tag-strip { font-size: 14px; letter-spacing: 1px; }
     .tag-strip .sep { margin: 0 8px; }
+    .preview-grid { grid-template-columns: 1fr; gap: 50px; }
+    .phone-frame { width: 220px; }
+    .phone-frame.tilt-left, .phone-frame.tilt-right { transform: none; }
   }
   @media (max-width: 600px) {
     nav { padding: 0 20px; height: 60px; }
@@ -330,6 +388,36 @@
 </style>
 </head>
 <body>
+
+<!-- SVG sprite (mosque dome icon, used in masjid grid) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ic-mosque" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <!-- left minaret -->
+        <rect x="8" y="22" width="5" height="32" rx="1"/>
+        <polygon points="6,22 10.5,14 15,22"/>
+        <circle cx="10.5" cy="11" r="1.8"/>
+        <!-- right minaret -->
+        <rect x="51" y="22" width="5" height="32" rx="1"/>
+        <polygon points="49,22 53.5,14 58,22"/>
+        <circle cx="53.5" cy="11" r="1.8"/>
+        <!-- main building -->
+        <rect x="16" y="36" width="32" height="18" rx="1"/>
+        <!-- main dome -->
+        <path d="M16 36 Q32 12 48 36 Z"/>
+        <!-- dome finial -->
+        <rect x="31" y="6" width="2" height="6"/>
+        <circle cx="32" cy="4" r="2"/>
+        <!-- side small domes -->
+        <path d="M18 36 Q24 28 30 36 Z" opacity="0.85"/>
+        <path d="M34 36 Q40 28 46 36 Z" opacity="0.85"/>
+      </g>
+      <!-- arched door (negative, white-ish) -->
+      <path d="M29 54 V44 Q32 39 35 44 V54 Z" fill="#ffffff" opacity="0.95"/>
+    </symbol>
+  </defs>
+</svg>
 
 <!-- NAV -->
 <nav>
@@ -367,12 +455,87 @@
       <div class="hero-stat-lbl">To join</div>
     </div>
   </div>
+
+  <!-- Subtle masjid skyline silhouette -->
+  <div class="hero-skyline" aria-hidden="true">
+    <svg viewBox="0 0 1600 140" preserveAspectRatio="xMidYEnd meet" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#059669">
+        <!-- left minaret -->
+        <rect x="120" y="52" width="6" height="88"/>
+        <polygon points="117,52 123,40 129,52"/>
+        <circle cx="123" cy="36" r="2.5"/>
+        <!-- mid-left masjid (small) -->
+        <rect x="220" y="78" width="100" height="62"/>
+        <path d="M220 78 Q270 50 320 78 Z"/>
+        <rect x="268" y="64" width="3" height="10"/>
+        <circle cx="269.5" cy="62" r="2"/>
+        <!-- center masjid (large) -->
+        <rect x="640" y="70" width="320" height="70" rx="2"/>
+        <path d="M640 70 Q800 16 960 70 Z"/>
+        <!-- center finial -->
+        <rect x="798" y="8" width="4" height="14"/>
+        <circle cx="800" cy="6" r="3.5"/>
+        <!-- side small domes on big masjid -->
+        <path d="M650 70 Q680 50 710 70 Z"/>
+        <path d="M890 70 Q920 50 950 70 Z"/>
+        <!-- center minarets -->
+        <rect x="606" y="40" width="6" height="100"/>
+        <polygon points="603,40 609,28 615,40"/>
+        <circle cx="609" cy="24" r="2.5"/>
+        <rect x="988" y="40" width="6" height="100"/>
+        <polygon points="985,40 991,28 997,40"/>
+        <circle cx="991" cy="24" r="2.5"/>
+        <!-- mid-right masjid -->
+        <rect x="1140" y="80" width="120" height="60"/>
+        <path d="M1140 80 Q1200 56 1260 80 Z"/>
+        <rect x="1198" y="68" width="3" height="10"/>
+        <circle cx="1199.5" cy="66" r="2"/>
+        <!-- right minaret -->
+        <rect x="1380" y="56" width="6" height="84"/>
+        <polygon points="1377,56 1383,44 1389,56"/>
+        <circle cx="1383" cy="40" r="2.5"/>
+        <!-- ground line -->
+        <rect x="0" y="138" width="1600" height="2"/>
+      </g>
+    </svg>
+  </div>
 </section>
 
 <!-- HASHTAG STRIP -->
 <div class="tag-strip">
   <span class="tag">#10MasjidsChallenge</span><span class="sep">·</span><span class="tag">#TourTheMasjids</span><span class="sep">·</span><span class="tag">#QariAI</span>
 </div>
+
+<!-- PREVIEW: in-app screenshots -->
+<section class="preview">
+  <p class="eyebrow">Inside the app</p>
+  <h2 class="h2">What each day looks like</h2>
+  <p class="h2-sub">Pick a masjid · Recite a sūrah · Get instant feedback · Watch your score climb.</p>
+
+  <div class="preview-grid">
+    <div class="preview-card">
+      <div class="phone-frame tilt-left">
+        <img src="/screenshots/challenge-masjid.jpg" alt="Recite inside Süleymaniye masjid in QariAI" loading="lazy"/>
+      </div>
+      <div class="preview-cap">Recite inside the masjid</div>
+      <div class="preview-sub">Open Süleymaniye, Al-Aqṣā, or any of 10 sacred environments and tap the mic.</div>
+    </div>
+    <div class="preview-card">
+      <div class="phone-frame">
+        <img src="/screenshots/challenge-recite.jpg" alt="Real-time AI Tajweed mistake detection" loading="lazy"/>
+      </div>
+      <div class="preview-cap">AI catches every mistake</div>
+      <div class="preview-sub">Letter-by-letter feedback on Makharij, Qalqalah, Madd, Ghunnah — the moment you slip.</div>
+    </div>
+    <div class="preview-card">
+      <div class="phone-frame tilt-right">
+        <img src="/screenshots/challenge-feedback.jpg" alt="Tajweed accuracy improving from 7.5 to 95%" loading="lazy"/>
+      </div>
+      <div class="preview-cap">Watch your score climb</div>
+      <div class="preview-sub">Your accuracy improves visibly across the 10 days. Day 1 score → day 10 score.</div>
+    </div>
+  </div>
+</section>
 
 <!-- HOW -->
 <section class="pad how" id="how">
@@ -406,16 +569,16 @@
   <p class="h2-sub">Pick your order, switch between them freely — the challenge is yours to shape.</p>
 
   <div class="masjid-grid">
-    <div class="masjid"><div class="masjid-day">1</div><div class="masjid-icon">🕌</div><div class="masjid-name">Al-Masjid<br>an-Nabawi</div><div class="masjid-sub">Madinah</div></div>
-    <div class="masjid"><div class="masjid-day">2</div><div class="masjid-icon">🕋</div><div class="masjid-name">Al-Masjid<br>al-Ḥarām</div><div class="masjid-sub">Makkah</div></div>
-    <div class="masjid"><div class="masjid-day">3</div><div class="masjid-icon">🕌</div><div class="masjid-name">Masjid<br>al-Aqṣā</div><div class="masjid-sub">Al-Quds</div></div>
-    <div class="masjid"><div class="masjid-day">4</div><div class="masjid-icon">🕌</div><div class="masjid-name">Süleymaniye</div><div class="masjid-sub">Istanbul</div></div>
-    <div class="masjid"><div class="masjid-day">5</div><div class="masjid-icon">🕌</div><div class="masjid-name">Sheikh Zayed</div><div class="masjid-sub">Abu Dhabi</div></div>
-    <div class="masjid"><div class="masjid-day">6</div><div class="masjid-icon">🕌</div><div class="masjid-name">Hassan II</div><div class="masjid-sub">Casablanca</div></div>
-    <div class="masjid"><div class="masjid-day">7</div><div class="masjid-icon">🕌</div><div class="masjid-name">Badshahi</div><div class="masjid-sub">Lahore</div></div>
-    <div class="masjid"><div class="masjid-day">8</div><div class="masjid-icon">🕌</div><div class="masjid-name">Istiqlal</div><div class="masjid-sub">Jakarta</div></div>
-    <div class="masjid"><div class="masjid-day">9</div><div class="masjid-icon">🕌</div><div class="masjid-name">Qarawiyyin</div><div class="masjid-sub">Fez</div></div>
-    <div class="masjid"><div class="masjid-day">10</div><div class="masjid-icon">🕌</div><div class="masjid-name">Cordoba<br>Mezquita</div><div class="masjid-sub">Andalusia</div></div>
+    <div class="masjid"><div class="masjid-day">1</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Al-Masjid<br>an-Nabawi</div><div class="masjid-sub">Madinah</div></div>
+    <div class="masjid"><div class="masjid-day">2</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Al-Masjid<br>al-Ḥarām</div><div class="masjid-sub">Makkah</div></div>
+    <div class="masjid"><div class="masjid-day">3</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Masjid<br>al-Aqṣā</div><div class="masjid-sub">Al-Quds</div></div>
+    <div class="masjid"><div class="masjid-day">4</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Süleymaniye</div><div class="masjid-sub">Istanbul</div></div>
+    <div class="masjid"><div class="masjid-day">5</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Sheikh Zayed</div><div class="masjid-sub">Abu Dhabi</div></div>
+    <div class="masjid"><div class="masjid-day">6</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Hassan II</div><div class="masjid-sub">Casablanca</div></div>
+    <div class="masjid"><div class="masjid-day">7</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Badshahi</div><div class="masjid-sub">Lahore</div></div>
+    <div class="masjid"><div class="masjid-day">8</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Istiqlal</div><div class="masjid-sub">Jakarta</div></div>
+    <div class="masjid"><div class="masjid-day">9</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Qarawiyyin</div><div class="masjid-sub">Fez</div></div>
+    <div class="masjid"><div class="masjid-day">10</div><div class="masjid-icon"><svg><use href="#ic-mosque"/></svg></div><div class="masjid-name">Cordoba<br>Mezquita</div><div class="masjid-sub">Andalusia</div></div>
   </div>
 </section>
 
