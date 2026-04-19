@@ -55,10 +55,8 @@
     background: rgba(236,253,245,0.92); backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(16,185,129,0.12);
   }
-  .nav-logo { display: flex; align-items: center; text-decoration: none; gap: 10px; }
-  .nav-logo img { height: 42px; width: auto; }
-  .nav-logo .brand { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; color: var(--text); }
-  .nav-logo .ai { color: var(--green); }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 56px; width: auto; display: block; }
   .btn-primary {
     font-size: 14px; font-weight: 700; color: #fff;
     text-decoration: none; padding: 10px 22px;
@@ -522,7 +520,7 @@
   }
   @media (max-width: 600px) {
     nav { padding: 0 20px; height: 60px; }
-    .nav-logo .brand { display: none; }
+    .nav-logo img { height: 44px; }
     .hero-stats { gap: 24px; }
     .hero-stat-num { font-size: 26px; }
   }
@@ -701,7 +699,6 @@
 <nav>
   <a class="nav-logo" href="/">
     <img src="/logo.png" alt="QariAI"/>
-    <span class="brand">Qari<span class="ai">AI</span></span>
   </a>
   <a href="https://play.google.com/store/apps/details?id=app.qari.ai?utm_source=challenge-page&utm_medium=web&utm_campaign=10masjids" class="btn-primary">Download Free</a>
 </nav>
