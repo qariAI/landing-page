@@ -123,6 +123,77 @@
   .hero-star-1 { top: 22%; left: 18%; }
   .hero-star-2 { top: 32%; right: 16%; }
   .hero-star-3 { bottom: 32%; right: 24%; width: 8px; height: 8px; }
+  .hero-star-4 { top: 42%; left: 6%; width: 10px; height: 10px; }
+  .hero-star-5 { bottom: 38%; right: 7%; width: 11px; height: 11px; }
+  .hero-star-6 { top: 12%; left: 44%; width: 7px; height: 7px; }
+  .hero-star-7 { bottom: 22%; left: 34%; width: 6px; height: 6px; }
+
+  .hero-crescent-5 { top: 44%; right: 5%; width: 20px; height: 20px; transform: rotate(-30deg); opacity: 0.32; }
+  .hero-crescent-6 { top: 50%; left: 4%; width: 14px; height: 14px; transform: rotate(60deg); opacity: 0.40; }
+  .hero-crescent-7 { bottom: 16%; right: 20%; width: 26px; height: 26px; transform: rotate(-45deg); opacity: 0.28; }
+
+  /* Corner arabesque ornaments */
+  .hero-ornament {
+    position: absolute; pointer-events: none; z-index: 1;
+    opacity: 0.22;
+  }
+  .hero-ornament svg { width: 100%; height: 100%; display: block; }
+  .hero-ornament-tl { top: 90px; left: 20px; width: 88px; height: 88px; }
+  .hero-ornament-tr { top: 90px; right: 20px; width: 88px; height: 88px; transform: scaleX(-1); }
+  .hero-ornament-bl { bottom: 170px; left: 26px; width: 64px; height: 64px; opacity: 0.16; transform: scaleY(-1); }
+  .hero-ornament-br { bottom: 170px; right: 26px; width: 64px; height: 64px; opacity: 0.16; transform: scale(-1, -1); }
+
+  /* Secondary micro-dot layer */
+  .hero-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(5,150,105,0.35) 1px, transparent 1.2px);
+    background-size: 38px 38px;
+    background-position: 19px 19px;
+    opacity: 0.18;
+    z-index: 1; pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+    mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+  }
+
+  /* Soft gold ray glow behind the title */
+  .hero-rays {
+    position: absolute; top: 26%; left: 50%;
+    transform: translateX(-50%);
+    width: 560px; height: 560px;
+    background: conic-gradient(from 0deg,
+      rgba(196,155,69,0.00) 0deg,
+      rgba(196,155,69,0.10) 18deg,
+      rgba(196,155,69,0.00) 36deg,
+      rgba(196,155,69,0.10) 54deg,
+      rgba(196,155,69,0.00) 72deg,
+      rgba(196,155,69,0.10) 90deg,
+      rgba(196,155,69,0.00) 108deg,
+      rgba(196,155,69,0.10) 126deg,
+      rgba(196,155,69,0.00) 144deg,
+      rgba(196,155,69,0.10) 162deg,
+      rgba(196,155,69,0.00) 180deg,
+      rgba(196,155,69,0.10) 198deg,
+      rgba(196,155,69,0.00) 216deg,
+      rgba(196,155,69,0.10) 234deg,
+      rgba(196,155,69,0.00) 252deg,
+      rgba(196,155,69,0.10) 270deg,
+      rgba(196,155,69,0.00) 288deg,
+      rgba(196,155,69,0.10) 306deg,
+      rgba(196,155,69,0.00) 324deg,
+      rgba(196,155,69,0.10) 342deg,
+      rgba(196,155,69,0.00) 360deg);
+    -webkit-mask-image: radial-gradient(circle, #000 30%, transparent 70%);
+    mask-image: radial-gradient(circle, #000 30%, transparent 70%);
+    opacity: 0.45;
+    pointer-events: none; z-index: 1;
+  }
+
+  @media (max-width: 700px) {
+    .hero-ornament-tl, .hero-ornament-tr { width: 56px; height: 56px; top: 78px; }
+    .hero-ornament-bl, .hero-ornament-br { width: 42px; height: 42px; bottom: 140px; }
+    .hero-rays { width: 360px; height: 360px; }
+    .hero-crescent-2, .hero-crescent-5, .hero-crescent-7 { display: none; }
+  }
   .hero-badge {
     position: relative; z-index: 2;
     display: inline-flex; align-items: center; gap: 10px;
@@ -649,6 +720,14 @@
       <path d="M22 54 V47 Q24 44 26 47 V54 Z" fill="#3D2D14"/>
       <path d="M30 54 V46 Q32 42 34 46 V54 Z" fill="#3D2D14"/>
       <path d="M38 54 V47 Q40 44 42 47 V54 Z" fill="#3D2D14"/>
+      <!-- sandstone ground + date palm silhouette (Madinah) + distant birds -->
+      <rect x="0" y="54" width="64" height="1" fill="#D4C9A8" opacity="0.7"/>
+      <g opacity="0.65">
+        <rect x="44.5" y="48" width="0.7" height="6" fill="#6B4423"/>
+        <path d="M44.8 48 Q42 46 40.5 44.5 M44.8 48 Q47.6 46 49 44.5 M44.8 48 Q43.6 45 43 43 M44.8 48 Q46 45 46.6 43" stroke="#65A30D" stroke-width="0.55" fill="none"/>
+      </g>
+      <path d="M11 14 q1 -0.8 2 0 q1 -0.8 2 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.5"/>
+      <path d="M39 9 q1 -0.8 2 0 q1 -0.8 2 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.5"/>
     </symbol>
 
     <!-- 2. Al-Masjid al-Ḥarām (Makkah) — Kaaba + minarets w/ balconies + arcade -->
@@ -683,6 +762,23 @@
       <rect x="25" y="30.5" width="14" height="0.4" fill="#8A6B2B"/>
       <!-- gold door (right side, raised) -->
       <rect x="35" y="38" width="3" height="11" fill="url(#goldDome)"/>
+      <!-- Hajar al-Aswad corner marker (bottom-left of Kaaba) -->
+      <circle cx="24.8" cy="48" r="0.9" fill="url(#goldDome)"/>
+      <!-- ihram-clad pilgrims on mataf (tawaf) -->
+      <g fill="#FFFFFF" opacity="0.85">
+        <circle cx="14" cy="50" r="0.9"/>
+        <circle cx="18" cy="51" r="0.8"/>
+        <circle cx="47" cy="50" r="0.9"/>
+        <circle cx="50" cy="51" r="0.8"/>
+        <circle cx="32" cy="52.5" r="0.9"/>
+        <circle cx="12" cy="51.5" r="0.7"/>
+        <circle cx="52" cy="51.8" r="0.7"/>
+      </g>
+      <!-- tawaf flow arc (subtle) -->
+      <ellipse cx="32" cy="50" rx="22" ry="2.5" fill="none" stroke="#C49B45" stroke-width="0.3" opacity="0.5"/>
+      <!-- distant bird pair -->
+      <path d="M20 8 q1 -0.8 2 0 q1 -0.8 2 0" stroke="#64748B" stroke-width="0.4" fill="none" opacity="0.55"/>
+      <path d="M40 6 q0.8 -0.6 1.6 0 q0.8 -0.6 1.6 0" stroke="#64748B" stroke-width="0.4" fill="none" opacity="0.5"/>
     </symbol>
 
     <!-- 3. Masjid al-Aqṣā (Quds) — golden onion-dome Rock + silver tear-drop Aqsa -->
@@ -714,6 +810,18 @@
       <!-- silver finial + crescent -->
       <rect x="45.2" y="17" width="1.6" height="5" fill="#64748B"/>
       <path d="M44.5 16 A1.7 1.7 0 1 0 44.5 12.5 A1.1 1.1 0 1 1 44.5 16 Z" fill="url(#silverDome)"/>
+      <!-- olive grove hint + cypress silhouette (Jerusalem landscape) -->
+      <g opacity="0.75">
+        <path d="M29 50 Q30 42 31 50 Z" fill="#15803D"/>
+        <rect x="30" y="48" width="0.6" height="2" fill="#3D2D14"/>
+      </g>
+      <g opacity="0.55">
+        <circle cx="27" cy="49" r="1.4" fill="#15803D"/>
+        <rect x="26.7" y="49" width="0.6" height="1.5" fill="#3D2D14"/>
+      </g>
+      <!-- birds in sky above the haram -->
+      <path d="M35 12 q1 -0.8 2 0 q1 -0.8 2 0" stroke="#64748B" stroke-width="0.4" fill="none" opacity="0.6"/>
+      <path d="M52 10 q0.8 -0.6 1.6 0 q0.8 -0.6 1.6 0" stroke="#64748B" stroke-width="0.4" fill="none" opacity="0.5"/>
     </symbol>
 
     <!-- 4. Süleymaniye (Istanbul) — Ottoman cascading semi-domes + 4 pencil minarets -->
@@ -756,6 +864,14 @@
       <!-- gold finial + crescent -->
       <rect x="31" y="12" width="2" height="6" fill="#64748B"/>
       <path d="M30.5 11 A2 2 0 1 0 30.5 7 A1.3 1.3 0 1 1 30.5 11 Z" fill="url(#goldDome)"/>
+      <!-- Bosphorus water strip (subtle blue-teal) -->
+      <rect x="0" y="56" width="64" height="8" fill="#0EA5E9" opacity="0.35"/>
+      <path d="M0 58 Q16 57 32 58 T 64 58" stroke="#0EA5E9" stroke-width="0.5" fill="none" opacity="0.6"/>
+      <path d="M0 61 Q12 60 24 61 T 48 61 T 64 61" stroke="#0EA5E9" stroke-width="0.4" fill="none" opacity="0.45"/>
+      <!-- seagulls over Bosphorus -->
+      <path d="M20 14 q1 -0.8 2 0 q1 -0.8 2 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.6"/>
+      <path d="M36 8 q0.9 -0.7 1.8 0 q0.9 -0.7 1.8 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.55"/>
+      <path d="M46 14 q0.8 -0.6 1.6 0 q0.8 -0.6 1.6 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.5"/>
     </symbol>
 
     <!-- 5. Sheikh Zayed (Abu Dhabi) — multi-dome WHITE marble + 4 dome-capped minarets -->
@@ -790,6 +906,14 @@
       <!-- gold finial -->
       <rect x="31" y="18" width="2" height="6" fill="#94A3B8"/>
       <path d="M30 17 A2 2 0 1 0 30 13 A1.3 1.3 0 1 1 30 17 Z" fill="url(#goldDome)"/>
+      <!-- reflecting pool at base (mirrors main building) -->
+      <rect x="10" y="56" width="44" height="4" fill="#60A5FA" opacity="0.38"/>
+      <path d="M10 56 L54 56" stroke="#C49B45" stroke-width="0.3" opacity="0.6"/>
+      <path d="M14 58 Q22 57.6 30 58 T 46 58" stroke="#FFFFFF" stroke-width="0.35" fill="none" opacity="0.6"/>
+      <!-- inverted dome reflection hint -->
+      <path d="M24 56 Q24 60 28 62 Q32 63 36 62 Q40 60 40 56" stroke="#FFFFFF" stroke-width="0.3" fill="none" opacity="0.45"/>
+      <!-- desert moon accent top-right -->
+      <circle cx="56" cy="6" r="2" fill="#F5E4A8" opacity="0.5"/>
     </symbol>
 
     <!-- 6. Hassan II (Casablanca) — over-the-Atlantic + dominant green-tile minaret -->
@@ -826,6 +950,16 @@
       <rect x="44" y="37" width="14" height="0.6" fill="#15803D" opacity="0.6"/>
       <!-- arched window on minaret base -->
       <path d="M48 54 V49 Q51 46 54 49 V54 Z" fill="#3D2D14" opacity="0.7"/>
+      <!-- extra Atlantic wave lines -->
+      <path d="M0 60 Q16 58 32 60 T 64 60" stroke="#0EA5A0" stroke-width="0.5" fill="none" opacity="0.5"/>
+      <path d="M0 63 Q16 62 32 63 T 64 63" stroke="#0EA5A0" stroke-width="0.4" fill="none" opacity="0.4"/>
+      <!-- foam crests -->
+      <path d="M8 58 q1 -0.4 2 0" stroke="#FFFFFF" stroke-width="0.3" fill="none" opacity="0.7"/>
+      <path d="M30 57 q1 -0.4 2 0" stroke="#FFFFFF" stroke-width="0.3" fill="none" opacity="0.7"/>
+      <path d="M50 58 q1 -0.4 2 0" stroke="#FFFFFF" stroke-width="0.3" fill="none" opacity="0.7"/>
+      <!-- seagulls over the Atlantic -->
+      <path d="M14 18 q0.9 -0.7 1.8 0 q0.9 -0.7 1.8 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.55"/>
+      <path d="M32 10 q1 -0.8 2 0 q1 -0.8 2 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.5"/>
     </symbol>
 
     <!-- 7. Badshahi (Lahore) — Mughal red sandstone + 3 marble onion domes + chhatris -->
@@ -873,6 +1007,19 @@
       <rect x="22.5" y="25" width="1" height="3" fill="#C49B45"/>
       <rect x="31.5" y="11" width="1" height="3" fill="#C49B45"/>
       <rect x="40.5" y="25" width="1" height="3" fill="#C49B45"/>
+      <!-- gold trim + hanging lantern on iwan portal -->
+      <path d="M28 44 Q32 40 36 44" stroke="#C49B45" stroke-width="0.6" fill="none" opacity="0.85"/>
+      <rect x="31.6" y="45" width="0.8" height="2" fill="#C49B45"/>
+      <circle cx="32" cy="48" r="0.7" fill="url(#goldDome)"/>
+      <!-- red sandstone platform / courtyard line -->
+      <rect x="0" y="54" width="64" height="1.2" fill="#B91C1C" opacity="0.55"/>
+      <rect x="0" y="55.5" width="64" height="0.5" fill="#F5EED8" opacity="0.5"/>
+      <!-- reflecting pool in front -->
+      <rect x="16" y="56" width="32" height="3.5" fill="#60A5FA" opacity="0.35"/>
+      <path d="M20 57.5 Q26 57 32 57.5 T 44 57.5" stroke="#FFFFFF" stroke-width="0.25" fill="none" opacity="0.6"/>
+      <!-- birds over Lahore -->
+      <path d="M8 8 q0.9 -0.7 1.8 0 q0.9 -0.7 1.8 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.55"/>
+      <path d="M52 10 q0.8 -0.6 1.6 0 q0.8 -0.6 1.6 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.5"/>
     </symbol>
 
     <!-- 8. Istiqlal (Jakarta) — modernist steel hemisphere + slim minaret + colonnade -->
@@ -906,6 +1053,16 @@
       <rect x="32" y="38" width="1.5" height="16" fill="#94A3B8"/>
       <rect x="38" y="38" width="1.5" height="16" fill="#94A3B8"/>
       <rect x="44" y="38" width="1.5" height="16" fill="#94A3B8"/>
+      <!-- tropical palm silhouette (Jakarta) -->
+      <g opacity="0.75">
+        <rect x="47.6" y="46" width="0.8" height="8" fill="#6B4423"/>
+        <path d="M48 46 Q44 43 41 41 M48 46 Q52 43 55 41 M48 46 Q45 42 43 39 M48 46 Q51 42 53 39 M48 46 Q47 41 46 38 M48 46 Q49 41 50 38" stroke="#65A30D" stroke-width="0.6" fill="none"/>
+      </g>
+      <!-- Independence-era plaza line -->
+      <rect x="0" y="54" width="64" height="0.8" fill="#94A3B8" opacity="0.5"/>
+      <!-- birds in tropical sky -->
+      <path d="M10 14 q1 -0.8 2 0 q1 -0.8 2 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.55"/>
+      <path d="M32 8 q0.9 -0.7 1.8 0 q0.9 -0.7 1.8 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.5"/>
     </symbol>
 
     <!-- 9. Qarawiyyin (Fez) — Maghrebi square minaret w/ green pyramid + courtyard -->
@@ -953,6 +1110,17 @@
       <rect x="42" y="37" width="16" height="0.5" fill="#15803D" opacity="0.6"/>
       <!-- arched window in minaret -->
       <path d="M47 45 V40 Q50 37 53 40 V45 Z" fill="#3D2D14" opacity="0.6"/>
+      <!-- courtyard with ablution fountain (center-front) -->
+      <rect x="0" y="54" width="64" height="1" fill="#D4C9A8" opacity="0.7"/>
+      <g>
+        <ellipse cx="22" cy="58" rx="5" ry="1.4" fill="#60A5FA" opacity="0.45"/>
+        <ellipse cx="22" cy="57.4" rx="3.2" ry="0.9" fill="#FFFFFF" opacity="0.55"/>
+        <rect x="21.4" y="55.4" width="1.2" height="2" fill="#C49B45"/>
+        <circle cx="22" cy="55" r="0.7" fill="url(#goldDome)"/>
+      </g>
+      <!-- stork/bird over Fez rooftops -->
+      <path d="M8 12 q1 -0.8 2 0 q1 -0.8 2 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.55"/>
+      <path d="M26 8 q0.9 -0.7 1.8 0 q0.9 -0.7 1.8 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.5"/>
     </symbol>
 
     <!-- 10. Mezquita (Cordoba) — DOUBLE-tier red-and-white horseshoe arches + bell tower -->
@@ -1006,6 +1174,22 @@
         <path d="M34 54 V47 Q37 44 40 47 V54 Z" fill="#FFFFFF"/>
         <path d="M35 54 V49 Q37 46 39 49 V54 Z" fill="#B91C1C"/>
       </g>
+      <!-- Patio de los Naranjos — orange tree silhouette -->
+      <g opacity="0.8">
+        <rect x="48.6" y="48" width="0.8" height="6" fill="#6B4423"/>
+        <circle cx="49" cy="46" r="3" fill="#15803D"/>
+        <circle cx="47.2" cy="45.5" r="1.8" fill="#16A34A" opacity="0.9"/>
+        <circle cx="50.6" cy="45.8" r="1.6" fill="#16A34A" opacity="0.9"/>
+        <!-- oranges -->
+        <circle cx="48" cy="46.6" r="0.5" fill="#F97316"/>
+        <circle cx="50.2" cy="46" r="0.45" fill="#F97316"/>
+        <circle cx="49" cy="44.8" r="0.45" fill="#F97316"/>
+      </g>
+      <!-- courtyard tile floor -->
+      <rect x="0" y="54" width="64" height="1" fill="#D4C9A8" opacity="0.6"/>
+      <!-- birds over the Mezquita -->
+      <path d="M10 14 q1 -0.8 2 0 q1 -0.8 2 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.55"/>
+      <path d="M28 9 q0.9 -0.7 1.8 0 q0.9 -0.7 1.8 0" stroke="#475569" stroke-width="0.4" fill="none" opacity="0.5"/>
     </symbol>
   </defs>
 </svg>
@@ -1021,13 +1205,66 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-pattern" aria-hidden="true"></div>
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="hero-rays" aria-hidden="true"></div>
   <span class="hero-crescent hero-crescent-1" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 4 A8 8 0 1 0 16 20 A6 6 0 1 1 16 4 Z" fill="#16A34A"/></svg></span>
   <span class="hero-crescent hero-crescent-2" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 4 A8 8 0 1 0 16 20 A6 6 0 1 1 16 4 Z" fill="#C49B45"/></svg></span>
   <span class="hero-crescent hero-crescent-3" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 4 A8 8 0 1 0 16 20 A6 6 0 1 1 16 4 Z" fill="#15803D"/></svg></span>
   <span class="hero-crescent hero-crescent-4" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 4 A8 8 0 1 0 16 20 A6 6 0 1 1 16 4 Z" fill="#C49B45"/></svg></span>
+  <span class="hero-crescent hero-crescent-5" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 4 A8 8 0 1 0 16 20 A6 6 0 1 1 16 4 Z" fill="#16A34A"/></svg></span>
+  <span class="hero-crescent hero-crescent-6" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 4 A8 8 0 1 0 16 20 A6 6 0 1 1 16 4 Z" fill="#C49B45"/></svg></span>
+  <span class="hero-crescent hero-crescent-7" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 4 A8 8 0 1 0 16 20 A6 6 0 1 1 16 4 Z" fill="#15803D"/></svg></span>
   <span class="hero-star hero-star-1" aria-hidden="true"></span>
   <span class="hero-star hero-star-2" aria-hidden="true"></span>
   <span class="hero-star hero-star-3" aria-hidden="true"></span>
+  <span class="hero-star hero-star-4" aria-hidden="true"></span>
+  <span class="hero-star hero-star-5" aria-hidden="true"></span>
+  <span class="hero-star hero-star-6" aria-hidden="true"></span>
+  <span class="hero-star hero-star-7" aria-hidden="true"></span>
+
+  <!-- Corner arabesque ornaments -->
+  <div class="hero-ornament hero-ornament-tl" aria-hidden="true">
+    <svg viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#15803D" stroke-width="1.2" stroke-linecap="round">
+        <path d="M6 6 Q44 6 44 44 Q44 82 82 82"/>
+        <path d="M6 20 Q30 20 30 44"/>
+        <path d="M20 6 Q20 30 44 30"/>
+        <circle cx="44" cy="44" r="2.4" fill="#C49B45" stroke="none"/>
+        <circle cx="30" cy="44" r="1.6" fill="#C49B45" stroke="none"/>
+        <circle cx="44" cy="30" r="1.6" fill="#C49B45" stroke="none"/>
+        <path d="M58 58 L62 66 L70 66 L64 72 L66 80 L58 75 L50 80 L52 72 L46 66 L54 66 Z" stroke-width="1"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-ornament hero-ornament-tr" aria-hidden="true">
+    <svg viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#15803D" stroke-width="1.2" stroke-linecap="round">
+        <path d="M6 6 Q44 6 44 44 Q44 82 82 82"/>
+        <path d="M6 20 Q30 20 30 44"/>
+        <path d="M20 6 Q20 30 44 30"/>
+        <circle cx="44" cy="44" r="2.4" fill="#C49B45" stroke="none"/>
+        <circle cx="30" cy="44" r="1.6" fill="#C49B45" stroke="none"/>
+        <circle cx="44" cy="30" r="1.6" fill="#C49B45" stroke="none"/>
+        <path d="M58 58 L62 66 L70 66 L64 72 L66 80 L58 75 L50 80 L52 72 L46 66 L54 66 Z" stroke-width="1"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-ornament hero-ornament-bl" aria-hidden="true">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#C49B45" stroke-width="1" stroke-linecap="round">
+        <path d="M32 4 L38 22 L56 22 L42 34 L48 52 L32 41 L16 52 L22 34 L8 22 L26 22 Z"/>
+        <circle cx="32" cy="32" r="4" fill="#15803D" stroke="none" opacity="0.5"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-ornament hero-ornament-br" aria-hidden="true">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#C49B45" stroke-width="1" stroke-linecap="round">
+        <path d="M32 4 L38 22 L56 22 L42 34 L48 52 L32 41 L16 52 L22 34 L8 22 L26 22 Z"/>
+        <circle cx="32" cy="32" r="4" fill="#15803D" stroke="none" opacity="0.5"/>
+      </g>
+    </svg>
+  </div>
 
   <div class="hero-badge"><span class="dot"></span>Community Challenge · Live Now</div>
   <h1>10 Days.<br>10 Masjids.<br><span class="accent">Beautify your voice.</span></h1>
