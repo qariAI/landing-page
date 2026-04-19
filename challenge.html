@@ -211,6 +211,40 @@
     background: var(--green-bright);
     box-shadow: 0 0 0 4px rgba(16,185,129,0.22);
   }
+  .hero-badge .dot-live {
+    background: #EF4444;
+    animation: pulse-live 1.8s ease-out infinite;
+    box-shadow: 0 0 0 0 rgba(239,68,68,0.5);
+  }
+  .hero-badge .sep { opacity: 0.45; }
+  .hero-badge .count { color: var(--green); letter-spacing: 0.6px; }
+  @keyframes pulse-live {
+    0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.55); }
+    70% { box-shadow: 0 0 0 7px rgba(239,68,68,0); }
+    100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+  }
+
+  /* Arabic epigraph */
+  .hero-epigraph {
+    position: relative; z-index: 2;
+    font-family: 'Amiri', serif;
+    font-size: clamp(22px, 2.8vw, 32px);
+    font-weight: 400;
+    color: var(--green-dark);
+    opacity: 0.55;
+    margin-bottom: 14px;
+    direction: rtl;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+  .hero-epigraph-tr {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 13px; font-style: italic; font-weight: 500;
+    color: var(--text-light); opacity: 0.85;
+    margin-top: 4px; direction: ltr;
+    letter-spacing: 0.2px;
+  }
   .hero h1 {
     position: relative; z-index: 2;
     font-family: 'Inter', sans-serif;
@@ -223,9 +257,194 @@
     max-width: 900px;
   }
   .hero h1 .accent {
-    background: linear-gradient(135deg, #16A34A 0%, #15803D 60%, #065F46 100%);
+    background: linear-gradient(110deg,
+      #16A34A 0%,
+      #15803D 25%,
+      #22C55E 42%,
+      #F5E4A8 50%,
+      #C49B45 55%,
+      #15803D 72%,
+      #065F46 100%);
+    background-size: 280% 100%;
+    background-position: 90% 50%;
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: accent-shimmer 8s ease-in-out infinite;
+  }
+  @keyframes accent-shimmer {
+    0%, 100% { background-position: 90% 50%; }
+    50%      { background-position: 10% 50%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .accent { animation: none; }
+  }
+
+  /* Sound wave under headline */
+  .hero-wave {
+    position: relative; z-index: 2;
+    width: min(340px, 78%); height: 26px;
+    margin: -4px auto 14px;
+    color: var(--green);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .hero-wave svg { width: 100%; height: 100%; display: block; }
+  .hero-wave rect {
+    transform-origin: center;
+    animation: wave-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes wave-pulse {
+    0%, 100% { transform: scaleY(0.35); }
+    50%      { transform: scaleY(1);    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-wave rect { animation: none; transform: scaleY(0.8); }
+  }
+
+  /* 10-masjid mini-stack preview */
+  .hero-minicards {
+    position: relative; z-index: 2;
+    display: flex; flex-wrap: wrap;
+    gap: 6px; justify-content: center;
+    margin-top: 26px; max-width: 440px;
+  }
+  .hero-minicard {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(5,150,105,0.18);
+    border: 1.5px solid rgba(5,150,105,0.18);
+    transform: translateY(0);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: block;
+  }
+  .hero-minicard:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 6px 16px rgba(5,150,105,0.30);
+    z-index: 4;
+  }
+  .hero-minicard svg { width: 100%; height: 100%; display: block; }
+
+  /* Scroll cue */
+  .hero-scroll-cue {
+    position: absolute; bottom: 28px; left: 50%;
+    transform: translateX(-50%); z-index: 3;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px; color: var(--green-dark); opacity: 0.6;
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: scroll-bounce 2.4s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .hero-scroll-cue svg { width: 20px; height: 20px; }
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0);   opacity: 0.5; }
+    50%      { transform: translateX(-50%) translateY(6px); opacity: 0.85; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scroll-cue { animation: none; }
+  }
+
+  /* Hero desktop split layout */
+  .hero-main {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+    width: 100%;
+  }
+  .hero-visual { display: none; }
+
+  @media (min-width: 1024px) {
+    .hero {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      padding: 140px 5vw 120px;
+      text-align: left;
+    }
+    .hero-main {
+      flex: 1 1 0;
+      max-width: 620px;
+      align-items: flex-start;
+    }
+    .hero-main .hero-badge,
+    .hero-main .hero-epigraph { align-self: flex-start; }
+    .hero-main h1 { text-align: left; max-width: none; }
+    .hero-main p { text-align: left; max-width: none; margin-left: 0; margin-right: 0; }
+    .hero-main .hero-wave { margin-left: 0; margin-right: auto; }
+    .hero-main .hero-actions,
+    .hero-main .hero-trust,
+    .hero-main .hero-stats,
+    .hero-main .hero-minicards { justify-content: flex-start; }
+    .hero-visual {
+      display: flex; flex: 0 0 340px;
+      justify-content: center; align-items: center;
+      position: relative;
+    }
+    .hero-phone {
+      width: 290px; aspect-ratio: 9 / 19;
+      background: #0F172A;
+      border-radius: 38px;
+      padding: 10px;
+      box-shadow: 0 30px 60px rgba(15,23,42,0.25),
+                  0 10px 25px rgba(5,150,105,0.20);
+      transform: rotate(-3deg);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-phone img {
+      width: 100%; height: 100%;
+      border-radius: 28px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-phone::before {
+      content: '';
+      position: absolute; top: 18px; left: 50%;
+      transform: translateX(-50%);
+      width: 80px; height: 20px;
+      background: #0F172A; border-radius: 999px;
+      z-index: 2;
+    }
+    .hero-feedback-bubble {
+      position: absolute;
+      top: 28%; right: -30px;
+      background: #fff;
+      border-radius: 14px;
+      padding: 10px 14px;
+      box-shadow: 0 10px 25px rgba(5,150,105,0.20);
+      font-size: 13px; font-weight: 600;
+      color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+      max-width: 220px;
+      animation: bubble-float 3.6s ease-in-out infinite;
+    }
+    .hero-feedback-bubble .check {
+      color: var(--green); font-weight: 900; font-size: 16px;
+    }
+    .hero-feedback-bubble b { color: var(--green-dark); font-family: 'Amiri', serif; font-size: 16px; }
+    .hero-score-bubble {
+      position: absolute;
+      bottom: 22%; left: -24px;
+      background: var(--green-dark); color: #fff;
+      border-radius: 14px;
+      padding: 8px 14px;
+      box-shadow: 0 10px 25px rgba(5,150,105,0.30);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.8px;
+      display: flex; align-items: center; gap: 6px;
+      animation: bubble-float 4.2s ease-in-out infinite;
+      animation-delay: -1.8s;
+    }
+    .hero-score-bubble .score { font-size: 18px; color: var(--gold-light); font-weight: 900; letter-spacing: 0; }
+    @keyframes bubble-float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-feedback-bubble, .hero-score-bubble { animation: none; }
+    }
   }
   .hero p {
     position: relative; z-index: 2;
@@ -1266,37 +1485,128 @@
     </svg>
   </div>
 
-  <div class="hero-badge"><span class="dot"></span>Community Challenge · Live Now</div>
-  <h1>10 Days.<br>10 Masjids.<br><span class="accent">Beautify your voice.</span></h1>
-  <p>Recite inside a different masjid every day — with AI Tajweed feedback at your side.</p>
+  <div class="hero-main">
+    <div class="hero-epigraph" aria-hidden="true">
+      زَيِّنُوا القُرْآنَ بِأَصْوَاتِكُمْ
+      <span class="hero-epigraph-tr">"Beautify the Qur'an with your voices." — Hadith · Abu Dāwūd</span>
+    </div>
 
-  <div class="hero-actions">
-    <a href="https://play.google.com/store/apps/details?id=app.qari.ai?utm_source=challenge-page&utm_medium=web&utm_campaign=10masjids" class="btn-hero btn-hero-solid">
-      ▶ Start the Challenge
-    </a>
-    <a href="#how" class="btn-hero btn-hero-ghost">How it works</a>
+    <div class="hero-badge">
+      <span class="dot dot-live"></span>
+      <span>Day 2 of 10 · Live</span>
+      <span class="sep">·</span>
+      <span class="count">526+ joined</span>
+    </div>
+
+    <h1>10 Days.<br>10 Masjids.<br><span class="accent">Beautify your voice.</span></h1>
+
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 220 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <g fill="currentColor">
+          <rect x="0"   y="10" width="3" height="4"  rx="1.5" style="animation-delay:-0.05s"/>
+          <rect x="6"   y="8"  width="3" height="8"  rx="1.5" style="animation-delay:-0.15s"/>
+          <rect x="12"  y="6"  width="3" height="12" rx="1.5" style="animation-delay:-0.25s"/>
+          <rect x="18"  y="3"  width="3" height="18" rx="1.5" style="animation-delay:-0.35s"/>
+          <rect x="24"  y="1"  width="3" height="22" rx="1.5" style="animation-delay:-0.45s"/>
+          <rect x="30"  y="4"  width="3" height="16" rx="1.5" style="animation-delay:-0.55s"/>
+          <rect x="36"  y="7"  width="3" height="10" rx="1.5" style="animation-delay:-0.65s"/>
+          <rect x="42"  y="2"  width="3" height="20" rx="1.5" style="animation-delay:-0.75s"/>
+          <rect x="48"  y="5"  width="3" height="14" rx="1.5" style="animation-delay:-0.85s"/>
+          <rect x="54"  y="8"  width="3" height="8"  rx="1.5" style="animation-delay:-0.95s"/>
+          <rect x="60"  y="3"  width="3" height="18" rx="1.5" style="animation-delay:-1.05s"/>
+          <rect x="66"  y="6"  width="3" height="12" rx="1.5" style="animation-delay:-1.15s"/>
+          <rect x="72"  y="2"  width="3" height="20" rx="1.5" style="animation-delay:-1.25s"/>
+          <rect x="78"  y="5"  width="3" height="14" rx="1.5" style="animation-delay:-1.35s"/>
+          <rect x="84"  y="9"  width="3" height="6"  rx="1.5" style="animation-delay:-1.45s"/>
+          <rect x="90"  y="3"  width="3" height="18" rx="1.5" style="animation-delay:-1.55s"/>
+          <rect x="96"  y="6"  width="3" height="12" rx="1.5" style="animation-delay:-1.65s"/>
+          <rect x="102" y="8"  width="3" height="8"  rx="1.5" style="animation-delay:-0.15s"/>
+          <rect x="108" y="4"  width="3" height="16" rx="1.5" style="animation-delay:-0.40s"/>
+          <rect x="114" y="2"  width="3" height="20" rx="1.5" style="animation-delay:-0.60s"/>
+          <rect x="120" y="5"  width="3" height="14" rx="1.5" style="animation-delay:-0.25s"/>
+          <rect x="126" y="8"  width="3" height="8"  rx="1.5" style="animation-delay:-0.50s"/>
+          <rect x="132" y="3"  width="3" height="18" rx="1.5" style="animation-delay:-0.90s"/>
+          <rect x="138" y="6"  width="3" height="12" rx="1.5" style="animation-delay:-1.10s"/>
+          <rect x="144" y="10" width="3" height="4"  rx="1.5" style="animation-delay:-0.30s"/>
+          <rect x="150" y="4"  width="3" height="16" rx="1.5" style="animation-delay:-0.70s"/>
+          <rect x="156" y="2"  width="3" height="20" rx="1.5" style="animation-delay:-1.00s"/>
+          <rect x="162" y="7"  width="3" height="10" rx="1.5" style="animation-delay:-0.20s"/>
+          <rect x="168" y="5"  width="3" height="14" rx="1.5" style="animation-delay:-0.80s"/>
+          <rect x="174" y="9"  width="3" height="6"  rx="1.5" style="animation-delay:-0.45s"/>
+          <rect x="180" y="6"  width="3" height="12" rx="1.5" style="animation-delay:-1.20s"/>
+          <rect x="186" y="3"  width="3" height="18" rx="1.5" style="animation-delay:-0.65s"/>
+          <rect x="192" y="8"  width="3" height="8"  rx="1.5" style="animation-delay:-0.35s"/>
+          <rect x="198" y="11" width="3" height="2"  rx="1"   style="animation-delay:-0.55s"/>
+          <rect x="204" y="9"  width="3" height="6"  rx="1.5" style="animation-delay:-0.85s"/>
+          <rect x="210" y="10" width="3" height="4"  rx="1"   style="animation-delay:-1.00s"/>
+        </g>
+      </svg>
+    </div>
+
+    <p>Recite inside a different masjid every day — with AI Tajweed feedback at your side.</p>
+
+    <div class="hero-actions">
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai?utm_source=challenge-page&utm_medium=web&utm_campaign=10masjids" class="btn-hero btn-hero-solid">
+        ▶ Start the Challenge
+      </a>
+      <a href="#how" class="btn-hero btn-hero-ghost">How it works</a>
+    </div>
+
+    <div class="hero-trust">
+      <span><span class="check">✓</span> No signup needed</span>
+      <span><span class="check">✓</span> Free forever</span>
+      <span><span class="check">✓</span> 60 seconds to start</span>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">10</div>
+        <div class="hero-stat-lbl">Masjids</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">10</div>
+        <div class="hero-stat-lbl">Days</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Free</div>
+        <div class="hero-stat-lbl">To join</div>
+      </div>
+    </div>
+
+    <div class="hero-minicards" aria-hidden="true">
+      <a href="#masjids" class="hero-minicard" title="Al-Masjid an-Nabawi"><svg viewBox="0 0 64 64"><use href="#ic-nabawi"/></svg></a>
+      <a href="#masjids" class="hero-minicard" title="Al-Masjid al-Ḥarām"><svg viewBox="0 0 64 64"><use href="#ic-haram"/></svg></a>
+      <a href="#masjids" class="hero-minicard" title="Masjid al-Aqṣā"><svg viewBox="0 0 64 64"><use href="#ic-aqsa"/></svg></a>
+      <a href="#masjids" class="hero-minicard" title="Süleymaniye"><svg viewBox="0 0 64 64"><use href="#ic-suleymaniye"/></svg></a>
+      <a href="#masjids" class="hero-minicard" title="Sheikh Zayed"><svg viewBox="0 0 64 64"><use href="#ic-zayed"/></svg></a>
+      <a href="#masjids" class="hero-minicard" title="Hassan II"><svg viewBox="0 0 64 64"><use href="#ic-hassan2"/></svg></a>
+      <a href="#masjids" class="hero-minicard" title="Badshahi"><svg viewBox="0 0 64 64"><use href="#ic-badshahi"/></svg></a>
+      <a href="#masjids" class="hero-minicard" title="Istiqlal"><svg viewBox="0 0 64 64"><use href="#ic-istiqlal"/></svg></a>
+      <a href="#masjids" class="hero-minicard" title="Qarawiyyin"><svg viewBox="0 0 64 64"><use href="#ic-qarawiyyin"/></svg></a>
+      <a href="#masjids" class="hero-minicard" title="Cordoba Mezquita"><svg viewBox="0 0 64 64"><use href="#ic-mezquita"/></svg></a>
+    </div>
   </div>
 
-  <div class="hero-trust">
-    <span><span class="check">✓</span> No signup needed</span>
-    <span><span class="check">✓</span> Free forever</span>
-    <span><span class="check">✓</span> 60 seconds to start</span>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-phone">
+      <img src="/screenshots/challenge-recite.jpg" alt="QariAI recitation with live AI Tajweed feedback"/>
+    </div>
+    <div class="hero-feedback-bubble">
+      <span class="check">✓</span>
+      <span>Qalqalah on <b>ق</b> — perfect</span>
+    </div>
+    <div class="hero-score-bubble">
+      <span class="score">95%</span>
+      <span>Tajweed</span>
+    </div>
   </div>
 
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">10</div>
-      <div class="hero-stat-lbl">Masjids</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">10</div>
-      <div class="hero-stat-lbl">Days</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">Free</div>
-      <div class="hero-stat-lbl">To join</div>
-    </div>
-  </div>
+  <a href="#how" class="hero-scroll-cue" aria-label="Scroll to how it works">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </a>
 
   <!-- Subtle masjid skyline silhouette -->
   <div class="hero-skyline" aria-hidden="true">
@@ -1425,7 +1735,7 @@
 </section>
 
 <!-- MOSQUES -->
-<section class="pad masjids">
+<section class="pad masjids" id="masjids">
   <p class="eyebrow">The Path</p>
   <h2 class="h2">Ten masjid spaces, one journey</h2>
   <p class="h2-sub">Pick your order, switch between them freely — the challenge is yours to shape.</p>
