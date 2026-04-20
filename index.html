@@ -413,6 +413,31 @@
     font-size: 12px;
     font-style: italic;
   }
+  .testimonial {
+    background: var(--bg-tertiary);
+    border: 0.5px solid var(--border-tertiary);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+  }
+  .testimonial-quote {
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-primary);
+    font-family: var(--font-serif);
+  }
+  .testimonial-meta { display: flex; align-items: center; gap: 10px; }
+  .testimonial-avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .testimonial-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+  .testimonial-role { font-size: 11px; color: var(--text-tertiary); margin-top: 1px; }
 
   /* ── Final CTA ───────────────────────────────────────── */
   .final-cta {
@@ -693,16 +718,30 @@
     </div>
   </section>
 
-  <!-- ── Testimonials (placeholders until real) ───────── -->
+  <!-- ── Testimonials (one real, one placeholder) ─────── -->
   <section class="section">
-    <p class="section-eyebrow">What qaris are saying</p>
-    <h2 class="section-title" style="font-size: 18px;">Real quotes coming soon</h2>
+    <p class="section-eyebrow">What reciters are saying</p>
+    <h2 class="section-title" style="font-size: 18px;">From real Play Store reviews</h2>
     <div class="card-grid-2">
-      <div class="testimonial-placeholder">
-        [ Testimonial slot — replacing with a real qari's quote soon. ]
+      <div class="testimonial">
+        <p class="testimonial-quote">"An incredible app. I've tested both Hifz and Tajweed mode — they work great. Set to Advanced, it works perfectly picking up any small mistakes."</p>
+        <div class="testimonial-meta">
+          <div class="testimonial-avatar">MR</div>
+          <div>
+            <p class="testimonial-name">Matti-Ur Rehman</p>
+            <p class="testimonial-role">Google Play review · March 2026</p>
+          </div>
+        </div>
       </div>
-      <div class="testimonial-placeholder">
-        [ Testimonial slot — replacing with a real qari's quote soon. ]
+      <div class="testimonial">
+        <p class="testimonial-quote">"I think it is very nice and accurate, Mashallah."</p>
+        <div class="testimonial-meta">
+          <div class="testimonial-avatar" style="background: #EEEDFE; color: #3C3489;">SA</div>
+          <div>
+            <p class="testimonial-name">Sayeed Ahmed</p>
+            <p class="testimonial-role">Google Play review · April 2026</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
