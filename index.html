@@ -102,11 +102,10 @@
   }
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-mark {
-    width: 32px; height: 32px;
-    background: var(--brand);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px;
     flex-shrink: 0;
+    display: block;
+    object-fit: contain;
   }
   .logo-text { line-height: 1.1; }
   .logo-text p { margin: 0; }
@@ -517,9 +516,7 @@
   <!-- ── Header ───────────────────────────────────────── -->
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
-      <span class="logo-mark">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
-      </span>
+      <img class="logo-mark" src="/logo.png" alt="QariAI" />
       <span class="logo-text">
         <p class="logo-name">QariAI</p>
         <p class="logo-sub">Tajweed + Hifz Coach</p>
@@ -543,9 +540,12 @@
       <h1>Recite like you've had a teacher your whole life.</h1>
       <p class="hero-sub">QariAI listens to every letter, catches the mistakes a human teacher would catch, and guides you to fluent recitation — whether you're starting Al-Fātiḥah or memorizing your last juz.</p>
       <div class="hero-ctas">
-        <a class="btn-primary" href="https://qariai-9012d.web.app/">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
-          Try it free
+        <!-- TODO: replace href="#demo" with the real demo-video URL
+             (YouTube unlisted, Google Drive public, or a self-hosted mp4)
+             when the 30s clip is recorded. -->
+        <a class="btn-primary" href="#demo">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Watch 30s demo
         </a>
         <a class="btn-outline" href="https://play.google.com/store/apps/details?id=app.qari.ai">Get on Play Store</a>
       </div>
