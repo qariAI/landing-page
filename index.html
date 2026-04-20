@@ -277,50 +277,103 @@
     background: white;
     border: 0.5px solid var(--border-tertiary);
     border-radius: 12px;
-    padding: 10px 12px;
+    padding: 9px 11px;
     box-shadow: 0 8px 20px rgba(15, 40, 20, 0.06);
+    opacity: 0;
+    animation: float-badge-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   .float-badge.mistake {
-    top: 8%;
+    top: 9%;
     left: 2%;
-    width: 168px;
+    width: 142px;
+    animation-delay: 0.45s;
   }
   .float-badge.streak {
-    bottom: 10%;
+    bottom: 11%;
     right: 2%;
-    width: 146px;
+    width: 124px;
+    animation-delay: 0.8s;
+  }
+  /* Entrance: slide up + fade in. Then the infinite float loop takes
+     over, kept subtle so it doesn't steal focus from the hero copy. */
+  @keyframes float-badge-in {
+    0% { opacity: 0; transform: translateY(14px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float-bob-mistake {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes float-bob-streak {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+  }
+  /* After the entrance finishes, swap to the infinite bob. Inner wrapper
+     handles bob so the entrance's transform doesn't interfere. */
+  .float-badge-bob {
+    animation: float-bob-mistake 5.2s ease-in-out infinite;
+    animation-delay: 1.3s;
+  }
+  .float-badge.streak .float-badge-bob {
+    animation-name: float-bob-streak;
+    animation-duration: 5.8s;
+    animation-delay: 1.6s;
   }
   .float-badge-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
-  .float-badge-title { font-size: 11px; font-weight: 600; color: var(--text-primary); }
-  .float-badge-score { font-size: 14px; font-weight: 700; color: #A32D2D; }
-  .float-badge-score small { font-size: 9px; color: var(--text-tertiary); font-weight: 500; }
-  .float-badge-desc { margin: 0 0 8px; font-size: 10.5px; color: var(--text-secondary); line-height: 1.35; }
+  .float-badge-title { font-size: 10.5px; font-weight: 600; color: var(--text-primary); }
+  .float-badge-score { font-size: 13px; font-weight: 700; color: #A32D2D; }
+  .float-badge-score small { font-size: 8.5px; color: var(--text-tertiary); font-weight: 500; }
+  .float-badge-desc { margin: 0 0 7px; font-size: 10px; color: var(--text-secondary); line-height: 1.35; }
   .float-badge-chip {
     background: var(--brand-soft);
     color: var(--brand-dark);
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 600;
-    padding: 4px 10px;
+    padding: 3.5px 9px;
     border-radius: 12px;
     display: inline-block;
+    animation: chip-pulse 3s ease-in-out infinite;
+    animation-delay: 1.8s;
+  }
+  @keyframes chip-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(15,110,86,0); }
+    50% { box-shadow: 0 0 0 6px rgba(15,110,86,0.08); }
   }
   .float-badge-label {
-    margin: 0 0 4px;
-    font-size: 10px;
+    margin: 0 0 3px;
+    font-size: 9.5px;
     color: var(--text-tertiary);
     letter-spacing: 0.5px;
     text-transform: uppercase;
   }
-  .float-badge-streak-num { font-size: 22px; font-weight: 700; color: var(--text-primary); }
-  .float-badge-streak-unit { font-size: 11px; color: var(--text-secondary); margin-left: 4px; }
-  .float-badge-streak-dots { display: flex; gap: 2px; margin-top: 6px; }
-  .float-badge-streak-dots span { flex: 1; height: 3px; background: var(--brand); border-radius: 1px; }
-  .float-badge-streak-dots span.muted { background: var(--border-tertiary); }
+  .float-badge-streak-num { font-size: 19px; font-weight: 700; color: var(--text-primary); }
+  .float-badge-streak-unit { font-size: 10px; color: var(--text-secondary); margin-left: 4px; }
+  .float-badge-streak-dots { display: flex; gap: 2px; margin-top: 5px; }
+  .float-badge-streak-dots span {
+    flex: 1; height: 3px;
+    background: var(--brand);
+    border-radius: 1px;
+    opacity: 0;
+    animation: streak-dot-fill 0.3s ease-out forwards;
+  }
+  .float-badge-streak-dots span:nth-child(1) { animation-delay: 1.1s }
+  .float-badge-streak-dots span:nth-child(2) { animation-delay: 1.2s }
+  .float-badge-streak-dots span:nth-child(3) { animation-delay: 1.3s }
+  .float-badge-streak-dots span:nth-child(4) { animation-delay: 1.4s }
+  .float-badge-streak-dots span:nth-child(5) { animation-delay: 1.5s }
+  .float-badge-streak-dots span.muted {
+    background: var(--border-tertiary);
+    animation-delay: 1.6s;
+  }
+  @keyframes streak-dot-fill {
+    0% { opacity: 0; transform: scaleX(0.3); transform-origin: left; }
+    100% { opacity: 1; transform: scaleX(1); }
+  }
 
   /* ── Honest trust band ───────────────────────────────── */
   .trust-band {
@@ -839,23 +892,27 @@
       </div>
 
       <div class="float-badge mistake">
-        <div class="float-badge-top">
-          <span class="float-badge-title">Mistake detected</span>
-          <span class="float-badge-score">7.5<small>/10</small></span>
+        <div class="float-badge-bob">
+          <div class="float-badge-top">
+            <span class="float-badge-title">Mistake detected</span>
+            <span class="float-badge-score">7.5<small>/10</small></span>
+          </div>
+          <p class="float-badge-desc">Qalqalah on <span dir="rtl" style="font-family: var(--font-arabic)">د</span> is missing</p>
+          <span class="float-badge-chip">Fix it →</span>
         </div>
-        <p class="float-badge-desc">Qalqalah on <span dir="rtl" style="font-family: var(--font-arabic)">د</span> is missing</p>
-        <span class="float-badge-chip">Fix it →</span>
       </div>
 
       <div class="float-badge streak">
-        <p class="float-badge-label">Streak</p>
-        <div>
-          <span class="float-badge-streak-num">23</span>
-          <span class="float-badge-streak-unit">days</span>
-        </div>
-        <div class="float-badge-streak-dots">
-          <span></span><span></span><span></span><span></span><span></span>
-          <span class="muted"></span><span class="muted"></span>
+        <div class="float-badge-bob">
+          <p class="float-badge-label">Streak</p>
+          <div>
+            <span class="float-badge-streak-num">23</span>
+            <span class="float-badge-streak-unit">days</span>
+          </div>
+          <div class="float-badge-streak-dots">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span class="muted"></span><span class="muted"></span>
+          </div>
         </div>
       </div>
     </div>
