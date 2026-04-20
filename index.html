@@ -470,6 +470,26 @@
     transition: transform 0.1s;
   }
   .btn-white:hover { transform: translateY(-1px); }
+  .final-cta-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-cta-outline {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.35);
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-cta-outline:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.55);
+  }
 
   /* ── Masjid journey section ──────────────────────────── */
   .journey {
@@ -691,6 +711,10 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Watch 30s demo
         </button>
+        <a class="btn-outline" href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#0F6E56" aria-hidden="true" style="vertical-align: -2px; margin-right: 4px;"><path d="M3 20.5V3.5c0-.8.4-1.4.9-1.8l10 10-10 10c-.5-.4-.9-1-.9-1.2zM14.8 12.5l2.5-1.5 3.7-2.1c.5-.3.5-1.1 0-1.4l-3.7-2.1-2.5-1.5-2.5 2.5 2.5 6.1zM14.8 13.5l-2.5 6.1 2.5-2.5 2.5-1.5 3.7-2.1c.5-.3.5-1.1 0-1.4l-3.7-2.1-2.5-1.5"/></svg>
+          Get on Google Play
+        </a>
       </div>
       <div class="hero-trust">
         <div class="hero-trust-item">
@@ -959,10 +983,15 @@
   <section class="final-cta" id="pricing">
     <h2>See it in action in 30 seconds</h2>
     <p>A real recitation, a real mistake caught, and the fix — all in under a minute.</p>
-    <button type="button" class="btn-white" onclick="openDemo()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      Watch the demo
-    </button>
+    <div class="final-cta-actions">
+      <button type="button" class="btn-white" onclick="openDemo()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Watch the demo
+      </button>
+      <a class="btn-cta-outline" href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">
+        Get on Google Play →
+      </a>
+    </div>
   </section>
 
   <footer>

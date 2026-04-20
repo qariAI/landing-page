@@ -100,19 +100,64 @@
   @keyframes s5 { 0%,72% { opacity: 0 } 74% { opacity: 1 } 89% { opacity: 1 } 91% { opacity: 0 } 100% { opacity: 0 } }
   @keyframes s6 { 0%,89% { opacity: 0 } 91% { opacity: 1 } 100% { opacity: 1 } }
 
-  /* ── Shared caption strip ─────────────────────────────── */
+  /* ── Shared caption strip ─────────────────────────────
+     Captions live in a protected bottom band that is ALWAYS below
+     the phone/ayah content area. They never float over or touch the
+     Qur'anic Arabic — the phone's internal ayah text keeps its own
+     padding, and this caption row is anchored to `bottom: 6%` of
+     the stage so there's a guaranteed gap.
+     ───────────────────────────────────────────────────── */
   .caption {
     position: absolute;
     left: 0; right: 0;
-    bottom: 8%;
+    bottom: 6%;
     text-align: center;
-    padding: 0 8%;
+    padding: 0 10%;
     color: var(--text-primary);
     font-family: var(--font-serif);
     font-size: clamp(18px, 3.4vmin, 36px);
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.4px;
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  .scene-2 .caption { animation: caption-s2 30s linear 1 forwards; }
+  .scene-3 .caption { animation: caption-s3 30s linear 1 forwards; }
+  .scene-4 .caption { animation: caption-s4 30s linear 1 forwards; }
+  .scene-5 .caption { animation: caption-s5 30s linear 1 forwards; }
+
+  /* Each caption slides up + fades in ~0.6s after its scene opens,
+     holds for the scene's duration, then slides up + fades out
+     ~0.4s before the scene ends. The motion is slow and reverent
+     — no bouncing, no quick flicker. */
+  @keyframes caption-s2 {
+    0%, 13% { opacity: 0; transform: translateY(18px) }
+    15% { opacity: 1; transform: translateY(0) }
+    26% { opacity: 1; transform: translateY(0) }
+    28% { opacity: 0; transform: translateY(-10px) }
+    100% { opacity: 0 }
+  }
+  @keyframes caption-s3 {
+    0%, 30% { opacity: 0; transform: translateY(18px) }
+    32% { opacity: 1; transform: translateY(0) }
+    52% { opacity: 1; transform: translateY(0) }
+    54% { opacity: 0; transform: translateY(-10px) }
+    100% { opacity: 0 }
+  }
+  @keyframes caption-s4 {
+    0%, 56% { opacity: 0; transform: translateY(18px) }
+    58% { opacity: 1; transform: translateY(0) }
+    72% { opacity: 1; transform: translateY(0) }
+    74% { opacity: 0; transform: translateY(-10px) }
+    100% { opacity: 0 }
+  }
+  @keyframes caption-s5 {
+    0%, 76% { opacity: 0; transform: translateY(18px) }
+    78% { opacity: 1; transform: translateY(0) }
+    89% { opacity: 1; transform: translateY(0) }
+    91% { opacity: 0; transform: translateY(-10px) }
+    100% { opacity: 0 }
   }
 
   /* ───────────────────────────────────────────────────────
@@ -129,12 +174,21 @@
     font-family: var(--font-arabic);
     font-size: clamp(40px, 9vmin, 110px);
     color: var(--brand-dark);
-    margin-bottom: 6%;
+    /* Extra margin-bottom creates a reverent buffer: the English
+       headline can never touch the ayah even at worst-case zoom. */
+    margin-bottom: 10%;
     direction: rtl;
     opacity: 0;
-    animation: s1-fade 30s linear 1 forwards;
+    animation: s1-ayah-in 30s linear 1 forwards;
+    line-height: 1.45;
   }
-  @keyframes s1-fade { 0% { opacity: 0; transform: translateY(12px) } 2% { opacity: 0.15; transform: translateY(0) } 9% { opacity: 0.25 } 11% { opacity: 0 } 100% { opacity: 0 } }
+  @keyframes s1-ayah-in {
+    0% { opacity: 0; transform: translateY(10px) }
+    3% { opacity: 0.28; transform: translateY(0) }
+    9% { opacity: 0.32 }
+    11% { opacity: 0 }
+    100% { opacity: 0 }
+  }
 
   .s1-headline {
     font-family: var(--font-serif);
@@ -143,6 +197,19 @@
     color: var(--text-primary);
     letter-spacing: -0.6px;
     line-height: 1.2;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: s1-headline-in 30s linear 1 forwards;
+  }
+  /* Headline enters AFTER the ayah has settled, so the sacred text is
+     fully present before the English copy arrives below it. Exit fade
+     is symmetric — headline leaves first, ayah last. */
+  @keyframes s1-headline-in {
+    0%, 4% { opacity: 0; transform: translateY(14px) }
+    7% { opacity: 1; transform: translateY(0) }
+    9% { opacity: 1 }
+    10% { opacity: 0; transform: translateY(-8px) }
+    100% { opacity: 0 }
   }
 
   /* ───────────────────────────────────────────────────────
