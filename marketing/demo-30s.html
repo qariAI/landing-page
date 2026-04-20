@@ -213,8 +213,47 @@
   }
 
   /* ───────────────────────────────────────────────────────
-     SCENE 2 — Problem (phone + mic tap + ayah)
+     SCENE 2 — Problem (real app screenshot, not a CSS mock)
      ─────────────────────────────────────────────────────── */
+  .phone-shell {
+    position: relative;
+    width: 64%;
+    aspect-ratio: 9 / 19;
+    border-radius: 7%;
+    overflow: hidden;
+    box-shadow: 0 14px 42px rgba(0,0,0,0.18);
+    background: #F5F2EA;
+  }
+  .phone-screenshot {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  /* Emerald pulse overlaying the Start Recitation button in the
+     screenshot. Positioned at ~48% vertical which is where the mic
+     CTA lands on the v20 recite screen. */
+  .mic-pulse-ring {
+    position: absolute;
+    left: 50%; top: 48%;
+    width: 58%;
+    aspect-ratio: 5 / 1;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    border: 3px solid rgba(15, 110, 86, 0.55);
+    opacity: 0;
+    animation: mic-pulse-ring 30s linear 1 forwards;
+    pointer-events: none;
+  }
+  @keyframes mic-pulse-ring {
+    0%, 13% { opacity: 0; transform: translate(-50%, -50%) scale(0.92) }
+    15% { opacity: 0.9; transform: translate(-50%, -50%) scale(1) }
+    22% { opacity: 0; transform: translate(-50%, -50%) scale(1.15) }
+    100% { opacity: 0 }
+  }
+  /* Legacy CSS phone mock (no longer used in scene 2 but keeping the
+     styles so scene 3's .phone-ayah .mistake-word selector still
+     compiles cleanly if we re-add it later). */
   .phone {
     width: 58%;
     aspect-ratio: 9 / 19;
@@ -675,19 +714,14 @@
       </div>
     </div>
 
-    <!-- ═══ SCENE 2 — Problem ═══ -->
+    <!-- ═══ SCENE 2 — Problem (real recite screenshot, not a mockup) ═══ -->
     <div class="scene scene-2">
-      <div class="phone">
-        <div class="phone-header">
-          <img class="phone-logo-mark" src="../logo.png" alt="" />
-          <span class="phone-logo-text">QariAI</span>
-        </div>
-        <p class="phone-surah-label">AL-IKHLĀṢ · 112:1–2</p>
-        <p class="phone-ayah">قُلْ هُوَ ٱللَّهُ أَحَدٌ<br/>ٱللَّهُ ٱلصَّمَدُ</p>
-        <div class="phone-mic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
-        </div>
-        <p class="phone-mic-caption">Tap to recite</p>
+      <div class="phone-shell">
+        <img class="phone-screenshot" src="../screenshots/v20_recite.jpeg" alt="" />
+        <!-- Pulsing glow overlaying the mic button in the screenshot.
+             Positioned roughly where the "Start Recitation" button sits
+             in the v20 recite screen. -->
+        <div class="mic-pulse-ring" aria-hidden="true"></div>
       </div>
       <div class="caption">So how do you know<br/>if you're reciting it right?</div>
     </div>
@@ -755,26 +789,10 @@
       <div class="caption">Hear your mistake. Fix it. Lock it in.</div>
     </div>
 
-    <!-- ═══ SCENE 5 — Habit ═══ -->
+    <!-- ═══ SCENE 5 — Habit (real journey screenshot) ═══ -->
     <div class="scene scene-5">
-      <div class="habit-wrap">
-        <div class="streak-card">
-          <div class="streak-flame">
-            <svg viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 4 4 4 8a4 4 0 1 1-8 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-4 0-7z"/></svg>
-          </div>
-          <div class="streak-col">
-            <div class="streak-label">Streak · best 23</div>
-            <div class="streak-num">23<span class="streak-unit">days</span></div>
-          </div>
-        </div>
-        <div class="revision-card">
-          <div class="revision-label">Daily revision · 3 ayat</div>
-          <div class="revision-tiles">
-            <div class="revision-tile"><div class="pct">100%</div><div class="word">دِينِ</div></div>
-            <div class="revision-tile amber"><div class="pct">50%</div><div class="word">وَازْرَعْهُ</div></div>
-            <div class="revision-tile red"><div class="pct">25%</div><div class="word">سُبُل</div></div>
-          </div>
-        </div>
+      <div class="phone-shell">
+        <img class="phone-screenshot" src="../screenshots/v20_journey.jpeg" alt="" />
       </div>
       <div class="caption">A few minutes a day.<br/>Real progress.</div>
     </div>

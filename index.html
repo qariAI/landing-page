@@ -638,16 +638,75 @@
   }
   .demo-modal-close:hover { background: rgba(255,255,255,0.25); }
 
-  /* ── Footer ──────────────────────────────────────────── */
-  footer {
-    padding: 24px 0 48px;
-    text-align: center;
-    font-size: 12px;
+  /* ── Footer (rich — preserves SEO link structure) ────── */
+  footer.site {
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-tertiary);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px 28px;
+    margin-bottom: 24px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 28px;
+  }
+  .footer-brand-tagline {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-top: 12px;
+    max-width: 240px;
+  }
+  .footer-email {
+    margin-top: 12px;
+    font-size: 13px;
+  }
+  .footer-email a { color: var(--brand); font-weight: 600; }
+  .footer-email a:hover { color: var(--brand-dark); text-decoration: underline; }
+  .footer-col h4 {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col li a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    transition: color 0.15s;
+  }
+  .footer-col li a:hover { color: var(--text-primary); }
+  .footer-col .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-col .footer-logo {
+    width: 32px; height: 32px;
+    object-fit: contain;
+  }
+  .footer-col .footer-brand-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .footer-bottom {
+    border-top: 0.5px solid var(--border-tertiary);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 11.5px;
     color: var(--text-tertiary);
   }
-  footer .footer-links { margin-bottom: 10px; }
-  footer a { color: var(--text-secondary); margin: 0 10px; }
-  footer a:hover { color: var(--text-primary); }
+  .footer-bottom .dua { font-style: italic; }
 
   /* ── Responsive ──────────────────────────────────────── */
   @media (max-width: 820px) {
@@ -663,8 +722,16 @@
     .section { padding: 24px 22px; }
     .card-grid-3 { grid-template-columns: 1fr; }
     .card-grid-2 { grid-template-columns: 1fr; }
+    .journey { padding: 28px 20px; }
+    .journey-path { max-width: 100%; padding: 0; }
+    .journey-stop-name { font-size: 8px; }
     .final-cta { padding: 28px 22px; }
     .final-cta h2 { font-size: 20px; }
+    footer.site { padding: 28px 20px 20px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   }
   @media (max-width: 480px) {
     .hero h1 { font-size: 26px; }
@@ -994,16 +1061,63 @@
     </div>
   </section>
 
-  <footer>
-    <div class="footer-links">
-      <a href="/about">About</a>·
-      <a href="/how-qari-ai-works">How it works</a>·
-      <a href="/tajweed-rules">Tajweed rules</a>·
-      <a href="/open-methodology">Methodology</a>·
-      <a href="/privacy">Privacy</a>·
-      <a href="/terms">Terms</a>
+  <footer class="site" id="about">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="footer-brand">
+          <img class="footer-logo" src="/logo.png" alt="QariAI" />
+          <span class="footer-brand-name">QariAI</span>
+        </a>
+        <p class="footer-brand-tagline">AI-powered tajweed & hifz coaching for Muslims worldwide.</p>
+        <p class="footer-email"><a href="mailto:salam@qariai.app">salam@qariai.app</a></p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="/how-qari-ai-works">How it works</a></li>
+          <li><a href="/qaef">QAEF framework</a></li>
+          <li><a href="/tajweed-mistakes-checker">Free tajweed checker</a></li>
+          <li><a href="/best-ai-quran-app">Best Quran AI app</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">Get on Google Play</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/learn/common-tajweed-mistakes">Common mistakes</a></li>
+          <li><a href="/learn/qalqalah-explained">Qalqalah explained</a></li>
+          <li><a href="/learn/pronounce-ayn">How to pronounce ʿAyn</a></li>
+          <li><a href="/tajweed-rules">All tajweed rules</a></li>
+          <li><a href="/al-nabr-tajweed">Al-Nabr</a></li>
+          <li><a href="/maqamat-quran-guide">Maqāmāt guide</a></li>
+          <li><a href="/compare/qari-ai-vs-tarteel">vs Tarteel</a></li>
+          <li><a href="/compare/qari-ai-vs-tajweedmate">vs Tajweedmate</a></li>
+          <li><a href="/teachers-guide-ai-tajweed">Teacher's guide</a></li>
+          <li><a href="/ai-quran-education-2026">AI in Qur'an education 2026</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/open-methodology">Open methodology</a></li>
+          <li><a href="/tajweed-app-evaluation">How to evaluate</a></li>
+          <li><a href="/quran-app-comparison-2026">Quran app comparison 2026</a></li>
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/terms">Terms</a></li>
+          <li><a href="mailto:salam@qariai.app">Contact</a></li>
+        </ul>
+      </div>
     </div>
-    <p>© 2026 Qaf · QariAI. Made for the love of the Qur'an.</p>
+
+    <div class="footer-bottom">
+      <p>© 2026 Qaf · QariAI. Built with love for the Ummah.</p>
+      <span class="dua">May Allah accept this work · إن شاء الله</span>
+    </div>
   </footer>
 
 </div>
