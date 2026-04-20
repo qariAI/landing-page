@@ -283,8 +283,10 @@
     animation: float-badge-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   .float-badge.mistake {
-    top: 9%;
-    left: 2%;
+    /* Nudged down from 9%→18% and pulled outward (2%→-1%) so the badge
+       clears the phone's status bar + surah label that it was overlapping. */
+    top: 18%;
+    left: -1%;
     width: 142px;
     animation-delay: 0.45s;
   }
