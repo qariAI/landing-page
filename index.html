@@ -471,6 +471,153 @@
   }
   .btn-white:hover { transform: translateY(-1px); }
 
+  /* ── Masjid journey section ──────────────────────────── */
+  .journey {
+    background: linear-gradient(135deg, #f6fbf7 0%, #f3f9f5 100%);
+    border: 1px solid #d5ebdd;
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    margin-bottom: 24px;
+  }
+  .journey-header { text-align: center; margin-bottom: 28px; }
+  .journey-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--brand);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .journey h2 {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .journey-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .journey-path {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 4px;
+    margin: 32px auto 20px;
+    max-width: 760px;
+    padding: 0 12px;
+  }
+  .journey-stop {
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+  .journey-stop-dome {
+    width: 28px; height: 22px;
+    margin: 0 auto 6px;
+    background: var(--brand);
+    border-radius: 50% 50% 4px 4px / 100% 100% 0 0;
+    position: relative;
+    transition: opacity 0.3s;
+  }
+  .journey-stop-dome::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: 50%; transform: translateX(-50%);
+    width: 2px; height: 8px;
+    background: var(--brand);
+  }
+  .journey-stop-dome::after {
+    content: '';
+    position: absolute;
+    top: -12px; left: 50%; transform: translateX(-50%);
+    width: 4px; height: 4px;
+    background: #d4af37;
+    border-radius: 50%;
+  }
+  .journey-stop.locked .journey-stop-dome { opacity: 0.22; }
+  .journey-stop.locked .journey-stop-dome::after { background: var(--text-tertiary); opacity: 0.3; }
+  .journey-stop-name {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    line-height: 1.25;
+    display: block;
+  }
+  .journey-stop.locked .journey-stop-name { color: var(--text-tertiary); }
+  .journey-stop-line {
+    position: absolute;
+    top: 11px;
+    left: 50%;
+    right: -50%;
+    height: 2px;
+    background: var(--brand);
+  }
+  .journey-stop.locked .journey-stop-line { background: rgba(15,110,86,0.15); }
+  .journey-stop:last-child .journey-stop-line { display: none; }
+  .journey-footnote {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    font-style: italic;
+    margin-top: 16px;
+  }
+
+  /* ── Demo modal ──────────────────────────────────────── */
+  .demo-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 15, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+  }
+  .demo-modal.open { display: flex; }
+  .demo-modal-inner {
+    position: relative;
+    width: min(100%, 380px);
+    aspect-ratio: 9 / 16;
+    max-height: calc(100vh - 48px);
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  }
+  .demo-modal-iframe {
+    width: 100%; height: 100%;
+    border: none;
+    display: block;
+  }
+  .demo-modal-close {
+    position: absolute;
+    top: -48px; right: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 0.5px solid rgba(255,255,255,0.25);
+    color: white;
+    font-size: 20px;
+    line-height: 1;
+    display: grid; place-items: center;
+    transition: background 0.15s;
+  }
+  .demo-modal-close:hover { background: rgba(255,255,255,0.25); }
+
   /* ── Footer ──────────────────────────────────────────── */
   footer {
     padding: 24px 0 48px;
@@ -540,14 +687,10 @@
       <h1>Recite like you've had a teacher your whole life.</h1>
       <p class="hero-sub">QariAI listens to every letter, catches the mistakes a human teacher would catch, and guides you to fluent recitation — whether you're starting Al-Fātiḥah or memorizing your last juz.</p>
       <div class="hero-ctas">
-        <!-- TODO: replace href="#demo" with the real demo-video URL
-             (YouTube unlisted, Google Drive public, or a self-hosted mp4)
-             when the 30s clip is recorded. -->
-        <a class="btn-primary" href="#demo">
+        <button type="button" class="btn-primary" onclick="openDemo()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Watch 30s demo
-        </a>
-        <a class="btn-outline" href="https://play.google.com/store/apps/details?id=app.qari.ai">Get on Play Store</a>
+        </button>
       </div>
       <div class="hero-trust">
         <div class="hero-trust-item">
@@ -718,6 +861,72 @@
     </div>
   </section>
 
+  <!-- ── Masjid Journey feature ───────────────────────── -->
+  <section class="journey" id="journey">
+    <div class="journey-header">
+      <div class="journey-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3c-.4 0-.7.3-.7.7v1.1c-.9.3-1.6 1.1-1.6 2.1 0 .6.2 1 .5 1.5-1.8.9-3.1 2.7-3.2 4.9H5v7h14v-7h-2c-.1-2.2-1.4-4-3.2-4.9.3-.4.5-.9.5-1.5 0-1-.7-1.8-1.6-2.1V3.7c0-.4-.3-.7-.7-.7zm-3.5 13.5h2v3h-2v-3zm5 0h2v3h-2v-3z"/></svg>
+        New · The Journey
+      </div>
+      <h2>Walk the Path of Ten Masjids</h2>
+      <p class="journey-sub">
+        Every recitation earns XP toward the next masjid on your pilgrimage. From Masjid al-Ḥarām to Sheikh Zayed, each masjid unlocks a new certification verse and carries a piece of Islamic history — turning daily practice into a journey worth completing.
+      </p>
+    </div>
+    <div class="journey-path" aria-hidden="true">
+      <div class="journey-stop">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Ḥarām</span>
+        <span class="journey-stop-line"></span>
+      </div>
+      <div class="journey-stop">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Zayed</span>
+        <span class="journey-stop-line"></span>
+      </div>
+      <div class="journey-stop">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Ḥassan II</span>
+        <span class="journey-stop-line"></span>
+      </div>
+      <div class="journey-stop locked">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Nabawī</span>
+        <span class="journey-stop-line"></span>
+      </div>
+      <div class="journey-stop locked">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Aqṣā</span>
+        <span class="journey-stop-line"></span>
+      </div>
+      <div class="journey-stop locked">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Badshahi</span>
+        <span class="journey-stop-line"></span>
+      </div>
+      <div class="journey-stop locked">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Istiqlāl</span>
+        <span class="journey-stop-line"></span>
+      </div>
+      <div class="journey-stop locked">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Qarawiyyīn</span>
+        <span class="journey-stop-line"></span>
+      </div>
+      <div class="journey-stop locked">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Sulaymaniye</span>
+        <span class="journey-stop-line"></span>
+      </div>
+      <div class="journey-stop locked">
+        <div class="journey-stop-dome"></div>
+        <span class="journey-stop-name">Cordoba</span>
+      </div>
+    </div>
+    <p class="journey-footnote">3 of 10 unlocked — Ayat an-Nūr earns Zayed · Al-Kahf opens Ḥassan II</p>
+  </section>
+
   <!-- ── Testimonials (one real, one placeholder) ─────── -->
   <section class="section">
     <p class="section-eyebrow">What reciters are saying</p>
@@ -748,11 +957,12 @@
 
   <!-- ── Final CTA ────────────────────────────────────── -->
   <section class="final-cta" id="pricing">
-    <h2>Start your first session in 30 seconds</h2>
-    <p>Pick an ayah. Hit the mic. Hear where you stand — for free.</p>
-    <a class="btn-white" href="https://qariai-9012d.web.app/">
-      Start reciting free →
-    </a>
+    <h2>See it in action in 30 seconds</h2>
+    <p>A real recitation, a real mistake caught, and the fix — all in under a minute.</p>
+    <button type="button" class="btn-white" onclick="openDemo()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Watch the demo
+    </button>
   </section>
 
   <footer>
@@ -768,6 +978,39 @@
   </footer>
 
 </div>
+
+<!-- ── Demo modal — lazy-loads the 30s animated demo on open ── -->
+<div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-label="QariAI 30-second demo">
+  <div class="demo-modal-inner">
+    <button type="button" class="demo-modal-close" onclick="closeDemo()" aria-label="Close demo">×</button>
+    <iframe id="demoFrame" class="demo-modal-iframe" title="QariAI 30-second demo" src="about:blank"></iframe>
+  </div>
+</div>
+
+<script>
+  // Lazy-load the demo iframe on first open; reload it on subsequent opens
+  // so the 30-second timeline plays from the start every time.
+  const demoFrame = document.getElementById('demoFrame');
+  const demoModal = document.getElementById('demoModal');
+  function openDemo() {
+    demoFrame.src = '/marketing/demo-30s.html?t=' + Date.now();
+    demoModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDemo() {
+    demoModal.classList.remove('open');
+    demoFrame.src = 'about:blank';
+    document.body.style.overflow = '';
+  }
+  // Click outside the phone frame to close
+  demoModal.addEventListener('click', (e) => {
+    if (e.target === demoModal) closeDemo();
+  });
+  // ESC to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && demoModal.classList.contains('open')) closeDemo();
+  });
+</script>
 
 </body>
 </html>
