@@ -116,16 +116,12 @@
     align-items: center;
     gap: 12px;
   }
-  /* Crop the logo so only the MIC portion shows (source has "QARI AI"
-     text baked into the bottom ~40%, which would duplicate the HTML
-     wordmark to the right). Landscape box 80×52 keeps the mic large. */
+  /* SVG mic icon — crisp at any size, square container. */
   .logo-mark {
-    width: 80px;
-    height: 52px;
+    width: 44px;
+    height: 44px;
     flex-shrink: 0;
     display: block;
-    object-fit: cover;
-    object-position: center top;
   }
   .logo-text {
     display: flex;
@@ -137,9 +133,9 @@
   }
   .logo-name {
     font-family: var(--font-serif);
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 800;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.4px;
     line-height: 1;
     display: block;
   }
@@ -148,7 +144,7 @@
   .brand-qari { color: #1c1917; }
   .brand-ai { color: #0F8F71; }
   .logo-tagline {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     color: var(--text-secondary);
     letter-spacing: 0.1px;
@@ -815,9 +811,9 @@
     .header { padding: 14px 18px; }
     .nav { gap: 12px; }
     .nav a:not(.nav-cta) { display: none; }
-    .logo-mark { width: 60px; height: 40px; }
-    .logo-name { font-size: 20px; }
-    .logo-tagline { font-size: 10.5px; }
+    .logo-mark { width: 38px; height: 38px; }
+    .logo-name { font-size: 16px; }
+    .logo-tagline { font-size: 10px; }
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 28px 22px; }
     .hero h1 { font-size: 30px; }
     .hero-visual { min-height: 340px; }
@@ -854,7 +850,22 @@
   <!-- ── Header ───────────────────────────────────────── -->
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
-      <img class="logo-mark" src="/logo.png" alt="QariAI" />
+      <!-- Inline SVG mic icon — matches the logo.png artwork but crisp at
+           any size (no PNG cropping needed, no 'QARI AI' baked-in text). -->
+      <svg class="logo-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Outer sound waves (brand teal) -->
+        <path d="M21 24 Q9 50 21 76" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
+        <path d="M79 24 Q91 50 79 76" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
+        <!-- Inner sound waves -->
+        <path d="M32 33 Q25 50 32 67" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
+        <path d="M68 33 Q75 50 68 67" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
+        <!-- Mic capsule body -->
+        <rect x="40" y="20" width="20" height="44" rx="10" fill="#1c1917"/>
+        <!-- Stem -->
+        <rect x="48.5" y="64" width="3" height="14" fill="#1c1917"/>
+        <!-- Base bar -->
+        <rect x="40" y="76" width="20" height="3" rx="1.5" fill="#1c1917"/>
+      </svg>
       <span class="logo-text">
         <span class="logo-name"><span class="brand-qari">Qari</span><span class="brand-ai">AI</span></span>
         <span class="logo-tagline">Tajweed + Hifz Coach</span>
