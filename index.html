@@ -117,14 +117,12 @@
     align-items: center;
     gap: 8px;
   }
-  /* Cropped original PNG — mic only, no baked-in wordmark duplicated. */
+  /* Inline SVG mic — crisp at any size, no baked-in wordmark to crop around. */
   .logo-mark {
-    width: 50px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
     display: block;
-    object-fit: cover;
-    object-position: center top;
   }
   .logo-text {
     display: flex;
@@ -815,7 +813,7 @@
     .nav { gap: 12px; }
     .nav a:not(.nav-cta) { display: none; }
     .logo { gap: 7px; }
-    .logo-mark { width: 44px; height: 29px; }
+    .logo-mark { width: 36px; height: 36px; }
     .logo-name { font-size: 16px; }
     .logo-tagline { font-size: 10px; }
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 28px 22px; }
@@ -854,11 +852,15 @@
   <!-- ── Header ───────────────────────────────────────── -->
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
-      <!-- Restored original logo.png. Container crops the bottom portion
-           (where the "QARI AI" wordmark is baked into the artwork) via
-           object-fit: cover + shorter-than-square box, so only the mic
-           artwork shows and there's no duplicate wordmark. -->
-      <img class="logo-mark" src="/logo.png" alt="QariAI" />
+      <svg class="logo-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M19 22 Q7 50 19 78" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
+        <path d="M81 22 Q93 50 81 78" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
+        <path d="M32 32 Q25 50 32 68" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
+        <path d="M68 32 Q75 50 68 68" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
+        <rect x="38" y="16" width="24" height="48" rx="12" fill="none" stroke="#1c1917" stroke-width="5.5"/>
+        <line x1="50" y1="66" x2="50" y2="80" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="39" y1="82" x2="61" y2="82" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
       <span class="logo-text">
         <span class="logo-name"><span class="brand-qari">Qari</span><span class="brand-ai">AI</span></span>
         <span class="logo-tagline">Tajweed + Hifz Coach</span>
