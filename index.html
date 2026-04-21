@@ -108,22 +108,36 @@
     justify-content: space-between;
     align-items: center;
   }
-  /* Stack vertically — the logo image already contains the bicolor
-     "QARI AI" wordmark, so having a plain "QariAI" span next to it was
-     a visual duplicate. Now the logo (with its embedded wordmark) sits
-     above the tagline, no extra text. */
+  /* Layout: logo on the LEFT, name + tagline stacked on the RIGHT.
+     Exact user request: "text name and tagline right side of logo". */
   .logo {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    line-height: 1;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
   }
   .logo-mark {
-    width: 72px; height: 72px;
+    width: 64px; height: 64px;
     flex-shrink: 0;
     display: block;
     object-fit: contain;
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    line-height: 1.1;
+    gap: 3px;
+  }
+  .logo-name {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.4px;
+    line-height: 1;
+    display: block;
   }
   .logo-tagline {
     font-size: 12px;
@@ -131,8 +145,8 @@
     color: var(--text-secondary);
     letter-spacing: 0.1px;
     white-space: nowrap;
+    line-height: 1.15;
     display: block;
-    padding-left: 2px;
   }
   .nav { display: flex; align-items: center; gap: 24px; }
   .nav a { font-size: 13px; color: var(--text-secondary); transition: color 0.15s; }
@@ -793,7 +807,8 @@
     .header { padding: 14px 18px; }
     .nav { gap: 12px; }
     .nav a:not(.nav-cta) { display: none; }
-    .logo-mark { width: 56px; height: 56px; }
+    .logo-mark { width: 52px; height: 52px; }
+    .logo-name { font-size: 17px; }
     .logo-tagline { font-size: 10.5px; }
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 28px 22px; }
     .hero h1 { font-size: 30px; }
@@ -832,7 +847,10 @@
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
       <img class="logo-mark" src="/logo.png" alt="QariAI" />
-      <span class="logo-tagline">Tajweed + Hifz Coach</span>
+      <span class="logo-text">
+        <span class="logo-name">QariAI</span>
+        <span class="logo-tagline">Tajweed + Hifz Coach</span>
+      </span>
     </a>
     <nav class="nav">
       <a href="#features">Features</a>
