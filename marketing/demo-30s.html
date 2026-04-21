@@ -61,10 +61,15 @@
   .slide {
     position: absolute; inset: 0;
     opacity: 0;
+    background: #F5F2EA;
   }
+  /* object-fit: contain (not cover) so the full 9:16 frame shows —
+     no headline clipped at the top when the modal aspect doesn't
+     perfectly match 9:16. Letterbox with the stage bg if needed. */
   .slide img {
     width: 100%; height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
     display: block;
   }
 

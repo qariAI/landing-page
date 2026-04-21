@@ -116,12 +116,15 @@
     align-items: center;
     gap: 12px;
   }
-  /* SVG mic icon — crisp at any size, square container. */
+  /* Original PNG logo, cropped to the mic portion so the baked-in
+     "QARI AI" wordmark doesn't duplicate the HTML wordmark beside it. */
   .logo-mark {
-    width: 44px;
-    height: 44px;
+    width: 70px;
+    height: 46px;
     flex-shrink: 0;
     display: block;
+    object-fit: cover;
+    object-position: center top;
   }
   .logo-text {
     display: flex;
@@ -811,7 +814,7 @@
     .header { padding: 14px 18px; }
     .nav { gap: 12px; }
     .nav a:not(.nav-cta) { display: none; }
-    .logo-mark { width: 38px; height: 38px; }
+    .logo-mark { width: 56px; height: 36px; }
     .logo-name { font-size: 16px; }
     .logo-tagline { font-size: 10px; }
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 28px 22px; }
@@ -850,24 +853,11 @@
   <!-- ── Header ───────────────────────────────────────── -->
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
-      <!-- Inline SVG mic — polished to match the logo.png artwork.
-           Capsule is now an OUTLINE (stroke, not filled) so the inner
-           "grille" look matches the original. Crisp at any DPR. -->
-      <svg class="logo-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- Outer sound wave arcs — teal -->
-        <path d="M19 22 Q7 50 19 78" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
-        <path d="M81 22 Q93 50 81 78" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
-        <!-- Inner sound wave arcs — teal -->
-        <path d="M32 32 Q25 50 32 68" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
-        <path d="M68 32 Q75 50 68 68" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
-        <!-- Mic capsule — thick outline only, transparent inside so the
-             page background shows through (matches original's grille look) -->
-        <rect x="38" y="16" width="24" height="48" rx="12" fill="none" stroke="#1c1917" stroke-width="5.5"/>
-        <!-- Stem from capsule bottom -->
-        <line x1="50" y1="66" x2="50" y2="80" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round"/>
-        <!-- Horizontal base bar -->
-        <line x1="39" y1="82" x2="61" y2="82" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round"/>
-      </svg>
+      <!-- Restored original logo.png. Container crops the bottom portion
+           (where the "QARI AI" wordmark is baked into the artwork) via
+           object-fit: cover + shorter-than-square box, so only the mic
+           artwork shows and there's no duplicate wordmark. -->
+      <img class="logo-mark" src="/logo.png" alt="QariAI" />
       <span class="logo-text">
         <span class="logo-name"><span class="brand-qari">Qari</span><span class="brand-ai">AI</span></span>
         <span class="logo-tagline">Tajweed + Hifz Coach</span>
