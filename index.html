@@ -137,10 +137,6 @@
     white-space: nowrap;
     margin-top: 2px;
   }
-  .logo-text { line-height: 1.1; }
-  .logo-text p { margin: 0; }
-  .logo-name { font-size: 15px; font-weight: 600; color: var(--text-primary); }
-  .logo-sub { font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.6px; margin-top: 2px; text-transform: uppercase; }
   .nav { display: flex; align-items: center; gap: 24px; }
   .nav a { font-size: 13px; color: var(--text-secondary); transition: color 0.15s; }
   .nav a:hover { color: var(--text-primary); }
@@ -840,7 +836,10 @@
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
       <img class="logo-mark" src="/logo.png" alt="QariAI" />
-      <span class="logo-tagline">Tajweed + Hifz Coach</span>
+      <span class="logo-text">
+        <span class="logo-name">QariAI</span>
+        <span class="logo-tagline">Tajweed + Hifz Coach</span>
+      </span>
     </a>
     <nav class="nav">
       <a href="#features">Features</a>
