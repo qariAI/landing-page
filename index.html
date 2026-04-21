@@ -115,11 +115,15 @@
     display: block;
     object-fit: contain;
   }
+  /* Stack: [logo image]  QariAI            ← wordmark, top row
+                          Tajweed + Hifz Coach ← tagline, directly beneath */
   .logo-text {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
     line-height: 1.1;
+    gap: 2px;
   }
   .logo-name {
     font-family: var(--font-serif);
@@ -127,7 +131,8 @@
     font-weight: 800;
     color: var(--text-primary);
     letter-spacing: -0.4px;
-    line-height: 1.1;
+    line-height: 1;
+    display: block;
   }
   .logo-tagline {
     font-size: 12px;
@@ -135,7 +140,8 @@
     color: var(--text-secondary);
     letter-spacing: 0.1px;
     white-space: nowrap;
-    margin-top: 2px;
+    line-height: 1.15;
+    display: block;
   }
   .nav { display: flex; align-items: center; gap: 24px; }
   .nav a { font-size: 13px; color: var(--text-secondary); transition: color 0.15s; }
