@@ -106,19 +106,32 @@
   }
   .logo { display: flex; align-items: center; gap: 12px; }
   .logo-mark {
-    /* Logo already carries the "QariAI" mark, so the wordmark next to it
-       is gone — but the tagline stays as positioning copy. */
-    width: 56px; height: 56px;
+    width: 64px; height: 64px;
     flex-shrink: 0;
     display: block;
     object-fit: contain;
   }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.1;
+  }
+  .logo-name {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.4px;
+    line-height: 1.1;
+  }
   .logo-tagline {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--text-secondary);
     letter-spacing: 0.1px;
     white-space: nowrap;
+    margin-top: 2px;
   }
   .logo-text { line-height: 1.1; }
   .logo-text p { margin: 0; }
@@ -783,7 +796,9 @@
     .header { padding: 14px 18px; }
     .nav { gap: 12px; }
     .nav a:not(.nav-cta) { display: none; }
-    .logo-tagline { display: none; }
+    .logo-mark { width: 52px; height: 52px; }
+    .logo-name { font-size: 17px; }
+    .logo-tagline { font-size: 10.5px; }
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 28px 22px; }
     .hero h1 { font-size: 30px; }
     .hero-visual { min-height: 340px; }
@@ -821,7 +836,10 @@
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
       <img class="logo-mark" src="/logo.png" alt="QariAI" />
-      <span class="logo-tagline">Tajweed + Hifz Coach</span>
+      <span class="logo-text">
+        <span class="logo-name">QariAI</span>
+        <span class="logo-tagline">Tajweed + Hifz Coach</span>
+      </span>
     </a>
     <nav class="nav">
       <a href="#features">Features</a>
