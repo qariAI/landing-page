@@ -46,8 +46,12 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D55KK2YBKH"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D55KK2YBKH');</script>
 
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2">
-<link rel="apple-touch-icon" href="/favicon.png?v=2">
+<!-- Favicons (multiple sizes + shortcut icon + apple-touch) so every browser picks one up. -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=3">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=3">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
+<link rel="shortcut icon" href="/favicon.png?v=3">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -100,14 +104,21 @@
     justify-content: space-between;
     align-items: center;
   }
-  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo { display: flex; align-items: center; gap: 12px; }
   .logo-mark {
-    /* Logo bigger + solo — the wordmark/tagline text block next to it was
-       duplicating the "QariAI" that already sits inside the logo image. */
+    /* Logo already carries the "QariAI" mark, so the wordmark next to it
+       is gone — but the tagline stays as positioning copy. */
     width: 56px; height: 56px;
     flex-shrink: 0;
     display: block;
     object-fit: contain;
+  }
+  .logo-tagline {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.1px;
+    white-space: nowrap;
   }
   .logo-text { line-height: 1.1; }
   .logo-text p { margin: 0; }
@@ -772,6 +783,7 @@
     .header { padding: 14px 18px; }
     .nav { gap: 12px; }
     .nav a:not(.nav-cta) { display: none; }
+    .logo-tagline { display: none; }
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 28px 22px; }
     .hero h1 { font-size: 30px; }
     .hero-visual { min-height: 340px; }
@@ -808,7 +820,8 @@
   <!-- ── Header ───────────────────────────────────────── -->
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
-      <img class="logo-mark" src="/logo.png" alt="QariAI — Tajweed + Hifz Coach" />
+      <img class="logo-mark" src="/logo.png" alt="QariAI" />
+      <span class="logo-tagline">Tajweed + Hifz Coach</span>
     </a>
     <nav class="nav">
       <a href="#features">Features</a>
