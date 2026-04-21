@@ -116,11 +116,19 @@
     align-items: center;
     gap: 12px;
   }
+  /* Crop the logo so only the MIC portion of the artwork shows. The
+     source logo.png is 1:1 with the mic in the top ~60% and the
+     "QARI AI" wordmark baked into the bottom ~40% — that bottom text
+     was duplicating the HTML "QariAI" span beside it. We render into
+     a shorter-than-square box (52×34) with object-fit: cover +
+     object-position: top so the bottom text gets cropped off. */
   .logo-mark {
-    width: 64px; height: 64px;
+    width: 52px;
+    height: 34px;
     flex-shrink: 0;
     display: block;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center top;
   }
   .logo-text {
     display: flex;
@@ -807,7 +815,7 @@
     .header { padding: 14px 18px; }
     .nav { gap: 12px; }
     .nav a:not(.nav-cta) { display: none; }
-    .logo-mark { width: 52px; height: 52px; }
+    .logo-mark { width: 44px; height: 29px; }
     .logo-name { font-size: 17px; }
     .logo-tagline { font-size: 10.5px; }
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 28px 22px; }
