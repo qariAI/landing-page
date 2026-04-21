@@ -2,43 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>QariAI — 30s demo (animated preview)</title>
+<title>QariAI — 30s demo</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   /*
-   * 30-second animated demo.
-   * Designed to be screen-recorded against a 9:16 viewport (1080×1920)
-   * for Instagram Reels / TikTok / YouTube Shorts.
+   * 30-second demo — cycles the pre-composed marketing frames 1, 3, 5, 6, 7
+   * (sitting in /marketing/frames) as full-bleed 9:16 slides, then lands on
+   * a clean CTA. Each frame already carries its own headline in-artwork, so
+   * no caption overlays needed.
    *
-   * Timeline (seconds):
-   *   0 – 3    Scene 1  Hook          "Most of us were never taught tajweed properly."
-   *   3 – 8    Scene 2  Problem       Open app → tap mic → recite Al-Ikhlāṣ
-   *   8 – 16   Scene 3  Magic moment  Mistake card + waveform vs Sheikh
-   *  16 – 22   Scene 4  Feedback loop 7.5 → 9.2, green checkmark
-   *  22 – 27   Scene 5  Habit         23-day streak + daily revision
-   *  27 – 30   Scene 6  CTA           Logo + qariai.app
-   *
-   * Each scene uses a `scene-N-show` keyframe driven by `animation-delay`.
-   * The whole sequence runs once (animation-iteration-count: 1). To loop
-   * for screen-recording rehearsal, set .stage animation-iteration-count
-   * to `infinite`.
+   * Timeline (seconds · percent of 30s):
+   *   0.0 –  5.0   Frame 1  — "Fix your recitation instantly"
+   *   5.0 – 10.0   Frame 3  — "Like a teacher beside you"
+   *  10.0 – 15.5   Frame 5  — "Track your improvement"
+   *  15.5 – 20.5   Frame 6  — "Stay consistent"
+   *  20.5 – 26.0   Frame 7  — "Stay motivated as you improve"
+   *  26.0 – 30.0   CTA      — QariAI · qariai.app
    */
+
   :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #F5F2EA;
+    --brand: #0F8F71;
+    --brand-dark: #085041;
     --text-primary: #1C1917;
     --text-secondary: #57534E;
-    --text-tertiary: #A8A29E;
-    --brand: #0F6E56;
-    --brand-dark: #085041;
-    --brand-soft: #E1F5EE;
-    --red: #A32D2D;
-    --font-sans: 'Inter', -apple-system, sans-serif;
-    --font-serif: 'Playfair Display', Georgia, serif;
-    --font-arabic: 'Amiri', serif;
+    --bg-secondary: #F5F2EA;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -51,12 +42,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* ──────────────────────────────────────────────────────
-     STAGE — locks a 9:16 frame in the center of the viewport.
-     Resize your browser to 1080×1920 (DevTools device toolbar
-     → "Responsive" → set 1080 × 1920), or use a full-screen
-     tall window to record.
-     ────────────────────────────────────────────────────── */
+  /* 9:16 stage locked to the viewport */
   .stage {
     position: absolute;
     top: 50%; left: 50%;
@@ -65,760 +51,215 @@
     aspect-ratio: 9 / 16;
     max-width: 100vw;
     max-height: 100vh;
-    background: var(--bg-secondary);
+    background: #F5F2EA;
     overflow: hidden;
     box-shadow: 0 0 80px rgba(15, 110, 86, 0.15);
   }
-  /* Scale everything proportionally inside the stage */
-  .stage-inner {
+
+  /* Each slide fills the stage and fades in during its slot.
+     A 0.5s cross-fade between slides is built into the keyframe timing. */
+  .slide {
     position: absolute; inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Scene wrappers — all start invisible, fade in during their slot */
-  .scene {
-    position: absolute; inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     opacity: 0;
-    padding: 6%;
   }
-  .scene-1 { animation: s1 30s linear 1 forwards; }  /*  0 – 3  */
-  .scene-2 { animation: s2 30s linear 1 forwards; }  /*  3 – 8  */
-  .scene-3 { animation: s3 30s linear 1 forwards; }  /*  8 – 16 */
-  .scene-4 { animation: s4 30s linear 1 forwards; }  /* 16 – 22 */
-  .scene-5 { animation: s5 30s linear 1 forwards; }  /* 22 – 27 */
-  .scene-6 { animation: s6 30s linear 1 forwards; }  /* 27 – 30 */
-
-  @keyframes s1 { 0% { opacity: 0 } 2% { opacity: 1 } 9% { opacity: 1 } 11% { opacity: 0 } 100% { opacity: 0 } }
-  @keyframes s2 { 0%,9% { opacity: 0 } 11% { opacity: 1 } 26% { opacity: 1 } 28% { opacity: 0 } 100% { opacity: 0 } }
-  @keyframes s3 { 0%,26% { opacity: 0 } 28% { opacity: 1 } 52% { opacity: 1 } 54% { opacity: 0 } 100% { opacity: 0 } }
-  @keyframes s4 { 0%,52% { opacity: 0 } 54% { opacity: 1 } 72% { opacity: 1 } 74% { opacity: 0 } 100% { opacity: 0 } }
-  @keyframes s5 { 0%,72% { opacity: 0 } 74% { opacity: 1 } 89% { opacity: 1 } 91% { opacity: 0 } 100% { opacity: 0 } }
-  @keyframes s6 { 0%,89% { opacity: 0 } 91% { opacity: 1 } 100% { opacity: 1 } }
-
-  /* ── Shared caption strip ─────────────────────────────
-     Captions live in a protected bottom band that is ALWAYS below
-     the phone/ayah content area. They never float over or touch the
-     Qur'anic Arabic — the phone's internal ayah text keeps its own
-     padding, and this caption row is anchored to `bottom: 6%` of
-     the stage so there's a guaranteed gap.
-     ───────────────────────────────────────────────────── */
-  .caption {
-    position: absolute;
-    left: 0; right: 0;
-    bottom: 6%;
-    text-align: center;
-    padding: 0 10%;
-    color: var(--text-primary);
-    font-family: var(--font-serif);
-    font-size: clamp(18px, 3.4vmin, 36px);
-    font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.4px;
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  .scene-2 .caption { animation: caption-s2 30s linear 1 forwards; }
-  .scene-3 .caption { animation: caption-s3 30s linear 1 forwards; }
-  .scene-4 .caption { animation: caption-s4 30s linear 1 forwards; }
-  .scene-5 .caption { animation: caption-s5 30s linear 1 forwards; }
-
-  /* Each caption slides up + fades in ~0.6s after its scene opens,
-     holds for the scene's duration, then slides up + fades out
-     ~0.4s before the scene ends. The motion is slow and reverent
-     — no bouncing, no quick flicker. */
-  @keyframes caption-s2 {
-    0%, 13% { opacity: 0; transform: translateY(18px) }
-    15% { opacity: 1; transform: translateY(0) }
-    26% { opacity: 1; transform: translateY(0) }
-    28% { opacity: 0; transform: translateY(-10px) }
-    100% { opacity: 0 }
-  }
-  @keyframes caption-s3 {
-    0%, 30% { opacity: 0; transform: translateY(18px) }
-    32% { opacity: 1; transform: translateY(0) }
-    52% { opacity: 1; transform: translateY(0) }
-    54% { opacity: 0; transform: translateY(-10px) }
-    100% { opacity: 0 }
-  }
-  @keyframes caption-s4 {
-    0%, 56% { opacity: 0; transform: translateY(18px) }
-    58% { opacity: 1; transform: translateY(0) }
-    72% { opacity: 1; transform: translateY(0) }
-    74% { opacity: 0; transform: translateY(-10px) }
-    100% { opacity: 0 }
-  }
-  @keyframes caption-s5 {
-    0%, 76% { opacity: 0; transform: translateY(18px) }
-    78% { opacity: 1; transform: translateY(0) }
-    89% { opacity: 1; transform: translateY(0) }
-    91% { opacity: 0; transform: translateY(-10px) }
-    100% { opacity: 0 }
-  }
-
-  /* ───────────────────────────────────────────────────────
-     SCENE 1 — Hook
-     ─────────────────────────────────────────────────────── */
-  .scene-1 {
-    background: #fffdf8;
-  }
-  .scene-1-inner {
-    text-align: center;
-    padding: 0 10%;
-  }
-  .s1-arabic {
-    font-family: var(--font-arabic);
-    font-size: clamp(40px, 9vmin, 110px);
-    color: var(--brand-dark);
-    /* Extra margin-bottom creates a reverent buffer: the English
-       headline can never touch the ayah even at worst-case zoom. */
-    margin-bottom: 10%;
-    direction: rtl;
-    opacity: 0;
-    animation: s1-ayah-in 30s linear 1 forwards;
-    line-height: 1.45;
-  }
-  @keyframes s1-ayah-in {
-    0% { opacity: 0; transform: translateY(10px) }
-    3% { opacity: 0.28; transform: translateY(0) }
-    9% { opacity: 0.32 }
-    11% { opacity: 0 }
-    100% { opacity: 0 }
-  }
-
-  .s1-headline {
-    font-family: var(--font-serif);
-    font-size: clamp(24px, 4.2vmin, 48px);
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.6px;
-    line-height: 1.2;
-    opacity: 0;
-    transform: translateY(14px);
-    animation: s1-headline-in 30s linear 1 forwards;
-  }
-  /* Headline enters AFTER the ayah has settled, so the sacred text is
-     fully present before the English copy arrives below it. Exit fade
-     is symmetric — headline leaves first, ayah last. */
-  @keyframes s1-headline-in {
-    0%, 4% { opacity: 0; transform: translateY(14px) }
-    7% { opacity: 1; transform: translateY(0) }
-    9% { opacity: 1 }
-    10% { opacity: 0; transform: translateY(-8px) }
-    100% { opacity: 0 }
-  }
-
-  /* ───────────────────────────────────────────────────────
-     SCENE 2 — Problem (real app screenshot, not a CSS mock)
-     ─────────────────────────────────────────────────────── */
-  .phone-shell {
-    position: relative;
-    width: 64%;
-    aspect-ratio: 9 / 19;
-    border-radius: 7%;
-    overflow: hidden;
-    box-shadow: 0 14px 42px rgba(0,0,0,0.18);
-    background: #F5F2EA;
-  }
-  .phone-screenshot {
+  .slide img {
     width: 100%; height: 100%;
     object-fit: cover;
-    object-position: top center;
     display: block;
   }
-  /* Emerald pulse overlaying the Start Recitation button in the
-     screenshot. Positioned at ~48% vertical which is where the mic
-     CTA lands on the v20 recite screen. */
-  .mic-pulse-ring {
-    position: absolute;
-    left: 50%; top: 48%;
-    width: 58%;
-    aspect-ratio: 5 / 1;
-    transform: translate(-50%, -50%);
-    border-radius: 999px;
-    border: 3px solid rgba(15, 110, 86, 0.55);
-    opacity: 0;
-    animation: mic-pulse-ring 30s linear 1 forwards;
-    pointer-events: none;
-  }
-  @keyframes mic-pulse-ring {
-    0%, 13% { opacity: 0; transform: translate(-50%, -50%) scale(0.92) }
-    15% { opacity: 0.9; transform: translate(-50%, -50%) scale(1) }
-    22% { opacity: 0; transform: translate(-50%, -50%) scale(1.15) }
+
+  /* Keyframes — each slide uses a single 30s animation with sharp in/out
+     windows. The `x% { opacity: 1 }` pairs are the visible hold period. */
+  .slide-1 { animation: s1 30s linear 1 forwards; }
+  .slide-3 { animation: s3 30s linear 1 forwards; }
+  .slide-5 { animation: s5 30s linear 1 forwards; }
+  .slide-6 { animation: s6 30s linear 1 forwards; }
+  .slide-7 { animation: s7 30s linear 1 forwards; }
+  .slide-cta { animation: scta 30s linear 1 forwards; }
+
+  @keyframes s1 {
+    0%   { opacity: 0 }
+    2%   { opacity: 1 }
+    15%  { opacity: 1 }
+    17%  { opacity: 0 }
     100% { opacity: 0 }
   }
-  /* Legacy CSS phone mock (no longer used in scene 2 but keeping the
-     styles so scene 3's .phone-ayah .mistake-word selector still
-     compiles cleanly if we re-add it later). */
-  .phone {
-    width: 58%;
-    aspect-ratio: 9 / 19;
-    background: var(--bg-primary);
-    border-radius: 7%;
-    border: 2px solid #1c1917;
-    padding: 6% 4%;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  @keyframes s3 {
+    0%, 15% { opacity: 0 }
+    17% { opacity: 1 }
+    32% { opacity: 1 }
+    34% { opacity: 0 }
+    100% { opacity: 0 }
+  }
+  @keyframes s5 {
+    0%, 32% { opacity: 0 }
+    34% { opacity: 1 }
+    50% { opacity: 1 }
+    52% { opacity: 0 }
+    100% { opacity: 0 }
+  }
+  @keyframes s6 {
+    0%, 50% { opacity: 0 }
+    52% { opacity: 1 }
+    67% { opacity: 1 }
+    69% { opacity: 0 }
+    100% { opacity: 0 }
+  }
+  @keyframes s7 {
+    0%, 67% { opacity: 0 }
+    69% { opacity: 1 }
+    85% { opacity: 1 }
+    87% { opacity: 0 }
+    100% { opacity: 0 }
+  }
+  @keyframes scta {
+    0%, 85% { opacity: 0 }
+    87% { opacity: 1 }
+    100% { opacity: 1 }
+  }
+
+  /* ── Final CTA slide ─────────────────────────────────── */
+  .cta {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4%;
+    padding: 10%;
+    text-align: center;
+    background: #ffffff;
   }
-  .phone-header {
+  .cta-logo {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding-bottom: 6%;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 8%;
-  }
-  .phone-logo-mark {
-    width: 22px; height: 22px;
-    display: grid; place-items: center;
-    object-fit: contain;
-  }
-  .phone-logo-text { font-size: 11px; font-weight: 700; color: var(--text-primary); }
-  .phone-surah-label {
-    font-size: 9px; color: var(--text-tertiary);
-    letter-spacing: 0.6px;
-    text-align: center;
-    text-transform: uppercase;
-    margin-bottom: 4%;
-  }
-  .phone-ayah {
-    font-family: var(--font-arabic);
-    font-size: clamp(18px, 3vmin, 30px);
-    color: var(--text-primary);
-    text-align: center;
-    direction: rtl;
-    line-height: 1.6;
-    margin-bottom: 8%;
-  }
-  .phone-ayah .mistake-word {
-    color: var(--red);
-    opacity: 0;
-  }
-  .scene-3 .phone-ayah .mistake-word {
-    animation: mistake-reveal 30s linear 1 forwards;
-  }
-  @keyframes mistake-reveal {
-    0%, 30% { opacity: 0 }
-    32% { opacity: 1 }
-    52% { opacity: 1 }
-    54% { opacity: 0 }
-    100% { opacity: 0 }
-  }
-
-  .phone-mic {
-    margin: auto;
-    width: 28%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: var(--brand);
-    display: grid; place-items: center;
-    position: relative;
-    box-shadow: 0 6px 18px rgba(15,110,86,0.35);
-  }
-  /* Pulsing rings during the "tap" moment of scene 2 */
-  .scene-2 .phone-mic::before,
-  .scene-2 .phone-mic::after {
-    content: '';
-    position: absolute;
-    inset: -12%;
-    border-radius: 50%;
-    border: 2px solid var(--brand);
-    opacity: 0;
-    animation: mic-pulse 30s linear 1 forwards;
-  }
-  .scene-2 .phone-mic::after { animation-delay: 0.4s; }
-  @keyframes mic-pulse {
-    0%, 13% { opacity: 0; transform: scale(1) }
-    15% { opacity: 0.55; transform: scale(1) }
-    22% { opacity: 0; transform: scale(1.6) }
-    100% { opacity: 0; transform: scale(1) }
-  }
-  .phone-mic svg { width: 32%; height: 32%; }
-
-  .phone-mic-caption {
-    margin-top: 6%;
-    text-align: center;
-    font-size: 10px;
-    color: var(--text-secondary);
-  }
-
-  /* ───────────────────────────────────────────────────────
-     SCENE 3 — Magic moment (mistake card + waveforms)
-     ─────────────────────────────────────────────────────── */
-  .scene-3 {
-    background: var(--bg-secondary);
-    flex-direction: column;
-    gap: 4%;
-  }
-  .magic-wrap {
-    width: 86%;
-    display: flex;
-    flex-direction: column;
-    gap: 4%;
-  }
-  .mistake-card {
-    background: white;
-    border: 0.5px solid #e7e5e4;
-    border-radius: 14px;
-    padding: 14px 16px;
-    box-shadow: 0 8px 24px rgba(15,40,20,0.08);
-    transform: translateY(20px);
-    opacity: 0;
-    animation: mistake-in 30s linear 1 forwards;
-  }
-  @keyframes mistake-in {
-    0%, 31% { opacity: 0; transform: translateY(20px) }
-    33% { opacity: 1; transform: translateY(0) }
-    52% { opacity: 1; transform: translateY(0) }
-    54% { opacity: 0 }
-    100% { opacity: 0 }
-  }
-  .mistake-card-top {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 6px;
-  }
-  .mistake-card-title {
-    font-size: clamp(12px, 1.8vmin, 18px);
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-  .mistake-card-score {
-    font-size: clamp(16px, 2.2vmin, 22px);
-    font-weight: 800;
-    color: var(--red);
-  }
-  .mistake-card-score small {
-    font-size: 60%;
-    color: var(--text-tertiary);
-    font-weight: 500;
-  }
-  .mistake-card-desc {
-    font-size: clamp(11px, 1.6vmin, 16px);
-    color: var(--text-secondary);
-    line-height: 1.4;
-    margin-bottom: 10px;
-  }
-  .mistake-card-desc .arab { font-family: var(--font-arabic); color: var(--red); font-weight: 700; }
-  .mistake-card-chip {
-    display: inline-block;
-    background: var(--brand-soft);
-    color: var(--brand-dark);
-    font-size: clamp(10px, 1.4vmin, 14px);
-    font-weight: 700;
-    padding: 5px 12px;
-    border-radius: 12px;
-  }
-
-  /* Waveform comparison card */
-  .waveform-card {
-    background: white;
-    border: 0.5px solid #e7e5e4;
-    border-radius: 14px;
-    padding: 14px 16px;
-    transform: translateY(20px);
-    opacity: 0;
-    animation: wave-in 30s linear 1 forwards;
-  }
-  @keyframes wave-in {
-    0%, 37% { opacity: 0; transform: translateY(20px) }
-    39% { opacity: 1; transform: translateY(0) }
-    52% { opacity: 1 }
-    54% { opacity: 0 }
-    100% { opacity: 0 }
-  }
-  .wave-row {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 6px;
-  }
-  .wave-label {
-    font-size: clamp(9px, 1.2vmin, 12px);
-    color: var(--text-secondary);
-    width: 18%;
-    font-weight: 600;
-  }
-  .wave-bars {
-    flex: 1;
-    display: flex; align-items: center; gap: 2px;
-    height: clamp(22px, 3vmin, 36px);
-  }
-  .wave-bars span {
-    flex: 1;
-    background: var(--brand);
-    border-radius: 1px;
-    height: 30%;
-    transform-origin: center;
-  }
-  .wave-bars span.tall-1 { height: 40%; }
-  .wave-bars span.tall-2 { height: 65%; }
-  .wave-bars span.tall-3 { height: 90%; }
-  .wave-bars span.tall-4 { height: 75%; }
-  .wave-bars span.tall-5 { height: 55%; }
-  .wave-bars span.mistake { background: var(--red); }
-
-  /* ───────────────────────────────────────────────────────
-     SCENE 4 — Feedback loop (score 7.5 → 9.2)
-     ─────────────────────────────────────────────────────── */
-  .scene-4 {
-    background: #fffdf8;
-    flex-direction: column;
-    gap: 4%;
-  }
-  .score-ring-wrap {
-    display: flex; gap: 10%;
-    align-items: center; justify-content: center;
-  }
-  .score-ring {
-    width: clamp(90px, 22vmin, 220px);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 6px solid;
-    display: grid; place-items: center;
-    text-align: center;
-    transition: border-color 0.6s, color 0.6s;
-  }
-  .score-ring.before {
-    border-color: var(--red);
-    color: var(--red);
-    opacity: 0;
-    animation: ring-before 30s linear 1 forwards;
-  }
-  .score-ring.after {
-    border-color: var(--brand);
-    color: var(--brand);
-    opacity: 0;
-    animation: ring-after 30s linear 1 forwards;
-  }
-  @keyframes ring-before {
-    0%, 55% { opacity: 0 }
-    57% { opacity: 1 }
-    62% { opacity: 0.3 }
-    100% { opacity: 0.3 }
-  }
-  @keyframes ring-after {
-    0%, 62% { opacity: 0; transform: scale(0.8) }
-    64% { opacity: 1; transform: scale(1.1) }
-    67% { transform: scale(1) }
-    72% { opacity: 1 }
-    74% { opacity: 0 }
-    100% { opacity: 0 }
-  }
-  .score-value {
-    font-family: var(--font-serif);
-    font-weight: 800;
-    font-size: clamp(28px, 6vmin, 70px);
-    letter-spacing: -1px;
-    line-height: 1;
-  }
-  .score-label {
-    font-size: clamp(9px, 1.2vmin, 12px);
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-top: 4%;
-    opacity: 0.75;
-  }
-  .score-check {
-    width: 12%; aspect-ratio: 1;
-    border-radius: 50%;
-    background: var(--brand);
-    display: grid; place-items: center;
-    opacity: 0;
-    animation: check-in 30s linear 1 forwards;
-    margin: 3% auto 0;
-  }
-  @keyframes check-in {
-    0%, 66% { opacity: 0; transform: scale(0.5) }
-    68% { opacity: 1; transform: scale(1.3) }
-    70% { transform: scale(1) }
-    72% { opacity: 1 }
-    74% { opacity: 0 }
-    100% { opacity: 0 }
-  }
-  .score-check svg { width: 55%; height: 55%; }
-
-  /* ───────────────────────────────────────────────────────
-     SCENE 5 — Habit (streak + daily revision)
-     ─────────────────────────────────────────────────────── */
-  .scene-5 {
-    background: var(--bg-secondary);
-    flex-direction: column;
-    gap: 3%;
-  }
-  .habit-wrap {
-    width: 86%;
-    display: flex;
-    flex-direction: column;
-    gap: 4%;
-  }
-  .streak-card {
-    background: linear-gradient(135deg, #fffaf3, #fff3e3);
-    border: 1px solid #fde4c4;
-    border-radius: 14px;
-    padding: 14px 16px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .streak-flame {
-    width: clamp(36px, 6vmin, 60px);
-    aspect-ratio: 1;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #fed7aa, #fdba74);
-    display: grid; place-items: center;
-  }
-  .streak-flame svg { width: 55%; height: 55%; }
-  .streak-col { flex: 1; }
-  .streak-label {
-    font-size: clamp(9px, 1.2vmin, 12px);
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: #b4501d;
-  }
-  .streak-num {
-    font-family: var(--font-serif);
-    font-size: clamp(24px, 4vmin, 44px);
-    font-weight: 800;
-    color: #b4501d;
-    letter-spacing: -0.8px;
-    line-height: 1;
-    margin-top: 4px;
-  }
-  .streak-unit { font-size: 0.45em; font-weight: 600; color: #d97a3e; margin-left: 4px; }
-
-  .revision-card {
-    background: white;
-    border: 0.5px solid #e7e5e4;
-    border-radius: 14px;
-    padding: 14px 16px;
-  }
-  .revision-label {
-    font-size: clamp(9px, 1.2vmin, 12px);
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: #9a3412;
-    margin-bottom: 10px;
-  }
-  .revision-tiles { display: flex; gap: 8px; }
-  .revision-tile {
-    flex: 1;
-    padding: 8px 10px;
-    border-radius: 10px;
-    background: #f5f2ea;
-    border: 0.5px solid #e7e5e4;
-    text-align: center;
-  }
-  .revision-tile .pct {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: clamp(12px, 1.7vmin, 18px);
-    color: var(--brand);
-    line-height: 1;
-  }
-  .revision-tile.red .pct { color: var(--red); }
-  .revision-tile.amber .pct { color: #B47A1D; }
-  .revision-tile .word {
-    font-family: var(--font-arabic);
-    font-size: clamp(12px, 1.8vmin, 20px);
-    margin-top: 3px;
-    color: var(--text-primary);
-  }
-
-  /* ───────────────────────────────────────────────────────
-     SCENE 6 — CTA
-     ─────────────────────────────────────────────────────── */
-  .scene-6 {
-    background: #ffffff;
-    flex-direction: column;
-    gap: 6%;
-  }
-  .cta-logo-wrap {
-    display: flex; align-items: center; gap: 10px;
+    gap: 2vmin;
     opacity: 0;
     animation: cta-in 30s linear 1 forwards;
   }
   @keyframes cta-in {
-    0%, 89% { opacity: 0; transform: translateY(10px) }
-    91% { opacity: 1; transform: translateY(0) }
-    100% { opacity: 1; transform: translateY(0) }
+    0%, 87% { opacity: 0; transform: translateY(10px) }
+    89% { opacity: 1; transform: translateY(0) }
+    100% { opacity: 1 }
   }
-  .cta-logo-mark {
-    width: clamp(56px, 10vmin, 110px);
-    aspect-ratio: 1;
-    object-fit: contain;
-    display: block;
-  }
+  .cta-logo svg { width: 12vmin; height: 12vmin; }
   .cta-brand {
-    font-family: var(--font-serif);
-    font-size: clamp(30px, 6.5vmin, 70px);
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -1px;
+    font-size: clamp(32px, 7vmin, 80px);
+    font-weight: 900;
+    letter-spacing: -1.2px;
+    line-height: 1;
   }
-  .cta-domain {
-    font-family: var(--font-sans);
-    font-size: clamp(16px, 2.6vmin, 30px);
-    color: var(--brand);
-    font-weight: 600;
-    margin-top: 2%;
+  .cta-brand .q { color: var(--text-primary); }
+  .cta-brand .ai { color: var(--brand); }
+  .cta-tagline {
+    font-size: clamp(13px, 2.2vmin, 24px);
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-top: 1%;
     opacity: 0;
-    animation: cta-domain-in 30s linear 1 forwards;
+    animation: cta-tag 30s linear 1 forwards;
   }
-  @keyframes cta-domain-in {
-    0%, 92% { opacity: 0 }
-    94% { opacity: 1 }
+  @keyframes cta-tag {
+    0%, 89% { opacity: 0 }
+    91% { opacity: 1 }
+    100% { opacity: 1 }
+  }
+  .cta-url {
+    font-size: clamp(18px, 3.4vmin, 40px);
+    color: var(--brand);
+    font-weight: 700;
+    margin-top: 4%;
+    letter-spacing: -0.3px;
+    opacity: 0;
+    animation: cta-url 30s linear 1 forwards;
+  }
+  @keyframes cta-url {
+    0%, 92% { opacity: 0; transform: translateY(6px) }
+    94% { opacity: 1; transform: translateY(0) }
     100% { opacity: 1 }
   }
   .cta-sub {
     font-size: clamp(13px, 2vmin, 22px);
     color: var(--text-secondary);
-    text-align: center;
+    margin-top: 1%;
     opacity: 0;
-    animation: cta-sub-in 30s linear 1 forwards;
+    animation: cta-sub 30s linear 1 forwards;
   }
-  @keyframes cta-sub-in {
+  @keyframes cta-sub {
     0%, 94% { opacity: 0 }
     96% { opacity: 1 }
     100% { opacity: 1 }
   }
 
-  /* ── Timeline bar at bottom (purely informative, for recording discipline) ── */
+  /* Timeline bar at bottom — 3px emerald fills the 30s */
   .timeline {
     position: absolute;
     bottom: 0; left: 0;
     height: 3px;
     background: var(--brand);
     width: 0;
-    animation: timeline-fill 30s linear 1 forwards;
+    animation: timeline 30s linear 1 forwards;
     opacity: 0.35;
   }
-  @keyframes timeline-fill { to { width: 100%; } }
-
-  /* ── Debug: press "r" to replay the animation ── */
+  @keyframes timeline { to { width: 100%; } }
 </style>
 </head>
 <body>
 
 <div class="stage">
-  <div class="stage-inner">
 
-    <!-- ═══ SCENE 1 — Hook ═══ -->
-    <div class="scene scene-1">
-      <div class="scene-1-inner">
-        <div class="s1-arabic">وَرَتِّلِ ٱلْقُرْآنَ تَرْتِيلًا</div>
-        <div class="s1-headline">Most of us were never taught<br/>tajweed properly.</div>
-      </div>
-    </div>
-
-    <!-- ═══ SCENE 2 — Problem (real recite screenshot, not a mockup) ═══ -->
-    <div class="scene scene-2">
-      <div class="phone-shell">
-        <img class="phone-screenshot" src="../screenshots/v20_recite.jpeg" alt="" />
-        <!-- Pulsing glow overlaying the mic button in the screenshot.
-             Positioned roughly where the "Start Recitation" button sits
-             in the v20 recite screen. -->
-        <div class="mic-pulse-ring" aria-hidden="true"></div>
-      </div>
-      <div class="caption">So how do you know<br/>if you're reciting it right?</div>
-    </div>
-
-    <!-- ═══ SCENE 3 — Magic moment ═══ -->
-    <div class="scene scene-3">
-      <div class="magic-wrap">
-        <div class="mistake-card">
-          <div class="mistake-card-top">
-            <span class="mistake-card-title">Mistake detected</span>
-            <span class="mistake-card-score">7.5<small>/10</small></span>
-          </div>
-          <p class="mistake-card-desc">Qalqalah on <span class="arab">د</span> is missing — the bounce didn't release at the end.</p>
-          <span class="mistake-card-chip">Fix it →</span>
-        </div>
-        <div class="waveform-card">
-          <div class="wave-row">
-            <span class="wave-label">Sheikh</span>
-            <div class="wave-bars">
-              <span></span><span class="tall-1"></span><span class="tall-2"></span><span class="tall-3"></span>
-              <span class="tall-4"></span><span class="tall-5"></span><span class="tall-3"></span>
-              <span class="tall-2"></span><span class="tall-1"></span><span></span>
-              <span class="tall-1"></span><span class="tall-2"></span><span class="tall-3"></span>
-              <span class="tall-2"></span><span class="tall-1"></span><span></span>
-            </div>
-          </div>
-          <div class="wave-row">
-            <span class="wave-label">You</span>
-            <div class="wave-bars">
-              <span></span><span class="tall-1"></span><span class="tall-2"></span><span class="tall-3"></span>
-              <span class="tall-4"></span><span class="tall-5"></span><span class="mistake tall-3"></span>
-              <span class="mistake tall-2"></span><span class="mistake tall-1"></span><span></span>
-              <span class="tall-1"></span><span class="tall-2"></span><span class="tall-1"></span>
-              <span></span><span></span><span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="caption">QariAI catches what a teacher would —<br/>in real time.</div>
-    </div>
-
-    <!-- ═══ SCENE 4 — Feedback loop ═══ -->
-    <div class="scene scene-4">
-      <div class="score-ring-wrap">
-        <div>
-          <div class="score-ring before">
-            <div>
-              <div class="score-value">7.5</div>
-              <div class="score-label">First try</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="score-ring after">
-            <div>
-              <div class="score-value">9.2</div>
-              <div class="score-label">After drill</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="score-check">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div class="caption">Hear your mistake. Fix it. Lock it in.</div>
-    </div>
-
-    <!-- ═══ SCENE 5 — Habit (real journey screenshot) ═══ -->
-    <div class="scene scene-5">
-      <div class="phone-shell">
-        <img class="phone-screenshot" src="../screenshots/v20_journey.jpeg" alt="" />
-      </div>
-      <div class="caption">A few minutes a day.<br/>Real progress.</div>
-    </div>
-
-    <!-- ═══ SCENE 6 — CTA ═══ -->
-    <div class="scene scene-6">
-      <div class="cta-logo-wrap">
-        <img class="cta-logo-mark" src="../logo.png" alt="QariAI" />
-        <span class="cta-brand">QariAI</span>
-      </div>
-      <div style="text-align: center;">
-        <div class="cta-sub">Start free at</div>
-        <div class="cta-domain">qariai.app</div>
-      </div>
-    </div>
-
-    <div class="timeline"></div>
+  <!-- ═══ Frame 1 — Problem / Fix your recitation instantly ═══ -->
+  <div class="slide slide-1">
+    <img src="frames/gpc-v23-frame1.jpg" alt="" />
   </div>
+
+  <!-- ═══ Frame 3 — Magic moment / Like a teacher beside you ═══ -->
+  <div class="slide slide-3">
+    <img src="frames/gpc-v23-frame3.jpg" alt="" />
+  </div>
+
+  <!-- ═══ Frame 5 — Progress / Track your improvement ═══ -->
+  <div class="slide slide-5">
+    <img src="frames/gpc-v23-frame5.jpg" alt="" />
+  </div>
+
+  <!-- ═══ Frame 6 — Habit / Stay consistent ═══ -->
+  <div class="slide slide-6">
+    <img src="frames/gpc-v23-frame6.jpg" alt="" />
+  </div>
+
+  <!-- ═══ Frame 7 — Motivation / Stay motivated as you improve ═══ -->
+  <div class="slide slide-7">
+    <img src="frames/gpc-v23-frame7.jpg" alt="" />
+  </div>
+
+  <!-- ═══ CTA — QariAI + qariai.app ═══ -->
+  <div class="slide slide-cta cta">
+    <div class="cta-logo">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M21 24 Q9 50 21 76" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
+        <path d="M79 24 Q91 50 79 76" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
+        <path d="M32 33 Q25 50 32 67" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
+        <path d="M68 33 Q75 50 68 67" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
+        <rect x="40" y="20" width="20" height="44" rx="10" fill="#1c1917"/>
+        <rect x="48.5" y="64" width="3" height="14" fill="#1c1917"/>
+        <rect x="40" y="76" width="20" height="3" rx="1.5" fill="#1c1917"/>
+      </svg>
+      <span class="cta-brand"><span class="q">Qari</span><span class="ai">AI</span></span>
+    </div>
+    <div class="cta-tagline">Tajweed + Hifz Coach</div>
+    <div style="text-align: center;">
+      <div class="cta-sub">Start free at</div>
+      <div class="cta-url">qariai.app</div>
+    </div>
+  </div>
+
+  <div class="timeline"></div>
 </div>
 
 <script>
-  // Press "r" to replay (useful while choosing the best take to screen-record).
+  // Press "r" to replay — useful when choosing a take to screen-record.
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'r' || e.key === 'R') {
-      location.reload();
-    }
+    if (e.key === 'r' || e.key === 'R') location.reload();
   });
 </script>
 </body>
