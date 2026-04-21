@@ -108,19 +108,19 @@
     justify-content: space-between;
     align-items: center;
   }
-  /* Layout: logo on the LEFT, name + tagline stacked on the RIGHT.
-     Exact user request: "text name and tagline right side of logo". */
+  /* Logo on the LEFT, name + tagline stacked on the RIGHT. Sized so
+     the logo's visible height ≈ the text block's height, and the gap
+     between logo and text is tight. */
   .logo {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
   }
-  /* Original PNG logo, cropped to the mic portion so the baked-in
-     "QARI AI" wordmark doesn't duplicate the HTML wordmark beside it. */
+  /* Cropped original PNG — mic only, no baked-in wordmark duplicated. */
   .logo-mark {
-    width: 70px;
-    height: 46px;
+    width: 50px;
+    height: 34px;
     flex-shrink: 0;
     display: block;
     object-fit: cover;
@@ -814,7 +814,8 @@
     .header { padding: 14px 18px; }
     .nav { gap: 12px; }
     .nav a:not(.nav-cta) { display: none; }
-    .logo-mark { width: 56px; height: 36px; }
+    .logo { gap: 7px; }
+    .logo-mark { width: 44px; height: 29px; }
     .logo-name { font-size: 16px; }
     .logo-tagline { font-size: 10px; }
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 28px 22px; }
