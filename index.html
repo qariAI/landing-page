@@ -850,21 +850,23 @@
   <!-- ── Header ───────────────────────────────────────── -->
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
-      <!-- Inline SVG mic icon — matches the logo.png artwork but crisp at
-           any size (no PNG cropping needed, no 'QARI AI' baked-in text). -->
+      <!-- Inline SVG mic — polished to match the logo.png artwork.
+           Capsule is now an OUTLINE (stroke, not filled) so the inner
+           "grille" look matches the original. Crisp at any DPR. -->
       <svg class="logo-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- Outer sound waves (brand teal) -->
-        <path d="M21 24 Q9 50 21 76" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
-        <path d="M79 24 Q91 50 79 76" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
-        <!-- Inner sound waves -->
-        <path d="M32 33 Q25 50 32 67" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
-        <path d="M68 33 Q75 50 68 67" fill="none" stroke="#0F8F71" stroke-width="5" stroke-linecap="round"/>
-        <!-- Mic capsule body -->
-        <rect x="40" y="20" width="20" height="44" rx="10" fill="#1c1917"/>
-        <!-- Stem -->
-        <rect x="48.5" y="64" width="3" height="14" fill="#1c1917"/>
-        <!-- Base bar -->
-        <rect x="40" y="76" width="20" height="3" rx="1.5" fill="#1c1917"/>
+        <!-- Outer sound wave arcs — teal -->
+        <path d="M19 22 Q7 50 19 78" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
+        <path d="M81 22 Q93 50 81 78" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
+        <!-- Inner sound wave arcs — teal -->
+        <path d="M32 32 Q25 50 32 68" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
+        <path d="M68 32 Q75 50 68 68" fill="none" stroke="#0F8F71" stroke-width="6" stroke-linecap="round"/>
+        <!-- Mic capsule — thick outline only, transparent inside so the
+             page background shows through (matches original's grille look) -->
+        <rect x="38" y="16" width="24" height="48" rx="12" fill="none" stroke="#1c1917" stroke-width="5.5"/>
+        <!-- Stem from capsule bottom -->
+        <line x1="50" y1="66" x2="50" y2="80" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- Horizontal base bar -->
+        <line x1="39" y1="82" x2="61" y2="82" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round"/>
       </svg>
       <span class="logo-text">
         <span class="logo-name"><span class="brand-qari">Qari</span><span class="brand-ai">AI</span></span>
