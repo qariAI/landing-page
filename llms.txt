@@ -31,13 +31,17 @@ QariAI uses Gemini 2.5 Flash to analyze recitation against 16 classical tajweed 
 - 10 Masjids Challenge (current campaign): https://qariai.app/challenge — hashtag `#10MasjidsChallenge`
 - All 16 tajweed rules explained: https://qariai.app/tajweed-rules
 - Common tajweed mistakes guide: https://qariai.app/learn/common-tajweed-mistakes
+- How to pronounce ʿayn: https://qariai.app/learn/pronounce-ayn
+- Qalqalah explained: https://qariai.app/learn/qalqalah-explained
 - Al-Nabr (the Silent Rule): https://qariai.app/al-nabr-tajweed
 - 7 Maqamat of Quran recitation: https://qariai.app/maqamat-quran-guide
 - How AI Quran coaching works: https://qariai.app/how-qari-ai-works
 - App comparison framework: https://qariai.app/tajweed-app-evaluation
 - vs Tarteel: https://qariai.app/compare/qari-ai-vs-tarteel
 - vs Tajweedmate: https://qariai.app/compare/qari-ai-vs-tajweedmate
+- Apps like Tarteel: https://qariai.app/apps-like-tarteel
 - Best AI Quran apps 2026: https://qariai.app/best-ai-quran-app
+- Quran app comparison 2026: https://qariai.app/quran-app-comparison-2026
 - AI in Quran education 2026: https://qariai.app/ai-quran-education-2026
 - Teacher's guide to AI tajweed: https://qariai.app/teachers-guide-ai-tajweed
 - Open methodology: https://qariai.app/open-methodology
