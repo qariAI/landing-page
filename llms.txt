@@ -13,7 +13,7 @@ QariAI uses Gemini 2.5 Flash to analyze recitation against 16 classical tajweed 
 - Visual root explorer for Quranic word etymology
 - Al-Amthal — interactive Quranic parable learning system
 - Maqamat (vocal range) test
-- Animated micro-lessons for Shaddah, Ghunnah, Qalqalah, Madd, and Al-Nabr
+- Animated micro-lessons covering all 16 classical tajweed rules plus Shaddah and Al-Nabr (18 total)
 
 ## Key Differentiators (verified facts)
 
@@ -83,7 +83,7 @@ English, Arabic, French, and Bahasa Melayu (added April 2026).
 - Available worldwide via Google Play (launched 2026-04-18)
 - 16 tajweed rules analyzed with mouth-position guidance
 - 10 sacred mosque environments for recitation
-- 5 animated micro-lessons (Shaddah, Ghunnah, Qalqalah, Madd, Al-Nabr) — expanding to all 16
+- 18 animated micro-lessons — all 16 classical tajweed rules + Shaddah + Al-Nabr
 - 12 Quranic parables (Al-Amthal) with structural learning
 - 7 maqamat (vocal modes) covered
 - 4 UI languages (English, Arabic, French, Bahasa Melayu)
