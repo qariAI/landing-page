@@ -249,6 +249,7 @@
     min-height: 380px;
   }
   .phone-frame {
+    position: relative;
     background: var(--bg-secondary);
     border-radius: var(--radius-xl);
     padding: 20px 16px;
@@ -263,8 +264,19 @@
     margin-bottom: 14px;
   }
   .ai-badge { display: flex; align-items: center; gap: 4px; }
-  .ai-bars { display: flex; gap: 1.5px; align-items: flex-end; }
-  .ai-bar { width: 2px; background: var(--brand); border-radius: 1px; }
+  .ai-bars { display: flex; gap: 1.5px; align-items: flex-end; height: 11px; }
+  .ai-bar {
+    width: 2px; background: var(--brand); border-radius: 1px;
+    transform-origin: bottom;
+    animation: ai-eq 0.9s ease-in-out infinite;
+  }
+  .ai-bar:nth-child(1) { animation-delay: 0s; }
+  .ai-bar:nth-child(2) { animation-delay: 0.15s; }
+  .ai-bar:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes ai-eq {
+    0%, 100% { transform: scaleY(0.45); }
+    50% { transform: scaleY(1); }
+  }
   .ai-text { font-size: 10px; font-weight: 600; color: var(--brand); }
   .phone-timer { font-size: 10px; color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
   .phone-surah {
@@ -276,6 +288,7 @@
     text-transform: uppercase;
   }
   .phone-ayah-arabic {
+    position: relative;
     margin: 0 0 6px;
     font-family: var(--font-arabic);
     font-size: 24px;
@@ -284,9 +297,41 @@
     line-height: 1.5;
     direction: rtl;
   }
+  /* Scanning gold cursor — sweeps under the "being-analyzed" ayah so the
+     user sees the AI "reading" in real time. */
+  .phone-ayah-arabic.scanning::after {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: -4px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4AF37 20%, #D4AF37 80%, transparent);
+    border-radius: 1px;
+    opacity: 0;
+    transform-origin: right center;
+    animation: ayah-scan 2.8s ease-in-out infinite;
+  }
+  @keyframes ayah-scan {
+    0% { opacity: 0; transform: scaleX(0); transform-origin: right center; }
+    15% { opacity: 1; }
+    60% { opacity: 1; transform: scaleX(1); transform-origin: right center; }
+    75% { opacity: 1; transform: scaleX(1); transform-origin: left center; }
+    100% { opacity: 0; transform: scaleX(0); transform-origin: left center; }
+  }
   .phone-ayah-arabic.mistake {
     color: #A32D2D;
     margin-bottom: 14px;
+  }
+  /* Gentle pulse on the flagged ayah — draws the eye to where the AI
+     found the mistake, then recedes. */
+  .phone-ayah-arabic.mistake {
+    animation: mistake-pulse 3.4s ease-in-out infinite;
+    animation-delay: 1.2s;
+  }
+  @keyframes mistake-pulse {
+    0%, 80%, 100% { opacity: 1; }
+    40% { opacity: 0.55; }
   }
   .phone-waveform {
     display: flex;
@@ -296,9 +341,86 @@
     height: 22px;
     align-items: flex-end;
   }
-  .phone-waveform .bar { width: 2px; background: var(--brand); border-radius: 1px; }
-  .phone-waveform .bar.mistake { background: #A32D2D; }
-  .phone-waveform .bar.muted { background: var(--border-tertiary); }
+  /* Live waveform — each bar pulses with a staggered delay so the row
+     reads as real audio being analysed, not a static illustration. */
+  .phone-waveform .bar {
+    width: 2px; background: var(--brand); border-radius: 1px;
+    transform-origin: bottom;
+    animation: wave-pulse 1.3s ease-in-out infinite;
+  }
+  .phone-waveform .bar:nth-child(1)  { animation-delay: 0s; }
+  .phone-waveform .bar:nth-child(2)  { animation-delay: 0.08s; }
+  .phone-waveform .bar:nth-child(3)  { animation-delay: 0.16s; }
+  .phone-waveform .bar:nth-child(4)  { animation-delay: 0.24s; }
+  .phone-waveform .bar:nth-child(5)  { animation-delay: 0.32s; }
+  .phone-waveform .bar:nth-child(6)  { animation-delay: 0.40s; }
+  .phone-waveform .bar:nth-child(7)  { animation-delay: 0.48s; }
+  .phone-waveform .bar:nth-child(8)  { animation-delay: 0.56s; }
+  .phone-waveform .bar:nth-child(9)  { animation-delay: 0.64s; }
+  .phone-waveform .bar:nth-child(10) { animation-delay: 0.72s; }
+  .phone-waveform .bar:nth-child(11) { animation-delay: 0.80s; }
+  .phone-waveform .bar:nth-child(12) { animation-delay: 0.88s; }
+  .phone-waveform .bar:nth-child(13) { animation-delay: 0.96s; }
+  @keyframes wave-pulse {
+    0%, 100% { transform: scaleY(0.55); }
+    50% { transform: scaleY(1); }
+  }
+  .phone-waveform .bar.mistake {
+    background: #A32D2D;
+    animation-duration: 1s;
+  }
+  .phone-waveform .bar.muted {
+    background: var(--border-tertiary);
+    animation: none;
+    transform: scaleY(1);
+  }
+  /* ── Live micro-feedback tooltip — appears periodically pointing to the
+        mistake ayah with rotating real-product copy lines. ────────────── */
+  .phone-live-feedback {
+    position: absolute;
+    right: 10%;
+    /* Aligned roughly above the waveform / below the mistake ayah */
+    top: 54%;
+    max-width: 148px;
+    background: #1c1917;
+    color: #ffffff;
+    font-size: 10px;
+    line-height: 1.35;
+    padding: 7px 10px;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(15, 40, 20, 0.22);
+    opacity: 0;
+    transform: translateY(4px);
+    animation: feedback-cycle 6.5s ease-in-out 1.8s infinite;
+    pointer-events: none;
+    z-index: 4;
+  }
+  /* Arrow pointing up-left toward the flagged ayah */
+  .phone-live-feedback::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: -5px;
+    width: 10px;
+    height: 10px;
+    background: #1c1917;
+    transform: rotate(45deg);
+    border-radius: 2px;
+  }
+  @keyframes feedback-cycle {
+    0%, 100% { opacity: 0; transform: translateY(4px); }
+    10%, 55% { opacity: 1; transform: translateY(0); }
+    70% { opacity: 0; transform: translateY(4px); }
+  }
+  .phone-live-feedback-label {
+    display: block;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #D4AF37;
+    margin-bottom: 2px;
+  }
   .phone-mic-row {
     display: flex;
     flex-direction: column;
@@ -926,8 +1048,14 @@
           <span class="phone-timer">03:09</span>
         </div>
         <p class="phone-surah">Al-Ikhlāṣ · 112:1–2</p>
-        <p class="phone-ayah-arabic">قُلْ هُوَ ٱللَّهُ أَحَدٌ</p>
+        <p class="phone-ayah-arabic scanning">قُلْ هُوَ ٱللَّهُ أَحَدٌ</p>
         <p class="phone-ayah-arabic mistake">ٱللَّهُ ٱلصَّمَدُ</p>
+        <!-- Live micro-feedback bubble — cycles in/out every ~6.5s,
+             reinforces the "real-time AI" claim with product copy -->
+        <div class="phone-live-feedback" aria-hidden="true">
+          <span class="phone-live-feedback-label">Live feedback</span>
+          Madd held too long — tighten to 2 counts
+        </div>
         <div class="phone-waveform">
           <span class="bar" style="height: 6px;"></span>
           <span class="bar" style="height: 10px;"></span>
