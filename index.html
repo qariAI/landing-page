@@ -252,8 +252,8 @@
     position: relative;
     background: var(--bg-secondary);
     border-radius: var(--radius-xl);
-    padding: 20px 16px;
-    width: 260px;
+    padding: 22px 18px;
+    width: 300px;
     border: 0.5px solid var(--border-tertiary);
     box-shadow: 0 20px 48px rgba(15, 110, 86, 0.08), 0 2px 6px rgba(15, 40, 20, 0.06);
   }
@@ -374,67 +374,143 @@
     animation: none;
     transform: scaleY(1);
   }
-  /* ── Live micro-feedback tooltip — appears periodically pointing to the
-        mistake ayah with rotating real-product copy lines. ────────────── */
-  .phone-live-feedback {
-    position: absolute;
-    right: 10%;
-    /* Aligned roughly above the waveform / below the mistake ayah */
-    top: 54%;
-    max-width: 148px;
-    background: #1c1917;
-    color: #ffffff;
-    font-size: 10px;
-    line-height: 1.35;
-    padding: 7px 10px;
-    border-radius: 8px;
-    box-shadow: 0 6px 16px rgba(15, 40, 20, 0.22);
-    opacity: 0;
-    transform: translateY(4px);
-    animation: feedback-cycle 6.5s ease-in-out 1.8s infinite;
-    pointer-events: none;
-    z-index: 4;
+  /* ─── Tip sub-line inside the mistake card ────────────────────────── */
+  .float-badge-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    margin-top: 6px;
+    padding: 5px 7px;
+    background: rgba(212, 175, 55, 0.10);
+    border-radius: 6px;
+    font-size: 9.5px;
+    line-height: 1.3;
+    color: var(--text-primary);
   }
-  /* Arrow pointing up-left toward the flagged ayah */
-  .phone-live-feedback::before {
+  .float-badge-tip svg { flex-shrink: 0; margin-top: 1px; }
+  .float-badge-tip strong { color: #8B6914; font-weight: 700; }
+
+  /* ─── Live feedback status strip — sits to the side of the phone ─── */
+  .live-status {
+    position: absolute;
+    right: -8%;
+    top: 12%;
+    background: white;
+    border: 0.5px solid var(--border-tertiary);
+    border-radius: 12px;
+    padding: 10px 12px 10px 14px;
+    min-width: 148px;
+    box-shadow: 0 8px 22px rgba(15, 40, 20, 0.10), 0 2px 6px rgba(15, 40, 20, 0.04);
+    opacity: 0;
+    animation: live-status-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+    z-index: 3;
+  }
+  @keyframes live-status-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .live-status-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--border-tertiary);
+  }
+  .live-status-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--brand);
+    box-shadow: 0 0 0 3px rgba(15, 110, 86, 0.15);
+    animation: live-status-dot-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes live-status-dot-pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(15, 110, 86, 0.15); }
+    50%      { box-shadow: 0 0 0 6px rgba(15, 110, 86, 0.05); }
+  }
+  .live-status-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .live-status-steps {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .live-status-steps li {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    padding-left: 10px;
+    position: relative;
+    opacity: 0.45;
+    animation: step-rotate 5.6s ease-in-out infinite;
+  }
+  /* Bullet dot before each step */
+  .live-status-steps li::before {
     content: "";
     position: absolute;
-    left: 18px;
-    top: -5px;
-    width: 10px;
-    height: 10px;
-    background: #1c1917;
-    transform: rotate(45deg);
-    border-radius: 2px;
+    left: 0; top: 50%; transform: translateY(-50%);
+    width: 3px; height: 3px; border-radius: 50%;
+    background: var(--text-tertiary);
+    transition: background 0.3s;
   }
-  @keyframes feedback-cycle {
-    0%, 100% { opacity: 0; transform: translateY(4px); }
-    10%, 55% { opacity: 1; transform: translateY(0); }
-    70% { opacity: 0; transform: translateY(4px); }
+  /* Each step lights up in turn for ~1.4s, then hands off. 5.6s full cycle. */
+  @keyframes step-rotate {
+    0%, 100% { opacity: 0.45; color: var(--text-tertiary); }
+    20%, 25% { opacity: 1; color: var(--text-primary); font-weight: 600; }
   }
-  .phone-live-feedback-label {
-    display: block;
-    font-size: 8.5px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #D4AF37;
-    margin-bottom: 2px;
+  @media (max-width: 720px) {
+    .live-status { display: none; }  /* hide on mobile — avoids crowding the phone */
   }
   .phone-mic-row {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
+    position: relative;
   }
   .phone-mic {
-    width: 52px; height: 52px;
+    position: relative;
+    width: 56px; height: 56px;
     background: var(--brand);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 6px 16px rgba(15,110,86,0.3);
+    box-shadow: 0 6px 16px rgba(15,110,86,0.35);
+    z-index: 2;
   }
-  .phone-mic-caption { font-size: 10px; color: var(--text-secondary); }
+  /* Pulsing rings — signal "actively listening". Two rings stagger so the
+     mic reads as alive. */
+  .phone-mic::before,
+  .phone-mic::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(15, 110, 86, 0.35);
+    z-index: -1;
+    animation: mic-pulse 2.2s ease-out infinite;
+  }
+  .phone-mic::after {
+    animation-delay: 1.1s;
+  }
+  @keyframes mic-pulse {
+    0%   { transform: scale(1);   opacity: 0.7; border-width: 2.5px; }
+    80%  { transform: scale(1.8); opacity: 0;   border-width: 0.5px; }
+    100% { transform: scale(1.8); opacity: 0;   border-width: 0.5px; }
+  }
+  .phone-mic-caption {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+  }
+  .phone-mic-caption-sub {
+    font-size: 9px;
+    color: var(--text-tertiary);
+    margin-top: 1px;
+  }
 
   .float-badge {
     position: absolute;
@@ -1003,7 +1079,7 @@
         <span class="hero-eyebrow-text">Real-time AI tajweed feedback</span>
       </div>
       <h1>Recite like you've had a teacher your whole life.</h1>
-      <p class="hero-sub">QariAI listens to every letter, catches the mistakes a human teacher would catch, and guides you to fluent recitation — whether you're starting Al-Fātiḥah or memorizing your last juz.</p>
+      <p class="hero-sub"><strong>Every letter matters.</strong> QariAI catches what you miss — and corrects you instantly.</p>
       <div class="hero-ctas">
         <button type="button" class="btn-primary" onclick="openDemo()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -1050,12 +1126,9 @@
         <p class="phone-surah">Al-Ikhlāṣ · 112:1–2</p>
         <p class="phone-ayah-arabic scanning">قُلْ هُوَ ٱللَّهُ أَحَدٌ</p>
         <p class="phone-ayah-arabic mistake">ٱللَّهُ ٱلصَّمَدُ</p>
-        <!-- Live micro-feedback bubble — cycles in/out every ~6.5s,
-             reinforces the "real-time AI" claim with product copy -->
-        <div class="phone-live-feedback" aria-hidden="true">
-          <span class="phone-live-feedback-label">Live feedback</span>
-          Madd held too long — tighten to 2 counts
-        </div>
+        <!-- Dark in-phone tooltip removed — redundant with the new .live-status
+             side panel (pipeline steps) + the .float-badge.mistake card + tip
+             sub-line. Three moving elements felt cluttered; kept the clearer two. -->
         <div class="phone-waveform">
           <span class="bar" style="height: 6px;"></span>
           <span class="bar" style="height: 10px;"></span>
@@ -1073,9 +1146,9 @@
         </div>
         <div class="phone-mic-row">
           <div class="phone-mic">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="6" height="6" rx="1" fill="white"/></svg>
           </div>
-          <p class="phone-mic-caption">Tap to recite</p>
+          <p class="phone-mic-caption">Tap to stop</p>
         </div>
       </div>
 
@@ -1086,8 +1159,27 @@
             <span class="float-badge-score">7.5<small>/10</small></span>
           </div>
           <p class="float-badge-desc">Qalqalah on <span dir="rtl" style="font-family: var(--font-arabic)">د</span> is missing</p>
-          <span class="float-badge-chip">Fix it →</span>
+          <div class="float-badge-tip">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#B4851B" stroke-width="2.5" stroke-linecap="round"><path d="M3 12h4M12 3v4M12 21v-4M21 12h-4"/><circle cx="12" cy="12" r="4"/></svg>
+            <span><strong>Tip:</strong> Make a stronger bounce on the letter</span>
+          </div>
         </div>
+      </div>
+
+      <!-- Live feedback status strip — rotates the "active" step every 1.4s
+           so the hero reads as the AI thinking through its pipeline in real
+           time, not a static label. -->
+      <div class="live-status" aria-hidden="true">
+        <div class="live-status-header">
+          <span class="live-status-dot"></span>
+          <span class="live-status-title">Live feedback</span>
+        </div>
+        <ul class="live-status-steps">
+          <li style="animation-delay: 0s;">Listening…</li>
+          <li style="animation-delay: 1.4s;">Analyzing…</li>
+          <li style="animation-delay: 2.8s;">Checking Tajweed…</li>
+          <li style="animation-delay: 4.2s;">Correcting…</li>
+        </ul>
       </div>
 
       <div class="float-badge streak">
