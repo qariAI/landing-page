@@ -390,11 +390,14 @@
   .float-badge-tip svg { flex-shrink: 0; margin-top: 1px; }
   .float-badge-tip strong { color: #8B6914; font-weight: 700; }
 
-  /* ─── Live feedback status strip — sits to the side of the phone ─── */
+  /* ─── Live feedback status strip — wide-desktop only (≥1100px). On
+        narrower screens it's hidden so it never competes with the phone
+        for space. Positioned flush with the hero-visual right edge. ─── */
   .live-status {
+    display: none;
     position: absolute;
-    right: -8%;
-    top: 12%;
+    right: 0;
+    top: 14%;
     background: white;
     border: 0.5px solid var(--border-tertiary);
     border-radius: 12px;
@@ -404,6 +407,9 @@
     opacity: 0;
     animation: live-status-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
     z-index: 3;
+  }
+  @media (min-width: 1100px) {
+    .live-status { display: block; }
   }
   @keyframes live-status-in {
     from { opacity: 0; transform: translateY(6px); }
@@ -461,9 +467,7 @@
     0%, 100% { opacity: 0.45; color: var(--text-tertiary); }
     20%, 25% { opacity: 1; color: var(--text-primary); font-weight: 600; }
   }
-  @media (max-width: 720px) {
-    .live-status { display: none; }  /* hide on mobile — avoids crowding the phone */
-  }
+  /* live-status visibility handled by the ≥1100px media query above */
   .phone-mic-row {
     display: flex;
     flex-direction: column;
@@ -1094,10 +1098,6 @@
         <div class="hero-trust-item">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           No card needed
-        </div>
-        <div class="hero-trust-item">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Runs on Android 10+
         </div>
         <div class="hero-trust-item">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
