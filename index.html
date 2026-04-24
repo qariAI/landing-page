@@ -248,14 +248,58 @@
     align-items: center;
     min-height: 380px;
   }
+  /* Outer device bezel — dark frame with extra-rounded phone corners.
+     Holds an inner white "screen" and a top notch. */
   .phone-frame {
     position: relative;
-    background: var(--bg-secondary);
-    border-radius: var(--radius-xl);
-    padding: 22px 18px;
+    background: #1c1917;            /* dark bezel */
+    border-radius: 36px;            /* phone-level curvature */
+    padding: 10px;                  /* bezel thickness */
     width: 300px;
-    border: 0.5px solid var(--border-tertiary);
-    box-shadow: 0 20px 48px rgba(15, 110, 86, 0.08), 0 2px 6px rgba(15, 40, 20, 0.06);
+    box-shadow:
+      0 30px 60px rgba(15, 40, 20, 0.18),
+      0 6px 16px rgba(15, 40, 20, 0.10),
+      inset 0 0 0 1.5px rgba(255, 255, 255, 0.06);  /* bezel highlight */
+  }
+  /* The screen itself — cream surface inside the bezel. */
+  .phone-frame::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    background: var(--bg-secondary);
+    border-radius: 28px;
+    z-index: 0;
+  }
+  /* Dynamic-island-style notch at the top of the screen. */
+  .phone-frame::after {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 74px;
+    height: 16px;
+    background: #1c1917;
+    border-radius: 999px;
+    z-index: 3;
+  }
+  /* Everything inside sits above the ::before screen layer. */
+  .phone-frame > * {
+    position: relative;
+    z-index: 1;
+  }
+  /* Padding on direct children is now handled here (previously on the
+     outer frame). Screen content gets breathing room under the notch. */
+  .phone-status,
+  .phone-surah,
+  .phone-ayah-arabic,
+  .phone-waveform,
+  .phone-mic-row {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .phone-status {
+    margin-top: 26px;  /* clear the notch */
   }
   .phone-status {
     display: flex;
@@ -1045,7 +1089,9 @@
   @media (max-width: 480px) {
     .hero h1 { font-size: 26px; }
     .hero-visual { min-height: 320px; }
-    .phone-frame { width: 220px; padding: 16px 12px; }
+    .phone-frame { width: 240px; padding: 8px; border-radius: 30px; }
+    .phone-frame::before { inset: 8px; border-radius: 24px; }
+    .phone-frame::after { top: 14px; width: 60px; height: 13px; }
     .float-badge.mistake { width: 140px; left: 0; top: 4%; }
     .float-badge.streak { width: 122px; right: 0; bottom: 4%; }
     .hero-trust { gap: 10px; }
