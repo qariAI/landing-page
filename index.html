@@ -124,6 +124,14 @@
     flex-shrink: 0;
     display: block;
   }
+  /* Mic logo image in the header (lightweight favicon.png, not the 2MB logo.png). */
+  .logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+  }
   .logo-text {
     display: flex;
     flex-direction: column;
@@ -1105,9 +1113,7 @@
   <!-- ── Header ───────────────────────────────────────── -->
   <header class="header">
     <a href="/" class="logo" aria-label="QariAI home">
-      <!-- Mic logo-mark removed to eliminate clash with the tap-to-recite
-           mic in the hero mockup. Wordmark-only is cleaner and lets the
-           app's own mic icon carry the visual metaphor. -->
+      <img src="/favicon.png?v=3" alt="" class="logo-img" />
       <span class="logo-text">
         <span class="logo-name"><span class="brand-qari">Qari</span><span class="brand-ai">AI</span></span>
         <span class="logo-tagline">Tajweed + Hifz Coach</span>
