@@ -1,1590 +1,1170 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>QariAI — Read the Qur'an like you've had a teacher your whole life</title>
-<link rel="canonical" href="https://qariai.app/">
-<link rel="alternate" hreflang="en" href="https://qariai.app/">
-<link rel="alternate" hreflang="ar" href="https://qariai.app/ar">
-<link rel="alternate" hreflang="fr" href="https://qariai.app/fr">
-<link rel="alternate" hreflang="ms" href="https://qariai.app/ms">
-<meta name="description" content="Recite any verse and get instant AI tajweed feedback. QariAI catches mistakes a human teacher would, on every letter — from Al-Fātihah onward. Free.">
-<meta name="keywords" content="quran app, tajweed checker, hifz tracker, ai quran coach, quran recitation app, tajweed correction, qalqalah, ghunnah, makharij">
 
-<!-- Open Graph -->
-<meta property="og:title" content="QariAI — Read the Qur'an like you've had a teacher your whole life">
-<meta property="og:description" content="Real-time AI tajweed feedback on every letter. Built on classical methodology. Free to start.">
-<meta property="og:url" content="https://qariai.app/">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://qariai.app/screenshots/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="QariAI">
+<!-- ── PRIMARY META ── -->
+<title>QariAI — AI Tajweed &amp; Hifz Coach | Free Quran Recitation Feedback</title>
+<meta name="description" content="QariAI listens to your Quran recitation and gives instant, rule-specific Tajweed corrections. Free Hifz and Tajweed modes, no login required. Available on Android."/>
+<meta name="keywords" content="Tajweed app, Quran recitation app, AI Tajweed, Hifz app, learn Tajweed, Quran memorization, Tajweed correction, QariAI"/>
+<meta name="author" content="QariAI"/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<meta name="theme-color" content="#059669"/>
+<link rel="canonical" href="https://qariai.app/"/>
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="QariAI — Read the Qur'an like you've had a teacher your whole life">
-<meta name="twitter:description" content="Real-time AI tajweed feedback on every letter. Free to start.">
-<meta name="twitter:image" content="https://qariai.app/screenshots/og-image.png">
+<!-- ── OPEN GRAPH ── -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="QariAI"/>
+<meta property="og:title" content="QariAI — AI Tajweed &amp; Hifz Coach for Quran Recitation"/>
+<meta property="og:description" content="Recite any verse — QariAI hears every mistake and gives precise Tajweed feedback in seconds. Free Hifz &amp; Tajweed modes, no login required."/>
+<meta property="og:url" content="https://qariai.app/"/>
+<meta property="og:image" content="https://qariai.app/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="QariAI — AI-powered Tajweed and Hifz coaching"/>
+<meta property="og:locale" content="en_US"/>
 
-<!-- Schema.org -->
+<!-- ── TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@ai_qari"/>
+<meta name="twitter:creator" content="@ai_qari"/>
+<meta name="twitter:title" content="QariAI — AI Tajweed &amp; Hifz Coach for Quran Recitation"/>
+<meta name="twitter:description" content="Instant, rule-specific Tajweed feedback on your recitation. Free Hifz &amp; Tajweed modes, no login required."/>
+<meta name="twitter:image" content="https://qariai.app/og-image.png"/>
+<meta name="twitter:image:alt" content="QariAI — AI-powered Tajweed and Hifz coaching"/>
+
+<!-- ── ICONS / PWA ── -->
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+
+<!-- ── JSON-LD: SoftwareApplication ── -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MobileApplication",
+  "@type": "SoftwareApplication",
   "name": "QariAI",
+  "alternateName": "Qari AI",
   "operatingSystem": "ANDROID",
-  "applicationCategory": "EducationApplication",
-  "description": "AI-powered Quran recitation coach with tajweed and hifz scoring, per-letter feedback, and a guided learning journey.",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "inLanguage": ["en", "ar", "fr", "ms"]
+  "applicationCategory": "EducationalApplication",
+  "applicationSubCategory": "Quran Recitation & Tajweed",
+  "url": "https://qariai.app/",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=app.qari.ai",
+  "installUrl": "https://play.google.com/store/apps/details?id=app.qari.ai",
+  "description": "AI-powered Tajweed and Hifz coaching. QariAI listens to your Quran recitation and returns instant, rule-specific corrections — no login required.",
+  "image": "https://qariai.app/og-image.png",
+  "screenshot": "https://qariai.app/og-image.png",
+  "inLanguage": ["en", "ar"],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "QariAI",
+    "url": "https://qariai.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QariAI",
+    "url": "https://qariai.app/"
+  },
+  "review": {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Matti-Ur Rehman" },
+    "datePublished": "2026-03-01",
+    "reviewBody": "An incredible app. I've tested both Hifz and Tajweed mode set to Advanced and it picks up every small mistake perfectly.",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }
+}
+</script>
+<!-- NOTE: Do NOT add "aggregateRating" to the block above until you have a real,
+     current average + review count from Play Console. Fabricated ratings risk a
+     Google manual action. Once you have them, add inside SoftwareApplication, e.g.:
+     "aggregateRating": { "@type": "AggregateRating",
+       "ratingValue": "4.x", "reviewCount": "NN" } -->
+
+<!-- ── JSON-LD: Organization ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "QariAI",
+  "url": "https://qariai.app/",
+  "logo": "https://qariai.app/logo.png",
+  "email": "salam@qariai.app",
+  "sameAs": [
+    "https://x.com/ai_qari",
+    "https://play.google.com/store/apps/details?id=app.qari.ai"
+  ]
 }
 </script>
 
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D55KK2YBKH"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D55KK2YBKH');</script>
+<!-- ── JSON-LD: FAQPage (mirrors the visible FAQ section below) ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does QariAI do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QariAI listens to your Quran recitation and gives instant, rule-specific Tajweed feedback. It has a Tajweed mode for pronunciation and rules, and a Hifz mode for memorization practice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is QariAI free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. QariAI is free to download and free to start, with no login required. You can begin reciting and receiving feedback immediately."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which platforms is QariAI available on?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QariAI is available now on Android via Google Play. An iOS version is in development and coming soon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is the AI Tajweed feedback?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QariAI gives rule-specific corrections only when its confidence is high, and presents them as clear teacher-style notes rather than a single opaque score. It is a practice aid that complements, but does not replace, a qualified human teacher."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does QariAI work for Hifz (memorization)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Hifz mode lets you recite from memory while the app tracks your accuracy and highlights where you slipped, helping you strengthen weak spots and build a daily habit."
+      }
+    }
+  ]
+}
+</script>
 
-<!-- Favicons (multiple sizes + shortcut icon + apple-touch) so every browser picks one up. -->
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=3">
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=3">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
-<link rel="shortcut icon" href="/favicon.png?v=3">
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=3">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #F5F2EA;
-    --bg-tertiary: #FAFAF7;
-    --text-primary: #1C1917;
-    --text-secondary: #57534E;
-    --text-tertiary: #A8A29E;
-    --border-tertiary: #E7E5E4;
-    --border-secondary: #D6D3D1;
-    --brand: #0F6E56;
-    --brand-dark: #085041;
-    --brand-soft: #E1F5EE;
-    --radius-md: 10px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    /* Unified font stack — Inter for everything (body + display).
-       Playfair Display dropped per feedback: the previous landing used
-       Inter throughout and we're adopting that as the go-forward system.
-       The --font-serif var stays for backward compat but maps to Inter. */
-    --font-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    --font-arabic: 'Amiri', "Scheherazade New", Georgia, serif;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    font-family: var(--font-sans);
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    line-height: 1.5;
-  }
-  a { color: inherit; text-decoration: none; }
-  button { font-family: inherit; cursor: pointer; }
-  .container {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 20px 24px;
+    --mint: #ecfdf5;
+    --mint-mid: #a7f3d0;
+    --green: #059669;
+    --green-bright: #10b981;
+    --green-dark: #065f46;
+    --accent: #34d399;
+    --sand: #fef9c3;
+    --sand-warm: #fef3c7;
+    --text: #0f172a;
+    --text-mid: #334155;
+    --text-light: #64748b;
+    --white: #ffffff;
+    --radius: 20px;
+    --phone-w: 300px;
   }
 
-  /* ── Header ──────────────────────────────────────────── */
-  .header {
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    border: 0.5px solid var(--border-tertiary);
-    padding: 16px 24px;
-    margin-bottom: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--mint);
+    color: var(--text);
+    overflow-x: hidden;
   }
-  /* Logo on the LEFT, name + tagline stacked on the RIGHT. Sized so
-     the logo's visible height ≈ the text block's height, and the gap
-     between logo and text is tight. */
-  .logo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 68px;
+    background: rgba(232,247,240,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(39,199,111,0.12);
   }
-  /* Inline SVG mic — crisp at any size, no baked-in wordmark to crop around. */
-  .logo-mark {
-    width: 40px;
+
+  .nav-logo {
+    text-decoration: none;
+    display: flex; align-items: center;
+  }
+  .nav-logo img {
     height: 40px;
-    flex-shrink: 0;
+    width: auto;
     display: block;
   }
-  /* Mic logo image in the header (lightweight favicon.png, not the 2MB logo.png). */
-  .logo-img {
-    width: 56px;
-    height: 56px;
-    object-fit: contain;
-    flex-shrink: 0;
-    display: block;
-  }
-  .logo-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    line-height: 1.1;
-    gap: 3px;
-  }
-  .logo-name {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: -0.4px;
-    line-height: 1;
-    display: block;
-  }
-  /* Bicolor wordmark matching the logo artwork:
-       Qari in dark stone, AI in the brand teal. */
-  .brand-qari { color: #1c1917; }
-  .brand-ai { color: #0F8F71; }
-  .logo-tagline {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    letter-spacing: 0.1px;
-    white-space: nowrap;
-    line-height: 1.15;
-    display: block;
-  }
-  .nav { display: flex; align-items: center; gap: 24px; }
-  .nav a { font-size: 13px; color: var(--text-secondary); transition: color 0.15s; }
-  .nav a:hover { color: var(--text-primary); }
-  .btn-primary {
-    background: var(--brand);
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 9px 16px;
-    border-radius: 22px;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: background 0.15s, transform 0.1s;
-  }
-  .btn-primary:hover { background: var(--brand-dark); }
-  .btn-primary:active { transform: scale(0.98); }
-  .btn-outline {
-    border: 0.5px solid var(--border-secondary);
-    background: transparent;
-    color: var(--text-primary);
-    font-size: 13px;
-    padding: 10px 18px;
-    border-radius: 22px;
-    transition: border-color 0.15s;
-  }
-  .btn-outline:hover { border-color: var(--text-secondary); }
 
-  /* ── Hero ────────────────────────────────────────────── */
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.9rem; font-weight: 500; color: var(--text-mid);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .btn-ghost {
+    font-size: 0.875rem; font-weight: 500; color: var(--green);
+    text-decoration: none; padding: 8px 16px;
+    border: 1.5px solid rgba(39,199,111,0.4);
+    border-radius: 50px; transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(39,199,111,0.08); }
+
+  .btn-primary {
+    font-size: 0.875rem; font-weight: 600; color: var(--white);
+    text-decoration: none; padding: 10px 20px;
+    background: var(--green);
+    border-radius: 50px; transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(26,122,74,0.3);
+  }
+  .btn-primary:hover { background: var(--green-bright); transform: translateY(-1px); }
+
+  /* ── HERO ── */
   .hero {
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    border: 0.5px solid var(--border-tertiary);
-    padding: 40px 32px;
-    margin-bottom: 24px;
+    min-height: 100vh;
+    padding: 100px 5vw 80px;
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
     align-items: center;
+    position: relative;
+    overflow: hidden;
   }
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--brand-soft);
-    padding: 6px 12px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-  }
-  .hero-eyebrow-dot {
-    width: 6px; height: 6px;
+
+  /* background decoration */
+  .hero::before {
+    content: '';
+    position: absolute; top: -120px; right: -120px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(39,199,111,0.18) 0%, transparent 70%);
     border-radius: 50%;
-    background: var(--brand);
+    pointer-events: none;
   }
-  .hero-eyebrow-text { font-size: 11px; font-weight: 600; color: var(--brand-dark); }
-  .hero h1 {
-    font-family: var(--font-serif);
-    font-size: 38px;
-    font-weight: 700;
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; left: -80px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(197,237,218,0.5) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-left { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(5,150,105,0.1);
+    border: 1px solid rgba(5,150,105,0.25);
+    color: #059669;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 50px;
+    margin-bottom: 24px;
+  }
+  .hero-badge::before { content: '✦'; }
+
+  .hero-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
     line-height: 1.12;
-    letter-spacing: -0.8px;
-    color: var(--text-primary);
-    margin-bottom: 16px;
+    color: #0f172a;
+    margin-bottom: 20px;
+    font-weight: 900;
   }
+  .hero-title em {
+    font-style: italic;
+    color: #059669;
+  }
+
   .hero-sub {
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--text-secondary);
+    font-size: 1.05rem; font-weight: 400; color: #334155;
+    line-height: 1.7; max-width: 480px;
     margin-bottom: 22px;
   }
-  .hero-ctas {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-  .hero-trust {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 11px;
-    color: var(--text-tertiary);
-    flex-wrap: wrap;
-  }
-  .hero-trust-item { display: flex; align-items: center; gap: 4px; }
 
-  /* ── Phone mockup + floating badges ──────────────────── */
-  .hero-visual {
-    position: relative;
-    display: flex;
+  /* "no login · free · instant" pills */
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 28px;
     justify-content: center;
-    align-items: center;
-    min-height: 380px;
   }
-  /* Outer device bezel — dark frame with extra-rounded phone corners.
-     Holds an inner white "screen" and a top notch. */
-  .phone-frame {
+  .hero-pill {
+    font-size: 0.78rem; font-weight: 600;
+    color: #059669;
+    background: rgba(5,150,105,0.1);
+    border: 1px solid rgba(5,150,105,0.25);
+    padding: 5px 13px; border-radius: 50px;
+  }
+
+  .hero-actions {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-bottom: 32px;
+    justify-content: center;
+  }
+
+  /* Reviews block */
+  .hero-reviews {
+    width: 100%;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 14px;
+  }
+  .review-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 16px 18px;
+    width: 100%; max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .review-card.featured {
+    background: #f0fdf4;
+    border-color: #a7f3d0;
+    box-shadow: 0 4px 20px rgba(5,150,105,0.1);
+  }
+  .review-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 9px;
+  }
+  .review-card-stars { color: #f59e0b; font-size: 0.8rem; letter-spacing: 2px; }
+  .review-card-source {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 0.6rem; font-weight: 700; color: #059669;
+    background: rgba(5,150,105,0.1); border-radius: 50px;
+    padding: 3px 8px; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .review-card p {
+    font-size: 0.82rem; color: #334155; line-height: 1.6;
+    margin-bottom: 10px; font-style: italic; text-align: left;
+  }
+  .review-card-meta { display: flex; align-items: center; justify-content: space-between; }
+  .review-name { font-size: 0.75rem; color: #0f172a; font-weight: 700; }
+  .review-card-device { font-size: 0.65rem; color: #94a3b8; font-weight: 400; }
+
+  .btn-store-soon { opacity: 0.6; cursor: not-allowed; }
+  .btn-store-soon:hover { transform: none; background: rgba(255,255,255,0.1); }
+
+  .trust-row {
+    display: flex; align-items: center; gap: 12px; justify-content: center;
+  }
+  .trust-avatars { display: flex; }
+  .trust-avatars span {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid var(--mint);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; font-weight: 700; color: #fff;
+    margin-left: -7px;
+  }
+  .trust-avatars span:first-child { margin-left: 0; }
+  .trust-avatars span:nth-child(1) { background: #059669; }
+  .trust-avatars span:nth-child(2) { background: #047857; }
+  .trust-avatars span:nth-child(3) { background: #10b981; }
+  .trust-avatars span:nth-child(4) { background: #065f46; }
+  .trust-text { font-size: 0.8rem; color: #64748b; }
+  .trust-text strong { color: #334155; font-weight: 700; }
+
+  .btn-hero {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.95rem; font-weight: 600;
+    padding: 14px 26px; border-radius: 50px;
+    text-decoration: none; transition: all 0.25s;
+  }
+  .btn-hero-solid {
+    background: #059669;
+    color: #fff;
+    box-shadow: 0 6px 22px rgba(5,150,105,0.35);
+  }
+  .btn-hero-solid:hover { background: #047857; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(5,150,105,0.4); }
+  .btn-hero-outline {
+    background: transparent;
+    color: #0f172a;
+    border: 1.5px solid #cbd5e1;
+  }
+  .btn-hero-outline:hover { border-color: #059669; color: #059669; }
+
+  /* ── PHONE MOCKUP ── */
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; align-items: center;
+  }
+
+  .phone-wrap {
     position: relative;
-    background: #1c1917;            /* dark bezel */
-    border-radius: 36px;            /* phone-level curvature */
-    padding: 10px;                  /* bezel thickness */
-    width: 300px;
+  }
+
+  /* decorative blobs behind phone */
+  .phone-blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .phone-blob-1 {
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(39,199,111,0.15), transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+  }
+  .phone-blob-2 {
+    width: 140px; height: 140px;
+    background: var(--sand-warm);
+    top: -30px; right: -30px;
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+
+  .phone-device {
+    width: var(--phone-w);
+    background: #0d0d0d;
+    border-radius: 42px;
+    padding: 14px;
     box-shadow:
-      0 30px 60px rgba(15, 40, 20, 0.18),
-      0 6px 16px rgba(15, 40, 20, 0.10),
-      inset 0 0 0 1.5px rgba(255, 255, 255, 0.06);  /* bezel highlight */
-  }
-  /* The screen itself — cream surface inside the bezel. */
-  .phone-frame::before {
-    content: "";
-    position: absolute;
-    inset: 10px;
-    background: var(--bg-secondary);
-    border-radius: 28px;
-    z-index: 0;
-  }
-  /* Dynamic-island-style notch at the top of the screen. */
-  .phone-frame::after {
-    content: "";
-    position: absolute;
-    top: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 74px;
-    height: 16px;
-    background: #1c1917;
-    border-radius: 999px;
-    z-index: 3;
-  }
-  /* Everything inside sits above the ::before screen layer. */
-  .phone-frame > * {
+      0 40px 80px rgba(0,0,0,0.25),
+      0 0 0 1px rgba(255,255,255,0.06),
+      inset 0 0 0 1px rgba(255,255,255,0.04);
     position: relative;
-    z-index: 1;
   }
-  /* Padding on direct children is now handled here (previously on the
-     outer frame). Screen content gets breathing room under the notch. */
-  .phone-status,
-  .phone-surah,
-  .phone-ayah-arabic,
-  .phone-waveform,
-  .phone-mic-row {
-    padding-left: 12px;
-    padding-right: 12px;
+
+  .phone-notch {
+    width: 90px; height: 28px;
+    background: #0d0d0d;
+    border-radius: 0 0 18px 18px;
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    z-index: 10;
   }
-  .phone-status {
-    margin-top: 26px;  /* clear the notch */
-  }
-  .phone-status {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-  }
-  .ai-badge { display: flex; align-items: center; gap: 4px; }
-  .ai-bars { display: flex; gap: 1.5px; align-items: flex-end; height: 11px; }
-  .ai-bar {
-    width: 2px; background: var(--brand); border-radius: 1px;
-    transform-origin: bottom;
-    animation: ai-eq 0.9s ease-in-out infinite;
-  }
-  .ai-bar:nth-child(1) { animation-delay: 0s; }
-  .ai-bar:nth-child(2) { animation-delay: 0.15s; }
-  .ai-bar:nth-child(3) { animation-delay: 0.3s; }
-  @keyframes ai-eq {
-    0%, 100% { transform: scaleY(0.45); }
-    50% { transform: scaleY(1); }
-  }
-  .ai-text { font-size: 10px; font-weight: 600; color: var(--brand); }
-  .phone-timer { font-size: 10px; color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
-  .phone-surah {
-    margin: 0 0 4px;
-    font-size: 9px;
-    color: var(--text-tertiary);
-    letter-spacing: 0.6px;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  .phone-ayah-arabic {
+
+  .phone-screen {
+    background: var(--mint);
+    border-radius: 30px;
+    overflow: hidden;
+    min-height: 580px;
     position: relative;
-    margin: 0 0 6px;
-    font-family: var(--font-arabic);
-    font-size: 24px;
-    text-align: center;
-    color: var(--text-primary);
-    line-height: 1.5;
-    direction: rtl;
   }
-  /* Scanning gold cursor — sweeps under the "being-analyzed" ayah so the
-     user sees the AI "reading" in real time. */
-  .phone-ayah-arabic.scanning::after {
-    content: "";
-    position: absolute;
-    left: 12%;
-    right: 12%;
-    bottom: -4px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #D4AF37 20%, #D4AF37 80%, transparent);
-    border-radius: 1px;
-    opacity: 0;
-    transform-origin: right center;
-    animation: ayah-scan 2.8s ease-in-out infinite;
+
+  /* phone screen content */
+  .ps-header {
+    background: #fff;
+    padding: 14px 16px 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
   }
-  @keyframes ayah-scan {
-    0% { opacity: 0; transform: scaleX(0); transform-origin: right center; }
-    15% { opacity: 1; }
-    60% { opacity: 1; transform: scaleX(1); transform-origin: right center; }
-    75% { opacity: 1; transform: scaleX(1); transform-origin: left center; }
-    100% { opacity: 0; transform: scaleX(0); transform-origin: left center; }
-  }
-  .phone-ayah-arabic.mistake {
-    color: #A32D2D;
-    margin-bottom: 14px;
-  }
-  /* Gentle pulse on the flagged ayah — draws the eye to where the AI
-     found the mistake, then recedes. */
-  .phone-ayah-arabic.mistake {
-    animation: mistake-pulse 3.4s ease-in-out infinite;
-    animation-delay: 1.2s;
-  }
-  @keyframes mistake-pulse {
-    0%, 80%, 100% { opacity: 1; }
-    40% { opacity: 0.55; }
-  }
-  .phone-waveform {
-    display: flex;
-    justify-content: center;
-    gap: 1.5px;
-    margin-bottom: 12px;
-    height: 22px;
-    align-items: flex-end;
-  }
-  /* Live waveform — each bar pulses with a staggered delay so the row
-     reads as real audio being analysed, not a static illustration. */
-  .phone-waveform .bar {
-    width: 2px; background: var(--brand); border-radius: 1px;
-    transform-origin: bottom;
-    animation: wave-pulse 1.3s ease-in-out infinite;
-  }
-  .phone-waveform .bar:nth-child(1)  { animation-delay: 0s; }
-  .phone-waveform .bar:nth-child(2)  { animation-delay: 0.08s; }
-  .phone-waveform .bar:nth-child(3)  { animation-delay: 0.16s; }
-  .phone-waveform .bar:nth-child(4)  { animation-delay: 0.24s; }
-  .phone-waveform .bar:nth-child(5)  { animation-delay: 0.32s; }
-  .phone-waveform .bar:nth-child(6)  { animation-delay: 0.40s; }
-  .phone-waveform .bar:nth-child(7)  { animation-delay: 0.48s; }
-  .phone-waveform .bar:nth-child(8)  { animation-delay: 0.56s; }
-  .phone-waveform .bar:nth-child(9)  { animation-delay: 0.64s; }
-  .phone-waveform .bar:nth-child(10) { animation-delay: 0.72s; }
-  .phone-waveform .bar:nth-child(11) { animation-delay: 0.80s; }
-  .phone-waveform .bar:nth-child(12) { animation-delay: 0.88s; }
-  .phone-waveform .bar:nth-child(13) { animation-delay: 0.96s; }
-  @keyframes wave-pulse {
-    0%, 100% { transform: scaleY(0.55); }
-    50% { transform: scaleY(1); }
-  }
-  .phone-waveform .bar.mistake {
-    background: #A32D2D;
-    animation-duration: 1s;
-  }
-  .phone-waveform .bar.muted {
-    background: var(--border-tertiary);
-    animation: none;
-    transform: scaleY(1);
-  }
-  /* ─── Tip sub-line inside the mistake card ────────────────────────── */
-  .float-badge-tip {
-    display: flex;
-    align-items: flex-start;
-    gap: 5px;
-    margin-top: 6px;
-    padding: 5px 7px;
-    background: rgba(212, 175, 55, 0.10);
+  .ps-logo {
+    display: flex; align-items: center;
+    background: #fff;
     border-radius: 6px;
-    font-size: 9.5px;
-    line-height: 1.3;
-    color: var(--text-primary);
+    padding: 1px 4px;
   }
-  .float-badge-tip svg { flex-shrink: 0; margin-top: 1px; }
-  .float-badge-tip strong { color: #8B6914; font-weight: 700; }
+  .ps-logo img {
+    height: 26px; width: auto;
+    display: block;
+    }
 
-  /* ─── Live feedback status strip — wide-desktop only (≥1100px). On
-        narrower screens it's hidden so it never competes with the phone
-        for space. Positioned flush with the hero-visual right edge. ─── */
-  .live-status {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 14%;
-    background: white;
-    border: 0.5px solid var(--border-tertiary);
+  .ps-streak-badge {
+    background: rgba(39,199,111,0.15);
+    border: 1px solid rgba(39,199,111,0.3);
     border-radius: 12px;
-    padding: 10px 12px 10px 14px;
-    min-width: 148px;
-    box-shadow: 0 8px 22px rgba(15, 40, 20, 0.10), 0 2px 6px rgba(15, 40, 20, 0.04);
-    opacity: 0;
-    animation: live-status-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
-    z-index: 3;
-  }
-  @media (min-width: 1100px) {
-    .live-status { display: block; }
-  }
-  @keyframes live-status-in {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .live-status-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 8px;
-    padding-bottom: 8px;
-    border-bottom: 0.5px solid var(--border-tertiary);
-  }
-  .live-status-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--brand);
-    box-shadow: 0 0 0 3px rgba(15, 110, 86, 0.15);
-    animation: live-status-dot-pulse 1.4s ease-in-out infinite;
-  }
-  @keyframes live-status-dot-pulse {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(15, 110, 86, 0.15); }
-    50%      { box-shadow: 0 0 0 6px rgba(15, 110, 86, 0.05); }
-  }
-  .live-status-title {
-    font-size: 10.5px;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-  .live-status-steps {
-    list-style: none;
-    margin: 0; padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .live-status-steps li {
-    font-size: 10px;
-    color: var(--text-tertiary);
-    padding-left: 10px;
-    position: relative;
-    opacity: 0.45;
-    animation: step-rotate 5.6s ease-in-out infinite;
-  }
-  /* Bullet dot before each step */
-  .live-status-steps li::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 50%; transform: translateY(-50%);
-    width: 3px; height: 3px; border-radius: 50%;
-    background: var(--text-tertiary);
-    transition: background 0.3s;
-  }
-  /* Each step lights up in turn for ~1.4s, then hands off. 5.6s full cycle. */
-  @keyframes step-rotate {
-    0%, 100% { opacity: 0.45; color: var(--text-tertiary); }
-    20%, 25% { opacity: 1; color: var(--text-primary); font-weight: 600; }
-  }
-  /* live-status visibility handled by the ≥1100px media query above */
-  .phone-mic-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    position: relative;
-  }
-  .phone-mic {
-    position: relative;
-    width: 56px; height: 56px;
-    background: var(--brand);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 6px 16px rgba(15,110,86,0.35);
-    z-index: 2;
-  }
-  /* Pulsing rings — signal "actively listening". Two rings stagger so the
-     mic reads as alive. */
-  .phone-mic::before,
-  .phone-mic::after {
-    content: "";
-    position: absolute;
-    inset: -6px;
-    border-radius: 50%;
-    border: 2px solid rgba(15, 110, 86, 0.35);
-    z-index: -1;
-    animation: mic-pulse 2.2s ease-out infinite;
-  }
-  .phone-mic::after {
-    animation-delay: 1.1s;
-  }
-  @keyframes mic-pulse {
-    0%   { transform: scale(1);   opacity: 0.7; border-width: 2.5px; }
-    80%  { transform: scale(1.8); opacity: 0;   border-width: 0.5px; }
-    100% { transform: scale(1.8); opacity: 0;   border-width: 0.5px; }
-  }
-  .phone-mic-caption {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: 0.02em;
-  }
-  .phone-mic-caption-sub {
-    font-size: 9px;
-    color: var(--text-tertiary);
-    margin-top: 1px;
-  }
-
-  .float-badge {
-    position: absolute;
-    background: white;
-    border: 0.5px solid var(--border-tertiary);
-    border-radius: 10px;
-    padding: 7px 9px;
-    box-shadow: 0 6px 16px rgba(15, 40, 20, 0.05);
-    opacity: 0;
-    animation: float-badge-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  .float-badge.mistake {
-    /* Anchored inside the frame (no more half-off-edge look). Stronger
-       shadow so it reads as a lifted second layer, not a stray chip. */
-    top: 32%;
-    left: 4%;
-    width: 118px;
-    animation-delay: 0.45s;
-    box-shadow: 0 8px 22px rgba(15, 40, 20, 0.12), 0 2px 6px rgba(15, 40, 20, 0.06);
-  }
-  .float-badge.streak {
-    /* Committed overlap: sits half-in, half-out of the phone frame on
-       the right, with a clear elevated shadow. Reads as a deliberate
-       second-layer element rather than a floating stray card. */
-    bottom: 10%;
-    right: -6%;
-    width: 106px;
-    animation-delay: 0.8s;
-    box-shadow: 0 8px 22px rgba(15, 40, 20, 0.12), 0 2px 6px rgba(15, 40, 20, 0.06);
-  }
-  /* Entrance: slide up + fade in. Then the infinite float loop takes
-     over, kept subtle so it doesn't steal focus from the hero copy. */
-  @keyframes float-badge-in {
-    0% { opacity: 0; transform: translateY(14px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes float-bob-mistake {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-  @keyframes float-bob-streak {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(5px); }
-  }
-  /* After the entrance finishes, swap to the infinite bob. Inner wrapper
-     handles bob so the entrance's transform doesn't interfere. */
-  .float-badge-bob {
-    animation: float-bob-mistake 5.2s ease-in-out infinite;
-    animation-delay: 1.3s;
-  }
-  .float-badge.streak .float-badge-bob {
-    animation-name: float-bob-streak;
-    animation-duration: 5.8s;
-    animation-delay: 1.6s;
-  }
-  .float-badge-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 2px;
-    gap: 4px;
-  }
-  .float-badge-title { font-size: 9px; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
-  .float-badge-score { font-size: 11.5px; font-weight: 700; color: #A32D2D; line-height: 1; }
-  .float-badge-score small { font-size: 7.5px; color: var(--text-tertiary); font-weight: 500; }
-  .float-badge-desc { margin: 0 0 5px; font-size: 8.5px; color: var(--text-secondary); line-height: 1.3; }
-  .float-badge-chip {
-    background: var(--brand-soft);
-    color: var(--brand-dark);
-    font-size: 8.5px;
-    font-weight: 600;
-    padding: 3px 7px;
-    border-radius: 10px;
-    display: inline-block;
-    animation: chip-pulse 3s ease-in-out infinite;
-    animation-delay: 1.8s;
-  }
-  @keyframes chip-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(15,110,86,0); }
-    50% { box-shadow: 0 0 0 6px rgba(15,110,86,0.08); }
-  }
-  .float-badge-label {
-    margin: 0 0 2px;
-    font-size: 8.5px;
-    color: var(--text-tertiary);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .float-badge-streak-num { font-size: 17px; font-weight: 700; color: var(--text-primary); line-height: 1; }
-  .float-badge-streak-unit { font-size: 9px; color: var(--text-secondary); margin-left: 3px; }
-  .float-badge-streak-dots { display: flex; gap: 1.5px; margin-top: 4px; }
-  .float-badge-streak-dots span {
-    flex: 1; height: 3px;
-    background: var(--brand);
-    border-radius: 1px;
-    opacity: 0;
-    animation: streak-dot-fill 0.3s ease-out forwards;
-  }
-  .float-badge-streak-dots span:nth-child(1) { animation-delay: 1.1s }
-  .float-badge-streak-dots span:nth-child(2) { animation-delay: 1.2s }
-  .float-badge-streak-dots span:nth-child(3) { animation-delay: 1.3s }
-  .float-badge-streak-dots span:nth-child(4) { animation-delay: 1.4s }
-  .float-badge-streak-dots span:nth-child(5) { animation-delay: 1.5s }
-  .float-badge-streak-dots span.muted {
-    background: var(--border-tertiary);
-    animation-delay: 1.6s;
-  }
-  @keyframes streak-dot-fill {
-    0% { opacity: 0; transform: scaleX(0.3); transform-origin: left; }
-    100% { opacity: 1; transform: scaleX(1); }
-  }
-
-  /* ── Honest trust band ───────────────────────────────── */
-  .trust-band {
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    border: 0.5px solid var(--border-tertiary);
-    padding: 24px 28px;
-    margin-bottom: 24px;
-  }
-  .trust-band-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-  .trust-band-copy p { margin: 0; }
-  .trust-band-label { font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.5px; text-transform: uppercase; }
-  .trust-band-line { margin-top: 6px !important; font-size: 16px; font-weight: 500; color: var(--text-primary); }
-  .trust-band-pillars { display: flex; gap: 32px; flex-wrap: wrap; }
-  .trust-pillar { text-align: center; }
-  .trust-pillar-icon {
-    width: 36px; height: 36px;
-    margin: 0 auto 6px;
-    display: grid; place-items: center;
-    background: var(--brand-soft);
-    border-radius: 8px;
-    color: var(--brand);
-  }
-  .trust-pillar-title { margin: 0; font-size: 13px; font-weight: 600; color: var(--text-primary); }
-  .trust-pillar-sub { margin: 2px 0 0; font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.3px; text-transform: uppercase; }
-
-  /* ── Section blocks ──────────────────────────────────── */
-  .section {
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    border: 0.5px solid var(--border-tertiary);
-    padding: 32px;
-    margin-bottom: 24px;
-  }
-  .section-eyebrow {
-    font-size: 11px;
-    color: var(--text-tertiary);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    padding: 4px 8px;
     text-align: center;
-    margin-bottom: 6px;
   }
-  .section-title {
-    font-family: var(--font-serif);
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: var(--text-primary);
-    text-align: center;
-    margin-bottom: 24px;
-  }
+  .ps-streak-badge .lvl { font-size: 0.55rem; font-weight: 700; color: var(--green); letter-spacing: 0.06em; text-transform: uppercase; }
+  .ps-streak-badge .days { font-size: 0.72rem; font-weight: 700; color: var(--green-dark); }
 
-  .card-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-  .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .card-tile {
-    background: var(--bg-tertiary);
-    border: 0.5px solid var(--border-tertiary);
-    border-radius: var(--radius-lg);
-    padding: 20px;
-  }
-  .card-tile-icon {
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 12px;
-  }
-  .card-tile-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
-  .card-tile-desc {
-    margin-top: 6px;
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.55;
-  }
-
-  /* ── Testimonial placeholders ────────────────────────── */
-  .testimonial-placeholder {
-    background: var(--bg-tertiary);
-    border: 0.5px dashed var(--border-secondary);
-    border-radius: var(--radius-lg);
-    padding: 20px;
-    text-align: center;
-    color: var(--text-tertiary);
-    font-size: 12px;
-    font-style: italic;
-  }
-  .testimonial {
-    background: var(--bg-tertiary);
-    border: 0.5px solid var(--border-tertiary);
-    border-radius: var(--radius-lg);
-    padding: 20px;
-  }
-  .testimonial-quote {
-    margin-bottom: 14px;
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--text-primary);
-    font-family: var(--font-serif);
-  }
-  .testimonial-meta { display: flex; align-items: center; gap: 10px; }
-  .testimonial-avatar {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    background: var(--brand-soft);
-    color: var(--brand-dark);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 700;
-    flex-shrink: 0;
-  }
-  .testimonial-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
-  .testimonial-role { font-size: 11px; color: var(--text-tertiary); margin-top: 1px; }
-
-  /* ── Final CTA ───────────────────────────────────────── */
-  .final-cta {
-    background: var(--brand);
-    border-radius: var(--radius-lg);
-    padding: 36px 32px;
-    text-align: center;
-    color: #ffffff;
-    margin-bottom: 24px;
-  }
-  .final-cta h2 {
-    margin-bottom: 8px;
-    font-family: var(--font-serif);
-    font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: -0.3px;
-  }
-  .final-cta p { margin-bottom: 20px; font-size: 14px; color: #9FE1CB; }
-  .btn-white {
-    background: white;
-    color: var(--brand-dark);
-    font-size: 14px;
-    font-weight: 600;
-    padding: 12px 26px;
-    border-radius: 22px;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: transform 0.1s;
-  }
-  .btn-white:hover { transform: translateY(-1px); }
-  .final-cta-actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .btn-cta-outline {
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 12px 22px;
-    border-radius: 22px;
-    border: 1px solid rgba(255,255,255,0.35);
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .btn-cta-outline:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.55);
-  }
-
-  /* ── Masjid journey section ──────────────────────────── */
-  .journey {
-    background: linear-gradient(135deg, #f6fbf7 0%, #f3f9f5 100%);
-    border: 1px solid #d5ebdd;
-    border-radius: var(--radius-lg);
-    padding: 36px 32px;
-    margin-bottom: 24px;
-  }
-  .journey-header { text-align: center; margin-bottom: 28px; }
-  .journey-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--brand);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .journey h2 {
-    font-family: var(--font-serif);
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.4px;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-  }
-  .journey-sub {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    max-width: 560px;
-    margin: 0 auto;
-  }
-  .journey-path {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 4px;
-    margin: 32px auto 20px;
-    max-width: 760px;
+  .ps-tabs {
+    display: flex; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06);
     padding: 0 12px;
   }
-  .journey-stop {
-    flex: 1;
-    text-align: center;
-    position: relative;
+  .ps-tab {
+    padding: 10px 10px 8px;
+    font-size: 0.7rem; font-weight: 600; color: var(--text-light);
+    border-bottom: 2px solid transparent;
+    cursor: default;
   }
-  .journey-stop-dome {
-    width: 28px; height: 22px;
-    margin: 0 auto 6px;
-    background: var(--brand);
-    border-radius: 50% 50% 4px 4px / 100% 100% 0 0;
-    position: relative;
-    transition: opacity 0.3s;
+  .ps-tab.active { color: var(--text); border-bottom-color: var(--text); }
+
+  .ps-body { padding: 14px 12px; }
+
+  /* journey card */
+  .ps-journey-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 14px;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   }
-  .journey-stop-dome::before {
-    content: '';
-    position: absolute;
-    top: -8px; left: 50%; transform: translateX(-50%);
-    width: 2px; height: 8px;
-    background: var(--brand);
-  }
-  .journey-stop-dome::after {
-    content: '';
-    position: absolute;
-    top: -12px; left: 50%; transform: translateX(-50%);
-    width: 4px; height: 4px;
-    background: #d4af37;
+  .ps-level-ring {
+    width: 66px; height: 66px; flex-shrink: 0;
     border-radius: 50%;
+    border: 4px solid var(--mint-mid);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: #fff;
   }
-  .journey-stop.locked .journey-stop-dome { opacity: 0.22; }
-  .journey-stop.locked .journey-stop-dome::after { background: var(--text-tertiary); opacity: 0.3; }
-  .journey-stop-name {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    line-height: 1.25;
-    display: block;
+  .ps-level-ring .lbl { font-size: 0.5rem; font-weight: 700; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase; }
+  .ps-level-ring .num { font-size: 1.4rem; font-weight: 800; color: var(--green); line-height: 1; }
+
+  .ps-journey-info { flex: 1; }
+  .ps-journey-title { font-size: 0.8rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .ps-xp-row { font-size: 0.65rem; color: var(--text-light); margin-bottom: 6px; }
+  .ps-xp-row strong { color: var(--green); }
+  .ps-progress-bar {
+    height: 5px; background: var(--mint-mid); border-radius: 10px; overflow: hidden;
   }
-  .journey-stop.locked .journey-stop-name { color: var(--text-tertiary); }
-  .journey-stop-line {
-    position: absolute;
-    top: 11px;
-    left: 50%;
-    right: -50%;
-    height: 2px;
-    background: var(--brand);
-  }
-  .journey-stop.locked .journey-stop-line { background: rgba(15,110,86,0.15); }
-  .journey-stop:last-child .journey-stop-line { display: none; }
-  .journey-footnote {
-    text-align: center;
-    font-size: 12px;
-    color: var(--text-tertiary);
-    font-style: italic;
-    margin-top: 16px;
+  .ps-progress-fill {
+    height: 100%; width: 15%; background: var(--green); border-radius: 10px;
+    animation: growBar 1.2s 0.8s ease both;
   }
 
-  /* ── Demo modal ──────────────────────────────────────── */
-  .demo-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(10, 20, 15, 0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    padding: 24px;
-  }
-  .demo-modal.open { display: flex; }
-  .demo-modal-inner {
-    position: relative;
-    width: min(100%, 380px);
-    aspect-ratio: 9 / 16;
-    max-height: calc(100vh - 48px);
-    background: #000;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-  }
-  .demo-modal-iframe {
-    width: 100%; height: 100%;
-    border: none;
-    display: block;
-  }
-  .demo-modal-close {
-    position: absolute;
-    top: -48px; right: 0;
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-    border: 0.5px solid rgba(255,255,255,0.25);
-    color: white;
-    font-size: 20px;
-    line-height: 1;
-    display: grid; place-items: center;
-    transition: background 0.15s;
-  }
-  .demo-modal-close:hover { background: rgba(255,255,255,0.25); }
-
-  /* ── Footer (rich — preserves SEO link structure) ────── */
-  footer.site {
-    background: var(--bg-primary);
-    border: 0.5px solid var(--border-tertiary);
-    border-radius: var(--radius-lg);
-    padding: 36px 32px 28px;
-    margin-bottom: 24px;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 28px;
-  }
-  .footer-brand-tagline {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    margin-top: 12px;
-    max-width: 240px;
-  }
-  .footer-email {
-    margin-top: 12px;
-    font-size: 13px;
-  }
-  .footer-email a { color: var(--brand); font-weight: 600; }
-  .footer-email a:hover { color: var(--brand-dark); text-decoration: underline; }
-  .footer-col h4 {
-    font-size: 11px;
-    color: var(--text-tertiary);
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    font-weight: 700;
+  /* stat cards */
+  .ps-stats {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
     margin-bottom: 14px;
   }
-  .footer-col ul { list-style: none; padding: 0; margin: 0; }
-  .footer-col li { margin-bottom: 8px; }
-  .footer-col li a {
-    font-size: 13px;
-    color: var(--text-secondary);
-    transition: color 0.15s;
+  .ps-stat {
+    border-radius: 14px;
+    padding: 10px 8px;
+    text-align: center;
   }
-  .footer-col li a:hover { color: var(--text-primary); }
-  .footer-col .footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .footer-col .footer-logo {
-    width: 32px; height: 32px;
-    object-fit: contain;
-  }
-  .footer-col .footer-brand-name {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-  .footer-bottom {
-    border-top: 0.5px solid var(--border-tertiary);
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    font-size: 11.5px;
-    color: var(--text-tertiary);
-  }
-  .footer-bottom .dua { font-style: italic; }
+  .ps-stat:nth-child(1) { background: var(--sand); }
+  .ps-stat:nth-child(2) { background: #fff; }
+  .ps-stat:nth-child(3) { background: rgba(39,199,111,0.1); }
 
-  /* ── Responsive ──────────────────────────────────────── */
-  @media (max-width: 820px) {
-    .container { padding: 16px; }
-    .header { padding: 14px 18px; }
-    .nav { gap: 12px; }
-    .nav a:not(.nav-cta) { display: none; }
-    .logo { gap: 7px; }
-    .logo-mark { width: 36px; height: 36px; }
-    .logo-name { font-size: 16px; }
-    .logo-tagline { font-size: 10px; }
-    .hero { grid-template-columns: 1fr; gap: 40px; padding: 28px 22px; }
-    .hero h1 { font-size: 30px; }
-    .hero-visual { min-height: 340px; }
-    .trust-band-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
-    .trust-band-pillars { width: 100%; justify-content: space-between; gap: 16px; }
-    .section { padding: 24px 22px; }
-    .card-grid-3 { grid-template-columns: 1fr; }
-    .card-grid-2 { grid-template-columns: 1fr; }
-    .journey { padding: 28px 20px; }
-    .journey-path { max-width: 100%; padding: 0; }
-    .journey-stop-name { font-size: 8px; }
-    .final-cta { padding: 28px 22px; }
-    .final-cta h2 { font-size: 20px; }
-    footer.site { padding: 28px 20px 20px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .ps-stat-emoji { font-size: 1.3rem; margin-bottom: 2px; }
+  .ps-stat-num { font-size: 1rem; font-weight: 800; color: var(--green); display: block; }
+  .ps-stat-lbl { font-size: 0.52rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .ps-section-title { font-size: 0.75rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+
+  .ps-empty-card {
+    background: #fff; border-radius: 14px; padding: 18px 12px;
+    text-align: center;
+    font-size: 0.65rem; color: var(--text-light); line-height: 1.5;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
   }
-  @media (max-width: 480px) {
-    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+
+  .ps-session-card {
+    background: #fff; border-radius: 12px;
+    padding: 9px 10px; margin-bottom: 7px;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
-  @media (max-width: 480px) {
-    .hero h1 { font-size: 26px; }
-    .hero-visual { min-height: 320px; }
-    .phone-frame { width: 240px; padding: 8px; border-radius: 30px; }
-    .phone-frame::before { inset: 8px; border-radius: 24px; }
-    .phone-frame::after { top: 14px; width: 60px; height: 13px; }
-    .float-badge.mistake { width: 140px; left: 0; top: 4%; }
-    .float-badge.streak { width: 122px; right: 0; bottom: 4%; }
-    .hero-trust { gap: 10px; }
+  .ps-session-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .ps-session-info { flex: 1; min-width: 0; }
+  .ps-session-name { font-size: 0.62rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ps-session-meta { font-size: 0.55rem; color: var(--text-light); margin-top: 1px; }
+  .ps-session-xp { font-size: 0.62rem; font-weight: 800; color: #059669; flex-shrink: 0; background: rgba(5,150,105,0.1); padding: 2px 6px; border-radius: 20px; }
+
+  /* floating feature pill on phone */
+  .phone-pill {
+    position: absolute;
+    background: #fff;
+    border-radius: 14px;
+    padding: 10px 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    display: flex; align-items: center; gap: 8px;
+    white-space: nowrap;
+    font-size: 0.75rem; font-weight: 600; color: var(--text);
+  }
+  .pill-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  .pill-left {
+    left: -120px; top: 30%;
+    animation: floatLeft 3s ease-in-out infinite;
+  }
+  .pill-right {
+    right: -110px; bottom: 28%;
+    animation: floatRight 3.5s ease-in-out infinite;
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 100px 5vw;
+    background: var(--white);
+    text-align: center;
+  }
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--green); margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--text); line-height: 1.15; margin-bottom: 16px;
+  }
+  .section-sub { font-size: 1rem; color: var(--text-mid); max-width: 520px; line-height: 1.6; margin: 0 auto 56px; }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--mint);
+    border-radius: 20px;
+    padding: 28px 24px;
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 1px solid transparent;
+    text-align: left;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(26,122,74,0.1);
+    border-color: rgba(39,199,111,0.2);
+  }
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .feature-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .feature-card p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.6; text-align: justify; }
+
+
+
+
+  /* ── HOW IT WORKS ── */
+  .how {
+    padding: 100px 5vw;
+    background: var(--mint);
+    text-align: center;
+  }
+  .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 56px; }
+  .step {
+    position: relative;
+    padding: 32px 28px;
+    background: var(--white);
+    border-radius: 20px;
+    text-align: left;
+  }
+  .step-num {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 3.5rem; color: rgba(39,199,111,0.15);
+    position: absolute; top: 20px; right: 24px;
+    line-height: 1;
+  }
+  .step h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .step p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.6; text-align: justify; }
+  .step p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.6; }
+  .step-icon { font-size: 1.8rem; margin-bottom: 16px; }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    padding: 100px 5vw;
+    background: #0f172a;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(39,199,111,0.15), transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--white); margin-bottom: 16px; position: relative;
+  }
+  .cta-section p { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto 40px; line-height: 1.65; position: relative; }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn-store {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white); text-decoration: none;
+    padding: 14px 22px; border-radius: 14px;
+    font-size: 0.875rem; font-weight: 600;
+    transition: all 0.2s; backdrop-filter: blur(8px);
+  }
+  .btn-store:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+  .btn-store-icon { font-size: 1.5rem; }
+  .btn-store-sub { font-size: 0.65rem; font-weight: 400; opacity: 0.7; display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f172a;
+    padding: 64px 5vw 0;
+    color: #94a3b8;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    padding-bottom: 48px;
+  }
+
+  .footer-logo {
+    margin-bottom: 14px;
+    display: inline-block;
+  }
+  .footer-logo img {
+    height: 56px; width: auto;
+    display: block;
+  }
+
+  .footer-tagline { font-size: 0.82rem; color: #64748b; line-height: 1.6; margin-bottom: 10px; }
+  .footer-email { font-size: 0.82rem; color: #64748b; }
+  .footer-email a { color: #34d399; text-decoration: none; }
+  .footer-email a:hover { text-decoration: underline; }
+
+  .footer-col h4 {
+    font-size: 0.875rem; font-weight: 700; color: #fff;
+    margin-bottom: 16px; letter-spacing: 0.02em;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul a {
+    font-size: 0.82rem; color: #64748b; text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: #34d399; }
+
+  .footer-social { display: flex; gap: 10px; margin-bottom: 16px; }
+  .social-icon {
+    width: 38px; height: 38px;
+    background: #1e293b;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #94a3b8; transition: all 0.2s;
+  }
+  .social-icon:hover { background: #059669; color: #fff; }
+
+  .gplay-badge {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #0f172a; border: 2px solid #1e293b;
+    border-radius: 14px; padding: 12px 18px;
+    text-decoration: none; margin-top: 14px;
+    transition: border-color 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .gplay-badge:hover { border-color: #059669; }
+  .gplay-sub { display: block; font-size: 0.6rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+  .gplay-name { display: block; font-size: 1rem; font-weight: 800; color: #fff; }
+
+  .footer-bottom {
+    border-top: 1px solid #1e293b;
+    padding: 24px 0;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .footer-bottom p { font-size: 0.8rem; color: #64748b; }
+  .footer-dua { font-size: 0.72rem !important; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes growBar {
+    from { width: 0; }
+    to   { width: 15%; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  @keyframes floatLeft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes floatRight {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero-sub { margin: 0 auto 38px; }
+    .hero-actions { justify-content: center; }
+    .trust-row { justify-content: center; }
+    .hero-right { order: -1; }
+    .phone-pill { display: none; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<div class="container">
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="data:image/png;base64,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" alt="QariAI"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://qariai.app/about" target="_blank" rel="noopener">About</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#cta" class="btn-primary">Download Free</a>
+  </div>
+</nav>
 
-  <!-- ── Header ───────────────────────────────────────── -->
-  <header class="header">
-    <a href="/" class="logo" aria-label="QariAI home">
-      <img src="/favicon.png?v=3" alt="" class="logo-img" />
-      <span class="logo-text">
-        <span class="logo-name"><span class="brand-qari">Qari</span><span class="brand-ai">AI</span></span>
-        <span class="logo-tagline">Tajweed + Hifz Coach</span>
-      </span>
-    </a>
-    <nav class="nav">
-      <a href="#features">Features</a>
-      <a href="#how">How it works</a>
-      <a href="/tajweed-rules">Tajweed rules</a>
-      <!-- "Start free →" removed — hero "Watch 30s demo" + Play Store button cover the entry points. -->
-    </nav>
-  </header>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">✦ Now on Android · iOS Coming Soon</div>
 
-  <!-- ── Hero ─────────────────────────────────────────── -->
-  <section class="hero">
-    <div>
-      <div class="hero-eyebrow">
-        <span class="hero-eyebrow-dot"></span>
-        <span class="hero-eyebrow-text">Real-time AI tajweed feedback</span>
-      </div>
-      <h1>Read the Qur'an like you've had a teacher your whole life.</h1>
-      <p class="hero-sub"><strong>Every letter matters.</strong> QariAI catches what you miss — and corrects you instantly.</p>
-      <div class="hero-ctas">
-        <a class="btn-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true" style="vertical-align: -2px; margin-right: 4px;"><path d="M3 20.5V3.5c0-.8.4-1.4.9-1.8l10 10-10 10c-.5-.4-.9-1-.9-1.2zM14.8 12.5l2.5-1.5 3.7-2.1c.5-.3.5-1.1 0-1.4l-3.7-2.1-2.5-1.5-2.5 2.5 2.5 6.1zM14.8 13.5l-2.5 6.1 2.5-2.5 2.5-1.5 3.7-2.1c.5-.3.5-1.1 0-1.4l-3.7-2.1-2.5-1.5"/></svg>
-          Get on Google Play
-        </a>
-      </div>
-      <div class="hero-trust">
-        <div class="hero-trust-item">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          No card needed
-        </div>
-        <div class="hero-trust-item">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          935+ reciters worldwide
-        </div>
-        <div class="hero-trust-item">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Audio analyzed, not stored
-        </div>
-      </div>
+    <h1 class="hero-title">
+      The AI Tajweed app that<br/>
+      <em>listens, corrects &amp;</em><br/>
+      teaches instantly
+    </h1>
+
+    <p class="hero-sub">
+      Recite any verse — QariAI hears every mistake and gives you precise Tajweed feedback in seconds. No login. No pricing. Just recite.
+    </p>
+
+    <div class="hero-pills">
+      <span class="hero-pill">✓ No login required</span>
+      <span class="hero-pill">✓ Free</span>
+      <span class="hero-pill">✓ Instant AI feedback</span>
     </div>
 
-    <div class="hero-visual" aria-hidden="true">
-      <div class="phone-frame">
-        <div class="phone-status">
-          <div class="ai-badge">
-            <span class="ai-bars">
-              <span class="ai-bar" style="height: 5px;"></span>
-              <span class="ai-bar" style="height: 7px;"></span>
-              <span class="ai-bar" style="height: 9px;"></span>
-            </span>
-            <span class="ai-text">AI active</span>
-          </div>
-          <span class="phone-timer">03:09</span>
-        </div>
-        <p class="phone-surah">Al-Ikhlāṣ · 112:1–2</p>
-        <p class="phone-ayah-arabic scanning">قُلْ هُوَ ٱللَّهُ أَحَدٌ</p>
-        <p class="phone-ayah-arabic mistake">ٱللَّهُ ٱلصَّمَدُ</p>
-        <!-- Dark in-phone tooltip removed — redundant with the new .live-status
-             side panel (pipeline steps) + the .float-badge.mistake card + tip
-             sub-line. Three moving elements felt cluttered; kept the clearer two. -->
-        <div class="phone-waveform">
-          <span class="bar" style="height: 6px;"></span>
-          <span class="bar" style="height: 10px;"></span>
-          <span class="bar" style="height: 14px;"></span>
-          <span class="bar" style="height: 18px;"></span>
-          <span class="bar" style="height: 12px;"></span>
-          <span class="bar" style="height: 8px;"></span>
-          <span class="bar mistake" style="height: 14px;"></span>
-          <span class="bar mistake" style="height: 18px;"></span>
-          <span class="bar mistake" style="height: 16px;"></span>
-          <span class="bar" style="height: 10px;"></span>
-          <span class="bar" style="height: 6px;"></span>
-          <span class="bar muted" style="height: 4px;"></span>
-          <span class="bar muted" style="height: 4px;"></span>
-        </div>
-        <div class="phone-mic-row">
-          <div class="phone-mic">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="6" height="6" rx="1" fill="white"/></svg>
-          </div>
-          <p class="phone-mic-caption">Tap to stop</p>
-        </div>
-      </div>
-
-      <div class="float-badge mistake">
-        <div class="float-badge-bob">
-          <div class="float-badge-top">
-            <span class="float-badge-title">Mistake detected</span>
-            <span class="float-badge-score">7.5<small>/10</small></span>
-          </div>
-          <p class="float-badge-desc">Qalqalah on <span dir="rtl" style="font-family: var(--font-arabic)">د</span> is missing</p>
-          <div class="float-badge-tip">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#B4851B" stroke-width="2.5" stroke-linecap="round"><path d="M3 12h4M12 3v4M12 21v-4M21 12h-4"/><circle cx="12" cy="12" r="4"/></svg>
-            <span><strong>Tip:</strong> Make a stronger bounce on the letter</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Live feedback status strip — rotates the "active" step every 1.4s
-           so the hero reads as the AI thinking through its pipeline in real
-           time, not a static label. -->
-      <div class="live-status" aria-hidden="true">
-        <div class="live-status-header">
-          <span class="live-status-dot"></span>
-          <span class="live-status-title">Live feedback</span>
-        </div>
-        <ul class="live-status-steps">
-          <li style="animation-delay: 0s;">Listening…</li>
-          <li style="animation-delay: 1.4s;">Analyzing…</li>
-          <li style="animation-delay: 2.8s;">Checking Tajweed…</li>
-          <li style="animation-delay: 4.2s;">Correcting…</li>
-        </ul>
-      </div>
-
-      <div class="float-badge streak">
-        <div class="float-badge-bob">
-          <p class="float-badge-label">Streak</p>
-          <div>
-            <span class="float-badge-streak-num">23</span>
-            <span class="float-badge-streak-unit">days</span>
-          </div>
-          <div class="float-badge-streak-dots">
-            <span></span><span></span><span></span><span></span><span></span>
-            <span class="muted"></span><span class="muted"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── What's new in v1.18 ──────────────────────────── -->
-  <!-- Three cards highlighting the v1.18 ship: Maqam ear-training,
-       diagnostic colored-waveform sync feedback, and multi-ayah
-       recitation. Matches the .card-grid-3 + .card-tile pattern used
-       elsewhere on the page so the visual rhythm is consistent. The
-       icon-bg tints (mint / amber / violet) follow the same palette
-       as "Built for" and "How it works" sections. -->
-  <section class="section">
-    <p class="section-eyebrow">New in v1.18</p>
-    <h2 class="section-title">Three things that didn't exist last month</h2>
-    <div class="card-grid-3">
-      <div class="card-tile">
-        <div class="card-tile-icon" style="background: #EDE9FE;">
-          <!-- Wave glyph — represents Maqam pitch curve -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 8 Q 9 6 12 11 T 21 17"/>
-            <circle cx="3" cy="8" r="1.4" fill="#6D28D9" stroke="none"/>
-            <circle cx="21" cy="17" r="1.4" fill="#6D28D9" stroke="none"/>
-          </svg>
-        </div>
-        <p class="card-tile-title">Train your ear · 8 maqamat</p>
-        <p class="card-tile-desc">Listen to master reciters, then imitate. QariAI tracks your pitch in real time and shows you, second-by-second, where your voice tracks the master and where it drifts.</p>
-      </div>
-      <div class="card-tile">
-        <div class="card-tile-icon" style="background: #E1F5EE;">
-          <!-- Diagnostic waveform glyph -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 12h3l3-7 4 14 3-9 2 5h3"/>
-          </svg>
-        </div>
-        <p class="card-tile-title">Diagnostic, not decorative</p>
-        <p class="card-tile-desc">Your recitation waveform colors green where you tracked the rule, coral where you drifted. The audio comparison is finally readable — no more guessing what to fix.</p>
-      </div>
-      <div class="card-tile">
-        <div class="card-tile-icon" style="background: #FEF3C7;">
-          <!-- Multiple ayah / continuous recitation glyph -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="6" y1="7" x2="20" y2="7"/>
-            <line x1="6" y1="12" x2="20" y2="12"/>
-            <line x1="6" y1="17" x2="20" y2="17"/>
-            <circle cx="3.5" cy="7" r="1.2" fill="#B45309" stroke="none"/>
-            <circle cx="3.5" cy="12" r="1.2" fill="#B45309" stroke="none"/>
-            <circle cx="3.5" cy="17" r="1.2" fill="#B45309" stroke="none"/>
-          </svg>
-        </div>
-        <p class="card-tile-title">Recite multiple ayāt in one breath</p>
-        <p class="card-tile-desc">No more single-verse cap. Recite Al-Fātiḥah top to bottom, or three ayāt of Al-Baqarah, and the analysis covers every word — with tap-to-hear pronunciations across all of them.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Trust band (honest framing) ──────────────────── -->
-  <section class="trust-band">
-    <div class="trust-band-inner">
-      <div class="trust-band-copy">
-        <p class="trust-band-label">Built on</p>
-        <p class="trust-band-line">Classical tajweed methodology, delivered with modern AI.</p>
-      </div>
-      <div class="trust-band-pillars">
-        <div class="trust-pillar">
-          <div class="trust-pillar-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          </div>
-          <p class="trust-pillar-title">16 tajweed rules</p>
-          <p class="trust-pillar-sub">Shaddah to Madd Lazim</p>
-        </div>
-        <div class="trust-pillar">
-          <div class="trust-pillar-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <p class="trust-pillar-title">Worldwide</p>
-          <p class="trust-pillar-sub">Reciters on every continent</p>
-        </div>
-        <div class="trust-pillar">
-          <div class="trust-pillar-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          </div>
-          <p class="trust-pillar-title">4 languages</p>
-          <p class="trust-pillar-sub">EN · FR · AR · MS</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Built for ────────────────────────────────────── -->
-  <section class="section" id="features">
-    <p class="section-eyebrow">Built for</p>
-    <h2 class="section-title">Wherever you are in your journey</h2>
-    <div class="card-grid-3">
-      <div class="card-tile">
-        <div class="card-tile-icon" style="background: #E1F5EE;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M2 12h20"/></svg>
-        </div>
-        <p class="card-tile-title">Beginners</p>
-        <p class="card-tile-desc">Learn Arabic letters, makhārij, and your first sūrahs with zero judgement. Every attempt becomes a teachable moment.</p>
-      </div>
-      <div class="card-tile">
-        <div class="card-tile-icon" style="background: #EEEDFE;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3C3489" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-        </div>
-        <p class="card-tile-title">Improvers</p>
-        <p class="card-tile-desc">Fix the tajweed mistakes you didn't know you were making — the ones a qualified teacher would catch in person.</p>
-      </div>
-      <div class="card-tile">
-        <div class="card-tile-icon" style="background: #FAEEDA;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 8v8M12 8v8M16 8v8"/></svg>
-        </div>
-        <p class="card-tile-title">Huffāẓ</p>
-        <p class="card-tile-desc">Daily murājaʿah that catches slips before they become habits. Word-level heatmaps across every juz you've memorized.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── How it works ─────────────────────────────────── -->
-  <section class="section" id="how">
-    <p class="section-eyebrow">The loop</p>
-    <h2 class="section-title">Three steps. Every session.</h2>
-    <div class="card-grid-3">
-      <div class="card-tile">
-        <div class="card-tile-icon" style="background: #E1F5EE;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
-        </div>
-        <p class="card-tile-title">1 · Recite</p>
-        <p class="card-tile-desc">Pick any ayah. Tap the mic. Recite at your own pace — no time limit, no scripts, no one listening but the AI.</p>
-      </div>
-      <div class="card-tile">
-        <div class="card-tile-icon" style="background: #EEEDFE;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3C3489" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <p class="card-tile-title">2 · Review</p>
-        <p class="card-tile-desc">See exactly where you stumbled — per-letter, per-rule — with a plain-language explanation of what to fix next.</p>
-      </div>
-      <div class="card-tile">
-        <div class="card-tile-icon" style="background: #FAEEDA;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 12a9 9 0 1 1 9 9"/><polyline points="3 3 3 12 12 12"/></svg>
-        </div>
-        <p class="card-tile-title">3 · Drill</p>
-        <p class="card-tile-desc">One-tap drill mode rehearses the exact mistake until it's mastered. Back to recitation — sharper every time.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Masjid Journey feature ───────────────────────── -->
-  <section class="journey" id="journey">
-    <div class="journey-header">
-      <div class="journey-eyebrow">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3c-.4 0-.7.3-.7.7v1.1c-.9.3-1.6 1.1-1.6 2.1 0 .6.2 1 .5 1.5-1.8.9-3.1 2.7-3.2 4.9H5v7h14v-7h-2c-.1-2.2-1.4-4-3.2-4.9.3-.4.5-.9.5-1.5 0-1-.7-1.8-1.6-2.1V3.7c0-.4-.3-.7-.7-.7zm-3.5 13.5h2v3h-2v-3zm5 0h2v3h-2v-3z"/></svg>
-        New · The Journey
-      </div>
-      <h2>Walk the Path of Ten Masjids</h2>
-      <p class="journey-sub">
-        Every recitation earns XP toward the next masjid on your pilgrimage. From Masjid al-Ḥarām to Sheikh Zayed, each masjid unlocks a new certification verse and carries a piece of Islamic history — turning daily practice into a journey worth completing.
-      </p>
-    </div>
-    <div class="journey-path" aria-hidden="true">
-      <div class="journey-stop">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Ḥarām</span>
-        <span class="journey-stop-line"></span>
-      </div>
-      <div class="journey-stop">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Zayed</span>
-        <span class="journey-stop-line"></span>
-      </div>
-      <div class="journey-stop">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Ḥassan II</span>
-        <span class="journey-stop-line"></span>
-      </div>
-      <div class="journey-stop locked">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Nabawī</span>
-        <span class="journey-stop-line"></span>
-      </div>
-      <div class="journey-stop locked">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Aqṣā</span>
-        <span class="journey-stop-line"></span>
-      </div>
-      <div class="journey-stop locked">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Badshahi</span>
-        <span class="journey-stop-line"></span>
-      </div>
-      <div class="journey-stop locked">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Istiqlāl</span>
-        <span class="journey-stop-line"></span>
-      </div>
-      <div class="journey-stop locked">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Qarawiyyīn</span>
-        <span class="journey-stop-line"></span>
-      </div>
-      <div class="journey-stop locked">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Sulaymaniye</span>
-        <span class="journey-stop-line"></span>
-      </div>
-      <div class="journey-stop locked">
-        <div class="journey-stop-dome"></div>
-        <span class="journey-stop-name">Cordoba</span>
-      </div>
-    </div>
-    <p class="journey-footnote">3 of 10 unlocked — Ayat an-Nūr earns Zayed · Al-Kahf opens Ḥassan II</p>
-  </section>
-
-  <!-- ── Testimonials (one real, one placeholder) ─────── -->
-  <section class="section">
-    <p class="section-eyebrow">What reciters are saying</p>
-    <h2 class="section-title" style="font-size: 18px;">From real Play Store reviews</h2>
-    <div class="card-grid-2">
-      <div class="testimonial">
-        <p class="testimonial-quote">"An incredible app. I've tested both Hifz and Tajweed mode — they work great. Set to Advanced, it works perfectly picking up any small mistakes."</p>
-        <div class="testimonial-meta">
-          <div class="testimonial-avatar">MR</div>
-          <div>
-            <p class="testimonial-name">Matti-Ur Rehman</p>
-            <p class="testimonial-role">Google Play review · March 2026</p>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial">
-        <p class="testimonial-quote">"I think it is very nice and accurate, Mashallah."</p>
-        <div class="testimonial-meta">
-          <div class="testimonial-avatar" style="background: #EEEDFE; color: #3C3489;">SA</div>
-          <div>
-            <p class="testimonial-name">Sayeed Ahmed</p>
-            <p class="testimonial-role">Google Play review · April 2026</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Final CTA ────────────────────────────────────── -->
-  <section class="final-cta" id="pricing">
-    <h2>Your next recitation can be better than your last.</h2>
-    <p>Instant, per-letter tajweed feedback — free to start.</p>
-    <div class="final-cta-actions">
-      <a class="btn-white" href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">
-        Get on Google Play →
+    <div class="hero-actions">
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" class="btn-hero btn-hero-solid">
+        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path d="M3.18 23.76a2.5 2.5 0 01-.93-.62 2.45 2.45 0 01-.55-1.68V2.54c0-.65.19-1.21.55-1.68A2.5 2.5 0 013.18.24L14.1 12 3.18 23.76z" fill="#EA4335"/><path d="M17.84 15.7L4.44 23.42a2.6 2.6 0 01-1.26.34L14.1 12l3.74 3.7z" fill="#FBBC04"/><path d="M21.75 10.54a1.3 1.3 0 01.5 1.08 1.3 1.3 0 01-.5 1.08l-3.91 2.26L14.1 12l3.74-3.7 3.91 2.24z" fill="#4285F4"/><path d="M3.18.24A2.6 2.6 0 014.44.58L17.84 8.3 14.1 12 3.18.24z" fill="#34A853"/></svg>
+        Download on Google Play
+      </a>
+      <a href="#how" class="btn-hero btn-hero-outline">
+        See How It Works
       </a>
     </div>
-  </section>
 
-  <footer class="site" id="about">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <a href="/" class="footer-brand">
-          <span class="footer-brand-name">QariAI</span>
-        </a>
-        <p class="footer-brand-tagline">AI-powered tajweed & hifz coaching for Muslims worldwide.</p>
-        <p class="footer-email"><a href="mailto:salam@qariai.app">salam@qariai.app</a></p>
+    <!-- Single verified review -->
+    <div class="hero-reviews">
+      <div class="review-card featured">
+        <div class="review-card-header">
+          <span class="review-card-stars">★★★★★</span>
+          <span class="review-card-source">✔ Google Play</span>
+        </div>
+        <p>"Barakallahu Feekum. An incredible app. I've tested both Hifz and Tajweed mode — set to Advanced and it picks up every small mistake perfectly."</p>
+        <div class="review-card-meta">
+          <span class="review-name">Matti-Ur Rehman</span>
+          <span class="review-card-device">Samsung Galaxy S25 · Mar 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="phone-wrap">
+      <div class="phone-blob phone-blob-1"></div>
+      <div class="phone-blob phone-blob-2"></div>
+
+      <!-- floating pills -->
+      <div class="phone-pill pill-left">
+        <span class="pill-dot"></span>
+        AI Listening…
+      </div>
+      <div class="phone-pill pill-right">
+        📝 Teacher's notes
+      </div>
+
+      <div class="phone-device">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+
+          <!-- app header -->
+          <div class="ps-header">
+            <div class="ps-logo">
+              <img src="data:image/png;base64,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" alt="QariAI" style="height:24px;width:auto;display:block;"/>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;background:var(--mint);border:1px solid var(--mint-mid);border-radius:999px;padding:4px 10px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--green-bright);display:inline-block;"></span>
+              <span style="font-size:0.62rem;font-weight:700;color:var(--green-dark);letter-spacing:0.04em;">TAJWEED MODE</span>
+            </div>
+          </div>
+
+          <!-- tabs -->
+          <div class="ps-tabs">
+            <div class="ps-tab active">Correction</div>
+            <div class="ps-tab">Verse</div>
+            <div class="ps-tab">Progress</div>
+          </div>
+
+          <!-- body -->
+          <div class="ps-body">
+
+            <!-- verse card (sacred text) -->
+            <div style="background:var(--white);border:1px solid var(--mint-mid);border-radius:14px;padding:14px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                <span style="font-size:0.58rem;font-weight:700;color:var(--green);letter-spacing:0.05em;text-transform:uppercase;">Al-Fatiha · Ayah 2</span>
+                <span style="font-size:0.56rem;color:var(--text-light);">🎤 Recited just now</span>
+              </div>
+              <div dir="rtl" lang="ar" style="font-family:'Amiri',serif;font-size:1.55rem;line-height:1.9;color:var(--text);text-align:center;">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+              <div style="font-size:0.6rem;color:var(--text-light);font-style:italic;text-align:center;margin-top:8px;">Al-ḥamdu lillāhi rabbi l-ʿālamīn</div>
+            </div>
+
+            <!-- teacher's margin notes -->
+            <div style="margin-top:14px;display:flex;align-items:center;gap:6px;">
+              <span style="font-size:0.78rem;">📝</span>
+              <span style="font-size:0.72rem;font-weight:700;color:var(--green-dark);">Teacher's notes</span>
+            </div>
+
+            <div style="margin-top:8px;background:var(--white);border-left:3px solid #f59e0b;border-radius:8px;padding:9px 11px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+              <div>
+                <div dir="rtl" style="font-family:'Amiri',serif;font-size:0.92rem;color:var(--text);">الْعَالَمِينَ — Madd</div>
+                <div style="font-size:0.6rem;color:var(--text-mid);margin-top:3px;line-height:1.45;">Hold this madd a little longer — aim for ~4 counts.</div>
+              </div>
+              <span style="flex-shrink:0;font-size:0.53rem;font-weight:700;color:#b45309;background:#fef3c7;border-radius:999px;padding:3px 8px;white-space:nowrap;">Needs work</span>
+            </div>
+
+            <div style="margin-top:8px;background:var(--white);border-left:3px solid var(--green-bright);border-radius:8px;padding:9px 11px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+              <div>
+                <div dir="rtl" style="font-family:'Amiri',serif;font-size:0.92rem;color:var(--text);">لِلَّهِ — Light lām</div>
+                <div style="font-size:0.6rem;color:var(--text-mid);margin-top:3px;line-height:1.45;">Said correctly — nicely done.</div>
+              </div>
+              <span style="flex-shrink:0;font-size:0.53rem;font-weight:700;color:var(--green-dark);background:var(--mint);border-radius:999px;padding:3px 8px;white-space:nowrap;">Clear</span>
+            </div>
+
+            <div style="margin-top:8px;background:var(--white);border-left:3px solid var(--green-bright);border-radius:8px;padding:9px 11px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+              <div>
+                <div dir="rtl" style="font-family:'Amiri',serif;font-size:0.92rem;color:var(--text);">رَبِّ — Heavy rāʾ</div>
+                <div style="font-size:0.6rem;color:var(--text-mid);margin-top:3px;line-height:1.45;">Tafkhīm pronounced well.</div>
+              </div>
+              <span style="flex-shrink:0;font-size:0.53rem;font-weight:700;color:var(--green-dark);background:var(--mint);border-radius:999px;padding:3px 8px;white-space:nowrap;">Clear</span>
+            </div>
+
+            <!-- improvement (no XP) -->
+            <div style="margin-top:14px;background:linear-gradient(135deg,var(--mint),#ffffff);border:1px solid var(--mint-mid);border-radius:12px;padding:11px 13px;">
+              <div style="font-size:0.62rem;font-weight:700;color:var(--green-dark);margin-bottom:7px;">Your madd on this verse is improving</div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="display:flex;align-items:center;gap:5px;">
+                  <span style="width:9px;height:9px;border-radius:50%;background:#f59e0b;display:inline-block;"></span>
+                  <span style="width:9px;height:9px;border-radius:50%;background:#f59e0b;display:inline-block;"></span>
+                  <span style="width:9px;height:9px;border-radius:50%;background:var(--green-bright);display:inline-block;"></span>
+                </span>
+                <span style="font-size:0.56rem;color:var(--text-light);">across your last 3 attempts</span>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- /phone-screen -->
+      </div><!-- /phone-device -->
+    </div><!-- /phone-wrap -->
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div id="features" style="position:relative;top:-80px;visibility:hidden;"></div><section class="features">
+  <span class="section-eyebrow">Why QariAI</span>
+  <h2 class="section-title">Everything you need to<br/>perfect your recitation</h2>
+  <p class="section-sub">From beginner to Hafiz — our AI listens, corrects, and celebrates every milestone with you.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <h3>Real-Time AI Feedback</h3>
+      <p>Get instant Tajweed corrections as you recite, with precise identification of every rule you applied or missed.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Progress Insights</h3>
+      <p>See how each Tajweed rule improves over time, with session history and accuracy trends per verse.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3>Daily Practice</h3>
+      <p>Build a consistent daily habit with gentle reminders and a clear picture of the rules you're mastering.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📖</div>
+      <h3>Hifz Journey Tracker</h3>
+      <p>Map your memorisation progress Surah by Surah with visual indicators and revision reminders.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌙</div>
+      <h3>Night Mode & Focus</h3>
+      <p>Distraction-free recitation mode, designed for Tahajjud and late-night practice sessions.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">☁️</div>
+      <h3>Backup & Sync</h3>
+      <p>Your data is always safe. Back up and restore your full recitation history across devices.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- HOW IT WORKS -->
+<div id="how" style="position:relative;top:-80px;visibility:hidden;"></div><section class="how">
+  <span class="section-eyebrow">Simple to Start</span>
+  <h2 class="section-title">How it works</h2>
+  <p class="section-sub">Three steps to better recitation, starting today.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon">📲</div>
+      <h3>Download the App</h3>
+      <p>Available free on Android — iOS coming soon. Start reciting in under 30 seconds, no login, no credit card.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon">🎙️</div>
+      <h3>Recite a Verse</h3>
+      <p>Open any Surah, hit record, and recite. Our AI listens in real-time and analyses your Tajweed instantly.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon">📈</div>
+      <h3>Track & Improve</h3>
+      <p>Review your teacher-style notes, see which rules are clear and which need work, and watch your recitation improve over time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <h2>Begin your journey today</h2>
+  <p>Use AI to perfect your recitation — free to download, free to start.</p>
+  <div class="cta-btns">
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener" class="btn-store">
+      <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.18 23.76a2.5 2.5 0 01-.93-.62 2.45 2.45 0 01-.55-1.68V2.54c0-.65.19-1.21.55-1.68A2.5 2.5 0 013.18.24L14.1 12 3.18 23.76z" fill="#EA4335"/><path d="M17.84 15.7L4.44 23.42a2.6 2.6 0 01-1.26.34L14.1 12l3.74 3.7z" fill="#FBBC04"/><path d="M21.75 10.54a1.3 1.3 0 01.5 1.08 1.3 1.3 0 01-.5 1.08l-3.91 2.26L14.1 12l3.74-3.7 3.91 2.24z" fill="#4285F4"/><path d="M3.18.24A2.6 2.6 0 014.44.58L17.84 8.3 14.1 12 3.18.24z" fill="#34A853"/></svg>
+      <div>
+        <span class="btn-store-sub">Get it on</span>
+        Google Play
+      </div>
+    </a>
+    <a href="javascript:void(0)" class="btn-store btn-store-soon" title="iOS coming soon — not available yet">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.15-2.18 1.27-2.16 3.8.03 3.02 2.65 4.03 2.68 4.04l-.07.28zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div>
+        <span class="btn-store-sub">Coming soon to</span>
+        App Store
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div id="faq" style="position:relative;top:-80px;visibility:hidden;"></div>
+<section class="faq" style="max-width:820px;margin:0 auto;padding:80px 5vw;">
+  <h2 style="font-family:'Merriweather',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--green-dark);text-align:center;margin-bottom:8px;">Frequently asked questions</h2>
+  <p style="text-align:center;color:var(--text-light);margin-bottom:40px;">Everything you need to know about QariAI.</p>
+
+  <details style="background:var(--white);border:1px solid var(--mint-mid);border-radius:14px;padding:20px 24px;margin-bottom:14px;">
+    <summary style="font-weight:700;color:var(--text);cursor:pointer;list-style:none;">What does QariAI do?</summary>
+    <p style="margin-top:12px;color:var(--text-mid);line-height:1.6;">QariAI listens to your Quran recitation and gives instant, rule-specific Tajweed feedback. It has a <strong>Tajweed mode</strong> for pronunciation and rules, and a <strong>Hifz mode</strong> for memorization practice.</p>
+  </details>
+
+  <details style="background:var(--white);border:1px solid var(--mint-mid);border-radius:14px;padding:20px 24px;margin-bottom:14px;">
+    <summary style="font-weight:700;color:var(--text);cursor:pointer;list-style:none;">Is QariAI free?</summary>
+    <p style="margin-top:12px;color:var(--text-mid);line-height:1.6;">Yes. QariAI is free to download and free to start, with no login required. You can begin reciting and receiving feedback immediately.</p>
+  </details>
+
+  <details style="background:var(--white);border:1px solid var(--mint-mid);border-radius:14px;padding:20px 24px;margin-bottom:14px;">
+    <summary style="font-weight:700;color:var(--text);cursor:pointer;list-style:none;">Which platforms is QariAI available on?</summary>
+    <p style="margin-top:12px;color:var(--text-mid);line-height:1.6;">QariAI is available now on <strong>Android</strong> via Google Play. An iOS version is in development and coming soon.</p>
+  </details>
+
+  <details style="background:var(--white);border:1px solid var(--mint-mid);border-radius:14px;padding:20px 24px;margin-bottom:14px;">
+    <summary style="font-weight:700;color:var(--text);cursor:pointer;list-style:none;">How accurate is the AI Tajweed feedback?</summary>
+    <p style="margin-top:12px;color:var(--text-mid);line-height:1.6;">QariAI gives rule-specific corrections only when its confidence is high, and presents them as clear teacher-style notes rather than a single opaque score. It is a practice aid that complements — but does not replace — a qualified human teacher.</p>
+  </details>
+
+  <details style="background:var(--white);border:1px solid var(--mint-mid);border-radius:14px;padding:20px 24px;margin-bottom:14px;">
+    <summary style="font-weight:700;color:var(--text);cursor:pointer;list-style:none;">Does QariAI work for Hifz (memorization)?</summary>
+    <p style="margin-top:12px;color:var(--text-mid);line-height:1.6;">Yes. Hifz mode lets you recite from memory while the app tracks your accuracy and highlights where you slipped — helping you strengthen weak spots and build a daily habit.</p>
+  </details>
+</section>
+
+<!-- FOOTER -->
+<footer id="about">
+  <div class="footer-inner">
+    <!-- top: logo + columns -->
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAArG0lEQVR42u19eXxU5bn/93nfc+bMTBYCJGFVFlkDuLC4FoIKSm0tWp20ilqrt7bWUou293a53sl4e2/93daq5drWam3VujRTxAWtCBYi7hIEFRBElrATyJ7MzDnnfZ/fH+dMMglZAVvs5fUznwQzc+ac9/s++0b47CwJQAFAcXFx3q69ey92U6nZAKZqrYcyc18GBBEcADVSyi2hcGh1MBB8/qGHHiqfOnWq0/46x+OizwAQ5L/0lClTBtXUHPpOIpG6mpmHMzOYGQBafrZ8iAgkCEQChiHXZYWzHr7wwgsf/vWvf93og6IB8AlAercEAE0kMGrUKfObm5vvUMot0JoBZg0iBkDMTESU+SzMHkIMQIIIhmlACvlxVjj8o02bNi3KeHY+AUgvwPja1+bmrVq17tHm5sSlWjMAuP4Jp/TOA2AiZg8bEBERMwsiSlOOBqBBZEgpkZOdfd/mzZtvIw/Q4woUOp7BKC4uHrh129aX7FTqNGbtAkJmnmxm1j448OiD2pAIEWlmlhnX1QC04a1FZ5999lfi8XiakvgEIF3IjNmzZ4c++uij11Kp1OnM7AAwW7kSs9YgKQWIyBFCbLAsa6uUshFAfjKZHOm67littfdODy5KA6c1O1JKMxgMllVWVn7FB02dAKQTbYqI1EknnfTnVCpRojU7AJntTrkwTVOFw+F78/LyHlyzZs0mrXWLMP/b3/5mzL9t/rTmuubbEonElUopAOzLm5brONKQZjgUvmPr1q0/PV60r2MDCDNF4nFRFonoDL58xKrt2LFjr6+vr/+D67oOEcyMTdQARCgUrC4oKLyyoqJiRbvPUou88MEZOXLktY2NjQ8xswEwMbdQCjNDmaYpBw0adHZFRcU7RwtKpKxMAkC8pET9wwDxNRw+Vodj3rx5OStWrNjkOM4An6+LTJkRCATsESOGXvD66++8BcD0N1B3Aq4A4IwdO/bq+vq6x11XKe//ky9zoABI0zRf3bNnTzEzi06u1bsVjQrEYkd0HXF03xsVnkLDodtefv5Lj76+tDBNMUdIHbx69eqva60HAlBEJFqBhzYMQ+bm5v749dffeauoqCgAwOliAxUAp6ioKLBp06YngsHQA1JKnwJa7BfJzFopNWPcuHEz/GvJI+Sz+PHzf7n4XxfHz0UsphGJyL8rINFoVMRiMb1n8+aCs39776o/btn47D1r1i1hZgNERwKKWrFihZFKpb6lteZMMLyNYiml/OjOO+9cCEBu2LDB6clFN2zY4AIQY8eOvYOIqv1nzqRozczc1Nx0S1tTpnds6oY/PXzFozu3v/THHR+/ftUfH76V4nFVHI0afxdAmJligGBms2T5i39Z3Vg/pbq6WtuaC49CzeXbb7/9tFQqOc4/vSLD+tZSSmRlZT1Q4vFn6oWaqgHQSy+9VBUMBsuEEORTX8vh1lqT47gXzZgxI8+nrF4jw1rL+qSNA7U1zvL6ffd+N/5UpDwWc9OAfaqAlMTjArGYG/nj70rfSzbNUM2J1ODsXC4ZNe4bRORGyiICGXKlOBo1urkxAQANDQ3ns2f8qQxBzswsDcNQJ5100osZm9xrGRUIBMr8S4oMPAmAZq3zamtrzwSASCQiOlNeildEjShHW/4eLylRiETkI9d9o2xaMOsPVnaOWVVf5z63a+vvn1++fEi8pERFo9GjEg3dkKjHG+9ZuuSsgb/4Txd3/jCVe9/P+Gt/fvS7mSTcy2UAwCmnnPJ4YWEhFxQUOAUFBey/VEFBAQ8ZMuQDX+geiXwiALjooov6DR48qK6goIALCwt1YWEhFxYWckFhgTNw4EAeNWrk9zLvp1vBnQGUT9Hy1IX/8zbd9RMW/y/KUxf+YikzU2/kSa+Ri68vYmYWT3286X/32ylpBIKBM8JZzz351et/VRyNGhkqHyEaFQEhMO+xh26IPPzbrxgkOpMtSggBpdzhgOf7yNh3JkEwLHMbEekjpGoGgKVLl9YCtM1nV9zinGRAM8N19bDOKAMAHl+1qu/Vi/70/Z8u/+tkxGK65eQTcdTz2aivnzT8ukJhNWon5W5m+6Iby/70dfRCnvTq4YqjUQOxmP7e4ieu+NhJTmXH0cOCoZr7z7ngmzZrmpnBSiJlZULGYvqKP/z25y/WHPz9yrqap25+8tHzQcQdUBEzM1IpO4c8ceJp0pTeTIIkuesoVXUhhNCmKQ9muFYy7wC2bffv8JOlpVIAWLj27fsW79/780c2fPC3h155ZWwsA5QYkS6ORo0Fl5VsmprT/9/D4SyjvrFRr9pT+R/MHCwvjSnugaLTK0DKEdPMLFbt3PVv1YlmDmXniMn9Cv574sSJ+4qjURnzde9IWZmMl5SoHz9bNnvloYPfrzl0yJGua4dF4CAAFK1fzx0oCnBdh9Pb3eKrJYIgwHVSNcfCzlGKa3yjkdPGY/qn69ody6YJE5gBCOJDdkMjPm6o6/ObDWueYuZgbMMGSm90eWmpQiQil3zr278ZIcyPANAeVsNK/vC7r4DAM0tL5TEDJFJWJhGD/tHz8bN2Os4UuEzDA+b+smu//gCYaWVpaQuriq9fz8wsn9u+7e69iQbOyc4xiwcMuf1/Sko+iJRFWoA7HJTMn+TFNFp+l8axkIGGYVhpTTEzntIlv4tENDPT67d8/45Tw9kfQbt6s7JPn/fYQzcjHlctG03ExUVFRET2eQOG/meuFaamlM0b66u/y8yivHWPjh6Q+Pr1BADv7jvwlWpWsLJCGJeb/yARNRSXlsr0iSuORiViMf2Nx/947SeuPQkkaWwoa+Xi6278X45EZLwkrnrA7lt+MhiaGUxUcJRYaCKC1jq/M9bXmepGRByJxwURNV4xcPi1A4LZ1NDUqN+q2vevvHlzbnmslR2Vx2IumOmBr84rG8C0CazogGuf8culSyb5skYcG5blf+neRNP5ynXQl8iZNeyUJwDQzNLSlmfxb06srq76bmMixflBS88dP/YnNpgikUivvDmcJhVmKMc5OS2Mj5Bd8R133BFQyh3ciW3V5WbES0pUpKxMRiOR1acEw0+RMMRe6IFzX112NdCWHfkH1B2Wk1tmBIKoEUQr9uy8FABWlpYePSC+3s2PvrVsXL1yxoMZ+YHgx98uLt4EgGOe9pNWefl/Xnxx8j7HPh0CNDKctfqns7/0BqJROkKnG/nATLr55puzj9BwIwB46aWXhmmtB3vXa2eWE/XIuFEAXTJs9C/yDYsTtsPbE01fZ2Yqz2DDhRMmMABM7dvvr7kgOK7CzsaGGQaA8m5sqB4BsrLUe99bO/dNayCYMCT6mfINQaQRLW7h7Qd8tla+b/slB7UiywpgTE6/x1Jao7gH39Xec0FEICJBRFprXbhq1arJ/ub2VvUVAKi2tna655BkBbTVeLyLdn3Z9IH6yaWXrisMmOsAUFUyOfnB5ctHA2jRuMoiEQ0AP4tc/WFfMg5AadTbqSKHOQuxmO7KrdSrB9vZ2DSqSSkEpYF+hrWGARRjJjLYlQ4QoSqZPN9VLvoocs7oP/AlAJh5dF5UrbVGc3PzDWndq7d2CBFxIpG4XikNItGiXaVPAffUARCNSiJSg7LDy4RhoI7YWLZv+5kAsNLfT1+eUlCIhmwj8AkIaGYecN+yJYMBIFpaenSAlGMlCEC94wx1tUaQGXmh4JZM8ky7IFJamzWp1DAwo68V2HPbxRfvAoBYaelRxUm01tzU1BQ566yzhqfd5r3wAqiioqLzbduenhn2baPaUc+2o9j/OSSYvSYsJJJEOJhoGnc4cMXSYUbYpEoIgiOEsSeRGA4AGyZMOEoK2VDOAkDKdQvAjACIT+rfr769UASArVu39rO12w8EhIXYGSRK+nprt4B0oYKSTyXhffv2PZg+gT24fwlA3XTTTeG6+vrfaj9LIlPdbbFDuGcUkj6AY/L67Qx5N4WUo0cQgPINGzIeYCY0gLxAeD9BIkVAZX1t30zWfuSAFMFzIgkKQxCIwbkq0JBp5JX6ZLiloSGsiSwIAYAOuZ63roeskQ4DKAMkycwqmUzOGjlq5L1E5Po7aKRlRMZLpINXQgheuvSvjzp2aoxPHSJTRrUq2z0j4PTzZpmhA6SUAyKkoC3qhJKaXaeKBMBEkMLo62N1lGpvLEPqsnfrjbbd4VtzQiFbaHK9PA7dx4tpxo8qopgJitbabWpsvnXYsGEPzZs3LxdeWlA66S390gCcc889d/DQoYOfS6WcK5hZEaWjhd7rcIrsfjvS7IZNziJhSDAgu+Ce2QErC95hRnYwGD42hmEEpAEESDQDAg4U7Wuqzc68wVJfRpwzZkxDQIpmMCPpuvkpT6PQR7D5nRlphnJdlUgkbly5cuV7I0aMWHDmmWeedtNNN/UpKysLzJ07N2/ixIlTh40Yduf27dvXplLOpVprBVBL6DZNeZluEzCge6F3bNx1oH8SSgBAbjCQ4sPkrrealJOnmSGYACbP/bOyG7d393QaJYUYiLiSBOCAqDqZGJLJD6k1MaoxywzsQ6qpsN51hr9aUTEQwN50hLE7K90nwu4Ak1pr5TjOSFepX+7ctQu79+w+8MKLLzSz5ixmXcDs8XcvttKam9WGTWXIESKC4O7Pp/+8tDvZOKWZCAEhEDbMtQyguKiIyltIKcYGgIZUaig0w9CMkCkr2ylCR0YhaX6YZwZ3mERIAmhiNeGw3SwuloJIZ0uxBkJyHTj7jxs/PBsArezRd/WcsxGR9GSqcl3HgZ2yCx3bGe66boHrKiilXKRTSTsAI/PfPfFnZZx8bQJclUxc4rgucsAYn5P35mEbHYdymKkxZY8EawSVcoryBmzrzLnaK0DSXzQ0O2tDFgRcV+FAMjFZttMsimfOBAM4JafPc9mGSU2s8FH9wXkC4LYaSOdCvTObKX2KM/k/MwuwR+W+5qV9mwMAjLQDsWMwOqI83b3HIhbjJ998c/RuO3E2lOI8yMq7Lo9U+IajTjsuAeCZt94a1qjdkdAauYHAvm/MmLG3OxOgR4CkLc+SEeMqwooboRQabOdzLnMO4nHVxv0M4JFrblg+gGk/u4orE4lLylatGol4XPcklNmZdpzm+96rQ/ZDGdoWukpYyPxbpoHYnQTxPRb8+w/Xzj9A2jICFg3P7RMnogS8ABQDgO/Xomc/2XxuvRBBGCbyTPNtgyiJSER2ZQKIHrIHRhRi9rRpewtC1jpIiSq4Bbc9/eR5AKgkHm+JnBVHowYRNYzJ6fugFQzRfuWGFr6/+mcGwN2xLSlFDy1wRtrPSK1ZooeVJrQHpW35QjvqAxAMBKkr6iiPxdynX311zAcNtd9wmpr1AMjUDWNP/TUARDPIq3zDBpYAb26ouaLBsREyDAzJznlB+XLmmHh7ixEVNjNOCmYtDhgGapXCmgP7/kUCDMQzzCFoMNN/TZv9q8EsDrh2Un+Qaiz5xpOPfLmLLAwSQsAwAome83PKoJS2p70jWdHRdTMBZGYEAoHGzr4sVgows/jZ2rd/uyeVDJrhbHFqfr9Hrpk+fWtmjCcajQrE4/pvH3xw0q5k0xzYKeSTsG+YMGVFT1xIPQYkHYC64bRJZYWaUropwR83N899cNmySfGSuEpvdCwW05F4XEyePKbqvPyCH/TJyhXVTU3OC3t23n/fi4uGxktKdAehTKG1htZqm//8OlNudMd6MlXYjt7TSjGHg5fJBVytKzsJzgmKxfSc3y38/no7eb62bXVKwDyw8OLL7uBoVBStL2pB2+cCfNc7r87fp3VYBIM8JJT18uVTp+5ApPPgXK8BISJGJCKvPLN45/Bg1iMyFKR9TtJ4cNPamEnUxh2Qjh2U3fCtR083Q3EjK2zWWoGBGxubPtc+dpBpopumscETztypBtQepPanvGubprVGp93fBBGRZZofdhKcYxOEgyn7ymZDYEi/PPmloSOvGzVo0IHIhAnUQh3MojwWU0vXrh2xsaHuFrupSedbITp/6LBfOszoSTyoV97eaFERKwA3nTb1rkJp2tqx3Y+Vc/mt8SeuLo/F3MzMingkom2taeV3Flw/PavP76cJ64HvFE1eAgaVxw4LZbIHiPUqkUyn1ByLiG0H1HPY7+wD0pCfn/9ua9gj47kB2GBMKxhy+3l9+/3p84WDr/755VcuTecOtDg0SktFgIjvevu13+yy7TAFLDrFtF7/7y/MXYloVPQkHtTrDI5IWUQuKomrSx+6/5dLG2oWJJsa3dG5eXWPn3/BGWdOOnNnzwzAju9l/vz5gaeffvojx3GG+ZVRIpPttJcFncmGrlNC037JFuHuCiFkKCv0wvat2y9FNxnwLZ9sl1BdHI0a5bGYe8MTj83/y4Fdv6qvr3eG5vU1b5942tkLLrj47fbgHRMK8VTgMq0jEfnMjd/+yUiW70MaYmuyuf/N5a8+zsxWzHvKTJ5CKItIeAl2Xe2UXLhwYSocDj7opXuy7lwWUIeCuzN21pXhma5P7Nun7/3dh0KigtNZmBlgRMoisjwWc6PPPX3R0n0776tvqE8Fc3PMM3L7/PL2Cy5+O1IWkT2Nlh5RjlMa7ftffPHUX2x+f+22+lo3mB02z7JyYq/esqD0yh6eho7u5dprr+23YsWKjSk72d/bPxJpr0x76uhIxe1KwB/+d1YASdM0X929e3exf0B7Rd0+R+C/vP7KyXesXl2xsaE2hwKBwJTcPhXvfnPBOVRSolFWptHDko0jyjlNC+3vXHLJ+7MLCm7MzwqbSQCH3GRJgAjxkpIjEQAMQDz22GOHgsHg9wxpijTrYEaHAru3cqadDcLMgGmazsknn/y9DNd9r1Zaq3ptz97T9xrUnywrMCm7z667z5t9ORE50aIiRi/qZySOcG2IxxllZbLiqmvXRK6btyM3Oys4NivvrrWLntkUjUapvLz8SEExqqur1xUU5A9zXTWFWTvwi2y6cql0xtoOf29LFME1DMPIyclZsHbt2mdxhNVTO8rLGcy0KOFUvrZ7R5+hWdk7fzxx6jWfnzZt+5HI06MvafOFm+EHJo7BIgDipptuEsuWLXspkUhcoJRy/IBTj4R3JiCHq81grdkNBAJmTp8+v960ceMtvtfbPRY3no41HKlyc2xqDP3s7mhRER+hhtWhMhONRnMfe+yxvzQ1Nc3WWvnpPyTQNl7WJUDtAFFeaYOJ7NycX2375JNblVLHqqsDpSOjR7MPx3PjAPL2k8WIESPuTiaT39NaQWt2yevbILxUHsoApTUAlUEdaTcuEZEQQiRyc3N/sHnz5vvRWk11onFAL++Px48ff0ljY+NdjuNM8urPva4OPlEIZogMTUulDQ5mlkQEKSVCodDLeXl5P3jvvffex3HahOaz0nxGAFD33XeftXDhwqu9/Cp1rh/zQGtbk7bCXQgBKWVzMBhcYRjGfZs3b17mRxGP245AnwVAMjVCld7s008/fbxt2zOTyeQk13XPSyQSp3rGJImsrKyVhmGsycrKWjf6pNGrFr2waJsPRKbcPbGO0QE6zOKfMmXKdYMGDeL8/Hx74MCBfNZZZ43vwN6Sn4UHFJ8xQNinEgYghg0bFgRgNDc3h1uDVkB1dXUOAGPUqFFWhvWtTgDy6S49fPhwF4DLzDozWGVZlgbgbtmyxf2ssafPMiBozX5qb5p9dtdnHJB/vvUZB6S4AyudTwDyj2dZKsNFcoJl/ePg8PFQCv8063gEpE3CW5cMy+dYXtelI9+DT7UXyWcckLSzL+19TTch6/BVVVUk4CVEUEZ6KbTWoqvPZbwkAO17Zo8LFU0cZ5ShmZmKi4tHRSKRPmjtFtfha8OGDTa81k2pDOmOcDjc7L/H6erzANSsWbMGX3bZZWOEEMeF15eOI8rQ06ZNO33fvn0PK6UmCCEOhcPhOxKJxFvMTEKIwww8bWgpXKECASPS2NhcqpTrCmkY2bm5X3GSyQ+11lIIoQDAzigwYmZhWZYmoutc1/02EYUNw3h+8ODB173xxhuN/0h17XgBhBYsWBBctOgva5LJ1Li0k9Crlu2+XKC9t7fFDQ8GtXAi7vDxfVe+koaQwWDw/h3bd3wHxyiCeCTLOF6oY+3atSOV0uO01kqIltoP5QWi0pueaWscdpa4NdcqnYbkQ9JBZNEHURORQQRiZieZsi/w//YP09uOB0AYAOXnm3s//hi1RJTHDAesTSGlEKIjMaczFDFG56XrXZe0a62k9vzyLoECAcPY5hd/tmS8/F9lWRKAGj169Febm5v/qLS2iAihYHBhVlbWm8wsdLpT8hGouUqpNp/x+8Lr+vq6q1Ip+1IAME1ze+GQwi9VvFXxIf6BMZPjyawlADxnzpyiPXv2nGoYxsdr1qyp+FR5pRAYM2bMbGbOHTdu3CvPPvtsLXrXYPOfGpAWeZL57+Li4k9NNS8vL3e7+f4TywfB+DvaSNKXpXRi60+sE+vEOrFOrBPrxDqx/llXd6qeANDSTTQej6f9FvwpfCcfg/vtzbU6u15vno2i0ehh14iVlvaoSKengTFC9z4uOkLdnf6ORupn0r6gzixVKSXmzp07csuWLYNDoVC/VCrlJtzEgbysvJ3vvvvu/gzXUq+s2x/84Iac7dVkot7rEJibm4u8vLzU3Xff3dTdvd566619GhsbOz1Vubm5MAzDufvuuxvalbwddo9lZWXyzTff7FNfX496ALkALMuy/UmgPdq3bStWWBtzcobU1dUBlgUghT59CnEy0f6JEyc2gbnT5i3MTI++9tpJOaGQWV9XB6tPH6CpyaZ2J0rNnj07a/v27TemUql5SqnTlNaWIPJ8qqwBRr1lWR8Gg8HHLvr2RX9YeOvCFLrPJicAfNmFl/Vft/W9ilTKyQWI/VgHGYZRNX369GmPP/54PQ73JREALi4uzt6+ffsapVS+XzJN7R3yfnWorbU+YFnWllAotHTmzJmP+5ssAOhIJCLj8bgqLi7+XGXljuds22Ei0kIIKYT48/bt229Gd/GQsjJJJSWq+N6f37MV7nw3absAGyByRcgyRpnWo6/evOAGXRaRaNfJO11ZddeiRUMf3vbRhgbWYWLNGkSDgsGDRiYYEyeOK964ceNvlVLjlFLQWoMIjmo5XSSJKDeRSJxr2/a5i3+++FsTJkz4xvr169/tBhQJQK2vXH9RIpEa5rWy8vbaj4H3/fDDD+cAiBcXF8sOfExwHIcSiUR/Zt2349hG+t8AkRjguu6kZDJ5+fNLltx2+umnX7N27dp30abforKSyVRfx3H8zxC05qxuhZMXv1d6R23fUWULv1aZbJJgkv4xkrBT4GDwsur3378979RTazobmsZCGPtTqVAduxJ+XZEgttKBflVUVPSl6ur65bZtj3Nd1wXgekWSwpRSWFIKSwjy6zHguq7j2nbqtJqampWjR4+ega5btzIATtrJed7pJsfvZ6KJyNFac01NzVUAuKtiUSGEQySYiDQRcUsnOCEghMjsDOQCUK7rOslkYkxVVdUL06dPHwSAt27dKgBAKWLvGqyI4BARC9F9DCTdFuS6V+LnV0nqSwRXkmCDJEsiCIZbR+j7nYq3Lsl8f/vlmooNIRSB2BRCk5AsiZQAoM8555xxtbW1TzmOY/jRMkFERiAQqMrJyflDnz59vxcIBG8NBkOPBAJmHREMgCQzXMdxwg2NDU9POW/KyWiNHLWXS+q888472Uk552utCV6hTTrzw2Bmsm17lr9pqgvHYmbnUTIMw8nLy1uSlZPzdFZW1uJwOOsV0wzsI6L09U0wbNd1C3bt2n0bAK6rq8u4NhNAxN4k3R5lnZQD2iTClqa66xtshwULaGZyXduvNGVqcl3+pLHxRhOEcnRVa6gJ7HVtY2gCMwki4l27d9/tum7IP1lERCIQCJSPHz/+9E8++eSGTZs23VdZWfmrHTt2XD9u3PjJpmmu9qczCwa7Sun+Vbur7hUkuBNFAYcOHboCQBhgh5kpHA7XSCkTftc3l8HZlbt3z838TKcCyRvVB8uyGjdt2vTlbZ98csW2bdu+XFm5Y9bMmcVFoVDoSf/+FABDa822bX+BuUz6GfEZLChje3qipsZi+s0PPjh5byp5MadsgoYMCoGzBg8RylUgQLJtU2Wy6ewXV797MmLosHFbsI2E9LqIEAhiypQp5yrX+bw3M9bLcTJN8+C4ceNKli9fvgdeObLhv8xXXnll65AhQy43DKPOY9kkWWttp+zLx44bO6GDE66EEGhubrpKaQWAtJQS2dnZ90rTfNVnNawVQ9n2NX6CQod7o6HbNAzQWtPNN9/cN63iMrP5xBNP1OTn5/+7EHC84V/eYyvl9Jsw4f7Q4XKOMk5O12bBSv+57npn1eerNAKC2FUEyhKi6YIBg/8QME2v4BRwqyWFfvfh2svRSb/JpP+NjIwu9AyI6uqDVyul0oJHCyHINM0/LVu27IAPhuNTjuv/br7zzju7TNN4Kn0K/Wb5SKVSl7c74QIAn3baaeNt2znD64rEpjQMDBgw4JGAYbycjpkza3Zd96yZM2eO7YT1dbhh4XC4Jc8qEonoKVOmmMFgsAFgu2WGtCcLqaCgI2rLmOuqdY/Y1cbaQ5FmbUMQMQyJvKC19b+/dOW/FhhGkwZBCoGE42DjoQNXGgB3xLaCaG9jeyOehOM4M7zWFd6geCEEsrOzl/kWuu5EQFOfPnnL/M0kAMSa4TjO2e1mfAgAaG5uvsqnMMcrTaZN5eXlOyzLWsneMuAV3hiVlZVXdsS2Dh061JHGg5ycHNv/Ph2Px1VFRYVTXV09k0hmpbNHmFmbplmzcuXKRFrxMAwD7Uuqe8KuHli6YnS1q4vZsVmTgBmwUGiFXraIDg4KhStgGF6XbNvmA4595n0vLxmPGHTmqL0MEvHFTusdCMdRQzPuSBCRzsvL2w6A4x13pE53/vwI7UaVKuWe5AvtdGqmYmbR3Nx8pdbK1/YECPSs1poWLJjxgWHQJvILz5VHZSVlXne6wzQeTw1vO2WioaFh4C233NL/lltuGTxlypRx48ePv/XQoUO/dV3FRCSY2RVCCMuyniIiNWrUKAMAXNf169kzzpkQ3bKrF/dsubZGwiCQYq1lnhA4Z+DQF22ARubmLc4KWFDMILCqDRiBF3dVfhVoHfnRgkewRf9Fa9ISQVhWoK/WKq2LEzM7iUSiW2s1mUzWaK2T7c5sXmlpqekbchIAn3rqqWe6rjPe77tuEhFyc8MvAcBNNz3gBoOhNNsiAthxnEk/+tGPTkPbwcTo378/MlKCiIhg23ZuPB5/99lnn93y/PPPb96zZ8/62trae7XW/dIHQggRCAQCH44fP/5uAGLIkCGqrQ2TyRI7Z1npsUYbq6vmJm0bBgmwkCLfNPb/4suzKqLRKM0dMeaFPM0OmKSAIDuVxCe1NXOZmcpLY6o9y2ppPU3Ueia8hsOtNyalkP379w90B4gQwoQ3kzej+aTgCRO8/sqNjeUEAPX1tVf7J9slIiGlrPzww4/KfSrjQCD4hG8gCoAVA5RynEhHbEujbRaj1poSiURuMpnMa25uznJdV7iu6w1PZ2YhyMjKynp77NixX3juuecaAKCwsJA70dzQmQhJTw76r+efP6NKuRPhKNbMMIIm+lvWU0T96mKxmL5m5syP+5mBVWQFvC1xHK5S6tTSJYungdBmXGAymR4AoP0h797oRqGUrmrtgADWShvV1dV9u/PjCCGGCkEWtxkrQNWRSMQBQBUVcOfMmWOlUqkvpmdJEQGBQPCNOXPmDJg1a9bJs2bNGjxx4sQDhiH3eMOIiVhraNeNzJ8/32rLtg4Bh7Osdkahx0KZmQ3D4P7987//wx/+cPry5csrO/a59cyxmx6IVr5n+1W1AkIIUkoryhYCZ+YXVt35wuJJ34vHp/7khbJJE/rnfxQQEooZgoSqA9NreyqvIwDx9fdTJol4zbkzUl2ZYVhWYKdS7iBvY1lrZqOxrnEUgIpOHIcEgOprakYxaxCR8nuLMBFtJiIeNWqUtWXLltS+ffsuFMIYoZSjfI0Nzc2Nl73//vtz0/aElBJKqTRFSmbWWutTXn755XMArCwuLjY6cqX4DlA3GAy+ycy2UmqIbdvj/IGRzMwylUrRN7/5TWfKlClmRUVFu+nSbhth3uXsEo9dmWN/cdeXbTsJCRZCCNHYmMBjH2/6KaB/ykKCwFBaw7Ud383E2k0msIuML2vmfyOipg1lt8i2TIt8SmEweT1CXvInZbMvQ5CwE5ejbb5me0uZyTCu8RuLpSmGDMNYkckC6uvrr1JKtaT5M7PSWgdc1wk6jht0HCeUTCZDrYoAw1ehOZlMXgMA5ekyKfT3ZW76UgwraDVs27ZtTmVl5axzzjlnhmGIg76VRUopnUgkfj5t2rSpPhiyIy3tMAv2cHblTbJ+5pkZBwWPhFKa/Y5EmqCq7KRbZdvuwWRSVSWTqjrlKAYUCGAIAWZ9gPSg7z+z6AIA6FtTI9JqVmu+sva1XoLol539lBDC8c0ToTXrlG1fPn7S+BkA7Azhmi6mccZNmPBVx3FmZQxIEURoHDBgwDMAsGXLltQ111zT37btS/3N9gcvQhKRICFICE//FUIQEUmfZaWphGzb/mIkEslu43XV7SxrzfTd7343i5lFPB6vysnJudMwjPTsVjiOg7179/5uxYoVxuG6rZFhh1CniMTjcQgA7+3fc02tdiBIajBBE6CDAUlW0EDQMhAISAQCkqyA5EBAMrz/SAhdpzSvPrDvqwLA71DRxnHTItnJY1vG2g0bNo4cOfKJxsbGr2mtHSIYynVlTVXNotGjR88///zzn3vooYeaAeCiiy7K3bZt29fqqqt/4TiOTmtlUspAKBT+1dtvv73fZ1f2qlWrLnQcJ110I4gIOTk5q8LZ4W3a1f7kNYBICyKha2trP5dKpUamNWhmHvDBBx/MBrC4M9cGARg0aFDaMJQffbT518OHD79eqcRk3wZxHcc54/rrr/83AP/lo8CZnuE0KETisDEZac+uYs4Z/cuffVGnUjAIQmkg3wq6Rbl5rzTbTpIAhC0rpLUm23WTLjM2N9R9oUG7QoKksm3aUVdzsTp4MJfy8+vTdgi1PBWBfHQMZhaDBuX8YOvWxPkATtZaOwAMpVR+Q0PDk0uWLNkxYsSISmaW69atG6lZD9RKp4egKCFEwAoGV8+dO/en99xzj9yyZYsiInYc5+p0vypmhmma7qRJk77+zDPPfNIRox41atSNSqmHHNdVBEApxYlE4ioiWtzCWgRA2iPYtAul3g90FRcXExG5kydPvmXPnj1vKKVARFJrrZLJ5H+MGTPm+c2bN7+/fv36AFp6OXrTGDqbV+l7atW/PPX4JVVQ+dBasRBgU2J4OLx6zTdvnZNox+4YQAiEwp/fuanB0WOgNUOzPki6/1VLnr4QwDMAGMF0fMmjUCZP6xIA8Npra6sGDRr0RdM0d3nqLDMARynluK47rKGhYXpDQ8O5SqmB2nNI+foapBUMvj12zJgv3HPPPQk/9u5eeumlg4noQmZ2iUgRkTJNc9PVV1+9PcMvln4FAMjCwsKVAFJobTqmbNu+4JJLLunrG3IkINwMN47rz6GCL2sUAGPNmjVvWZb1mBBCMrMNQGnNsqmp6TdCCGzYsMFvY67YuwZcgP1rtq3SKge0BHhjTdW8Rle5BkmXGa4VMFV/y1rcCAg1f76lIhHpRCCdKIQ7f47VABZDs3NXSjOgGOQYJNxmZnd7Y908mW4abQUYTIoA7+WNZFJpLUpWVFR8MGLEiHPD4fBiKQ0hBJlEZAKcrjLSzOymNSEAIjc3d9HuXbvOXrZs2QF4kTgCgHXr1l2nlJtNRAYAS0pphLJCy0taW8dmbqwNgN98881PiOhDKaVBRCYRGQz037hx03WeXdNoMHO+P6Q44BXaUL5ltZnHpQGIQYMG/VgIkSQiSwgKEEFqrc8dNmzYf6ZlErMMCCEMIgQAEQTIAFFOe1fJn998c/SOVOpSBWXogGFp07D6m6a8aPj4vwLQkenTXcTjCnEoxKAj029wAejT8wufybWCUhvS0pZpacDYkUpc8eDKl0cDgNPQZMKUIbYsqQOmwQFDskbftLBTAMSqVat2EtGXi4qKzrNte14ymZzsKnWySRTWWmcrpQyttfJdEtzY2Dhj2LCTbqus3PVLFY+3eHmzc7MTTsp6mJm1r31ROBx+sAsvNzEz8gfk/yyZsC9hpby4vmmK7HDY3boVGDlyZBLAbxzXyfH1RAqFQs1tvUIeIG+99dbuoqKiG33FQ/lOUJimzI1EIqF4PJ7Iycmp7NOnz8OpVIqFECylFFrrNw7s3+9dp7QUiMXw+s6tfUdkZ/+1IElagsDCEIVSVt42a9bG29E6xKVFCSj5igKAe6eeveK9v+79U0NOXn+hWWsoZIdz5Mbq2sEAPg5yoKEoK7y4ViNosmYYgnLJqKZOAkAaAAQJfPHSL+ZYlhXcunXrwP3799/juu6FXgiWFABpGAYCgcDL4XD4tpKSko2xWOx4qGY9pjUe7Rt0ub24CdnODFXt1Ow2cYoO0n3SmykBkGatfJdDA4AqZp49ZsyYHzU2Npa6yjXBUI7juMx8EYD7AMzJ2Ij2YKsebJLoQPnUGVTVUXqS24lHuqPW5pl7Qh3YJvowCmYmVVIiOtCHuw33ciQi3cMTJNJdrklHIkIf4Wlr013hjDPOmDp06MnvFhYW8oABA3jkyJFLzznnnEL8M/RH+gwuAwAWLFgQGjFixJOjRp2y6IEHHjA/pWS3/3Pr/wMZw6/NbadJnwAAAABJRU5ErkJggg==" alt="QariAI"/></div>
+        <p class="footer-tagline">AI-powered Tajweed &amp; Hifz coaching for Muslims worldwide.</p>
+        <p class="footer-email">Email: <a href="mailto:salam@qariai.app">salam@qariai.app</a></p>
       </div>
 
       <div class="footer-col">
         <h4>Product</h4>
         <ul>
           <li><a href="#features">Features</a></li>
-          <li><a href="/how-qari-ai-works">How it works</a></li>
-          <li><a href="/qaef">QAEF framework</a></li>
-          <li><a href="/tajweed-mistakes-checker">Free tajweed checker</a></li>
-          <li><a href="/best-ai-quran-app">Best Quran AI app</a></li>
-          <li><a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">Get on Google Play</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Learn</h4>
-        <ul>
-          <li><a href="/learn/common-tajweed-mistakes">Common mistakes</a></li>
-          <li><a href="/learn/qalqalah-explained">Qalqalah explained</a></li>
-          <li><a href="/learn/pronounce-ayn">How to pronounce ʿAyn</a></li>
-          <li><a href="/tajweed-rules">All tajweed rules</a></li>
-          <li><a href="/al-nabr-tajweed">Al-Nabr</a></li>
-          <li><a href="/maqamat-quran-guide">Maqāmāt guide</a></li>
-          <li><a href="/compare/qari-ai-vs-tarteel">vs Tarteel</a></li>
-          <li><a href="/compare/qari-ai-vs-tajweedmate">vs Tajweedmate</a></li>
-          <li><a href="/teachers-guide-ai-tajweed">Teacher's guide</a></li>
-          <li><a href="/ai-quran-education-2026">AI in Qur'an education 2026</a></li>
+          <li><a href="https://qariai.app/how-qari-ai-works" target="_blank">How It Works</a></li>
+          <li><a href="https://qariai.app/qaef" target="_blank">QAEF Framework</a></li>
+          <li><a href="#cta">Download Free</a></li>
+          <li><a href="https://qariai.app/tajweed-mistakes-checker" target="_blank">Free Tajweed Checker</a></li>
+          <li><a href="https://qariai.app/learn/common-tajweed-mistakes" target="_blank">Learn Tajweed</a></li>
+          <li><a href="https://qariai.app/compare/qari-ai-vs-tarteel" target="_blank">Qari AI vs Tarteel</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/open-methodology">Open methodology</a></li>
-          <li><a href="/tajweed-app-evaluation">How to evaluate</a></li>
-          <li><a href="/quran-app-comparison-2026">Quran app comparison 2026</a></li>
-          <li><a href="/privacy">Privacy</a></li>
-          <li><a href="/terms">Terms</a></li>
+          <li><a href="https://qariai.app/about" target="_blank">About Us</a></li>
+          <li><a href="https://qariai.app/privacy" target="_blank">Privacy Policy</a></li>
+          <li><a href="https://qariai.app/terms" target="_blank">Terms of Service</a></li>
           <li><a href="mailto:salam@qariai.app">Contact</a></li>
         </ul>
       </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="footer-social">
+          <a href="https://x.com/ai_qari" target="_blank" rel="noopener" class="social-icon" aria-label="X / Twitter">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+        <ul>
+          <li><a href="https://qariai.app/media-kit" target="_blank">📦 Media Kit</a></li>
+        </ul>
+        <!-- Google Play badge -->
+        <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener" class="gplay-badge">
+          <svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.18 23.76a2.5 2.5 0 01-.93-.62 2.45 2.45 0 01-.55-1.68V2.54c0-.65.19-1.21.55-1.68A2.5 2.5 0 013.18.24L14.1 12 3.18 23.76z" fill="#EA4335"/><path d="M17.84 15.7L4.44 23.42a2.6 2.6 0 01-1.26.34L14.1 12l3.74 3.7z" fill="#FBBC04"/><path d="M21.75 10.54a1.3 1.3 0 01.5 1.08 1.3 1.3 0 01-.5 1.08l-3.91 2.26L14.1 12l3.74-3.7 3.91 2.24z" fill="#4285F4"/><path d="M3.18.24A2.6 2.6 0 014.44.58L17.84 8.3 14.1 12 3.18.24z" fill="#34A853"/></svg>
+          <div>
+            <span class="gplay-sub">Get it on</span>
+            <span class="gplay-name">Google Play</span>
+          </div>
+        </a>
+      </div>
     </div>
 
+    <!-- bottom bar -->
     <div class="footer-bottom">
-      <p>© 2026 Qaf · QariAI. Built with love for the Ummah.</p>
-      <span class="dua">May Allah accept this work · إن شاء الله</span>
+      <p>© 2026 QariAI. Built with ❤️ for the Ummah. Powered by AI.</p>
+      <p class="footer-dua">May Allah accept this work and make it beneficial • إن شاء الله</p>
     </div>
-  </footer>
-
-</div>
-
-<!-- ── Demo modal — lazy-loads the 30s animated demo on open ── -->
-<div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-label="QariAI 30-second demo">
-  <div class="demo-modal-inner">
-    <button type="button" class="demo-modal-close" onclick="closeDemo()" aria-label="Close demo">×</button>
-    <iframe id="demoFrame" class="demo-modal-iframe" title="QariAI 30-second demo" src="about:blank"></iframe>
   </div>
-</div>
-
-<script>
-  // Lazy-load the demo iframe on first open; reload it on subsequent opens
-  // so the 30-second timeline plays from the start every time.
-  const demoFrame = document.getElementById('demoFrame');
-  const demoModal = document.getElementById('demoModal');
-  function openDemo() {
-    demoFrame.src = '/marketing/demo-30s.html?t=' + Date.now();
-    demoModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeDemo() {
-    demoModal.classList.remove('open');
-    demoFrame.src = 'about:blank';
-    document.body.style.overflow = '';
-  }
-  // Click outside the phone frame to close
-  demoModal.addEventListener('click', (e) => {
-    if (e.target === demoModal) closeDemo();
-  });
-  // ESC to close
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && demoModal.classList.contains('open')) closeDemo();
-  });
-</script>
+</footer>
 
 </body>
 </html>
