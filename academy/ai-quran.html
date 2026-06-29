@@ -1,1 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI and the Quran: What's Actually Possible Today | QariAI Academy</title>
+<meta name="description" content="A comprehensive, honest guide to AI-powered Quran learning. How AI detects Tajweed mistakes, what it still can't do, and how to choose the right tool for your recitation journey."/>
+<meta property="og:title" content="AI and the Quran: What's Actually Possible Today"/>
+<meta property="og:description" content="The definitive guide to AI Quran learning — how speech recognition, phoneme detection, and Tajweed rule-matching work, and where the technology still falls short."/>
+<meta property="og:url" content="https://qariai.app/academy/ai-quran"/>
+<meta property="og:type" content="article"/>
+<link rel="canonical" href="https://qariai.app/academy/ai-quran"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI and the Quran: What's Actually Possible Today",
+  "description": "A comprehensive, honest guide to AI-powered Quran learning — how speech recognition, phoneme detection, and Tajweed rule-matching work, and where the technology still falls short.",
+  "url": "https://qariai.app/academy/ai-quran",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-06-01",
+  "author": {
+    "@type": "Organization",
+    "name": "QariAI",
+    "url": "https://qariai.app"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QariAI",
+    "url": "https://qariai.app"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://qariai.app/academy/ai-quran"
+  }
+}
+</script>
+<style>
+  :root {
+    --mint: #ecfdf5;
+    --mint-mid: #a7f3d0;
+    --green: #059669;
+    --green-bright: #10b981;
+    --green-dark: #065f46;
+    --accent: #34d399;
+    --sand-warm: #fef3c7;
+    --text: #0f172a;
+    --text-mid: #334155;
+    --text-light: #64748b;
+    --white: #ffffff;
+    --radius: 16px;
+    --prose-max: 720px;
+  }
 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--mint);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 68px;
+    background: rgba(232,247,240,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(39,199,111,0.12);
+  }
+  .nav-logo { text-decoration: none; display: flex; align-items: center; }
+  .nav-logo img { height: 40px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.9rem; font-weight: 500; color: var(--text-mid);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--green); }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px; border-radius: 50px;
+    background: var(--green); color: var(--white);
+    font-size: 0.875rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+  /* HERO */
+  .article-hero {
+    padding: 120px 5vw 60px;
+    background: linear-gradient(160deg, #ecfdf5 0%, #d1fae5 60%, #ecfdf5 100%);
+    border-bottom: 1px solid rgba(39,199,111,0.15);
+  }
+  .article-hero-inner {
+    max-width: var(--prose-max);
+    margin: 0 auto;
+  }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; color: var(--text-light);
+    margin-bottom: 20px;
+  }
+  .breadcrumb a { color: var(--green); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { opacity: 0.5; }
+  .article-tag {
+    display: inline-block;
+    background: rgba(139,92,246,0.1); color: #5b21b6;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; padding: 4px 12px;
+    border-radius: 50px; margin-bottom: 16px;
+  }
+  .article-hero h1 {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+    line-height: 1.28; color: var(--text);
+    margin-bottom: 18px;
+  }
+  .article-hero h1 em { color: var(--green); font-style: normal; }
+  .article-meta {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    font-size: 0.82rem; color: var(--text-light); margin-bottom: 20px;
+  }
+  .article-meta span { display: flex; align-items: center; gap: 5px; }
+  .article-lede {
+    font-size: 1.1rem; color: var(--text-mid); line-height: 1.75;
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  /* LAYOUT */
+  .article-body {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 5vw 100px;
+    align-items: start;
+  }
+
+  /* PROSE */
+  .prose { max-width: var(--prose-max); }
+
+  .prose h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.45rem; color: var(--text);
+    margin: 52px 0 16px;
+    padding-top: 12px;
+    border-top: 2px solid rgba(39,199,111,0.2);
+  }
+  .prose h2:first-child { margin-top: 0; }
+
+  .prose h3 {
+    font-size: 1.05rem; font-weight: 700; color: var(--text);
+    margin: 28px 0 10px;
+  }
+
+  .prose p {
+    font-size: 1rem; color: var(--text-mid);
+    line-height: 1.8; margin-bottom: 18px;
+  }
+
+  .prose ul, .prose ol {
+    margin: 0 0 20px 20px;
+  }
+  .prose li {
+    font-size: 1rem; color: var(--text-mid);
+    line-height: 1.75; margin-bottom: 8px;
+  }
+
+  .prose strong { color: var(--text); font-weight: 700; }
+
+  .prose a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+  .prose a:hover { color: var(--green-dark); }
+
+  /* CALLOUT BOXES */
+  .callout {
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .callout.tip {
+    background: rgba(16,185,129,0.08);
+    border-left: 4px solid var(--green);
+  }
+  .callout.honest {
+    background: rgba(251,191,36,0.1);
+    border-left: 4px solid #f59e0b;
+  }
+  .callout.key {
+    background: rgba(139,92,246,0.07);
+    border-left: 4px solid #8b5cf6;
+  }
+  .callout-label {
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .callout.tip .callout-label { color: var(--green); }
+  .callout.honest .callout-label { color: #92400e; }
+  .callout.key .callout-label { color: #5b21b6; }
+  .callout p { margin-bottom: 0; font-size: 0.95rem; }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    margin: 24px 0 28px; font-size: 0.9rem;
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 1px 8px rgba(5,150,105,0.08);
+  }
+  .compare-table th {
+    background: var(--green-dark); color: var(--white);
+    padding: 12px 16px; text-align: left; font-weight: 600;
+  }
+  .compare-table td {
+    padding: 11px 16px; border-bottom: 1px solid rgba(39,199,111,0.12);
+    color: var(--text-mid); background: var(--white);
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: rgba(236,253,245,0.6); }
+  .tick { color: var(--green); font-weight: 700; }
+  .cross { color: #dc2626; font-weight: 700; }
+  .partial { color: #f59e0b; font-weight: 700; }
+
+  /* RULE CARDS */
+  .rule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0 28px;
+  }
+  .rule-card {
+    background: var(--white);
+    border: 1px solid rgba(39,199,111,0.18);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .rule-card .rule-name {
+    font-weight: 700; font-size: 0.95rem; color: var(--text);
+    margin-bottom: 6px;
+  }
+  .rule-card .rule-ar {
+    font-size: 1.1rem; color: var(--green);
+    font-family: 'Noto Naskh Arabic', serif;
+    margin-bottom: 6px; direction: rtl;
+  }
+  .rule-card p { font-size: 0.83rem; color: var(--text-light); margin: 0; line-height: 1.6; }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 48px 0 0;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1;
+    height: 1px; background: rgba(39,199,111,0.2);
+  }
+  .section-divider span {
+    font-size: 1.2rem; opacity: 0.5;
+  }
+
+  /* SIDEBAR */
+  .sidebar { position: sticky; top: 88px; }
+
+  .toc {
+    background: var(--white);
+    border: 1px solid rgba(39,199,111,0.18);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 20px;
+  }
+  .toc h4 {
+    font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 14px;
+  }
+  .toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+  .toc li {
+    counter-increment: toc;
+    display: flex; align-items: baseline; gap: 8px;
+    margin-bottom: 10px; font-size: 0.83rem;
+    color: var(--text-mid); line-height: 1.4;
+  }
+  .toc li::before {
+    content: counter(toc); min-width: 18px;
+    font-size: 0.7rem; font-weight: 700;
+    color: var(--green); opacity: 0.7;
+  }
+  .toc a { color: inherit; text-decoration: none; }
+  .toc a:hover { color: var(--green); }
+
+  .sidebar-cta {
+    background: linear-gradient(145deg, var(--green-dark), var(--green));
+    border-radius: var(--radius);
+    padding: 24px 22px; text-align: center;
+  }
+  .sidebar-cta p {
+    font-size: 0.88rem; color: rgba(255,255,255,0.85);
+    line-height: 1.6; margin-bottom: 16px;
+  }
+  .sidebar-cta a {
+    display: block; padding: 11px 20px;
+    background: var(--white); color: var(--green-dark);
+    font-weight: 700; font-size: 0.875rem;
+    border-radius: 50px; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .sidebar-cta a:hover { opacity: 0.9; }
+
+  .related-links {
+    background: var(--white);
+    border: 1px solid rgba(39,199,111,0.18);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-top: 20px;
+  }
+  .related-links h4 {
+    font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-light);
+    margin-bottom: 12px;
+  }
+  .related-links a {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 0.83rem; color: var(--text-mid);
+    text-decoration: none; padding: 7px 0;
+    border-bottom: 1px solid rgba(39,199,111,0.1);
+    line-height: 1.45; transition: color 0.15s;
+  }
+  .related-links a:last-child { border-bottom: none; }
+  .related-links a:hover { color: var(--green); }
+  .related-links a::before { content: '↳'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+  /* ARTICLE FOOTER CTA */
+  .article-cta {
+    background: linear-gradient(135deg, var(--green-dark), #047857);
+    border-radius: 24px;
+    padding: 48px 52px;
+    margin-top: 60px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 28px; flex-wrap: wrap;
+  }
+  .article-cta h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.4rem; color: var(--white); margin-bottom: 8px;
+  }
+  .article-cta p { font-size: 0.95rem; color: rgba(255,255,255,0.8); max-width: 400px; }
+  .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cta-btn-solid {
+    padding: 13px 28px; border-radius: 50px;
+    background: var(--white); color: var(--green-dark);
+    font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .cta-btn-solid:hover { opacity: 0.9; }
+  .cta-btn-ghost {
+    padding: 13px 28px; border-radius: 50px;
+    border: 1.5px solid rgba(255,255,255,0.4); color: var(--white);
+    font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .cta-btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-dark); color: rgba(255,255,255,0.75);
+    text-align: center; padding: 28px 5vw; font-size: 0.82rem;
+  }
+  footer a { color: rgba(255,255,255,0.9); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; flex-wrap: wrap; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .article-body { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .toc { display: none; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .rule-grid { grid-template-columns: 1fr; }
+    .article-cta { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://qariai.app">
+    <img src="/logo.png" alt="QariAI"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://qariai.app/#features">Features</a></li>
+    <li><a href="https://qariai.app/academy" class="active">Learn</a></li>
+    <li><a href="https://qariai.app/about">About</a></li>
+  </ul>
+  <div>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" class="btn-primary" target="_blank" rel="noopener">Download Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="article-hero">
+  <div class="article-hero-inner">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="https://qariai.app/academy">Academy</a>
+      <span>›</span>
+      <a href="https://qariai.app/academy/ai-quran">AI &amp; Quran</a>
+    </nav>
+    <span class="article-tag">Artificial Intelligence</span>
+    <h1>AI and the Quran:<br/><em>What's Actually Possible Today</em></h1>
+    <div class="article-meta">
+      <span>📖 18 min read</span>
+      <span>·</span>
+      <span>~3,600 words</span>
+      <span>·</span>
+      <span>Updated June 2026</span>
+    </div>
+    <p class="article-lede">
+      AI Quran apps have gone from novelty to genuine learning tools in a few short years — but the gap between what they promise and what they can reliably deliver is still wide. This guide explains exactly how the technology works, where it helps, and where it doesn't. No marketing. Just a clear picture.
+    </p>
+  </div>
+</header>
+
+<!-- BODY -->
+<div class="article-body">
+
+  <!-- PROSE -->
+  <article class="prose">
+
+    <h2 id="why-now">Why Quran Learners Are Turning to AI</h2>
+
+    <p>For most of Islamic history, learning to recite the Quran correctly meant one thing: sitting with a qualified teacher who could hear every subtle error in real time. The tradition of <em>talaqqi</em> — receiving recitation directly from a teacher, who received it from their teacher, all the way back to the Prophet ﷺ — is not just a pedagogical preference. It is the preservation mechanism for the Quran itself.</p>
+
+    <p>That tradition remains the gold standard. Nothing in this article should suggest otherwise.</p>
+
+    <p>But access to qualified teachers is unequal. A student in rural Indonesia, a convert in rural Minnesota, a father in London who can recite but has no Qari nearby for his children — these are real situations affecting millions of Muslim learners today. Practice, too, is a problem that no teacher solves: even students with excellent teachers often have no way to get meaningful feedback on their practice between sessions.</p>
+
+    <p>This is the gap AI is actually capable of filling: <strong>structured, on-demand feedback during practice</strong>, not as a replacement for human teaching but as the thing that makes practice more productive.</p>
+
+    <p>Over the last five years, the combination of improved automatic speech recognition (ASR), larger Arabic language datasets, and access to cloud computing has made it genuinely feasible to build tools that listen to Quran recitation and return useful feedback. The question is what "useful" actually means — and how far current AI has gotten there.</p>
+
+    <h2 id="how-ai-listens">How AI Listens to Speech</h2>
+
+    <p>To understand what AI can and can't do for Tajweed, it helps to understand how speech recognition works at a basic level. Modern ASR systems don't hear words the way humans do. They process raw audio — pressure wave data — and convert it into a sequence of phonemes: the smallest units of sound that distinguish one word from another.</p>
+
+    <p>This conversion happens through a neural network trained on enormous amounts of labelled audio data. The network learns to recognise patterns in the waveform that correspond to specific sounds. For a general-purpose ASR system like the one powering Siri or Google's dictation, this training data is primarily English (or another dominant language), and the system is optimised for everyday speech patterns.</p>
+
+    <p>Arabic speech recognition has historically lagged behind English for one simple reason: less training data. But that gap has been narrowing rapidly. The emergence of large multilingual models — particularly Whisper from OpenAI, released in 2022 — gave developers a much stronger base for Arabic speech recognition than anything that existed before.</p>
+
+    <p>For Quran-specific applications, however, general Arabic speech recognition is still not enough. Quranic Arabic differs from Modern Standard Arabic and all spoken dialects in significant ways. The pronunciation rules are highly precise, systematic, and unforgiving of deviation — which is precisely what makes Tajweed both learnable and assessable.</p>
+
+    <div class="callout key">
+      <div class="callout-label">Key Concept</div>
+      <p>General Arabic ASR systems are trained to understand what you're saying, not how correctly you're pronouncing it. Tajweed assessment requires the opposite: the system needs to detect fine-grained phonetic deviations, not just identify the word being recited.</p>
+    </div>
+
+    <h2 id="word-vs-rule">Word Recognition vs. Tajweed Correction: A Critical Distinction</h2>
+
+    <p>This distinction is the most important concept in this entire article, and it is the one that most AI Quran app marketing deliberately blurs.</p>
+
+    <p>A <strong>word recognition system</strong> listens to your recitation and determines which word you said. It can tell if you skipped a word, recited the words out of order, or substituted one word for another. This is genuinely useful — especially for Hifz (memorisation), where losing your place or misremembering a word is the primary error type.</p>
+
+    <p>A <strong>Tajweed correction system</strong> does something fundamentally harder: it listens to how you pronounced a word and compares that pronunciation against specific phonological rules. It needs to detect whether your <em>noon sakinah</em> before a ب was correctly rendered as Iqlab, whether your Madd was stretched to the right number of counts, whether your Qalqalah had appropriate articulation. These are sub-phonemic, timing, and phonation-quality features that require a very different kind of analysis.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th>Word Recognition</th>
+          <th>Tajweed Correction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Detects wrong word</td><td class="tick">✓ Yes</td><td class="tick">✓ Yes</td></tr>
+        <tr><td>Detects skipped word</td><td class="tick">✓ Yes</td><td class="tick">✓ Yes</td></tr>
+        <tr><td>Identifies which Tajweed rule was broken</td><td class="cross">✗ No</td><td class="tick">✓ Yes</td></tr>
+        <tr><td>Detects incorrect Madd length</td><td class="cross">✗ No</td><td class="partial">⚠ Partially</td></tr>
+        <tr><td>Detects Ghunna errors</td><td class="cross">✗ No</td><td class="partial">⚠ Partially</td></tr>
+        <tr><td>Detects Makharij errors</td><td class="cross">✗ No</td><td class="partial">⚠ Partially</td></tr>
+        <tr><td>Gives actionable correction</td><td class="cross">✗ No</td><td class="tick">✓ Yes</td></tr>
+      </tbody>
+    </table>
+
+    <p>Most apps on the market today — including some well-known ones — are primarily word recognition systems with Tajweed branding. They can tell you that you recited the right words. They cannot tell you that your <em>ra</em> should have been trilled more clearly, or that your <em>ha</em> was produced from the wrong point of articulation.</p>
+
+    <p>This is not a criticism of word recognition; it's a valuable tool, especially for Hifz students. The problem is when it's marketed as Tajweed correction, creating an expectation it cannot meet.</p>
+
+    <h2 id="how-tajweed-ai-works">How Rule-Level Tajweed AI Actually Works</h2>
+
+    <p>Building a system that provides genuine Tajweed rule feedback — as opposed to word-level accuracy checking — requires an additional layer of analysis on top of phoneme detection. Here is how this works in practice.</p>
+
+    <h3>Step 1: Phoneme extraction</h3>
+    <p>The audio is converted to a sequence of phoneme probabilities. For Arabic Quranic recitation, this requires a phoneme set that captures distinctions critical in Tajweed but potentially collapsed in everyday Arabic: the distinction between emphatic and non-emphatic consonants, the length of vowels, the quality of particular fricatives and stops.</p>
+
+    <h3>Step 2: Rule-set mapping</h3>
+    <p>The extracted phoneme sequence is then compared against an encoded representation of Tajweed rules. For a given position in a given ayah, the system knows what phoneme (or phoneme sequence) should appear, and what Tajweed rule governs that position. If the system detects a mismatch between the expected and observed phoneme, it can attribute that mismatch to a specific rule violation.</p>
+
+    <h3>Step 3: Confidence gating</h3>
+    <p>This is where responsible design matters enormously. AI models are probabilistic — they do not produce certain outputs, they produce outputs with associated confidence levels. A well-designed Tajweed AI system should only surface a correction when its confidence in that correction exceeds a meaningful threshold. Surfacing low-confidence corrections creates noise, erodes trust, and — critically — gives learners wrong information about their recitation, which is worse than no feedback at all.</p>
+
+    <div class="callout honest">
+      <div class="callout-label">Honest Assessment</div>
+      <p>The confidence-gating problem is one the industry is still working through. A system that gives you a score out of 100 for every ayah sounds impressive. But if that score is derived from a model that is uncertain about 40% of what it heard, the number is misleading. Categorical feedback — "this rule needs attention" vs "this rule looks correct" — shown only when the model is sufficiently confident is more honest and more useful.</p>
+    </div>
+
+    <h2 id="tajweed-rules-ai">Which Tajweed Rules Can AI Detect?</h2>
+
+    <p>Not all Tajweed rules are equally amenable to automated detection. The rules that produce the clearest acoustic signatures — measurable differences in the audio signal — are the ones AI handles best. Rules that are more about phonation quality, breath control, or subtle articulatory distinctions are harder.</p>
+
+    <div class="rule-grid">
+      <div class="rule-card">
+        <div class="rule-name">Noon Sakinah Rules</div>
+        <div class="rule-ar">نون ساكنة</div>
+        <p>Idgham, Ikhfa, Iqlab, and Izhar are context-dependent — determined by the following letter. AI can detect the expected rule and compare the phoneme produced.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-name">Madd (Elongation)</div>
+        <div class="rule-ar">مدّ</div>
+        <p>Duration-based rules produce measurable timing signatures. AI can detect whether a Madd was held for approximately the right number of counts, though exact count detection remains imperfect.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-name">Qalqalah</div>
+        <div class="rule-ar">قلقلة</div>
+        <p>The echoing vibration of the five Qalqalah letters (ق ط ب ج د) when vowel-less produces a distinctive acoustic pattern that AI systems can learn to detect.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-name">Ghunna (Nasalisation)</div>
+        <div class="rule-ar">غنّة</div>
+        <p>Nasal resonance is measurable in audio. AI can detect the presence or absence of nasalisation, though the quality and duration assessment is harder.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-name">Shaddah (Gemination)</div>
+        <div class="rule-ar">شدّة</div>
+        <p>Double consonants require a full stop and restart. The acoustic signature of correct vs. incorrect gemination is detectable, particularly for plosives.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-name">Makharij (Articulation Points)</div>
+        <div class="rule-ar">مخارج</div>
+        <p>The hardest class. Detecting whether a ح was produced from the throat vs. the chest, or distinguishing ق from ك errors, requires very fine phoneme discrimination and remains a frontier problem.</p>
+      </div>
+    </div>
+
+    <p>The honest picture: AI systems are currently most reliable on rules that have clear contextual triggers (Noon Sakinah rules), measurable duration (Madd), and distinctive acoustic signatures (Qalqalah, Ghunna). They are weakest on rules that require detecting subtle articulatory distinctions (Makharij) or evaluating phonation quality — dimensions that even trained human teachers sometimes disagree on.</p>
+
+    <h2 id="what-ai-cannot-do">What AI Still Cannot Do</h2>
+
+    <p>Being honest about limitations is not a weakness. It is the prerequisite for trust. Here are the things that current AI Quran tools genuinely cannot do — and likely will not be able to do in the near future.</p>
+
+    <h3>Evaluate the full spiritual and aesthetic dimensions of recitation</h3>
+    <p>Tajweed in its full sense is not merely a technical system. The classical scholars described recitation quality in terms that transcend phoneme accuracy: the quality of <em>khushu'</em> (humility and presence), the effect of the recitation on the listener's heart, the appropriate use of tunes within permissible bounds. These are not features any AI can measure or assess. They require a teacher who is themselves deeply connected to the Quran.</p>
+
+    <h3>Provide the personalised feedback loop of a human teacher</h3>
+    <p>A skilled Qari can watch your face, notice that you're tensing your throat, observe that a particular letter consistently troubles you even when you don't notice it, and adjust their feedback dynamically. They have a model of you as a student that accumulates over years. AI works on individual audio segments with no understanding of your personal learning history beyond what it is explicitly given.</p>
+
+    <h3>Reliably assess every recitation context</h3>
+    <p>Background noise, microphone quality, dialect influence on phoneme production, recitation speed, and the interaction between adjacent words across ayah boundaries all create conditions where AI accuracy degrades in ways that are hard to predict and harder for the student to identify. A confident-looking score from a struggling model is more dangerous than an acknowledged uncertainty.</p>
+
+    <h3>Replace the chain of transmission</h3>
+    <p>The Quran is transmitted through people. The <em>sanad</em> — the unbroken chain from student to teacher back to the Prophet ﷺ — is not a metaphor. It is the thing that guarantees what you are learning is the preserved Quran, not a reconstruction. AI has no place in this chain and makes no claim to it. Tools that suggest otherwise are making a category error about what they are.</p>
+
+    <div class="callout tip">
+      <div class="callout-label">How to Think About This</div>
+      <p>AI is to Tajweed practice what a metronome is to music practice. The metronome is genuinely useful — it gives a musician real-time feedback on timing that they would otherwise miss. But no serious musician would claim the metronome replaces their teacher, or that practising with a metronome makes one a musician. It is one tool in a practice system. Used well, it makes the time spent on practice more productive.</p>
+    </div>
+
+    <h2 id="getting-the-most">Getting the Most from an AI Quran App</h2>
+
+    <p>If you understand the capabilities and limitations outlined above, you can use AI tools in ways that genuinely accelerate your learning rather than create false confidence.</p>
+
+    <h3>Use AI for drilling, not for assessment</h3>
+    <p>The most valuable use of an AI Quran tool is high-volume practice with structured feedback — not as a report card on the quality of your recitation. Recite a verse ten times with AI feedback, notice the pattern of corrections, and bring your observations to your teacher. "The app consistently flags my Madd in this verse — can you listen and tell me what I'm doing?" is a far better conversation to have with a teacher than presenting a numeric score.</p>
+
+    <h3>Focus on consistent patterns, not individual corrections</h3>
+    <p>Individual AI corrections can be wrong. A consistent pattern of the same correction appearing across many repetitions is a much stronger signal. Weight the patterns, not the individual flags.</p>
+
+    <h3>Use it between teacher sessions, not instead of them</h3>
+    <p>AI fills the gap between teacher sessions. It should not replace those sessions. Think of it as making your practice time more structured so that when you do sit with your teacher, you have more productive material to work on together.</p>
+
+    <h3>Pay attention to uncertainty signals</h3>
+    <p>Well-designed AI systems will indicate when they are uncertain — showing you that a correction is low-confidence rather than suppressing it or displaying it with false certainty. Trust tools that acknowledge their own uncertainty. Be cautious of tools that give confident scores regardless of audio quality or recitation complexity.</p>
+
+    <h2 id="choosing">How to Evaluate an AI Quran App</h2>
+
+    <p>The market has grown quickly and marketing claims have outpaced actual capabilities. Here is a practical framework for evaluating any AI Quran tool before investing significant time in it.</p>
+
+    <h3>Ask: does it give rule-specific feedback?</h3>
+    <p>A genuine Tajweed correction tool should be able to tell you <em>which rule</em> was violated, not just that something was wrong. "Your Noon Sakinah before ba needs Iqlab" is rule-specific feedback. A red highlight on a word is not. If the feedback doesn't name the rule, you cannot learn from it.</p>
+
+    <h3>Ask: how does it handle uncertainty?</h3>
+    <p>Test the app with audio it should struggle with: background noise, unusual recitation speed, a tricky passage. Does it give the same confident score regardless? Or does its confidence visibly reflect the difficulty of what you gave it? A system that is always confident is not being honest with you.</p>
+
+    <h3>Ask: what claims does it make about accuracy?</h3>
+    <p>Be wary of specific accuracy percentages with no published methodology. What does "95% accurate" mean? Accurate at detecting which word was recited? Accurate at identifying which Tajweed rule was violated? These are very different claims. Look for apps that publish their evaluation methodology — what they tested, how they measured it, and what the limitations of that measurement are.</p>
+
+    <h3>Ask: does it supplement or replace human teaching?</h3>
+    <p>An app that positions itself as a complete Quran teacher — implying you don't need a human Qari — is making a claim that the technology does not support and that the tradition does not permit. The Quran is not a skill that can be self-taught from a screen. Tools that understand their role as supplementary are the ones worth using.</p>
+
+    <div class="callout tip">
+      <div class="callout-label">On QariAI</div>
+      <p>QariAI publishes its <a href="https://qariai.app/qaef">Open Evaluation Framework</a> — a publicly available methodology covering the five dimensions on which Tajweed AI should be assessed. It's not a marketing document. It's a benchmark we hold ourselves to and invite scrutiny on. If you're evaluating any AI Quran tool, including ours, the framework gives you the questions to ask.</p>
+    </div>
+
+    <h2 id="where-its-going">Where This Is All Going</h2>
+
+    <p>AI capabilities in speech are improving faster than almost any other domain. The gap between what AI can do today and what it will be able to do in five years is genuinely significant. A few developments worth watching:</p>
+
+    <h3>Better Arabic phoneme models</h3>
+    <p>The biggest limiting factor for Tajweed AI is the quality of Arabic phoneme recognition — particularly for the fine distinctions that Tajweed requires. As more high-quality Quranic recitation data becomes available for training, and as multilingual speech models continue to improve, this layer of the stack will get meaningfully better. The Makharij detection that is currently at the frontier of what's possible may become routine within a few years.</p>
+
+    <h3>Multimodal feedback</h3>
+    <p>Current AI tools work on audio alone. Future tools may combine audio analysis with visual feedback — lip and throat position guidance, spectral visualisations of your vowel quality, real-time visual feedback on Madd duration. This multimodal approach could make the feedback loop significantly richer.</p>
+
+    <h3>Personalised learning paths</h3>
+    <p>The most meaningful advance may not be in raw detection accuracy but in what is done with the detection data over time. A system that tracks your error patterns across thousands of recitations — noticing that you consistently struggle with Iqlab in fast passages but not in slow ones, or that your Madd errors cluster around a specific letter combination — could generate genuinely personalised practice plans that a human teacher would not have the time or data to construct.</p>
+
+    <h3>What will not change</h3>
+    <p>Even a perfect Tajweed detection AI would not change the fundamental nature of the Quran's transmission. The <em>sanad</em> is not a technological problem to be solved. The spiritual and relational dimensions of learning Quran from a human teacher are not bugs waiting for a fix — they are features of the tradition itself. The most sophisticated AI Quran tool imaginable is still a practice aid. That is not a limitation. It is an appropriate scope.</p>
+
+    <div class="section-divider"><span>✦</span></div>
+
+    <h2 id="conclusion">What This Means for You</h2>
+
+    <p>If you are a Quran learner today, AI tools can make your practice more productive — provided you understand what they are and are not.</p>
+
+    <p>Look for tools that give you <strong>rule-specific feedback</strong>, not generic accuracy scores. Look for tools that are <strong>honest about uncertainty</strong> — that show you when their confidence is low rather than presenting false precision. Look for tools that understand their role as a <strong>practice supplement</strong>, not a replacement for the teacher-student relationship that the Quran's transmission has always required.</p>
+
+    <p>The technology is real. The progress is genuine. The limitations are real too. A clear picture of both is the starting point for using these tools well.</p>
+
+    <p>If you want to see what rule-level Tajweed AI looks like in practice — with confidence-gated feedback, specific rule identification, and an honest approach to what the technology can and cannot do — that is what QariAI was built to be.</p>
+
+    <!-- CTA -->
+    <div class="article-cta">
+      <div>
+        <h3>Hear the difference yourself</h3>
+        <p>Recite any verse and get specific Tajweed rule feedback in seconds. No login. No pricing. Free on Android.</p>
+      </div>
+      <div class="cta-btns">
+        <a href="https://play.google.com/store/apps/details?id=app.qari.ai" class="cta-btn-solid" target="_blank" rel="noopener">Download QariAI Free</a>
+        <a href="https://qariai.app/academy" class="cta-btn-ghost">Explore the Academy</a>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="toc">
+      <h4>Contents</h4>
+      <ol>
+        <li><a href="#why-now">Why learners are turning to AI</a></li>
+        <li><a href="#how-ai-listens">How AI listens to speech</a></li>
+        <li><a href="#word-vs-rule">Word recognition vs Tajweed correction</a></li>
+        <li><a href="#how-tajweed-ai-works">How rule-level AI works</a></li>
+        <li><a href="#tajweed-rules-ai">Which rules can AI detect?</a></li>
+        <li><a href="#what-ai-cannot-do">What AI still cannot do</a></li>
+        <li><a href="#getting-the-most">Getting the most from AI apps</a></li>
+        <li><a href="#choosing">How to evaluate an app</a></li>
+        <li><a href="#where-its-going">Where this is heading</a></li>
+        <li><a href="#conclusion">What this means for you</a></li>
+      </ol>
+    </div>
+
+    <div class="sidebar-cta">
+      <p>Get specific Tajweed rule feedback on your recitation. Free on Android.</p>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">Download QariAI →</a>
+    </div>
+
+    <div class="related-links">
+      <h4>Related Guides</h4>
+      <a href="https://qariai.app/academy/how-ai-detects-tajweed-mistakes">How AI detects Tajweed mistakes in real time</a>
+      <a href="https://qariai.app/academy/ai-tajweed">AI Tajweed correction explained</a>
+      <a href="https://qariai.app/academy/common-tajweed-mistakes">Most common Tajweed mistakes</a>
+      <a href="https://qariai.app/academy/ai-hifz">AI-powered Hifz coaching</a>
+      <a href="https://qariai.app/compare/qari-ai-vs-tarteel">QariAI vs Tarteel</a>
+      <a href="https://qariai.app/qaef">Open Evaluation Framework</a>
+    </div>
+  </aside>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://qariai.app">Home</a>
+    <a href="https://qariai.app/academy">Academy</a>
+    <a href="https://qariai.app/about">About</a>
+    <a href="mailto:salam@qariai.app">Contact</a>
+    <a href="https://qariai.app/privacy">Privacy</a>
+    <a href="https://qariai.app/terms">Terms</a>
+  </div>
+  <p>© 2026 QariAI · Built with ❤️ for the Ummah · <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank">Download on Android</a></p>
+  <p style="margin-top:6px;opacity:0.6;">May Allah accept this work and make it beneficial · إن شاء الله</p>
+</footer>
+
+</body>
+</html>
