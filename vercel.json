@@ -85,6 +85,7 @@
     { "source": "/academy/can-ai-teach-tajweed", "destination": "/academy/can-ai-teach-tajweed.html" },
     { "source": "/academy/future-of-quran-learning", "destination": "/academy/future-of-quran-learning.html" },
     { "source": "/academy/how-ai-detects-tajweed-mistakes", "destination": "/academy/how-ai-detects-tajweed-mistakes.html" },
-    { "source": "/academy/tarteel-alternative", "destination": "/academy/tarteel-alternative.html" }
+    { "source": "/academy/tarteel-alternative", "destination": "/academy/tarteel-alternative.html" },
+    { "source": "/academy/hifz-planner", "destination": "/academy/hifz-planner.html" }
   ]
 }
