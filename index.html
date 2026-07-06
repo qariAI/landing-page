@@ -4,57 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://qariai.app/#org",
-      "name": "QariAI",
-      "url": "https://qariai.app",
-      "logo": "https://qariai.app/logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://qariai.app/#website",
-      "url": "https://qariai.app",
-      "name": "QariAI",
-      "publisher": {
-        "@id": "https://qariai.app/#org"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://qariai.app/search?q={query}",
-        "query-input": "required name=query"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://qariai.app/#app",
-      "name": "QariAI",
-      "url": "https://qariai.app",
-      "applicationCategory": "EducationalApplication",
-      "operatingSystem": "Web, Android, iOS",
-      "description": "AI-powered Quran learning app for Hifz, Tajweed, recitation practice and personalized feedback.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "publisher": {
-        "@id": "https://qariai.app/#org"
-      }
-    }
-  ]
-}
-</script>
+<!-- React must load BEFORE support.js -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
-<script src="./support.js"></script>
 </head>
 
 <body>
-<x-dc>
-<helmet>
+<div id="dc-root"></div>
+
+<script src="./support.js"></script>
 </body>
 </html>
