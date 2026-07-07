@@ -38,15 +38,17 @@
 }
 </script>
 
-<!-- Keep your original script -->
-<script src="./support.js"></script>
+<!-- React must load BEFORE support.js -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
 </head>
 
 <body>
 
-<x-dc>
-<helmet>
+<div id="dc-root"></div>
+
+<script src="./support.js"></script>
 
 </body>
 </html>
