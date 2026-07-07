@@ -3,52 +3,543 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,700&family=Inter:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{ font-family:'Inter',sans-serif; background:#f4efe4; color:#1a241d; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    @keyframes qFloat{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+    @keyframes qFloat2{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+    @keyframes qRise{ from{ opacity:0; transform:translateY(14px);} to{ opacity:1; transform:translateY(0);} }
+    .qscroll::-webkit-scrollbar{ height:8px; }
+    .qscroll::-webkit-scrollbar-thumb{ background:rgba(18,56,41,0.2); border-radius:20px; }
+    .qscroll::-webkit-scrollbar-track{ background:transparent; }
+  </style>
+</helmet>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://qariai.app/#organization",
-      "name": "QariAI",
-      "url": "https://qariai.app",
-      "logo": { "@type": "ImageObject", "url": "https://qariai.app/logo.png" },
-      "sameAs": []
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://qariai.app/#website",
-      "url": "https://qariai.app",
-      "name": "QariAI",
-      "publisher": { "@id": "https://qariai.app/#organization" }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://qariai.app/#software",
-      "name": "QariAI",
-      "description": "AI Quran recitation app that listens to your tajweed in real time, scores your recitation, and gives personalized coaching.",
-      "applicationCategory": "EducationalApplication",
-      "operatingSystem": "Web",
-      "url": "https://qariai.app",
-      "publisher": { "@id": "https://qariai.app/#organization" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    }
-  ]
+<div style="position:relative; background:#f4efe4; overflow:hidden;">
+
+  <!-- ══ NAV ══ -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:120; display:flex; align-items:center; justify-content:space-between; height:70px; padding:0 max(24px,4vw); background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 1px 14px rgba(18,56,41,0.05);">
+    <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+      <span style="width:50px; height:50px; border-radius:13px; background:#ffffff; border:1px solid rgba(18,56,41,0.1); box-shadow:0 2px 8px rgba(18,56,41,0.08); display:flex; align-items:center; justify-content:center; padding:6px;"><img src="uploads/logo.png" alt="QariAI" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+      <span style="font-family:'Spectral',serif; font-size:28px; font-weight:700; letter-spacing:-.01em; color:#123829;">Qari<span style="color:#0c6b48;">AI</span></span>
+    </a>
+    <div style="display:flex; align-items:center; gap:30px;">
+      <div style="display:flex; align-items:center; gap:26px;">
+        <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Features</a>
+        <a href="https://qariai.app/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">About</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fffdf8; text-decoration:none; padding:11px 22px; background:#0c6b48; border-radius:40px; box-shadow:0 6px 18px rgba(12,107,72,.28); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-1px); box-shadow:0 10px 22px rgba(12,107,72,.36);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fffdf8"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>Get it on Google Play</a>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="top" style="position:relative; padding:132px max(24px,4vw) 76px; max-width:1280px; margin:0 auto;">
+    <div style="position:absolute; top:-60px; right:-140px; width:560px; height:560px; background:radial-gradient(circle, rgba(18,146,94,0.13), transparent 68%); border-radius:50%; pointer-events:none;"></div>
+    <div style="position:absolute; bottom:-40px; left:-120px; width:420px; height:420px; background:radial-gradient(circle, rgba(201,151,63,0.12), transparent 70%); border-radius:50%; pointer-events:none;"></div>
+
+    <div style="position:relative; z-index:2; display:grid; grid-template-columns:1.15fr 0.85fr; gap:24px; align-items:center;" class="qhero-grid">
+      <div style="animation:qRise .7s ease both;">
+        <h1 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2.7rem,5vw,4.3rem); line-height:1.04; letter-spacing:-.02em; color:#12251b; margin-bottom:22px;">
+          Recite with <em style="font-style:italic; font-weight:700; color:#0c6b48;">confidence.</em>
+        </h1>
+        <p style="font-size:1.02rem; line-height:1.5; color:#123829; font-weight:500; max-width:460px; margin-top:14px; margin-bottom:32px;">
+          The first AI that combines Tajweed correction, Hifz memorisation, and personalised practice in one coach.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:28px;">
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:inline-flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; color:#fffdf8; text-decoration:none; padding:16px 30px; background:#0c6b48; border-radius:44px; box-shadow:0 10px 26px rgba(12,107,72,.32); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-2px); box-shadow:0 16px 36px rgba(12,107,72,.42);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fffdf8" style="flex-shrink:0;"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+            <span style="white-space:nowrap;">Get it on Google Play</span>
+          </a>
+          <sc-if value="{{ showDemo }}" hint-placeholder-val="{{ true }}">
+            <a href="#demo" onClick="{{ openDemo }}" style="display:inline-flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; color:#123829; text-decoration:none; padding:15px 22px; background:transparent; border-radius:44px;" style-hover="color:#0c6b48;">
+              <span style="width:34px; height:34px; border-radius:50%; background:#ffffff; border:1.5px solid rgba(18,56,41,0.14); display:inline-flex; align-items:center; justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="#0c6b48"><path d="M6 4l14 8-14 8V4z"/></svg></span>
+              <span style="white-space:nowrap;">See QariAI in action</span>
+            </a>
+          </sc-if>
+        </div>
+        <div style="font-size:12.5px; font-weight:600; color:#7a8378; margin-top:-20px; margin-bottom:28px;">Available now on Google Play</div>
+        <div style="display:flex; align-items:flex-start; gap:13px; max-width:460px;">
+          <span style="width:36px; height:36px; border-radius:50%; background:#0c6b48; border:2px solid #f4efe4; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#fff; flex-shrink:0;">M</span>
+          <div style="font-size:13.5px; color:#5f6a60; line-height:1.5;">
+            <span style="color:#c9973f; letter-spacing:1px;">★★★★★</span>
+            <span style="font-size:11.5px; font-weight:600; color:#4a544c; margin-left:6px;">Google Play</span>
+            <p style="margin:4px 0 3px; color:#3a443c;">"Barakallahu Feekum. An incredible app. I've tested both Hifz and Tajweed mode — set to Advanced and it picks up every small mistake perfectly."</p>
+            <span style="color:#8a938a;">— Matti-Ur Rehman</span>
+          </div>
+        </div>
+        <p style="font-size:13.5px; color:#6b756a; font-style:italic; margin-top:14px;">Helping Muslims improve their recitation every day.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:28px; margin-top:24px; padding-top:22px; border-top:1px solid rgba(18,56,41,0.09);">
+          <div><span style="display:block; font-family:'Spectral',serif; font-size:1.75rem; font-weight:800; color:#12251b;">2,000+</span><span style="font-size:12px; font-weight:400; color:#93998f;">Learners</span></div>
+          <div><span style="display:block; font-family:'Spectral',serif; font-size:1.75rem; font-weight:800; color:#12251b;">10,000+</span><span style="font-size:12px; font-weight:400; color:#93998f;">Recitations analyzed</span></div>
+          <div><span style="display:block; font-family:'Spectral',serif; font-size:1.75rem; font-weight:800; color:#12251b;">4.9★</span><span style="font-size:12px; font-weight:400; color:#93998f;">Average rating</span></div>
+        </div>
+      </div>
+
+      <!-- living dashboard -->
+      <div style="position:relative; display:flex; justify-content:center; align-items:center; animation:qRise .8s ease .1s both;">
+        <div style="position:absolute; width:460px; height:460px; background:radial-gradient(circle, rgba(18,146,94,0.24), transparent 68%); border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%);"></div>
+        <div style="position:absolute; width:300px; height:300px; background:#fffdf8; opacity:0.55; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); filter:blur(2px);"></div>
+
+        <div style="position:absolute; left:20px; top:-14px; z-index:6; background:#ffffff; border-radius:14px; padding:10px 14px; box-shadow:0 8px 18px rgba(18,56,41,0.1); display:flex; align-items:center; gap:9px; animation:qFloat 3.4s ease-in-out infinite;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M20 6L9 17l-5-5" stroke="#0c6b48" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-size:12px; font-weight:700; color:#12251b; line-height:1.2;">AI Corrected</span>
+        </div>
+
+        <div style="position:absolute; left:-68px; top:50%; z-index:6; background:#123829; border-radius:14px; padding:10px 14px; box-shadow:0 8px 18px rgba(18,56,41,0.18); display:flex; align-items:center; gap:8px; animation:qFloat2 4.2s ease-in-out infinite;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#e6584f; box-shadow:0 0 0 4px rgba(230,88,79,0.25); flex-shrink:0;"></span>
+          <span style="font-size:12px; font-weight:600; color:#fdf8ee;">Listening live</span>
+        </div>
+
+        <div style="position:absolute; right:-42px; bottom:-18px; z-index:6; background:#fdf8ee; border-radius:14px; padding:11px 14px; box-shadow:0 8px 18px rgba(18,56,41,0.12); display:flex; align-items:center; gap:9px; animation:qFloat2 3.8s ease-in-out infinite;">
+          <span style="width:22px; height:22px; border-radius:50%; background:rgba(201,151,63,0.18); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M3 12h4M17 12h4" stroke="#c9973f" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <span style="font-size:12px; font-weight:700; color:#12251b;">3 mistakes fixed</span>
+        </div>
+
+        <div style="position:relative; z-index:5; width:347px; background:#0f1512; border-radius:49px; padding:15px; box-shadow:0 44px 84px rgba(18,40,29,0.32), 0 0 0 1px rgba(255,255,255,0.05);">
+          <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); width:110px; height:29px; background:#0f1512; border-radius:0 0 18px 18px; z-index:10;"></div>
+          <div style="background:#ffffff; border-radius:36px; overflow:hidden; height:582px; display:flex; flex-direction:column;">
+            <div style="background:#ffffff; padding:14px 15px 12px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(18,56,41,0.06);">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="width:26px; height:26px; border-radius:8px; background:#fff; border:1px solid rgba(18,56,41,0.1); display:flex; align-items:center; justify-content:center; padding:3px;"><img src="uploads/logo.png" alt="QariAI" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+                <span style="font-family:'Spectral',serif; font-size:15px; font-weight:700; color:#123829;">QariAI</span>
+              </div>
+            </div>
+
+            <div style="padding:16px 14px; flex:1; min-height:0; overflow:hidden;">
+              <div style="background:#ffffff; border-radius:16px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; box-shadow:0 2px 9px rgba(18,56,41,0.05);">
+                <div>
+                  <div style="display:flex; align-items:baseline; gap:10px;">
+                    <span style="font-size:11px; font-weight:800; letter-spacing:.06em; color:#5f6a60;">DAILY GOAL</span>
+                    <span style="font-size:13px; font-weight:700; color:#0c6b48;">6 / 15 min</span>
+                  </div>
+                  <div style="width:130px; height:6px; border-radius:20px; background:#e7e0d1; overflow:hidden; margin-top:8px;"><div style="width:40%; height:100%; border-radius:20px; background:#12925e;"></div></div>
+                </div>
+              </div>
+
+              <h3 style="font-family:'Spectral',serif; font-weight:800; font-size:1.55rem; line-height:1.15; letter-spacing:-.01em; color:#12251b; text-align:center; margin-bottom:10px;">Improve Your<br/>Tajweed</h3>
+              <p style="font-size:12px; color:#6b756a; line-height:1.5; text-align:center; max-width:230px; margin:0 auto 16px;">Recite any verse. QariAI listens and gives precise feedback on pronunciation.</p>
+
+              <div style="background:#ffffff; border-radius:40px; padding:5px; display:flex; gap:4px; margin-bottom:18px; box-shadow:0 2px 9px rgba(18,56,41,0.05);">
+                <div style="flex:1; text-align:center; padding:11px 8px; border-radius:34px; background:rgba(18,146,94,0.16);"><span style="font-size:12.5px; font-weight:700; color:#0c6b48;">Tajweed Coach</span></div>
+                <div style="flex:1; text-align:center; padding:11px 8px; border-radius:34px;"><span style="font-size:12.5px; font-weight:700; color:#8a938a;">Hifz Mode</span></div>
+              </div>
+
+              <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+                <span style="position:relative; width:92px; height:92px; border-radius:50%; background:rgba(18,146,94,0.14); display:flex; align-items:center; justify-content:center;">
+                  <span style="width:70px; height:70px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#17a06a,#0c6b48); display:flex; align-items:center; justify-content:center; box-shadow:0 14px 30px rgba(12,107,72,0.32); position:relative; z-index:1;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3a3 3 0 013 3v6a3 3 0 01-6 0V6a3 3 0 013-3z" fill="#fdf8ee"/><path d="M6 11a6 6 0 0012 0M12 17v3" stroke="#fdf8ee" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  </span>
+                </span>
+                <span style="font-size:13px; font-weight:700; color:#12251b;">Tap mic to continue</span>
+                <span style="font-size:11px; color:#6b756a; margin-top:-6px;">AI listens and coaches your tajweed</span>
+              </div>
+
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-around; padding:10px 8px 14px; border-top:1px solid rgba(18,56,41,0.07); background:#ffffff;">
+              <div style="display:flex; flex-direction:column; align-items:center; gap:4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5a2 2 0 012-2h6v16H6a2 2 0 00-2 2V5zM20 5a2 2 0 00-2-2h-6v16h6a2 2 0 012 2V5z" stroke="#8a938a" stroke-width="1.7" stroke-linejoin="round"/></svg><span style="font-size:9px; font-weight:600; color:#8a938a;">Learn</span></div>
+              <div style="display:flex; flex-direction:column; align-items:center; gap:4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3a3 3 0 013 3v6a3 3 0 01-6 0V6a3 3 0 013-3z" stroke="#0c6b48" stroke-width="1.8"/><path d="M6 11a6 6 0 0012 0M12 17v3" stroke="#0c6b48" stroke-width="1.8" stroke-linecap="round"/></svg><span style="font-size:9px; font-weight:700; color:#0c6b48;">Recite</span></div>
+              <div style="display:flex; flex-direction:column; align-items:center; gap:4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19V10M12 19V5M20 19v-6" stroke="#8a938a" stroke-width="1.8" stroke-linecap="round"/></svg><span style="font-size:9px; font-weight:600; color:#8a938a;">Progress</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AS FEATURED ══ -->
+  <section style="max-width:1120px; margin:0 auto; padding:0 max(24px,4vw) 40px;">
+    <div style="display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;">
+      <span style="font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#93998f;">Trusted by</span>
+      <div style="display:flex; align-items:center; gap:8px; padding:8px 16px; border-radius:10px; background:#fffdf8; border:1px solid rgba(18,56,41,0.08);">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z" fill="#0c6b48"/></svg>
+        <span style="font-size:14px; font-weight:700; color:#22302a;">Google Play</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CHECKLIST STRIP ══ -->
+  <section style="max-width:900px; margin:0 auto; padding:0 max(24px,4vw) 72px;">
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(20px,4vw,44px);">
+      <div style="display:flex; align-items:center; gap:8px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M20 6L9 17l-5-5" stroke="#0c6b48" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size:14.5px; font-weight:600; color:#22302a;">Tajweed correction</span></div>
+      <div style="display:flex; align-items:center; gap:8px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M20 6L9 17l-5-5" stroke="#0c6b48" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size:14.5px; font-weight:600; color:#22302a;">Hifz mode</span></div>
+      <div style="display:flex; align-items:center; gap:8px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M20 6L9 17l-5-5" stroke="#0c6b48" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size:14.5px; font-weight:600; color:#22302a;">Personalized drills</span></div>
+      <div style="display:flex; align-items:center; gap:8px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M20 6L9 17l-5-5" stroke="#0c6b48" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size:14.5px; font-weight:600; color:#22302a;">Progress tracking</span></div>
+    </div>
+  </section>
+
+  <!-- ══ HOW IT WORKS ══ -->
+  <section id="how" style="max-width:1120px; margin:0 auto; padding:96px max(24px,4vw) 56px;">
+    <div style="text-align:center; margin-bottom:56px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">How it works</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Every session follows the same loop.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative;" class="qgrid3">
+      <div style="text-align:center; padding:8px;">
+        <div style="width:76px; height:76px; border-radius:22px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 22px; font-size:30px;">🎤</div>
+        <div style="font-size:11px; font-weight:800; letter-spacing:.14em; color:#c9973f; margin-bottom:9px;">01 · RECITE</div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.35rem; font-weight:700; color:#12251b; margin-bottom:8px;">Read any surah aloud</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6; max-width:280px; margin:0 auto;">Open any surah and recite. No setup, no pressure.</p>
+      </div>
+      <div style="text-align:center; padding:8px;">
+        <div style="width:76px; height:76px; border-radius:22px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin:0 auto 22px; font-size:30px;">🤖</div>
+        <div style="font-size:11px; font-weight:800; letter-spacing:.14em; color:#c9973f; margin-bottom:9px;">02 · REVIEW</div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.35rem; font-weight:700; color:#12251b; margin-bottom:8px;">Get instant feedback</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6; max-width:280px; margin:0 auto;">QariAI catches Tajweed and Hifz mistakes in real time — word by word.</p>
+      </div>
+      <div style="text-align:center; padding:8px;">
+        <div style="width:76px; height:76px; border-radius:22px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 22px; font-size:30px;">📈</div>
+        <div style="font-size:11px; font-weight:800; letter-spacing:.14em; color:#c9973f; margin-bottom:9px;">03 · IMPROVE</div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.35rem; font-weight:700; color:#12251b; margin-bottom:8px;">Improve every day</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6; max-width:280px; margin:0 auto;">Personalized drills, streaks, and progress tracking build lasting confidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FEATURES GRID ══ -->
+  <section id="features" style="background:#efe8d9; padding:96px max(24px,4vw); border-top:1px solid rgba(18,56,41,0.06); border-bottom:1px solid rgba(18,56,41,0.06);">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Features</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Built like a real teacher.</h2>
+    </div>
+    <div style="max-width:1120px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); gap:18px;" class="qgrid5">
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14l-8-4-8 4V5z" stroke="#0c6b48" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Tajweed</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">16 rules detected & explained</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5a2 2 0 012-2h6v16H6a2 2 0 00-2 2V5zM20 5a2 2 0 00-2-2h-6v16h6a2 2 0 012 2V5z" stroke="#c9973f" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Hifz</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">Protect your memorisation</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 014 4v5a4 4 0 01-8 0V6a4 4 0 014-4z" stroke="#0c6b48" stroke-width="1.8"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#0c6b48" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Personal Coach</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">Listens to every word</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7" fill="rgba(201,151,63,0.35)"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7" fill="rgba(201,151,63,0.2)"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Mistake Heatmap</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">See exactly where to focus</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0c6b48" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="#0c6b48" stroke-width="1.8"/><circle cx="12" cy="12" r="1.2" fill="#0c6b48"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Personalized Drills</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">Practise only what matters</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROGRESS (emotional) ══ -->
+  <section style="background:#efe8d9; padding:100px max(24px,4vw);">
+    <div style="max-width:900px; margin:0 auto; text-align:center;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#c9973f; margin-bottom:16px;">Your progress</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.6vw,3rem); line-height:1.1; letter-spacing:-.02em; color:#12251b; margin-bottom:14px;">It's a <em style="font-style:italic; color:#0c6b48;">spiritual journey.</em></h2>
+      <p style="font-size:1.08rem; color:#5c665c; line-height:1.6; max-width:520px; margin:0 auto 52px;">Every practice session moves you forward — and you can see it happening.</p>
+
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.09); border-radius:24px; padding:38px 34px 30px; box-shadow:0 24px 54px rgba(18,56,41,0.08);">
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:clamp(20px,6vw,64px); height:230px; padding:0 10px;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:800; color:#94a08f;">72</span>
+            <div style="width:100%; height:96px; border-radius:12px 12px 4px 4px; background:#cfd6cc;"></div>
+            <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Week 1</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:800; color:#7f9a86;">78</span>
+            <div style="width:100%; height:126px; border-radius:12px 12px 4px 4px; background:#9dbca7;"></div>
+            <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Week 2</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:800; color:#3f8560;">84</span>
+            <div style="width:100%; height:160px; border-radius:12px 12px 4px 4px; background:#40966b;"></div>
+            <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Week 3</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.7rem; font-weight:800; color:#0c6b48;">91</span>
+            <div style="width:100%; height:206px; border-radius:12px 12px 4px 4px; background:linear-gradient(180deg,#12925e,#0c6b48); box-shadow:0 10px 24px rgba(12,107,72,0.28);"></div>
+            <span style="font-size:12.5px; font-weight:700; color:#0c6b48;">Week 4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SCREENSHOT CAROUSEL ══ -->
+  <section style="padding:96px 0 90px;">
+    <div style="text-align:center; margin-bottom:48px; padding:0 max(24px,4vw);">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Inside the app</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Everything a teacher does — in your pocket.</h2>
+    </div>
+    <div class="qscroll" style="display:flex; gap:26px; overflow-x:auto; padding:12px max(24px,4vw) 24px; scroll-snap-type:x mandatory;">
+      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en1.jpg" alt="Tajweed Coach" style="width:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
+      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#0f1a2a; aspect-ratio:1080/1720;"><img src="screenshots/en2.jpg" alt="Find your maqam" style="width:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
+      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en3.jpg" alt="Progression guide" style="width:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
+      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#eefaf1; aspect-ratio:1080/1720;"><img src="screenshots/en4.jpg" alt="Practice tips" style="width:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
+      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en1.jpg" alt="Choose your level" style="width:100%; display:block; object-fit:cover; object-position:center;"/></div></div>
+    </div>
+  </section>
+
+  <!-- ══ COACH REMEMBERS YOU ══ -->
+  <section id="coach" style="background:#123829; padding:100px max(24px,4vw); position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-160px; right:-120px; width:560px; height:560px; background:radial-gradient(circle, rgba(18,146,94,0.22), transparent 62%); border-radius:50%; pointer-events:none;"></div>
+    <div style="max-width:1080px; margin:0 auto; position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="qsplit">
+      <div>
+        <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#c9973f; margin-bottom:16px;">Your biggest advantage</span>
+        <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.1; letter-spacing:-.02em; color:#fdf8ee; margin-bottom:20px;">Your coach remembers <em style="font-style:italic; color:#c9973f;">you.</em></h2>
+        <p style="font-size:1.08rem; line-height:1.65; color:rgba(253,248,238,0.74); margin-bottom:20px; max-width:440px;">It isn't the AI that changes everything. It's the memory. QariAI remembers every recurring mistake and builds future practice around your weaknesses.</p>
+        <p style="font-size:1.08rem; line-height:1.65; color:rgba(253,248,238,0.74); max-width:440px;">A checker grades one recitation. A coach carries what you struggled with last week into what you practise today.</p>
+      </div>
+
+      <div style="background:rgba(253,248,238,0.05); border:1px solid rgba(253,248,238,0.12); border-radius:24px; padding:30px 30px 26px;">
+        <div style="display:flex; flex-direction:column; gap:0;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:rgba(201,151,63,0.2); border:1.5px solid #c9973f; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#e6b662" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+            <div style="flex:1; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-size:11px; font-weight:700; letter-spacing:.05em; color:rgba(253,248,238,0.5); text-transform:uppercase;">Monday</div><div style="font-size:1.05rem; font-weight:700; color:#fdf8ee;">Ghunnah — missed</div></div></div>
+          </div>
+          <div style="width:2px; height:26px; background:linear-gradient(#c9973f,#12925e); margin-left:12px;"></div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:rgba(18,146,94,0.18); border:1.5px solid #12925e; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="#3fd39a" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+            <div style="flex:1;"><div style="font-size:11px; font-weight:700; letter-spacing:.05em; color:rgba(253,248,238,0.5); text-transform:uppercase;">Wednesday</div><div style="font-size:1.05rem; font-weight:700; color:#fdf8ee;">Getting closer</div></div>
+          </div>
+          <div style="width:2px; height:26px; background:linear-gradient(#12925e,#3fd39a); margin-left:12px;"></div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div style="flex:1; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-size:11px; font-weight:700; letter-spacing:.05em; color:rgba(253,248,238,0.5); text-transform:uppercase;">Friday</div><div style="font-size:1.05rem; font-weight:800; color:#fdf8ee;">Ghunnah — mastered</div></div><span style="font-size:11px; font-weight:700; color:#0f1512; background:#3fd39a; padding:5px 11px; border-radius:20px;">✓ Done</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section style="background:#efe8d9; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">What reciters say</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Loved on Google Play.</h2>
+    </div>
+    <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:22px;" class="qgrid2">
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"Barakallahu Feekum. An incredible app. I've tested both Hifz and Tajweed mode — set to Advanced and it picks up every small mistake perfectly."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#0c6b48; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">M</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Matti-Ur Rehman</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"I think it is very nice and accurate Mashallah."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">S</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Sayeed Ahmed</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMPARISON TABLE ══ -->
+  <section style="max-width:820px; margin:0 auto; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Why QariAI</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">See the difference.</h2>
+    </div>
+    <div style="background:#fffdf8; border-radius:22px; overflow:hidden; box-shadow:0 20px 48px rgba(18,56,41,0.08); border:1px solid rgba(18,56,41,0.08);">
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center;">
+        <div style="padding:18px 20px; font-size:12px; font-weight:700; letter-spacing:.05em; color:#7a8378; text-transform:uppercase;"></div>
+        <div style="padding:18px 12px; text-align:center; font-size:14px; font-weight:800; color:#0c6b48; background:rgba(12,107,72,0.07);">QariAI</div>
+        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Generic AI</div>
+        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Learning Alone</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Tajweed feedback</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Hifz mode</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Personalized drills</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Progress tracking</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05); border-radius:0 0 0 22px;"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center; border-radius:0 0 22px 0;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHO IT'S FOR ══ -->
+  <section style="max-width:1120px; margin:0 auto; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Who it's for</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Wherever you are on the journey.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;" class="qgrid3">
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:22px; padding:32px 28px;" style-hover="transform:translateY(-3px); box-shadow:0 16px 36px rgba(18,56,41,0.08);">
+        <div style="width:52px; height:52px; border-radius:15px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 5-9 5-9-5 9-5z" stroke="#0c6b48" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 10v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" stroke="#0c6b48" stroke-width="1.7"/></svg></div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:700; color:#12251b; margin-bottom:8px;">Beginner</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6;">Learn to recite confidently, with gentle guidance on every rule from the very first ayah.</p>
+      </div>
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:22px; padding:32px 28px;" style-hover="transform:translateY(-3px); box-shadow:0 16px 36px rgba(18,56,41,0.08);">
+        <div style="width:52px; height:52px; border-radius:15px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#c9973f" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="#c9973f" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:700; color:#12251b; margin-bottom:8px;">Daily Reciter</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6;">Improve steadily with short daily sessions that target your weak spots and build a lasting habit.</p>
+      </div>
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:22px; padding:32px 28px;" style-hover="transform:translateY(-3px); box-shadow:0 16px 36px rgba(18,56,41,0.08);">
+        <div style="width:52px; height:52px; border-radius:15px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z" stroke="#0c6b48" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:700; color:#12251b; margin-bottom:8px;">Huffaz</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6;">Protect your hifz — recite from memory and let the coach catch the words that start to slip.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FINAL CTA ══ -->
+  <section style="background:#0f1512; padding:120px max(24px,4vw); text-align:center; position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:640px; height:640px; background:radial-gradient(circle, rgba(18,146,94,0.2), transparent 64%); border-radius:50%; pointer-events:none;"></div>
+    <div style="position:relative; z-index:2; max-width:680px; margin:0 auto;">
+      <div style="font-family:'Amiri',serif; font-size:1.7rem; color:rgba(201,151,63,0.9); direction:rtl; margin-bottom:24px;">لَا تُحَرِّكْ بِهِۦ لِسَانَكَ لِتَعْجَلَ بِهِۦٓ</div>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2.2rem,4.2vw,3.4rem); line-height:1.08; letter-spacing:-.02em; color:#fdf8ee; margin-bottom:32px;">Become the reciter<br/>you've always <em style="font-style:italic; color:#c9973f;">wanted to be.</em></h2>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:inline-flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:600; color:#0f1512; text-decoration:none; padding:17px 38px; background:#fdf8ee; border-radius:44px; white-space:nowrap;" style-hover="transform:translateY(-2px); background:#fff;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0f1512"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+        Get it on Google Play
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer style="background:#0f1512; padding:72px max(24px,4vw) 34px; border-top:1px solid rgba(253,248,238,0.08);">
+    <div style="max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.4fr repeat(4, 1fr); gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+          <span style="width:34px; height:34px; border-radius:9px; background:#fff; display:flex; align-items:center; justify-content:center; padding:4px;"><img src="uploads/logo.png" alt="QariAI" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+          <span style="font-family:'Spectral',serif; font-size:18px; font-weight:700; color:#fdf8ee;">Qari<span style="color:#12925e;">AI</span></span>
+        </div>
+        <p style="font-size:13.5px; color:rgba(253,248,238,0.45); line-height:1.6; max-width:220px;">Your personal AI-powered Quran recitation coach.</p>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Product</span>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Features</a>
+          <a href="#how-it-works" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How It Works</a>
+          <a href="https://qariai.app/qaef" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">QAEF Framework</a>
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Get it on Google Play</a>
+          <a href="https://qariai.app/tajweed-checker" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Free Tajweed Checker</a>
+        </div>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Academy</span>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="https://qariai.app/learn-tajweed" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Learn Tajweed</a>
+          <a href="https://qariai.app/academy/ai-tajweed-training" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Tajweed Training</a>
+          <a href="https://qariai.app/academy/ai-hifz-coaching" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Hifz Coaching</a>
+          <a href="https://qariai.app/academy/can-ai-teach-tajweed" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Can AI Teach Tajweed?</a>
+          <a href="https://qariai.app/academy/ai-vs-human-teacher" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI vs Human Teacher</a>
+          <a href="https://qariai.app/academy/how-ai-detects-mistakes" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How AI Detects Mistakes</a>
+          <a href="https://qariai.app/vs/tarteel" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Qari AI vs Tarteel</a>
+          <a href="https://qariai.app/academy/future-of-quran-learning" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Future of Quran Learning</a>
+          <a href="https://qariai.app/academy/ai-quran-app" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Quran App</a>
+        </div>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Company</span>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="https://qariai.app/about" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">About Us</a>
+          <a href="https://qariai.app/privacy" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Privacy Policy</a>
+          <a href="https://qariai.app/terms" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Terms of Service</a>
+          <a href="https://qariai.app/contact" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Connect</span>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:flex; align-items:center; gap:10px; padding:9px 14px; border:1px solid rgba(253,248,238,0.18); border-radius:10px; text-decoration:none; width:fit-content;" style-hover="border-color:#12925e;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fdf8ee"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+            <span>
+              <span style="display:block; font-size:9.5px; color:rgba(253,248,238,0.5); line-height:1.2;">Get it on</span>
+              <span style="display:block; font-size:13px; font-weight:600; color:#fdf8ee; line-height:1.2;">Google Play</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1120px; margin:44px auto 0; padding-top:22px; border-top:1px solid rgba(253,248,238,0.08); display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center;">
+      <span style="font-size:13px; color:rgba(253,248,238,0.4);">© 2026 QariAI. Built with ❤️ for the Ummah. Powered by AI.</span>
+      <span style="font-family:'Amiri',serif; font-size:13.5px; color:rgba(253,248,238,0.4);">May Allah accept this work and make it beneficial • إن شاء الله</span>
+    </div>
+  </footer>
+
+  <!-- sticky CTA -->
+  <sc-if value="{{ stickyOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; left:0; right:0; bottom:0; z-index:110; background:rgba(15,21,18,0.95); backdrop-filter:blur(12px); border-top:1px solid rgba(253,248,238,0.1); padding:12px max(24px,4vw); display:flex; align-items:center; justify-content:space-between; gap:16px; animation:qRise .35s ease both;">
+      <span style="font-size:14.5px; font-weight:600; color:#fdf8ee;">Your coach is ready when you are.</span>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0f1512; text-decoration:none; padding:11px 24px; background:#fdf8ee; border-radius:40px; white-space:nowrap;" style-hover="background:#fff;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0f1512"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>Get it on Google Play</a>
+    </div>
+  </sc-if>
+
+  <!-- demo modal -->
+  <sc-if value="{{ demoOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeDemo }}" style="position:fixed; inset:0; z-index:200; background:rgba(15,21,18,0.72); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:24px; animation:qRise .25s ease both;">
+      <div style="background:#fffdf8; border-radius:24px; padding:20px; max-width:460px; width:100%; box-shadow:0 40px 90px rgba(0,0,0,0.4);">
+        <div style="aspect-ratio:16/9; border-radius:16px; overflow:hidden; margin-bottom:16px;">
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Xx3VqKdk78o" title="QariAI demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+        </div>
+        <button onClick="{{ closeDemo }}" style="width:100%; font-size:14.5px; font-weight:600; color:#fffdf8; background:#0c6b48; border:none; border-radius:40px; padding:13px; cursor:pointer;">Close</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showDemoButton&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;stickyCTA&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+class Component extends DCLogic {
+  state = { demoOpen: false, scrolled: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const s = y > 780;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+
+  renderVals() {
+    const p = this.props || {};
+    return {
+      showDemo: p.showDemoButton ?? true,
+      demoOpen: this.state.demoOpen,
+      stickyOn: (p.stickyCTA ?? true) && this.state.scrolled,
+      openDemo: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ demoOpen: true }); },
+      closeDemo: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ demoOpen: false }); },
+    };
+  }
 }
 </script>
-
-<!-- React must load BEFORE support.js -->
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-
-</head>
-
-<body>
-
-<div id="dc-root"></div>
-
-<script src="./support.js"></script>
-
 </body>
 </html>
