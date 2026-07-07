@@ -16,6 +16,9 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Hifz Revision Planner","applicationCategory":"EducationApplication","operatingSystem":"Any","url":"https://qariai.app/academy/hifz-planner","description":"Free interactive Hifz revision planner with structured scheduling and progress tracking.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"QariAI","url":"https://qariai.app"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://qariai.app"},{"@type":"ListItem","position":2,"name":"Academy","item":"https://qariai.app/academy"},{"@type":"ListItem","position":3,"name":"Hifz Planner","item":"https://qariai.app/academy/hifz-planner"}]}
+</script>
 <style>
   :root {
     --mint: #ecfdf5; --mint-mid: #a7f3d0;
@@ -73,7 +76,6 @@
 
   .app-wrap { max-width: 760px; margin: 0 auto; padding: 44px 5vw 80px; }
 
-  /* TODAY CARD */
   .today-card {
     background: linear-gradient(135deg, var(--green-dark), var(--green));
     border-radius: 22px; padding: 28px 32px; margin-bottom: 32px;
@@ -100,7 +102,6 @@
   .today-item.done .today-check { background: var(--white); color: var(--green-dark); border-color: var(--white); }
   .today-item.done .today-item-name { text-decoration: line-through; }
 
-  /* ADD FORM */
   .add-section {
     background: var(--white); border: 1px solid rgba(39,199,111,0.15);
     border-radius: var(--radius); padding: 24px 26px; margin-bottom: 28px;
@@ -124,7 +125,6 @@
   }
   .add-btn:hover { background: var(--green-dark); }
 
-  /* SCHEDULE INFO */
   .schedule-info {
     background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.15);
     border-radius: 12px; padding: 14px 18px; margin-bottom: 28px; font-size: 0.84rem;
@@ -132,7 +132,6 @@
   }
   .schedule-info strong { color: var(--green-dark); }
 
-  /* PORTIONS LIST */
   .portions-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
   .portions-header h2 { font-family: 'Merriweather', serif; font-size: 1.1rem; color: var(--text); }
   .portions-count { font-size: 0.8rem; color: var(--text-light); }
@@ -163,7 +162,6 @@
     background: var(--white); border-radius: var(--radius); border: 1.5px dashed rgba(39,199,111,0.25);
   }
 
-  /* HOW IT WORKS */
   .how-section { margin-top: 56px; padding-top: 40px; border-top: 2px solid rgba(39,199,111,0.15); }
   .how-section h2 { font-family: 'Merriweather', serif; font-size: 1.3rem; margin-bottom: 16px; color: var(--text); }
   .how-section p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 14px; }
@@ -317,7 +315,6 @@
 
     document.getElementById('todayDate').textContent = formatDate(today);
 
-    // Today's due items
     const dueToday = portions.filter(p => p.nextDue <= today && !p.doneToday);
     const todayContent = document.getElementById('todayContent');
     if (dueToday.length === 0 && portions.length > 0) {
@@ -336,7 +333,6 @@
       `).join('') + '</div>';
     }
 
-    // Portions list
     const list = document.getElementById('portionsList');
     document.getElementById('portionsCount').textContent = portions.length + (portions.length === 1 ? ' portion' : ' portions');
 
@@ -427,7 +423,6 @@
     if (e.key === 'Enter') document.getElementById('addBtn').click();
   });
 
-  // Reset doneToday flag if it's a new day since last visit
   function resetDailyFlags() {
     const portions = loadPortions();
     const today = todayStr();
