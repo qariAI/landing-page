@@ -4,6 +4,40 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://qariai.app/#organization",
+      "name": "QariAI",
+      "url": "https://qariai.app",
+      "logo": { "@type": "ImageObject", "url": "https://qariai.app/logo.png" },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://qariai.app/#website",
+      "url": "https://qariai.app",
+      "name": "QariAI",
+      "publisher": { "@id": "https://qariai.app/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://qariai.app/#software",
+      "name": "QariAI",
+      "description": "AI Quran recitation app that listens to your tajweed in real time, scores your recitation, and gives personalized coaching.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://qariai.app",
+      "publisher": { "@id": "https://qariai.app/#organization" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  ]
+}
+</script>
+
 <!-- Keep your original script -->
 <script src="./support.js"></script>
 
