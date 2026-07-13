@@ -134,165 +134,12 @@ nav {
   background: linear-gradient(90deg, transparent, var(--emerald), transparent);
 }
 
-/* Surah selector */
-.step { margin-bottom: 32px; }
-.step-label {
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--muted);
-  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
-}
-.step-num {
-  width: 20px; height: 20px; border-radius: 50%;
-  background: var(--emerald2); color: #fff;
-  font-size: 0.65rem; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-}
-.surah-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
-  gap: 8px;
-}
-.surah-btn {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 10px; padding: 10px 14px;
-  text-align: left; cursor: pointer; transition: all 0.2s;
-  color: var(--text);
-}
-.surah-btn:hover { border-color: var(--emerald); background: rgba(16,185,129,0.08); }
-.surah-btn.selected { border-color: var(--emerald); background: rgba(16,185,129,0.12); color: var(--emerald); }
-.surah-btn .arabic { font-size: 1rem; display: block; margin-bottom: 2px; direction: rtl; }
-.surah-btn .english { font-size: 0.72rem; color: var(--muted); }
-.surah-btn.selected .english { color: var(--emerald); opacity: 0.8; }
-
-/* Verse display */
-.verse-box {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px; padding: 20px 24px;
-  font-size: 1.5rem; direction: rtl; text-align: right;
-  line-height: 2.2; color: #c8ddd2;
-  font-family: 'Cormorant Garamond', serif;
-  min-height: 80px;
-  transition: all 0.3s;
-}
-
-/* Record button */
-.record-area { text-align: center; }
-.record-btn {
-  width: 80px; height: 80px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--emerald), var(--emerald3));
-  border: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 12px;
-  box-shadow: 0 0 0 0 rgba(16,185,129,0.4);
-  transition: transform 0.2s;
-  font-size: 1.8rem;
-}
-.record-btn:hover { transform: scale(1.08); }
-.record-btn.recording {
-  animation: pulse-ring 1.2s ease-out infinite;
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-}
-@keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
-  70%  { box-shadow: 0 0 0 20px rgba(239,68,68,0); }
-  100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
-}
-.record-hint { font-size: 0.8rem; color: var(--muted); }
-.record-hint strong { color: var(--text); }
-
-/* OR divider */
-.or-divider {
-  display: flex; align-items: center; gap: 12px;
-  margin: 20px 0; color: var(--muted); font-size: 0.78rem;
-}
-.or-divider::before, .or-divider::after {
-  content: ''; flex: 1;
-  height: 1px; background: rgba(255,255,255,0.07);
-}
-
-/* Analyse button */
-.analyse-btn {
-  width: 100%; padding: 16px;
-  background: linear-gradient(135deg, var(--emerald), var(--emerald3));
-  color: #fff; border: none; border-radius: 12px;
-  font-size: 1rem; font-weight: 600; cursor: pointer;
-  transition: all 0.2s; letter-spacing: 0.02em;
-  margin-top: 8px;
-}
-.analyse-btn:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(16,185,129,0.35); }
-.analyse-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-/* ── RESULTS ── */
-#results { display: none; }
-#results.visible { display: block; animation: fadeUp 0.5s ease-out both; }
-
-.results-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
-}
-.results-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; }
-.score-badge {
-  padding: 6px 16px; border-radius: 100px;
-  font-size: 0.82rem; font-weight: 700;
-}
-.score-badge.low  { background: rgba(239,68,68,0.15);  color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
-.score-badge.mid  { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
-.score-badge.high { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
-
-.mistakes-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
-.mistake-item {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-left: 3px solid;
-  border-radius: 10px; padding: 16px 18px;
-  display: flex; gap: 14px; align-items: flex-start;
-  animation: fadeUp 0.4s ease-out both;
-}
-.mistake-item.error   { border-left-color: #ef4444; }
-.mistake-item.warning { border-left-color: #f59e0b; }
-.mistake-item.tip     { border-left-color: var(--emerald); }
-.mistake-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
-.mistake-body {}
-.mistake-rule { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.mistake-desc { font-size: 0.9rem; color: var(--text); line-height: 1.55; }
-.mistake-fix  { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
-.mistake-fix strong { color: var(--emerald); }
-
-/* CTA box */
-.cta-box {
-  background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(5,150,105,0.12));
-  border: 1px solid var(--border);
-  border-radius: 14px; padding: 28px;
-  text-align: center;
-}
-.cta-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
-.cta-box p  { color: var(--muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 20px; }
-.cta-box-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-.cta-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--emerald2); color: #fff;
-  padding: 12px 24px; border-radius: 100px;
-  font-weight: 700; font-size: 0.9rem; text-decoration: none;
-  transition: all 0.2s;
-}
-.cta-primary:hover { background: var(--emerald3); transform: translateY(-1px); }
-.cta-secondary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: transparent; color: var(--muted);
-  padding: 12px 24px; border-radius: 100px;
-  font-size: 0.88rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.1);
-  transition: all 0.2s;
-}
-.cta-secondary:hover { border-color: var(--emerald); color: var(--text); }
-
-/* Reset btn */
-.reset-btn {
-  background: none; border: 1px solid rgba(255,255,255,0.1); color: var(--muted);
-  padding: 8px 18px; border-radius: 100px; cursor: pointer; font-size: 0.8rem;
-  transition: all 0.2s; margin-top: 16px; width: 100%;
-}
-.reset-btn:hover { border-color: var(--emerald); color: var(--text); }
+/* Internal links */
+.internal-links{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin:40px 0}
+.internal-links h4{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.internal-links ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.internal-links ul li a{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.08);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:0.8rem;color:var(--emerald);transition:all 0.2s}
+.internal-links ul li a:hover{background:rgba(16,185,129,0.15);border-color:var(--emerald)}
 
 /* ── SOCIAL PROOF ── */
 .proof-bar {
@@ -337,18 +184,6 @@ footer {
 footer a { color: var(--emerald); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
-/* ── LOADING DOTS ── */
-.loading { display: none; text-align: center; padding: 20px; }
-.loading.visible { display: block; }
-.dots span {
-  display: inline-block; width: 8px; height: 8px;
-  background: var(--emerald); border-radius: 50%; margin: 0 3px;
-  animation: bounce 1.2s ease-in-out infinite;
-}
-.dots span:nth-child(2) { animation-delay: 0.2s; }
-.dots span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-8px)} }
-
 /* ── ANIMATIONS ── */
 @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:none; } }
 @keyframes fadeUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:none; } }
@@ -356,7 +191,6 @@ footer a:hover { text-decoration: underline; }
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
   .tool-card { padding: 24px; }
-  .surah-grid { grid-template-columns: 1fr 1fr; }
   .rules-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2rem; }
   .nav-right .nav-link { display: none; }
@@ -382,113 +216,54 @@ footer a:hover { text-decoration: underline; }
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">🎙️ Free Interactive Tool</div>
-  <h1>Find your Tajweed mistakes<br><em>in 30 seconds</em></h1>
-  <p class="hero-sub">Select a Surah, recite or simulate, and get instant feedback on Makharij, Ghunnah, Madd and more — completely free.</p>
+  <div class="hero-tag">🎙️ Free AI Tajweed Analysis</div>
+  <h1>Find your Tajweed mistakes<br><em>with real AI feedback</em></h1>
+  <p class="hero-sub">Makharij, Ghunnah, Madd, Qalqalah, and 20 more rules — checked instantly against your actual recitation, free in the QariAI app.</p>
 </div>
 
-<!-- TOOL -->
-<div class="tool-card" style="position:relative;z-index:1;max-width:700px;margin:0 auto 80px;padding:40px;">
-
-  <!-- STEP 1: Choose Surah -->
-  <div class="step" id="step1">
-    <div class="step-label"><span class="step-num">1</span> Choose a Surah to recite</div>
-    <div class="surah-grid">
-      <button class="surah-btn" onclick="selectSurah(this,'Al-Fatiha','الْفَاتِحَة','بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ۝ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ')">
-        <span class="arabic">الْفَاتِحَة</span><span class="english">Al-Fatiha</span>
-      </button>
-      <button class="surah-btn" onclick="selectSurah(this,'Al-Ikhlas','الْإِخْلَاص','قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ')">
-        <span class="arabic">الْإِخْلَاص</span><span class="english">Al-Ikhlas</span>
-      </button>
-      <button class="surah-btn" onclick="selectSurah(this,'Al-Falaq','الْفَلَق','قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ')">
-        <span class="arabic">الْفَلَق</span><span class="english">Al-Falaq</span>
-      </button>
-      <button class="surah-btn" onclick="selectSurah(this,'An-Nas','النَّاس','قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ')">
-        <span class="arabic">النَّاس</span><span class="english">An-Nas</span>
-      </button>
-      <button class="surah-btn" onclick="selectSurah(this,'Al-Kawthar','الْكَوْثَر','إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ')">
-        <span class="arabic">الْكَوْثَر</span><span class="english">Al-Kawthar</span>
-      </button>
-      <button class="surah-btn" onclick="selectSurah(this,'Al-Asr','الْعَصْر','وَالْعَصْرِ ۝ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ')">
-        <span class="arabic">الْعَصْر</span><span class="english">Al-Asr</span>
-      </button>
+<!-- TOOL / APP CTA -->
+<div class="tool-card" style="text-align:center;">
+  <div class="hero-tag" style="margin-bottom:20px;">🎙️ Live in the App</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;margin-bottom:16px;">
+    Check Your Tajweed — <em style="font-style:normal;color:var(--emerald);">Free in the QariAI App</em>
+  </h2>
+  <p style="color:var(--muted);font-size:0.95rem;line-height:1.75;max-width:480px;margin:0 auto 32px;">
+    Record your recitation and get an instant AI breakdown — Makharij, Ghunnah, Madd, Qalqalah and more — scored against 24 Tajweed rules. Free to start, no account needed.
+  </p>
+  <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:14px;background:#000;border-radius:12px;padding:14px 26px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3.18 23.76a2.5 2.5 0 01-.93-.62 2.45 2.45 0 01-.55-1.68V2.54c0-.65.19-1.21.55-1.68A2.5 2.5 0 013.18.24L14.1 12 3.18 23.76z" fill="#EA4335"/><path d="M17.84 15.7L4.44 23.42a2.6 2.6 0 01-1.26.34L14.1 12l3.74 3.7z" fill="#FBBC04"/><path d="M21.75 10.54a1.3 1.3 0 01.5 1.08 1.3 1.3 0 01-.5 1.08l-3.91 2.26L14.1 12l3.74-3.7 3.91 2.24z" fill="#4285F4"/><path d="M3.18.24A2.6 2.6 0 014.44.58L17.84 8.3 14.1 12 3.18.24z" fill="#34A853"/></svg>
+    <div style="text-align:left;line-height:1.2">
+      <span style="display:block;font-size:10px;color:#aaa;font-family:sans-serif;letter-spacing:0.05em">GET IT ON</span>
+      <span style="display:block;font-size:18px;font-weight:700;color:#fff;font-family:sans-serif">Google Play</span>
     </div>
-  </div>
+  </a>
+  <p style="color:var(--muted);font-size:0.78rem;margin-top:16px;">Free to start · No credit card needed</p>
 
-  <!-- STEP 2: Verse preview -->
-  <div class="step" id="step2" style="display:none;">
-    <div class="step-label"><span class="step-num">2</span> Recite this verse</div>
-    <div class="verse-box" id="verse-display">Select a Surah above</div>
-  </div>
-
-  <!-- STEP 3: Record/Check -->
-  <div class="step" id="step3" style="display:none;">
-    <div class="step-label"><span class="step-num">3</span> Check your recitation</div>
-    <div class="record-area">
-      <button class="record-btn" id="record-btn" onclick="toggleRecord()" title="Tap to simulate recitation">🎙️</button>
-      <p class="record-hint" id="record-hint"><strong>Tap to recite</strong> — or click Analyse below to see a sample check</p>
-    </div>
-    <div class="or-divider">or</div>
-    <button class="analyse-btn" id="analyse-btn" onclick="runAnalysis()">Analyse My Recitation →</button>
-  </div>
-
-  <!-- LOADING -->
-  <div class="loading" id="loading">
-    <div class="dots"><span></span><span></span><span></span></div>
-    <p style="color:var(--muted);font-size:0.82rem;margin-top:10px;">Checking your Tajweed rules…</p>
-  </div>
-
-  <!-- RESULTS -->
-  <div id="results">
-    <div class="results-header">
-      <div class="results-title">Your Tajweed Report</div>
-      <div class="score-badge low" id="score-badge">Score: 58%</div>
-    </div>
-
-    
-
-    <div class="internal-links">
+  <div class="internal-links" style="text-align:left;margin-top:40px;">
     <h4>📚 Related Pages</h4>
     <ul>
       <li><a href="/best-ai-quran-app">→ Best AI Quran Apps 2026</a></li>
       <li><a href="/compare/qari-ai-vs-tarteel">→ Qari AI vs Tarteel</a></li>
       <li><a href="/apps-like-tarteel">→ Apps Like Tarteel</a></li>
-      <li><a href="/tajweed-mistakes-checker">→ Free Tajweed Checker</a></li>
+      <li><a href="/learn/pronounce-ayn">→ How to Pronounce 'Ayn (ع)</a></li>
       <li><a href="/learn/common-tajweed-mistakes">→ Common Tajweed Mistakes</a></li>
       <li><a href="/learn/qalqalah-explained">→ Qalqalah Explained</a></li>
       <li><a href="/open-methodology">→ Open Evaluation Methodology</a></li>
     </ul>
   </div>
-  <div class="cta-box">
-      <h3>Ready to fix these mistakes?</h3>
-      <p>QariAI gives you personalised drills targeting exactly these rules — with real-time AI feedback on every recitation. Free to download.</p>
-      <div class="cta-box-btns">
-        <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:14px;background:#000;border-radius:12px;padding:12px 22px;text-decoration:none;transition:opacity 0.2s;margin-top:4px" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3.18 23.76a2.5 2.5 0 01-.93-.62 2.45 2.45 0 01-.55-1.68V2.54c0-.65.19-1.21.55-1.68A2.5 2.5 0 013.18.24L14.1 12 3.18 23.76z" fill="#EA4335"/><path d="M17.84 15.7L4.44 23.42a2.6 2.6 0 01-1.26.34L14.1 12l3.74 3.7z" fill="#FBBC04"/><path d="M21.75 10.54a1.3 1.3 0 01.5 1.08 1.3 1.3 0 01-.5 1.08l-3.91 2.26L14.1 12l3.74-3.7 3.91 2.24z" fill="#4285F4"/><path d="M3.18.24A2.6 2.6 0 014.44.58L17.84 8.3 14.1 12 3.18.24z" fill="#34A853"/></svg>
-      <div style="text-align:left;line-height:1.2">
-        <span style="display:block;font-size:10px;color:#aaa;font-family:sans-serif;letter-spacing:0.05em">GET IT ON</span>
-        <span style="display:block;font-size:18px;font-weight:700;color:#fff;font-family:sans-serif">Google Play</span>
-      </div>
-    </a>
-        
-      </div>
-    </div>
-
-    <button class="reset-btn" onclick="resetTool()">← Check a different Surah</button>
-  </div>
 </div>
 
 <!-- PROOF BAR -->
 <div class="proof-bar">
-  <div class="proof-item"><div class="proof-num">14</div><div class="proof-label">Tajweed Rules Checked</div></div>
-  <div class="proof-item"><div class="proof-num">6</div><div class="proof-label">Surahs Available</div></div>
-  <div class="proof-item"><div class="proof-num">Free</div><div class="proof-label">Always & Forever</div></div>
+  <div class="proof-item"><div class="proof-num">14+</div><div class="proof-label">Tajweed Rules Checked</div></div>
+  <div class="proof-item"><div class="proof-num">AI</div><div class="proof-label">Powered Analysis</div></div>
+  <div class="proof-item"><div class="proof-num">Free</div><div class="proof-label">To Start</div></div>
 </div>
 
 <!-- RULES SECTION -->
 <div class="rules-section">
   <h2 class="section-heading">What we check</h2>
-  <p class="section-sub">Our checker identifies the most common Tajweed mistakes made by learners at every level.</p>
+  <p class="section-sub">Our AI identifies the most common Tajweed mistakes made by learners at every level.</p>
   <div class="rules-grid">
     <div class="rule-card">
       <div class="rule-emoji">🗣️</div>
@@ -513,200 +288,4 @@ footer a:hover { text-decoration: underline; }
     <div class="rule-card">
       <div class="rule-emoji">🔇</div>
       <div class="rule-name">Ikhfa</div>
-      <div class="rule-desc">Partial hiding of Noon Sakinah and Tanween before 15 specific letters.</div>
-    </div>
-    <div class="rule-card">
-      <div class="rule-emoji">🔗</div>
-      <div class="rule-name">Idgham</div>
-      <div class="rule-desc">Merging of Noon Sakinah or Tanween into the following letter.</div>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer style="background:#064e3b;color:#e2e8f0;padding:3rem 1.5rem 2rem;position:relative;z-index:1;">
-  <div style="max-width:80rem;margin:0 auto;">
-    <div style="display:flex;flex-wrap:wrap;gap:2.5rem;justify-content:space-between;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.1);">
-      <div>
-        <img src="/logo.png" style="width:76px;height:76px;object-fit:contain;mix-blend-mode:multiply;" alt="QariAI" style="height:52px;width:auto;object-fit:contain;margin-bottom:8px;">
-        <p style="font-size:0.875rem;color:#e2e8f0;line-height:1.6;margin-top:0.5rem;">AI-Powered Tajweed & Hifz Coach<br>Built for the Ummah</p>
-      </div>
-      <div>
-        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Product</p>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;">
-          <a href="/tajweed-mistakes-checker" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Free Tajweed Checker</a>
-          <a href="/how-qari-ai-works" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">How It Works</a>
-          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Download Free</a>
-        </div>
-      </div>
-      <div>
-        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Learn</p>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;">
-          <a href="/learn/common-tajweed-mistakes" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Common Tajweed Mistakes</a>
-          <a href="/learn/pronounce-ayn" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Pronounce Ayn (ع)</a>
-          <a href="/learn/qalqalah-explained" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Qalqalah Explained</a>
-        </div>
-      </div>
-      <div>
-        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Compare</p>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;">
-          <a href="/best-ai-quran-app" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Best AI Quran App</a>
-          <a href="/compare/qari-ai-vs-tarteel" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Qari AI vs Tarteel</a>
-          <a href="/compare/qari-ai-vs-tajweedmate" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Qari AI vs TajweedMate</a>
-          <a href="/apps-like-tarteel" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Apps Like Tarteel</a>
-        </div>
-      </div>
-      <div>
-        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;color:#e2e8f0;">Company</p>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;">
-          <a href="/about" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">About</a>
-          <a href="/privacy" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Privacy Policy</a>
-          <a href="/terms" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Terms of Service</a>
-          <a href="/cdn-cgi/l/email-protection#295a484548446958485b40484007485959" style="font-size:0.875rem;color:#e2e8f0;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#e2e8f0'">Contact</a>
-        </div>
-      </div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;">
-      <p style="font-size:0.82rem;color:#e2e8f0;">© 2026 QariAI · Built for the Ummah · AI-Powered</p>
-      <a href="/ar" style="border:1.5px solid #475569;color:#94a3b8;padding:5px 12px;border-radius:9999px;font-size:0.8rem;font-weight:700;text-decoration:none;">🇸🇦 عربي</a>
-    </div>
-  </div>
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── State ──
-let selectedSurah = null;
-let isRecording = false;
-let recordTimer = null;
-
-// ── Surah selection ──
-function selectSurah(btn, name, arabic, verse) {
-  document.querySelectorAll('.surah-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedSurah = { name, arabic, verse };
-  document.getElementById('verse-display').textContent = verse;
-  document.getElementById('step2').style.display = 'block';
-  document.getElementById('step3').style.display = 'block';
-  document.getElementById('results').classList.remove('visible');
-  document.getElementById('loading').classList.remove('visible');
-  resetRecordBtn();
-}
-
-function resetRecordBtn() {
-  const btn = document.getElementById('record-btn');
-  btn.classList.remove('recording');
-  btn.textContent = '🎙️';
-  document.getElementById('record-hint').innerHTML = '<strong>Tap to recite</strong> — or click Analyse below to see a sample check';
-  isRecording = false;
-  clearTimeout(recordTimer);
-}
-
-// ── Recording simulation ──
-function toggleRecord() {
-  if (!selectedSurah) { alert('Please select a Surah first!'); return; }
-  if (isRecording) {
-    resetRecordBtn();
-    document.getElementById('record-hint').innerHTML = '✅ <strong>Recitation recorded</strong> — click Analyse to see results';
-  } else {
-    isRecording = true;
-    const btn = document.getElementById('record-btn');
-    btn.classList.add('recording');
-    btn.textContent = '⏹️';
-    document.getElementById('record-hint').innerHTML = '🔴 <strong>Recording…</strong> tap again to stop';
-    recordTimer = setTimeout(() => {
-      resetRecordBtn();
-      document.getElementById('record-hint').innerHTML = '✅ <strong>Recitation recorded</strong> — click Analyse to see results';
-    }, 5000);
-  }
-}
-
-// ── Analysis ──
-const MISTAKE_POOLS = {
-  'Al-Fatiha': [
-    { type:'error',   icon:'🔴', rule:'Makharij — ح vs ه', desc:'The ح in "الرَّحْمَٰنِ" is from the middle of the throat. Replacing it with a soft ه loses the friction needed.', fix:'Fix: Push air from mid-throat with gentle constriction.' },
-    { type:'warning', icon:'🟡', rule:'Madd Tabee\'i (Natural Madd)', desc:'The alif in "الرَّحِيمِ" requires exactly 2 counts of elongation. Common mistake is cutting it short to 1 count.', fix:'Fix: Hold the vowel for a steady 2-beat count.' },
-    { type:'warning', icon:'🟡', rule:'Ghunnah — النُّونُ', desc:'The Noon in "مَلِكِ" followed by a vowel still carries a light nasal resonance that is often dropped.', fix:'Fix: Allow a brief nasal hum before moving to the vowel.' },
-    { type:'tip',     icon:'🟢', rule:'Waqf Position', desc:'Stopping at "الْعَالَمِينَ" is a complete stop — exhale fully and do not breathe mid-word.', fix:'Tip: Mark your breath points before reciting.' },
-  ],
-  'Al-Ikhlas': [
-    { type:'error',   icon:'🔴', rule:'Qalqalah — الدَّال', desc:'The daal (د) in "أَحَدٌ" at the end carries a strong Qalqalah echo as it is both a Qalqalah letter and at sukoon.', fix:'Fix: Let the letter "bounce" — a brief release after the stop.' },
-    { type:'warning', icon:'🟡', rule:'Idgham — Tanween', desc:'The Tanween on "أَحَدٌ" before "اللَّه" requires full merging (Idgham ma\'a Ghunnah) — 2 count nasal merge.', fix:'Fix: Blend Noon into Lam with a 2-count nasal hum.' },
-    { type:'tip',     icon:'🟢', rule:'Sifat — الصَّمَد', desc:'"الصَّمَدُ" contains Sad (ص) which is a heavy (Isti\'la) letter — the vowels must be raised and full.', fix:'Tip: Raise the back of your tongue slightly for Sad.' },
-  ],
-  'Al-Falaq': [
-    { type:'error',   icon:'🔴', rule:'Makharij — الْعَيْن', desc:'The Ayn (ع) in "أَعُوذُ" is from the middle of the throat — one of the most mispronounced letters by non-Arabic speakers.', fix:'Fix: Constrict the throat mid-point, not the top.' },
-    { type:'warning', icon:'🟡', rule:'Madd — Obligatory', desc:'The Waw Madd in "أَعُوذُ" before the Hamza requires 4-5 counts of elongation (Madd Wajib).', fix:'Fix: Extend the "oo" sound for a full 4-beat count before the hamza.' },
-    { type:'tip',     icon:'🟢', rule:'Ikhfa — النُّون', desc:'The Noon in "مِن شَرِّ" requires Ikhfa — a hidden nasal sound (not full Idgham, not full Izhar).', fix:'Tip: Keep the nasal channel open while approaching the Shin.' },
-  ],
-  'An-Nas': [
-    { type:'error',   icon:'🔴', rule:'Makharij — النَّاس', desc:'The Noon (ن) in "النَّاس" is a Shaddah Noon — doubled and nasalised. Many reciters drop the doubling.', fix:'Fix: Hold the Noon position with nasal vibration for 2 full counts.' },
-    { type:'warning', icon:'🟡', rule:'Ghunnah — مِن شَرِّ', desc:'The Meem in "مَلِكِ النَّاسِ" when meeting Lam requires clarity (Izhar Shafawi) — no merging here.', fix:'Fix: Close lips fully on Meem, then separate clearly before Lam.' },
-    { type:'tip',     icon:'🟢', rule:'Heavy Letters', desc:'"النَّاسِ" — the Lam of "ال" before Noon is a light Lam (Tarqeeq), keep the vowel light and forward.', fix:'Tip: Do not raise the back of your tongue for this Lam.' },
-  ],
-  'Al-Kawthar': [
-    { type:'error',   icon:'🔴', rule:'Qalqalah — الْقَاف', desc:'The Qaf (ق) in "الْكَوْثَرَ" followed by sukoon requires a strong Qalqalah echo from the back of the throat.', fix:'Fix: Feel a slight "pop" or release after the Qaf stops.' },
-    { type:'warning', icon:'🟡', rule:'Madd — الْكَوْثَرَ', desc:'The Waw in "الْكَوْثَرَ" is a natural Madd (2 counts) — often rushed to 1 count.', fix:'Fix: Give the Waw exactly 2 even beats before moving to Tha.' },
-    { type:'tip',     icon:'🟢', rule:'Shaddah emphasis', desc:'The Ra (ر) in "وَانْحَرْ" at waqf has no Qalqalah — Ra is not a Qalqalah letter. End it cleanly.', fix:'Tip: Simply stop the Ra without any bounce or echo.' },
-  ],
-  'Al-Asr': [
-    { type:'error',   icon:'🔴', rule:'Makharij — الْعَصْر', desc:'The Ayn (ع) in "الْعَصْرِ" needs the mid-throat constriction — a defining letter of Arabic with no equivalent in English.', fix:'Fix: Start from the lower throat, tighten gently mid-way.' },
-    { type:'warning', icon:'🟡', rule:'Qalqalah — الصَّاد at sukoon', desc:'The Sad (ص) at sukoon in "الْعَصْرِ" — some scholars count this as a weak Qalqalah. Give it a slight release.', fix:'Fix: A subtle bounce, lighter than Qaf or Ba.' },
-    { type:'tip',     icon:'🟢', rule:'Tanween Nasalisation', desc:'The Tanween on "خُسْرٍ" at the end — if stopping here, allow the nasal to fade naturally, don\'t cut it.', fix:'Tip: Let the Noon of Tanween hum briefly as you stop.' },
-  ],
-};
-
-function runAnalysis() {
-  if (!selectedSurah) { alert('Please select a Surah first!'); return; }
-
-  const loading = document.getElementById('loading');
-  const results = document.getElementById('results');
-  const analyseBtn = document.getElementById('analyse-btn');
-
-  analyseBtn.disabled = true;
-  loading.classList.add('visible');
-  results.classList.remove('visible');
-
-  setTimeout(() => {
-    loading.classList.remove('visible');
-    showResults();
-    analyseBtn.disabled = false;
-  }, 2200);
-}
-
-function showResults() {
-  const mistakes = MISTAKE_POOLS[selectedSurah.name] || MISTAKE_POOLS['Al-Fatiha'];
-  const errorCount = mistakes.filter(m => m.type === 'error').length;
-  const warnCount  = mistakes.filter(m => m.type === 'warning').length;
-
-  // Score
-  const score = Math.max(40, 100 - (errorCount * 18) - (warnCount * 8));
-  const badge = document.getElementById('score-badge');
-  badge.textContent = `Score: ${score}%`;
-  badge.className = 'score-badge ' + (score < 60 ? 'low' : score < 80 ? 'mid' : 'high');
-
-  // Render mistakes
-  const list = document.getElementById('mistakes-list');
-  list.innerHTML = '';
-  mistakes.forEach((m, i) => {
-    const el = document.createElement('div');
-    el.className = `mistake-item ${m.type}`;
-    el.style.animationDelay = `${i * 0.1}s`;
-    el.innerHTML = `
-      <div class="mistake-icon">${m.icon}</div>
-      <div class="mistake-body">
-        <div class="mistake-rule">${m.rule}</div>
-        <div class="mistake-desc">${m.desc}</div>
-        <div class="mistake-fix"><strong>${m.fix.split(':')[0]}:</strong>${m.fix.split(':').slice(1).join(':')}</div>
-      </div>`;
-    list.appendChild(el);
-  });
-
-  document.getElementById('results').classList.add('visible');
-  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function resetTool() {
-  document.getElementById('results').classList.remove('visible');
-  document.getElementById('step2').style.display = 'none';
-  document.getElementById('step3').style.display = 'none';
-  document.querySelectorAll('.surah-btn').forEach(b => b.classLi
+      <div class="rule-desc">Partial hiding
