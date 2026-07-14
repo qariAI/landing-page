@@ -2,6 +2,12 @@
   "redirects": [
     {
       "source": "/:path*",
+      "has": [{ "type": "header", "key": "x-forwarded-proto", "value": "http" }],
+      "destination": "https://qariai.app/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
       "has": [{ "type": "host", "value": "www.qariai.app" }],
       "destination": "https://qariai.app/:path*",
       "permanent": true
