@@ -1,5 +1,4 @@
 # QariAI
-
 > AI-powered Tajweed and Hifz coaching for Quran recitation. QariAI listens to
 > your recitation and returns instant, rule-specific Tajweed corrections — no
 > login required. Free on Android (iOS coming soon).
@@ -24,6 +23,7 @@ a qualified human teacher.
 - Free Tajweed checker: https://qariai.app/tajweed-mistakes-checker
 - Learn common Tajweed mistakes: https://qariai.app/learn/common-tajweed-mistakes
 - QariAI vs Tarteel: https://qariai.app/compare/qari-ai-vs-tarteel
+- QariAI vs TajweedMate: https://qariai.app/compare/qari-ai-vs-tajweedmate
 - About: https://qariai.app/about
 - Contact: salam@qariai.app
 
