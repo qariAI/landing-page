@@ -85,6 +85,7 @@
     { "source": "/academy/ai-quran", "destination": "/academy/ai-quran.html" },
     { "source": "/academy/ai-tajweed", "destination": "/academy/ai-tajweed.html" },
     { "source": "/academy/ai-hifz", "destination": "/academy/ai-hifz.html" },
+    { "source": "/academy/memorize-quran-at-home", "destination": "/academy/memorize-quran-at-home.html" },
     { "source": "/academy/ai-quran-app", "destination": "/academy/ai-quran-app.html" },
     { "source": "/academy/ai-vs-human-quran-teacher", "destination": "/academy/ai-vs-human-quran-teacher.html" },
     { "source": "/academy/best-ai-quran-apps", "destination": "/academy/best-ai-quran-apps.html" },
