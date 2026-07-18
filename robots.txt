@@ -1,55 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- IMPORTANT: only keep URLs that actually return HTTP 200.
-       Remove any of the pages below that don't exist yet. -->
-  <url>
-    <loc>https://qariai.app/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://qariai.app/how-qari-ai-works</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://qariai.app/qaef</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://qariai.app/tajweed-mistakes-checker</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://qariai.app/learn/common-tajweed-mistakes</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://qariai.app/compare/qari-ai-vs-tarteel</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://qariai.app/about</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://qariai.app/media-kit</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://qariai.app/privacy</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://qariai.app/terms</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-</urlset>
+User-agent: *
+Allow: /
+
+Disallow: /marketing/
+Disallow: /outreach/
+Disallow: /demo-worker/
+Disallow: /quran-learning-methodology-evaluation/
+
+Sitemap: https://qariai.app/sitemap.xml
