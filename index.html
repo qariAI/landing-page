@@ -74,6 +74,14 @@
     .qscroll::-webkit-scrollbar{ height:8px; }
     .qscroll::-webkit-scrollbar-thumb{ background:rgba(18,56,41,0.2); border-radius:20px; }
     .qscroll::-webkit-scrollbar-track{ background:transparent; }
+    @media (max-width:900px){
+      .qgrid4{ grid-template-columns:repeat(2,1fr) !important; }
+      .qgrid3{ grid-template-columns:repeat(2,1fr) !important; }
+    }
+    @media (max-width:640px){
+      .qgrid4{ grid-template-columns:1fr !important; }
+      .qgrid3{ grid-template-columns:1fr !important; }
+    }
   </style>
 </helmet>
 
@@ -229,8 +237,30 @@
     </div>
   </section>
 
+  <!-- ══ CREDIBILITY ══ -->
+  <section style="max-width:1120px; margin:0 auto; padding:56px max(24px,4vw) 8px;">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;" class="qgrid4">
+      <div style="padding:24px 20px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#0c6b48; margin-bottom:10px;">Research-First</div>
+        <p style="font-size:14px; line-height:1.55; color:#3d453f; margin:0;">We publish an <a href="https://qariai.app/qaef" style="color:#0c6b48; font-weight:600;">open evaluation methodology</a> and score ourselves against it publicly — including where we fall short.</p>
+      </div>
+      <div style="padding:24px 20px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#0c6b48; margin-bottom:10px;">Trusted By Learners</div>
+        <p style="font-size:14px; line-height:1.55; color:#3d453f; margin:0;"><strong style="color:#12251b;">6,000+ active learners</strong> as of July 2026, averaging over 6 minutes of practice per session.</p>
+      </div>
+      <div style="padding:24px 20px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#0c6b48; margin-bottom:10px;">Built for the Qur'an</div>
+        <p style="font-size:14px; line-height:1.55; color:#3d453f; margin:0;">Letter-level Tajweed analysis and Hifz-aware feedback — not a general speech app repurposed for Arabic.</p>
+      </div>
+      <div style="padding:24px 20px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#0c6b48; margin-bottom:10px;">Teacher-Aligned</div>
+        <p style="font-size:14px; line-height:1.55; color:#3d453f; margin:0;">Built to complement a qualified teacher between lessons — not to replace one.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ HOW IT WORKS ══ -->
-  <section id="how" style="max-width:1120px; margin:0 auto; padding:96px max(24px,4vw) 56px;">
+  <section id="how" style="max-width:1120px; margin:0 auto; padding:56px max(24px,4vw) 56px;">
     <div style="text-align:center; margin-bottom:56px;">
       <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">How it works</span>
       <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Every session follows the same loop.</h2>
