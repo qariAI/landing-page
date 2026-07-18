@@ -18,12 +18,18 @@ a qualified human teacher.
 
 ## Links
 - Home: https://qariai.app/
+- Academy (all guides): https://qariai.app/academy
 - Download (Google Play): https://play.google.com/store/apps/details?id=app.qari.ai
 - How it works: https://qariai.app/how-qari-ai-works
+- AI Quran tutor overview: https://qariai.app/academy/ai-quran
+- AI Tajweed correction explained: https://qariai.app/academy/ai-tajweed
+- AI Hifz coaching explained: https://qariai.app/academy/ai-hifz
+- Memorize Quran at home: https://qariai.app/academy/memorize-quran-at-home
 - Free Tajweed checker: https://qariai.app/tajweed-mistakes-checker
 - Learn common Tajweed mistakes: https://qariai.app/learn/common-tajweed-mistakes
 - QariAI vs Tarteel: https://qariai.app/compare/qari-ai-vs-tarteel
 - QariAI vs TajweedMate: https://qariai.app/compare/qari-ai-vs-tajweedmate
+- Open Evaluation Methodology (QAEF): https://qariai.app/qaef
 - About: https://qariai.app/about
 - Contact: salam@qariai.app
 
