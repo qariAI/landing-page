@@ -46,12 +46,7 @@
       "installUrl": "https://play.google.com/store/apps/details?id=app.qari.ai",
       "url": "https://qariai.app",
       "publisher": { "@id": "https://qariai.app/#organization" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "2000"
-      }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
   ]
 }
@@ -77,29 +72,89 @@
     @media (max-width:900px){
       .qgrid4{ grid-template-columns:repeat(2,1fr) !important; }
       .qgrid3{ grid-template-columns:repeat(2,1fr) !important; }
+      .qgrid5{ grid-template-columns:repeat(3,1fr) !important; }
+      .qsplit{ grid-template-columns:1fr !important; }
+      .qhero-grid{ grid-template-columns:1fr !important; gap:56px !important; }
     }
     @media (max-width:640px){
       .qgrid4{ grid-template-columns:1fr !important; }
       .qgrid3{ grid-template-columns:1fr !important; }
+      .qgrid2{ grid-template-columns:1fr !important; }
+      .qgrid5{ grid-template-columns:repeat(2,1fr) !important; }
     }
+    @media (max-width:480px){
+      .qgrid5{ grid-template-columns:1fr !important; }
+      .qnav-playtext{ display:none; }
+    }
+    .qnav-links{ display:flex; align-items:center; gap:26px; }
+    .qnav-burger, .qnav-check{ display:none; }
+    @media (max-width:760px){
+      .qnav-links{ position:fixed; top:70px; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0;
+        background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 12px 24px rgba(18,56,41,0.08);
+        max-height:0; overflow:hidden; transition:max-height .25s ease; }
+      .qnav-links a{ width:100%; padding:16px max(24px,4vw); border-top:1px solid rgba(18,56,41,0.06); }
+      .qnav-check:checked ~ .qnav-links{ max-height:280px; }
+      .qnav-burger{ display:flex; align-items:center; justify-content:center; width:40px; height:40px;
+        border-radius:10px; border:1px solid rgba(18,56,41,0.14); cursor:pointer; flex-shrink:0; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+      html{ scroll-behavior:auto; }
+    }
+    body.qmodal-open{ overflow:hidden; }
+    .qmodal-overlay{ position:fixed; inset:0; z-index:200; background:rgba(15,21,18,0.72); backdrop-filter:blur(6px);
+      display:none; align-items:center; justify-content:center; padding:24px; }
+    .qmodal-overlay.qopen{ display:flex; animation:qRise .25s ease both; }
   </style>
 </helmet>
 
 <div style="position:relative; background:#f4efe4; overflow:hidden;">
 
+  <!-- ═══════════════════════════════════════════════════════════════════
+       QARIAI LANDING PAGE — production target: static HTML/CSS + minimal
+       vanilla JS on the existing GitHub → Vercel pipeline. No React, no
+       build step, no npm deps unless separately requested.
+
+       SECTION MAP (search for "══" to jump between them):
+       NAV → HERO → STEP STRIP → AS FEATURED → CHECKLIST → CREDIBILITY →
+       TAJWEED QUEST → HOW IT WORKS → FEATURES → PROGRESS →
+       SCREENSHOT CAROUSEL → COACH REMEMBERS YOU → DAILY PLANS →
+       TESTIMONIALS → COMPARISON TABLE → TOPIC HUB → WHO IT'S FOR →
+       FINAL CTA → FOOTER → sticky CTA → demo modal
+
+       EDITABLE CONTENT (things likely to change often):
+       - Hero stats (6,000+ / 42+ / £0)            — verify before editing, see memory notes
+       - Testimonials (Matti-Ur Rehman, Sayeed Ahmed) — Google Play reviews, verified
+       - Tajweed Quest promo image: uploads/tajweed-quest-preview.webp
+       - Screenshot carousel: screenshots/en1.jpg … en4.jpg
+
+       JS STATE (all vanilla, two separate mechanisms — do not conflate):
+       1. Sticky CTA visibility — handled by the x-dc DCLogic component at
+          the bottom of this file (scroll > 780px). Existing runtime, untouched.
+       2. Mobile nav open/close — pure CSS checkbox toggle (#qnav-toggle),
+          no JS required except closing it on anchor-link tap (see <script> below).
+       3. Demo modal open/close — plain vanilla JS at the bottom of this file
+          (#qdemo-open/#qdemo-overlay/#qdemo-close). Deliberately NOT wired
+          through the x-dc runtime — that binding pattern broke in testing.
+  ═══════════════════════════════════════════════════════════════════ -->
   <!-- ══ NAV ══ -->
   <nav style="position:fixed; top:0; left:0; right:0; z-index:120; display:flex; align-items:center; justify-content:space-between; height:70px; padding:0 max(24px,4vw); background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 1px 14px rgba(18,56,41,0.05);">
     <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
-      <span style="width:50px; height:50px; border-radius:13px; background:#ffffff; border:1px solid rgba(18,56,41,0.1); box-shadow:0 2px 8px rgba(18,56,41,0.08); display:flex; align-items:center; justify-content:center; padding:6px;"><img src="uploads/logo.png" alt="QariAI" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+      <span style="width:50px; height:50px; border-radius:13px; background:#ffffff; border:1px solid rgba(18,56,41,0.1); box-shadow:0 2px 8px rgba(18,56,41,0.08); display:flex; align-items:center; justify-content:center; padding:6px;"><img src="uploads/logo.png" alt="QariAI" width="50" height="50" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
       <span style="font-family:'Spectral',serif; font-size:28px; font-weight:700; letter-spacing:-.01em; color:#123829;">Qari<span style="color:#0c6b48;">AI</span></span>
     </a>
-    <div style="display:flex; align-items:center; gap:30px;">
-      <div style="display:flex; align-items:center; gap:26px;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <input type="checkbox" id="qnav-toggle" class="qnav-check"/>
+      <div class="qnav-links">
+        <a href="#how" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">How It Works</a>
         <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Features</a>
         <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Learn</a>
         <a href="https://qariai.app/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">About</a>
       </div>
-      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fffdf8; text-decoration:none; padding:11px 22px; background:#0c6b48; border-radius:40px; box-shadow:0 6px 18px rgba(12,107,72,.28); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-1px); box-shadow:0 10px 22px rgba(12,107,72,.36);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fffdf8"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>Get it on Google Play</a>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="nav_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fffdf8; text-decoration:none; padding:11px 22px; background:#0c6b48; border-radius:40px; box-shadow:0 6px 18px rgba(12,107,72,.28); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-1px); box-shadow:0 10px 22px rgba(12,107,72,.36);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fffdf8" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg><span class="qnav-playtext">Get it on Google Play</span></a>
+      <label for="qnav-toggle" class="qnav-burger" aria-label="Open menu" role="button" tabindex="0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#123829" stroke-width="2" stroke-linecap="round"/></svg>
+      </label>
     </div>
   </nav>
 
@@ -110,23 +165,32 @@
 
     <div style="position:relative; z-index:2; display:grid; grid-template-columns:1.15fr 0.85fr; gap:24px; align-items:center;" class="qhero-grid">
       <div style="animation:qRise .7s ease both;">
+        <a href="#tajweed-quest" style="display:inline-flex; align-items:center; gap:10px; text-decoration:none; padding:7px 8px 7px 14px; margin-bottom:22px; background:#ffffff; border:1px solid rgba(18,56,41,0.12); border-radius:40px; box-shadow:0 3px 10px rgba(18,56,41,0.06);" style-hover="transform:translateY(-1px); box-shadow:0 6px 16px rgba(18,56,41,0.1);">
+          <span style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:#fffdf8; background:#c9973f; padding:4px 9px; border-radius:30px;">New</span>
+          <span style="font-size:13px; font-weight:600; color:#12251b;">Tajweed Quest is here — a new way to practice</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M9 6l6 6-6 6" stroke="#0c6b48" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
         <h1 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2.7rem,5vw,4.3rem); line-height:1.04; letter-spacing:-.02em; color:#12251b; margin-bottom:22px;">
-          Recite with <em style="font-style:italic; font-weight:700; color:#0c6b48;">confidence.</em>
+          The AI Quran Tutor That <em style="font-style:italic; font-weight:700; color:#0c6b48;">Listens, Corrects & Helps You Memorise.</em>
         </h1>
         <p style="font-size:1.02rem; line-height:1.5; color:#123829; font-weight:500; max-width:460px; margin-top:14px; margin-bottom:32px;">
-          The AI Quran tutor that helps you improve Tajweed, strengthen Hifz, and practise independently with instant feedback.
+          Practice from home, receive instant Tajweed correction, memorise with guided repetition, and improve every recitation — even when a teacher isn't available.
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:28px;">
-          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:inline-flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; color:#fffdf8; text-decoration:none; padding:16px 30px; background:#0c6b48; border-radius:44px; box-shadow:0 10px 26px rgba(12,107,72,.32); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-2px); box-shadow:0 16px 36px rgba(12,107,72,.42);">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fffdf8" style="flex-shrink:0;"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="hero_play_store_click" style="display:inline-flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; color:#fffdf8; text-decoration:none; padding:16px 30px; background:#0c6b48; border-radius:44px; box-shadow:0 10px 26px rgba(12,107,72,.32); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-2px); box-shadow:0 16px 36px rgba(12,107,72,.42);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fffdf8" style="flex-shrink:0;" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
             <span style="white-space:nowrap;">Get it on Google Play</span>
           </a>
-          <a href="#screenshots" style="display:inline-flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; color:#123829; text-decoration:none; padding:15px 22px; background:transparent; border-radius:44px;" style-hover="color:#0c6b48;">
-            <span style="width:34px; height:34px; border-radius:50%; background:#ffffff; border:1.5px solid rgba(18,56,41,0.14); display:inline-flex; align-items:center; justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="#0c6b48"><path d="M6 4l14 8-14 8V4z"/></svg></span>
-            <span style="white-space:nowrap;">Explore Features</span>
-          </a>
+          <!-- Demo button: hidden until a real, confirmed QariAI demo video ID replaces YOUTUBE_VIDEO_ID_HERE below. Remove display:none to enable. -->
+          <button type="button" id="qdemo-open" data-ga-event="demo_open" style="display:none; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; color:#123829; background:transparent; border:none; padding:15px 22px; border-radius:44px; cursor:pointer;" style-hover="color:#0c6b48;">
+            <span style="width:34px; height:34px; border-radius:50%; background:#ffffff; border:1.5px solid rgba(18,56,41,0.14); display:inline-flex; align-items:center; justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="#0c6b48" aria-hidden="true"><path d="M6 4l14 8-14 8V4z"/></svg></span>
+            <span style="white-space:nowrap;">See QariAI in action</span>
+          </button>
         </div>
-        <div style="font-size:12.5px; font-weight:600; color:#7a8378; margin-top:-20px; margin-bottom:28px;">Available now on Google Play</div>
+        <div style="display:flex; align-items:center; gap:10px; margin-top:-20px; margin-bottom:28px; flex-wrap:wrap;">
+          <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Free to start</span>
+          <span style="font-size:12.5px; font-weight:700; color:#12251b;">6,000+ learners across 42+ countries</span>
+        </div>
         <div style="display:flex; align-items:flex-start; gap:13px; max-width:460px;">
           <span style="width:36px; height:36px; border-radius:50%; background:#0c6b48; border:2px solid #f4efe4; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#fff; flex-shrink:0;">M</span>
           <div style="font-size:13.5px; color:#5f6a60; line-height:1.5;">
@@ -138,15 +202,15 @@
         </div>
         <p style="font-size:13.5px; color:#6b756a; font-style:italic; margin-top:14px;">Helping Muslims improve their recitation every day.</p>
         <div style="display:flex; flex-wrap:wrap; gap:28px; margin-top:24px; padding-top:22px; border-top:1px solid rgba(18,56,41,0.09);">
-          <div><span style="display:block; font-family:'Spectral',serif; font-size:1.75rem; font-weight:800; color:#12251b;">2,000+</span><span style="font-size:12px; font-weight:400; color:#93998f;">Learners</span></div>
-          <div><span style="display:block; font-family:'Spectral',serif; font-size:1.75rem; font-weight:800; color:#12251b;">10,000+</span><span style="font-size:12px; font-weight:400; color:#93998f;">Recitations analyzed</span></div>
-          <div><span style="display:block; font-family:'Spectral',serif; font-size:1.75rem; font-weight:800; color:#12251b;">4.9★</span><span style="font-size:12px; font-weight:400; color:#93998f;">Average rating</span></div>
+          <div><span style="display:block; font-family:'Spectral',serif; font-size:1.75rem; font-weight:800; color:#12251b;">6,000+</span><span style="font-size:12px; font-weight:400; color:#93998f;">Active learners</span></div>
+          <div><span style="display:block; font-family:'Spectral',serif; font-size:1.75rem; font-weight:800; color:#12251b;">42+</span><span style="font-size:12px; font-weight:400; color:#93998f;">Countries</span></div>
+          <div><span style="display:block; font-family:'Spectral',serif; font-size:1.75rem; font-weight:800; color:#12251b;">£0</span><span style="font-size:12px; font-weight:400; color:#93998f;">Marketing spend</span></div>
         </div>
       </div>
 
       <!-- living dashboard -->
       <div style="position:relative; display:flex; justify-content:center; align-items:center; animation:qRise .8s ease .1s both;">
-        <div style="position:absolute; width:460px; height:460px; background:radial-gradient(circle, rgba(18,146,94,0.24), transparent 68%); border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%);"></div>
+        <div style="position:absolute; width:520px; height:520px; background:radial-gradient(circle, rgba(18,146,94,0.34), transparent 66%); border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%);"></div>
         <div style="position:absolute; width:300px; height:300px; background:#fffdf8; opacity:0.55; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); filter:blur(2px);"></div>
 
         <div style="position:absolute; left:20px; top:-14px; z-index:6; background:#ffffff; border-radius:14px; padding:10px 14px; box-shadow:0 8px 18px rgba(18,56,41,0.1); display:flex; align-items:center; gap:9px; animation:qFloat 3.4s ease-in-out infinite;">
@@ -169,7 +233,7 @@
           <div style="background:#ffffff; border-radius:36px; overflow:hidden; height:582px; display:flex; flex-direction:column;">
             <div style="background:#ffffff; padding:14px 15px 12px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(18,56,41,0.06);">
               <div style="display:flex; align-items:center; gap:8px;">
-                <span style="width:26px; height:26px; border-radius:8px; background:#fff; border:1px solid rgba(18,56,41,0.1); display:flex; align-items:center; justify-content:center; padding:3px;"><img src="uploads/logo.png" alt="QariAI" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+                <span style="width:26px; height:26px; border-radius:8px; background:#fff; border:1px solid rgba(18,56,41,0.1); display:flex; align-items:center; justify-content:center; padding:3px;"><img src="uploads/logo.png" alt="QariAI" width="26" height="26" loading="lazy" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
                 <span style="font-family:'Spectral',serif; font-size:15px; font-weight:700; color:#123829;">QariAI</span>
               </div>
             </div>
@@ -216,6 +280,17 @@
     </div>
   </section>
 
+  <!-- ══ STEP STRIP ══ -->
+  <section style="max-width:900px; margin:0 auto; padding:0 max(24px,4vw) 56px;">
+    <div style="display:flex; align-items:center; justify-content:center; gap:clamp(10px,3vw,22px); flex-wrap:wrap; background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:20px; padding:18px 28px;">
+      <span style="font-size:15px; font-weight:700; color:#12251b;">Recite</span>
+      <svg width="20" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M14 6l6 6-6 6" stroke="#c9973f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span style="font-size:15px; font-weight:700; color:#12251b;">AI Listens</span>
+      <svg width="20" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M14 6l6 6-6 6" stroke="#c9973f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span style="font-size:15px; font-weight:700; color:#0c6b48;">Instant Corrections</span>
+    </div>
+  </section>
+
   <!-- ══ AS FEATURED ══ -->
   <section style="max-width:1120px; margin:0 auto; padding:0 max(24px,4vw) 40px;">
     <div style="display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;">
@@ -238,7 +313,7 @@
   </section>
 
   <!-- ══ CREDIBILITY ══ -->
-  <section style="max-width:1120px; margin:0 auto; padding:56px max(24px,4vw) 8px;">
+  <section style="max-width:1120px; margin:0 auto; padding:8px max(24px,4vw) 8px;">
     <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;" class="qgrid4">
       <div style="padding:24px 20px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px;">
         <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#0c6b48; margin-bottom:10px;">Research-First</div>
@@ -259,8 +334,18 @@
     </div>
   </section>
 
+  <!-- ══ TAJWEED QUEST ══ -->
+  <section id="tajweed-quest" style="max-width:1080px; margin:0 auto; padding:24px max(24px,4vw) 84px; scroll-margin-top:90px; text-align:center;">
+    <span style="display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#0c6b48; margin-bottom:28px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#c9973f"><path d="M12 2l2.4 6.9H21l-5.3 4.1 2 6.9L12 16.9 6.3 20 8.3 13 3 8.9h6.6L12 2z"/></svg>New · Tajweed Quest</span>
+    <div style="position:relative; max-width:1120px; margin:0 auto;">
+      <div style="position:absolute; inset:-24px; background:radial-gradient(circle, rgba(18,146,94,0.14), transparent 70%); border-radius:50%; pointer-events:none;"></div>
+      <img src="uploads/tajweed-quest-preview.webp" alt="Tajweed Quest — choose your land and begin your journey" width="1344" height="896" loading="lazy" style="position:relative; width:100%; border-radius:20px; display:block; box-shadow:0 24px 60px rgba(18,56,41,0.18); border:1px solid rgba(18,56,41,0.08);"/>
+    </div>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="tajweed_quest_click" style="display:inline-flex; align-items:center; gap:9px; font-size:14px; font-weight:600; color:#0c6b48; text-decoration:none; margin-top:26px;" style-hover="color:#12925e;">Get it on Google Play <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </section>
+
   <!-- ══ HOW IT WORKS ══ -->
-  <section id="how" style="max-width:1120px; margin:0 auto; padding:56px max(24px,4vw) 56px;">
+  <section id="how" style="max-width:1120px; margin:0 auto; padding:96px max(24px,4vw) 56px;">
     <div style="text-align:center; margin-bottom:56px;">
       <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">How it works</span>
       <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Every session follows the same loop.</h2>
@@ -284,19 +369,6 @@
         <h3 style="font-family:'Spectral',serif; font-size:1.35rem; font-weight:700; color:#12251b; margin-bottom:8px;">Improve every day</h3>
         <p style="font-size:14.5px; color:#5c665c; line-height:1.6; max-width:280px; margin:0 auto;">Personalized drills, streaks, and progress tracking build lasting confidence.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ══ LEARN AT YOUR OWN PACE ══ -->
-  <section style="max-width:840px; margin:0 auto; padding:16px max(24px,4vw) 96px; text-align:center;">
-    <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(1.7rem,3vw,2.3rem); line-height:1.15; letter-spacing:-.02em; color:#12251b; margin-bottom:18px;">Learn Quran at Your Own Pace</h2>
-    <p style="font-size:1.02rem; line-height:1.65; color:#3d453f; max-width:640px; margin:0 auto 14px;">Whether you're memorizing Quran at home, revising Hifz between lessons, or improving your Tajweed independently, QariAI gives instant recitation feedback whenever you practise.</p>
-    <p style="font-size:1.02rem; line-height:1.65; color:#3d453f; max-width:640px; margin:0 auto 14px;">Available 24/7, it helps you build consistency, catch mistakes, and improve one recitation at a time.</p>
-    <p style="font-size:1.02rem; line-height:1.65; color:#3d453f; max-width:640px; margin:0 auto 28px;">Nothing replaces a qualified Quran teacher — QariAI makes independent practice more effective between lessons and when a teacher isn't available.</p>
-    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
-      <a href="https://qariai.app/academy/ai-hifz" style="font-size:14px; font-weight:600; color:#0c6b48; text-decoration:none; padding:10px 20px; border:1.5px solid rgba(12,107,72,0.3); border-radius:40px;">AI Hifz Coaching</a>
-      <a href="https://qariai.app/academy/ai-tajweed" style="font-size:14px; font-weight:600; color:#0c6b48; text-decoration:none; padding:10px 20px; border:1.5px solid rgba(12,107,72,0.3); border-radius:40px;">AI Tajweed Correction</a>
-      <a href="https://qariai.app/academy/memorize-quran-at-home" style="font-size:14px; font-weight:600; color:#0c6b48; text-decoration:none; padding:10px 20px; border:1.5px solid rgba(12,107,72,0.3); border-radius:40px;">Memorize Quran at Home</a>
     </div>
   </section>
 
@@ -370,17 +442,16 @@
   </section>
 
   <!-- ══ SCREENSHOT CAROUSEL ══ -->
-  <section id="screenshots" style="padding:96px 0 90px;">
+  <section style="padding:96px 0 90px;">
     <div style="text-align:center; margin-bottom:48px; padding:0 max(24px,4vw);">
       <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Inside the app</span>
-      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Everything a teacher does — in your pocket.</h2>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">The daily guidance of a Quran coach — in your pocket.</h2>
     </div>
-    <div class="qscroll" style="display:flex; gap:26px; overflow-x:auto; padding:12px max(24px,4vw) 24px; scroll-snap-type:x mandatory;">
-      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en1.jpg" alt="Tajweed Coach" style="width:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
-      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#0f1a2a; aspect-ratio:1080/1720;"><img src="screenshots/en2.jpg" alt="Find your maqam" style="width:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
-      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en3.jpg" alt="Progression guide" style="width:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
-      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#eefaf1; aspect-ratio:1080/1720;"><img src="screenshots/en4.jpg" alt="Practice tips" style="width:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
-      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en1.jpg" alt="Choose your level" style="width:100%; display:block; object-fit:cover; object-position:center;"/></div></div>
+    <div class="qscroll" id="qscreens" data-ga-event="screenshot_carousel_interaction" style="display:flex; gap:26px; overflow-x:auto; padding:12px max(24px,4vw) 24px; scroll-snap-type:x mandatory;">
+      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en1.jpg" alt="Tajweed Coach" width="1080" height="1720" loading="lazy" style="width:100%; height:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
+      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#0f1a2a; aspect-ratio:1080/1720;"><img src="screenshots/en2.jpg" alt="Find your maqam" width="1080" height="1720" loading="lazy" style="width:100%; height:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
+      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en3.jpg" alt="Progression guide" width="1080" height="1720" loading="lazy" style="width:100%; height:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
+      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#eefaf1; aspect-ratio:1080/1720;"><img src="screenshots/en4.jpg" alt="Practice tips" width="1080" height="1720" loading="lazy" style="width:100%; height:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
     </div>
   </section>
 
@@ -416,8 +487,129 @@
     </div>
   </section>
 
+  <!-- ══ DAILY PLANS ══ -->
+  <section style="background:#f4efe4; padding:100px max(24px,4vw);">
+    <div style="max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="qsplit">
+      <div>
+        <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:16px;">Daily plans</span>
+        <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.1; letter-spacing:-.02em; color:#12251b; margin-bottom:20px;">Build a Quran habit,<br/>one day at a time.</h2>
+        <p style="font-size:1.08rem; line-height:1.65; color:#4c564d; max-width:440px;">Structured 7-day plans blend Tajweed correction, Hifz review, and guided recitation — so every day has a clear, achievable goal.</p>
+      </div>
+
+      <div style="background:#0f1512; border-radius:26px; padding:28px 26px; box-shadow:0 30px 64px rgba(18,40,29,0.28);">
+        <div style="font-family:'Spectral',serif; font-size:1.15rem; font-weight:700; color:#fdf8ee; margin-bottom:18px;">Confidence in Qalqalah</div>
+
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:22px;">
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:rgba(253,248,238,0.06);">
+            <div style="font-size:13px; font-weight:700; color:#3fd39a;">1</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.4); margin-top:2px;">JUL 13</div>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="margin-top:4px;"><path d="M20 6L9 17l-5-5" stroke="#3fd39a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:#12925e;">
+            <div style="font-size:13px; font-weight:800; color:#fff;">2</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.85); margin-top:2px;">JUL 14</div>
+          </div>
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:rgba(253,248,238,0.06);">
+            <div style="font-size:13px; font-weight:700; color:rgba(253,248,238,0.5);">3</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.3); margin-top:2px;">JUL 15</div>
+          </div>
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:rgba(253,248,238,0.06);">
+            <div style="font-size:13px; font-weight:700; color:rgba(253,248,238,0.5);">4</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.3); margin-top:2px;">JUL 16</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+          <span style="font-size:13.5px; font-weight:700; color:#fdf8ee;">Day 2 of 7</span>
+          <span style="font-size:11.5px; font-weight:700; color:#3fd39a; background:rgba(63,211,154,0.12); padding:4px 11px; border-radius:20px;">On track</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(253,248,238,0.05); border-radius:12px;">
+            <span style="width:22px; height:22px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span style="font-size:13.5px; font-weight:600; color:rgba(253,248,238,0.4); text-decoration:line-through;">Tajweed drill — Qalqalah</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(253,248,238,0.05); border-radius:12px;">
+            <span style="width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(253,248,238,0.25); flex-shrink:0;"></span>
+            <span style="font-size:13.5px; font-weight:600; color:#fdf8ee;">Recite Surah Al-Mulk 1–10</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(253,248,238,0.05); border-radius:12px;">
+            <span style="width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(253,248,238,0.25); flex-shrink:0;"></span>
+            <span style="font-size:13.5px; font-weight:600; color:#fdf8ee;">Hifz review — Juz 'Amma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section id="reviews" style="background:#efe8d9; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">What reciters say</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Loved on Google Play.</h2>
+    </div>
+    <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:22px;" class="qgrid2">
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"Barakallahu Feekum. An incredible app. I've tested both Hifz and Tajweed mode — set to Advanced and it picks up every small mistake perfectly."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#0c6b48; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">M</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Matti-Ur Rehman</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"I think it is very nice and accurate Mashallah."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">S</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Sayeed Ahmed</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMPARISON TABLE ══ -->
+  <section style="max-width:820px; margin:0 auto; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Why QariAI</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">See the difference.</h2>
+    </div>
+    <div style="background:#fffdf8; border-radius:22px; overflow-x:auto; box-shadow:0 20px 48px rgba(18,56,41,0.08); border:1px solid rgba(18,56,41,0.08);">
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; min-width:520px;">
+        <div style="padding:18px 20px; font-size:12px; font-weight:700; letter-spacing:.05em; color:#7a8378; text-transform:uppercase;"></div>
+        <div style="padding:18px 12px; text-align:center; font-size:14px; font-weight:800; color:#0c6b48; background:rgba(12,107,72,0.07);">QariAI</div>
+        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Generic AI</div>
+        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Learning Alone</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Tajweed feedback</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Hifz mode</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Personalized drills</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Progress tracking</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05); border-radius:0 0 0 22px;"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center; border-radius:0 0 22px 0;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ TOPIC HUB ══ -->
-  <section style="max-width:1120px; margin:0 auto; padding:80px max(24px,4vw);">
+  <section style="max-width:1120px; margin:0 auto; padding:80px max(24px,4vw) 40px;">
     <div style="text-align:center; margin-bottom:44px;">
       <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">The Academy</span>
       <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Guides for every stage of the journey.</h2>
@@ -453,72 +645,6 @@
     </div>
   </section>
 
-  <!-- ══ TESTIMONIALS ══ -->
-  <section style="background:#efe8d9; padding:96px max(24px,4vw);">
-    <div style="text-align:center; margin-bottom:48px;">
-      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">What reciters say</span>
-      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Loved on Google Play.</h2>
-    </div>
-    <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:22px;" class="qgrid2">
-      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
-        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
-        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"Barakallahu Feekum. An incredible app. I've tested both Hifz and Tajweed mode — set to Advanced and it picks up every small mistake perfectly."</p>
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="width:32px; height:32px; border-radius:50%; background:#0c6b48; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">M</span>
-          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Matti-Ur Rehman</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
-        </div>
-      </div>
-      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
-        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
-        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"I think it is very nice and accurate Mashallah."</p>
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="width:32px; height:32px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">S</span>
-          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Sayeed Ahmed</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ COMPARISON TABLE ══ -->
-  <section style="max-width:820px; margin:0 auto; padding:96px max(24px,4vw);">
-    <div style="text-align:center; margin-bottom:48px;">
-      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Why QariAI</span>
-      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">See the difference.</h2>
-    </div>
-    <div style="background:#fffdf8; border-radius:22px; overflow:hidden; box-shadow:0 20px 48px rgba(18,56,41,0.08); border:1px solid rgba(18,56,41,0.08);">
-      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center;">
-        <div style="padding:18px 20px; font-size:12px; font-weight:700; letter-spacing:.05em; color:#7a8378; text-transform:uppercase;"></div>
-        <div style="padding:18px 12px; text-align:center; font-size:14px; font-weight:800; color:#0c6b48; background:rgba(12,107,72,0.07);">QariAI</div>
-        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Generic AI</div>
-        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Learning Alone</div>
-      </div>
-      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
-        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Tajweed feedback</div>
-        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
-        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
-        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
-      </div>
-      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
-        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Hifz mode</div>
-        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
-        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
-        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
-      </div>
-      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
-        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Personalized drills</div>
-        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
-        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
-        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
-      </div>
-      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
-        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Progress tracking</div>
-        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05); border-radius:0 0 0 22px;"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
-        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
-        <div style="padding:16px 12px; text-align:center; border-radius:0 0 22px 0;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
-      </div>
-    </div>
-  </section>
-
   <!-- ══ WHO IT'S FOR ══ -->
   <section style="max-width:1120px; margin:0 auto; padding:96px max(24px,4vw);">
     <div style="text-align:center; margin-bottom:52px;">
@@ -548,10 +674,10 @@
   <section style="background:#0f1512; padding:120px max(24px,4vw); text-align:center; position:relative; overflow:hidden;">
     <div style="position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:640px; height:640px; background:radial-gradient(circle, rgba(18,146,94,0.2), transparent 64%); border-radius:50%; pointer-events:none;"></div>
     <div style="position:relative; z-index:2; max-width:680px; margin:0 auto;">
-      <div style="font-family:'Amiri',serif; font-size:1.7rem; color:rgba(201,151,63,0.9); direction:rtl; margin-bottom:24px;">لَا تُحَرِّكْ بِهِۦ لِسَانَكَ لِتَعْجَلَ بِهِۦٓ</div>
+      <div lang="ar" dir="rtl" style="font-family:'Amiri',serif; font-size:1.7rem; color:rgba(201,151,63,0.9); margin-bottom:24px;">لَا تُحَرِّكْ بِهِۦ لِسَانَكَ لِتَعْجَلَ بِهِۦٓ</div>
       <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2.2rem,4.2vw,3.4rem); line-height:1.08; letter-spacing:-.02em; color:#fdf8ee; margin-bottom:32px;">Become the reciter<br/>you've always <em style="font-style:italic; color:#c9973f;">wanted to be.</em></h2>
-      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:inline-flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:600; color:#0f1512; text-decoration:none; padding:17px 38px; background:#fdf8ee; border-radius:44px; white-space:nowrap;" style-hover="transform:translateY(-2px); background:#fff;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0f1512"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="final_cta_play_store_click" style="display:inline-flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:600; color:#0f1512; text-decoration:none; padding:17px 38px; background:#fdf8ee; border-radius:44px; white-space:nowrap;" style-hover="transform:translateY(-2px); background:#fff;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0f1512" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
         Get it on Google Play
       </a>
     </div>
@@ -562,10 +688,10 @@
     <div style="max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.4fr repeat(4, 1fr); gap:32px;">
       <div>
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
-          <span style="width:34px; height:34px; border-radius:9px; background:#fff; display:flex; align-items:center; justify-content:center; padding:4px;"><img src="uploads/logo.png" alt="QariAI" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+          <span style="width:34px; height:34px; border-radius:9px; background:#fff; display:flex; align-items:center; justify-content:center; padding:4px;"><img src="uploads/logo.png" alt="QariAI" width="34" height="34" loading="lazy" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
           <span style="font-family:'Spectral',serif; font-size:18px; font-weight:700; color:#fdf8ee;">Qari<span style="color:#12925e;">AI</span></span>
         </div>
-        <p style="font-size:13.5px; color:rgba(253,248,238,0.45); line-height:1.6; max-width:260px;">QariAI is an AI Quran tutor that gives instant recitation feedback, helping learners improve Tajweed and Hifz through self-paced practice — complementing qualified teachers, not replacing them.</p>
+        <p style="font-size:13.5px; color:rgba(253,248,238,0.45); line-height:1.6; max-width:220px;">Your personal AI-powered Quran recitation coach.</p>
       </div>
 
       <div>
@@ -574,7 +700,7 @@
           <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Features</a>
           <a href="#how" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How It Works</a>
           <a href="https://qariai.app/qaef" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">QAEF Framework</a>
-          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Get it on Google Play</a>
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="footer_play_store_click" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Get it on Google Play</a>
           <a href="https://qariai.app/tajweed-mistakes-checker" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Free Tajweed Checker</a>
         </div>
       </div>
@@ -582,15 +708,16 @@
       <div>
         <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Academy</span>
         <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="https://qariai.app/academy/memorize-quran-at-home" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Memorize Quran at Home</a>
           <a href="https://qariai.app/tajweed-rules" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Learn Tajweed</a>
-          <a href="https://qariai.app/academy/ai-tajweed" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Tajweed Training</a>
+          <a href="https://qariai.app/academy/ai-tajweed" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Tajweed Correction</a>
           <a href="https://qariai.app/academy/ai-hifz" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Hifz Coaching</a>
+          <a href="https://qariai.app/academy/hifz-self-study-roadmap" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Self-Study Hifz Roadmap</a>
           <a href="https://qariai.app/academy/can-ai-teach-tajweed" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Can AI Teach Tajweed?</a>
           <a href="https://qariai.app/academy/ai-vs-human-quran-teacher" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI vs Human Teacher</a>
           <a href="https://qariai.app/academy/how-ai-detects-tajweed-mistakes" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How AI Detects Mistakes</a>
           <a href="https://qariai.app/compare/qari-ai-vs-tarteel" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Qari AI vs Tarteel</a>
           <a href="https://qariai.app/academy/future-of-quran-learning" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Future of Quran Learning</a>
-          <a href="https://qariai.app/academy/ai-quran-app" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Quran App</a>
         </div>
       </div>
 
@@ -600,14 +727,14 @@
           <a href="https://qariai.app/about" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">About Us</a>
           <a href="https://qariai.app/privacy" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Privacy Policy</a>
           <a href="https://qariai.app/terms" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Terms of Service</a>
-          <a href="mailto:salam@qariai.app" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Contact</a>
+          <a href="https://qariai.app/contact" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Contact</a>
         </div>
       </div>
 
       <div>
         <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Connect</span>
         <div style="display:flex; flex-direction:column; gap:14px;">
-          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:flex; align-items:center; gap:10px; padding:9px 14px; border:1px solid rgba(253,248,238,0.18); border-radius:10px; text-decoration:none; width:fit-content;" style-hover="border-color:#12925e;">
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="footer_connect_play_store_click" style="display:flex; align-items:center; gap:10px; padding:9px 14px; border:1px solid rgba(253,248,238,0.18); border-radius:10px; text-decoration:none; width:fit-content;" style-hover="border-color:#12925e;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#fdf8ee"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
             <span>
               <span style="display:block; font-size:9.5px; color:rgba(253,248,238,0.5); line-height:1.2;">Get it on</span>
@@ -626,11 +753,24 @@
 
   <!-- sticky CTA -->
   <sc-if value="{{ stickyOn }}" hint-placeholder-val="{{ false }}">
-    <div style="position:fixed; left:0; right:0; bottom:0; z-index:110; background:rgba(15,21,18,0.95); backdrop-filter:blur(12px); border-top:1px solid rgba(253,248,238,0.1); padding:12px max(24px,4vw); display:flex; align-items:center; justify-content:space-between; gap:16px; animation:qRise .35s ease both;">
+    <div style="position:fixed; left:0; right:0; bottom:0; z-index:110; background:rgba(15,21,18,0.95); backdrop-filter:blur(12px); border-top:1px solid rgba(253,248,238,0.1); padding:12px max(24px,4vw) calc(12px + env(safe-area-inset-bottom)); display:flex; align-items:center; justify-content:space-between; gap:16px; animation:qRise .35s ease both;">
       <span style="font-size:14.5px; font-weight:600; color:#fdf8ee;">Your coach is ready when you are.</span>
-      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0f1512; text-decoration:none; padding:11px 24px; background:#fdf8ee; border-radius:40px; white-space:nowrap;" style-hover="background:#fff;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0f1512"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>Get it on Google Play</a>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="sticky_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0f1512; text-decoration:none; padding:11px 24px; background:#fdf8ee; border-radius:40px; white-space:nowrap;" style-hover="background:#fff;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0f1512" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>Get it on Google Play</a>
     </div>
   </sc-if>
+
+  <!-- Demo modal — vanilla JS (not the x-dc runtime), so it doesn't depend on custom onClick bindings.
+       Trigger button (#qdemo-open) is hidden by default in the hero until a real video ID is confirmed. -->
+  <div id="qdemo-overlay" class="qmodal-overlay" role="dialog" aria-modal="true" aria-labelledby="qdemo-title" aria-hidden="true">
+    <div id="qdemo-panel" style="background:#fffdf8; border-radius:24px; padding:20px; max-width:460px; width:100%; box-shadow:0 40px 90px rgba(0,0,0,0.4);">
+      <h2 id="qdemo-title" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">QariAI demo video</h2>
+      <div style="aspect-ratio:16/9; border-radius:16px; overflow:hidden; margin-bottom:16px; background:#0f1512;">
+        <!-- Replace YOUTUBE_VIDEO_ID_HERE with a confirmed real QariAI demo video before enabling the button above. -->
+        <iframe id="qdemo-frame" width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_HERE" title="QariAI demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+      </div>
+      <button type="button" id="qdemo-close" aria-label="Close demo video" style="width:100%; font-size:14.5px; font-weight:600; color:#fffdf8; background:#0c6b48; border:none; border-radius:40px; padding:13px; cursor:pointer;">Close</button>
+    </div>
+  </div>
 
 </div>
 </x-dc>
@@ -657,6 +797,106 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<script>
+(function(){
+  "use strict";
+
+  // ---- Lightweight analytics: fires through whatever GA4/Firebase/GTM is already loaded on the page.
+  // Does not load or configure analytics itself — assumes the existing site-wide tracking snippet is present elsewhere.
+  function qTrack(name, extra) {
+    try {
+      var params = Object.assign({ page_path: location.pathname }, extra || {});
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', name, params);
+      } else if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+        window.dataLayer.push(Object.assign({ event: name }, params));
+      } else if (window.firebase && window.firebase.analytics) {
+        window.firebase.analytics().logEvent(name, params);
+      }
+    } catch (e) { /* analytics should never break the page */ }
+  }
+
+  document.querySelectorAll('[data-ga-event]').forEach(function (el) {
+    if (el.id === 'qscreens') return; // carousel handled separately below (scroll, not click)
+    el.addEventListener('click', function () {
+      qTrack(el.getAttribute('data-ga-event'), { cta_placement: el.getAttribute('data-ga-event') });
+    });
+  });
+
+  // Screenshot carousel: fire once on first user-initiated scroll
+  var screens = document.getElementById('qscreens');
+  if (screens) {
+    var firedScreens = false;
+    screens.addEventListener('scroll', function () {
+      if (firedScreens) return;
+      firedScreens = true;
+      qTrack('screenshot_carousel_interaction', {});
+    }, { passive: true });
+  }
+
+  // ---- Mobile nav: close menu after tapping an anchor link
+  var navCheck = document.getElementById('qnav-toggle');
+  if (navCheck) {
+    document.querySelectorAll('.qnav-links a').forEach(function (a) {
+      a.addEventListener('click', function () { navCheck.checked = false; });
+    });
+  }
+
+  // ---- Demo modal: full a11y — focus move, focus trap, Escape, scroll lock, restore focus on close
+  var openBtn = document.getElementById('qdemo-open');
+  var overlay = document.getElementById('qdemo-overlay');
+  var panel = document.getElementById('qdemo-panel');
+  var closeBtn = document.getElementById('qdemo-close');
+  var frame = document.getElementById('qdemo-frame');
+  var lastFocused = null;
+
+  function getFocusable() {
+    return panel.querySelectorAll('button, [href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  }
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    if (frame && !frame.src) frame.src = frame.getAttribute('data-src'); // lazy-load the embed only on open
+    overlay.classList.add('qopen');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('qmodal-open');
+    closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+    qTrack('demo_open', {});
+  }
+
+  function closeModal() {
+    overlay.classList.remove('qopen');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('qmodal-open');
+    if (frame) frame.src = ''; // stop playback
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    qTrack('demo_close', {});
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      closeModal();
+      return;
+    }
+    if (e.key === 'Tab') {
+      var focusable = Array.prototype.slice.call(getFocusable());
+      if (!focusable.length) return;
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  }
+
+  if (openBtn) openBtn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+})();
 </script>
 </body>
 </html>
