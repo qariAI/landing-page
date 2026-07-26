@@ -1,0 +1,1297 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QariAI - AI Quran Recitation Coach with Tajweed & Hifz Correction</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=20260726d">
+<link rel="shortcut icon" type="image/png" href="/favicon.png?v=20260726d">
+<link rel="apple-touch-icon" href="/favicon.png?v=20260726d">
+<meta name="description" content="QariAI is the AI Quran tutor that helps you improve Tajweed, strengthen Hifz, and practise independently with instant feedback on your recitation.">
+
+<meta property="og:title" content="QariAI - AI Quran Recitation Coach with Tajweed & Hifz Correction">
+<meta property="og:description" content="The AI Quran tutor that helps you improve Tajweed, strengthen Hifz, and practise independently with instant feedback.">
+<meta property="og:image" content="https://qariai.app/og-image.png">
+<meta property="og:url" content="https://qariai.app">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QariAI - AI Quran Recitation Coach">
+<meta name="twitter:description" content="Real-time Tajweed feedback powered by AI.">
+<meta name="twitter:image" content="https://qariai.app/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://qariai.app/#organization",
+      "name": "QariAI",
+      "url": "https://qariai.app",
+      "logo": { "@type": "ImageObject", "url": "https://qariai.app/logo.png" },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://qariai.app/#website",
+      "url": "https://qariai.app",
+      "name": "QariAI",
+      "publisher": { "@id": "https://qariai.app/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://qariai.app/#software",
+      "name": "QariAI",
+      "description": "AI Quran recitation app that listens to your tajweed in real time, scores your recitation, and gives personalized coaching.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Android",
+      "installUrl": "https://play.google.com/store/apps/details?id=app.qari.ai",
+      "url": "https://qariai.app",
+      "publisher": { "@id": "https://qariai.app/#organization" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  ]
+}
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,700&family=Inter:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{ font-family:'Inter',sans-serif; background:#f4efe4; color:#1a241d; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    @keyframes qFloat{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+    @keyframes qFloat2{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+    @keyframes qRise{ from{ opacity:0; transform:translateY(14px);} to{ opacity:1; transform:translateY(0);} }
+    .qscroll::-webkit-scrollbar{ height:8px; }
+    .qscroll::-webkit-scrollbar-thumb{ background:rgba(18,56,41,0.2); border-radius:20px; }
+    .qscroll::-webkit-scrollbar-track{ background:transparent; }
+    @media (max-width:900px){
+      .qgrid4{ grid-template-columns:repeat(2,1fr) !important; }
+      .qgrid3{ grid-template-columns:repeat(2,1fr) !important; }
+      .qgrid5{ grid-template-columns:repeat(3,1fr) !important; }
+      .qsplit{ grid-template-columns:1fr !important; }
+      .qhero-grid{ grid-template-columns:1fr !important; gap:56px !important; }
+    }
+    @media (max-width:640px){
+      .qgrid4{ grid-template-columns:1fr !important; }
+      .qgrid3{ grid-template-columns:1fr !important; }
+      .qgrid2{ grid-template-columns:1fr !important; }
+      .qgrid5{ grid-template-columns:repeat(2,1fr) !important; }
+    }
+    @media (max-width:480px){
+      .qgrid5{ grid-template-columns:1fr !important; }
+      .qnav-playtext{ display:none; }
+    }
+    .qnav-links{ display:flex; align-items:center; gap:26px; }
+    .qnav-burger, .qnav-check{ display:none; }
+    @media (max-width:760px){
+      .qnav-links{ position:fixed; top:70px; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0;
+        background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 12px 24px rgba(18,56,41,0.08);
+        max-height:0; overflow:hidden; transition:max-height .25s ease; }
+      .qnav-links a{ width:100%; padding:16px max(24px,4vw); border-top:1px solid rgba(18,56,41,0.06); }
+      .qnav-check:checked ~ .qnav-links{ max-height:280px; }
+      .qnav-burger{ display:flex; align-items:center; justify-content:center; width:40px; height:40px;
+        border-radius:10px; border:1px solid rgba(18,56,41,0.14); cursor:pointer; flex-shrink:0; }
+    }
+
+    /* Qur'an Combo */
+    .combo-card{position:relative;overflow:hidden;border:1px solid rgba(18,56,41,.1);border-radius:30px;background:linear-gradient(145deg,#fffdf8 0%,#f8f0dc 58%,#eef5ed 100%);box-shadow:0 26px 70px rgba(18,56,41,.09);padding:clamp(32px,5vw,58px);isolation:isolate}
+    .combo-card::before,.combo-card::after{content:"";position:absolute;border-radius:50%;z-index:-1;pointer-events:none}
+    .combo-card::before{width:420px;height:420px;right:-150px;top:-190px;background:radial-gradient(circle,rgba(201,151,63,.2),rgba(201,151,63,0) 68%)}
+    .combo-card::after{width:360px;height:360px;left:-180px;bottom:-210px;background:radial-gradient(circle,rgba(12,107,72,.13),rgba(12,107,72,0) 68%)}
+    .combo-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:clamp(34px,5vw,64px);align-items:center}
+    .combo-logo-frame{position:relative;width:min(350px,84%);aspect-ratio:783/484;overflow:hidden;margin:0 0 20px;filter:drop-shadow(0 12px 16px rgba(18,56,41,.12))}
+    .combo-logo{position:absolute;width:130.78%;max-width:none;height:auto;left:-16.35%;top:-36.98%}
+    .combo-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .combo-badge{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+    .combo-badge--soon{color:#0b6e52;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.14)}
+    .combo-badge--free{color:#8a6420;background:rgba(190,138,44,.1);border:1px solid rgba(190,138,44,.2)}
+    .combo-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2rem,3.5vw,2.85rem);line-height:1.08;letter-spacing:-.025em;color:#12251b;margin:0 0 14px}
+    .combo-intro{font-size:1.03rem;line-height:1.7;color:#3f4a43;max-width:530px;margin:0 0 22px}
+    .combo-points{display:grid;gap:11px;margin:0 0 22px;padding:0;list-style:none}
+    .combo-points li{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:650;color:#35453c}
+    .combo-points li::before{content:"✓";display:grid;place-items:center;width:22px;height:22px;flex:0 0 22px;border-radius:50%;color:#fff;background:#0b6e52;font-size:12px;font-weight:900}
+    .combo-note{font-size:13px;font-weight:700;color:#68736b;margin:0}
+    .combo-game{position:relative;min-height:470px;padding:20px}
+    .combo-game::before{content:"";position:absolute;inset:0;border-radius:28px;background:#123829;box-shadow:0 28px 58px rgba(18,56,41,.23)}
+    .combo-game::after{content:"";position:absolute;inset:0;border-radius:28px;opacity:.16;background-image:radial-gradient(circle at 18% 20%,#c9973f 0 2px,transparent 3px),radial-gradient(circle at 72% 76%,#fff 0 1.5px,transparent 2.5px);background-size:52px 52px,70px 70px;pointer-events:none}
+    .combo-game__inner{position:relative;z-index:1;min-height:430px;display:flex;flex-direction:column;padding:26px}
+    .combo-game__top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .combo-game__level{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f3d994}
+    .combo-game__goal{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#fffdf8;font-size:11px;font-weight:750}
+    .combo-board{position:relative;width:min(350px,100%);height:265px;margin:25px auto 12px}
+    .combo-tile{position:absolute;display:grid;place-items:center;width:58px;height:58px;border-radius:15px;border:2px solid rgba(255,255,255,.52);box-shadow:0 9px 0 rgba(5,25,18,.32),inset 0 2px 0 rgba(255,255,255,.46);color:#fff;font-family:'Amiri',serif;font-size:31px;font-weight:700;line-height:1}
+    .combo-tile--green{background:linear-gradient(145deg,#43b95a,#147b3b)}
+    .combo-tile--purple{background:linear-gradient(145deg,#a774e6,#6841a8)}
+    .combo-tile--blue{background:linear-gradient(145deg,#35a8e8,#1976b7)}
+    .combo-tile--orange{background:linear-gradient(145deg,#f7af35,#d8721c)}
+    .combo-tile--red{background:linear-gradient(145deg,#ec6863,#bd3e42)}
+    .combo-tile--active{outline:3px solid #f3d994;outline-offset:4px}
+    .combo-meaning{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto;padding:14px 16px;border-radius:17px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14)}
+    .combo-meaning small{display:block;color:#b9c9c0;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px}
+    .combo-meaning strong{color:#fffdf8;font-family:'Spectral',serif;font-size:18px}
+    .combo-progress{color:#f3d994;font-size:12px;font-weight:800;white-space:nowrap}
+    @media(max-width:900px){.combo-layout{grid-template-columns:1fr}.combo-copy{text-align:center}.combo-logo-frame{margin-left:auto;margin-right:auto}.combo-badges{justify-content:center}.combo-intro{margin-left:auto;margin-right:auto}.combo-points{width:max-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:left}.combo-game{width:min(560px,100%);margin:0 auto}}
+    @media(max-width:560px){.combo-card{padding:28px 18px;border-radius:24px}.combo-logo-frame{width:min(310px,92%)}.combo-game{min-height:425px;padding:10px}.combo-game__inner{min-height:405px;padding:20px 14px}.combo-game__top{align-items:flex-start}.combo-game__goal{max-width:132px;text-align:center;line-height:1.3}.combo-board{transform:scale(.86);transform-origin:top center;margin-bottom:-20px}.combo-meaning{padding:12px 13px}.combo-meaning strong{font-size:16px}}
+
+    /* One continuous QariAI product story */
+    .unified-product{background:#fffdf8;border-top:1px solid rgba(18,56,41,.07)}
+    .unified-proof{max-width:1520px;margin:0 auto;padding:72px max(24px,3vw) 64px}
+    .unified-proof__head{display:grid;grid-template-columns:minmax(280px,.72fr) minmax(480px,1.28fr);gap:clamp(32px,6vw,90px);align-items:end;margin-bottom:30px}
+    .unified-kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#0b6e52}
+    .unified-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
+    .unified-proof h2,.games-inside h2{font-family:'Spectral',serif;font-weight:800;letter-spacing:-.035em;color:#12251b}
+    .unified-proof h2{font-size:clamp(2.3rem,4vw,4rem);line-height:1;margin-top:16px}
+    .unified-proof__intro{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.7;color:#566159;max-width:690px}
+    .unified-proof__grid{display:grid;grid-template-columns:1.18fr repeat(3,1fr);border:1px solid rgba(18,56,41,.1);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 22px 55px rgba(18,56,41,.07)}
+    .unified-proof__item{min-height:210px;padding:30px;border-right:1px solid rgba(18,56,41,.09);display:flex;flex-direction:column;justify-content:flex-start}
+    .unified-proof__item:last-child{border-right:0}
+    .unified-proof__item--metric{background:#123829;color:#fffdf8}
+    .unified-proof__icon{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:rgba(11,110,82,.09);color:#0b6e52;margin-bottom:24px}
+    .unified-proof__item--metric .unified-proof__icon{background:rgba(255,255,255,.1);color:#f1d692}
+    .unified-proof__label{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#0b6e52;margin-bottom:8px}
+    .unified-proof__item--metric .unified-proof__label{color:#f1d692}
+    .unified-proof__value{font-family:'Spectral',serif;font-size:3.1rem;line-height:1;font-weight:800;margin-bottom:12px}
+    .unified-proof__item h3{font-family:'Spectral',serif;font-size:1.35rem;line-height:1.15;color:#16271e;margin:0 0 10px}
+    .unified-proof__item p{font-size:13px;line-height:1.55;color:#687269}
+    .unified-proof__item--metric p{color:rgba(255,253,248,.7)}
+    .unified-proof__item a{color:#0b6e52;font-weight:750}
+
+    .games-inside{width:100%;margin:0;padding:0}
+    .games-inside__shell{position:relative;overflow:hidden;border-radius:0;background:#123829;color:#fffdf8;padding:clamp(56px,6vw,92px) max(24px,calc((100vw - 1420px)/2));box-shadow:none}
+    .games-inside__shell::before{content:"";position:absolute;width:620px;height:620px;right:-250px;top:-330px;border-radius:50%;background:radial-gradient(circle,rgba(201,151,63,.24),transparent 68%)}
+    .games-inside__head{position:relative;z-index:1;display:grid;grid-template-columns:minmax(360px,.85fr) minmax(480px,1.15fr);gap:clamp(32px,6vw,86px);align-items:end;margin-bottom:38px}
+    .games-inside .unified-kicker{color:#f1d692}
+    .games-inside h2{font-size:clamp(2.35rem,4vw,4rem);line-height:1.02;margin-top:16px;color:#fffdf8}
+    .games-inside__intro{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.7;color:rgba(255,253,248,.72);max-width:670px}
+    .games-inside__badge{display:inline-flex;margin-top:18px;padding:9px 14px;border-radius:999px;background:rgba(241,214,146,.12);border:1px solid rgba(241,214,146,.24);font-size:12px;font-weight:800;color:#f1d692}
+    .games-inside__content{position:relative;z-index:1;display:flex;flex-direction:column;gap:24px}
+    .game-list{order:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .game-tile{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;padding:17px 18px;border:1px solid rgba(255,255,255,.11);border-radius:18px;background:rgba(255,255,255,.055)}
+    .game-tile__icon{width:52px;height:52px;display:grid;place-items:center;border-radius:15px;background:#fff3ce;color:#986514;font-family:'Amiri',serif;font-size:27px;font-weight:700}
+    .game-tile:nth-child(2) .game-tile__icon{background:#e1f2e8;color:#0b6e52}
+    .game-tile:nth-child(3) .game-tile__icon{background:#e8e4ff;color:#5f4bab}
+    .game-tile strong{display:block;font-size:15px;color:#fffdf8;margin-bottom:4px}
+    .game-tile span{font-size:12px;line-height:1.4;color:rgba(255,253,248,.6)}
+    .game-tile__state{font-size:10px!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.06em;color:#f1d692!important}
+    .combo-feature{order:1;display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(30px,5vw,70px);align-items:center;max-width:1040px;width:100%;margin:0 auto;padding:30px 34px;border:1px solid rgba(255,255,255,.12);border-radius:24px;background:rgba(255,255,255,.055);color:#fffdf8}
+    .combo-feature__phone{position:relative;width:210px;margin:auto;padding:7px;border-radius:29px;background:#0c1410;box-shadow:0 18px 36px rgba(0,0,0,.24)}
+    .combo-feature__phone img{display:block;width:100%;aspect-ratio:945/2048;object-fit:cover;object-position:top;border-radius:25px}
+    .combo-feature__logo{width:min(230px,90%);height:72px;object-fit:cover;object-position:center 42%;margin:0 0 10px}
+    .combo-feature__tag{display:inline-flex;padding:7px 11px;border-radius:999px;background:#efe9ff;color:#5d48a4;font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+    .combo-feature h3{font-family:'Spectral',serif;font-size:clamp(1.8rem,2.7vw,2.55rem);line-height:1.05;color:#fffdf8;margin:0 0 12px}
+    .combo-feature p{font-size:14px;line-height:1.62;color:rgba(255,253,248,.72);margin-bottom:18px}
+    .combo-feature ul{list-style:none;display:grid;gap:9px;margin:0}
+    .combo-feature li{font-size:12.5px;font-weight:700;color:rgba(255,253,248,.86);display:flex;gap:9px;align-items:center}
+    .combo-feature li::before{content:"✓";width:19px;height:19px;display:grid;place-items:center;border-radius:50%;background:#0b6e52;color:#fff;font-size:10px}
+    .games-inside__cta{display:inline-flex;align-items:center;justify-content:center;margin-top:22px;padding:14px 22px;border-radius:999px;background:#be8a2c;color:#fff;text-decoration:none;font-size:13px;font-weight:800;box-shadow:0 12px 26px rgba(190,138,44,.23)}
+    @media(max-width:1050px){.unified-proof__grid{grid-template-columns:repeat(2,1fr)}.unified-proof__item:nth-child(2){border-right:0}.unified-proof__item{border-bottom:1px solid rgba(18,56,41,.09)}.unified-proof__item:nth-last-child(-n+2){border-bottom:0}.game-list{grid-template-columns:repeat(3,1fr)}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.combo-feature{max-width:100%;margin:auto}}
+    @media(max-width:760px){.unified-proof__head,.games-inside__head{grid-template-columns:1fr;gap:18px}.unified-proof{padding:58px 16px 44px}.games-inside__shell{padding:54px 18px 64px}.game-list{grid-template-columns:1fr}.game-tile{grid-template-columns:52px 1fr auto}.game-tile__state{grid-column:auto}.combo-feature{grid-template-columns:1fr;text-align:center;padding:26px 18px}.combo-feature__logo{margin-left:auto;margin-right:auto}.combo-feature ul{width:max-content;max-width:100%;margin:auto;text-align:left}.combo-feature__phone{width:min(210px,66vw)}}
+    @media(max-width:560px){.unified-proof__grid{grid-template-columns:1fr}.unified-proof__item{border-right:0!important;border-bottom:1px solid rgba(18,56,41,.09)!important;min-height:auto}.unified-proof__item:last-child{border-bottom:0!important}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.games-inside h2,.unified-proof h2{font-size:2.4rem}}
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+      html{ scroll-behavior:auto; }
+    }
+
+    /* QariAI 2.0 hero */
+    .q2-hero{position:relative;max-width:1280px;margin:0 auto;padding:128px max(24px,4vw) 86px;min-height:760px;display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,.92fr);gap:clamp(40px,6vw,84px);align-items:center;isolation:isolate}
+    .q2-hero::before{content:"";position:absolute;inset:70px 0 20px;border-radius:44px;background:linear-gradient(135deg,#fffdf8 0%,#fbf5e8 62%,#eef4ec 100%);border:1px solid rgba(18,56,41,.08);box-shadow:0 30px 90px rgba(18,56,41,.09);z-index:-3}
+    .q2-pattern{position:absolute;inset:70px 0 20px;border-radius:44px;overflow:hidden;z-index:-2;pointer-events:none;opacity:.52;background-image:radial-gradient(circle at 86% 18%,rgba(190,138,44,.13),transparent 26%),radial-gradient(circle at 12% 82%,rgba(11,110,82,.11),transparent 28%)}
+    .q2-pattern::after{content:"";position:absolute;right:-90px;bottom:-135px;width:630px;height:340px;border-radius:55% 45% 0 0;background:#0b6e52;transform:rotate(-5deg);box-shadow:-120px 30px 0 #0a5c46,-250px 72px 0 #174d3c;opacity:.98}
+    .q2-copy{padding:42px 0 34px 56px;animation:qRise .7s ease both;position:relative;z-index:3}
+    .q2-eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:20px;padding:8px 13px;border-radius:999px;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.12);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b6e52}
+    .q2-eyebrow i{width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
+    .q2-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(3rem,5.4vw,5.25rem);line-height:.98;letter-spacing:-.045em;color:#12251b;max-width:690px;margin:0 0 24px}
+    .q2-title em{display:block;font-style:normal;color:#0b6e52}
+    .q2-sub{font-size:clamp(1rem,1.45vw,1.18rem);line-height:1.68;color:#455149;max-width:580px;margin:0 0 30px}
+    .q2-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:26px}
+    .q2-primary,.q2-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:750;text-decoration:none;transition:.2s ease}
+    .q2-primary{color:#fffdf8;background:#0b6e52;box-shadow:0 14px 30px rgba(11,110,82,.28)}
+    .q2-primary:hover{transform:translateY(-2px);background:#095f47;box-shadow:0 18px 38px rgba(11,110,82,.35)}
+    .q2-secondary{color:#123829;background:rgba(255,255,255,.64);border:1px solid rgba(18,56,41,.15)}
+    .q2-secondary:hover{transform:translateY(-2px);background:#fff}
+    .q2-trust{display:flex;align-items:center;gap:16px;flex-wrap:wrap;color:#667168;font-size:12.5px;font-weight:600}
+    .q2-stars{color:#be8a2c;letter-spacing:1.5px;font-size:14px}
+    .q2-divider{width:1px;height:18px;background:rgba(18,56,41,.14)}
+    .q2-visual{position:relative;min-height:620px;display:flex;align-items:center;justify-content:center;padding:34px 54px 8px 0;animation:qRise .8s ease .08s both;z-index:2}
+    .q2-orbit{position:absolute;inset:72px 18px 35px 28px;border-radius:50%;background:radial-gradient(circle,rgba(190,138,44,.23),rgba(190,138,44,.04) 48%,transparent 69%);filter:blur(1px)}
+    .q2-phone{position:relative;width:min(375px,78vw);padding:13px;background:#101412;border-radius:48px;box-shadow:0 42px 88px rgba(7,25,18,.38),0 0 0 1px rgba(255,255,255,.11) inset;transform:rotate(5.5deg);animation:qFloat 7s ease-in-out infinite;z-index:3}
+    .q2-phone::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:106px;height:25px;border-radius:0 0 15px 15px;background:#101412;z-index:3}
+    .q2-screen{display:block;width:100%;aspect-ratio:9/19.5;object-fit:cover;object-position:center top;border-radius:37px;background:#0d1511}
+    .q2-chip{position:absolute;z-index:5;display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:15px;background:rgba(255,253,248,.94);border:1px solid rgba(18,56,41,.09);box-shadow:0 14px 28px rgba(18,56,41,.16);backdrop-filter:blur(10px);font-size:12.5px;font-weight:750;color:#19372a}
+    .q2-chip svg{flex:0 0 auto}.q2-chip-one{left:-12px;top:165px}.q2-chip-two{right:4px;bottom:122px}
+    .q2-mini-bird{position:absolute;right:6px;bottom:30px;width:112px;height:112px;border-radius:42% 58% 48% 52%;background:linear-gradient(145deg,#f4bd4e,#d98925);box-shadow:0 16px 35px rgba(65,47,19,.2);transform:rotate(-7deg);z-index:2;overflow:hidden}
+    .q2-mini-bird::before{content:"";position:absolute;width:52px;height:52px;border-radius:50%;background:#fff2cf;left:23px;top:28px;box-shadow:48px -18px 0 -19px #1a1d1b}
+    .q2-mini-bird::after{content:"";position:absolute;width:48px;height:12px;background:#1a1d1b;left:61px;top:50px;clip-path:polygon(0 0,100% 50%,0 100%)}
+    @media(max-width:980px){.q2-hero{grid-template-columns:1fr;min-height:auto;padding-top:112px;gap:12px}.q2-copy{padding:44px 46px 0;text-align:center}.q2-title,.q2-sub{margin-left:auto;margin-right:auto}.q2-actions,.q2-trust{justify-content:center}.q2-visual{min-height:610px;padding:0 24px 30px}.q2-pattern::after{right:-180px;bottom:-180px}.q2-chip-one{left:8%}.q2-chip-two{right:8%}}
+    @media(max-width:640px){.q2-hero{padding:96px 14px 42px}.q2-hero::before,.q2-pattern{inset:72px 0 0;border-radius:0}.q2-copy{padding:34px 18px 6px}.q2-eyebrow{font-size:10px}.q2-title{font-size:clamp(2.75rem,14vw,4rem)}.q2-sub{font-size:15px;line-height:1.58}.q2-actions{display:grid;grid-template-columns:1fr}.q2-primary,.q2-secondary{width:100%;padding:15px 20px}.q2-divider{display:none}.q2-trust{gap:8px 14px}.q2-visual{min-height:530px;padding:8px 10px 20px}.q2-phone{width:min(320px,82vw);border-radius:42px}.q2-screen{border-radius:32px}.q2-chip{font-size:11px;padding:9px 11px}.q2-chip-one{left:2px;top:115px}.q2-chip-two{right:0;bottom:88px}.q2-mini-bird{width:82px;height:82px;right:0;bottom:16px}.q2-mini-bird::before{transform:scale(.73);transform-origin:left top}.q2-mini-bird::after{transform:scale(.73);transform-origin:left top}.q2-pattern::after{width:460px;height:260px;right:-220px;bottom:-135px}}
+
+    body.qmodal-open{ overflow:hidden; }
+    .qmodal-overlay{ position:fixed; inset:0; z-index:200; background:rgba(15,21,18,0.72); backdrop-filter:blur(6px);
+      display:none; align-items:center; justify-content:center; padding:24px; }
+    .qmodal-overlay.qopen{ display:flex; animation:qRise .25s ease both; }
+
+    /* Approved image-led homepage hero */
+    .approved-home-hero{
+      position:relative;
+      width:100%;
+      padding-top:70px;
+      background:#f7f0e3;
+      overflow:hidden;
+    }
+    .approved-home-hero__frame{
+      position:relative;
+      width:100%;
+      max-width:1536px;
+      margin:0 auto;
+    }
+    .approved-home-hero__image{
+      display:block;
+      width:100%;
+      height:auto;
+    }
+    .approved-home-hero__link{
+      position:absolute;
+      z-index:2;
+      display:block;
+      border-radius:999px;
+      text-indent:-9999px;
+      overflow:hidden;
+    }
+    .approved-home-hero__play{
+      left:6.1%;
+      top:77.7%;
+      width:16.5%;
+      height:6.2%;
+    }
+    .approved-home-hero__how{
+      left:23.8%;
+      top:77.7%;
+      width:12.8%;
+      height:6.2%;
+    }
+    .approved-home-hero__link:focus-visible{
+      outline:4px solid #0b6e52;
+      outline-offset:3px;
+    }
+    @media(max-width:760px){
+      .approved-home-hero{padding-top:70px;}
+      .approved-home-hero__frame{
+        width:150%;
+        margin-left:-8%;
+      }
+      .approved-home-hero__play{
+        left:9.4%;
+        top:77.7%;
+        width:24.7%;
+      }
+      .approved-home-hero__how{
+        left:35.9%;
+        top:77.7%;
+        width:19.2%;
+      }
+    }
+
+
+    /* SEO-first native HTML hero */
+    .seo-hero{position:relative;max-width:1520px;margin:0 auto;padding:116px max(24px,3vw) 12px;display:grid;grid-template-columns:minmax(500px,.86fr) minmax(620px,1.14fr);gap:clamp(18px,2.5vw,40px);align-items:center;min-height:0}
+    .seo-hero::before{content:"";position:absolute;inset:88px 0 24px;border-radius:42px;background:linear-gradient(135deg,#fffdf8 0%,#fbf3e4 62%,#eef4ec 100%);border:1px solid rgba(18,56,41,.08);box-shadow:0 30px 90px rgba(18,56,41,.09);z-index:-1}
+    .seo-hero-copy{padding-left:clamp(12px,3vw,44px);position:relative;z-index:2}
+    .seo-hero-label{display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;padding:8px 13px;border-radius:999px;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.12);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b6e52}
+    .seo-hero-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
+    .seo-hero-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(3.35rem,4.55vw,4.7rem);line-height:.96;letter-spacing:-.045em;color:#123829;max-width:690px;margin:0 0 22px}
+    .seo-hero-title .hero-line{display:block;white-space:nowrap}
+    .seo-hero-title span{display:block;color:#be8a2c}
+    .seo-hero-copy p{font-size:clamp(1rem,1.42vw,1.16rem);line-height:1.68;color:#455149;max-width:590px;margin:0 0 30px}
+    .seo-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+    .seo-hero-primary,.seo-hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:750;text-decoration:none;transition:.2s ease}
+    .seo-hero-primary{color:#fffdf8;background:#0b6e52;box-shadow:0 14px 30px rgba(11,110,82,.28)}
+    .seo-hero-primary:hover{transform:translateY(-2px);background:#095f47;box-shadow:0 18px 38px rgba(11,110,82,.35)}
+    .seo-hero-secondary{color:#123829;background:rgba(255,255,255,.7);border:1px solid rgba(18,56,41,.16)}
+    .seo-hero-secondary:hover{transform:translateY(-2px);background:#fff}
+    .seo-hero-points{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;font-size:12.5px;color:#667168;font-weight:650}
+    .seo-hero-points strong{color:#123829}
+    .seo-hero-visual{position:relative;height:470px;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 4px 0 0;overflow:visible;transform:translateY(-28px)}
+    .seo-hero-visual::before{content:"";position:absolute;left:12%;right:10%;bottom:8%;height:17%;border-radius:50%;background:rgba(18,56,41,.2);filter:blur(34px);transform:scaleX(.9);opacity:.42}
+    .seo-hero-visual img{position:relative;z-index:2;display:block;width:min(116%,900px);height:auto;max-height:730px;object-fit:contain;object-position:center;filter:drop-shadow(0 22px 22px rgba(18,56,41,.14))}
+    @media(max-width:1120px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:6px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points{justify-content:center}.seo-hero-visual{height:auto;min-height:auto;padding:0 28px 20px;transform:translateY(-8px)}.seo-hero-visual img{width:min(94%,800px)}}
+    @media(max-width:640px){.seo-hero{padding:96px 14px 38px}.seo-hero::before{inset:72px 0 0;border-radius:0}.seo-hero-copy{padding:32px 18px 0}.seo-hero-label{font-size:10px}.seo-hero-title{font-size:clamp(2.65rem,14vw,4rem)}.seo-hero-title .hero-line{white-space:normal}.seo-hero-copy p{font-size:15px;line-height:1.58}.seo-hero-actions{display:grid;grid-template-columns:1fr}.seo-hero-primary,.seo-hero-secondary{width:100%}.seo-hero-visual{padding:0;transform:translateY(-4px)}.seo-hero-visual img{width:108%;max-width:680px;max-height:none;object-fit:contain;object-position:center}}
+
+    /* App feature carousel */
+    .app-showcase{padding:104px max(20px,4vw) 96px;overflow:hidden;background:linear-gradient(180deg,#fffdf8 0%,#fbf7ed 100%)}
+    .app-showcase__header{text-align:center;max-width:760px;margin:0 auto 42px}
+    .app-showcase__eyebrow{display:inline-block;font-size:12.5px;font-weight:750;text-transform:uppercase;letter-spacing:.11em;color:#0c6b48;margin-bottom:14px}
+    .app-showcase__title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2.15rem,3.8vw,3.25rem);line-height:1.08;letter-spacing:-.03em;color:#12251b}
+    .app-carousel{max-width:1380px;margin:0 auto;position:relative}
+    .app-carousel__viewport{overflow:hidden;padding:22px 0 32px;user-select:none;scrollbar-width:none}
+    .app-carousel__viewport::-webkit-scrollbar{display:none}
+    .app-carousel__viewport.is-dragging{cursor:grabbing}
+    .app-carousel__viewport.is-dragging .app-carousel__track{transition:none}
+    .app-carousel__track{--carousel-gap:32px;display:flex;align-items:center;gap:var(--carousel-gap);width:max-content;will-change:transform}
+    .app-carousel__track.is-running{animation:qari-carousel-glide 54s linear infinite}
+    @keyframes qari-carousel-glide{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-50% - 16px),0,0)}}
+    .app-slide{flex:0 0 clamp(238px,19vw,278px);display:flex;justify-content:center;opacity:1;transform:none;transition:none;pointer-events:auto}
+    .app-slide.is-active,.app-slide.is-near{opacity:1;transform:none}
+    .app-phone{width:100%;background:#101512;border-radius:35px;padding:8px;box-shadow:0 18px 38px rgba(18,40,29,.14),0 0 0 1px rgba(255,255,255,.12) inset}
+    .app-phone__screen{position:relative;overflow:hidden;border-radius:31px;background:#fff;aspect-ratio:1080/2172}
+    .app-phone__screen img{display:block;width:100%;height:100%;object-fit:contain;object-position:center top;image-rendering:auto}
+    .app-carousel__caption{display:none}
+    .app-carousel__caption h3{font-family:'Spectral',serif;font-size:1.48rem;line-height:1.2;color:#123829;margin-bottom:7px}
+    .app-carousel__caption p{font-size:15px;line-height:1.55;color:#647067}
+    .app-carousel__controls{display:none}
+    .app-carousel__arrow{width:52px;height:52px;border-radius:50%;border:1px solid rgba(18,56,41,.16);background:#fffdf8;color:#123829;font-size:28px;line-height:1;cursor:pointer;box-shadow:0 9px 24px rgba(18,56,41,.1);transition:.2s ease}
+    .app-carousel__arrow:hover{background:#0c6b48;color:#fff;transform:translateY(-2px)}
+    .app-carousel__dots{display:flex;align-items:center;gap:8px}
+    .app-carousel__dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#c9d0ca;cursor:pointer;transition:.25s ease}
+    .app-carousel__dot.is-active{width:25px;border-radius:99px;background:#0c6b48}
+    @media(max-width:760px){
+      .seo-hero-title{font-size:clamp(2.85rem,14.5vw,4.2rem)}
+      .seo-hero-visual{transform:translateY(-10px)}
+      .app-showcase{padding:82px 14px 76px}
+      .app-showcase__header{margin-bottom:26px;padding:0 10px}
+      .app-carousel__viewport{overflow:hidden;padding:18px 0 24px}
+      .app-carousel__track{touch-action:pan-y}
+      .app-slide,.app-slide.is-active,.app-slide.is-near{flex-basis:min(286px,76vw);transform:none;opacity:1}
+      .app-phone{width:100%}
+      .app-carousel__caption{min-height:108px}
+      .app-carousel__arrow{width:48px;height:48px}
+    }
+    @media(prefers-reduced-motion:reduce){.app-carousel__track.is-running{animation-duration:110s}.app-slide{transition:none}}
+
+    /* Standalone Qur'an Combo feature — intentionally separate from the old games layout. */
+    .games-inside__shell{padding:clamp(58px,7vw,96px) max(24px,calc((100vw - 1280px)/2))}
+    .games-inside__head{display:block;max-width:760px;margin:0 auto 34px;text-align:center}
+    .games-inside__head>div:last-child{margin-top:16px}
+    .games-inside__intro{margin:0 auto}
+    .combo-feature{grid-template-columns:minmax(190px,260px) minmax(0,560px);justify-content:center;gap:clamp(34px,6vw,84px);max-width:980px;padding:34px clamp(28px,5vw,58px);background:rgba(255,255,255,.065)}
+    .combo-feature__phone{width:min(240px,100%)}
+    .combo-feature__logo{height:auto;max-height:90px;object-fit:contain;object-position:left center}
+    @media(max-width:760px){.combo-feature{grid-template-columns:1fr}.combo-feature__logo{object-position:center}.games-inside__head{margin-bottom:28px}}
+
+    /* Trust and product proof */
+    .proof-section{max-width:1180px;margin:0 auto;padding:12px max(24px,4vw) 34px}
+    .proof-shell{position:relative;overflow:hidden;background:rgba(255,253,248,.78);border:1px solid rgba(18,56,41,.09);border-radius:28px;padding:clamp(30px,4vw,48px);box-shadow:0 18px 48px rgba(18,56,41,.055)}
+    .proof-shell::after{content:"";position:absolute;width:360px;height:360px;right:-190px;top:-230px;border-radius:50%;background:radial-gradient(circle,rgba(201,151,63,.18),rgba(201,151,63,0) 70%);pointer-events:none}
+    .proof-process{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2.4vw,28px);margin-bottom:34px}
+    .proof-process__step{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:750;color:#22302a;white-space:nowrap}
+    .proof-process__number{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#eef5ed;color:#0c6b48;font-size:12px}
+    .proof-process__step:last-child{color:#0c6b48}
+    .proof-process__arrow{width:42px;height:1px;background:rgba(201,151,63,.58);position:relative;flex:0 1 42px}
+    .proof-process__arrow::after{content:"";position:absolute;right:-1px;top:-3px;width:6px;height:6px;border-top:1.5px solid #c9973f;border-right:1.5px solid #c9973f;transform:rotate(45deg)}
+    .proof-heading{text-align:center;max-width:680px;margin:0 auto 30px}
+    .proof-eyebrow{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#0c6b48;margin-bottom:9px}
+    .proof-heading h2{font-family:'Spectral',serif;font-size:clamp(1.9rem,3vw,2.55rem);line-height:1.12;letter-spacing:-.025em;color:#12251b;margin:0 0 9px}
+    .proof-heading p{font-size:15px;line-height:1.6;color:#657067;margin:0}
+    .proof-grid{display:grid;grid-template-columns:1.18fr repeat(3,1fr);gap:14px}
+    .proof-card{min-height:190px;padding:22px;border:1px solid rgba(18,56,41,.085);border-radius:18px;background:#faf6ea;display:flex;flex-direction:column}
+    .proof-card--metric{background:#123829;color:#fffdf8;border-color:#123829}
+    .proof-card__icon{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#eef5ed;color:#0c6b48;margin-bottom:22px}
+    .proof-card--metric .proof-card__icon{background:rgba(255,255,255,.12);color:#f2c66d}
+    .proof-card__label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.095em;color:#0c6b48;margin-bottom:8px}
+    .proof-card--metric .proof-card__label{color:#f2c66d}
+    .proof-card__value{font-family:'Spectral',serif;font-size:2.25rem;font-weight:800;line-height:1;color:#fff;margin-bottom:7px}
+    .proof-card h3{font-size:15px;line-height:1.3;color:#12251b;margin:0 0 7px}
+    .proof-card p{font-size:13.5px;line-height:1.55;color:#59635c;margin:0}
+    .proof-card--metric p{color:rgba(255,255,255,.74)}
+    .proof-card a{color:#0c6b48;font-weight:700;text-underline-offset:3px}
+    .proof-foot{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:23px;font-size:13px;color:#667169}
+    .proof-foot svg{flex:0 0 auto}
+    @media(max-width:900px){.proof-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){
+      .proof-section{padding-inline:16px}
+      .proof-shell{padding:28px 18px;border-radius:22px}
+      .proof-process{gap:8px;margin-bottom:28px}
+      .proof-process__step{font-size:12px;gap:6px}
+      .proof-process__number{width:25px;height:25px}
+      .proof-process__arrow{width:18px;flex-basis:18px}
+      .proof-grid{grid-template-columns:1fr}
+      .proof-card{min-height:0}
+    }
+
+  </style>
+</helmet>
+
+<div style="position:relative; background:#f4efe4; overflow:hidden;">
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       QARIAI LANDING PAGE — production target: static HTML/CSS + minimal
+       vanilla JS on the existing GitHub → Vercel pipeline. No React, no
+       build step, no npm deps unless separately requested.
+
+       SECTION MAP (search for "══" to jump between them):
+       NAV → HERO → STEP STRIP → AS FEATURED → CHECKLIST → CREDIBILITY →
+       TAJWEED QUEST → HOW IT WORKS → FEATURES → PROGRESS →
+       SCREENSHOT CAROUSEL → COACH REMEMBERS YOU → DAILY PLANS →
+       TESTIMONIALS → COMPARISON TABLE → TOPIC HUB → WHO IT'S FOR →
+       FINAL CTA → FOOTER → sticky CTA → demo modal
+
+       EDITABLE CONTENT (things likely to change often):
+       - Hero stats (6,000+ / 42+ / £0)            — verify before editing, see memory notes
+       - Testimonials (Matti-Ur Rehman, Sayeed Ahmed) — Google Play reviews, verified
+            (uploads/tajweed-quest-preview.webp is no longer referenced — remove it, or ignore if kept for other use)
+       - Screenshot carousel: screenshots/en1.jpg … en4.jpg
+
+       JS STATE (all vanilla, two separate mechanisms — do not conflate):
+       1. Sticky CTA visibility — handled by the x-dc DCLogic component at
+          the bottom of this file (scroll > 780px). Existing runtime, untouched.
+       2. Mobile nav open/close — pure CSS checkbox toggle (#qnav-toggle),
+          no JS required except closing it on anchor-link tap (see <script> below).
+       3. Demo modal open/close — plain vanilla JS at the bottom of this file
+          (#qdemo-open/#qdemo-overlay/#qdemo-close). Deliberately NOT wired
+          through the x-dc runtime — that binding pattern broke in testing.
+  ═══════════════════════════════════════════════════════════════════ -->
+  <!-- ══ NAV ══ -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:120; display:flex; align-items:center; justify-content:space-between; height:70px; padding:0 max(24px,4vw); background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 1px 14px rgba(18,56,41,0.05);">
+    <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+      <span style="width:50px; height:50px; border-radius:13px; background:#ffffff; border:1px solid rgba(18,56,41,0.1); box-shadow:0 2px 8px rgba(18,56,41,0.08); display:flex; align-items:center; justify-content:center; padding:6px;"><img src="/uploads/logo.png?v=20260726" alt="QariAI" width="50" height="50" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+      <span style="font-family:'Spectral',serif; font-size:28px; font-weight:700; letter-spacing:-.01em; color:#123829;">Qari<span style="color:#0c6b48;">AI</span></span>
+    </a>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <input type="checkbox" id="qnav-toggle" class="qnav-check"/>
+      <div class="qnav-links">
+        <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">How It Works</a>
+        <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Features</a>
+        <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Learn</a>
+        <a href="https://qariai.app/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">About</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="nav_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fffdf8; text-decoration:none; padding:11px 22px; background:#0c6b48; border-radius:40px; box-shadow:0 6px 18px rgba(12,107,72,.28); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-1px); box-shadow:0 10px 22px rgba(12,107,72,.36);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fffdf8" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg><span class="qnav-playtext">Get it on Google Play</span></a>
+      <label for="qnav-toggle" class="qnav-burger" aria-label="Open menu" role="button" tabindex="0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#123829" stroke-width="2" stroke-linecap="round"/></svg>
+      </label>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="top" class="seo-hero" aria-labelledby="hero-title">
+    <div class="seo-hero-copy">
+      <div class="seo-hero-label">The AI Quran Coach</div>
+      <h1 id="hero-title" class="seo-hero-title"><span class="hero-line">Your Qur’an coach—</span><span class="hero-line">always in your pocket.</span></h1>
+      <p>Instant Tajweed feedback, Hifz support, interactive lessons and guided practice — built to support your learning between sessions with a teacher.</p>
+      <div class="seo-hero-actions">
+        <a class="seo-hero-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="hero_play_store_click">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+          Get it on Google Play
+        </a>
+        <a class="seo-hero-secondary" href="#features" data-ga-event="hero_how_it_works_click">See how it works</a>
+      </div>
+      <div class="seo-hero-points" aria-label="QariAI key benefits">
+        <span><strong>AI feedback</strong> while you recite</span><span>•</span><span><strong>Tajweed + Hifz</strong> practice</span>
+      </div>
+    </div>
+    <div class="seo-hero-visual">
+      <img src="/uploads/qariai-hero-phone-hudhud-v3.png?v=20260726c" alt="QariAI mobile app showing Quran recitation feedback beside the HudHud learning guide" width="1275" height="1353" fetchpriority="high"/>
+    </div>
+  </section>
+
+  <!-- ══ WHY LEARNERS TRUST QARIAI ══ -->
+  <section class="unified-proof" aria-label="Built for meaningful practice">
+    <div class="unified-proof__head">
+      <div>
+        <span class="unified-kicker">Built for meaningful practice</span>
+      </div>
+    </div>
+    <div class="unified-proof__grid">
+      <article class="unified-proof__item unified-proof__item--metric">
+        <div class="unified-proof__icon" aria-hidden="true">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div class="unified-proof__label">Trusted by learners</div>
+        <div class="unified-proof__value">6,000+</div>
+        <p>Active learners practising Tajweed, Hifz and Qur’anic Arabic with QariAI.</p>
+      </article>
+      <article class="unified-proof__item">
+        <div class="unified-proof__icon" aria-hidden="true">✓</div>
+        <div class="unified-proof__label">Research-first</div>
+        <h3>Open about evaluation</h3>
+        <p>Our <a href="https://qariai.app/qaef">methodology is public</a>, including where the system still falls short.</p>
+      </article>
+      <article class="unified-proof__item">
+        <div class="unified-proof__icon" aria-hidden="true">ق</div>
+        <div class="unified-proof__label">Built for the Qur’an</div>
+        <h3>Tajweed and Hifz-aware</h3>
+        <p>Focused recitation feedback—not a general speech app repurposed for Arabic.</p>
+      </article>
+      <article class="unified-proof__item">
+        <div class="unified-proof__icon" aria-hidden="true">↗</div>
+        <div class="unified-proof__label">Teacher-aligned</div>
+        <h3>Practice between lessons</h3>
+        <p>Designed to complement qualified teachers, not replace human teaching.</p>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- ══ FEATURES GRID ══ -->
+  <section id="features" style="background:#efe8d9; padding:96px max(24px,4vw); border-top:1px solid rgba(18,56,41,0.06); border-bottom:1px solid rgba(18,56,41,0.06);">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Features</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Built like a real teacher.</h2>
+    </div>
+    <div style="max-width:1120px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); gap:18px;" class="qgrid5">
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14l-8-4-8 4V5z" stroke="#0c6b48" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Tajweed</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">16 rules detected & explained</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5a2 2 0 012-2h6v16H6a2 2 0 00-2 2V5zM20 5a2 2 0 00-2-2h-6v16h6a2 2 0 012 2V5z" stroke="#c9973f" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Hifz</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">Protect your memorisation</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 014 4v5a4 4 0 01-8 0V6a4 4 0 014-4z" stroke="#0c6b48" stroke-width="1.8"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#0c6b48" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Personal Coach</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">Listens to every word</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7" fill="rgba(201,151,63,0.35)"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7" fill="rgba(201,151,63,0.2)"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Mistake Heatmap</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">See exactly where to focus</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0c6b48" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="#0c6b48" stroke-width="1.8"/><circle cx="12" cy="12" r="1.2" fill="#0c6b48"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Personalized Drills</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">Practise only what matters</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROGRESS (emotional) ══ -->
+  <section style="background:#efe8d9; padding:100px max(24px,4vw);">
+    <div style="max-width:900px; margin:0 auto; text-align:center;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#c9973f; margin-bottom:16px;">Your progress</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.6vw,3rem); line-height:1.1; letter-spacing:-.02em; color:#12251b; margin-bottom:14px;">It's a <em style="font-style:italic; color:#0c6b48;">spiritual journey.</em></h2>
+      <p style="font-size:1.08rem; color:#5c665c; line-height:1.6; max-width:520px; margin:0 auto 52px;">Every practice session moves you forward — and you can see it happening.</p>
+
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.09); border-radius:24px; padding:38px 34px 30px; box-shadow:0 24px 54px rgba(18,56,41,0.08);">
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:clamp(20px,6vw,64px); height:230px; padding:0 10px;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:800; color:#94a08f;">72</span>
+            <div style="width:100%; height:96px; border-radius:12px 12px 4px 4px; background:#cfd6cc;"></div>
+            <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Week 1</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:800; color:#7f9a86;">78</span>
+            <div style="width:100%; height:126px; border-radius:12px 12px 4px 4px; background:#9dbca7;"></div>
+            <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Week 2</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:800; color:#3f8560;">84</span>
+            <div style="width:100%; height:160px; border-radius:12px 12px 4px 4px; background:#40966b;"></div>
+            <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Week 3</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.7rem; font-weight:800; color:#0c6b48;">91</span>
+            <div style="width:100%; height:206px; border-radius:12px 12px 4px 4px; background:linear-gradient(180deg,#12925e,#0c6b48); box-shadow:0 10px 24px rgba(12,107,72,0.28);"></div>
+            <span style="font-size:12.5px; font-weight:700; color:#0c6b48;">Week 4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ APP FEATURE CAROUSEL ══ -->
+  <section class="app-showcase" aria-labelledby="app-showcase-title">
+    <div class="app-showcase__header">
+      <span class="app-showcase__eyebrow">Inside the app</span>
+      <h2 id="app-showcase-title" class="app-showcase__title">Recite like you’ve had a teacher<br/>your whole life.</h2>
+    </div>
+    <div class="app-carousel" id="qscreenGallery" data-ga-event="screenshot_carousel_interaction" role="region" aria-roledescription="carousel" aria-label="QariAI app features">
+      <div class="app-carousel__viewport">
+        <div class="app-carousel__track">
+          <article class="app-slide" data-title="Recite with confidence" data-copy="Start any recitation and receive focused guidance while you practise." aria-label="1 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_recite.jpeg?v=20260726e" onerror="this.onerror=null;this.src='/screenshots/en1.jpg?v=20260726e'" alt="QariAI recitation screen" width="1080" height="2340" loading="eager"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Detailed Tajweed Feedback" data-copy="Review each detected rule, listen to a model and focus on the correction that matters." aria-label="2 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/tajweed-feedback-ar.png?v=20260726b" alt="QariAI detailed Arabic Tajweed feedback screen" width="776" height="1264" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Your Learning Journey" data-copy="Follow structured lessons and continue from exactly where you left off." aria-label="3 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_learn.jpeg?v=20260726e" onerror="this.onerror=null;this.src='/screenshots/en3.jpg?v=20260726e'" alt="QariAI learning journey screen" width="1080" height="2340" loading="eager"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Arabic Lessons" data-copy="Continue structured Tajweed lessons with clear progress and one focused next step." aria-label="4 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/lessons-ar.png?v=20260726b" alt="QariAI Arabic lessons screen" width="776" height="1342" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Personalised Drills" data-copy="Turn recurring weak letters and rules into focused daily practice." aria-label="5 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/c6.png" alt="QariAI personalised practice drills" width="1080" height="2340" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Hifz Practice" data-copy="Identify omissions, additions and words to review without changing the sacred text." aria-label="6 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/qariai-hifz-carousel-screen.png?v=20260726b" alt="QariAI Hifz feedback screen" width="1080" height="1920" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Your Progress" data-copy="See your recitation level, weekly activity and the next milestone at a glance." aria-label="7 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/profile-progress-ar.png?v=20260726b" alt="QariAI Arabic progress profile screen" width="780" height="1506" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Find Your Maqam" data-copy="Explore vocal styles and discover the maqam that naturally suits your voice." aria-label="8 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/en2.jpg" alt="QariAI Maqam discovery screen" width="1080" height="2020" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Qur’an Combo" data-copy="Build connected Qur’anic words in a colourful, focused word puzzle." aria-label="9 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/quran-combo-game.jpg?v=20260726b" alt="QariAI Qur’an Combo connected-word game" width="945" height="2048" loading="lazy"/></div></div>
+          </article>
+        </div>
+      </div>
+      <div class="app-carousel__caption" aria-live="polite">
+        <h3></h3><p></p>
+      </div>
+      <div class="app-carousel__controls">
+        <button class="app-carousel__arrow app-carousel__prev" type="button" aria-label="Previous feature">‹</button>
+        <div class="app-carousel__dots" role="tablist" aria-label="Choose a feature"></div>
+        <button class="app-carousel__arrow app-carousel__next" type="button" aria-label="Next feature">›</button>
+      </div>
+    </div>
+  </section>
+  <script>
+  (function () {
+    var gallery = document.getElementById('qscreenGallery');
+    if (!gallery) return;
+    var track = gallery.querySelector('.app-carousel__track');
+    if (!track || track.dataset.loopReady === 'true') return;
+    Array.prototype.slice.call(track.children).forEach(function (slide) {
+      var clone = slide.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.removeAttribute('aria-label');
+      track.appendChild(clone);
+    });
+    track.dataset.loopReady = 'true';
+    requestAnimationFrame(function () { track.classList.add('is-running'); });
+  }());
+  </script>
+
+  <!-- ══ QURAN COMBO ══ -->
+  <section id="games" class="games-inside" aria-labelledby="games-inside-title">
+    <div class="games-inside__shell">
+      <div class="games-inside__head">
+        <div>
+          <span class="unified-kicker">Inside the QariAI app</span>
+          <h2 id="games-inside-title">Meet Qur’an Combo.</h2>
+        </div>
+        <div>
+          <p class="games-inside__intro">A focused Qur’anic word puzzle built into QariAI. Connect real Qur’anic words, recognise recurring vocabulary and strengthen recall—without a separate app.</p>
+          <span class="games-inside__badge">Included in the QariAI app</span>
+        </div>
+      </div>
+
+      <div class="games-inside__content">
+        <div class="combo-feature">
+          <div class="combo-feature__phone">
+            <img src="/screenshots/quran-combo-game.jpg?v=20260726c" alt="Qur’an Combo game inside the QariAI app" width="945" height="2048" loading="lazy"/>
+          </div>
+          <div>
+            <span class="combo-feature__tag">Featured in-app game</span>
+            <img class="combo-feature__logo" src="/uploads/quran-combo-logo.png?v=20260726c" alt="Qur’an Combo" loading="lazy"/>
+            <h3>Connect Qur’anic words.</h3>
+            <p>Build connected word chains, recognise recurring Qur’anic vocabulary and strengthen recall through short, focused puzzles.</p>
+            <ul>
+              <li>Real words from the Qur’an</li>
+              <li>Meaning-led vocabulary practice</li>
+              <li>Progress stays inside QariAI</li>
+            </ul>
+            <a class="games-inside__cta" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="games_play_store_click">Get QariAI on Google Play</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ COACH REMEMBERS YOU ══ -->
+  <section id="coach" style="background:#123829; padding:100px max(24px,4vw); position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-160px; right:-120px; width:560px; height:560px; background:radial-gradient(circle, rgba(18,146,94,0.22), transparent 62%); border-radius:50%; pointer-events:none;"></div>
+    <div style="max-width:1080px; margin:0 auto; position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="qsplit">
+      <div>
+        <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#c9973f; margin-bottom:16px;">Your biggest advantage</span>
+        <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.1; letter-spacing:-.02em; color:#fdf8ee; margin-bottom:20px;">Your coach remembers <em style="font-style:italic; color:#c9973f;">you.</em></h2>
+        <p style="font-size:1.08rem; line-height:1.65; color:rgba(253,248,238,0.74); margin-bottom:20px; max-width:440px;">It isn't the AI that changes everything. It's the memory. QariAI remembers every recurring mistake and builds future practice around your weaknesses.</p>
+        <p style="font-size:1.08rem; line-height:1.65; color:rgba(253,248,238,0.74); max-width:440px;">A checker grades one recitation. A coach carries what you struggled with last week into what you practise today.</p>
+      </div>
+
+      <div style="background:rgba(253,248,238,0.05); border:1px solid rgba(253,248,238,0.12); border-radius:24px; padding:30px 30px 26px;">
+        <div style="display:flex; flex-direction:column; gap:0;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:rgba(201,151,63,0.2); border:1.5px solid #c9973f; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#e6b662" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+            <div style="flex:1; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-size:11px; font-weight:700; letter-spacing:.05em; color:rgba(253,248,238,0.5); text-transform:uppercase;">Monday</div><div style="font-size:1.05rem; font-weight:700; color:#fdf8ee;">Ghunnah — missed</div></div></div>
+          </div>
+          <div style="width:2px; height:26px; background:linear-gradient(#c9973f,#12925e); margin-left:12px;"></div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:rgba(18,146,94,0.18); border:1.5px solid #12925e; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="#3fd39a" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+            <div style="flex:1;"><div style="font-size:11px; font-weight:700; letter-spacing:.05em; color:rgba(253,248,238,0.5); text-transform:uppercase;">Wednesday</div><div style="font-size:1.05rem; font-weight:700; color:#fdf8ee;">Getting closer</div></div>
+          </div>
+          <div style="width:2px; height:26px; background:linear-gradient(#12925e,#3fd39a); margin-left:12px;"></div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div style="flex:1; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-size:11px; font-weight:700; letter-spacing:.05em; color:rgba(253,248,238,0.5); text-transform:uppercase;">Friday</div><div style="font-size:1.05rem; font-weight:800; color:#fdf8ee;">Ghunnah — mastered</div></div><span style="font-size:11px; font-weight:700; color:#0f1512; background:#3fd39a; padding:5px 11px; border-radius:20px;">✓ Done</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DAILY PLANS ══ -->
+  <section style="background:#f4efe4; padding:100px max(24px,4vw);">
+    <div style="max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="qsplit">
+      <div>
+        <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:16px;">Daily plans</span>
+        <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.1; letter-spacing:-.02em; color:#12251b; margin-bottom:20px;">Build a Quran habit,<br/>one day at a time.</h2>
+        <p style="font-size:1.08rem; line-height:1.65; color:#4c564d; max-width:440px;">Structured 7-day plans blend Tajweed correction, Hifz review, and guided recitation — so every day has a clear, achievable goal.</p>
+      </div>
+
+      <div style="background:#0f1512; border-radius:26px; padding:28px 26px; box-shadow:0 30px 64px rgba(18,40,29,0.28);">
+        <div style="font-family:'Spectral',serif; font-size:1.15rem; font-weight:700; color:#fdf8ee; margin-bottom:18px;">Confidence in Qalqalah</div>
+
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:22px;">
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:rgba(253,248,238,0.06);">
+            <div style="font-size:13px; font-weight:700; color:#3fd39a;">1</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.4); margin-top:2px;">JUL 13</div>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="margin-top:4px;"><path d="M20 6L9 17l-5-5" stroke="#3fd39a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:#12925e;">
+            <div style="font-size:13px; font-weight:800; color:#fff;">2</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.85); margin-top:2px;">JUL 14</div>
+          </div>
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:rgba(253,248,238,0.06);">
+            <div style="font-size:13px; font-weight:700; color:rgba(253,248,238,0.5);">3</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.3); margin-top:2px;">JUL 15</div>
+          </div>
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:rgba(253,248,238,0.06);">
+            <div style="font-size:13px; font-weight:700; color:rgba(253,248,238,0.5);">4</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.3); margin-top:2px;">JUL 16</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+          <span style="font-size:13.5px; font-weight:700; color:#fdf8ee;">Day 2 of 7</span>
+          <span style="font-size:11.5px; font-weight:700; color:#3fd39a; background:rgba(63,211,154,0.12); padding:4px 11px; border-radius:20px;">On track</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(253,248,238,0.05); border-radius:12px;">
+            <span style="width:22px; height:22px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span style="font-size:13.5px; font-weight:600; color:rgba(253,248,238,0.4); text-decoration:line-through;">Tajweed drill — Qalqalah</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(253,248,238,0.05); border-radius:12px;">
+            <span style="width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(253,248,238,0.25); flex-shrink:0;"></span>
+            <span style="font-size:13.5px; font-weight:600; color:#fdf8ee;">Recite Surah Al-Mulk 1–10</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(253,248,238,0.05); border-radius:12px;">
+            <span style="width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(253,248,238,0.25); flex-shrink:0;"></span>
+            <span style="font-size:13.5px; font-weight:600; color:#fdf8ee;">Hifz review — Juz 'Amma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section id="reviews" style="background:#efe8d9; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">What reciters say</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Loved on Google Play.</h2>
+    </div>
+    <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:22px;" class="qgrid2">
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"Barakallahu Feekum. An incredible app. I've tested both Hifz and Tajweed mode — set to Advanced and it picks up every small mistake perfectly."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#0c6b48; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">M</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Matti-Ur Rehman</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"I think it is very nice and accurate Mashallah."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">S</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Sayeed Ahmed</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMPARISON TABLE ══ -->
+  <section style="max-width:820px; margin:0 auto; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Why QariAI</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">See the difference.</h2>
+    </div>
+    <div style="background:#fffdf8; border-radius:22px; overflow-x:auto; box-shadow:0 20px 48px rgba(18,56,41,0.08); border:1px solid rgba(18,56,41,0.08);">
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; min-width:520px;">
+        <div style="padding:18px 20px; font-size:12px; font-weight:700; letter-spacing:.05em; color:#7a8378; text-transform:uppercase;"></div>
+        <div style="padding:18px 12px; text-align:center; font-size:14px; font-weight:800; color:#0c6b48; background:rgba(12,107,72,0.07);">QariAI</div>
+        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Generic AI</div>
+        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Learning Alone</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Tajweed feedback</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Hifz mode</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Personalized drills</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Progress tracking</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05); border-radius:0 0 0 22px;"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center; border-radius:0 0 22px 0;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TOPIC HUB ══ -->
+  <section style="max-width:1120px; margin:0 auto; padding:80px max(24px,4vw) 40px;">
+    <div style="text-align:center; margin-bottom:44px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">The Academy</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Guides for every stage of the journey.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;" class="qgrid3">
+      <a href="https://qariai.app/academy/ai-quran" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">AI Quran Tutor</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">What an AI Quran tutor is, and how self-paced practice fits alongside a teacher.</p>
+      </a>
+      <a href="https://qariai.app/academy/ai-tajweed" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">AI Tajweed Correction</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">How genuine rule-level Tajweed correction works, and how it differs from word-matching.</p>
+      </a>
+      <a href="https://qariai.app/academy/ai-hifz" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">AI Hifz Coaching</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">Spaced repetition, revision scheduling, and where AI genuinely helps with memorisation.</p>
+      </a>
+      <a href="https://qariai.app/academy/memorize-quran-at-home" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">Memorize Quran at Home</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">A practical guide to self-paced memorization without regular access to a teacher.</p>
+      </a>
+      <a href="https://qariai.app/academy/hifz-self-study-roadmap" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">Self-Study Hifz Roadmap</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">The 5-stage path for huffaz memorising alone, without a local Hifz class.</p>
+      </a>
+      <a href="https://qariai.app/academy/can-ai-teach-tajweed" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">Can AI Teach Tajweed?</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">An honest answer — where AI helps, and where a qualified teacher remains essential.</p>
+      </a>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:600; color:#0c6b48; text-decoration:none;">Browse all Academy guides →</a>
+    </div>
+  </section>
+
+  <!-- ══ WHO IT'S FOR ══ -->
+  <section style="max-width:1120px; margin:0 auto; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Who it's for</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Wherever you are on the journey.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;" class="qgrid3">
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:22px; padding:32px 28px;" style-hover="transform:translateY(-3px); box-shadow:0 16px 36px rgba(18,56,41,0.08);">
+        <div style="width:52px; height:52px; border-radius:15px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 5-9 5-9-5 9-5z" stroke="#0c6b48" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 10v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" stroke="#0c6b48" stroke-width="1.7"/></svg></div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:700; color:#12251b; margin-bottom:8px;">Beginner</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6;">Learn to recite confidently, with gentle guidance on every rule from the very first ayah.</p>
+      </div>
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:22px; padding:32px 28px;" style-hover="transform:translateY(-3px); box-shadow:0 16px 36px rgba(18,56,41,0.08);">
+        <div style="width:52px; height:52px; border-radius:15px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#c9973f" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="#c9973f" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:700; color:#12251b; margin-bottom:8px;">Daily Reciter</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6;">Improve steadily with short daily sessions that target your weak spots and build a lasting habit.</p>
+      </div>
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:22px; padding:32px 28px;" style-hover="transform:translateY(-3px); box-shadow:0 16px 36px rgba(18,56,41,0.08);">
+        <div style="width:52px; height:52px; border-radius:15px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z" stroke="#0c6b48" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:700; color:#12251b; margin-bottom:8px;">Huffaz</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6;">Protect your hifz — recite from memory and let the coach catch the words that start to slip.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FINAL CTA ══ -->
+  <section style="background:#0f1512; padding:120px max(24px,4vw); text-align:center; position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:640px; height:640px; background:radial-gradient(circle, rgba(18,146,94,0.2), transparent 64%); border-radius:50%; pointer-events:none;"></div>
+    <div style="position:relative; z-index:2; max-width:680px; margin:0 auto;">
+      <div lang="ar" dir="rtl" style="font-family:'Amiri',serif; font-size:1.7rem; color:rgba(201,151,63,0.9); margin-bottom:24px;">لَا تُحَرِّكْ بِهِۦ لِسَانَكَ لِتَعْجَلَ بِهِۦٓ</div>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2.2rem,4.2vw,3.4rem); line-height:1.08; letter-spacing:-.02em; color:#fdf8ee; margin-bottom:32px;">Become the reciter<br/>you've always <em style="font-style:italic; color:#c9973f;">wanted to be.</em></h2>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="final_cta_play_store_click" style="display:inline-flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:600; color:#0f1512; text-decoration:none; padding:17px 38px; background:#fdf8ee; border-radius:44px; white-space:nowrap;" style-hover="transform:translateY(-2px); background:#fff;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0f1512" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+        Get it on Google Play
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer style="background:#0f1512; padding:72px max(24px,4vw) 34px; border-top:1px solid rgba(253,248,238,0.08);">
+    <div style="max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.4fr repeat(4, 1fr); gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+          <span style="width:34px; height:34px; border-radius:9px; background:#fff; display:flex; align-items:center; justify-content:center; padding:4px;"><img src="/uploads/logo.png?v=20260726" alt="QariAI" width="34" height="34" loading="lazy" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+          <span style="font-family:'Spectral',serif; font-size:18px; font-weight:700; color:#fdf8ee;">Qari<span style="color:#12925e;">AI</span></span>
+        </div>
+        <p style="font-size:13.5px; color:rgba(253,248,238,0.45); line-height:1.6; max-width:220px;">Your personal AI-powered Quran recitation coach.</p>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Product</span>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Features</a>
+          <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How It Works</a>
+          <a href="https://qariai.app/qaef" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">QAEF Framework</a>
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="footer_play_store_click" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Get it on Google Play</a>
+          <a href="https://qariai.app/tajweed-mistakes-checker" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Free Tajweed Checker</a>
+        </div>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Academy</span>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="https://qariai.app/academy/memorize-quran-at-home" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Memorize Quran at Home</a>
+          <a href="https://qariai.app/tajweed-rules" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Learn Tajweed</a>
+          <a href="https://qariai.app/academy/ai-tajweed" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Tajweed Correction</a>
+          <a href="https://qariai.app/academy/ai-hifz" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Hifz Coaching</a>
+          <a href="https://qariai.app/academy/hifz-self-study-roadmap" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Self-Study Hifz Roadmap</a>
+          <a href="https://qariai.app/academy/can-ai-teach-tajweed" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Can AI Teach Tajweed?</a>
+          <a href="https://qariai.app/academy/ai-vs-human-quran-teacher" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI vs Human Teacher</a>
+          <a href="https://qariai.app/academy/how-ai-detects-tajweed-mistakes" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How AI Detects Mistakes</a>
+          <a href="https://qariai.app/compare/qari-ai-vs-tarteel" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Qari AI vs Tarteel</a>
+          <a href="https://qariai.app/academy/future-of-quran-learning" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Future of Quran Learning</a>
+        </div>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Company</span>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="https://qariai.app/about" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">About Us</a>
+          <a href="https://qariai.app/privacy" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Privacy Policy</a>
+          <a href="https://qariai.app/terms" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Terms of Service</a>
+          <a href="https://qariai.app/contact" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Connect</span>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="footer_connect_play_store_click" style="display:flex; align-items:center; gap:10px; padding:9px 14px; border:1px solid rgba(253,248,238,0.18); border-radius:10px; text-decoration:none; width:fit-content;" style-hover="border-color:#12925e;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fdf8ee"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+            <span>
+              <span style="display:block; font-size:9.5px; color:rgba(253,248,238,0.5); line-height:1.2;">Get it on</span>
+              <span style="display:block; font-size:13px; font-weight:600; color:#fdf8ee; line-height:1.2;">Google Play</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1120px; margin:44px auto 0; padding-top:22px; border-top:1px solid rgba(253,248,238,0.08); display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center;">
+      <span style="font-size:13px; color:rgba(253,248,238,0.4);">© 2026 QariAI. Built with ❤️ for the Ummah. Powered by AI.</span>
+      <span style="font-family:'Amiri',serif; font-size:13.5px; color:rgba(253,248,238,0.4);">May Allah accept this work and make it beneficial • إن شاء الله</span>
+    </div>
+  </footer>
+
+  <!-- sticky CTA -->
+  <sc-if value="{{ stickyOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; left:0; right:0; bottom:0; z-index:110; background:rgba(15,21,18,0.95); backdrop-filter:blur(12px); border-top:1px solid rgba(253,248,238,0.1); padding:12px max(24px,4vw) calc(12px + env(safe-area-inset-bottom)); display:flex; align-items:center; justify-content:space-between; gap:16px; animation:qRise .35s ease both;">
+      <span style="font-size:14.5px; font-weight:600; color:#fdf8ee;">Your coach is ready when you are.</span>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="sticky_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0f1512; text-decoration:none; padding:11px 24px; background:#fdf8ee; border-radius:40px; white-space:nowrap;" style-hover="background:#fff;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0f1512" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>Get it on Google Play</a>
+    </div>
+  </sc-if>
+
+  <!-- Demo modal — vanilla JS (not the x-dc runtime), so it doesn't depend on custom onClick bindings.
+       Trigger button (#qdemo-open) is hidden by default in the hero until a real video ID is confirmed. -->
+  <div id="qdemo-overlay" class="qmodal-overlay" role="dialog" aria-modal="true" aria-labelledby="qdemo-title" aria-hidden="true">
+    <div id="qdemo-panel" style="background:#fffdf8; border-radius:24px; padding:20px; max-width:460px; width:100%; box-shadow:0 40px 90px rgba(0,0,0,0.4);">
+      <h2 id="qdemo-title" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">QariAI demo video</h2>
+      <div style="aspect-ratio:16/9; border-radius:16px; overflow:hidden; margin-bottom:16px; background:#0f1512;">
+        <!-- Replace YOUTUBE_VIDEO_ID_HERE with a confirmed real QariAI demo video before enabling the button above. -->
+        <iframe id="qdemo-frame" width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_HERE" title="QariAI demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+      </div>
+      <button type="button" id="qdemo-close" aria-label="Close demo video" style="width:100%; font-size:14.5px; font-weight:600; color:#fffdf8; background:#0c6b48; border:none; border-radius:40px; padding:13px; cursor:pointer;">Close</button>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;stickyCTA&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+class Component extends DCLogic {
+  state = { scrolled: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const s = y > 780;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+
+  renderVals() {
+    const p = this.props || {};
+    return {
+      stickyOn: (p.stickyCTA ?? true) && this.state.scrolled,
+    };
+  }
+}
+</script>
+<script>
+(function(){
+  "use strict";
+
+  // ---- Lightweight analytics: fires through whatever GA4/Firebase/GTM is already loaded on the page.
+  // Does not load or configure analytics itself — assumes the existing site-wide tracking snippet is present elsewhere.
+  function qTrack(name, extra) {
+    try {
+      var params = Object.assign({ page_path: location.pathname }, extra || {});
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', name, params);
+      } else if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+        window.dataLayer.push(Object.assign({ event: name }, params));
+      } else if (window.firebase && window.firebase.analytics) {
+        window.firebase.analytics().logEvent(name, params);
+      }
+    } catch (e) { /* analytics should never break the page */ }
+  }
+
+  document.querySelectorAll('[data-ga-event]').forEach(function (el) {
+    if (el.id === 'qscreens') return; // carousel handled separately below (scroll, not click)
+    el.addEventListener('click', function () {
+      qTrack(el.getAttribute('data-ga-event'), { cta_placement: el.getAttribute('data-ga-event') });
+    });
+  });
+
+  // The app showcase is a CSS-driven continuous loop, isolated beside its markup.
+
+  // ---- Mobile nav: close menu after tapping an anchor link
+  var navCheck = document.getElementById('qnav-toggle');
+  if (navCheck) {
+    document.querySelectorAll('.qnav-links a').forEach(function (a) {
+      a.addEventListener('click', function () { navCheck.checked = false; });
+    });
+  }
+
+  // ---- Demo modal: full a11y — focus move, focus trap, Escape, scroll lock, restore focus on close
+  var openBtn = document.getElementById('qdemo-open');
+  var overlay = document.getElementById('qdemo-overlay');
+  var panel = document.getElementById('qdemo-panel');
+  var closeBtn = document.getElementById('qdemo-close');
+  var frame = document.getElementById('qdemo-frame');
+  var lastFocused = null;
+
+  function getFocusable() {
+    return panel.querySelectorAll('button, [href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  }
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    if (frame && !frame.src) frame.src = frame.getAttribute('data-src'); // lazy-load the embed only on open
+    overlay.classList.add('qopen');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('qmodal-open');
+    closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+    qTrack('demo_open', {});
+  }
+
+  function closeModal() {
+    overlay.classList.remove('qopen');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('qmodal-open');
+    if (frame) frame.src = ''; // stop playback
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    qTrack('demo_close', {});
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      closeModal();
+      return;
+    }
+    if (e.key === 'Tab') {
+      var focusable = Array.prototype.slice.call(getFocusable());
+      if (!focusable.length) return;
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  }
+
+  if (openBtn) openBtn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+})();
+</script>
+<script type="text/plain" data-obsolete-carousel-disabled>
+(function () {
+  var gallery = document.getElementById('qscreenGalleryLegacyDisabled');
+  if (!gallery) return;
+
+  var viewport = gallery.querySelector('.app-carousel__viewport');
+  var slides = Array.prototype.slice.call(gallery.querySelectorAll('.app-slide'));
+  var dotsWrap = gallery.querySelector('.app-carousel__dots');
+  var captionTitle = gallery.querySelector('.app-carousel__caption h3');
+  var captionCopy = gallery.querySelector('.app-carousel__caption p');
+  var previous = gallery.querySelector('.app-carousel__prev');
+  var next = gallery.querySelector('.app-carousel__next');
+  var current = 0;
+  var timer = 0;
+  var animation = 0;
+  var dragging = false;
+  var dragStartX = 0;
+  var dragStartScroll = 0;
+
+  function slideLeft(index) {
+    var slide = slides[index];
+    var max = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    return Math.max(0, Math.min(max, slide.offsetLeft - slides[0].offsetLeft));
+  }
+
+  function update(index) {
+    current = (index + slides.length) % slides.length;
+    Array.prototype.forEach.call(dotsWrap.children, function (dot, i) {
+      dot.classList.toggle('is-active', i === current);
+      dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+    captionTitle.textContent = slides[current].getAttribute('data-title') || '';
+    captionCopy.textContent = slides[current].getAttribute('data-copy') || '';
+  }
+
+  function glideTo(index) {
+    cancelAnimationFrame(animation);
+    index = (index + slides.length) % slides.length;
+    var start = viewport.scrollLeft;
+    var end = slideLeft(index);
+    var change = end - start;
+    var started;
+    var duration = 1800;
+
+    if (index === 0 && current === slides.length - 1) {
+      viewport.scrollLeft = 0;
+      update(0);
+      return;
+    }
+
+    function frame(now) {
+      if (!started) started = now;
+      var progress = Math.min(1, (now - started) / duration);
+      var eased = progress < .5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      viewport.scrollLeft = start + change * eased;
+      if (progress < 1) animation = requestAnimationFrame(frame);
+      else update(index);
+    }
+    animation = requestAnimationFrame(frame);
+  }
+
+  function restart() {
+    window.clearInterval(timer);
+    timer = window.setInterval(function () {
+      if (!dragging && !document.hidden) glideTo(current + 1);
+    }, 6000);
+  }
+
+  dotsWrap.textContent = '';
+  slides.forEach(function (_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'app-carousel__dot';
+    dot.type = 'button';
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', 'Show feature ' + (i + 1));
+    dot.addEventListener('click', function () {
+      glideTo(i);
+      restart();
+    });
+    dotsWrap.appendChild(dot);
+  });
+
+  previous.addEventListener('click', function () {
+    glideTo(current - 1);
+    restart();
+  });
+  next.addEventListener('click', function () {
+    glideTo(current + 1);
+    restart();
+  });
+
+  viewport.addEventListener('pointerdown', function (event) {
+    if (event.pointerType === 'touch') return;
+    cancelAnimationFrame(animation);
+    dragging = true;
+    dragStartX = event.clientX;
+    dragStartScroll = viewport.scrollLeft;
+    viewport.classList.add('is-dragging');
+    viewport.setPointerCapture(event.pointerId);
+  });
+  viewport.addEventListener('pointermove', function (event) {
+    if (dragging) viewport.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+  });
+  viewport.addEventListener('pointerup', function (event) {
+    if (!dragging) return;
+    dragging = false;
+    viewport.classList.remove('is-dragging');
+    var nearest = 0;
+    var distance = Infinity;
+    slides.forEach(function (_, i) {
+      var delta = Math.abs(slideLeft(i) - viewport.scrollLeft);
+      if (delta < distance) {
+        distance = delta;
+        nearest = i;
+      }
+    });
+    glideTo(nearest);
+    restart();
+  });
+  viewport.addEventListener('pointercancel', function () {
+    dragging = false;
+    viewport.classList.remove('is-dragging');
+    restart();
+  });
+  viewport.addEventListener('scroll', function () {
+    if (dragging) return;
+    var nearest = current;
+    var distance = Infinity;
+    slides.forEach(function (_, i) {
+      var delta = Math.abs(slideLeft(i) - viewport.scrollLeft);
+      if (delta < distance) {
+        distance = delta;
+        nearest = i;
+      }
+    });
+    if (nearest !== current) update(nearest);
+  }, { passive: true });
+
+  gallery.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowLeft') previous.click();
+    if (event.key === 'ArrowRight') next.click();
+  });
+  document.addEventListener('visibilitychange', restart);
+  window.addEventListener('resize', function () {
+    viewport.scrollLeft = slideLeft(current);
+  });
+
+  viewport.scrollLeft = 0;
+  update(0);
+  restart();
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a212dbd6c9c6417f',t:'MTc4NTA2MzE4Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"30914d9ed7de4f7a9d0af4a53109c90d","r":1}' crossorigin="anonymous"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"30914d9ed7de4f7a9d0af4a53109c90d","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>
+<script async data-explicit-opt-in="true" data-cookie-opt-in="true" data-deployment-id="dpl_Gxt7Smm5nqcwfpR8eB5CpFibhKob" src="https://vercel.live/_next-live/feedback/feedback.js"></script>
