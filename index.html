@@ -337,7 +337,8 @@
     .app-carousel__viewport.is-dragging{cursor:grabbing}
     .app-carousel__viewport.is-dragging .app-carousel__track{transition:none}
     .app-carousel__track{--carousel-gap:32px;display:flex;align-items:center;gap:var(--carousel-gap);width:max-content;will-change:transform}
-    .app-carousel__track.is-running{animation:qari-carousel-glide 54s linear infinite}
+    .app-carousel__track.is-running{animation:qari-carousel-glide 34s linear infinite}
+    .app-carousel__viewport:hover .app-carousel__track.is-running{animation-play-state:paused}
     @keyframes qari-carousel-glide{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-50% - 16px),0,0)}}
     .app-slide{flex:0 0 clamp(238px,19vw,278px);display:flex;justify-content:center;opacity:1;transform:none;transition:none;pointer-events:auto}
     .app-slide.is-active,.app-slide.is-near{opacity:1;transform:none}
@@ -365,15 +366,15 @@
       .app-carousel__caption{min-height:108px}
       .app-carousel__arrow{width:48px;height:48px}
     }
-    @media(prefers-reduced-motion:reduce){.app-carousel__track.is-running{animation-duration:110s}.app-slide{transition:none}}
+    @media(prefers-reduced-motion:reduce){.app-carousel__track.is-running{animation:none}.app-carousel__viewport{overflow-x:auto}.app-slide{transition:none}}
 
     /* Standalone Qur'an Combo feature — intentionally separate from the old games layout. */
-    .games-inside__shell{padding:clamp(58px,7vw,96px) max(24px,calc((100vw - 1280px)/2))}
-    .games-inside__head{display:block;max-width:760px;margin:0 auto 34px;text-align:center}
+    .games-inside__shell{padding:clamp(44px,5vw,68px) max(24px,calc((100vw - 1280px)/2))}
+    .games-inside__head{display:block;max-width:760px;margin:0 auto 26px;text-align:center}
     .games-inside__head>div:last-child{margin-top:16px}
     .games-inside__intro{margin:0 auto}
-    .combo-feature{grid-template-columns:minmax(190px,260px) minmax(0,560px);justify-content:center;gap:clamp(34px,6vw,84px);max-width:980px;padding:34px clamp(28px,5vw,58px);background:rgba(255,255,255,.065)}
-    .combo-feature__phone{width:min(240px,100%)}
+    .combo-feature{grid-template-columns:minmax(170px,210px) minmax(0,520px);justify-content:center;gap:clamp(28px,5vw,62px);max-width:860px;padding:28px clamp(24px,4vw,44px);background:rgba(255,255,255,.065)}
+    .combo-feature__phone{width:min(200px,100%)}
     .combo-feature__logo{height:auto;max-height:90px;object-fit:contain;object-position:left center}
     @media(max-width:760px){.combo-feature{grid-template-columns:1fr}.combo-feature__logo{object-position:center}.games-inside__head{margin-bottom:28px}}
 
@@ -609,13 +610,13 @@
       <div class="app-carousel__viewport">
         <div class="app-carousel__track">
           <article class="app-slide" data-title="Recite with confidence" data-copy="Start any recitation and receive focused guidance while you practise." aria-label="1 of 9">
-            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_recite.jpeg?v=20260726e" onerror="this.onerror=null;this.src='/screenshots/en1.jpg?v=20260726e'" alt="QariAI recitation screen" width="1080" height="2340" loading="eager"/></div></div>
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/en1.jpg?v=20260726f" alt="QariAI recitation screen" width="1080" height="2340" loading="eager"/></div></div>
           </article>
           <article class="app-slide" data-title="Detailed Tajweed Feedback" data-copy="Review each detected rule, listen to a model and focus on the correction that matters." aria-label="2 of 9">
             <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/tajweed-feedback-ar.png?v=20260726b" alt="QariAI detailed Arabic Tajweed feedback screen" width="776" height="1264" loading="lazy"/></div></div>
           </article>
           <article class="app-slide" data-title="Your Learning Journey" data-copy="Follow structured lessons and continue from exactly where you left off." aria-label="3 of 9">
-            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_learn.jpeg?v=20260726e" onerror="this.onerror=null;this.src='/screenshots/en3.jpg?v=20260726e'" alt="QariAI learning journey screen" width="1080" height="2340" loading="eager"/></div></div>
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/en3.jpg?v=20260726f" alt="QariAI learning journey screen" width="1080" height="2340" loading="eager"/></div></div>
           </article>
           <article class="app-slide" data-title="Arabic Lessons" data-copy="Continue structured Tajweed lessons with clear progress and one focused next step." aria-label="4 of 9">
             <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/lessons-ar.png?v=20260726b" alt="QariAI Arabic lessons screen" width="776" height="1342" loading="lazy"/></div></div>
@@ -704,11 +705,16 @@
   <script>
   /* Keep the primary product story together:
      hero → learner proof → app carousel → Qur'an Combo. */
-  (function () {
+  (function placePrimaryStory() {
     var proof = document.querySelector('.unified-proof');
     var carousel = document.querySelector('.app-showcase');
     var combo = document.getElementById('games');
-    if (!proof || !carousel || !combo) return;
+    if (!proof || !carousel || !combo) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', placePrimaryStory, { once: true });
+      }
+      return;
+    }
     proof.insertAdjacentElement('afterend', combo);
     proof.insertAdjacentElement('afterend', carousel);
   }());
@@ -1303,8 +1309,5 @@ class Component extends DCLogic {
   restart();
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a212dbd6c9c6417f',t:'MTc4NTA2MzE4Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"30914d9ed7de4f7a9d0af4a53109c90d","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"30914d9ed7de4f7a9d0af4a53109c90d","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>
-<script async data-explicit-opt-in="true" data-cookie-opt-in="true" data-deployment-id="dpl_Gxt7Smm5nqcwfpR8eB5CpFibhKob" src="https://vercel.live/_next-live/feedback/feedback.js"></script>
