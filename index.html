@@ -244,12 +244,13 @@
 
 
     /* SEO-first native HTML hero */
-    .seo-hero{position:relative;max-width:1280px;margin:0 auto;padding:132px max(24px,4vw) 78px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(480px,1.1fr);gap:clamp(44px,6vw,88px);align-items:center;min-height:760px}
+    .seo-hero{position:relative;max-width:1520px;margin:0 auto;padding:116px max(24px,3vw) 52px;display:grid;grid-template-columns:minmax(500px,.86fr) minmax(620px,1.14fr);gap:clamp(18px,2.5vw,40px);align-items:center;min-height:680px}
     .seo-hero::before{content:"";position:absolute;inset:88px 0 24px;border-radius:42px;background:linear-gradient(135deg,#fffdf8 0%,#fbf3e4 62%,#eef4ec 100%);border:1px solid rgba(18,56,41,.08);box-shadow:0 30px 90px rgba(18,56,41,.09);z-index:-1}
     .seo-hero-copy{padding-left:clamp(12px,3vw,44px);position:relative;z-index:2}
     .seo-hero-label{display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;padding:8px 13px;border-radius:999px;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.12);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b6e52}
     .seo-hero-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
-    .seo-hero-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(3.1rem,5.65vw,5.45rem);line-height:.98;letter-spacing:-.045em;color:#123829;max-width:710px;margin:0 0 24px}
+    .seo-hero-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(3.35rem,4.55vw,4.7rem);line-height:.96;letter-spacing:-.045em;color:#123829;max-width:690px;margin:0 0 22px}
+    .seo-hero-title .hero-line{display:block;white-space:nowrap}
     .seo-hero-title span{display:block;color:#be8a2c}
     .seo-hero-copy p{font-size:clamp(1rem,1.42vw,1.16rem);line-height:1.68;color:#455149;max-width:590px;margin:0 0 30px}
     .seo-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px}
@@ -260,31 +261,35 @@
     .seo-hero-secondary:hover{transform:translateY(-2px);background:#fff}
     .seo-hero-points{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;font-size:12.5px;color:#667168;font-weight:650}
     .seo-hero-points strong{color:#123829}
-    .seo-hero-visual{position:relative;min-height:590px;display:flex;align-items:center;justify-content:center;padding:0 38px 20px 0;overflow:visible;transform:translateY(-16px)}
+    .seo-hero-visual{position:relative;min-height:540px;display:flex;align-items:center;justify-content:center;padding:0 4px 0 0;overflow:visible;transform:translateY(-28px)}
     .seo-hero-visual::before{content:"";position:absolute;left:12%;right:10%;bottom:8%;height:17%;border-radius:50%;background:rgba(18,56,41,.2);filter:blur(34px);transform:scaleX(.9);opacity:.42}
-    .seo-hero-visual img{position:relative;z-index:2;display:block;width:min(108%,760px);height:auto;max-height:680px;object-fit:contain;object-position:center;filter:drop-shadow(0 22px 22px rgba(18,56,41,.14))}
-    @media(max-width:980px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:14px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points{justify-content:center}.seo-hero-visual{min-height:auto;padding:8px 28px 32px}.seo-hero-visual img{width:min(92%,760px)}}
-    @media(max-width:640px){.seo-hero{padding:96px 14px 48px}.seo-hero::before{inset:72px 0 0;border-radius:0}.seo-hero-copy{padding:32px 18px 0}.seo-hero-label{font-size:10px}.seo-hero-title{font-size:clamp(2.65rem,14vw,4rem)}.seo-hero-copy p{font-size:15px;line-height:1.58}.seo-hero-actions{display:grid;grid-template-columns:1fr}.seo-hero-primary,.seo-hero-secondary{width:100%}.seo-hero-visual{padding:8px 0 12px}.seo-hero-visual img{width:100%;max-width:620px;max-height:none;object-fit:contain;object-position:center}}
+    .seo-hero-visual img{position:relative;z-index:2;display:block;width:min(116%,900px);height:auto;max-height:730px;object-fit:contain;object-position:center;filter:drop-shadow(0 22px 22px rgba(18,56,41,.14))}
+    @media(max-width:1120px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:6px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points{justify-content:center}.seo-hero-visual{min-height:auto;padding:0 28px 20px;transform:translateY(-8px)}.seo-hero-visual img{width:min(94%,800px)}}
+    @media(max-width:640px){.seo-hero{padding:96px 14px 38px}.seo-hero::before{inset:72px 0 0;border-radius:0}.seo-hero-copy{padding:32px 18px 0}.seo-hero-label{font-size:10px}.seo-hero-title{font-size:clamp(2.65rem,14vw,4rem)}.seo-hero-title .hero-line{white-space:normal}.seo-hero-copy p{font-size:15px;line-height:1.58}.seo-hero-actions{display:grid;grid-template-columns:1fr}.seo-hero-primary,.seo-hero-secondary{width:100%}.seo-hero-visual{padding:0;transform:translateY(-4px)}.seo-hero-visual img{width:108%;max-width:680px;max-height:none;object-fit:contain;object-position:center}}
 
     /* App feature carousel */
     .app-showcase{padding:104px max(20px,4vw) 96px;overflow:hidden;background:linear-gradient(180deg,#fffdf8 0%,#fbf7ed 100%)}
     .app-showcase__header{text-align:center;max-width:760px;margin:0 auto 42px}
     .app-showcase__eyebrow{display:inline-block;font-size:12.5px;font-weight:750;text-transform:uppercase;letter-spacing:.11em;color:#0c6b48;margin-bottom:14px}
     .app-showcase__title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2.15rem,3.8vw,3.25rem);line-height:1.08;letter-spacing:-.03em;color:#12251b}
-    .app-carousel{max-width:1080px;margin:0 auto;position:relative}
-    .app-carousel__viewport{overflow:hidden;padding:22px 10px 32px}
+    .app-carousel{max-width:1380px;margin:0 auto;position:relative}
+    .app-carousel__viewport{overflow:hidden;padding:22px 0 32px;mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 94%,transparent 100%)}
     .app-carousel__track{display:flex;align-items:center;transition:transform .55s cubic-bezier(.22,.75,.22,1);will-change:transform}
-    .app-slide{flex:0 0 33.333%;display:flex;justify-content:center;opacity:.48;transform:scale(.78);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+    .app-slide{flex:0 0 27%;display:flex;justify-content:center;opacity:.38;transform:scale(.76);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
     .app-slide.is-active{opacity:1;transform:scale(1);pointer-events:auto}
-    .app-slide.is-near{opacity:.76;transform:scale(.87)}
-    .app-phone{width:min(264px,24vw);background:#101512;border-radius:39px;padding:9px;box-shadow:0 24px 58px rgba(18,40,29,.2),0 0 0 1px rgba(255,255,255,.12) inset}
+    .app-slide.is-near{opacity:.78;transform:scale(.88)}
+    .app-phone{width:min(286px,22vw);background:#101512;border-radius:39px;padding:9px;box-shadow:0 24px 58px rgba(18,40,29,.2),0 0 0 1px rgba(255,255,255,.12) inset}
     .app-phone__screen{position:relative;overflow:hidden;border-radius:31px;background:#eef5ef;aspect-ratio:1080/2172}
     .app-phone__screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
     .app-carousel__caption{text-align:center;min-height:92px;max-width:570px;margin:4px auto 0;padding:0 24px}
     .app-carousel__caption h3{font-family:'Spectral',serif;font-size:1.48rem;line-height:1.2;color:#123829;margin-bottom:7px}
     .app-carousel__caption p{font-size:15px;line-height:1.55;color:#647067}
-    .app-carousel__controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:18px}
-    .app-carousel__arrow{width:44px;height:44px;border-radius:50%;border:1px solid rgba(18,56,41,.16);background:#fffdf8;color:#123829;font-size:22px;cursor:pointer;box-shadow:0 8px 22px rgba(18,56,41,.08);transition:.2s ease}
+    .app-carousel__meta{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;color:#66736b;font-size:13px;font-weight:650}
+    .app-carousel__counter{display:inline-flex;align-items:center;justify-content:center;min-width:58px;padding:6px 10px;border-radius:999px;background:#e9f3ed;color:#0c6b48;font-weight:800}
+    .app-carousel__hint{display:inline-flex;align-items:center;gap:6px}
+    .app-carousel__hint::after{content:'→';font-size:17px;color:#0c6b48}
+    .app-carousel__controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:14px}
+    .app-carousel__arrow{width:52px;height:52px;border-radius:50%;border:1px solid rgba(18,56,41,.16);background:#fffdf8;color:#123829;font-size:28px;line-height:1;cursor:pointer;box-shadow:0 9px 24px rgba(18,56,41,.1);transition:.2s ease}
     .app-carousel__arrow:hover{background:#0c6b48;color:#fff;transform:translateY(-2px)}
     .app-carousel__dots{display:flex;align-items:center;gap:8px}
     .app-carousel__dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#c9d0ca;cursor:pointer;transition:.25s ease}
@@ -294,13 +299,15 @@
       .seo-hero-visual{transform:translateY(-10px)}
       .app-showcase{padding:82px 14px 76px}
       .app-showcase__header{margin-bottom:26px;padding:0 10px}
-      .app-carousel__viewport{overflow:visible;padding:18px 0 24px}
+      .app-carousel__viewport{overflow:visible;padding:18px 0 24px;mask-image:none}
       .app-carousel__track{touch-action:pan-y}
       .app-slide{flex-basis:76%;transform:scale(.82);opacity:.3}
       .app-slide.is-active{transform:scale(1);opacity:1}
       .app-slide.is-near{transform:scale(.86);opacity:.48}
       .app-phone{width:min(272px,68vw)}
       .app-carousel__caption{min-height:108px}
+      .app-carousel__hint{font-size:12px}
+      .app-carousel__arrow{width:48px;height:48px}
     }
     @media(prefers-reduced-motion:reduce){.app-carousel__track,.app-slide{transition:none}}
 
@@ -362,7 +369,7 @@
   <section id="top" class="seo-hero" aria-labelledby="hero-title">
     <div class="seo-hero-copy">
       <div class="seo-hero-label">The AI Quran Coach</div>
-      <h1 id="hero-title" class="seo-hero-title">Recite Like You’ve Had a Teacher <span>Your Whole Life.</span></h1>
+      <h1 id="hero-title" class="seo-hero-title"><span class="hero-line">Recite Like</span><span class="hero-line">You’ve Had a Teacher</span><span class="hero-line">Your Whole Life.</span></h1>
       <p>Instant Tajweed feedback, Hifz support, interactive lessons and guided practice — built to support your learning between sessions with a teacher.</p>
       <div class="seo-hero-actions">
         <a class="seo-hero-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="hero_play_store_click">
@@ -624,6 +631,10 @@
       </div>
       <div class="app-carousel__caption" aria-live="polite">
         <h3></h3><p></p>
+      </div>
+      <div class="app-carousel__meta" aria-live="polite">
+        <span class="app-carousel__counter">1 of 7</span>
+        <span class="app-carousel__hint">Swipe or use arrows</span>
       </div>
       <div class="app-carousel__controls">
         <button class="app-carousel__arrow app-carousel__prev" type="button" aria-label="Previous feature">‹</button>
@@ -1010,7 +1021,8 @@ class Component extends DCLogic {
     var dotsWrap = screens.querySelector('.app-carousel__dots');
     var captionTitle = screens.querySelector('.app-carousel__caption h3');
     var captionCopy = screens.querySelector('.app-carousel__caption p');
-    var activeSlide = 0;
+    var counter = screens.querySelector('.app-carousel__counter');
+    var activeSlide = window.innerWidth <= 760 ? 0 : 1;
     var carouselTimer;
     var touchStartX = 0;
     var firedScreens = false;
@@ -1025,11 +1037,11 @@ class Component extends DCLogic {
       dotsWrap.appendChild(dot);
     });
 
-    function visibleBasis() { return window.innerWidth <= 760 ? 76 : 33.333; }
+    function visibleBasis() { return window.innerWidth <= 760 ? 76 : 27; }
     function showSlide(index, userInitiated) {
       activeSlide = (index + slides.length) % slides.length;
       var basis = visibleBasis();
-      var centreOffset = 50;
+      var centreOffset = window.innerWidth <= 760 ? 50 : 38;
       track.style.transform = 'translateX(calc(' + centreOffset + '% - ' + (activeSlide * basis) + '% - ' + (basis / 2) + '%))';
       slides.forEach(function (slide, i) {
         slide.classList.toggle('is-active', i === activeSlide);
@@ -1042,6 +1054,7 @@ class Component extends DCLogic {
       });
       captionTitle.textContent = slides[activeSlide].getAttribute('data-title');
       captionCopy.textContent = slides[activeSlide].getAttribute('data-copy');
+      counter.textContent = (activeSlide + 1) + ' of ' + slides.length;
       if (userInitiated) {
         if (!firedScreens) {
           firedScreens = true;
@@ -1071,7 +1084,7 @@ class Component extends DCLogic {
     screens.addEventListener('mouseenter', function () { clearInterval(carouselTimer); });
     screens.addEventListener('mouseleave', restartCarousel);
     window.addEventListener('resize', function () { showSlide(activeSlide, false); });
-    showSlide(0, false);
+    showSlide(activeSlide, false);
     restartCarousel();
   }
 
