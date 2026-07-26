@@ -283,11 +283,7 @@
     .app-carousel__caption{text-align:center;min-height:92px;max-width:570px;margin:4px auto 0;padding:0 24px}
     .app-carousel__caption h3{font-family:'Spectral',serif;font-size:1.48rem;line-height:1.2;color:#123829;margin-bottom:7px}
     .app-carousel__caption p{font-size:15px;line-height:1.55;color:#647067}
-    .app-carousel__meta{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;color:#66736b;font-size:13px;font-weight:650}
-    .app-carousel__counter{display:inline-flex;align-items:center;justify-content:center;min-width:58px;padding:6px 10px;border-radius:999px;background:#e9f3ed;color:#0c6b48;font-weight:800}
-    .app-carousel__hint{display:inline-flex;align-items:center;gap:6px}
-    .app-carousel__hint::after{content:'→';font-size:17px;color:#0c6b48}
-    .app-carousel__controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:14px}
+    .app-carousel__controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:10px}
     .app-carousel__arrow{width:52px;height:52px;border-radius:50%;border:1px solid rgba(18,56,41,.16);background:#fffdf8;color:#123829;font-size:28px;line-height:1;cursor:pointer;box-shadow:0 9px 24px rgba(18,56,41,.1);transition:.2s ease}
     .app-carousel__arrow:hover{background:#0c6b48;color:#fff;transform:translateY(-2px)}
     .app-carousel__dots{display:flex;align-items:center;gap:8px}
@@ -303,7 +299,6 @@
       .app-slide,.app-slide.is-active,.app-slide.is-near{flex-basis:76%;transform:none;opacity:1}
       .app-phone{width:min(286px,70vw)}
       .app-carousel__caption{min-height:108px}
-      .app-carousel__hint{font-size:12px}
       .app-carousel__arrow{width:48px;height:48px}
     }
     @media(prefers-reduced-motion:reduce){.app-carousel__track,.app-slide{transition:none}}
@@ -603,35 +598,43 @@
     <div class="app-carousel" id="qscreens" data-ga-event="screenshot_carousel_interaction" role="region" aria-roledescription="carousel" aria-label="QariAI app features">
       <div class="app-carousel__viewport">
         <div class="app-carousel__track">
-          <article class="app-slide" data-title="Recite with confidence" data-copy="Start any recitation and receive focused guidance while you practise." aria-label="1 of 7">
+          <article class="app-slide" data-title="Recite with confidence" data-copy="Start any recitation and receive focused guidance while you practise." aria-label="1 of 11">
             <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_recite.jpeg" alt="QariAI recitation screen" width="1080" height="2340" loading="lazy"/></div></div>
           </article>
-          <article class="app-slide" data-title="AI Correction" data-copy="See which letters and Tajweed rules need attention, with actionable coaching." aria-label="2 of 7">
+          <article class="app-slide" data-title="AI Correction" data-copy="See which letters and Tajweed rules need attention, with actionable coaching." aria-label="2 of 11">
             <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v19_3.jpeg" alt="QariAI Tajweed correction breakdown" width="678" height="1357" loading="lazy"/></div></div>
           </article>
-          <article class="app-slide" data-title="Tajweed Coach" data-copy="Choose your level and practise any surah or ayah with precise feedback." aria-label="3 of 7">
+          <article class="app-slide" data-title="Detailed Tajweed Feedback" data-copy="Review each detected rule, listen to a model and focus on the correction that matters." aria-label="3 of 11">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/tajweed-feedback-ar.png" alt="QariAI detailed Arabic Tajweed feedback screen" width="776" height="1264" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Tajweed Coach" data-copy="Choose your level and practise any surah or ayah with precise feedback." aria-label="4 of 11">
             <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/en1.jpg" alt="QariAI Tajweed Coach screen" width="1080" height="1954" loading="lazy"/></div></div>
           </article>
-          <article class="app-slide" data-title="Your Learning Journey" data-copy="Follow structured lessons and continue from exactly where you left off." aria-label="4 of 7">
+          <article class="app-slide" data-title="Your Learning Journey" data-copy="Follow structured lessons and continue from exactly where you left off." aria-label="5 of 11">
             <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_learn.jpeg" alt="QariAI learning journey screen" width="1080" height="2340" loading="lazy"/></div></div>
           </article>
-          <article class="app-slide" data-title="Personalised Drills" data-copy="Turn recurring weak letters and rules into focused daily practice." aria-label="5 of 7">
+          <article class="app-slide" data-title="Arabic Lessons" data-copy="Continue structured Tajweed lessons with clear progress and one focused next step." aria-label="6 of 11">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/lessons-ar.png" alt="QariAI Arabic lessons screen" width="776" height="1342" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Personalised Drills" data-copy="Turn recurring weak letters and rules into focused daily practice." aria-label="7 of 11">
             <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/c6.png" alt="QariAI personalised practice drills" width="1080" height="2340" loading="lazy"/></div></div>
           </article>
-          <article class="app-slide" data-title="Hifz Practice" data-copy="Identify omissions, additions and words to review without changing the sacred text." aria-label="6 of 7">
+          <article class="app-slide" data-title="Hifz Practice" data-copy="Identify omissions, additions and words to review without changing the sacred text." aria-label="8 of 11">
             <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/qariai-hifz-carousel-screen.png" alt="QariAI Hifz feedback screen" width="1080" height="1920" loading="lazy"/></div></div>
           </article>
-          <article class="app-slide" data-title="Find Your Maqam" data-copy="Explore vocal styles and discover the maqam that naturally suits your voice." aria-label="7 of 7">
+          <article class="app-slide" data-title="Your Progress" data-copy="See your recitation level, weekly activity and the next milestone at a glance." aria-label="9 of 11">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/profile-progress-ar.png" alt="QariAI Arabic progress profile screen" width="780" height="1506" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Find Your Maqam" data-copy="Explore vocal styles and discover the maqam that naturally suits your voice." aria-label="10 of 11">
             <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/en2.jpg" alt="QariAI Maqam discovery screen" width="1080" height="2020" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Qur’an Combo" data-copy="Build connected Qur’anic words in a colourful, focused word puzzle." aria-label="11 of 11">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/quran-combo-game.jpg" alt="QariAI Qur’an Combo connected-word game" width="945" height="2048" loading="lazy"/></div></div>
           </article>
         </div>
       </div>
       <div class="app-carousel__caption" aria-live="polite">
         <h3></h3><p></p>
-      </div>
-      <div class="app-carousel__meta" aria-live="polite">
-        <span class="app-carousel__counter">1 of 7</span>
-        <span class="app-carousel__hint">Swipe or use arrows</span>
       </div>
       <div class="app-carousel__controls">
         <button class="app-carousel__arrow app-carousel__prev" type="button" aria-label="Previous feature">‹</button>
@@ -1018,7 +1021,6 @@ class Component extends DCLogic {
     var dotsWrap = screens.querySelector('.app-carousel__dots');
     var captionTitle = screens.querySelector('.app-carousel__caption h3');
     var captionCopy = screens.querySelector('.app-carousel__caption p');
-    var counter = screens.querySelector('.app-carousel__counter');
     var activeSlide = window.innerWidth <= 760 ? 0 : 1;
     var carouselTimer;
     var touchStartX = 0;
@@ -1051,7 +1053,6 @@ class Component extends DCLogic {
       });
       captionTitle.textContent = slides[activeSlide].getAttribute('data-title');
       captionCopy.textContent = slides[activeSlide].getAttribute('data-copy');
-      counter.textContent = (activeSlide + 1) + ' of ' + slides.length;
       if (userInitiated) {
         if (!firedScreens) {
           firedScreens = true;
@@ -1063,7 +1064,7 @@ class Component extends DCLogic {
     function restartCarousel() {
       clearInterval(carouselTimer);
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        carouselTimer = setInterval(function () { showSlide(activeSlide + 1, false); }, 6000);
+        carouselTimer = setInterval(function () { showSlide(activeSlide + 1, false); }, 10000);
       }
     }
 
