@@ -425,7 +425,6 @@
        EDITABLE CONTENT (things likely to change often):
        - Hero stats (6,000+ / 42+ / £0)            — verify before editing, see memory notes
        - Testimonials (Matti-Ur Rehman, Sayeed Ahmed) — Google Play reviews, verified
-       - Tajweed Quest character art: uploads/tajweed-quest-characters.webp
             (uploads/tajweed-quest-preview.webp is no longer referenced — remove it, or ignore if kept for other use)
        - Screenshot carousel: screenshots/en1.jpg … en4.jpg
 
@@ -639,16 +638,16 @@
     </div>
   </section>
 
-  <!-- ══ GAMES INSIDE QARIAI ══ -->
+  <!-- ══ QURAN COMBO ══ -->
   <section id="games" class="games-inside" aria-labelledby="games-inside-title">
     <div class="games-inside__shell">
       <div class="games-inside__head">
         <div>
-          <span class="unified-kicker">Games inside QariAI</span>
-          <h2 id="games-inside-title">Learn, practise and play—in one app.</h2>
+          <span class="unified-kicker">Inside the QariAI app</span>
+          <h2 id="games-inside-title">Meet Qur’an Combo.</h2>
         </div>
         <div>
-          <p class="games-inside__intro">QariAI includes focused learning games that reinforce Tajweed, Qur’anic Arabic and letter recognition. No separate download: they live alongside your recitation coaching, lessons and progress.</p>
+          <p class="games-inside__intro">A focused Qur’anic word puzzle built into QariAI. Connect real Qur’anic words, recognise recurring vocabulary and strengthen recall—without a separate app.</p>
           <span class="games-inside__badge">Included in the QariAI app</span>
         </div>
       </div>
@@ -672,23 +671,6 @@
           </div>
         </div>
 
-        <div class="game-list" aria-label="More games in QariAI">
-          <article class="game-tile">
-            <div class="game-tile__icon" aria-hidden="true">ق</div>
-            <div><strong>Tajweed Quest</strong><span>Practise Tajweed through guided challenges.</span></div>
-            <span class="game-tile__state">Inside QariAI</span>
-          </article>
-          <article class="game-tile">
-            <div class="game-tile__icon" aria-hidden="true">ب</div>
-            <div><strong>Harf Writer</strong><span>Learn Arabic letter shapes and formation.</span></div>
-            <span class="game-tile__state">Inside QariAI</span>
-          </article>
-          <article class="game-tile">
-            <div class="game-tile__icon" aria-hidden="true">ّ</div>
-            <div><strong>Word Builder</strong><span>Assemble Qur’anic words and Tajweed marks.</span></div>
-            <span class="game-tile__state">Inside QariAI</span>
-          </article>
-        </div>
       </div>
     </div>
   </section>
@@ -1071,7 +1053,7 @@ class Component extends DCLogic {
     var dotsWrap = screens.querySelector('.app-carousel__dots');
     var captionTitle = screens.querySelector('.app-carousel__caption h3');
     var captionCopy = screens.querySelector('.app-carousel__caption p');
-    var activeSlide = window.innerWidth <= 760 ? 0 : 1;
+    var activeSlide = 0;
     var carouselTimer;
     var touchStartX = 0;
     var pointerStartX = 0;
@@ -1094,9 +1076,9 @@ class Component extends DCLogic {
     function showSlide(index, userInitiated) {
       activeSlide = (index + slides.length) % slides.length;
       var active = slides[activeSlide];
-      var activeCentre = active.offsetLeft + (active.offsetWidth / 2);
-      var viewportCentre = viewport.clientWidth / 2;
-      glideTo(Math.max(0, Math.round(activeCentre - viewportCentre)));
+      var maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+      var targetLeft = Math.min(maxScroll, Math.max(0, active.offsetLeft - track.offsetLeft));
+      viewport.scrollTo({ left: targetLeft, behavior: 'smooth' });
       slides.forEach(function (slide, i) {
         slide.classList.toggle('is-active', i === activeSlide);
         slide.classList.toggle('is-near', Math.abs(i - activeSlide) === 1 || (activeSlide === 0 && i === slides.length - 1) || (activeSlide === slides.length - 1 && i === 0));
@@ -1116,24 +1098,9 @@ class Component extends DCLogic {
         restartCarousel();
       }
     }
-    var glideFrame = 0;
-    function glideTo(targetLeft) {
-      window.cancelAnimationFrame(glideFrame);
-      var startLeft = viewport.scrollLeft;
-      var distance = targetLeft - startLeft;
-      var startedAt = performance.now();
-      var duration = 1400;
-      function step(now) {
-        var progress = Math.min(1, (now - startedAt) / duration);
-        var eased = 1 - Math.pow(1 - progress, 3);
-        viewport.scrollLeft = startLeft + (distance * eased);
-        if (progress < 1) glideFrame = window.requestAnimationFrame(step);
-      }
-      glideFrame = window.requestAnimationFrame(step);
-    }
     function restartCarousel() {
       clearInterval(carouselTimer);
-      carouselTimer = setInterval(function () { showSlide(activeSlide + 1, false); }, 6000);
+      carouselTimer = setInterval(function () { showSlide(activeSlide + 1, false); }, 4500);
     }
 
     screens.querySelector('.app-carousel__prev').addEventListener('click', function () { showSlide(activeSlide - 1, true); });
