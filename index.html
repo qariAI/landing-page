@@ -97,6 +97,47 @@
       .qnav-burger{ display:flex; align-items:center; justify-content:center; width:40px; height:40px;
         border-radius:10px; border:1px solid rgba(18,56,41,0.14); cursor:pointer; flex-shrink:0; }
     }
+
+    /* Qur'an Combo */
+    .combo-card{position:relative;overflow:hidden;border:1px solid rgba(18,56,41,.1);border-radius:30px;background:linear-gradient(145deg,#fffdf8 0%,#f8f0dc 58%,#eef5ed 100%);box-shadow:0 26px 70px rgba(18,56,41,.09);padding:clamp(32px,5vw,58px);isolation:isolate}
+    .combo-card::before,.combo-card::after{content:"";position:absolute;border-radius:50%;z-index:-1;pointer-events:none}
+    .combo-card::before{width:420px;height:420px;right:-150px;top:-190px;background:radial-gradient(circle,rgba(201,151,63,.2),rgba(201,151,63,0) 68%)}
+    .combo-card::after{width:360px;height:360px;left:-180px;bottom:-210px;background:radial-gradient(circle,rgba(12,107,72,.13),rgba(12,107,72,0) 68%)}
+    .combo-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:clamp(34px,5vw,64px);align-items:center}
+    .combo-logo-frame{position:relative;width:min(350px,84%);aspect-ratio:783/484;overflow:hidden;margin:0 0 20px;filter:drop-shadow(0 12px 16px rgba(18,56,41,.12))}
+    .combo-logo{position:absolute;width:130.78%;max-width:none;height:auto;left:-16.35%;top:-36.98%}
+    .combo-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .combo-badge{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+    .combo-badge--soon{color:#0b6e52;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.14)}
+    .combo-badge--free{color:#8a6420;background:rgba(190,138,44,.1);border:1px solid rgba(190,138,44,.2)}
+    .combo-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2rem,3.5vw,2.85rem);line-height:1.08;letter-spacing:-.025em;color:#12251b;margin:0 0 14px}
+    .combo-intro{font-size:1.03rem;line-height:1.7;color:#3f4a43;max-width:530px;margin:0 0 22px}
+    .combo-points{display:grid;gap:11px;margin:0 0 22px;padding:0;list-style:none}
+    .combo-points li{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:650;color:#35453c}
+    .combo-points li::before{content:"✓";display:grid;place-items:center;width:22px;height:22px;flex:0 0 22px;border-radius:50%;color:#fff;background:#0b6e52;font-size:12px;font-weight:900}
+    .combo-note{font-size:13px;font-weight:700;color:#68736b;margin:0}
+    .combo-game{position:relative;min-height:470px;padding:20px}
+    .combo-game::before{content:"";position:absolute;inset:0;border-radius:28px;background:#123829;box-shadow:0 28px 58px rgba(18,56,41,.23)}
+    .combo-game::after{content:"";position:absolute;inset:0;border-radius:28px;opacity:.16;background-image:radial-gradient(circle at 18% 20%,#c9973f 0 2px,transparent 3px),radial-gradient(circle at 72% 76%,#fff 0 1.5px,transparent 2.5px);background-size:52px 52px,70px 70px;pointer-events:none}
+    .combo-game__inner{position:relative;z-index:1;min-height:430px;display:flex;flex-direction:column;padding:26px}
+    .combo-game__top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .combo-game__level{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f3d994}
+    .combo-game__goal{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#fffdf8;font-size:11px;font-weight:750}
+    .combo-board{position:relative;width:min(350px,100%);height:265px;margin:25px auto 12px}
+    .combo-tile{position:absolute;display:grid;place-items:center;width:58px;height:58px;border-radius:15px;border:2px solid rgba(255,255,255,.52);box-shadow:0 9px 0 rgba(5,25,18,.32),inset 0 2px 0 rgba(255,255,255,.46);color:#fff;font-family:'Amiri',serif;font-size:31px;font-weight:700;line-height:1}
+    .combo-tile--green{background:linear-gradient(145deg,#43b95a,#147b3b)}
+    .combo-tile--purple{background:linear-gradient(145deg,#a774e6,#6841a8)}
+    .combo-tile--blue{background:linear-gradient(145deg,#35a8e8,#1976b7)}
+    .combo-tile--orange{background:linear-gradient(145deg,#f7af35,#d8721c)}
+    .combo-tile--red{background:linear-gradient(145deg,#ec6863,#bd3e42)}
+    .combo-tile--active{outline:3px solid #f3d994;outline-offset:4px}
+    .combo-meaning{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto;padding:14px 16px;border-radius:17px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14)}
+    .combo-meaning small{display:block;color:#b9c9c0;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px}
+    .combo-meaning strong{color:#fffdf8;font-family:'Spectral',serif;font-size:18px}
+    .combo-progress{color:#f3d994;font-size:12px;font-weight:800;white-space:nowrap}
+    @media(max-width:900px){.combo-layout{grid-template-columns:1fr}.combo-copy{text-align:center}.combo-logo-frame{margin-left:auto;margin-right:auto}.combo-badges{justify-content:center}.combo-intro{margin-left:auto;margin-right:auto}.combo-points{width:max-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:left}.combo-game{width:min(560px,100%);margin:0 auto}}
+    @media(max-width:560px){.combo-card{padding:28px 18px;border-radius:24px}.combo-logo-frame{width:min(310px,92%)}.combo-game{min-height:425px;padding:10px}.combo-game__inner{min-height:405px;padding:20px 14px}.combo-game__top{align-items:flex-start}.combo-game__goal{max-width:132px;text-align:center;line-height:1.3}.combo-board{transform:scale(.86);transform-origin:top center;margin-bottom:-20px}.combo-meaning{padding:12px 13px}.combo-meaning strong{font-size:16px}}
+
     @media (prefers-reduced-motion: reduce){
       *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
       html{ scroll-behavior:auto; }
@@ -219,11 +260,11 @@
     .seo-hero-secondary:hover{transform:translateY(-2px);background:#fff}
     .seo-hero-points{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;font-size:12.5px;color:#667168;font-weight:650}
     .seo-hero-points strong{color:#123829}
-    .seo-hero-visual{position:relative;min-height:590px;display:flex;align-items:center;justify-content:center;padding:20px 38px 0 0}
-    .seo-hero-visual::before{content:"";position:absolute;inset:80px 15px 45px 35px;border-radius:36px;background:radial-gradient(circle at 55% 30%,rgba(201,151,63,.22),transparent 56%);filter:blur(2px)}
-    .seo-hero-visual img{position:relative;z-index:2;display:block;width:min(100%,720px);height:auto;object-fit:contain;filter:drop-shadow(0 34px 52px rgba(18,56,41,.22))}
+    .seo-hero-visual{position:relative;min-height:590px;display:flex;align-items:center;justify-content:center;padding:20px 38px 0 0;overflow:visible}
+    .seo-hero-visual::before{content:"";position:absolute;left:12%;right:10%;bottom:8%;height:17%;border-radius:50%;background:rgba(18,56,41,.2);filter:blur(34px);transform:scaleX(.9);opacity:.42}
+    .seo-hero-visual img{position:relative;z-index:2;display:block;width:min(106%,740px);height:auto;object-fit:contain;filter:drop-shadow(0 20px 24px rgba(18,56,41,.12));-webkit-mask-image:radial-gradient(ellipse 78% 78% at 50% 50%,#000 62%,rgba(0,0,0,.96) 73%,rgba(0,0,0,.52) 86%,transparent 100%);mask-image:radial-gradient(ellipse 78% 78% at 50% 50%,#000 62%,rgba(0,0,0,.96) 73%,rgba(0,0,0,.52) 86%,transparent 100%)}
     @media(max-width:980px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:14px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points{justify-content:center}.seo-hero-visual{min-height:auto;padding:8px 28px 32px}.seo-hero-visual img{width:min(92%,760px)}}
-    @media(max-width:640px){.seo-hero{padding:96px 14px 48px}.seo-hero::before{inset:72px 0 0;border-radius:0}.seo-hero-copy{padding:32px 18px 0}.seo-hero-label{font-size:10px}.seo-hero-title{font-size:clamp(2.65rem,14vw,4rem)}.seo-hero-copy p{font-size:15px;line-height:1.58}.seo-hero-actions{display:grid;grid-template-columns:1fr}.seo-hero-primary,.seo-hero-secondary{width:100%}.seo-hero-visual{padding:8px 6px 12px}.seo-hero-visual img{width:100%}}
+    @media(max-width:640px){.seo-hero{padding:96px 14px 48px}.seo-hero::before{inset:72px 0 0;border-radius:0}.seo-hero-copy{padding:32px 18px 0}.seo-hero-label{font-size:10px}.seo-hero-title{font-size:clamp(2.65rem,14vw,4rem)}.seo-hero-copy p{font-size:15px;line-height:1.58}.seo-hero-actions{display:grid;grid-template-columns:1fr}.seo-hero-primary,.seo-hero-secondary{width:100%}.seo-hero-visual{padding:8px 0 12px}.seo-hero-visual img{width:106%;max-width:none}}
 
   </style>
 </helmet>
@@ -261,7 +302,7 @@
   <!-- ══ NAV ══ -->
   <nav style="position:fixed; top:0; left:0; right:0; z-index:120; display:flex; align-items:center; justify-content:space-between; height:70px; padding:0 max(24px,4vw); background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 1px 14px rgba(18,56,41,0.05);">
     <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
-      <span style="width:50px; height:50px; border-radius:13px; background:#ffffff; border:1px solid rgba(18,56,41,0.1); box-shadow:0 2px 8px rgba(18,56,41,0.08); display:flex; align-items:center; justify-content:center; padding:6px;"><img src="uploads/logo.png" alt="QariAI" width="50" height="50" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+      <span style="width:50px; height:50px; border-radius:13px; background:#ffffff; border:1px solid rgba(18,56,41,0.1); box-shadow:0 2px 8px rgba(18,56,41,0.08); display:flex; align-items:center; justify-content:center; padding:6px;"><img src="/uploads/logo.png?v=20260726" alt="QariAI" width="50" height="50" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
       <span style="font-family:'Spectral',serif; font-size:28px; font-weight:700; letter-spacing:-.01em; color:#123829;">Qari<span style="color:#0c6b48;">AI</span></span>
     </a>
     <div style="display:flex; align-items:center; gap:14px;">
@@ -297,7 +338,7 @@
       </div>
     </div>
     <div class="seo-hero-visual">
-      <img src="uploads/qariai-hero-phone-hudhud.png" alt="QariAI mobile app showing Quran recitation feedback beside the HudHud learning guide" width="870" height="855" fetchpriority="high"/>
+      <img src="/uploads/qariai-hero-phone-hudhud.png?v=20260726" alt="QariAI mobile app showing Quran recitation feedback beside the HudHud learning guide" width="870" height="855" fetchpriority="high"/>
     </div>
   </section>
 
@@ -356,296 +397,58 @@
   </section>
 
   <!-- ══ QURAN COMBO ══ -->
-  <section
-    id="quran-combo"
-    style="
-      max-width:1120px;
-      margin:0 auto;
-      padding:24px max(24px,4vw) 84px;
-      scroll-margin-top:90px;
-    "
-  >
-    <div
-      style="
-        position:relative;
-        overflow:hidden;
-        border-radius:30px;
-        border:1px solid rgba(18,56,41,0.10);
-        background:linear-gradient(
-          145deg,
-          #fffdf8 0%,
-          #f8f0dc 55%,
-          #eef5ed 100%
-        );
-        box-shadow:0 26px 70px rgba(18,56,41,0.09);
-        padding:clamp(32px,5vw,58px);
-      "
-    >
-      <div
-        aria-hidden="true"
-        style="
-          position:absolute;
-          width:420px;
-          height:420px;
-          border-radius:50%;
-          right:-150px;
-          top:-190px;
-          background:radial-gradient(
-            circle,
-            rgba(201,151,63,.22),
-            rgba(201,151,63,0) 68%
-          );
-        "
-      ></div>
-
-      <div
-        aria-hidden="true"
-        style="
-          position:absolute;
-          width:360px;
-          height:360px;
-          border-radius:50%;
-          left:-180px;
-          bottom:-210px;
-          background:radial-gradient(
-            circle,
-            rgba(12,107,72,.15),
-            rgba(12,107,72,0) 68%
-          );
-        "
-      ></div>
-
-      <div
-        class="qsplit"
-        style="
-          position:relative;
-          z-index:2;
-          display:grid;
-          grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr);
-          gap:clamp(34px,5vw,64px);
-          align-items:center;
-        "
-      >
-        <div>
-          <div
-            style="
-              display:flex;
-              flex-wrap:wrap;
-              gap:8px;
-              margin-bottom:20px;
-            "
-          >
-            <span
-              style="
-                display:inline-flex;
-                align-items:center;
-                justify-content:center;
-                padding:8px 14px;
-                border-radius:999px;
-                background:rgba(11,110,82,.08);
-                border:1px solid rgba(11,110,82,.14);
-                color:#0B6E52;
-                font-size:12px;
-                font-weight:800;
-                letter-spacing:.06em;
-                text-transform:uppercase;
-              "
-            >
-              Coming Soon
-            </span>
-
-            <span
-              style="
-                display:inline-flex;
-                align-items:center;
-                justify-content:center;
-                padding:8px 14px;
-                border-radius:999px;
-                background:rgba(190,138,44,.10);
-                border:1px solid rgba(190,138,44,.20);
-                color:#8A6420;
-                font-size:12px;
-                font-weight:800;
-                letter-spacing:.06em;
-                text-transform:uppercase;
-              "
-            >
-              Free
-            </span>
+  <section id="quran-combo" style="max-width:1120px;margin:0 auto;padding:24px max(24px,4vw) 84px;scroll-margin-top:90px;">
+    <div class="combo-card">
+      <div class="combo-layout">
+        <div class="combo-copy">
+          <div class="combo-logo-frame">
+            <img class="combo-logo" src="/uploads/quran-combo-logo.png?v=20260726" alt="Qur’an Combo — روابط القرآن" width="1024" height="1024" loading="lazy">
           </div>
-
-          <h2
-            style="
-              font-family:'Spectral',serif;
-              font-weight:800;
-              font-size:clamp(2.15rem,3.7vw,3rem);
-              line-height:1.06;
-              letter-spacing:-.025em;
-              color:#12251b;
-              margin:0 0 14px;
-            "
-          >
-            Quran Combo
-          </h2>
-
-          <p
-            style="
-              font-family:'Spectral',serif;
-              font-size:clamp(1.15rem,1.8vw,1.5rem);
-              line-height:1.35;
-              font-weight:700;
-              color:#0B6E52;
-              max-width:560px;
-              margin:0 0 20px;
-            "
-          >
-            A playful way to build Qur’anic vocabulary
-          </p>
-
-          <p
-            style="
-              font-size:1.05rem;
-              line-height:1.72;
-              color:#3F4A43;
-              max-width:560px;
-              margin:0 0 24px;
-            "
-          >
-            Quran Combo helps learners recognise and connect Qur’anic words
-            through familiar phrases and gentle word-linking challenges —
-            making vocabulary practice more enjoyable and memorable.
-          </p>
-
-          <p
-            style="
-              font-size:13px;
-              font-weight:650;
-              color:#667168;
-              margin:0;
-            "
-          >
-            Included free inside QariAI
-          </p>
+          <div class="combo-badges">
+            <span class="combo-badge combo-badge--soon">Coming soon</span>
+            <span class="combo-badge combo-badge--free">Free</span>
+          </div>
+          <h2 class="combo-title">Connect words. Build Qur’anic vocabulary.</h2>
+          <p class="combo-intro">Discover familiar Qur’anic words through gentle, connected-letter challenges that make vocabulary practice visual, enjoyable and memorable.</p>
+          <ul class="combo-points">
+            <li>Verified Qur’anic vocabulary</li>
+            <li>Short, progressive puzzle levels</li>
+            <li>Meanings revealed as you connect</li>
+          </ul>
+          <p class="combo-note">Included free inside QariAI</p>
         </div>
 
-        <div
-          aria-label="Quran Combo learning game artwork"
-          style="
-            position:relative;
-            min-height:470px;
-          "
-        >
-          <div
-            style="
-              position:absolute;
-              inset:28px 10px 20px 30px;
-              border-radius:28px;
-              background:#123829;
-              box-shadow:0 28px 58px rgba(18,56,41,.23);
-              overflow:hidden;
-            "
-          >
-            <div
-              aria-hidden="true"
-              style="
-                position:absolute;
-                inset:0;
-                opacity:.14;
-                background-image:
-                  radial-gradient(
-                    circle at 18% 20%,
-                    #c9973f 0 2px,
-                    transparent 3px
-                  ),
-                  radial-gradient(
-                    circle at 72% 76%,
-                    #fff 0 1.5px,
-                    transparent 2.5px
-                  );
-                background-size:52px 52px,70px 70px;
-              "
-            ></div>
-          </div>
+        <div class="combo-game" role="img" aria-label="Qur’an Combo preview showing the connected words mercy, light, moon and fire">
+          <div class="combo-game__inner">
+            <div class="combo-game__top">
+              <span class="combo-game__level">Level preview</span>
+              <span class="combo-game__goal">Find 4 connected words</span>
+            </div>
 
-          <img
-            src="uploads/quran-combo-logo.png"
-            alt="Quran Combo logo"
-            width="1024"
-            height="1024"
-            loading="lazy"
-            style="
-              position:absolute;
-              z-index:3;
-              width:58%;
-              height:auto;
-              left:6%;
-              top:6%;
-              object-fit:contain;
-              filter:drop-shadow(0 14px 18px rgba(0,0,0,.20));
-            "
-          />
+            <div class="combo-board" aria-hidden="true">
+              <!-- نُور: vertical, crossing رَحْمَة at ر -->
+              <span class="combo-tile combo-tile--blue" style="left:232px;top:0;">ن</span>
+              <span class="combo-tile combo-tile--purple" style="left:232px;top:64px;">و</span>
+              <span class="combo-tile combo-tile--green combo-tile--active" style="left:232px;top:128px;">ر</span>
 
-          <img
-            src="uploads/quran-combo-icons.png"
-            alt="Quran Combo learning icons including a Quran, lantern and crescent"
-            width="1024"
-            height="1024"
-            loading="lazy"
-            style="
-              position:absolute;
-              z-index:2;
-              width:49%;
-              height:auto;
-              right:1%;
-              bottom:0;
-              object-fit:contain;
-              filter:drop-shadow(0 14px 18px rgba(0,0,0,.16));
-            "
-          />
+              <!-- رَحْمَة: right to left -->
+              <span class="combo-tile combo-tile--blue" style="left:40px;top:128px;">ة</span>
+              <span class="combo-tile combo-tile--purple" style="left:104px;top:128px;">م</span>
+              <span class="combo-tile combo-tile--orange" style="left:168px;top:128px;">ح</span>
 
-          <img
-            src="uploads/quran-combo-tiles.png"
-            alt="Linked Quran Combo vocabulary tiles"
-            width="1024"
-            height="1024"
-            loading="lazy"
-            style="
-              position:absolute;
-              z-index:4;
-              width:31%;
-              height:auto;
-              left:24%;
-              bottom:4%;
-              object-fit:contain;
-              transform:rotate(-3deg);
-              filter:drop-shadow(0 16px 22px rgba(0,0,0,.23));
-            "
-          />
+              <!-- قَمَر: vertical, crossing رَحْمَة at م -->
+              <span class="combo-tile combo-tile--red" style="left:104px;top:64px;">ق</span>
+              <span class="combo-tile combo-tile--orange" style="left:104px;top:192px;">ر</span>
 
-          <div
-            aria-hidden="true"
-            style="
-              position:absolute;
-              z-index:5;
-              right:8%;
-              top:9%;
-              width:66px;
-              height:66px;
-              border-radius:18px;
-              border:1px solid rgba(255,255,255,.22);
-              background:rgba(255,255,255,.08);
-              backdrop-filter:blur(8px);
-              display:grid;
-              grid-template-columns:repeat(2,1fr);
-              gap:5px;
-              padding:10px;
-              transform:rotate(5deg);
-            "
-          >
-            <span style="background:#0B6E52;border-radius:5px;"></span>
-            <span style="background:#BE8A2C;border-radius:5px;"></span>
-            <span style="background:#D55E4C;border-radius:5px;"></span>
-            <span style="background:#7B5AC8;border-radius:5px;"></span>
+              <!-- نَار: right to left, crossing قَمَر at ر -->
+              <span class="combo-tile combo-tile--green" style="left:168px;top:192px;">ا</span>
+              <span class="combo-tile combo-tile--purple" style="left:232px;top:192px;">ن</span>
+            </div>
+
+            <div class="combo-meaning">
+              <span><small>Connected word</small><strong>رَحْمَة · Mercy</strong></span>
+              <span class="combo-progress">1 of 4</span>
+            </div>
           </div>
         </div>
       </div>
@@ -996,7 +799,7 @@
     <div style="max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.4fr repeat(4, 1fr); gap:32px;">
       <div>
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
-          <span style="width:34px; height:34px; border-radius:9px; background:#fff; display:flex; align-items:center; justify-content:center; padding:4px;"><img src="uploads/logo.png" alt="QariAI" width="34" height="34" loading="lazy" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+          <span style="width:34px; height:34px; border-radius:9px; background:#fff; display:flex; align-items:center; justify-content:center; padding:4px;"><img src="/uploads/logo.png?v=20260726" alt="QariAI" width="34" height="34" loading="lazy" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
           <span style="font-family:'Spectral',serif; font-size:18px; font-weight:700; color:#fdf8ee;">Qari<span style="color:#12925e;">AI</span></span>
         </div>
         <p style="font-size:13.5px; color:rgba(253,248,238,0.45); line-height:1.6; max-width:220px;">Your personal AI-powered Quran recitation coach.</p>
