@@ -1,1687 +1,1352 @@
-// GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`.
-"use strict";
-(() => {
-  var __defProp = Object.defineProperty;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QariAI - AI Quran Recitation Coach with Tajweed & Hifz Correction</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726c">
+<link rel="alternate icon" type="image/png" href="/favicon.png?v=20260726c">
+<link rel="apple-touch-icon" href="/favicon.png?v=20260726c">
+<meta name="description" content="QariAI is the AI Quran tutor that helps you improve Tajweed, strengthen Hifz, and practise independently with instant feedback on your recitation.">
 
-  // src/react.ts
-  function getReact() {
-    const R = window.React;
-    if (!R) throw new Error("dc-runtime: window.React is not available yet");
-    return R;
-  }
-  function getReactDOM() {
-    const RD = window.ReactDOM;
-    if (!RD) throw new Error("dc-runtime: window.ReactDOM is not available yet");
-    return RD;
-  }
-  var h = ((...args) => getReact().createElement(
-    ...args
-  ));
+<meta property="og:title" content="QariAI - AI Quran Recitation Coach with Tajweed & Hifz Correction">
+<meta property="og:description" content="The AI Quran tutor that helps you improve Tajweed, strengthen Hifz, and practise independently with instant feedback.">
+<meta property="og:image" content="https://qariai.app/og-image.png">
+<meta property="og:url" content="https://qariai.app">
+<meta property="og:type" content="website">
 
-  // src/parse.ts
-  function parseDcDocument(doc) {
-    const dc = doc.querySelector("x-dc");
-    if (!dc) return null;
-    const scriptEl = doc.querySelector("script[data-dc-script]");
-    const { props, preview } = parseDataProps(
-      scriptEl?.getAttribute("data-props") ?? null
-    );
-    return {
-      template: dc.innerHTML,
-      js: scriptEl ? scriptEl.textContent || "" : "",
-      props,
-      preview
-    };
-  }
-  function parseDcText(src) {
-    const openMatch = /<x-dc(?:\s[^>]*)?>/.exec(src);
-    if (!openMatch) return null;
-    const close = src.lastIndexOf("</x-dc>");
-    if (close === -1 || close < openMatch.index) return null;
-    const template = src.slice(openMatch.index + openMatch[0].length, close);
-    const doc = new DOMParser().parseFromString(src, "text/html");
-    const scriptEl = doc.querySelector("script[data-dc-script]");
-    const { props, preview } = parseDataProps(
-      scriptEl?.getAttribute("data-props") ?? null
-    );
-    return {
-      template,
-      js: scriptEl ? scriptEl.textContent || "" : "",
-      props,
-      preview
-    };
-  }
-  function parseDataProps(raw) {
-    if (!raw) return { props: null, preview: null };
-    let parsed;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      return { props: null, preview: null };
-    }
-    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-      return { props: null, preview: null };
-    }
-    const obj = parsed;
-    const preview = obj.$preview && typeof obj.$preview === "object" ? obj.$preview : null;
-    const rest = {};
-    for (const k of Object.keys(obj)) {
-      if (k[0] !== "$") rest[k] = obj[k];
-    }
-    return { props: Object.keys(rest).length ? rest : null, preview };
-  }
-  function dcNameFromPath(pathname) {
-    let p = pathname || "";
-    try {
-      p = decodeURIComponent(p);
-    } catch {
-    }
-    const base = p.split("/").pop() || "Root";
-    return base.replace(/\.dc\.html$/, "").replace(/\.html?$/, "") || "Root";
-  }
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QariAI - AI Quran Recitation Coach">
+<meta name="twitter:description" content="Real-time Tajweed feedback powered by AI.">
+<meta name="twitter:image" content="https://qariai.app/og-image.png">
 
-  // src/boot.ts
-  var BASE_CSS = `
-    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
-      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
-      border-radius:2px;box-sizing:border-box;overflow:hidden}
-    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
-    html.sc-dc-streaming .sc-placeholder,
-    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
-      background:color-mix(in srgb,currentColor 5%,transparent);
-      border-color:transparent}
-    html.sc-dc-streaming .sc-placeholder::before,
-    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
-      position:absolute;inset:0;pointer-events:none;
-      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
-      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
-    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
-    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
-      background:color-mix(in srgb,currentColor 8%,transparent)}
-    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
-      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
-    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
-      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
-      border-radius:2px;box-sizing:border-box;color:transparent;
-      user-select:none}
-    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
-      color:color-mix(in srgb,currentColor 50%,transparent);
-      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
-      padding:0 3px}
-    .sc-host.sc-has-error{position:relative}
-    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
-      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
-      border-radius:4px;white-space:pre-wrap;pointer-events:none}
-    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts \u2014 keep both
-       in sync until dc-runtime regains a build step. */
-    @media print {
-      @page { margin: 0.5cm; }
-      figure, table { break-inside: avoid; }
-      #dc-root, #dc-root > .sc-host { height: auto; }
-      *, *::before, *::after {
-        print-color-adjust: exact; -webkit-print-color-adjust: exact;
-        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
-        animation-delay: -99s !important; animation-duration: .001s !important;
-        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
-        animation-play-state: running !important; transition-duration: 0s !important;
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://qariai.app/#organization",
+      "name": "QariAI",
+      "url": "https://qariai.app",
+      "logo": { "@type": "ImageObject", "url": "https://qariai.app/logo.png" },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://qariai.app/#website",
+      "url": "https://qariai.app",
+      "name": "QariAI",
+      "publisher": { "@id": "https://qariai.app/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://qariai.app/#software",
+      "name": "QariAI",
+      "description": "AI Quran recitation app that listens to your tajweed in real time, scores your recitation, and gives personalized coaching.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Android",
+      "installUrl": "https://play.google.com/store/apps/details?id=app.qari.ai",
+      "url": "https://qariai.app",
+      "publisher": { "@id": "https://qariai.app/#organization" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  ]
+}
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,700&family=Inter:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{ font-family:'Inter',sans-serif; background:#f4efe4; color:#1a241d; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    @keyframes qFloat{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+    @keyframes qFloat2{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+    @keyframes qRise{ from{ opacity:0; transform:translateY(14px);} to{ opacity:1; transform:translateY(0);} }
+    .qscroll::-webkit-scrollbar{ height:8px; }
+    .qscroll::-webkit-scrollbar-thumb{ background:rgba(18,56,41,0.2); border-radius:20px; }
+    .qscroll::-webkit-scrollbar-track{ background:transparent; }
+    @media (max-width:900px){
+      .qgrid4{ grid-template-columns:repeat(2,1fr) !important; }
+      .qgrid3{ grid-template-columns:repeat(2,1fr) !important; }
+      .qgrid5{ grid-template-columns:repeat(3,1fr) !important; }
+      .qsplit{ grid-template-columns:1fr !important; }
+      .qhero-grid{ grid-template-columns:1fr !important; gap:56px !important; }
+    }
+    @media (max-width:640px){
+      .qgrid4{ grid-template-columns:1fr !important; }
+      .qgrid3{ grid-template-columns:1fr !important; }
+      .qgrid2{ grid-template-columns:1fr !important; }
+      .qgrid5{ grid-template-columns:repeat(2,1fr) !important; }
+    }
+    @media (max-width:480px){
+      .qgrid5{ grid-template-columns:1fr !important; }
+      .qnav-playtext{ display:none; }
+    }
+    .qnav-links{ display:flex; align-items:center; gap:26px; }
+    .qnav-burger, .qnav-check{ display:none; }
+    @media (max-width:760px){
+      .qnav-links{ position:fixed; top:70px; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0;
+        background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 12px 24px rgba(18,56,41,0.08);
+        max-height:0; overflow:hidden; transition:max-height .25s ease; }
+      .qnav-links a{ width:100%; padding:16px max(24px,4vw); border-top:1px solid rgba(18,56,41,0.06); }
+      .qnav-check:checked ~ .qnav-links{ max-height:280px; }
+      .qnav-burger{ display:flex; align-items:center; justify-content:center; width:40px; height:40px;
+        border-radius:10px; border:1px solid rgba(18,56,41,0.14); cursor:pointer; flex-shrink:0; }
+    }
+
+    /* Qur'an Combo */
+    .combo-card{position:relative;overflow:hidden;border:1px solid rgba(18,56,41,.1);border-radius:30px;background:linear-gradient(145deg,#fffdf8 0%,#f8f0dc 58%,#eef5ed 100%);box-shadow:0 26px 70px rgba(18,56,41,.09);padding:clamp(32px,5vw,58px);isolation:isolate}
+    .combo-card::before,.combo-card::after{content:"";position:absolute;border-radius:50%;z-index:-1;pointer-events:none}
+    .combo-card::before{width:420px;height:420px;right:-150px;top:-190px;background:radial-gradient(circle,rgba(201,151,63,.2),rgba(201,151,63,0) 68%)}
+    .combo-card::after{width:360px;height:360px;left:-180px;bottom:-210px;background:radial-gradient(circle,rgba(12,107,72,.13),rgba(12,107,72,0) 68%)}
+    .combo-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:clamp(34px,5vw,64px);align-items:center}
+    .combo-logo-frame{position:relative;width:min(350px,84%);aspect-ratio:783/484;overflow:hidden;margin:0 0 20px;filter:drop-shadow(0 12px 16px rgba(18,56,41,.12))}
+    .combo-logo{position:absolute;width:130.78%;max-width:none;height:auto;left:-16.35%;top:-36.98%}
+    .combo-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .combo-badge{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+    .combo-badge--soon{color:#0b6e52;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.14)}
+    .combo-badge--free{color:#8a6420;background:rgba(190,138,44,.1);border:1px solid rgba(190,138,44,.2)}
+    .combo-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2rem,3.5vw,2.85rem);line-height:1.08;letter-spacing:-.025em;color:#12251b;margin:0 0 14px}
+    .combo-intro{font-size:1.03rem;line-height:1.7;color:#3f4a43;max-width:530px;margin:0 0 22px}
+    .combo-points{display:grid;gap:11px;margin:0 0 22px;padding:0;list-style:none}
+    .combo-points li{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:650;color:#35453c}
+    .combo-points li::before{content:"✓";display:grid;place-items:center;width:22px;height:22px;flex:0 0 22px;border-radius:50%;color:#fff;background:#0b6e52;font-size:12px;font-weight:900}
+    .combo-note{font-size:13px;font-weight:700;color:#68736b;margin:0}
+    .combo-game{position:relative;min-height:470px;padding:20px}
+    .combo-game::before{content:"";position:absolute;inset:0;border-radius:28px;background:#123829;box-shadow:0 28px 58px rgba(18,56,41,.23)}
+    .combo-game::after{content:"";position:absolute;inset:0;border-radius:28px;opacity:.16;background-image:radial-gradient(circle at 18% 20%,#c9973f 0 2px,transparent 3px),radial-gradient(circle at 72% 76%,#fff 0 1.5px,transparent 2.5px);background-size:52px 52px,70px 70px;pointer-events:none}
+    .combo-game__inner{position:relative;z-index:1;min-height:430px;display:flex;flex-direction:column;padding:26px}
+    .combo-game__top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .combo-game__level{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f3d994}
+    .combo-game__goal{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#fffdf8;font-size:11px;font-weight:750}
+    .combo-board{position:relative;width:min(350px,100%);height:265px;margin:25px auto 12px}
+    .combo-tile{position:absolute;display:grid;place-items:center;width:58px;height:58px;border-radius:15px;border:2px solid rgba(255,255,255,.52);box-shadow:0 9px 0 rgba(5,25,18,.32),inset 0 2px 0 rgba(255,255,255,.46);color:#fff;font-family:'Amiri',serif;font-size:31px;font-weight:700;line-height:1}
+    .combo-tile--green{background:linear-gradient(145deg,#43b95a,#147b3b)}
+    .combo-tile--purple{background:linear-gradient(145deg,#a774e6,#6841a8)}
+    .combo-tile--blue{background:linear-gradient(145deg,#35a8e8,#1976b7)}
+    .combo-tile--orange{background:linear-gradient(145deg,#f7af35,#d8721c)}
+    .combo-tile--red{background:linear-gradient(145deg,#ec6863,#bd3e42)}
+    .combo-tile--active{outline:3px solid #f3d994;outline-offset:4px}
+    .combo-meaning{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto;padding:14px 16px;border-radius:17px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14)}
+    .combo-meaning small{display:block;color:#b9c9c0;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px}
+    .combo-meaning strong{color:#fffdf8;font-family:'Spectral',serif;font-size:18px}
+    .combo-progress{color:#f3d994;font-size:12px;font-weight:800;white-space:nowrap}
+    @media(max-width:900px){.combo-layout{grid-template-columns:1fr}.combo-copy{text-align:center}.combo-logo-frame{margin-left:auto;margin-right:auto}.combo-badges{justify-content:center}.combo-intro{margin-left:auto;margin-right:auto}.combo-points{width:max-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:left}.combo-game{width:min(560px,100%);margin:0 auto}}
+    @media(max-width:560px){.combo-card{padding:28px 18px;border-radius:24px}.combo-logo-frame{width:min(310px,92%)}.combo-game{min-height:425px;padding:10px}.combo-game__inner{min-height:405px;padding:20px 14px}.combo-game__top{align-items:flex-start}.combo-game__goal{max-width:132px;text-align:center;line-height:1.3}.combo-board{transform:scale(.86);transform-origin:top center;margin-bottom:-20px}.combo-meaning{padding:12px 13px}.combo-meaning strong{font-size:16px}}
+
+    /* One continuous QariAI product story */
+    .unified-product{background:#fffdf8;border-top:1px solid rgba(18,56,41,.07)}
+    .unified-proof{max-width:1520px;margin:0 auto;padding:72px max(24px,3vw) 64px}
+    .unified-proof__head{display:grid;grid-template-columns:minmax(280px,.72fr) minmax(480px,1.28fr);gap:clamp(32px,6vw,90px);align-items:end;margin-bottom:30px}
+    .unified-kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#0b6e52}
+    .unified-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
+    .unified-proof h2,.games-inside h2{font-family:'Spectral',serif;font-weight:800;letter-spacing:-.035em;color:#12251b}
+    .unified-proof h2{font-size:clamp(2.3rem,4vw,4rem);line-height:1;margin-top:16px}
+    .unified-proof__intro{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.7;color:#566159;max-width:690px}
+    .unified-proof__grid{display:grid;grid-template-columns:1.18fr repeat(3,1fr);border:1px solid rgba(18,56,41,.1);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 22px 55px rgba(18,56,41,.07)}
+    .unified-proof__item{min-height:210px;padding:30px;border-right:1px solid rgba(18,56,41,.09);display:flex;flex-direction:column;justify-content:flex-start}
+    .unified-proof__item:last-child{border-right:0}
+    .unified-proof__item--metric{background:#123829;color:#fffdf8}
+    .unified-proof__icon{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:rgba(11,110,82,.09);color:#0b6e52;margin-bottom:24px}
+    .unified-proof__item--metric .unified-proof__icon{background:rgba(255,255,255,.1);color:#f1d692}
+    .unified-proof__label{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#0b6e52;margin-bottom:8px}
+    .unified-proof__item--metric .unified-proof__label{color:#f1d692}
+    .unified-proof__value{font-family:'Spectral',serif;font-size:3.1rem;line-height:1;font-weight:800;margin-bottom:12px}
+    .unified-proof__item h3{font-family:'Spectral',serif;font-size:1.35rem;line-height:1.15;color:#16271e;margin:0 0 10px}
+    .unified-proof__item p{font-size:13px;line-height:1.55;color:#687269}
+    .unified-proof__item--metric p{color:rgba(255,253,248,.7)}
+    .unified-proof__item a{color:#0b6e52;font-weight:750}
+
+    .games-inside{max-width:1520px;margin:0 auto;padding:54px max(24px,3vw) 96px}
+    .games-inside__shell{position:relative;overflow:hidden;border-radius:34px;background:#123829;color:#fffdf8;padding:clamp(34px,5vw,68px);box-shadow:0 28px 70px rgba(18,56,41,.16)}
+    .games-inside__shell::before{content:"";position:absolute;width:620px;height:620px;right:-250px;top:-330px;border-radius:50%;background:radial-gradient(circle,rgba(201,151,63,.24),transparent 68%)}
+    .games-inside__head{position:relative;z-index:1;display:grid;grid-template-columns:minmax(360px,.85fr) minmax(480px,1.15fr);gap:clamp(32px,6vw,86px);align-items:end;margin-bottom:38px}
+    .games-inside .unified-kicker{color:#f1d692}
+    .games-inside h2{font-size:clamp(2.35rem,4vw,4rem);line-height:1.02;margin-top:16px;color:#fffdf8}
+    .games-inside__intro{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.7;color:rgba(255,253,248,.72);max-width:670px}
+    .games-inside__badge{display:inline-flex;margin-top:18px;padding:9px 14px;border-radius:999px;background:rgba(241,214,146,.12);border:1px solid rgba(241,214,146,.24);font-size:12px;font-weight:800;color:#f1d692}
+    .games-inside__content{position:relative;z-index:1;display:grid;grid-template-columns:minmax(300px,.72fr) minmax(520px,1.28fr);gap:clamp(28px,4vw,54px);align-items:stretch}
+    .game-list{display:grid;gap:12px}
+    .game-tile{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;padding:17px 18px;border:1px solid rgba(255,255,255,.11);border-radius:18px;background:rgba(255,255,255,.055)}
+    .game-tile__icon{width:52px;height:52px;display:grid;place-items:center;border-radius:15px;background:#fff3ce;color:#986514;font-family:'Amiri',serif;font-size:27px;font-weight:700}
+    .game-tile:nth-child(2) .game-tile__icon{background:#e1f2e8;color:#0b6e52}
+    .game-tile:nth-child(3) .game-tile__icon{background:#e8e4ff;color:#5f4bab}
+    .game-tile strong{display:block;font-size:15px;color:#fffdf8;margin-bottom:4px}
+    .game-tile span{font-size:12px;line-height:1.4;color:rgba(255,253,248,.6)}
+    .game-tile__state{font-size:10px!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.06em;color:#f1d692!important}
+    .combo-feature{display:grid;grid-template-columns:minmax(230px,.78fr) minmax(280px,1.22fr);gap:28px;align-items:center;padding:28px;border-radius:24px;background:#fffdf8;color:#12251b}
+    .combo-feature__phone{position:relative;width:min(250px,100%);margin:auto;padding:8px;border-radius:32px;background:#0c1410;box-shadow:0 22px 42px rgba(0,0,0,.26)}
+    .combo-feature__phone img{display:block;width:100%;aspect-ratio:945/2048;object-fit:cover;object-position:top;border-radius:25px}
+    .combo-feature__logo{width:min(260px,90%);height:92px;object-fit:cover;object-position:center 42%;margin:0 0 14px}
+    .combo-feature__tag{display:inline-flex;padding:7px 11px;border-radius:999px;background:#efe9ff;color:#5d48a4;font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+    .combo-feature h3{font-family:'Spectral',serif;font-size:clamp(1.8rem,2.7vw,2.55rem);line-height:1.05;color:#12251b;margin:0 0 12px}
+    .combo-feature p{font-size:14px;line-height:1.62;color:#5d675f;margin-bottom:18px}
+    .combo-feature ul{list-style:none;display:grid;gap:9px;margin:0}
+    .combo-feature li{font-size:12.5px;font-weight:700;color:#35443b;display:flex;gap:9px;align-items:center}
+    .combo-feature li::before{content:"✓";width:19px;height:19px;display:grid;place-items:center;border-radius:50%;background:#0b6e52;color:#fff;font-size:10px}
+    .games-inside__cta{display:inline-flex;align-items:center;justify-content:center;margin-top:22px;padding:14px 22px;border-radius:999px;background:#be8a2c;color:#fff;text-decoration:none;font-size:13px;font-weight:800;box-shadow:0 12px 26px rgba(190,138,44,.23)}
+    @media(max-width:1050px){.unified-proof__grid{grid-template-columns:repeat(2,1fr)}.unified-proof__item:nth-child(2){border-right:0}.unified-proof__item{border-bottom:1px solid rgba(18,56,41,.09)}.unified-proof__item:nth-last-child(-n+2){border-bottom:0}.games-inside__content{grid-template-columns:1fr}.game-list{grid-template-columns:repeat(3,1fr)}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.combo-feature{max-width:900px;margin:auto}}
+    @media(max-width:760px){.unified-proof__head,.games-inside__head{grid-template-columns:1fr;gap:18px}.unified-proof{padding:58px 16px 44px}.games-inside{padding:34px 14px 70px}.games-inside__shell{padding:30px 18px;border-radius:26px}.game-list{grid-template-columns:1fr}.game-tile{grid-template-columns:52px 1fr auto}.game-tile__state{grid-column:auto}.combo-feature{grid-template-columns:1fr;text-align:center;padding:22px 16px}.combo-feature__logo{margin-left:auto;margin-right:auto}.combo-feature ul{width:max-content;max-width:100%;margin:auto;text-align:left}.combo-feature__phone{width:min(225px,72vw)}}
+    @media(max-width:560px){.unified-proof__grid{grid-template-columns:1fr}.unified-proof__item{border-right:0!important;border-bottom:1px solid rgba(18,56,41,.09)!important;min-height:auto}.unified-proof__item:last-child{border-bottom:0!important}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.games-inside h2,.unified-proof h2{font-size:2.4rem}}
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+      html{ scroll-behavior:auto; }
+    }
+
+    /* QariAI 2.0 hero */
+    .q2-hero{position:relative;max-width:1280px;margin:0 auto;padding:128px max(24px,4vw) 86px;min-height:760px;display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,.92fr);gap:clamp(40px,6vw,84px);align-items:center;isolation:isolate}
+    .q2-hero::before{content:"";position:absolute;inset:70px 0 20px;border-radius:44px;background:linear-gradient(135deg,#fffdf8 0%,#fbf5e8 62%,#eef4ec 100%);border:1px solid rgba(18,56,41,.08);box-shadow:0 30px 90px rgba(18,56,41,.09);z-index:-3}
+    .q2-pattern{position:absolute;inset:70px 0 20px;border-radius:44px;overflow:hidden;z-index:-2;pointer-events:none;opacity:.52;background-image:radial-gradient(circle at 86% 18%,rgba(190,138,44,.13),transparent 26%),radial-gradient(circle at 12% 82%,rgba(11,110,82,.11),transparent 28%)}
+    .q2-pattern::after{content:"";position:absolute;right:-90px;bottom:-135px;width:630px;height:340px;border-radius:55% 45% 0 0;background:#0b6e52;transform:rotate(-5deg);box-shadow:-120px 30px 0 #0a5c46,-250px 72px 0 #174d3c;opacity:.98}
+    .q2-copy{padding:42px 0 34px 56px;animation:qRise .7s ease both;position:relative;z-index:3}
+    .q2-eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:20px;padding:8px 13px;border-radius:999px;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.12);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b6e52}
+    .q2-eyebrow i{width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
+    .q2-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(3rem,5.4vw,5.25rem);line-height:.98;letter-spacing:-.045em;color:#12251b;max-width:690px;margin:0 0 24px}
+    .q2-title em{display:block;font-style:normal;color:#0b6e52}
+    .q2-sub{font-size:clamp(1rem,1.45vw,1.18rem);line-height:1.68;color:#455149;max-width:580px;margin:0 0 30px}
+    .q2-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:26px}
+    .q2-primary,.q2-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:750;text-decoration:none;transition:.2s ease}
+    .q2-primary{color:#fffdf8;background:#0b6e52;box-shadow:0 14px 30px rgba(11,110,82,.28)}
+    .q2-primary:hover{transform:translateY(-2px);background:#095f47;box-shadow:0 18px 38px rgba(11,110,82,.35)}
+    .q2-secondary{color:#123829;background:rgba(255,255,255,.64);border:1px solid rgba(18,56,41,.15)}
+    .q2-secondary:hover{transform:translateY(-2px);background:#fff}
+    .q2-trust{display:flex;align-items:center;gap:16px;flex-wrap:wrap;color:#667168;font-size:12.5px;font-weight:600}
+    .q2-stars{color:#be8a2c;letter-spacing:1.5px;font-size:14px}
+    .q2-divider{width:1px;height:18px;background:rgba(18,56,41,.14)}
+    .q2-visual{position:relative;min-height:620px;display:flex;align-items:center;justify-content:center;padding:34px 54px 8px 0;animation:qRise .8s ease .08s both;z-index:2}
+    .q2-orbit{position:absolute;inset:72px 18px 35px 28px;border-radius:50%;background:radial-gradient(circle,rgba(190,138,44,.23),rgba(190,138,44,.04) 48%,transparent 69%);filter:blur(1px)}
+    .q2-phone{position:relative;width:min(375px,78vw);padding:13px;background:#101412;border-radius:48px;box-shadow:0 42px 88px rgba(7,25,18,.38),0 0 0 1px rgba(255,255,255,.11) inset;transform:rotate(5.5deg);animation:qFloat 7s ease-in-out infinite;z-index:3}
+    .q2-phone::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:106px;height:25px;border-radius:0 0 15px 15px;background:#101412;z-index:3}
+    .q2-screen{display:block;width:100%;aspect-ratio:9/19.5;object-fit:cover;object-position:center top;border-radius:37px;background:#0d1511}
+    .q2-chip{position:absolute;z-index:5;display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:15px;background:rgba(255,253,248,.94);border:1px solid rgba(18,56,41,.09);box-shadow:0 14px 28px rgba(18,56,41,.16);backdrop-filter:blur(10px);font-size:12.5px;font-weight:750;color:#19372a}
+    .q2-chip svg{flex:0 0 auto}.q2-chip-one{left:-12px;top:165px}.q2-chip-two{right:4px;bottom:122px}
+    .q2-mini-bird{position:absolute;right:6px;bottom:30px;width:112px;height:112px;border-radius:42% 58% 48% 52%;background:linear-gradient(145deg,#f4bd4e,#d98925);box-shadow:0 16px 35px rgba(65,47,19,.2);transform:rotate(-7deg);z-index:2;overflow:hidden}
+    .q2-mini-bird::before{content:"";position:absolute;width:52px;height:52px;border-radius:50%;background:#fff2cf;left:23px;top:28px;box-shadow:48px -18px 0 -19px #1a1d1b}
+    .q2-mini-bird::after{content:"";position:absolute;width:48px;height:12px;background:#1a1d1b;left:61px;top:50px;clip-path:polygon(0 0,100% 50%,0 100%)}
+    @media(max-width:980px){.q2-hero{grid-template-columns:1fr;min-height:auto;padding-top:112px;gap:12px}.q2-copy{padding:44px 46px 0;text-align:center}.q2-title,.q2-sub{margin-left:auto;margin-right:auto}.q2-actions,.q2-trust{justify-content:center}.q2-visual{min-height:610px;padding:0 24px 30px}.q2-pattern::after{right:-180px;bottom:-180px}.q2-chip-one{left:8%}.q2-chip-two{right:8%}}
+    @media(max-width:640px){.q2-hero{padding:96px 14px 42px}.q2-hero::before,.q2-pattern{inset:72px 0 0;border-radius:0}.q2-copy{padding:34px 18px 6px}.q2-eyebrow{font-size:10px}.q2-title{font-size:clamp(2.75rem,14vw,4rem)}.q2-sub{font-size:15px;line-height:1.58}.q2-actions{display:grid;grid-template-columns:1fr}.q2-primary,.q2-secondary{width:100%;padding:15px 20px}.q2-divider{display:none}.q2-trust{gap:8px 14px}.q2-visual{min-height:530px;padding:8px 10px 20px}.q2-phone{width:min(320px,82vw);border-radius:42px}.q2-screen{border-radius:32px}.q2-chip{font-size:11px;padding:9px 11px}.q2-chip-one{left:2px;top:115px}.q2-chip-two{right:0;bottom:88px}.q2-mini-bird{width:82px;height:82px;right:0;bottom:16px}.q2-mini-bird::before{transform:scale(.73);transform-origin:left top}.q2-mini-bird::after{transform:scale(.73);transform-origin:left top}.q2-pattern::after{width:460px;height:260px;right:-220px;bottom:-135px}}
+
+    body.qmodal-open{ overflow:hidden; }
+    .qmodal-overlay{ position:fixed; inset:0; z-index:200; background:rgba(15,21,18,0.72); backdrop-filter:blur(6px);
+      display:none; align-items:center; justify-content:center; padding:24px; }
+    .qmodal-overlay.qopen{ display:flex; animation:qRise .25s ease both; }
+
+    /* Approved image-led homepage hero */
+    .approved-home-hero{
+      position:relative;
+      width:100%;
+      padding-top:70px;
+      background:#f7f0e3;
+      overflow:hidden;
+    }
+    .approved-home-hero__frame{
+      position:relative;
+      width:100%;
+      max-width:1536px;
+      margin:0 auto;
+    }
+    .approved-home-hero__image{
+      display:block;
+      width:100%;
+      height:auto;
+    }
+    .approved-home-hero__link{
+      position:absolute;
+      z-index:2;
+      display:block;
+      border-radius:999px;
+      text-indent:-9999px;
+      overflow:hidden;
+    }
+    .approved-home-hero__play{
+      left:6.1%;
+      top:77.7%;
+      width:16.5%;
+      height:6.2%;
+    }
+    .approved-home-hero__how{
+      left:23.8%;
+      top:77.7%;
+      width:12.8%;
+      height:6.2%;
+    }
+    .approved-home-hero__link:focus-visible{
+      outline:4px solid #0b6e52;
+      outline-offset:3px;
+    }
+    @media(max-width:760px){
+      .approved-home-hero{padding-top:70px;}
+      .approved-home-hero__frame{
+        width:150%;
+        margin-left:-8%;
+      }
+      .approved-home-hero__play{
+        left:9.4%;
+        top:77.7%;
+        width:24.7%;
+      }
+      .approved-home-hero__how{
+        left:35.9%;
+        top:77.7%;
+        width:19.2%;
       }
     }
-  `;
-  var FULL_PAGE_CSS = "html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}";
-  function rootNameForDocument(doc, loc) {
-    let bootPath = loc.pathname || "";
-    if (!/\.dc\.html?$/i.test(safeDecode(bootPath))) {
-      try {
-        bootPath = new URL(doc.baseURI || "/").pathname;
-      } catch {
-      }
+
+
+    /* SEO-first native HTML hero */
+    .seo-hero{position:relative;max-width:1520px;margin:0 auto;padding:116px max(24px,3vw) 52px;display:grid;grid-template-columns:minmax(500px,.86fr) minmax(620px,1.14fr);gap:clamp(18px,2.5vw,40px);align-items:center;min-height:680px}
+    .seo-hero::before{content:"";position:absolute;inset:88px 0 24px;border-radius:42px;background:linear-gradient(135deg,#fffdf8 0%,#fbf3e4 62%,#eef4ec 100%);border:1px solid rgba(18,56,41,.08);box-shadow:0 30px 90px rgba(18,56,41,.09);z-index:-1}
+    .seo-hero-copy{padding-left:clamp(12px,3vw,44px);position:relative;z-index:2}
+    .seo-hero-label{display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;padding:8px 13px;border-radius:999px;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.12);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b6e52}
+    .seo-hero-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
+    .seo-hero-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(3.35rem,4.55vw,4.7rem);line-height:.96;letter-spacing:-.045em;color:#123829;max-width:690px;margin:0 0 22px}
+    .seo-hero-title .hero-line{display:block;white-space:nowrap}
+    .seo-hero-title span{display:block;color:#be8a2c}
+    .seo-hero-copy p{font-size:clamp(1rem,1.42vw,1.16rem);line-height:1.68;color:#455149;max-width:590px;margin:0 0 30px}
+    .seo-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+    .seo-hero-primary,.seo-hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:750;text-decoration:none;transition:.2s ease}
+    .seo-hero-primary{color:#fffdf8;background:#0b6e52;box-shadow:0 14px 30px rgba(11,110,82,.28)}
+    .seo-hero-primary:hover{transform:translateY(-2px);background:#095f47;box-shadow:0 18px 38px rgba(11,110,82,.35)}
+    .seo-hero-secondary{color:#123829;background:rgba(255,255,255,.7);border:1px solid rgba(18,56,41,.16)}
+    .seo-hero-secondary:hover{transform:translateY(-2px);background:#fff}
+    .seo-hero-points{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;font-size:12.5px;color:#667168;font-weight:650}
+    .seo-hero-points strong{color:#123829}
+    .seo-hero-visual{position:relative;min-height:540px;display:flex;align-items:center;justify-content:center;padding:0 4px 0 0;overflow:visible;transform:translateY(-28px)}
+    .seo-hero-visual::before{content:"";position:absolute;left:12%;right:10%;bottom:8%;height:17%;border-radius:50%;background:rgba(18,56,41,.2);filter:blur(34px);transform:scaleX(.9);opacity:.42}
+    .seo-hero-visual img{position:relative;z-index:2;display:block;width:min(116%,900px);height:auto;max-height:730px;object-fit:contain;object-position:center;filter:drop-shadow(0 22px 22px rgba(18,56,41,.14))}
+    @media(max-width:1120px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:6px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points{justify-content:center}.seo-hero-visual{min-height:auto;padding:0 28px 20px;transform:translateY(-8px)}.seo-hero-visual img{width:min(94%,800px)}}
+    @media(max-width:640px){.seo-hero{padding:96px 14px 38px}.seo-hero::before{inset:72px 0 0;border-radius:0}.seo-hero-copy{padding:32px 18px 0}.seo-hero-label{font-size:10px}.seo-hero-title{font-size:clamp(2.65rem,14vw,4rem)}.seo-hero-title .hero-line{white-space:normal}.seo-hero-copy p{font-size:15px;line-height:1.58}.seo-hero-actions{display:grid;grid-template-columns:1fr}.seo-hero-primary,.seo-hero-secondary{width:100%}.seo-hero-visual{padding:0;transform:translateY(-4px)}.seo-hero-visual img{width:108%;max-width:680px;max-height:none;object-fit:contain;object-position:center}}
+
+    /* App feature carousel */
+    .app-showcase{padding:104px max(20px,4vw) 96px;overflow:hidden;background:linear-gradient(180deg,#fffdf8 0%,#fbf7ed 100%)}
+    .app-showcase__header{text-align:center;max-width:760px;margin:0 auto 42px}
+    .app-showcase__eyebrow{display:inline-block;font-size:12.5px;font-weight:750;text-transform:uppercase;letter-spacing:.11em;color:#0c6b48;margin-bottom:14px}
+    .app-showcase__title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2.15rem,3.8vw,3.25rem);line-height:1.08;letter-spacing:-.03em;color:#12251b}
+    .app-carousel{max-width:1380px;margin:0 auto;position:relative}
+    .app-carousel__viewport{overflow:hidden;padding:22px 0 32px;cursor:grab;user-select:none;touch-action:pan-y}
+    .app-carousel__viewport.is-dragging{cursor:grabbing}
+    .app-carousel__viewport.is-dragging .app-carousel__track{transition:none}
+    .app-carousel__track{display:flex;align-items:center;transition:transform .9s cubic-bezier(.22,.75,.22,1);will-change:transform}
+    .app-slide{flex:0 0 27%;display:flex;justify-content:center;opacity:1;transform:none;transition:none;pointer-events:auto}
+    .app-slide.is-active,.app-slide.is-near{opacity:1;transform:none}
+    .app-phone{width:min(304px,23vw);background:#101512;border-radius:39px;padding:9px;box-shadow:0 20px 46px rgba(18,40,29,.16),0 0 0 1px rgba(255,255,255,.12) inset}
+    .app-phone__screen{position:relative;overflow:hidden;border-radius:31px;background:#fff;aspect-ratio:1080/2172}
+    .app-phone__screen img{display:block;width:100%;height:100%;object-fit:contain;object-position:center top;image-rendering:auto}
+    .app-carousel__caption{text-align:center;min-height:92px;max-width:570px;margin:4px auto 0;padding:0 24px}
+    .app-carousel__caption h3{font-family:'Spectral',serif;font-size:1.48rem;line-height:1.2;color:#123829;margin-bottom:7px}
+    .app-carousel__caption p{font-size:15px;line-height:1.55;color:#647067}
+    .app-carousel__controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:10px}
+    .app-carousel__arrow{width:52px;height:52px;border-radius:50%;border:1px solid rgba(18,56,41,.16);background:#fffdf8;color:#123829;font-size:28px;line-height:1;cursor:pointer;box-shadow:0 9px 24px rgba(18,56,41,.1);transition:.2s ease}
+    .app-carousel__arrow:hover{background:#0c6b48;color:#fff;transform:translateY(-2px)}
+    .app-carousel__dots{display:flex;align-items:center;gap:8px}
+    .app-carousel__dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#c9d0ca;cursor:pointer;transition:.25s ease}
+    .app-carousel__dot.is-active{width:25px;border-radius:99px;background:#0c6b48}
+    @media(max-width:760px){
+      .seo-hero-title{font-size:clamp(2.85rem,14.5vw,4.2rem)}
+      .seo-hero-visual{transform:translateY(-10px)}
+      .app-showcase{padding:82px 14px 76px}
+      .app-showcase__header{margin-bottom:26px;padding:0 10px}
+      .app-carousel__viewport{overflow:visible;padding:18px 0 24px}
+      .app-carousel__track{touch-action:pan-y}
+      .app-slide,.app-slide.is-active,.app-slide.is-near{flex-basis:76%;transform:none;opacity:1}
+      .app-phone{width:min(286px,70vw)}
+      .app-carousel__caption{min-height:108px}
+      .app-carousel__arrow{width:48px;height:48px}
     }
-    return dcNameFromPath(bootPath);
+    @media(prefers-reduced-motion:reduce){.app-carousel__track,.app-slide{transition:none}}
+
+    /* Trust and product proof */
+    .proof-section{max-width:1180px;margin:0 auto;padding:12px max(24px,4vw) 34px}
+    .proof-shell{position:relative;overflow:hidden;background:rgba(255,253,248,.78);border:1px solid rgba(18,56,41,.09);border-radius:28px;padding:clamp(30px,4vw,48px);box-shadow:0 18px 48px rgba(18,56,41,.055)}
+    .proof-shell::after{content:"";position:absolute;width:360px;height:360px;right:-190px;top:-230px;border-radius:50%;background:radial-gradient(circle,rgba(201,151,63,.18),rgba(201,151,63,0) 70%);pointer-events:none}
+    .proof-process{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2.4vw,28px);margin-bottom:34px}
+    .proof-process__step{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:750;color:#22302a;white-space:nowrap}
+    .proof-process__number{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#eef5ed;color:#0c6b48;font-size:12px}
+    .proof-process__step:last-child{color:#0c6b48}
+    .proof-process__arrow{width:42px;height:1px;background:rgba(201,151,63,.58);position:relative;flex:0 1 42px}
+    .proof-process__arrow::after{content:"";position:absolute;right:-1px;top:-3px;width:6px;height:6px;border-top:1.5px solid #c9973f;border-right:1.5px solid #c9973f;transform:rotate(45deg)}
+    .proof-heading{text-align:center;max-width:680px;margin:0 auto 30px}
+    .proof-eyebrow{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#0c6b48;margin-bottom:9px}
+    .proof-heading h2{font-family:'Spectral',serif;font-size:clamp(1.9rem,3vw,2.55rem);line-height:1.12;letter-spacing:-.025em;color:#12251b;margin:0 0 9px}
+    .proof-heading p{font-size:15px;line-height:1.6;color:#657067;margin:0}
+    .proof-grid{display:grid;grid-template-columns:1.18fr repeat(3,1fr);gap:14px}
+    .proof-card{min-height:190px;padding:22px;border:1px solid rgba(18,56,41,.085);border-radius:18px;background:#faf6ea;display:flex;flex-direction:column}
+    .proof-card--metric{background:#123829;color:#fffdf8;border-color:#123829}
+    .proof-card__icon{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#eef5ed;color:#0c6b48;margin-bottom:22px}
+    .proof-card--metric .proof-card__icon{background:rgba(255,255,255,.12);color:#f2c66d}
+    .proof-card__label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.095em;color:#0c6b48;margin-bottom:8px}
+    .proof-card--metric .proof-card__label{color:#f2c66d}
+    .proof-card__value{font-family:'Spectral',serif;font-size:2.25rem;font-weight:800;line-height:1;color:#fff;margin-bottom:7px}
+    .proof-card h3{font-size:15px;line-height:1.3;color:#12251b;margin:0 0 7px}
+    .proof-card p{font-size:13.5px;line-height:1.55;color:#59635c;margin:0}
+    .proof-card--metric p{color:rgba(255,255,255,.74)}
+    .proof-card a{color:#0c6b48;font-weight:700;text-underline-offset:3px}
+    .proof-foot{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:23px;font-size:13px;color:#667169}
+    .proof-foot svg{flex:0 0 auto}
+    @media(max-width:900px){.proof-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){
+      .proof-section{padding-inline:16px}
+      .proof-shell{padding:28px 18px;border-radius:22px}
+      .proof-process{gap:8px;margin-bottom:28px}
+      .proof-process__step{font-size:12px;gap:6px}
+      .proof-process__number{width:25px;height:25px}
+      .proof-process__arrow{width:18px;flex-basis:18px}
+      .proof-grid{grid-template-columns:1fr}
+      .proof-card{min-height:0}
+    }
+
+  </style>
+</helmet>
+
+<div style="position:relative; background:#f4efe4; overflow:hidden;">
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       QARIAI LANDING PAGE — production target: static HTML/CSS + minimal
+       vanilla JS on the existing GitHub → Vercel pipeline. No React, no
+       build step, no npm deps unless separately requested.
+
+       SECTION MAP (search for "══" to jump between them):
+       NAV → HERO → STEP STRIP → AS FEATURED → CHECKLIST → CREDIBILITY →
+       TAJWEED QUEST → HOW IT WORKS → FEATURES → PROGRESS →
+       SCREENSHOT CAROUSEL → COACH REMEMBERS YOU → DAILY PLANS →
+       TESTIMONIALS → COMPARISON TABLE → TOPIC HUB → WHO IT'S FOR →
+       FINAL CTA → FOOTER → sticky CTA → demo modal
+
+       EDITABLE CONTENT (things likely to change often):
+       - Hero stats (6,000+ / 42+ / £0)            — verify before editing, see memory notes
+       - Testimonials (Matti-Ur Rehman, Sayeed Ahmed) — Google Play reviews, verified
+       - Tajweed Quest character art: uploads/tajweed-quest-characters.webp
+            (uploads/tajweed-quest-preview.webp is no longer referenced — remove it, or ignore if kept for other use)
+       - Screenshot carousel: screenshots/en1.jpg … en4.jpg
+
+       JS STATE (all vanilla, two separate mechanisms — do not conflate):
+       1. Sticky CTA visibility — handled by the x-dc DCLogic component at
+          the bottom of this file (scroll > 780px). Existing runtime, untouched.
+       2. Mobile nav open/close — pure CSS checkbox toggle (#qnav-toggle),
+          no JS required except closing it on anchor-link tap (see <script> below).
+       3. Demo modal open/close — plain vanilla JS at the bottom of this file
+          (#qdemo-open/#qdemo-overlay/#qdemo-close). Deliberately NOT wired
+          through the x-dc runtime — that binding pattern broke in testing.
+  ═══════════════════════════════════════════════════════════════════ -->
+  <!-- ══ NAV ══ -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:120; display:flex; align-items:center; justify-content:space-between; height:70px; padding:0 max(24px,4vw); background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 1px 14px rgba(18,56,41,0.05);">
+    <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+      <span style="width:50px; height:50px; border-radius:13px; background:#ffffff; border:1px solid rgba(18,56,41,0.1); box-shadow:0 2px 8px rgba(18,56,41,0.08); display:flex; align-items:center; justify-content:center; padding:6px;"><img src="/uploads/logo.png?v=20260726" alt="QariAI" width="50" height="50" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+      <span style="font-family:'Spectral',serif; font-size:28px; font-weight:700; letter-spacing:-.01em; color:#123829;">Qari<span style="color:#0c6b48;">AI</span></span>
+    </a>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <input type="checkbox" id="qnav-toggle" class="qnav-check"/>
+      <div class="qnav-links">
+        <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">How It Works</a>
+        <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Features</a>
+        <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Learn</a>
+        <a href="https://qariai.app/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">About</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="nav_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fffdf8; text-decoration:none; padding:11px 22px; background:#0c6b48; border-radius:40px; box-shadow:0 6px 18px rgba(12,107,72,.28); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-1px); box-shadow:0 10px 22px rgba(12,107,72,.36);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fffdf8" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg><span class="qnav-playtext">Get it on Google Play</span></a>
+      <label for="qnav-toggle" class="qnav-burger" aria-label="Open menu" role="button" tabindex="0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#123829" stroke-width="2" stroke-linecap="round"/></svg>
+      </label>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="top" class="seo-hero" aria-labelledby="hero-title">
+    <div class="seo-hero-copy">
+      <div class="seo-hero-label">The AI Quran Coach</div>
+      <h1 id="hero-title" class="seo-hero-title"><span class="hero-line">Your Qur’an coach—</span><span class="hero-line">always in your pocket.</span></h1>
+      <p>Instant Tajweed feedback, Hifz support, interactive lessons and guided practice — built to support your learning between sessions with a teacher.</p>
+      <div class="seo-hero-actions">
+        <a class="seo-hero-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="hero_play_store_click">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+          Get it on Google Play
+        </a>
+        <a class="seo-hero-secondary" href="#features" data-ga-event="hero_how_it_works_click">See how it works</a>
+      </div>
+      <div class="seo-hero-points" aria-label="QariAI key benefits">
+        <span><strong>AI feedback</strong> while you recite</span><span>•</span><span><strong>Tajweed + Hifz</strong> practice</span>
+      </div>
+    </div>
+    <div class="seo-hero-visual">
+      <img src="/uploads/qariai-hero-phone-hudhud-v3.png?v=20260726c" alt="QariAI mobile app showing Quran recitation feedback beside the HudHud learning guide" width="1275" height="1353" fetchpriority="high"/>
+    </div>
+  </section>
+
+  <!-- ══ PRODUCT PROOF ══ -->
+  <section class="proof-section" aria-labelledby="proof-title" hidden>
+    <div class="proof-shell">
+      <div class="proof-process" aria-label="How QariAI works">
+        <div class="proof-process__step"><span class="proof-process__number">1</span><span>Recite</span></div>
+        <span class="proof-process__arrow" aria-hidden="true"></span>
+        <div class="proof-process__step"><span class="proof-process__number">2</span><span>AI listens</span></div>
+        <span class="proof-process__arrow" aria-hidden="true"></span>
+        <div class="proof-process__step"><span class="proof-process__number">3</span><span>Improve instantly</span></div>
+      </div>
+
+      <div class="proof-heading">
+        <div class="proof-eyebrow">Built for meaningful practice</div>
+        <h2 id="proof-title">Why learners trust QariAI</h2>
+        <p>Purpose-built Qur’an support that combines careful evaluation, focused feedback and teacher-aligned practice.</p>
+      </div>
+
+      <div class="proof-grid">
+        <article class="proof-card proof-card--metric">
+          <div class="proof-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="proof-card__label">Trusted by learners</div>
+          <div class="proof-card__value">6,000+</div>
+          <p>Active learners as of July 2026, averaging over six minutes of practice per session.</p>
+        </article>
+
+        <article class="proof-card">
+          <div class="proof-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="proof-card__label">Research-first</div>
+          <h3>Open about how we evaluate</h3>
+          <p>Our <a href="https://qariai.app/qaef">evaluation methodology</a> is public—including where the system still falls short.</p>
+        </article>
+
+        <article class="proof-card">
+          <div class="proof-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15Z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="proof-card__label">Built for the Qur’an</div>
+          <h3>Tajweed and Hifz-aware</h3>
+          <p>Focused feedback for Qur’anic recitation—not a general speech app repurposed for Arabic.</p>
+        </article>
+
+        <article class="proof-card">
+          <div class="proof-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2ZM9 7h6M9 11h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="proof-card__label">Teacher-aligned</div>
+          <h3>Practice between lessons</h3>
+          <p>Designed to complement qualified teachers and help learners practise—not replace human teaching.</p>
+        </article>
+      </div>
+
+      <div class="proof-foot">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z" fill="#0c6b48"/></svg>
+        <span>Available on Google Play · Tajweed correction · Hifz mode · Personalised drills · Progress tracking</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ QURAN COMBO ══ -->
+  <section id="quran-combo-legacy" style="max-width:1120px;margin:0 auto;padding:24px max(24px,4vw) 84px;scroll-margin-top:90px;" hidden>
+    <div class="combo-card">
+      <div class="combo-layout">
+        <div class="combo-copy">
+          <div class="combo-logo-frame">
+            <img class="combo-logo" src="/uploads/quran-combo-logo.png?v=20260726" alt="Qur’an Combo — روابط القرآن" width="1024" height="1024" loading="lazy">
+          </div>
+          <div class="combo-badges">
+            <span class="combo-badge combo-badge--soon">Coming soon</span>
+            <span class="combo-badge combo-badge--free">Free</span>
+          </div>
+          <h2 class="combo-title">Connect words. Build Qur’anic vocabulary.</h2>
+          <p class="combo-intro">Discover familiar Qur’anic words through gentle, connected-letter challenges that make vocabulary practice visual, enjoyable and memorable.</p>
+          <ul class="combo-points">
+            <li>Verified Qur’anic vocabulary</li>
+            <li>Short, progressive puzzle levels</li>
+            <li>Meanings revealed as you connect</li>
+          </ul>
+          <p class="combo-note">Included free inside QariAI</p>
+        </div>
+
+        <div class="combo-game" role="img" aria-label="Qur’an Combo preview showing the connected words mercy, light, moon and fire">
+          <div class="combo-game__inner">
+            <div class="combo-game__top">
+              <span class="combo-game__level">Level preview</span>
+              <span class="combo-game__goal">Find 4 connected words</span>
+            </div>
+
+            <div class="combo-board" aria-hidden="true">
+              <!-- نُور: vertical, crossing رَحْمَة at ر -->
+              <span class="combo-tile combo-tile--blue" style="left:232px;top:0;">ن</span>
+              <span class="combo-tile combo-tile--purple" style="left:232px;top:64px;">و</span>
+              <span class="combo-tile combo-tile--green combo-tile--active" style="left:232px;top:128px;">ر</span>
+
+              <!-- رَحْمَة: right to left -->
+              <span class="combo-tile combo-tile--blue" style="left:40px;top:128px;">ة</span>
+              <span class="combo-tile combo-tile--purple" style="left:104px;top:128px;">م</span>
+              <span class="combo-tile combo-tile--orange" style="left:168px;top:128px;">ح</span>
+
+              <!-- قَمَر: vertical, crossing رَحْمَة at م -->
+              <span class="combo-tile combo-tile--red" style="left:104px;top:64px;">ق</span>
+              <span class="combo-tile combo-tile--orange" style="left:104px;top:192px;">ر</span>
+
+              <!-- نَار: right to left, crossing قَمَر at ر -->
+              <span class="combo-tile combo-tile--green" style="left:168px;top:192px;">ا</span>
+              <span class="combo-tile combo-tile--purple" style="left:232px;top:192px;">ن</span>
+            </div>
+
+            <div class="combo-meaning">
+              <span><small>Connected word</small><strong>رَحْمَة · Mercy</strong></span>
+              <span class="combo-progress">1 of 4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FEATURES GRID ══ -->
+  <section id="features" style="background:#efe8d9; padding:96px max(24px,4vw); border-top:1px solid rgba(18,56,41,0.06); border-bottom:1px solid rgba(18,56,41,0.06);">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Features</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Built like a real teacher.</h2>
+    </div>
+    <div style="max-width:1120px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); gap:18px;" class="qgrid5">
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14l-8-4-8 4V5z" stroke="#0c6b48" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Tajweed</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">16 rules detected & explained</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5a2 2 0 012-2h6v16H6a2 2 0 00-2 2V5zM20 5a2 2 0 00-2-2h-6v16h6a2 2 0 012 2V5z" stroke="#c9973f" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Hifz</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">Protect your memorisation</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 014 4v5a4 4 0 01-8 0V6a4 4 0 014-4z" stroke="#0c6b48" stroke-width="1.8"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="#0c6b48" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Personal Coach</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">Listens to every word</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7" fill="rgba(201,151,63,0.35)"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7" fill="rgba(201,151,63,0.2)"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#c9973f" stroke-width="1.7"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Mistake Heatmap</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">See exactly where to focus</div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 20px; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0c6b48" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="#0c6b48" stroke-width="1.8"/><circle cx="12" cy="12" r="1.2" fill="#0c6b48"/></svg></div>
+        <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Personalized Drills</div>
+        <div style="font-size:12px; color:#7a8378; line-height:1.4;">Practise only what matters</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROGRESS (emotional) ══ -->
+  <section style="background:#efe8d9; padding:100px max(24px,4vw);">
+    <div style="max-width:900px; margin:0 auto; text-align:center;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#c9973f; margin-bottom:16px;">Your progress</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.6vw,3rem); line-height:1.1; letter-spacing:-.02em; color:#12251b; margin-bottom:14px;">It's a <em style="font-style:italic; color:#0c6b48;">spiritual journey.</em></h2>
+      <p style="font-size:1.08rem; color:#5c665c; line-height:1.6; max-width:520px; margin:0 auto 52px;">Every practice session moves you forward — and you can see it happening.</p>
+
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.09); border-radius:24px; padding:38px 34px 30px; box-shadow:0 24px 54px rgba(18,56,41,0.08);">
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:clamp(20px,6vw,64px); height:230px; padding:0 10px;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:800; color:#94a08f;">72</span>
+            <div style="width:100%; height:96px; border-radius:12px 12px 4px 4px; background:#cfd6cc;"></div>
+            <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Week 1</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:800; color:#7f9a86;">78</span>
+            <div style="width:100%; height:126px; border-radius:12px 12px 4px 4px; background:#9dbca7;"></div>
+            <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Week 2</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:800; color:#3f8560;">84</span>
+            <div style="width:100%; height:160px; border-radius:12px 12px 4px 4px; background:#40966b;"></div>
+            <span style="font-size:12.5px; font-weight:600; color:#7a8378;">Week 3</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; max-width:120px;">
+            <span style="font-family:'Spectral',serif; font-size:1.7rem; font-weight:800; color:#0c6b48;">91</span>
+            <div style="width:100%; height:206px; border-radius:12px 12px 4px 4px; background:linear-gradient(180deg,#12925e,#0c6b48); box-shadow:0 10px 24px rgba(12,107,72,0.28);"></div>
+            <span style="font-size:12.5px; font-weight:700; color:#0c6b48;">Week 4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ APP FEATURE CAROUSEL ══ -->
+  <section class="app-showcase" aria-labelledby="app-showcase-title">
+    <div class="app-showcase__header">
+      <span class="app-showcase__eyebrow">Inside the app</span>
+      <h2 id="app-showcase-title" class="app-showcase__title">Recite like you’ve had a teacher<br/>your whole life.</h2>
+    </div>
+    <div class="app-carousel" id="qscreens" data-ga-event="screenshot_carousel_interaction" role="region" aria-roledescription="carousel" aria-label="QariAI app features">
+      <div class="app-carousel__viewport">
+        <div class="app-carousel__track">
+          <article class="app-slide" data-title="Recite with confidence" data-copy="Start any recitation and receive focused guidance while you practise." aria-label="1 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_recite.jpeg" alt="QariAI recitation screen" width="1080" height="2340" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Detailed Tajweed Feedback" data-copy="Review each detected rule, listen to a model and focus on the correction that matters." aria-label="2 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/tajweed-feedback-ar.png?v=20260726b" alt="QariAI detailed Arabic Tajweed feedback screen" width="776" height="1264" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Your Learning Journey" data-copy="Follow structured lessons and continue from exactly where you left off." aria-label="3 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_learn.jpeg" alt="QariAI learning journey screen" width="1080" height="2340" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Arabic Lessons" data-copy="Continue structured Tajweed lessons with clear progress and one focused next step." aria-label="4 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/lessons-ar.png?v=20260726b" alt="QariAI Arabic lessons screen" width="776" height="1342" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Personalised Drills" data-copy="Turn recurring weak letters and rules into focused daily practice." aria-label="5 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/c6.png" alt="QariAI personalised practice drills" width="1080" height="2340" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Hifz Practice" data-copy="Identify omissions, additions and words to review without changing the sacred text." aria-label="6 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/qariai-hifz-carousel-screen.png?v=20260726b" alt="QariAI Hifz feedback screen" width="1080" height="1920" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Your Progress" data-copy="See your recitation level, weekly activity and the next milestone at a glance." aria-label="7 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/profile-progress-ar.png?v=20260726b" alt="QariAI Arabic progress profile screen" width="780" height="1506" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Find Your Maqam" data-copy="Explore vocal styles and discover the maqam that naturally suits your voice." aria-label="8 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/en2.jpg" alt="QariAI Maqam discovery screen" width="1080" height="2020" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Qur’an Combo" data-copy="Build connected Qur’anic words in a colourful, focused word puzzle." aria-label="9 of 9">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/quran-combo-game.jpg?v=20260726b" alt="QariAI Qur’an Combo connected-word game" width="945" height="2048" loading="lazy"/></div></div>
+          </article>
+        </div>
+      </div>
+      <div class="app-carousel__caption" aria-live="polite">
+        <h3></h3><p></p>
+      </div>
+      <div class="app-carousel__controls">
+        <button class="app-carousel__arrow app-carousel__prev" type="button" aria-label="Previous feature">‹</button>
+        <div class="app-carousel__dots" role="tablist" aria-label="Choose a feature"></div>
+        <button class="app-carousel__arrow app-carousel__next" type="button" aria-label="Next feature">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ONE QARIAI PRODUCT STORY ══ -->
+  <div class="unified-product">
+    <section class="unified-proof" aria-labelledby="unified-proof-title">
+      <div class="unified-proof__head">
+        <div>
+          <span class="unified-kicker">Built for meaningful practice</span>
+          <h2 id="unified-proof-title">Why learners trust QariAI</h2>
+        </div>
+        <p class="unified-proof__intro">Purpose-built Qur’an support that combines careful evaluation, focused feedback and teacher-aligned practice—all in the same app you use to recite, learn and track progress.</p>
+      </div>
+      <div class="unified-proof__grid">
+        <article class="unified-proof__item unified-proof__item--metric">
+          <div class="unified-proof__icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="unified-proof__label">Trusted by learners</div>
+          <div class="unified-proof__value">6,000+</div>
+          <p>Active learners practising Tajweed, Hifz and Qur’anic Arabic with QariAI.</p>
+        </article>
+        <article class="unified-proof__item">
+          <div class="unified-proof__icon" aria-hidden="true">✓</div>
+          <div class="unified-proof__label">Research-first</div>
+          <h3>Open about evaluation</h3>
+          <p>Our <a href="https://qariai.app/qaef">methodology is public</a>, including where the system still falls short.</p>
+        </article>
+        <article class="unified-proof__item">
+          <div class="unified-proof__icon" aria-hidden="true">ق</div>
+          <div class="unified-proof__label">Built for the Qur’an</div>
+          <h3>Tajweed and Hifz-aware</h3>
+          <p>Focused recitation feedback—not a general speech app repurposed for Arabic.</p>
+        </article>
+        <article class="unified-proof__item">
+          <div class="unified-proof__icon" aria-hidden="true">↗</div>
+          <div class="unified-proof__label">Teacher-aligned</div>
+          <h3>Practice between lessons</h3>
+          <p>Designed to complement qualified teachers, not replace human teaching.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="quran-combo" class="games-inside" aria-labelledby="games-inside-title">
+      <div class="games-inside__shell">
+        <div class="games-inside__head">
+          <div>
+            <span class="unified-kicker">Inside the QariAI app</span>
+            <h2 id="games-inside-title">More ways to learn with QariAI.</h2>
+          </div>
+          <div>
+            <p class="games-inside__intro">Practice Tajweed, strengthen Hifz and build Qur’anic vocabulary through focused learning games—all included inside the same QariAI app.</p>
+            <span class="games-inside__badge">One app · Coaching, lessons, progress and games</span>
+          </div>
+        </div>
+        <div class="games-inside__content">
+          <div class="game-list" aria-label="Learning games in QariAI">
+            <article class="game-tile">
+              <div class="game-tile__icon" aria-hidden="true">ت</div>
+              <div><strong>Tajweed Quest</strong><span>Practise rules through short recitation challenges.</span></div>
+              <span class="game-tile__state">In QariAI</span>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile__icon" aria-hidden="true">ب</div>
+              <div><strong>Harf Writer</strong><span>Learn Arabic letter shapes through guided tracing.</span></div>
+              <span class="game-tile__state">In QariAI</span>
+            </article>
+            <article class="game-tile">
+              <div class="game-tile__icon" aria-hidden="true">شّ</div>
+              <div><strong>Word Builder</strong><span>Build Qur’anic words and recognise key marks.</span></div>
+              <span class="game-tile__state">In QariAI</span>
+            </article>
+          </div>
+          <article class="combo-feature">
+            <div class="combo-feature__phone">
+              <img src="/screenshots/quran-combo-game.jpg?v=20260726c" alt="Qur’an Combo running inside the QariAI app" width="945" height="2048" loading="lazy">
+            </div>
+            <div>
+              <img class="combo-feature__logo" src="/uploads/quran-combo-logo.png?v=20260726c" alt="Qur’an Combo — روابط القرآن" width="1024" height="1024" loading="lazy">
+              <span class="combo-feature__tag">Featured game inside QariAI</span>
+              <h3>Connect words. Build Qur’anic vocabulary.</h3>
+              <p>Discover familiar Qur’anic words through connected-letter challenges that make vocabulary practice visual and memorable.</p>
+              <ul>
+                <li>Verified Qur’anic vocabulary</li>
+                <li>Short, progressive puzzle levels</li>
+                <li>Meanings revealed as you connect</li>
+              </ul>
+              <a class="games-inside__cta" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="games_play_store_click">Explore games in QariAI</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══ COACH REMEMBERS YOU ══ -->
+  <section id="coach" style="background:#123829; padding:100px max(24px,4vw); position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-160px; right:-120px; width:560px; height:560px; background:radial-gradient(circle, rgba(18,146,94,0.22), transparent 62%); border-radius:50%; pointer-events:none;"></div>
+    <div style="max-width:1080px; margin:0 auto; position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="qsplit">
+      <div>
+        <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#c9973f; margin-bottom:16px;">Your biggest advantage</span>
+        <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.1; letter-spacing:-.02em; color:#fdf8ee; margin-bottom:20px;">Your coach remembers <em style="font-style:italic; color:#c9973f;">you.</em></h2>
+        <p style="font-size:1.08rem; line-height:1.65; color:rgba(253,248,238,0.74); margin-bottom:20px; max-width:440px;">It isn't the AI that changes everything. It's the memory. QariAI remembers every recurring mistake and builds future practice around your weaknesses.</p>
+        <p style="font-size:1.08rem; line-height:1.65; color:rgba(253,248,238,0.74); max-width:440px;">A checker grades one recitation. A coach carries what you struggled with last week into what you practise today.</p>
+      </div>
+
+      <div style="background:rgba(253,248,238,0.05); border:1px solid rgba(253,248,238,0.12); border-radius:24px; padding:30px 30px 26px;">
+        <div style="display:flex; flex-direction:column; gap:0;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:rgba(201,151,63,0.2); border:1.5px solid #c9973f; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#e6b662" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+            <div style="flex:1; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-size:11px; font-weight:700; letter-spacing:.05em; color:rgba(253,248,238,0.5); text-transform:uppercase;">Monday</div><div style="font-size:1.05rem; font-weight:700; color:#fdf8ee;">Ghunnah — missed</div></div></div>
+          </div>
+          <div style="width:2px; height:26px; background:linear-gradient(#c9973f,#12925e); margin-left:12px;"></div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:rgba(18,146,94,0.18); border:1.5px solid #12925e; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="#3fd39a" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+            <div style="flex:1;"><div style="font-size:11px; font-weight:700; letter-spacing:.05em; color:rgba(253,248,238,0.5); text-transform:uppercase;">Wednesday</div><div style="font-size:1.05rem; font-weight:700; color:#fdf8ee;">Getting closer</div></div>
+          </div>
+          <div style="width:2px; height:26px; background:linear-gradient(#12925e,#3fd39a); margin-left:12px;"></div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="width:26px; height:26px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div style="flex:1; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-size:11px; font-weight:700; letter-spacing:.05em; color:rgba(253,248,238,0.5); text-transform:uppercase;">Friday</div><div style="font-size:1.05rem; font-weight:800; color:#fdf8ee;">Ghunnah — mastered</div></div><span style="font-size:11px; font-weight:700; color:#0f1512; background:#3fd39a; padding:5px 11px; border-radius:20px;">✓ Done</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DAILY PLANS ══ -->
+  <section style="background:#f4efe4; padding:100px max(24px,4vw);">
+    <div style="max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="qsplit">
+      <div>
+        <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:16px;">Daily plans</span>
+        <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.1; letter-spacing:-.02em; color:#12251b; margin-bottom:20px;">Build a Quran habit,<br/>one day at a time.</h2>
+        <p style="font-size:1.08rem; line-height:1.65; color:#4c564d; max-width:440px;">Structured 7-day plans blend Tajweed correction, Hifz review, and guided recitation — so every day has a clear, achievable goal.</p>
+      </div>
+
+      <div style="background:#0f1512; border-radius:26px; padding:28px 26px; box-shadow:0 30px 64px rgba(18,40,29,0.28);">
+        <div style="font-family:'Spectral',serif; font-size:1.15rem; font-weight:700; color:#fdf8ee; margin-bottom:18px;">Confidence in Qalqalah</div>
+
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:22px;">
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:rgba(253,248,238,0.06);">
+            <div style="font-size:13px; font-weight:700; color:#3fd39a;">1</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.4); margin-top:2px;">JUL 13</div>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="margin-top:4px;"><path d="M20 6L9 17l-5-5" stroke="#3fd39a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:#12925e;">
+            <div style="font-size:13px; font-weight:800; color:#fff;">2</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.85); margin-top:2px;">JUL 14</div>
+          </div>
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:rgba(253,248,238,0.06);">
+            <div style="font-size:13px; font-weight:700; color:rgba(253,248,238,0.5);">3</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.3); margin-top:2px;">JUL 15</div>
+          </div>
+          <div style="text-align:center; padding:9px 4px; border-radius:12px; background:rgba(253,248,238,0.06);">
+            <div style="font-size:13px; font-weight:700; color:rgba(253,248,238,0.5);">4</div>
+            <div style="font-size:9px; color:rgba(253,248,238,0.3); margin-top:2px;">JUL 16</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+          <span style="font-size:13.5px; font-weight:700; color:#fdf8ee;">Day 2 of 7</span>
+          <span style="font-size:11.5px; font-weight:700; color:#3fd39a; background:rgba(63,211,154,0.12); padding:4px 11px; border-radius:20px;">On track</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(253,248,238,0.05); border-radius:12px;">
+            <span style="width:22px; height:22px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span style="font-size:13.5px; font-weight:600; color:rgba(253,248,238,0.4); text-decoration:line-through;">Tajweed drill — Qalqalah</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(253,248,238,0.05); border-radius:12px;">
+            <span style="width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(253,248,238,0.25); flex-shrink:0;"></span>
+            <span style="font-size:13.5px; font-weight:600; color:#fdf8ee;">Recite Surah Al-Mulk 1–10</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(253,248,238,0.05); border-radius:12px;">
+            <span style="width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(253,248,238,0.25); flex-shrink:0;"></span>
+            <span style="font-size:13.5px; font-weight:600; color:#fdf8ee;">Hifz review — Juz 'Amma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section id="reviews" style="background:#efe8d9; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">What reciters say</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Loved on Google Play.</h2>
+    </div>
+    <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:22px;" class="qgrid2">
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"Barakallahu Feekum. An incredible app. I've tested both Hifz and Tajweed mode — set to Advanced and it picks up every small mistake perfectly."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#0c6b48; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">M</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Matti-Ur Rehman</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"I think it is very nice and accurate Mashallah."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">S</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Sayeed Ahmed</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMPARISON TABLE ══ -->
+  <section style="max-width:820px; margin:0 auto; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Why QariAI</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">See the difference.</h2>
+    </div>
+    <div style="background:#fffdf8; border-radius:22px; overflow-x:auto; box-shadow:0 20px 48px rgba(18,56,41,0.08); border:1px solid rgba(18,56,41,0.08);">
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; min-width:520px;">
+        <div style="padding:18px 20px; font-size:12px; font-weight:700; letter-spacing:.05em; color:#7a8378; text-transform:uppercase;"></div>
+        <div style="padding:18px 12px; text-align:center; font-size:14px; font-weight:800; color:#0c6b48; background:rgba(12,107,72,0.07);">QariAI</div>
+        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Generic AI</div>
+        <div style="padding:18px 12px; text-align:center; font-size:13px; font-weight:700; color:#7a8378;">Learning Alone</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Tajweed feedback</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Hifz mode</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Personalized drills</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05);"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; align-items:center; border-top:1px solid rgba(18,56,41,0.08);">
+        <div style="padding:16px 20px; font-size:14.5px; font-weight:600; color:#22302a;">Progress tracking</div>
+        <div style="padding:16px 12px; text-align:center; background:rgba(12,107,72,0.05); border-radius:0 0 0 22px;"><span style="color:#0c6b48; font-size:17px;">✅</span></div>
+        <div style="padding:16px 12px; text-align:center;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+        <div style="padding:16px 12px; text-align:center; border-radius:0 0 22px 0;"><span style="color:#c2453d; font-size:17px;">❌</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TOPIC HUB ══ -->
+  <section style="max-width:1120px; margin:0 auto; padding:80px max(24px,4vw) 40px;">
+    <div style="text-align:center; margin-bottom:44px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">The Academy</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Guides for every stage of the journey.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;" class="qgrid3">
+      <a href="https://qariai.app/academy/ai-quran" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">AI Quran Tutor</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">What an AI Quran tutor is, and how self-paced practice fits alongside a teacher.</p>
+      </a>
+      <a href="https://qariai.app/academy/ai-tajweed" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">AI Tajweed Correction</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">How genuine rule-level Tajweed correction works, and how it differs from word-matching.</p>
+      </a>
+      <a href="https://qariai.app/academy/ai-hifz" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">AI Hifz Coaching</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">Spaced repetition, revision scheduling, and where AI genuinely helps with memorisation.</p>
+      </a>
+      <a href="https://qariai.app/academy/memorize-quran-at-home" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">Memorize Quran at Home</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">A practical guide to self-paced memorization without regular access to a teacher.</p>
+      </a>
+      <a href="https://qariai.app/academy/hifz-self-study-roadmap" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">Self-Study Hifz Roadmap</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">The 5-stage path for huffaz memorising alone, without a local Hifz class.</p>
+      </a>
+      <a href="https://qariai.app/academy/can-ai-teach-tajweed" style="display:block; padding:26px 24px; background:#faf6ea; border:1px solid rgba(18,56,41,0.08); border-radius:16px; text-decoration:none;">
+        <h3 style="font-family:'Spectral',serif; font-size:1.1rem; font-weight:700; color:#12251b; margin-bottom:8px;">Can AI Teach Tajweed?</h3>
+        <p style="font-size:14px; color:#5c665c; line-height:1.55;">An honest answer — where AI helps, and where a qualified teacher remains essential.</p>
+      </a>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:600; color:#0c6b48; text-decoration:none;">Browse all Academy guides →</a>
+    </div>
+  </section>
+
+  <!-- ══ WHO IT'S FOR ══ -->
+  <section style="max-width:1120px; margin:0 auto; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Who it's for</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Wherever you are on the journey.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;" class="qgrid3">
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:22px; padding:32px 28px;" style-hover="transform:translateY(-3px); box-shadow:0 16px 36px rgba(18,56,41,0.08);">
+        <div style="width:52px; height:52px; border-radius:15px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 5-9 5-9-5 9-5z" stroke="#0c6b48" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 10v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" stroke="#0c6b48" stroke-width="1.7"/></svg></div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:700; color:#12251b; margin-bottom:8px;">Beginner</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6;">Learn to recite confidently, with gentle guidance on every rule from the very first ayah.</p>
+      </div>
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:22px; padding:32px 28px;" style-hover="transform:translateY(-3px); box-shadow:0 16px 36px rgba(18,56,41,0.08);">
+        <div style="width:52px; height:52px; border-radius:15px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#c9973f" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="#c9973f" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:700; color:#12251b; margin-bottom:8px;">Daily Reciter</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6;">Improve steadily with short daily sessions that target your weak spots and build a lasting habit.</p>
+      </div>
+      <div style="background:#fffdf8; border:1px solid rgba(18,56,41,0.08); border-radius:22px; padding:32px 28px;" style-hover="transform:translateY(-3px); box-shadow:0 16px 36px rgba(18,56,41,0.08);">
+        <div style="width:52px; height:52px; border-radius:15px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z" stroke="#0c6b48" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h3 style="font-family:'Spectral',serif; font-size:1.4rem; font-weight:700; color:#12251b; margin-bottom:8px;">Huffaz</h3>
+        <p style="font-size:14.5px; color:#5c665c; line-height:1.6;">Protect your hifz — recite from memory and let the coach catch the words that start to slip.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FINAL CTA ══ -->
+  <section style="background:#0f1512; padding:120px max(24px,4vw); text-align:center; position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:640px; height:640px; background:radial-gradient(circle, rgba(18,146,94,0.2), transparent 64%); border-radius:50%; pointer-events:none;"></div>
+    <div style="position:relative; z-index:2; max-width:680px; margin:0 auto;">
+      <div lang="ar" dir="rtl" style="font-family:'Amiri',serif; font-size:1.7rem; color:rgba(201,151,63,0.9); margin-bottom:24px;">لَا تُحَرِّكْ بِهِۦ لِسَانَكَ لِتَعْجَلَ بِهِۦٓ</div>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2.2rem,4.2vw,3.4rem); line-height:1.08; letter-spacing:-.02em; color:#fdf8ee; margin-bottom:32px;">Become the reciter<br/>you've always <em style="font-style:italic; color:#c9973f;">wanted to be.</em></h2>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="final_cta_play_store_click" style="display:inline-flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:600; color:#0f1512; text-decoration:none; padding:17px 38px; background:#fdf8ee; border-radius:44px; white-space:nowrap;" style-hover="transform:translateY(-2px); background:#fff;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0f1512" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+        Get it on Google Play
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer style="background:#0f1512; padding:72px max(24px,4vw) 34px; border-top:1px solid rgba(253,248,238,0.08);">
+    <div style="max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.4fr repeat(4, 1fr); gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+          <span style="width:34px; height:34px; border-radius:9px; background:#fff; display:flex; align-items:center; justify-content:center; padding:4px;"><img src="/uploads/logo.png?v=20260726" alt="QariAI" width="34" height="34" loading="lazy" style="width:100%; height:100%; object-fit:contain; display:block;"/></span>
+          <span style="font-family:'Spectral',serif; font-size:18px; font-weight:700; color:#fdf8ee;">Qari<span style="color:#12925e;">AI</span></span>
+        </div>
+        <p style="font-size:13.5px; color:rgba(253,248,238,0.45); line-height:1.6; max-width:220px;">Your personal AI-powered Quran recitation coach.</p>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Product</span>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Features</a>
+          <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How It Works</a>
+          <a href="https://qariai.app/qaef" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">QAEF Framework</a>
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="footer_play_store_click" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Get it on Google Play</a>
+          <a href="https://qariai.app/tajweed-mistakes-checker" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Free Tajweed Checker</a>
+        </div>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Academy</span>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="https://qariai.app/academy/memorize-quran-at-home" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Memorize Quran at Home</a>
+          <a href="https://qariai.app/tajweed-rules" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Learn Tajweed</a>
+          <a href="https://qariai.app/academy/ai-tajweed" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Tajweed Correction</a>
+          <a href="https://qariai.app/academy/ai-hifz" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI Hifz Coaching</a>
+          <a href="https://qariai.app/academy/hifz-self-study-roadmap" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Self-Study Hifz Roadmap</a>
+          <a href="https://qariai.app/academy/can-ai-teach-tajweed" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Can AI Teach Tajweed?</a>
+          <a href="https://qariai.app/academy/ai-vs-human-quran-teacher" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">AI vs Human Teacher</a>
+          <a href="https://qariai.app/academy/how-ai-detects-tajweed-mistakes" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How AI Detects Mistakes</a>
+          <a href="https://qariai.app/compare/qari-ai-vs-tarteel" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Qari AI vs Tarteel</a>
+          <a href="https://qariai.app/academy/future-of-quran-learning" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Future of Quran Learning</a>
+        </div>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Company</span>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="https://qariai.app/about" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">About Us</a>
+          <a href="https://qariai.app/privacy" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Privacy Policy</a>
+          <a href="https://qariai.app/terms" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Terms of Service</a>
+          <a href="https://qariai.app/contact" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Connect</span>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="footer_connect_play_store_click" style="display:flex; align-items:center; gap:10px; padding:9px 14px; border:1px solid rgba(253,248,238,0.18); border-radius:10px; text-decoration:none; width:fit-content;" style-hover="border-color:#12925e;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fdf8ee"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
+            <span>
+              <span style="display:block; font-size:9.5px; color:rgba(253,248,238,0.5); line-height:1.2;">Get it on</span>
+              <span style="display:block; font-size:13px; font-weight:600; color:#fdf8ee; line-height:1.2;">Google Play</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1120px; margin:44px auto 0; padding-top:22px; border-top:1px solid rgba(253,248,238,0.08); display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center;">
+      <span style="font-size:13px; color:rgba(253,248,238,0.4);">© 2026 QariAI. Built with ❤️ for the Ummah. Powered by AI.</span>
+      <span style="font-family:'Amiri',serif; font-size:13.5px; color:rgba(253,248,238,0.4);">May Allah accept this work and make it beneficial • إن شاء الله</span>
+    </div>
+  </footer>
+
+  <!-- sticky CTA -->
+  <sc-if value="{{ stickyOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; left:0; right:0; bottom:0; z-index:110; background:rgba(15,21,18,0.95); backdrop-filter:blur(12px); border-top:1px solid rgba(253,248,238,0.1); padding:12px max(24px,4vw) calc(12px + env(safe-area-inset-bottom)); display:flex; align-items:center; justify-content:space-between; gap:16px; animation:qRise .35s ease both;">
+      <span style="font-size:14.5px; font-weight:600; color:#fdf8ee;">Your coach is ready when you are.</span>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="sticky_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0f1512; text-decoration:none; padding:11px 24px; background:#fdf8ee; border-radius:40px; white-space:nowrap;" style-hover="background:#fff;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0f1512" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>Get it on Google Play</a>
+    </div>
+  </sc-if>
+
+  <!-- Demo modal — vanilla JS (not the x-dc runtime), so it doesn't depend on custom onClick bindings.
+       Trigger button (#qdemo-open) is hidden by default in the hero until a real video ID is confirmed. -->
+  <div id="qdemo-overlay" class="qmodal-overlay" role="dialog" aria-modal="true" aria-labelledby="qdemo-title" aria-hidden="true">
+    <div id="qdemo-panel" style="background:#fffdf8; border-radius:24px; padding:20px; max-width:460px; width:100%; box-shadow:0 40px 90px rgba(0,0,0,0.4);">
+      <h2 id="qdemo-title" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">QariAI demo video</h2>
+      <div style="aspect-ratio:16/9; border-radius:16px; overflow:hidden; margin-bottom:16px; background:#0f1512;">
+        <!-- Replace YOUTUBE_VIDEO_ID_HERE with a confirmed real QariAI demo video before enabling the button above. -->
+        <iframe id="qdemo-frame" width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_HERE" title="QariAI demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+      </div>
+      <button type="button" id="qdemo-close" aria-label="Close demo video" style="width:100%; font-size:14.5px; font-weight:600; color:#fffdf8; background:#0c6b48; border:none; border-radius:40px; padding:13px; cursor:pointer;">Close</button>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;stickyCTA&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+class Component extends DCLogic {
+  state = { scrolled: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const s = y > 780;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
   }
-  function safeDecode(s) {
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+
+  renderVals() {
+    const p = this.props || {};
+    return {
+      stickyOn: (p.stickyCTA ?? true) && this.state.scrolled,
+    };
+  }
+}
+</script>
+<script>
+(function(){
+  "use strict";
+
+  // ---- Lightweight analytics: fires through whatever GA4/Firebase/GTM is already loaded on the page.
+  // Does not load or configure analytics itself — assumes the existing site-wide tracking snippet is present elsewhere.
+  function qTrack(name, extra) {
     try {
-      return decodeURIComponent(s);
-    } catch {
-      return s;
-    }
+      var params = Object.assign({ page_path: location.pathname }, extra || {});
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', name, params);
+      } else if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+        window.dataLayer.push(Object.assign({ event: name }, params));
+      } else if (window.firebase && window.firebase.analytics) {
+        window.firebase.analytics().logEvent(name, params);
+      }
+    } catch (e) { /* analytics should never break the page */ }
   }
-  function boot(runtime, doc = document) {
-    const parsed = parseDcDocument(doc);
-    if (!parsed) return null;
-    const React = getReact();
-    const rootName = rootNameForDocument(doc, location);
-    runtime.markFetched(rootName);
-    runtime.setRootName(rootName);
-    runtime.adoptParsed(rootName, parsed);
-    fetch(location.href).then((res) => res.ok ? res.text() : "").then((t) => {
-      const raw = t ? parseDcText(t) : null;
-      if (raw?.template) runtime.updateHtml(rootName, raw.template);
-    }).catch(() => {
+
+  document.querySelectorAll('[data-ga-event]').forEach(function (el) {
+    if (el.id === 'qscreens') return; // carousel handled separately below (scroll, not click)
+    el.addEventListener('click', function () {
+      qTrack(el.getAttribute('data-ga-event'), { cta_placement: el.getAttribute('data-ga-event') });
     });
-    const dc = doc.querySelector("x-dc");
-    const hostEl = doc.createElement("div");
-    hostEl.id = "dc-root";
-    dc.replaceWith(hostEl);
-    if (!parsed.preview) {
-      const s = doc.createElement("style");
-      s.textContent = FULL_PAGE_CSS;
-      doc.head.appendChild(s);
-    }
-    const Root = runtime.getDC(rootName);
-    const entry = runtime.registry.get(rootName);
-    function StandaloneRoot() {
-      const [, setTick] = React.useState(0);
-      React.useEffect(() => {
-        const sub = () => setTick((n) => n + 1);
-        entry.subs.add(sub);
-        return () => {
-          entry.subs.delete(sub);
-        };
-      }, []);
-      const defaults = React.useMemo(() => {
-        const d = {};
-        for (const k in entry.propsMeta || {}) {
-          const v = entry.propsMeta?.[k]?.default;
-          if (v !== void 0) d[k] = v;
-        }
-        return d;
-      }, [entry.propsMeta]);
-      return h(Root, { ...defaults, ...entry.propOverrides || {} });
-    }
-    const ReactDOM = getReactDOM();
-    if (ReactDOM.createRoot)
-      ReactDOM.createRoot(hostEl).render(h(StandaloneRoot));
-    else ReactDOM.render(h(StandaloneRoot), hostEl);
-    return rootName;
-  }
-
-  // src/expr.ts
-  var IDENT_RE = /^[A-Za-z_$][A-Za-z0-9_$]*/;
-  var NUMBER_RE = /^-?\d+(\.\d+)?$/;
-  function resolve(vals, src) {
-    const expr = String(src).trim();
-    if (!expr) return void 0;
-    if (expr[0] === "(" && expr[expr.length - 1] === ")" && parensWrapWhole(expr)) {
-      return resolve(vals, expr.slice(1, -1));
-    }
-    const eq = findTopLevelEquality(expr);
-    if (eq) {
-      const lv = resolve(vals, expr.slice(0, eq.index));
-      const rv = resolve(vals, expr.slice(eq.index + eq.op.length));
-      switch (eq.op) {
-        case "===":
-          return lv === rv;
-        case "!==":
-          return lv !== rv;
-        case "==":
-          return lv == rv;
-        default:
-          return lv != rv;
-      }
-    }
-    if (expr[0] === "!") return !resolve(vals, expr.slice(1));
-    if (expr === "true") return true;
-    if (expr === "false") return false;
-    if (expr === "null") return null;
-    if (expr === "undefined") return void 0;
-    if (NUMBER_RE.test(expr)) return Number(expr);
-    if (expr.length >= 2 && (expr[0] === '"' || expr[0] === "'") && expr[expr.length - 1] === expr[0]) {
-      return expr.slice(1, -1);
-    }
-    return resolvePath(vals, expr);
-  }
-  function parensWrapWhole(expr) {
-    let depth = 0;
-    for (let i = 0; i < expr.length - 1; i++) {
-      if (expr[i] === "(") depth++;
-      else if (expr[i] === ")") {
-        depth--;
-        if (depth === 0) return false;
-      }
-    }
-    return true;
-  }
-  function findTopLevelEquality(expr) {
-    let depth = 0;
-    for (let i = 0; i < expr.length; i++) {
-      const c = expr[i];
-      if (c === "[" || c === "(") depth++;
-      else if (c === "]" || c === ")") depth--;
-      else if (depth === 0 && (c === "=" || c === "!") && expr[i + 1] === "=") {
-        if (i > 0 && (expr[i - 1] === "=" || expr[i - 1] === "!")) continue;
-        if (!expr.slice(0, i).trim()) continue;
-        const op = expr[i + 2] === "=" ? c + "==" : c + "=";
-        return { index: i, op };
-      }
-    }
-    return null;
-  }
-  function resolvePath(vals, expr) {
-    const head = expr.match(IDENT_RE);
-    if (!head) return void 0;
-    let cur = vals == null ? void 0 : vals[head[0]];
-    let i = head[0].length;
-    while (i < expr.length) {
-      if (expr[i] === ".") {
-        const m = expr.slice(i + 1).match(IDENT_RE) || expr.slice(i + 1).match(/^\d+/);
-        if (!m) return void 0;
-        cur = cur == null ? void 0 : cur[m[0]];
-        i += 1 + m[0].length;
-      } else if (expr[i] === "[") {
-        let depth = 1;
-        let j = i + 1;
-        while (j < expr.length && depth > 0) {
-          if (expr[j] === "[") depth++;
-          else if (expr[j] === "]") {
-            depth--;
-            if (depth === 0) break;
-          }
-          j++;
-        }
-        if (depth !== 0) return void 0;
-        const key = resolve(vals, expr.slice(i + 1, j));
-        cur = cur == null ? void 0 : cur[key];
-        i = j + 1;
-      } else {
-        return void 0;
-      }
-    }
-    return cur;
-  }
-
-  // src/encode.ts
-  var CAMEL_ATTR = "sc-camel-";
-  var INLINE_TEXT_TAGS = new Set(
-    "a abbr b bdi bdo br cite code del dfn em i ins kbd mark q s samp small span strike strong sub sup u var wbr".split(
-      " "
-    )
-  );
-  var RAW_WRAP = {
-    select: "sc-raw-select",
-    table: "sc-raw-table",
-    tbody: "sc-raw-tbody",
-    thead: "sc-raw-thead",
-    tfoot: "sc-raw-tfoot",
-    tr: "sc-raw-tr",
-    td: "sc-raw-td",
-    th: "sc-raw-th",
-    caption: "sc-raw-caption"
-  };
-  var RAW_UNWRAP = Object.fromEntries(
-    Object.entries(RAW_WRAP).map(([k, v]) => [v, k])
-  );
-  var EVENT_MAP = {
-    onclick: "onClick",
-    onchange: "onChange",
-    oninput: "onInput",
-    onsubmit: "onSubmit",
-    onkeydown: "onKeyDown",
-    onkeyup: "onKeyUp",
-    onkeypress: "onKeyPress",
-    onmousedown: "onMouseDown",
-    onmouseup: "onMouseUp",
-    onmouseenter: "onMouseEnter",
-    onmouseleave: "onMouseLeave",
-    onfocus: "onFocus",
-    onblur: "onBlur",
-    ondoubleclick: "onDoubleClick",
-    oncontextmenu: "onContextMenu"
-  };
-  var ATTRS = `(?:[^>"']|"[^"]*"|'[^']*')*`;
-  var IMPORT_SELF_CLOSE_RE = new RegExp(
-    "<(x-import|dc-import)(" + ATTRS + ")/>",
-    "gi"
-  );
-  var CAMEL_ATTR_RE = /(\s)([a-z]+[A-Z][A-Za-z0-9]*)(\s*=)/g;
-  function encodeCase(html) {
-    html = html.replace(
-      IMPORT_SELF_CLOSE_RE,
-      (_, t, a) => "<" + t + a + "></" + t + ">"
-    );
-    html = html.replace(/<helmet(\s|>)/gi, "<sc-helmet$1");
-    html = html.replace(/<\/helmet\s*>/gi, "</sc-helmet>");
-    html = html.replace(
-      CAMEL_ATTR_RE,
-      (_, sp, name, eq) => sp + CAMEL_ATTR + name.replace(/[A-Z]/g, (c) => "-" + c.toLowerCase()) + eq
-    );
-    for (const [real, alias] of Object.entries(RAW_WRAP)) {
-      html = html.replace(
-        new RegExp("(</?)" + real + "(?=[\\s>])", "gi"),
-        "$1" + alias
-      );
-    }
-    return html;
-  }
-  function kebabToCamel(s) {
-    return s.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-  }
-  function cssToObj(css) {
-    const o = {};
-    for (const decl of css.split(";")) {
-      const i = decl.indexOf(":");
-      if (i < 0) continue;
-      const prop = decl.slice(0, i).trim();
-      o[prop.startsWith("--") ? prop : kebabToCamel(prop)] = decl.slice(i + 1).trim();
-    }
-    return o;
-  }
-  function compileAttr(raw) {
-    const whole = raw.match(/^\s*\{\{([\s\S]+?)\}\}\s*$/);
-    if (whole) {
-      const path = whole[1];
-      return (vals) => resolve(vals, path);
-    }
-    if (raw.includes("{{")) {
-      const parts = raw.split(/\{\{([\s\S]+?)\}\}/g);
-      return (vals) => parts.map((s, i) => i & 1 ? resolve(vals, s) ?? "" : s).join("");
-    }
-    return () => raw;
-  }
-
-  // src/compile.ts
-  function collectProps(node, kind, host) {
-    const propGetters = [];
-    const pseudoClasses = [];
-    let hintSize = null;
-    for (const { name, value } of [...node.attributes]) {
-      if (name === "sc-name" || name === "data-dc-tpl") continue;
-      let key = name;
-      if (key.startsWith(CAMEL_ATTR))
-        key = kebabToCamel(key.slice(CAMEL_ATTR.length));
-      if (key === "hint-size") {
-        hintSize = value;
-        continue;
-      }
-      if (key.startsWith("style-")) {
-        pseudoClasses.push(host.pseudoClass(key.slice(6), value));
-        continue;
-      }
-      if (kind !== "dom") {
-        if (key.includes("-") && !(kind === "x-import" && (key.startsWith("aria-") || key.startsWith("data-"))))
-          key = kebabToCamel(key);
-      } else {
-        if (key === "class") key = "className";
-        else if (key === "for") key = "htmlFor";
-        else if (key.startsWith("on"))
-          key = EVENT_MAP[key] || "on" + key[2].toUpperCase() + key.slice(3);
-      }
-      propGetters.push([key, compileAttr(value)]);
-    }
-    return { propGetters, pseudoClasses, hintSize };
-  }
-  var HOST_STYLE_PROPS = /* @__PURE__ */ new Set([
-    "position",
-    "left",
-    "right",
-    "top",
-    "bottom",
-    "inset",
-    "width",
-    "height",
-    "z-index",
-    "transform"
-  ]);
-  function hostPositionStyle(style) {
-    const all = typeof style === "string" ? cssToObj(style) : style != null && typeof style === "object" ? style : null;
-    if (!all) return void 0;
-    const out = {};
-    for (const [k, v] of Object.entries(all)) {
-      const kebab = k.replace(/[A-Z]/g, (c) => "-" + c.toLowerCase());
-      if (HOST_STYLE_PROPS.has(kebab)) out[k] = v;
-    }
-    return Object.keys(out).length ? out : void 0;
-  }
-  function compileTemplate(html, host) {
-    const tpl = document.createElement("template");
-    //! nosemgrep: direct-inner-html-assignment
-    tpl.innerHTML = encodeCase(html);
-    let tplN = 0;
-    (function stamp(node) {
-      if (node.nodeType === Node.ELEMENT_NODE) {
-        node.setAttribute("data-dc-tpl", String(tplN++));
-      }
-      for (const c of node.childNodes) stamp(c);
-    })(tpl.content);
-    const builders = walkChildren(tpl.content, host);
-    const render = ((vals, ctx) => builders.map((b, i) => b(vals || {}, ctx, i)));
-    render.__annotated = tpl.innerHTML;
-    return render;
-  }
-  function walkChildren(node, host) {
-    return [...node.childNodes].map((c) => walk(c, host)).filter((b) => b != null);
-  }
-  function walk(node, host) {
-    if (node.nodeType === Node.TEXT_NODE) return walkText(node);
-    if (node.nodeType !== Node.ELEMENT_NODE) return null;
-    const el = node;
-    const tag = el.tagName.toLowerCase();
-    if (tag === "sc-for") return walkFor(el, host);
-    if (tag === "sc-if") return walkIf(el, host);
-    if (tag === "x-import") return walkXImport(el, host);
-    if (tag === "sc-helmet") return host.helmet(el);
-    if (tag === "dc-import") return walkComponent(el, host);
-    return walkElement(el, host);
-  }
-  var warnedHoles = /* @__PURE__ */ new Set();
-  function warnUnresolved(ctx, what) {
-    const key = (ctx?.__name || "?") + "\0" + what;
-    if (warnedHoles.has(key)) return;
-    warnedHoles.add(key);
-    console.warn("[dc-runtime] " + (ctx?.__name || "template") + ": " + what);
-  }
-  function walkText(node) {
-    const txt = node.nodeValue ?? "";
-    if (!txt.includes("{{")) {
-      if (!txt.trim() && !txt.includes(" ")) return null;
-      return () => txt;
-    }
-    const parts = txt.split(/\{\{([\s\S]+?)\}\}/g);
-    return (vals, ctx, key) => h(
-      getReact().Fragment,
-      { key },
-      ...parts.map((p, i) => {
-        if (!(i & 1)) return p;
-        const v = resolve(vals, p);
-        if (v === void 0) {
-          if (!ctx?.__streamingNow) {
-            if (document.body?.hasAttribute("data-dc-editor-on")) {
-              return h(
-                "span",
-                { key: i, className: "sc-interp sc-unresolved" },
-                "{{ " + p.trim() + " }}"
-              );
-            }
-            warnUnresolved(
-              ctx,
-              "{{ " + p.trim() + " }} never resolved \u2014 rendered as empty"
-            );
-            return null;
-          }
-          return h(
-            "span",
-            { key: i, className: "sc-interp sc-missing" },
-            p.trim()
-          );
-        }
-        if (getReact().isValidElement(v) || Array.isArray(v)) {
-          return h(getReact().Fragment, { key: i }, v);
-        }
-        if (v === null || typeof v === "boolean") return null;
-        return h("span", { key: i, className: "sc-interp" }, String(v));
-      })
-    );
-  }
-  function walkFor(el, host) {
-    const listGet = compileAttr(el.getAttribute("list") || "");
-    const asName = el.getAttribute("as") || "item";
-    const hintN = parseInt(el.getAttribute("hint-placeholder-count") || "0", 10);
-    const kids = walkChildren(el, host);
-    const listSrc = el.getAttribute("list") || "";
-    return (vals, ctx, key) => {
-      let list = listGet(vals);
-      if (!Array.isArray(list)) {
-        if (!ctx?.__streamingNow) {
-          if (list !== void 0 && list !== null) {
-            warnUnresolved(
-              ctx,
-              'sc-for list="' + listSrc + '" is not an array (' + typeof list + ")"
-            );
-          }
-          list = [];
-        } else {
-          list = hintN > 0 ? Array(hintN).fill(void 0) : [];
-        }
-      }
-      return h(
-        getReact().Fragment,
-        { key },
-        list.map((item, i) => {
-          const sub = { ...vals, [asName]: item, $index: i };
-          return h(
-            getReact().Fragment,
-            { key: i },
-            kids.map((b, j) => b(sub, ctx, j))
-          );
-        })
-      );
-    };
-  }
-  function walkIf(el, host) {
-    const valGet = compileAttr(el.getAttribute("value") || "");
-    const hintRaw = el.getAttribute("hint-placeholder-val");
-    const hintGet = hintRaw != null ? compileAttr(hintRaw) : null;
-    const kids = walkChildren(el, host);
-    return (vals, ctx, key) => {
-      let v = valGet(vals);
-      if (v === void 0 && hintGet && ctx?.__streamingNow) v = hintGet(vals);
-      return v ? h(
-        getReact().Fragment,
-        { key },
-        kids.map((b, j) => b(vals, ctx, j))
-      ) : null;
-    };
-  }
-  function walkComponent(el, host) {
-    const name = el.getAttribute("name") || el.getAttribute("component") || "";
-    el.removeAttribute("name");
-    el.removeAttribute("component");
-    const tplId = el.getAttribute("data-dc-tpl");
-    const styleRaw = el.getAttribute("style");
-    el.removeAttribute("style");
-    const styleGet = styleRaw != null ? compileAttr(styleRaw) : null;
-    const { propGetters, hintSize } = collectProps(el, "dc-import", host);
-    const kids = walkChildren(el, host);
-    return (vals, ctx, key) => {
-      const props = {
-        key,
-        __hintSize: hintSize,
-        __tplId: tplId,
-        __hostStyle: styleGet ? hostPositionStyle(styleGet(vals)) : void 0
-      };
-      for (const [k, g] of propGetters) {
-        const v = g(vals);
-        if (k === "dcProps") {
-          if (v && typeof v === "object") Object.assign(props, v);
-          continue;
-        }
-        props[k] = v;
-      }
-      if (kids.length) props.children = kids.map((b, j) => b(vals, ctx, j));
-      return h(host.component(name), props);
-    };
-  }
-  function walkXImport(el, host) {
-    const globalNameGet = compileAttr(
-      el.getAttribute("component-from-global-scope") || ""
-    );
-    const exportNameGet = compileAttr(
-      el.getAttribute("component") || el.getAttribute("name") || ""
-    );
-    const fromRaw = el.getAttribute("from") || el.getAttribute("src") || el.getAttribute("import") || "";
-    const urls = fromRaw.trim() ? fromRaw.trim().split(/\s+/) : [];
-    const url = urls.length ? urls[urls.length - 1] : "";
-    const kindOf = (u) => /\.(jsx|tsx)(\?|#|$)/i.test(u) ? "jsx" : "js";
-    const tplId = el.getAttribute("data-dc-tpl");
-    const styleRaw = el.getAttribute("style");
-    el.removeAttribute("style");
-    const styleGet = styleRaw != null ? compileAttr(styleRaw) : null;
-    const wrap = tplId != null || styleGet != null;
-    const { propGetters, hintSize } = collectProps(el, "x-import", host);
-    const hasContent = el.children.length > 0 || !!(el.textContent || "").trim();
-    const kids = hasContent ? walkChildren(el, host) : [];
-    const urlBindable = fromRaw.includes("{{");
-    if (urls.length && !urlBindable) {
-      let prev;
-      for (const u of urls) prev = host.loadExternal(kindOf(u), u, prev);
-    }
-    const evalName = (g, vals) => {
-      const v = g(vals);
-      const s = v == null ? "" : String(v);
-      return s.includes("{{") ? "" : s;
-    };
-    return (vals, ctx, key) => {
-      const globalName = evalName(globalNameGet, vals);
-      const name = globalName || evalName(exportNameGet, vals);
-      const C = !name || urlBindable ? null : globalName ? host.resolveExternalGlobal(url, globalName) : host.resolveExternal(url, name);
-      const hostStyle = styleGet ? hostPositionStyle(styleGet(vals)) : void 0;
-      const wrapper = wrap ? {
-        key,
-        className: "sc-host-x",
-        "data-dc-tpl": tplId,
-        style: hostStyle || { display: "contents" }
-      } : null;
-      if (!C) {
-        const error = urlBindable ? "x-import `from` cannot contain {{ \u2026 }} \u2014 module URLs are resolved at parse time; use a literal URL" : host.resolveExternalError(url, name);
-        const ph = host.placeholder({
-          key: wrapper ? void 0 : key,
-          name,
-          hintSize,
-          error
-        });
-        return wrapper ? h("div", wrapper, ph) : ph;
-      }
-      const props = wrapper ? {} : { key };
-      let unresolvedHole = false;
-      for (const [k, g] of propGetters) {
-        if (k === "component" || k === "componentFromGlobalScope" || k === "from") {
-          continue;
-        }
-        const v = g(vals);
-        if (v === void 0) unresolvedHole = true;
-        if (k === "dcProps") {
-          if (v && typeof v === "object") Object.assign(props, v);
-          continue;
-        }
-        props[k] = v;
-      }
-      if (unresolvedHole && ctx?.__htmlStreamingNow) {
-        const ph = host.placeholder({
-          key: wrapper ? void 0 : key,
-          name,
-          hintSize,
-          error: null
-        });
-        return wrapper ? h("div", wrapper, ph) : ph;
-      }
-      if (kids.length) props.children = kids.map((b, j) => b(vals, ctx, j));
-      return wrapper ? h("div", wrapper, h(C, props)) : h(C, props);
-    };
-  }
-  function contentKey(el) {
-    const clone = el.cloneNode(true);
-    for (const d of clone.querySelectorAll("*")) {
-      while (d.attributes.length) d.removeAttribute(d.attributes[0].name);
-    }
-    const s = clone.innerHTML;
-    let h2 = 5381;
-    for (let i = 0; i < s.length; i++) h2 = (h2 << 5) + h2 + s.charCodeAt(i) | 0;
-    return s.length + "." + (h2 >>> 0).toString(36);
-  }
-  var NEVER_CONTENT_KEYED = new Set(
-    "script style textarea option title select canvas iframe video audio".split(
-      " "
-    )
-  );
-  var NOT_INLINE_SELECTOR = ":not(" + [...INLINE_TEXT_TAGS].join(",") + ")";
-  function walkElement(el, host) {
-    const realTag = RAW_UNWRAP[el.localName] || el.localName;
-    const tplId = el.getAttribute("data-dc-tpl");
-    const inlineOnly = el.childNodes.length > 0 && !NEVER_CONTENT_KEYED.has(realTag) && el.querySelector(NOT_INLINE_SELECTOR) === null;
-    const keySuffix = inlineOnly ? "|" + contentKey(el) : "";
-    const { propGetters, pseudoClasses } = collectProps(el, "dom", host);
-    const kids = walkChildren(el, host);
-    return (vals, ctx, key) => {
-      const props = {
-        key: key + keySuffix,
-        "data-dc-tpl": tplId
-      };
-      for (const [k, g] of propGetters) {
-        let v = g(vals);
-        if (k === "style" && typeof v === "string") v = cssToObj(v);
-        if ((k === "value" || k === "checked") && v === void 0) {
-          v = k === "checked" ? false : "";
-        }
-        props[k] = v;
-      }
-      if (pseudoClasses.length) {
-        props.className = [props.className, ...pseudoClasses].filter(Boolean).join(" ");
-      }
-      return h(realTag, props, ...kids.map((b, j) => b(vals, ctx, j)));
-    };
-  }
-
-  // src/logic.ts
-  var StreamableLogic = class {
-    constructor(props) {
-      __publicField(this, "props");
-      __publicField(this, "state", {});
-      /** Back-pointer to the wrapper component, installed after construction. */
-      __publicField(this, "__host");
-      this.props = props || {};
-    }
-    setState(update, cb) {
-      this.__host && this.__host.__setLogicState(update, cb);
-    }
-    forceUpdate() {
-      this.__host && this.__host.forceUpdate();
-    }
-    componentDidMount() {
-    }
-    componentDidUpdate(_prevProps) {
-    }
-    componentWillUnmount() {
-    }
-    /** The flat object the template renders against (merged over props). */
-    renderVals() {
-      return {};
-    }
-  };
-  function evalDcLogic(src) {
-    //! nosemgrep: eval-and-function-constructor
-    const fn = new Function(
-      "DCLogic",
-      "StreamableLogic",
-      "React",
-      src + '\n;return (typeof Component!=="undefined"&&Component)||undefined;'
-    );
-    return fn(StreamableLogic, StreamableLogic, getReact());
-  }
-
-  // src/component.ts
-  function shallowEqual(a, b) {
-    if (!b) return false;
-    const ak = Object.keys(a).filter((k) => k !== "children");
-    const bk = Object.keys(b).filter((k) => k !== "children");
-    if (ak.length !== bk.length) return false;
-    for (const k of ak) if (a[k] !== b[k]) return false;
-    return true;
-  }
-  function Placeholder({
-    name,
-    hintSize,
-    streaming,
-    error
-  }) {
-    const [w, hgt] = (hintSize || "100%,60px").split(",");
-    return h(
-      "div",
-      {
-        className: "sc-placeholder" + (streaming ? " sc-streaming" : ""),
-        style: { width: w.trim(), height: hgt && hgt.trim() },
-        title: name
-      },
-      error ? h(
-        "div",
-        { className: "sc-placeholder-error" },
-        (name ? name + ": " : "") + error
-      ) : null
-    );
-  }
-  function hintToMin(hint) {
-    if (!hint) return void 0;
-    const [w, hgt] = hint.split(",");
-    return { minWidth: w.trim(), minHeight: hgt && hgt.trim() };
-  }
-  function createComponentFactory(registry, ensureFetched) {
-    const React = getReact();
-    const AncestorContext = React.createContext([]);
-    class StreamableComponent extends React.Component {
-      constructor(props) {
-        super(props);
-        __publicField(this, "__name");
-        __publicField(this, "__sub");
-        __publicField(this, "__needsDidMount", false);
-        /** Snapshot of the registry's streaming flags taken at render time —
-         *  builders read it off the RenderCtx (this) to pick placeholder vs
-         *  render-nothing for unresolved values. */
-        __publicField(this, "__streamingNow", false);
-        __publicField(this, "__htmlStreamingNow", false);
-        /** When a construct throws, remember the (class, registry.ver, props)
-         *  triple so render-time reconcile doesn't re-attempt it on every parent
-         *  re-render. A registry bump (new class, template, external module
-         *  resolving via bumpAll) changes `ver` and breaks the memo so an
-         *  env-dependent constructor can self-heal. */
-        __publicField(this, "__failedLogic", null);
-        __publicField(this, "__failedUserProps", null);
-        __publicField(this, "__failedVer", -1);
-        /** Per-instance constructor error — kept here (not on the registry entry)
-         *  so one instance's successful construct can't hide a sibling's failure,
-         *  and a construct can never wipe an eval error `updateJs` recorded on
-         *  `r.logicError`. */
-        __publicField(this, "__ctorError", null);
-        __publicField(this, "logic");
-        this.__name = props.__name;
-        this.state = { __v: 0, __err: null };
-        this.__sub = () => {
-          if (this.state.__err) this.setState({ __err: null });
-          this.forceUpdate();
-        };
-        this.__makeLogic(registry.get(this.__name).Logic, null);
-        ensureFetched(this.__name);
-      }
-      /** Error-boundary hook: a render crash anywhere in this DC's subtree
-       *  (its own template, an x-import'd component, a child DC without its
-       *  own deeper boundary) lands here instead of unmounting the page. */
-      static getDerivedStateFromError(e) {
-        return { __err: e instanceof Error && e.message ? e.message : String(e) };
-      }
-      componentDidCatch(e, info) {
-        console.error(
-          "[dc-runtime] render error in <" + this.__name + ">:",
-          e,
-          info?.componentStack || ""
-        );
-      }
-      /** Instantiate the logic class (or the no-op base) and adopt `prevState`
-       *  over its initial state — used both at mount and on hot-swap. */
-      __makeLogic(Logic, prevState) {
-        const L = Logic || StreamableLogic;
-        try {
-          this.logic = new L(this.__userProps());
-          this.__failedLogic = null;
-          this.__failedUserProps = null;
-          this.__ctorError = null;
-        } catch (e) {
-          console.error(e);
-          this.__failedLogic = Logic;
-          this.__failedUserProps = this.__userProps();
-          this.__failedVer = registry.get(this.__name).ver;
-          this.__ctorError = this.__name + ": " + (e instanceof Error && e.message ? e.message : String(e));
-          this.logic = new StreamableLogic(
-            this.__userProps()
-          );
-        }
-        this.logic.__host = this;
-        if (prevState)
-          this.logic.state = { ...this.logic.state || {}, ...prevState };
-      }
-      /** The props the author's logic + template see — internal __-prefixed
-       *  wiring stripped. */
-      __userProps() {
-        const { __name, __hintSize, __tplId, __hostStyle, ...rest } = this.props;
-        return rest;
-      }
-      __setLogicState(update, cb) {
-        const prev = this.logic.state;
-        const patch = typeof update === "function" ? update(prev) : update;
-        this.logic.state = { ...prev, ...patch };
-        this.setState((s) => ({ __v: s.__v + 1 }), cb);
-      }
-      /** Swap the logic instance when the registry's Logic class changed
-       *  (streaming completion, hot reload). State carries over; didMount
-       *  re-fires after the swap commits so refs exist. */
-      __reconcileLogic() {
-        const r = registry.get(this.__name);
-        const Next = r.Logic;
-        const Cur = this.logic.constructor;
-        if (Next === Cur || !Next && Cur === StreamableLogic || Next === this.__failedLogic && r.ver === this.__failedVer && shallowEqual(this.__userProps(), this.__failedUserProps)) {
-          return;
-        }
-        if (!this.__needsDidMount) {
-          try {
-            this.logic.componentWillUnmount();
-          } catch (e) {
-            console.error(e);
-          }
-        }
-        this.__makeLogic(Next, this.logic.state);
-        this.__needsDidMount = true;
-      }
-      componentDidMount() {
-        registry.get(this.__name).subs.add(this.__sub);
-        try {
-          this.logic.componentDidMount();
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      componentDidUpdate(prevProps) {
-        this.logic.props = this.__userProps();
-        if (this.__needsDidMount) {
-          if (this.state.__err || !registry.get(this.__name).tpl) return;
-          this.__needsDidMount = false;
-          try {
-            this.logic.componentDidMount();
-          } catch (e) {
-            console.error(e);
-          }
-        } else {
-          try {
-            this.logic.componentDidUpdate(prevProps);
-          } catch (e) {
-            console.error(e);
-          }
-        }
-      }
-      componentWillUnmount() {
-        registry.get(this.__name).subs.delete(this.__sub);
-        if (!this.__needsDidMount) {
-          try {
-            this.logic.componentWillUnmount();
-          } catch (e) {
-            console.error(e);
-          }
-        }
-      }
-      render() {
-        const r = registry.get(this.__name);
-        const cls = "sc-host" + (r.htmlStreaming ? " sc-streaming-html" : "") + (r.jsStreaming ? " sc-streaming-js" : "");
-        const hintStyle = r.htmlStreaming ? hintToMin(this.props.__hintSize) : void 0;
-        const hostStyle = this.props.__hostStyle || hintStyle ? { ...hintStyle || {}, ...this.props.__hostStyle || {} } : void 0;
-        const hostBase = {
-          className: cls,
-          style: hostStyle,
-          "data-sc-name": this.__name,
-          "data-dc-tpl": this.props.__tplId
-        };
-        const chain = Array.isArray(this.context) ? this.context : [];
-        if (chain.includes(this.__name)) {
-          const cycle = [
-            ...chain.slice(chain.indexOf(this.__name)),
-            this.__name
-          ].join(" \u2192 ");
-          return h(
-            "div",
-            { ...hostBase, className: cls + " sc-has-error" },
-            h(Placeholder, {
-              name: this.__name,
-              hintSize: this.props.__hintSize,
-              error: "circular import: " + cycle
-            })
-          );
-        }
-        if (this.state.__err) {
-          return h(
-            "div",
-            { ...hostBase, className: cls + " sc-has-error" },
-            h(
-              "div",
-              { className: "sc-logic-error", "data-omelette-chrome": "" },
-              this.__name + ": " + this.state.__err
-            ),
-            h(Placeholder, {
-              name: this.__name,
-              hintSize: this.props.__hintSize,
-              error: this.state.__err
-            })
-          );
-        }
-        this.__reconcileLogic();
-        if (!r.tpl) {
-          return h(
-            "div",
-            hostBase,
-            h(Placeholder, { name: this.__name, hintSize: this.props.__hintSize })
-          );
-        }
-        const userProps = this.__userProps();
-        this.logic.props = userProps;
-        let vals = userProps;
-        let renderErr = r.logicError || this.__ctorError;
-        try {
-          vals = { ...userProps, ...this.logic.renderVals() || {} };
-        } catch (e) {
-          console.error(e);
-          renderErr = this.__name + ".renderVals(): " + (e instanceof Error && e.message ? e.message : String(e));
-        }
-        this.__streamingNow = !!(r.htmlStreaming || r.jsStreaming);
-        this.__htmlStreamingNow = !!r.htmlStreaming;
-        return h(
-          "div",
-          { ...hostBase, className: cls + (renderErr ? " sc-has-error" : "") },
-          renderErr && h(
-            "div",
-            { className: "sc-logic-error", "data-omelette-chrome": "" },
-            renderErr
-          ),
-          h(
-            AncestorContext.Provider,
-            { value: [...chain, this.__name] },
-            r.tpl(vals, this)
-          )
-        );
-      }
-    }
-    __publicField(StreamableComponent, "contextType", AncestorContext);
-    const named = /* @__PURE__ */ new Map();
-    function getDC(name) {
-      const hit = named.get(name);
-      if (hit) return hit;
-      function Dispatcher(p) {
-        const [, setTick] = React.useState(0);
-        React.useEffect(() => {
-          const sub = () => setTick((n) => n + 1);
-          registry.get(name).subs.add(sub);
-          return () => {
-            registry.get(name).subs.delete(sub);
-          };
-        }, []);
-        ensureFetched(name);
-        return h(StreamableComponent, { ...p, __name: name });
-      }
-      Dispatcher.displayName = name;
-      named.set(name, Dispatcher);
-      return Dispatcher;
-    }
-    return {
-      getDC,
-      StreamableComponent
-    };
-  }
-
-  // src/external.ts
-  var isCustomElementName = (n) => !n.includes(".") && n.includes("-");
-  function isRenderableType(g) {
-    if (typeof g === "function") return !isElementClass(g);
-    return typeof g === "object" && g !== null && typeof g.$$typeof === "symbol";
-  }
-  function resolveDottedPath(root, name) {
-    let cur = root;
-    for (const seg of name.split(".")) {
-      if (cur == null) return void 0;
-      cur = cur[seg];
-    }
-    return cur;
-  }
-  var BABEL_URL = "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js";
-  var BABEL_SRI = "sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y";
-  var GLOBAL_POLL_INTERVAL_MS = 50;
-  var GLOBAL_POLL_TIMEOUT_MS = 3e4;
-  function createExternalModules(onResolved) {
-    const cache = /* @__PURE__ */ new Map();
-    let babelLoading = null;
-    const reportedMissing = /* @__PURE__ */ new Map();
-    const polling = /* @__PURE__ */ new Set();
-    function ensureBabel() {
-      if (window.Babel) return Promise.resolve();
-      if (babelLoading) return babelLoading;
-      babelLoading = new Promise((res, rej) => {
-        const s = document.createElement("script");
-        s.src = BABEL_URL;
-        s.integrity = BABEL_SRI;
-        s.crossOrigin = "anonymous";
-        s.onload = () => res();
-        s.onerror = rej;
-        document.head.appendChild(s);
-      });
-      return babelLoading;
-    }
-    const pending = /* @__PURE__ */ new Map();
-    function load(kind, url, after) {
-      const existing = pending.get(url);
-      if (existing) return existing;
-      cache.set(url, null);
-      console.info("[dc-runtime] x-import: loading", url, "(" + kind + ")");
-      const ready = Promise.all([
-        kind === "jsx" ? ensureBabel() : Promise.resolve(),
-        after ?? Promise.resolve()
-      ]);
-      const p = ready.then(() => fetch(url)).then((r) => {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.text();
-      }).then((src) => {
-        const code = kind === "jsx" ? window.Babel.transform(src, {
-          filename: url,
-          presets: ["react", "typescript"]
-        }).code : src;
-        const module = { exports: {} };
-        const before = new Set(Object.keys(window));
-        //! nosemgrep: eval-and-function-constructor
-        new Function("React", "module", "exports", "require", code)(
-          getReact(),
-          module,
-          module.exports,
-          () => ({})
-        );
-        const globals = {};
-        for (const k of Object.keys(window)) {
-          if (!before.has(k) && typeof window[k] === "function") {
-            globals[k] = window[k];
-          }
-        }
-        cache.set(url, { mod: module.exports, globals });
-        console.info(
-          "[dc-runtime] x-import: loaded",
-          url,
-          "\u2014 exports:",
-          Object.keys(module.exports),
-          "window globals:",
-          Object.keys(globals)
-        );
-        onResolved();
-      }).catch((e) => {
-        cache.set(url, {
-          mod: {},
-          globals: {},
-          error: "failed to load: " + (e instanceof Error && e.message ? e.message : String(e))
-        });
-        console.error(
-          "[dc-runtime] x-import: FAILED to load",
-          url,
-          "(" + kind + ")",
-          e
-        );
-        onResolved();
-      });
-      pending.set(url, p);
-      return p;
-    }
-    function resolve2(url, name) {
-      const entry = cache.get(url);
-      if (!entry) return null;
-      const { mod, globals } = entry;
-      const C = mod && mod[name] || globals && globals[name] || typeof window !== "undefined" && window[name] || mod && mod.default;
-      if (typeof C === "function") return C;
-      const key = url + "\0" + name;
-      if (!reportedMissing.has(key)) {
-        reportedMissing.set(
-          key,
-          entry.error || 'no export named "' + name + '" (has: ' + Object.keys(mod).join(", ") + ")"
-        );
-        console.error(
-          "[dc-runtime] x-import: module",
-          url,
-          "loaded but has no component named",
-          JSON.stringify(name),
-          "\u2014 available exports:",
-          Object.keys(mod),
-          "window globals:",
-          Object.keys(globals),
-          ". The module must `module.exports = {" + name + "}` or set `window." + name + "`."
-        );
-      }
-      return null;
-    }
-    function waitForGlobal(name) {
-      if (polling.has(name)) return;
-      polling.add(name);
-      const started = Date.now();
-      const isCE = isCustomElementName(name);
-      const tick = () => {
-        const found = isCE ? customElements.get(name) : isRenderableType(resolveDottedPath(window, name));
-        if (found) {
-          polling.delete(name);
-          onResolved();
-          return;
-        }
-        if (Date.now() - started >= GLOBAL_POLL_TIMEOUT_MS) {
-          console.warn(
-            "[dc-runtime] x-import: global",
-            JSON.stringify(name),
-            "never appeared on window after " + GLOBAL_POLL_TIMEOUT_MS + "ms"
-          );
-          return;
-        }
-        setTimeout(tick, GLOBAL_POLL_INTERVAL_MS);
-      };
-      setTimeout(tick, GLOBAL_POLL_INTERVAL_MS);
-    }
-    function resolveGlobal(url, name) {
-      const isCE = isCustomElementName(name);
-      if (!url) {
-        if (isCE) {
-          if (customElements.get(name)) return name;
-          waitForGlobal(name);
-          return null;
-        }
-        const g2 = resolveDottedPath(window, name);
-        if (isRenderableType(g2)) return g2;
-        waitForGlobal(name);
-        return null;
-      }
-      const entry = cache.get(url);
-      if (!entry) return null;
-      if (isCE && customElements.get(name)) return name;
-      const g = entry.globals[name] ?? resolveDottedPath(window, name);
-      if (isRenderableType(g)) return g;
-      if (name.includes(".")) return null;
-      const key = url + "\0global\0" + name;
-      if (!reportedMissing.has(key)) {
-        reportedMissing.set(key, null);
-        if (isCE && !customElements.get(name)) {
-          console.warn(
-            "[dc-runtime] x-import:",
-            url,
-            "loaded but no custom element",
-            JSON.stringify(name),
-            "is registered and window." + name + " is not a function \u2014 rendering <" + name + "> as an unknown element."
-          );
-        }
-      }
-      return name;
-    }
-    function getError(url, name) {
-      const entry = cache.get(url);
-      if (entry?.error) return entry.error;
-      return reportedMissing.get(url + "\0" + name) || null;
-    }
-    return { load, resolve: resolve2, resolveGlobal, getError };
-  }
-  function isElementClass(g) {
-    try {
-      return typeof g === "function" && typeof HTMLElement !== "undefined" && g.prototype instanceof HTMLElement;
-    } catch {
-      return false;
-    }
-  }
-
-  // src/atomics.ts
-  var ATOMIC_CSS = (
-    // layout
-    ".fx{display:flex}.col{display:flex;flex-direction:column}.grid{display:grid}.ac{align-items:center}.jc{justify-content:center}.jb{justify-content:space-between}.f1{flex:1}.noshrink{flex-shrink:0}.wrap{flex-wrap:wrap}.fw5{font-weight:500}.fw6{font-weight:600}.fw7{font-weight:700}.fw8{font-weight:800}.fs11{font-size:11px}.fs12{font-size:12px}.fs13{font-size:13px}.fs14{font-size:14px}.fs15{font-size:15px}.fs16{font-size:16px}.fs20{font-size:20px}.fs22{font-size:22px}.upper{text-transform:uppercase}.tc{text-align:center}.nowrap{white-space:nowrap}.gap8{gap:8px}.gap10{gap:10px}.gap12{gap:12px}.gap16{gap:16px}.gap24{gap:24px}.m0{margin:0}.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}.mb16{margin-bottom:16px}.posrel{position:relative}.posabs{position:absolute}.round{border-radius:50%}.ohide{overflow:hidden}.bbox{box-sizing:border-box}.pointer{cursor:pointer}.w100{width:100%}.b0{border:none}"
-  );
-
-  // src/helmet.ts
-  var DESIGN_DOC_MODE_RE = /<meta\b[^>]*\bname\s*=\s*["']design_doc_mode["'][^>]*\b(?:content|value)\s*=\s*["'](\w+)["']/i;
-  var CANVAS_BG_LIGHT = "#f0eee6";
-  var CANVAS_BG_DARK = "#2e2c26";
-  function createHelmetManager(doc, isStreaming) {
-    const mounted = /* @__PURE__ */ new Set();
-    const live = /* @__PURE__ */ new Map();
-    let designDocMode = null;
-    let canvasStyleEl = null;
-    let appTheme = "light";
-    try {
-      const ds = doc.documentElement.dataset.theme;
-      appTheme = ds === "dark" || ds === "light" ? ds : new URLSearchParams(doc.defaultView?.location.search ?? "").get(
-        "theme"
-      ) === "dark" ? "dark" : "light";
-    } catch {
-    }
-    function applyCanvasBg() {
-      if (!canvasStyleEl) return;
-      const bg = appTheme === "dark" ? CANVAS_BG_DARK : CANVAS_BG_LIGHT;
-      canvasStyleEl.textContent = `html,body{background:${bg}}#dc-root>.sc-host{position:relative}`;
-    }
-    function postDesignMode(mode) {
-      if (window.parent === window) return;
-      try {
-        window.parent.postMessage({ type: "__dc_design_mode", mode }, "*");
-      } catch {
-      }
-    }
-    function setDesignDocMode(mode) {
-      if (mode === designDocMode) return;
-      designDocMode = mode;
-      postDesignMode(mode);
-      if (mode === "canvas") {
-        doc.documentElement.setAttribute("data-dc-canvas", "");
-        canvasStyleEl = doc.createElement("style");
-        canvasStyleEl.setAttribute("data-dc-canvas", "");
-        applyCanvasBg();
-        doc.head.appendChild(canvasStyleEl);
-      } else {
-        doc.documentElement.removeAttribute("data-dc-canvas");
-        canvasStyleEl?.remove();
-        canvasStyleEl = null;
-      }
-    }
-    window.addEventListener("message", (e) => {
-      const type = e.data && e.data.type;
-      if (type === "__dc_theme") {
-        const t = e.data.theme;
-        if (t === "light" || t === "dark") {
-          appTheme = t;
-          doc.documentElement.dataset.theme = t;
-          applyCanvasBg();
-        }
-        return;
-      }
-      if (!designDocMode || type !== "__dc_probe") return;
-      postDesignMode(designDocMode);
-    });
-    function compile(node) {
-      const raw = [...node.children];
-      const helmetClosed = node.nextSibling != null || node.parentNode?.nextSibling != null;
-      if (node.hasAttribute("data-dc-atomics") && !mounted.has("__dc-atomics")) {
-        mounted.add("__dc-atomics");
-        const el = doc.createElement("style");
-        el.id = "__dc-atomics";
-        el.textContent = ATOMIC_CSS;
-        doc.head.appendChild(el);
-      }
-      return (_vals, ctx) => {
-        const name = ctx && ctx.__name || "";
-        const streaming = !!(name && isStreaming(name));
-        for (let i = 0; i < raw.length; i++) {
-          const child = raw[i];
-          const tag = child.tagName;
-          const mayBePartial = streaming && !helmetClosed && i === raw.length - 1;
-          if (tag === "SCRIPT") {
-            if (mayBePartial) continue;
-            const key = "SCRIPT|" + (child.getAttribute("src") || child.textContent || "");
-            if (mounted.has(key)) continue;
-            mounted.add(key);
-            const el = doc.createElement("script");
-            for (const { name: an, value } of [...child.attributes])
-              el.setAttribute(an, value);
-            if (child.textContent) el.textContent = child.textContent;
-            doc.head.appendChild(el);
-          } else if (tag === "LINK" || tag === "META") {
-            if (mayBePartial) continue;
-            const key = tag + "|" + (child.getAttribute("href") || child.getAttribute("src") || child.outerHTML);
-            if (mounted.has(key)) continue;
-            mounted.add(key);
-            doc.head.appendChild(child.cloneNode(true));
-          } else {
-            const key = name + "|" + i;
-            let el = live.get(key);
-            if (!el || el.tagName !== tag) {
-              if (el) el.remove();
-              el = doc.createElement(tag.toLowerCase());
-              live.set(key, el);
-              doc.head.appendChild(el);
-            }
-            for (const { name: an, value } of [...child.attributes]) {
-              if (el.getAttribute(an) !== value) el.setAttribute(an, value);
-            }
-            if (el.textContent !== child.textContent)
-              el.textContent = child.textContent;
-          }
-        }
-        return null;
-      };
-    }
-    return { compile, setDesignDocMode };
-  }
-
-  // src/pseudo.ts
-  function createPseudoSheet(doc) {
-    let el = null;
-    const cache = /* @__PURE__ */ new Map();
-    let n = 0;
-    return (pseudo, css) => {
-      const k = pseudo + "|" + css;
-      const hit = cache.get(k);
-      if (hit) return hit;
-      if (!el) {
-        el = doc.createElement("style");
-        doc.head.appendChild(el);
-      }
-      const cls = "scp" + (n++).toString(36);
-      const sel = pseudo === "before" || pseudo === "after" ? "." + cls + "::" + pseudo : "." + cls + ":" + pseudo;
-      el.sheet.insertRule(sel + "{" + css + "}", el.sheet.cssRules.length);
-      cache.set(k, cls);
-      return cls;
-    };
-  }
-
-  // src/registry.ts
-  function createRegistry() {
-    const entries = /* @__PURE__ */ Object.create(null);
-    function get(name) {
-      return entries[name] || (entries[name] = {
-        html: "",
-        tpl: null,
-        Logic: null,
-        jsStreaming: false,
-        htmlStreaming: false,
-        ver: 0,
-        subs: /* @__PURE__ */ new Set(),
-        fetched: false
-      });
-    }
-    function bump(name) {
-      const r = get(name);
-      r.ver++;
-      for (const fn of r.subs) fn();
-    }
-    return {
-      entries,
-      get,
-      bump,
-      bumpAll() {
-        for (const n in entries) bump(n);
-      }
-    };
-  }
-
-  // src/runtime.ts
-  var COMPONENT_DIR = ".";
-  function createRuntime(doc = document) {
-    const registry = createRegistry();
-    const pseudoClass = createPseudoSheet(doc);
-    const helmet = createHelmetManager(
-      doc,
-      (name) => registry.get(name).htmlStreaming
-    );
-    const external = createExternalModules(() => registry.bumpAll());
-    const factory = createComponentFactory(registry, ensureFetched);
-    const host = {
-      component: (name) => factory.getDC(name),
-      placeholder: (props) => h(Placeholder, props),
-      helmet: (node) => helmet.compile(node),
-      loadExternal: (kind, url, after) => external.load(kind, url, after),
-      resolveExternal: (url, name) => external.resolve(url, name),
-      resolveExternalGlobal: (url, name) => external.resolveGlobal(url, name),
-      resolveExternalError: (url, name) => external.getError(url, name),
-      pseudoClass
-    };
-    function ensureFetched(name) {
-      const r = registry.get(name);
-      if (r.fetched) return;
-      r.fetched = true;
-      const url = COMPONENT_DIR + "/" + encodeURIComponent(name) + ".dc.html";
-      fetch(url).then((res) => {
-        if (!res.ok) {
-          console.error(
-            "[dc-runtime] sibling fetch for <" + name + "/> failed:",
-            url,
-            "returned",
-            res.status,
-            "\u2014 the reference renders as an empty placeholder."
-          );
-          return "";
-        }
-        return res.text();
-      }).then((t) => {
-        if (!t) return;
-        const parsed = parseDcText(t);
-        if (!parsed) {
-          console.error(
-            "[dc-runtime] sibling fetch for <" + name + "/>:",
-            url,
-            "has no <x-dc> block \u2014 not a Design Component."
-          );
-          return;
-        }
-        if (parsed.props) r.propsMeta = parsed.props;
-        if (parsed.preview) r.preview = parsed.preview;
-        if (parsed.template && !r.html) updateHtml(name, parsed.template);
-        if (parsed.js && !r.Logic) updateJs(name, parsed.js);
-      }).catch(
-        (e) => console.error(
-          "[dc-runtime] sibling fetch for <" + name + "/> threw:",
-          url,
-          e
-        )
-      );
-    }
-    let rootName = null;
-    function updateHtml(name, html) {
-      const r = registry.get(name);
-      r.html = html;
-      if (name === rootName) {
-        const mode = DESIGN_DOC_MODE_RE.exec(html)?.[1] ?? null;
-        if (mode || !r.htmlStreaming) helmet.setDesignDocMode(mode);
-      }
-      try {
-        r.tpl = compileTemplate(html, host);
-      } catch (e) {
-        console.error("[dc-runtime] template compile FAILED for", name, e);
-      }
-      registry.bump(name);
-    }
-    function updateJs(name, src) {
-      const r = registry.get(name);
-      const seq = r.jsSeq = (r.jsSeq || 0) + 1;
-      try {
-        const Cls = evalDcLogic(src);
-        if (r.jsSeq !== seq) return;
-        if (typeof Cls !== "function") {
-          r.logicError = name + ".dc.html: <script data-dc-script> must define `class Component extends DCLogic`";
-        } else {
-          r.logicError = null;
-          r.Logic = Cls;
-        }
-      } catch (e) {
-        if (r.jsSeq !== seq) return;
-        console.error(
-          "[dc-runtime] logic class eval FAILED for",
-          name,
-          "\u2014 the template renders with props only.",
-          e
-        );
-        r.logicError = name + ": " + (e instanceof Error && e.message ? e.message : String(e));
-      }
-      registry.bump(name);
-    }
-    function setStreaming(name, kind, on) {
-      const r = registry.get(name);
-      if (kind === "html") r.htmlStreaming = !!on;
-      else r.jsStreaming = !!on;
-      let any = false;
-      for (const n in registry.entries) {
-        const e = registry.entries[n];
-        if (e && (e.htmlStreaming || e.jsStreaming)) {
-          any = true;
-          break;
-        }
-      }
-      doc.documentElement.classList.toggle("sc-dc-streaming", any);
-      registry.bump(name);
-    }
-    function dcUpdate(name, kind, content, streaming) {
-      if (streaming) registry.get(name).fetched = true;
-      if (kind === "html") {
-        setStreaming(name, "html", !!streaming);
-        updateHtml(name, content);
-      } else if (kind === "js") {
-        setStreaming(name, "js", !!streaming);
-        if (!streaming) updateJs(name, content);
-      } else if (kind === "props") {
-        const { props, preview } = parseDataProps(content);
-        const r = registry.get(name);
-        r.propsMeta = props ?? void 0;
-        r.preview = preview;
-        registry.bump(name);
-      }
-    }
-    function setProps(name, overrides) {
-      registry.get(name).propOverrides = overrides && typeof overrides === "object" ? { ...overrides } : null;
-      registry.bump(name);
-    }
-    function adoptParsed(name, parsed) {
-      if (!parsed) return;
-      const r = registry.get(name);
-      if (parsed.props) r.propsMeta = parsed.props;
-      if (parsed.preview) r.preview = parsed.preview;
-      if (parsed.template) updateHtml(name, parsed.template);
-      if (parsed.js) updateJs(name, parsed.js);
-    }
-    return {
-      registry,
-      getDC: factory.getDC,
-      updateHtml,
-      updateJs,
-      dcUpdate,
-      setProps,
-      adoptParsed,
-      setRootName: (name) => {
-        rootName = name;
-      },
-      markFetched: (name) => {
-        registry.get(name).fetched = true;
-      },
-      annotatedTemplate: (name) => {
-        const r = registry.get(name);
-        return r.tpl && r.tpl.__annotated || null;
-      },
-      templateSource: (name) => registry.get(name).html || null,
-      StreamableLogic
-    };
-  }
-
-  // src/stream-state.ts
-  function createStreamTracker(staleMs = 6e4, now = Date.now) {
-    const since = /* @__PURE__ */ new Map();
-    const liveOne = (n) => {
-      const t = since.get(n);
-      if (t === void 0) return false;
-      if (now() - t > staleMs) {
-        since.delete(n);
-        return false;
-      }
-      return true;
-    };
-    return {
-      push(name, streaming, viewportKey) {
-        if (viewportKey === "dc-model") return;
-        if (streaming) since.set(name, now());
-        else since.delete(name);
-      },
-      live(name) {
-        if (name !== void 0) return liveOne(name);
-        for (const n of [...since.keys()]) if (liveOne(n)) return true;
-        return false;
-      }
-    };
-  }
-
-  // src/index.ts
-  var REACT_URL = "https://unpkg.com/react@18.3.1/umd/react.production.min.js";
-  var REACT_SRI = "sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z";
-  var REACT_DOM_URL = "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js";
-  var REACT_DOM_SRI = "sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1";
-  function hideRawTemplate() {
-    const s = document.createElement("style");
-    s.textContent = "x-dc{display:none!important}";
-    document.head.appendChild(s);
-  }
-  function loadScript(src, integrity) {
-    return new Promise((resolve2, reject) => {
-      //! nosemgrep: create-script-element
-      const s = document.createElement("script");
-      s.src = src;
-      s.integrity = integrity;
-      s.crossOrigin = "anonymous";
-      s.async = false;
-      s.onload = () => resolve2();
-      s.onerror = () => reject(new Error(`failed to load ${src}`));
-      document.head.appendChild(s);
-    });
-  }
-  function loadReactUmd() {
-    const w = window;
-    if (w.React && w.ReactDOM) return Promise.resolve();
-    return Promise.all([
-      loadScript(REACT_URL, REACT_SRI),
-      loadScript(REACT_DOM_URL, REACT_DOM_SRI)
-    ]).then(() => void 0);
-  }
-  function init() {
-    const runtime = createRuntime(document);
-    let rootName = "Root";
-    const baseCss = document.createElement("style");
-    baseCss.textContent = BASE_CSS;
-    document.head.prepend(baseCss);
-    const notifyHost = () => {
-      if (window.parent === window) return;
-      const r = runtime.registry.entries[rootName];
-      try {
-        window.parent.postMessage(
-          {
-            type: "__dc_booted",
-            rootName,
-            propsMeta: r && r.propsMeta || null,
-            preview: r && r.preview || null
-          },
-          "*"
-        );
-      } catch {
-      }
-    };
-    const streams = createStreamTracker();
-    const api = {
-      __dcUpdate: (name, kind, content, streaming, viewportKey) => {
-        streams.push(name, streaming, viewportKey);
-        runtime.dcUpdate(name, kind, content, streaming);
-        if (name === rootName && !streaming && kind === "props") notifyHost();
-      },
-      __dcStreaming: (name) => streams.live(name),
-      __dcSetProps: (name, overrides) => runtime.setProps(name, overrides),
-      /** Name of the component currently mounted as the page root — DC tools
-       *  push their template-stream here when targeting "the open page". */
-      __dcRootName: () => rootName,
-      /** Editor bridge — the encoded, `data-dc-tpl`-annotated template source.
-       *  The host editor parses this into its own template DOM so it can map a
-       *  rendered node (carrying the same `data-dc-tpl`) back to the source
-       *  node that emitted it. Returns the encoded form (`<sc-comp>`,
-       *  `sc-camel-*` attrs); the editor decodes on serialize. */
-      __dcAnnotatedTemplate: (name) => runtime.annotatedTemplate(name),
-      /** Editor bridge — the *original* (decoded) template source. */
-      __dcTemplateSource: (name) => runtime.templateSource(name),
-      __dcBoot: () => {
-        rootName = boot(runtime, document) ?? rootName;
-        notifyHost();
-      },
-      __dcRegistry: runtime.registry.entries,
-      getDC: (name) => runtime.getDC(name),
-      // `DCLogic` is the documented base class name; `StreamableLogic` is the
-      // implementation alias kept for any project that already references it.
-      DCLogic: runtime.StreamableLogic,
-      StreamableLogic: runtime.StreamableLogic
-    };
-    Object.assign(window, api);
-    window.__dcContentKeyed = true;
-    if (document.readyState !== "loading") api.__dcBoot();
-    else document.addEventListener("DOMContentLoaded", () => api.__dcBoot());
-  }
-  hideRawTemplate();
-  loadReactUmd().then(init).catch((err) => {
-    console.error("[dc] failed to load React or boot:", err);
-    throw err;
   });
+
+  // App feature carousel: arrows, dots, keyboard, swipe and gentle autoplay.
+  var screens = document.getElementById('qscreens');
+  if (screens) {
+    var track = screens.querySelector('.app-carousel__track');
+    var slides = Array.prototype.slice.call(screens.querySelectorAll('.app-slide'));
+    var dotsWrap = screens.querySelector('.app-carousel__dots');
+    var captionTitle = screens.querySelector('.app-carousel__caption h3');
+    var captionCopy = screens.querySelector('.app-carousel__caption p');
+    var activeSlide = window.innerWidth <= 760 ? 0 : 1;
+    var carouselTimer;
+    var touchStartX = 0;
+    var pointerStartX = 0;
+    var pointerDragging = false;
+    var wheelLock = false;
+    var firedScreens = false;
+    var viewport = screens.querySelector('.app-carousel__viewport');
+
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'app-carousel__dot';
+      dot.type = 'button';
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', 'Show feature ' + (i + 1));
+      dot.addEventListener('click', function () { showSlide(i, true); });
+      dotsWrap.appendChild(dot);
+    });
+
+    function showSlide(index, userInitiated) {
+      activeSlide = (index + slides.length) % slides.length;
+      var active = slides[activeSlide];
+      var activeCentre = active.offsetLeft + (active.offsetWidth / 2);
+      var viewportCentre = viewport.clientWidth / 2;
+      track.style.transform = 'translate3d(' + Math.round(viewportCentre - activeCentre) + 'px,0,0)';
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle('is-active', i === activeSlide);
+        slide.classList.toggle('is-near', Math.abs(i - activeSlide) === 1 || (activeSlide === 0 && i === slides.length - 1) || (activeSlide === slides.length - 1 && i === 0));
+        slide.setAttribute('aria-hidden', i === activeSlide ? 'false' : 'true');
+      });
+      Array.prototype.forEach.call(dotsWrap.children, function (dot, i) {
+        dot.classList.toggle('is-active', i === activeSlide);
+        dot.setAttribute('aria-selected', i === activeSlide ? 'true' : 'false');
+      });
+      captionTitle.textContent = slides[activeSlide].getAttribute('data-title');
+      captionCopy.textContent = slides[activeSlide].getAttribute('data-copy');
+      if (userInitiated) {
+        if (!firedScreens) {
+          firedScreens = true;
+          qTrack('screenshot_carousel_interaction', { slide: activeSlide + 1 });
+        }
+        restartCarousel();
+      }
+    }
+    function restartCarousel() {
+      clearInterval(carouselTimer);
+      carouselTimer = setInterval(function () { showSlide(activeSlide + 1, false); }, 6000);
+    }
+
+    screens.querySelector('.app-carousel__prev').addEventListener('click', function () { showSlide(activeSlide - 1, true); });
+    screens.querySelector('.app-carousel__next').addEventListener('click', function () { showSlide(activeSlide + 1, true); });
+    screens.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') showSlide(activeSlide - 1, true);
+      if (e.key === 'ArrowRight') showSlide(activeSlide + 1, true);
+    });
+    screens.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    screens.addEventListener('touchend', function (e) {
+      var delta = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 45) showSlide(activeSlide + (delta < 0 ? 1 : -1), true);
+    }, { passive: true });
+    viewport.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'touch') return;
+      pointerStartX = e.clientX;
+      pointerDragging = true;
+      viewport.classList.add('is-dragging');
+      viewport.setPointerCapture(e.pointerId);
+    });
+    viewport.addEventListener('pointerup', function (e) {
+      if (!pointerDragging) return;
+      pointerDragging = false;
+      viewport.classList.remove('is-dragging');
+      var delta = e.clientX - pointerStartX;
+      if (Math.abs(delta) > 45) showSlide(activeSlide + (delta < 0 ? 1 : -1), true);
+      else showSlide(activeSlide, false);
+    });
+    viewport.addEventListener('pointercancel', function () {
+      pointerDragging = false;
+      viewport.classList.remove('is-dragging');
+      showSlide(activeSlide, false);
+    });
+    viewport.addEventListener('wheel', function (e) {
+      var horizontalIntent = Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey;
+      if (!horizontalIntent || wheelLock) return;
+      e.preventDefault();
+      wheelLock = true;
+      var direction = (e.deltaX || e.deltaY) > 0 ? 1 : -1;
+      showSlide(activeSlide + direction, true);
+      window.setTimeout(function () { wheelLock = false; }, 700);
+    }, { passive: false });
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) clearInterval(carouselTimer);
+      else restartCarousel();
+    });
+    window.addEventListener('resize', function () { showSlide(activeSlide, false); });
+    showSlide(activeSlide, false);
+    restartCarousel();
+  }
+
+  // ---- Mobile nav: close menu after tapping an anchor link
+  var navCheck = document.getElementById('qnav-toggle');
+  if (navCheck) {
+    document.querySelectorAll('.qnav-links a').forEach(function (a) {
+      a.addEventListener('click', function () { navCheck.checked = false; });
+    });
+  }
+
+  // ---- Demo modal: full a11y — focus move, focus trap, Escape, scroll lock, restore focus on close
+  var openBtn = document.getElementById('qdemo-open');
+  var overlay = document.getElementById('qdemo-overlay');
+  var panel = document.getElementById('qdemo-panel');
+  var closeBtn = document.getElementById('qdemo-close');
+  var frame = document.getElementById('qdemo-frame');
+  var lastFocused = null;
+
+  function getFocusable() {
+    return panel.querySelectorAll('button, [href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  }
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    if (frame && !frame.src) frame.src = frame.getAttribute('data-src'); // lazy-load the embed only on open
+    overlay.classList.add('qopen');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('qmodal-open');
+    closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+    qTrack('demo_open', {});
+  }
+
+  function closeModal() {
+    overlay.classList.remove('qopen');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('qmodal-open');
+    if (frame) frame.src = ''; // stop playback
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    qTrack('demo_close', {});
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      closeModal();
+      return;
+    }
+    if (e.key === 'Tab') {
+      var focusable = Array.prototype.slice.call(getFocusable());
+      if (!focusable.length) return;
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  }
+
+  if (openBtn) openBtn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
 })();
+</script>
+</body>
+</html>
