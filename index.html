@@ -337,8 +337,7 @@
     .app-carousel__viewport.is-dragging{cursor:grabbing}
     .app-carousel__viewport.is-dragging .app-carousel__track{transition:none}
     .app-carousel__track{--carousel-gap:32px;display:flex;align-items:center;gap:var(--carousel-gap);width:max-content;will-change:transform}
-    .app-carousel__track.is-running{animation:qari-carousel-glide 34s linear infinite}
-    .app-carousel__viewport:hover .app-carousel__track.is-running{animation-play-state:paused}
+    .app-carousel__track.is-running{animation:qari-carousel-glide 28s linear infinite}
     @keyframes qari-carousel-glide{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-50% - 16px),0,0)}}
     .app-slide{flex:0 0 clamp(238px,19vw,278px);display:flex;justify-content:center;opacity:1;transform:none;transition:none;pointer-events:auto}
     .app-slide.is-active,.app-slide.is-near{opacity:1;transform:none}
@@ -366,17 +365,21 @@
       .app-carousel__caption{min-height:108px}
       .app-carousel__arrow{width:48px;height:48px}
     }
-    @media(prefers-reduced-motion:reduce){.app-carousel__track.is-running{animation:none}.app-carousel__viewport{overflow-x:auto}.app-slide{transition:none}}
-
-    /* Standalone Qur'an Combo feature — intentionally separate from the old games layout. */
-    .games-inside__shell{padding:clamp(44px,5vw,68px) max(24px,calc((100vw - 1280px)/2))}
-    .games-inside__head{display:block;max-width:760px;margin:0 auto 26px;text-align:center}
-    .games-inside__head>div:last-child{margin-top:16px}
-    .games-inside__intro{margin:0 auto}
-    .combo-feature{grid-template-columns:minmax(170px,210px) minmax(0,520px);justify-content:center;gap:clamp(28px,5vw,62px);max-width:860px;padding:28px clamp(24px,4vw,44px);background:rgba(255,255,255,.065)}
-    .combo-feature__phone{width:min(200px,100%)}
-    .combo-feature__logo{height:auto;max-height:90px;object-fit:contain;object-position:left center}
-    @media(max-width:760px){.combo-feature{grid-template-columns:1fr}.combo-feature__logo{object-position:center}.games-inside__head{margin-bottom:28px}}
+    /* Standalone Qur'an Combo — isolated names prevent legacy game CSS collisions. */
+    .qc-section{background:#123829;color:#fffdf8;padding:clamp(52px,6vw,82px) max(20px,4vw)}
+    .qc-card{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:clamp(34px,6vw,82px);align-items:center;padding:clamp(28px,4vw,52px);border:1px solid rgba(255,255,255,.13);border-radius:30px;background:rgba(255,255,255,.055);overflow:hidden}
+    .qc-kicker{display:inline-flex;padding:8px 13px;border-radius:999px;background:rgba(241,214,146,.12);border:1px solid rgba(241,214,146,.24);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f1d692;margin-bottom:18px}
+    .qc-logo{display:block;width:min(330px,90%);height:auto;margin:0 0 16px}
+    .qc-title{font-family:'Spectral',serif;font-size:clamp(2rem,3.5vw,3.25rem);line-height:1.04;color:#fffdf8;margin:0 0 16px}
+    .qc-copy{font-size:16px;line-height:1.65;color:rgba(255,253,248,.72);max-width:560px;margin:0 0 22px}
+    .qc-points{list-style:none;display:grid;gap:10px;margin:0 0 26px}
+    .qc-points li{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:rgba(255,253,248,.88)}
+    .qc-points li::before{content:"✓";display:grid;place-items:center;width:21px;height:21px;flex:0 0 21px;border-radius:50%;background:#0b6e52;color:#fff;font-size:11px}
+    .qc-cta{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:#be8a2c;color:#fff;text-decoration:none;font-size:13px;font-weight:800}
+    .qc-visual{display:flex;align-items:center;justify-content:center;min-width:0}
+    .qc-phone{width:min(300px,72vw);padding:9px;border-radius:38px;background:#0c1410;box-shadow:0 24px 50px rgba(0,0,0,.3)}
+    .qc-phone img{display:block;width:100%;height:auto;border-radius:31px}
+    @media(max-width:820px){.qc-card{grid-template-columns:1fr;text-align:center}.qc-logo{margin-left:auto;margin-right:auto}.qc-copy{margin-left:auto;margin-right:auto}.qc-points{width:max-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:left}.qc-phone{width:min(270px,72vw)}}
 
     /* Trust and product proof */
     .proof-section{max-width:1180px;margin:0 auto;padding:12px max(24px,4vw) 34px}
@@ -666,38 +669,24 @@
   </script>
 
   <!-- ══ QURAN COMBO ══ -->
-  <section id="games" class="games-inside" aria-labelledby="games-inside-title">
-    <div class="games-inside__shell">
-      <div class="games-inside__head">
-        <div>
-          <span class="unified-kicker">Inside the QariAI app</span>
-          <h2 id="games-inside-title">Meet Qur’an Combo.</h2>
-        </div>
-        <div>
-          <p class="games-inside__intro">A focused Qur’anic word puzzle built into QariAI. Connect real Qur’anic words, recognise recurring vocabulary and strengthen recall—without a separate app.</p>
-          <span class="games-inside__badge">Included in the QariAI app</span>
-        </div>
+  <section id="games" class="qc-section" aria-labelledby="qc-title">
+    <div class="qc-card">
+      <div>
+        <span class="qc-kicker">Included inside QariAI</span>
+        <img class="qc-logo" src="/uploads/quran-combo-logo.png?v=20260726c" alt="Qur’an Combo" loading="lazy"/>
+        <h2 id="qc-title" class="qc-title">Connect Qur’anic words.</h2>
+        <p class="qc-copy">Build connected word chains, recognise recurring Qur’anic vocabulary and strengthen recall through short, focused puzzles—all inside the QariAI app.</p>
+        <ul class="qc-points">
+          <li>Real words from the Qur’an</li>
+          <li>Meaning-led vocabulary practice</li>
+          <li>Progress stays inside QariAI</li>
+        </ul>
+        <a class="qc-cta" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="games_play_store_click">Get QariAI on Google Play</a>
       </div>
-
-      <div class="games-inside__content">
-        <div class="combo-feature">
-          <div class="combo-feature__phone">
-            <img src="/screenshots/quran-combo-game.jpg?v=20260726c" alt="Qur’an Combo game inside the QariAI app" width="945" height="2048" loading="lazy"/>
-          </div>
-          <div>
-            <span class="combo-feature__tag">Featured in-app game</span>
-            <img class="combo-feature__logo" src="/uploads/quran-combo-logo.png?v=20260726c" alt="Qur’an Combo" loading="lazy"/>
-            <h3>Connect Qur’anic words.</h3>
-            <p>Build connected word chains, recognise recurring Qur’anic vocabulary and strengthen recall through short, focused puzzles.</p>
-            <ul>
-              <li>Real words from the Qur’an</li>
-              <li>Meaning-led vocabulary practice</li>
-              <li>Progress stays inside QariAI</li>
-            </ul>
-            <a class="games-inside__cta" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="games_play_store_click">Get QariAI on Google Play</a>
-          </div>
+      <div class="qc-visual">
+        <div class="qc-phone">
+          <img src="/screenshots/quran-combo-game.jpg?v=20260726c" alt="Qur’an Combo game inside the QariAI app" width="945" height="2048" loading="lazy"/>
         </div>
-
       </div>
     </div>
   </section>
