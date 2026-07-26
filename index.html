@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>QariAI - AI Quran Recitation Coach with Tajweed & Hifz Correction</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726c">
-<link rel="alternate icon" type="image/png" href="/favicon.png?v=20260726c">
-<link rel="apple-touch-icon" href="/favicon.png?v=20260726c">
+<link rel="icon" type="image/png" href="/favicon.png?v=20260726d">
+<link rel="shortcut icon" type="image/png" href="/favicon.png?v=20260726d">
+<link rel="apple-touch-icon" href="/favicon.png?v=20260726d">
 <meta name="description" content="QariAI is the AI Quran tutor that helps you improve Tajweed, strengthen Hifz, and practise independently with instant feedback on your recitation.">
 
 <meta property="og:title" content="QariAI - AI Quran Recitation Coach with Tajweed & Hifz Correction">
@@ -332,7 +332,7 @@
     .app-showcase__eyebrow{display:inline-block;font-size:12.5px;font-weight:750;text-transform:uppercase;letter-spacing:.11em;color:#0c6b48;margin-bottom:14px}
     .app-showcase__title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2.15rem,3.8vw,3.25rem);line-height:1.08;letter-spacing:-.03em;color:#12251b}
     .app-carousel{max-width:1380px;margin:0 auto;position:relative}
-    .app-carousel__viewport{overflow-x:auto;overflow-y:hidden;padding:22px 12px 32px;cursor:grab;user-select:none;touch-action:pan-x pan-y;scroll-behavior:smooth;scrollbar-width:none;scroll-snap-type:x mandatory}
+    .app-carousel__viewport{overflow-x:auto;overflow-y:hidden;padding:22px 12px 32px;cursor:grab;user-select:none;touch-action:pan-x pan-y;scrollbar-width:none;scroll-snap-type:x mandatory;scroll-padding-inline:12px}
     .app-carousel__viewport::-webkit-scrollbar{display:none}
     .app-carousel__viewport.is-dragging{cursor:grabbing}
     .app-carousel__viewport.is-dragging .app-carousel__track{transition:none}
@@ -595,7 +595,7 @@
       <span class="app-showcase__eyebrow">Inside the app</span>
       <h2 id="app-showcase-title" class="app-showcase__title">Recite like you’ve had a teacher<br/>your whole life.</h2>
     </div>
-    <div class="app-carousel" id="qscreens" data-ga-event="screenshot_carousel_interaction" role="region" aria-roledescription="carousel" aria-label="QariAI app features">
+    <div class="app-carousel" id="qscreenGallery" data-ga-event="screenshot_carousel_interaction" role="region" aria-roledescription="carousel" aria-label="QariAI app features">
       <div class="app-carousel__viewport">
         <div class="app-carousel__track">
           <article class="app-slide" data-title="Recite with confidence" data-copy="Start any recitation and receive focused guidance while you practise." aria-label="1 of 9">
@@ -1218,6 +1218,160 @@ class Component extends DCLogic {
   if (openBtn) openBtn.addEventListener('click', openModal);
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+})();
+</script>
+<script>
+(function () {
+  var gallery = document.getElementById('qscreenGallery');
+  if (!gallery) return;
+
+  var viewport = gallery.querySelector('.app-carousel__viewport');
+  var slides = Array.prototype.slice.call(gallery.querySelectorAll('.app-slide'));
+  var dotsWrap = gallery.querySelector('.app-carousel__dots');
+  var captionTitle = gallery.querySelector('.app-carousel__caption h3');
+  var captionCopy = gallery.querySelector('.app-carousel__caption p');
+  var previous = gallery.querySelector('.app-carousel__prev');
+  var next = gallery.querySelector('.app-carousel__next');
+  var current = 0;
+  var timer = 0;
+  var animation = 0;
+  var dragging = false;
+  var dragStartX = 0;
+  var dragStartScroll = 0;
+
+  function slideLeft(index) {
+    var slide = slides[index];
+    var max = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    return Math.max(0, Math.min(max, slide.offsetLeft - slides[0].offsetLeft));
+  }
+
+  function update(index) {
+    current = (index + slides.length) % slides.length;
+    Array.prototype.forEach.call(dotsWrap.children, function (dot, i) {
+      dot.classList.toggle('is-active', i === current);
+      dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+    captionTitle.textContent = slides[current].getAttribute('data-title') || '';
+    captionCopy.textContent = slides[current].getAttribute('data-copy') || '';
+  }
+
+  function glideTo(index) {
+    cancelAnimationFrame(animation);
+    index = (index + slides.length) % slides.length;
+    var start = viewport.scrollLeft;
+    var end = slideLeft(index);
+    var change = end - start;
+    var started;
+    var duration = 1800;
+
+    if (index === 0 && current === slides.length - 1) {
+      viewport.scrollLeft = 0;
+      update(0);
+      return;
+    }
+
+    function frame(now) {
+      if (!started) started = now;
+      var progress = Math.min(1, (now - started) / duration);
+      var eased = progress < .5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      viewport.scrollLeft = start + change * eased;
+      if (progress < 1) animation = requestAnimationFrame(frame);
+      else update(index);
+    }
+    animation = requestAnimationFrame(frame);
+  }
+
+  function restart() {
+    window.clearInterval(timer);
+    timer = window.setInterval(function () {
+      if (!dragging && !document.hidden) glideTo(current + 1);
+    }, 6000);
+  }
+
+  dotsWrap.textContent = '';
+  slides.forEach(function (_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'app-carousel__dot';
+    dot.type = 'button';
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', 'Show feature ' + (i + 1));
+    dot.addEventListener('click', function () {
+      glideTo(i);
+      restart();
+    });
+    dotsWrap.appendChild(dot);
+  });
+
+  previous.addEventListener('click', function () {
+    glideTo(current - 1);
+    restart();
+  });
+  next.addEventListener('click', function () {
+    glideTo(current + 1);
+    restart();
+  });
+
+  viewport.addEventListener('pointerdown', function (event) {
+    if (event.pointerType === 'touch') return;
+    cancelAnimationFrame(animation);
+    dragging = true;
+    dragStartX = event.clientX;
+    dragStartScroll = viewport.scrollLeft;
+    viewport.classList.add('is-dragging');
+    viewport.setPointerCapture(event.pointerId);
+  });
+  viewport.addEventListener('pointermove', function (event) {
+    if (dragging) viewport.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+  });
+  viewport.addEventListener('pointerup', function (event) {
+    if (!dragging) return;
+    dragging = false;
+    viewport.classList.remove('is-dragging');
+    var nearest = 0;
+    var distance = Infinity;
+    slides.forEach(function (_, i) {
+      var delta = Math.abs(slideLeft(i) - viewport.scrollLeft);
+      if (delta < distance) {
+        distance = delta;
+        nearest = i;
+      }
+    });
+    glideTo(nearest);
+    restart();
+  });
+  viewport.addEventListener('pointercancel', function () {
+    dragging = false;
+    viewport.classList.remove('is-dragging');
+    restart();
+  });
+  viewport.addEventListener('scroll', function () {
+    if (dragging) return;
+    var nearest = current;
+    var distance = Infinity;
+    slides.forEach(function (_, i) {
+      var delta = Math.abs(slideLeft(i) - viewport.scrollLeft);
+      if (delta < distance) {
+        distance = delta;
+        nearest = i;
+      }
+    });
+    if (nearest !== current) update(nearest);
+  }, { passive: true });
+
+  gallery.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowLeft') previous.click();
+    if (event.key === 'ArrowRight') next.click();
+  });
+  document.addEventListener('visibilitychange', restart);
+  window.addEventListener('resize', function () {
+    viewport.scrollLeft = slideLeft(current);
+  });
+
+  viewport.scrollLeft = 0;
+  update(0);
+  restart();
 })();
 </script>
 <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a212dbd6c9c6417f',t:'MTc4NTA2MzE4Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"30914d9ed7de4f7a9d0af4a53109c90d","r":1}' crossorigin="anonymous"></script>
