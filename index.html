@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>QariAI - AI Quran Recitation Coach with Tajweed & Hifz Correction</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726">
-<link rel="alternate icon" type="image/png" href="/favicon.png?v=20260726">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726c">
+<link rel="alternate icon" type="image/png" href="/favicon.png?v=20260726c">
+<link rel="apple-touch-icon" href="/favicon.png?v=20260726c">
 <meta name="description" content="QariAI is the AI Quran tutor that helps you improve Tajweed, strengthen Hifz, and practise independently with instant feedback on your recitation.">
 
 <meta property="og:title" content="QariAI - AI Quran Recitation Coach with Tajweed & Hifz Correction">
@@ -275,8 +276,10 @@
     .app-showcase__eyebrow{display:inline-block;font-size:12.5px;font-weight:750;text-transform:uppercase;letter-spacing:.11em;color:#0c6b48;margin-bottom:14px}
     .app-showcase__title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2.15rem,3.8vw,3.25rem);line-height:1.08;letter-spacing:-.03em;color:#12251b}
     .app-carousel{max-width:1380px;margin:0 auto;position:relative}
-    .app-carousel__viewport{overflow:hidden;padding:22px 0 32px}
-    .app-carousel__track{display:flex;align-items:center;transition:transform .62s cubic-bezier(.22,.75,.22,1);will-change:transform}
+    .app-carousel__viewport{overflow:hidden;padding:22px 0 32px;cursor:grab;user-select:none;touch-action:pan-y}
+    .app-carousel__viewport.is-dragging{cursor:grabbing}
+    .app-carousel__viewport.is-dragging .app-carousel__track{transition:none}
+    .app-carousel__track{display:flex;align-items:center;transition:transform .9s cubic-bezier(.22,.75,.22,1);will-change:transform}
     .app-slide{flex:0 0 27%;display:flex;justify-content:center;opacity:1;transform:none;transition:none;pointer-events:auto}
     .app-slide.is-active,.app-slide.is-near{opacity:1;transform:none}
     .app-phone{width:min(304px,23vw);background:#101512;border-radius:39px;padding:9px;box-shadow:0 20px 46px rgba(18,40,29,.16),0 0 0 1px rgba(255,255,255,.12) inset}
@@ -387,7 +390,7 @@
     <div style="display:flex; align-items:center; gap:14px;">
       <input type="checkbox" id="qnav-toggle" class="qnav-check"/>
       <div class="qnav-links">
-        <a href="#how" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">How It Works</a>
+        <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">How It Works</a>
         <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Features</a>
         <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Learn</a>
         <a href="https://qariai.app/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">About</a>
@@ -410,7 +413,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>
           Get it on Google Play
         </a>
-        <a class="seo-hero-secondary" href="#how" data-ga-event="hero_how_it_works_click">See how it works</a>
+        <a class="seo-hero-secondary" href="#features" data-ga-event="hero_how_it_works_click">See how it works</a>
       </div>
       <div class="seo-hero-points" aria-label="QariAI key benefits">
         <span><strong>AI feedback</strong> while you recite</span><span>•</span><span><strong>Tajweed + Hifz</strong> practice</span>
@@ -538,34 +541,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ HOW IT WORKS ══ -->
-  <section id="how" style="max-width:1120px; margin:0 auto; padding:96px max(24px,4vw) 56px;">
-    <div style="text-align:center; margin-bottom:56px;">
-      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">How it works</span>
-      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Every session follows the same loop.</h2>
-    </div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative;" class="qgrid3">
-      <div style="text-align:center; padding:8px;">
-        <div style="width:76px; height:76px; border-radius:22px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 22px; font-size:30px;">🎤</div>
-        <div style="font-size:11px; font-weight:800; letter-spacing:.14em; color:#c9973f; margin-bottom:9px;">01 · RECITE</div>
-        <h3 style="font-family:'Spectral',serif; font-size:1.35rem; font-weight:700; color:#12251b; margin-bottom:8px;">Read any surah aloud</h3>
-        <p style="font-size:14.5px; color:#5c665c; line-height:1.6; max-width:280px; margin:0 auto;">Open any surah and recite. No setup, no pressure.</p>
-      </div>
-      <div style="text-align:center; padding:8px;">
-        <div style="width:76px; height:76px; border-radius:22px; background:rgba(201,151,63,0.14); display:flex; align-items:center; justify-content:center; margin:0 auto 22px; font-size:30px;">🤖</div>
-        <div style="font-size:11px; font-weight:800; letter-spacing:.14em; color:#c9973f; margin-bottom:9px;">02 · REVIEW</div>
-        <h3 style="font-family:'Spectral',serif; font-size:1.35rem; font-weight:700; color:#12251b; margin-bottom:8px;">Get instant feedback</h3>
-        <p style="font-size:14.5px; color:#5c665c; line-height:1.6; max-width:280px; margin:0 auto;">QariAI catches Tajweed and Hifz mistakes in real time — word by word.</p>
-      </div>
-      <div style="text-align:center; padding:8px;">
-        <div style="width:76px; height:76px; border-radius:22px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 22px; font-size:30px;">📈</div>
-        <div style="font-size:11px; font-weight:800; letter-spacing:.14em; color:#c9973f; margin-bottom:9px;">03 · IMPROVE</div>
-        <h3 style="font-family:'Spectral',serif; font-size:1.35rem; font-weight:700; color:#12251b; margin-bottom:8px;">Improve every day</h3>
-        <p style="font-size:14.5px; color:#5c665c; line-height:1.6; max-width:280px; margin:0 auto;">Personalized drills, streaks, and progress tracking build lasting confidence.</p>
       </div>
     </div>
   </section>
@@ -931,7 +906,7 @@
         <span style="display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(253,248,238,0.35); margin-bottom:16px;">Product</span>
         <div style="display:flex; flex-direction:column; gap:12px;">
           <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Features</a>
-          <a href="#how" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How It Works</a>
+          <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How It Works</a>
           <a href="https://qariai.app/qaef" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">QAEF Framework</a>
           <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="footer_play_store_click" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Get it on Google Play</a>
           <a href="https://qariai.app/tajweed-mistakes-checker" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Free Tajweed Checker</a>
@@ -1068,7 +1043,11 @@ class Component extends DCLogic {
     var activeSlide = window.innerWidth <= 760 ? 0 : 1;
     var carouselTimer;
     var touchStartX = 0;
+    var pointerStartX = 0;
+    var pointerDragging = false;
+    var wheelLock = false;
     var firedScreens = false;
+    var viewport = screens.querySelector('.app-carousel__viewport');
 
     slides.forEach(function (_, i) {
       var dot = document.createElement('button');
@@ -1082,7 +1061,6 @@ class Component extends DCLogic {
 
     function showSlide(index, userInitiated) {
       activeSlide = (index + slides.length) % slides.length;
-      var viewport = screens.querySelector('.app-carousel__viewport');
       var active = slides[activeSlide];
       var activeCentre = active.offsetLeft + (active.offsetWidth / 2);
       var viewportCentre = viewport.clientWidth / 2;
@@ -1122,6 +1100,35 @@ class Component extends DCLogic {
       var delta = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(delta) > 45) showSlide(activeSlide + (delta < 0 ? 1 : -1), true);
     }, { passive: true });
+    viewport.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'touch') return;
+      pointerStartX = e.clientX;
+      pointerDragging = true;
+      viewport.classList.add('is-dragging');
+      viewport.setPointerCapture(e.pointerId);
+    });
+    viewport.addEventListener('pointerup', function (e) {
+      if (!pointerDragging) return;
+      pointerDragging = false;
+      viewport.classList.remove('is-dragging');
+      var delta = e.clientX - pointerStartX;
+      if (Math.abs(delta) > 45) showSlide(activeSlide + (delta < 0 ? 1 : -1), true);
+      else showSlide(activeSlide, false);
+    });
+    viewport.addEventListener('pointercancel', function () {
+      pointerDragging = false;
+      viewport.classList.remove('is-dragging');
+      showSlide(activeSlide, false);
+    });
+    viewport.addEventListener('wheel', function (e) {
+      var horizontalIntent = Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey;
+      if (!horizontalIntent || wheelLock) return;
+      e.preventDefault();
+      wheelLock = true;
+      var direction = (e.deltaX || e.deltaY) > 0 ? 1 : -1;
+      showSlide(activeSlide + direction, true);
+      window.setTimeout(function () { wheelLock = false; }, 700);
+    }, { passive: false });
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) clearInterval(carouselTimer);
       else restartCarousel();
