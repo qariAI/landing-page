@@ -273,14 +273,13 @@
     .app-showcase__eyebrow{display:inline-block;font-size:12.5px;font-weight:750;text-transform:uppercase;letter-spacing:.11em;color:#0c6b48;margin-bottom:14px}
     .app-showcase__title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2.15rem,3.8vw,3.25rem);line-height:1.08;letter-spacing:-.03em;color:#12251b}
     .app-carousel{max-width:1380px;margin:0 auto;position:relative}
-    .app-carousel__viewport{overflow:hidden;padding:22px 0 32px;mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 94%,transparent 100%)}
-    .app-carousel__track{display:flex;align-items:center;transition:transform .55s cubic-bezier(.22,.75,.22,1);will-change:transform}
-    .app-slide{flex:0 0 27%;display:flex;justify-content:center;opacity:.38;transform:scale(.76);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
-    .app-slide.is-active{opacity:1;transform:scale(1);pointer-events:auto}
-    .app-slide.is-near{opacity:.78;transform:scale(.88)}
-    .app-phone{width:min(286px,22vw);background:#101512;border-radius:39px;padding:9px;box-shadow:0 24px 58px rgba(18,40,29,.2),0 0 0 1px rgba(255,255,255,.12) inset}
-    .app-phone__screen{position:relative;overflow:hidden;border-radius:31px;background:#eef5ef;aspect-ratio:1080/2172}
-    .app-phone__screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+    .app-carousel__viewport{overflow:hidden;padding:22px 0 32px}
+    .app-carousel__track{display:flex;align-items:center;transition:transform .62s cubic-bezier(.22,.75,.22,1);will-change:transform}
+    .app-slide{flex:0 0 27%;display:flex;justify-content:center;opacity:1;transform:none;transition:none;pointer-events:auto}
+    .app-slide.is-active,.app-slide.is-near{opacity:1;transform:none}
+    .app-phone{width:min(304px,23vw);background:#101512;border-radius:39px;padding:9px;box-shadow:0 20px 46px rgba(18,40,29,.16),0 0 0 1px rgba(255,255,255,.12) inset}
+    .app-phone__screen{position:relative;overflow:hidden;border-radius:31px;background:#fff;aspect-ratio:1080/2172}
+    .app-phone__screen img{display:block;width:100%;height:100%;object-fit:contain;object-position:center top;image-rendering:auto}
     .app-carousel__caption{text-align:center;min-height:92px;max-width:570px;margin:4px auto 0;padding:0 24px}
     .app-carousel__caption h3{font-family:'Spectral',serif;font-size:1.48rem;line-height:1.2;color:#123829;margin-bottom:7px}
     .app-carousel__caption p{font-size:15px;line-height:1.55;color:#647067}
@@ -299,12 +298,10 @@
       .seo-hero-visual{transform:translateY(-10px)}
       .app-showcase{padding:82px 14px 76px}
       .app-showcase__header{margin-bottom:26px;padding:0 10px}
-      .app-carousel__viewport{overflow:visible;padding:18px 0 24px;mask-image:none}
+      .app-carousel__viewport{overflow:visible;padding:18px 0 24px}
       .app-carousel__track{touch-action:pan-y}
-      .app-slide{flex-basis:76%;transform:scale(.82);opacity:.3}
-      .app-slide.is-active{transform:scale(1);opacity:1}
-      .app-slide.is-near{transform:scale(.86);opacity:.48}
-      .app-phone{width:min(272px,68vw)}
+      .app-slide,.app-slide.is-active,.app-slide.is-near{flex-basis:76%;transform:none;opacity:1}
+      .app-phone{width:min(286px,70vw)}
       .app-carousel__caption{min-height:108px}
       .app-carousel__hint{font-size:12px}
       .app-carousel__arrow{width:48px;height:48px}
