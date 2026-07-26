@@ -164,16 +164,16 @@
     .unified-proof__item--metric p{color:rgba(255,253,248,.7)}
     .unified-proof__item a{color:#0b6e52;font-weight:750}
 
-    .games-inside{max-width:1520px;margin:0 auto;padding:54px max(24px,3vw) 96px}
-    .games-inside__shell{position:relative;overflow:hidden;border-radius:34px;background:#123829;color:#fffdf8;padding:clamp(34px,5vw,68px);box-shadow:0 28px 70px rgba(18,56,41,.16)}
+    .games-inside{width:100%;margin:0;padding:0}
+    .games-inside__shell{position:relative;overflow:hidden;border-radius:0;background:#123829;color:#fffdf8;padding:clamp(56px,6vw,92px) max(24px,calc((100vw - 1420px)/2));box-shadow:none}
     .games-inside__shell::before{content:"";position:absolute;width:620px;height:620px;right:-250px;top:-330px;border-radius:50%;background:radial-gradient(circle,rgba(201,151,63,.24),transparent 68%)}
     .games-inside__head{position:relative;z-index:1;display:grid;grid-template-columns:minmax(360px,.85fr) minmax(480px,1.15fr);gap:clamp(32px,6vw,86px);align-items:end;margin-bottom:38px}
     .games-inside .unified-kicker{color:#f1d692}
     .games-inside h2{font-size:clamp(2.35rem,4vw,4rem);line-height:1.02;margin-top:16px;color:#fffdf8}
     .games-inside__intro{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.7;color:rgba(255,253,248,.72);max-width:670px}
     .games-inside__badge{display:inline-flex;margin-top:18px;padding:9px 14px;border-radius:999px;background:rgba(241,214,146,.12);border:1px solid rgba(241,214,146,.24);font-size:12px;font-weight:800;color:#f1d692}
-    .games-inside__content{position:relative;z-index:1;display:grid;grid-template-columns:minmax(300px,.72fr) minmax(520px,1.28fr);gap:clamp(28px,4vw,54px);align-items:stretch}
-    .game-list{display:grid;gap:12px}
+    .games-inside__content{position:relative;z-index:1;display:flex;flex-direction:column;gap:26px}
+    .game-list{order:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
     .game-tile{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;padding:17px 18px;border:1px solid rgba(255,255,255,.11);border-radius:18px;background:rgba(255,255,255,.055)}
     .game-tile__icon{width:52px;height:52px;display:grid;place-items:center;border-radius:15px;background:#fff3ce;color:#986514;font-family:'Amiri',serif;font-size:27px;font-weight:700}
     .game-tile:nth-child(2) .game-tile__icon{background:#e1f2e8;color:#0b6e52}
@@ -181,7 +181,7 @@
     .game-tile strong{display:block;font-size:15px;color:#fffdf8;margin-bottom:4px}
     .game-tile span{font-size:12px;line-height:1.4;color:rgba(255,253,248,.6)}
     .game-tile__state{font-size:10px!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.06em;color:#f1d692!important}
-    .combo-feature{display:grid;grid-template-columns:minmax(230px,.78fr) minmax(280px,1.22fr);gap:28px;align-items:center;padding:28px;border-radius:24px;background:#fffdf8;color:#12251b}
+    .combo-feature{order:1;display:grid;grid-template-columns:minmax(230px,.58fr) minmax(360px,1.42fr);gap:clamp(34px,5vw,76px);align-items:center;padding:clamp(28px,4vw,50px);border-radius:28px;background:#fffdf8;color:#12251b}
     .combo-feature__phone{position:relative;width:min(250px,100%);margin:auto;padding:8px;border-radius:32px;background:#0c1410;box-shadow:0 22px 42px rgba(0,0,0,.26)}
     .combo-feature__phone img{display:block;width:100%;aspect-ratio:945/2048;object-fit:cover;object-position:top;border-radius:25px}
     .combo-feature__logo{width:min(260px,90%);height:92px;object-fit:cover;object-position:center 42%;margin:0 0 14px}
@@ -192,8 +192,8 @@
     .combo-feature li{font-size:12.5px;font-weight:700;color:#35443b;display:flex;gap:9px;align-items:center}
     .combo-feature li::before{content:"✓";width:19px;height:19px;display:grid;place-items:center;border-radius:50%;background:#0b6e52;color:#fff;font-size:10px}
     .games-inside__cta{display:inline-flex;align-items:center;justify-content:center;margin-top:22px;padding:14px 22px;border-radius:999px;background:#be8a2c;color:#fff;text-decoration:none;font-size:13px;font-weight:800;box-shadow:0 12px 26px rgba(190,138,44,.23)}
-    @media(max-width:1050px){.unified-proof__grid{grid-template-columns:repeat(2,1fr)}.unified-proof__item:nth-child(2){border-right:0}.unified-proof__item{border-bottom:1px solid rgba(18,56,41,.09)}.unified-proof__item:nth-last-child(-n+2){border-bottom:0}.games-inside__content{grid-template-columns:1fr}.game-list{grid-template-columns:repeat(3,1fr)}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.combo-feature{max-width:900px;margin:auto}}
-    @media(max-width:760px){.unified-proof__head,.games-inside__head{grid-template-columns:1fr;gap:18px}.unified-proof{padding:58px 16px 44px}.games-inside{padding:34px 14px 70px}.games-inside__shell{padding:30px 18px;border-radius:26px}.game-list{grid-template-columns:1fr}.game-tile{grid-template-columns:52px 1fr auto}.game-tile__state{grid-column:auto}.combo-feature{grid-template-columns:1fr;text-align:center;padding:22px 16px}.combo-feature__logo{margin-left:auto;margin-right:auto}.combo-feature ul{width:max-content;max-width:100%;margin:auto;text-align:left}.combo-feature__phone{width:min(225px,72vw)}}
+    @media(max-width:1050px){.unified-proof__grid{grid-template-columns:repeat(2,1fr)}.unified-proof__item:nth-child(2){border-right:0}.unified-proof__item{border-bottom:1px solid rgba(18,56,41,.09)}.unified-proof__item:nth-last-child(-n+2){border-bottom:0}.game-list{grid-template-columns:repeat(3,1fr)}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.combo-feature{max-width:100%;margin:auto}}
+    @media(max-width:760px){.unified-proof__head,.games-inside__head{grid-template-columns:1fr;gap:18px}.unified-proof{padding:58px 16px 44px}.games-inside__shell{padding:54px 18px 64px}.game-list{grid-template-columns:1fr}.game-tile{grid-template-columns:52px 1fr auto}.game-tile__state{grid-column:auto}.combo-feature{grid-template-columns:1fr;text-align:center;padding:28px 18px}.combo-feature__logo{margin-left:auto;margin-right:auto}.combo-feature ul{width:max-content;max-width:100%;margin:auto;text-align:left}.combo-feature__phone{width:min(225px,72vw)}}
     @media(max-width:560px){.unified-proof__grid{grid-template-columns:1fr}.unified-proof__item{border-right:0!important;border-bottom:1px solid rgba(18,56,41,.09)!important;min-height:auto}.unified-proof__item:last-child{border-bottom:0!important}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.games-inside h2,.unified-proof h2{font-size:2.4rem}}
 
     @media (prefers-reduced-motion: reduce){
@@ -331,10 +331,11 @@
     .app-showcase__eyebrow{display:inline-block;font-size:12.5px;font-weight:750;text-transform:uppercase;letter-spacing:.11em;color:#0c6b48;margin-bottom:14px}
     .app-showcase__title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2.15rem,3.8vw,3.25rem);line-height:1.08;letter-spacing:-.03em;color:#12251b}
     .app-carousel{max-width:1380px;margin:0 auto;position:relative}
-    .app-carousel__viewport{overflow:hidden;padding:22px 0 32px;cursor:grab;user-select:none;touch-action:pan-y}
+    .app-carousel__viewport{overflow-x:auto;overflow-y:hidden;padding:22px 0 32px;cursor:grab;user-select:none;touch-action:pan-x pan-y;scroll-behavior:smooth;scrollbar-width:none}
+    .app-carousel__viewport::-webkit-scrollbar{display:none}
     .app-carousel__viewport.is-dragging{cursor:grabbing}
     .app-carousel__viewport.is-dragging .app-carousel__track{transition:none}
-    .app-carousel__track{display:flex;align-items:center;transition:transform .9s cubic-bezier(.22,.75,.22,1);will-change:transform}
+    .app-carousel__track{display:flex;align-items:center;width:max-content;transform:none!important}
     .app-slide{flex:0 0 27%;display:flex;justify-content:center;opacity:1;transform:none;transition:none;pointer-events:auto}
     .app-slide.is-active,.app-slide.is-near{opacity:1;transform:none}
     .app-phone{width:min(304px,23vw);background:#101512;border-radius:39px;padding:9px;box-shadow:0 20px 46px rgba(18,40,29,.16),0 0 0 1px rgba(255,255,255,.12) inset}
@@ -354,7 +355,7 @@
       .seo-hero-visual{transform:translateY(-10px)}
       .app-showcase{padding:82px 14px 76px}
       .app-showcase__header{margin-bottom:26px;padding:0 10px}
-      .app-carousel__viewport{overflow:visible;padding:18px 0 24px}
+      .app-carousel__viewport{overflow-x:auto;overflow-y:hidden;padding:18px 0 24px}
       .app-carousel__track{touch-action:pan-y}
       .app-slide,.app-slide.is-active,.app-slide.is-near{flex-basis:76%;transform:none;opacity:1}
       .app-phone{width:min(286px,70vw)}
@@ -1191,6 +1192,7 @@ class Component extends DCLogic {
     var carouselTimer;
     var touchStartX = 0;
     var pointerStartX = 0;
+    var pointerStartScroll = 0;
     var pointerDragging = false;
     var wheelLock = false;
     var firedScreens = false;
@@ -1211,7 +1213,7 @@ class Component extends DCLogic {
       var active = slides[activeSlide];
       var activeCentre = active.offsetLeft + (active.offsetWidth / 2);
       var viewportCentre = viewport.clientWidth / 2;
-      track.style.transform = 'translate3d(' + Math.round(viewportCentre - activeCentre) + 'px,0,0)';
+      glideTo(Math.max(0, Math.round(activeCentre - viewportCentre)));
       slides.forEach(function (slide, i) {
         slide.classList.toggle('is-active', i === activeSlide);
         slide.classList.toggle('is-near', Math.abs(i - activeSlide) === 1 || (activeSlide === 0 && i === slides.length - 1) || (activeSlide === slides.length - 1 && i === 0));
@@ -1230,6 +1232,21 @@ class Component extends DCLogic {
         }
         restartCarousel();
       }
+    }
+    var glideFrame = 0;
+    function glideTo(targetLeft) {
+      window.cancelAnimationFrame(glideFrame);
+      var startLeft = viewport.scrollLeft;
+      var distance = targetLeft - startLeft;
+      var startedAt = performance.now();
+      var duration = 1400;
+      function step(now) {
+        var progress = Math.min(1, (now - startedAt) / duration);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        viewport.scrollLeft = startLeft + (distance * eased);
+        if (progress < 1) glideFrame = window.requestAnimationFrame(step);
+      }
+      glideFrame = window.requestAnimationFrame(step);
     }
     function restartCarousel() {
       clearInterval(carouselTimer);
@@ -1250,9 +1267,14 @@ class Component extends DCLogic {
     viewport.addEventListener('pointerdown', function (e) {
       if (e.pointerType === 'touch') return;
       pointerStartX = e.clientX;
+      pointerStartScroll = viewport.scrollLeft;
       pointerDragging = true;
       viewport.classList.add('is-dragging');
       viewport.setPointerCapture(e.pointerId);
+    });
+    viewport.addEventListener('pointermove', function (e) {
+      if (!pointerDragging) return;
+      viewport.scrollLeft = pointerStartScroll - (e.clientX - pointerStartX);
     });
     viewport.addEventListener('pointerup', function (e) {
       if (!pointerDragging) return;
