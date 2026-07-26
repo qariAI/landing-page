@@ -249,7 +249,7 @@
     .seo-hero-copy{padding-left:clamp(12px,3vw,44px);position:relative;z-index:2}
     .seo-hero-label{display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;padding:8px 13px;border-radius:999px;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.12);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b6e52}
     .seo-hero-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
-    .seo-hero-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(3rem,5.4vw,5.15rem);line-height:.98;letter-spacing:-.045em;color:#123829;max-width:690px;margin:0 0 24px}
+    .seo-hero-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(3.1rem,5.65vw,5.45rem);line-height:.98;letter-spacing:-.045em;color:#123829;max-width:710px;margin:0 0 24px}
     .seo-hero-title span{display:block;color:#be8a2c}
     .seo-hero-copy p{font-size:clamp(1rem,1.42vw,1.16rem);line-height:1.68;color:#455149;max-width:590px;margin:0 0 30px}
     .seo-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px}
@@ -260,11 +260,49 @@
     .seo-hero-secondary:hover{transform:translateY(-2px);background:#fff}
     .seo-hero-points{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;font-size:12.5px;color:#667168;font-weight:650}
     .seo-hero-points strong{color:#123829}
-    .seo-hero-visual{position:relative;min-height:590px;display:flex;align-items:center;justify-content:center;padding:20px 38px 0 0;overflow:visible}
+    .seo-hero-visual{position:relative;min-height:590px;display:flex;align-items:center;justify-content:center;padding:0 38px 20px 0;overflow:visible;transform:translateY(-16px)}
     .seo-hero-visual::before{content:"";position:absolute;left:12%;right:10%;bottom:8%;height:17%;border-radius:50%;background:rgba(18,56,41,.2);filter:blur(34px);transform:scaleX(.9);opacity:.42}
     .seo-hero-visual img{position:relative;z-index:2;display:block;width:min(108%,760px);height:auto;max-height:680px;object-fit:contain;object-position:center;filter:drop-shadow(0 22px 22px rgba(18,56,41,.14))}
     @media(max-width:980px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:14px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points{justify-content:center}.seo-hero-visual{min-height:auto;padding:8px 28px 32px}.seo-hero-visual img{width:min(92%,760px)}}
     @media(max-width:640px){.seo-hero{padding:96px 14px 48px}.seo-hero::before{inset:72px 0 0;border-radius:0}.seo-hero-copy{padding:32px 18px 0}.seo-hero-label{font-size:10px}.seo-hero-title{font-size:clamp(2.65rem,14vw,4rem)}.seo-hero-copy p{font-size:15px;line-height:1.58}.seo-hero-actions{display:grid;grid-template-columns:1fr}.seo-hero-primary,.seo-hero-secondary{width:100%}.seo-hero-visual{padding:8px 0 12px}.seo-hero-visual img{width:100%;max-width:620px;max-height:none;object-fit:contain;object-position:center}}
+
+    /* App feature carousel */
+    .app-showcase{padding:104px max(20px,4vw) 96px;overflow:hidden;background:linear-gradient(180deg,#fffdf8 0%,#fbf7ed 100%)}
+    .app-showcase__header{text-align:center;max-width:760px;margin:0 auto 42px}
+    .app-showcase__eyebrow{display:inline-block;font-size:12.5px;font-weight:750;text-transform:uppercase;letter-spacing:.11em;color:#0c6b48;margin-bottom:14px}
+    .app-showcase__title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2.15rem,3.8vw,3.25rem);line-height:1.08;letter-spacing:-.03em;color:#12251b}
+    .app-carousel{max-width:1080px;margin:0 auto;position:relative}
+    .app-carousel__viewport{overflow:hidden;padding:22px 10px 32px}
+    .app-carousel__track{display:flex;align-items:center;transition:transform .55s cubic-bezier(.22,.75,.22,1);will-change:transform}
+    .app-slide{flex:0 0 33.333%;display:flex;justify-content:center;opacity:.48;transform:scale(.78);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+    .app-slide.is-active{opacity:1;transform:scale(1);pointer-events:auto}
+    .app-slide.is-near{opacity:.76;transform:scale(.87)}
+    .app-phone{width:min(264px,24vw);background:#101512;border-radius:39px;padding:9px;box-shadow:0 24px 58px rgba(18,40,29,.2),0 0 0 1px rgba(255,255,255,.12) inset}
+    .app-phone__screen{position:relative;overflow:hidden;border-radius:31px;background:#eef5ef;aspect-ratio:1080/2172}
+    .app-phone__screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+    .app-carousel__caption{text-align:center;min-height:92px;max-width:570px;margin:4px auto 0;padding:0 24px}
+    .app-carousel__caption h3{font-family:'Spectral',serif;font-size:1.48rem;line-height:1.2;color:#123829;margin-bottom:7px}
+    .app-carousel__caption p{font-size:15px;line-height:1.55;color:#647067}
+    .app-carousel__controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:18px}
+    .app-carousel__arrow{width:44px;height:44px;border-radius:50%;border:1px solid rgba(18,56,41,.16);background:#fffdf8;color:#123829;font-size:22px;cursor:pointer;box-shadow:0 8px 22px rgba(18,56,41,.08);transition:.2s ease}
+    .app-carousel__arrow:hover{background:#0c6b48;color:#fff;transform:translateY(-2px)}
+    .app-carousel__dots{display:flex;align-items:center;gap:8px}
+    .app-carousel__dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#c9d0ca;cursor:pointer;transition:.25s ease}
+    .app-carousel__dot.is-active{width:25px;border-radius:99px;background:#0c6b48}
+    @media(max-width:760px){
+      .seo-hero-title{font-size:clamp(2.85rem,14.5vw,4.2rem)}
+      .seo-hero-visual{transform:translateY(-10px)}
+      .app-showcase{padding:82px 14px 76px}
+      .app-showcase__header{margin-bottom:26px;padding:0 10px}
+      .app-carousel__viewport{overflow:visible;padding:18px 0 24px}
+      .app-carousel__track{touch-action:pan-y}
+      .app-slide{flex-basis:76%;transform:scale(.82);opacity:.3}
+      .app-slide.is-active{transform:scale(1);opacity:1}
+      .app-slide.is-near{transform:scale(.86);opacity:.48}
+      .app-phone{width:min(272px,68vw)}
+      .app-carousel__caption{min-height:108px}
+    }
+    @media(prefers-reduced-motion:reduce){.app-carousel__track,.app-slide{transition:none}}
 
   </style>
 </helmet>
@@ -552,17 +590,46 @@
     </div>
   </section>
 
-  <!-- ══ SCREENSHOT CAROUSEL ══ -->
-  <section style="padding:96px 0 90px;">
-    <div style="text-align:center; margin-bottom:48px; padding:0 max(24px,4vw);">
-      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">Inside the app</span>
-      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">The daily guidance of a Quran coach — in your pocket.</h2>
+  <!-- ══ APP FEATURE CAROUSEL ══ -->
+  <section class="app-showcase" aria-labelledby="app-showcase-title">
+    <div class="app-showcase__header">
+      <span class="app-showcase__eyebrow">Inside the app</span>
+      <h2 id="app-showcase-title" class="app-showcase__title">Your Qur’an coach—always in your pocket.</h2>
     </div>
-    <div class="qscroll" id="qscreens" data-ga-event="screenshot_carousel_interaction" style="display:flex; gap:26px; overflow-x:auto; padding:12px max(24px,4vw) 24px; scroll-snap-type:x mandatory;">
-      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en1.jpg" alt="Tajweed Coach" width="1080" height="1720" loading="lazy" style="width:100%; height:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
-      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#0f1a2a; aspect-ratio:1080/1720;"><img src="screenshots/en2.jpg" alt="Find your maqam" width="1080" height="1720" loading="lazy" style="width:100%; height:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
-      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#f4efe4; aspect-ratio:1080/1720;"><img src="screenshots/en3.jpg" alt="Progression guide" width="1080" height="1720" loading="lazy" style="width:100%; height:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
-      <div style="flex:0 0 auto; scroll-snap-align:center; width:246px; background:#0f1512; border-radius:36px; padding:10px; box-shadow:0 26px 56px rgba(18,40,29,0.22);"><div style="border-radius:28px; overflow:hidden; background:#eefaf1; aspect-ratio:1080/1720;"><img src="screenshots/en4.jpg" alt="Practice tips" width="1080" height="1720" loading="lazy" style="width:100%; height:100%; display:block; object-fit:cover; object-position:top;"/></div></div>
+    <div class="app-carousel" id="qscreens" data-ga-event="screenshot_carousel_interaction" role="region" aria-roledescription="carousel" aria-label="QariAI app features">
+      <div class="app-carousel__viewport">
+        <div class="app-carousel__track">
+          <article class="app-slide" data-title="Recite with confidence" data-copy="Start any recitation and receive focused guidance while you practise." aria-label="1 of 7">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_recite.jpeg" alt="QariAI recitation screen" width="1080" height="2340" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="AI Correction" data-copy="See which letters and Tajweed rules need attention, with actionable coaching." aria-label="2 of 7">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v19_3.jpeg" alt="QariAI Tajweed correction breakdown" width="678" height="1357" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Tajweed Coach" data-copy="Choose your level and practise any surah or ayah with precise feedback." aria-label="3 of 7">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/en1.jpg" alt="QariAI Tajweed Coach screen" width="1080" height="1954" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Your Learning Journey" data-copy="Follow structured lessons and continue from exactly where you left off." aria-label="4 of 7">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/v20_learn.jpeg" alt="QariAI learning journey screen" width="1080" height="2340" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Personalised Drills" data-copy="Turn recurring weak letters and rules into focused daily practice." aria-label="5 of 7">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/c6.png" alt="QariAI personalised practice drills" width="1080" height="2340" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Hifz Practice" data-copy="Identify omissions, additions and words to review without changing the sacred text." aria-label="6 of 7">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/qariai-hifz-carousel-screen.png" alt="QariAI Hifz feedback screen" width="1080" height="1920" loading="lazy"/></div></div>
+          </article>
+          <article class="app-slide" data-title="Find Your Maqam" data-copy="Explore vocal styles and discover the maqam that naturally suits your voice." aria-label="7 of 7">
+            <div class="app-phone"><div class="app-phone__screen"><img src="/screenshots/en2.jpg" alt="QariAI Maqam discovery screen" width="1080" height="2020" loading="lazy"/></div></div>
+          </article>
+        </div>
+      </div>
+      <div class="app-carousel__caption" aria-live="polite">
+        <h3></h3><p></p>
+      </div>
+      <div class="app-carousel__controls">
+        <button class="app-carousel__arrow app-carousel__prev" type="button" aria-label="Previous feature">‹</button>
+        <div class="app-carousel__dots" role="tablist" aria-label="Choose a feature"></div>
+        <button class="app-carousel__arrow app-carousel__next" type="button" aria-label="Next feature">›</button>
+      </div>
     </div>
   </section>
 
@@ -935,15 +1002,77 @@ class Component extends DCLogic {
     });
   });
 
-  // Screenshot carousel: fire once on first user-initiated scroll
+  // App feature carousel: arrows, dots, keyboard, swipe and gentle autoplay.
   var screens = document.getElementById('qscreens');
   if (screens) {
+    var track = screens.querySelector('.app-carousel__track');
+    var slides = Array.prototype.slice.call(screens.querySelectorAll('.app-slide'));
+    var dotsWrap = screens.querySelector('.app-carousel__dots');
+    var captionTitle = screens.querySelector('.app-carousel__caption h3');
+    var captionCopy = screens.querySelector('.app-carousel__caption p');
+    var activeSlide = 0;
+    var carouselTimer;
+    var touchStartX = 0;
     var firedScreens = false;
-    screens.addEventListener('scroll', function () {
-      if (firedScreens) return;
-      firedScreens = true;
-      qTrack('screenshot_carousel_interaction', {});
+
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'app-carousel__dot';
+      dot.type = 'button';
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', 'Show feature ' + (i + 1));
+      dot.addEventListener('click', function () { showSlide(i, true); });
+      dotsWrap.appendChild(dot);
+    });
+
+    function visibleBasis() { return window.innerWidth <= 760 ? 76 : 33.333; }
+    function showSlide(index, userInitiated) {
+      activeSlide = (index + slides.length) % slides.length;
+      var basis = visibleBasis();
+      var centreOffset = 50;
+      track.style.transform = 'translateX(calc(' + centreOffset + '% - ' + (activeSlide * basis) + '% - ' + (basis / 2) + '%))';
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle('is-active', i === activeSlide);
+        slide.classList.toggle('is-near', Math.abs(i - activeSlide) === 1 || (activeSlide === 0 && i === slides.length - 1) || (activeSlide === slides.length - 1 && i === 0));
+        slide.setAttribute('aria-hidden', i === activeSlide ? 'false' : 'true');
+      });
+      Array.prototype.forEach.call(dotsWrap.children, function (dot, i) {
+        dot.classList.toggle('is-active', i === activeSlide);
+        dot.setAttribute('aria-selected', i === activeSlide ? 'true' : 'false');
+      });
+      captionTitle.textContent = slides[activeSlide].getAttribute('data-title');
+      captionCopy.textContent = slides[activeSlide].getAttribute('data-copy');
+      if (userInitiated) {
+        if (!firedScreens) {
+          firedScreens = true;
+          qTrack('screenshot_carousel_interaction', { slide: activeSlide + 1 });
+        }
+        restartCarousel();
+      }
+    }
+    function restartCarousel() {
+      clearInterval(carouselTimer);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        carouselTimer = setInterval(function () { showSlide(activeSlide + 1, false); }, 6000);
+      }
+    }
+
+    screens.querySelector('.app-carousel__prev').addEventListener('click', function () { showSlide(activeSlide - 1, true); });
+    screens.querySelector('.app-carousel__next').addEventListener('click', function () { showSlide(activeSlide + 1, true); });
+    screens.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') showSlide(activeSlide - 1, true);
+      if (e.key === 'ArrowRight') showSlide(activeSlide + 1, true);
+    });
+    screens.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    screens.addEventListener('touchend', function (e) {
+      var delta = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 45) showSlide(activeSlide + (delta < 0 ? 1 : -1), true);
     }, { passive: true });
+    screens.addEventListener('mouseenter', function () { clearInterval(carouselTimer); });
+    screens.addEventListener('mouseleave', restartCarousel);
+    window.addEventListener('resize', function () { showSlide(activeSlide, false); });
+    showSlide(0, false);
+    restartCarousel();
   }
 
   // ---- Mobile nav: close menu after tapping an anchor link
