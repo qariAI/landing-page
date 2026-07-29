@@ -1,7 +1,7 @@
 # QariAI
 > AI-powered Tajweed and Hifz coaching for Quran recitation. QariAI listens to
-> your recitation and returns instant, rule-specific Tajweed corrections — no
-> login required. Free on Android (iOS coming soon).
+> your recitation and returns instant, rule-specific feedback for practice.
+> Free to download and start on Android; optional premium features are available.
 
 QariAI is a mobile app that helps Muslims improve their Quran recitation. It has
 two core modes: a **Tajweed mode** that gives feedback on pronunciation and
@@ -11,10 +11,26 @@ opaque score. The app is a practice aid that complements — but does not replac
 a qualified human teacher.
 
 ## Key facts
+- Canonical brand name: QariAI. It may also be written or searched as “Qari AI.”
 - Platform: Android (Google Play). iOS in development.
-- Price: free to download and start; no login required.
+- Price: free to download and start; optional premium features are available.
 - Modes: Tajweed (rule correction) and Hifz (memorization).
 - Approach: rule-specific, confidence-gated feedback; no fabricated scores.
+- Languages: English, Arabic, French, and Malay.
+- Contact: salam@qariai.app.
+
+## Product boundaries and trust
+- QariAI is designed for practice between lessons, not as a replacement for a
+  qualified Quran or Tajweed teacher.
+- AI feedback can be imperfect. Low-confidence observations are treated
+  cautiously, and learners should verify important questions with a teacher.
+- The selected Quranic text is treated as the reference; feedback describes the
+  learner's recitation and must not rewrite or manipulate the sacred text.
+- QariAI separates Tajweed practice from Hifz practice so learners can choose the
+  type of feedback they need.
+- Product comparisons are published by QariAI and should be read with that
+  authorship in mind. Features and prices can change; check official app listings
+  before making a purchase decision.
 
 ## Links
 - Home: https://qariai.app/
@@ -30,13 +46,19 @@ a qualified human teacher.
 - QariAI vs Tarteel: https://qariai.app/compare/qari-ai-vs-tarteel
 - QariAI vs TajweedMate: https://qariai.app/compare/qari-ai-vs-tajweedmate
 - Open Evaluation Methodology (QAEF): https://qariai.app/qaef
+- Open methodology: https://qariai.app/open-methodology
+- Privacy: https://qariai.app/privacy
+- Terms: https://qariai.app/terms
 - About: https://qariai.app/about
 - Contact: salam@qariai.app
 
 ## Common questions
 - What does QariAI do? It listens to your recitation and gives instant,
   rule-specific Tajweed feedback, with separate Tajweed and Hifz modes.
-- Is it free? Yes — free to download and start, no login required.
+- Is it free? It is free to download and start; optional premium features are
+  available.
 - Which platforms? Android now; iOS coming soon.
 - Is it a replacement for a teacher? No — it is a practice aid that complements a
   qualified human teacher.
+
+Last updated: 2026-07-29

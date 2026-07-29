@@ -1,6 +1,56 @@
 {
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "https://qariai.app/",
+      "permanent": true
+    },
+    {
+      "source": "/qariai-combo-carousel-fixed-index.html",
+      "destination": "https://qariai.app/",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "https://qariai.app/about",
+      "permanent": true
+    },
+    {
+      "source": "/tajweed-checker",
+      "destination": "https://qariai.app/tajweed-mistakes-checker",
+      "permanent": true
+    },
+    {
+      "source": "/learn-tajweed",
+      "destination": "https://qariai.app/tajweed-rules",
+      "permanent": true
+    },
+    {
+      "source": "/academy/ai-tajweed-training",
+      "destination": "https://qariai.app/academy/ai-tajweed",
+      "permanent": true
+    },
+    {
+      "source": "/academy/ai-hifz-coaching",
+      "destination": "https://qariai.app/academy/ai-hifz",
+      "permanent": true
+    },
+    {
+      "source": "/academy/ai-vs-human-teacher",
+      "destination": "https://qariai.app/academy/ai-vs-human-quran-teacher",
+      "permanent": true
+    },
+    {
+      "source": "/academy/how-ai-detects-mistakes",
+      "destination": "https://qariai.app/academy/how-ai-detects-tajweed-mistakes",
+      "permanent": true
+    },
+    {
+      "source": "/vs/tarteel",
+      "destination": "https://qariai.app/compare/qari-ai-vs-tarteel",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "header", "key": "x-forwarded-proto", "value": "http" }],
       "destination": "https://qariai.app/:path*",
@@ -32,6 +82,36 @@
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Link", "value": "</llms.txt>; rel=\"describedby\", </sitemap.xml>; rel=\"sitemap\", </terms>; rel=\"terms-of-service\", </privacy>; rel=\"privacy-policy\", </logo.png>; rel=\"icon\"" }
+      ]
+    },
+    {
+      "source": "/feedback.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/feedback-email.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/email-launch-v1.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/thank-you.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/screenshots/og-image.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
     },
     {
@@ -94,6 +174,7 @@
     { "source": "/academy/how-ai-detects-tajweed-mistakes", "destination": "/academy/how-ai-detects-tajweed-mistakes.html" },
     { "source": "/academy/tarteel-alternative", "destination": "/academy/tarteel-alternative.html" },
     { "source": "/academy/hifz-planner", "destination": "/academy/hifz-planner.html" },
+    { "source": "/academy/hifz-self-study-roadmap", "destination": "/academy/hifz-self-study-roadmap.html" },
     { "source": "/academy/makharij-chart", "destination": "/academy/makharij-chart.html" }
   ]
 }
