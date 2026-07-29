@@ -11,11 +11,6 @@
       "permanent": true
     },
     {
-      "source": "/contact",
-      "destination": "https://qariai.app/about",
-      "permanent": true
-    },
-    {
       "source": "/tajweed-checker",
       "destination": "https://qariai.app/tajweed-mistakes-checker",
       "permanent": true
@@ -51,14 +46,45 @@
       "permanent": true
     },
     {
+      "source": "/qari-ai-vs-tarteel",
+      "destination": "https://qariai.app/compare/qari-ai-vs-tarteel",
+      "permanent": true
+    },
+    {
+      "source": "/qalqalah-explained",
+      "destination": "https://qariai.app/learn/qalqalah-explained",
+      "permanent": true
+    },
+    {
+      "source": "/qari-ai-vs-tajweedmate",
+      "destination": "https://qariai.app/compare/qari-ai-vs-tajweedmate",
+      "permanent": true
+    },
+    {
+      "source": "/pronounce-ayn",
+      "destination": "https://qariai.app/learn/pronounce-ayn",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
-      "has": [{ "type": "header", "key": "x-forwarded-proto", "value": "http" }],
+      "has": [
+        {
+          "type": "header",
+          "key": "x-forwarded-proto",
+          "value": "http"
+        }
+      ],
       "destination": "https://qariai.app/:path*",
       "permanent": true
     },
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.qariai.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.qariai.app"
+        }
+      ],
       "destination": "https://qariai.app/:path*",
       "permanent": true
     }
@@ -67,114 +93,315 @@
     {
       "source": "/(.*).html",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Link", "value": "</llms.txt>; rel=\"describedby\", </sitemap.xml>; rel=\"sitemap\", </terms>; rel=\"terms-of-service\", </privacy>; rel=\"privacy-policy\", </logo.png>; rel=\"icon\"" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Link",
+          "value": "</llms.txt>; rel=\"describedby\", </sitemap.xml>; rel=\"sitemap\", </terms>; rel=\"terms-of-service\", </privacy>; rel=\"privacy-policy\", </logo.png>; rel=\"icon\""
+        }
       ]
     },
     {
       "source": "/",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Link", "value": "</llms.txt>; rel=\"describedby\", </sitemap.xml>; rel=\"sitemap\", </terms>; rel=\"terms-of-service\", </privacy>; rel=\"privacy-policy\", </logo.png>; rel=\"icon\"" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Link",
+          "value": "</llms.txt>; rel=\"describedby\", </sitemap.xml>; rel=\"sitemap\", </terms>; rel=\"terms-of-service\", </privacy>; rel=\"privacy-policy\", </logo.png>; rel=\"icon\""
+        }
       ]
     },
     {
       "source": "/feedback.html",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     },
     {
       "source": "/feedback-email.html",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     },
     {
       "source": "/email-launch-v1.html",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     },
     {
       "source": "/thank-you.html",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     },
     {
       "source": "/screenshots/og-image.html",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     },
     {
       "source": "/screenshots/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/logo.png",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*).js",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*).css",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ],
   "rewrites": [
-    { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/ar", "destination": "/ar.html" },
-    { "source": "/qaef", "destination": "/qaef.html" },
-    { "source": "/how-qari-ai-works", "destination": "/how-qari-ai-works.html" },
-    { "source": "/tajweed-mistakes-checker", "destination": "/tajweed-mistakes-checker.html" },
-    { "source": "/best-ai-quran-app", "destination": "/best-ai-quran-app.html" },
-    { "source": "/apps-like-tarteel", "destination": "/apps-like-tarteel.html" },
-    { "source": "/learn/common-tajweed-mistakes", "destination": "/common-tajweed-mistakes.html" },
-    { "source": "/learn/pronounce-ayn", "destination": "/pronounce-ayn.html" },
-    { "source": "/learn/qalqalah-explained", "destination": "/qalqalah-explained.html" },
-    { "source": "/compare/qari-ai-vs-tarteel", "destination": "/qari-ai-vs-tarteel.html" },
-    { "source": "/compare/qari-ai-vs-tajweedmate", "destination": "/qari-ai-vs-tajweedmate.html" },
-    { "source": "/open-methodology", "destination": "/open-methodology.html" },
-    { "source": "/tajweed-rules", "destination": "/tajweed-rules.html" },
-    { "source": "/tajweed-app-evaluation", "destination": "/tajweed-app-evaluation.html" },
-    { "source": "/ai-quran-education-2026", "destination": "/ai-quran-education-2026.html" },
-    { "source": "/teachers-guide-ai-tajweed", "destination": "/teachers-guide-ai-tajweed.html" },
-    { "source": "/ar/tajweed-rules", "destination": "/ar/tajweed-rules.html" },
-    { "source": "/ar/tajweed-mistakes", "destination": "/ar/tajweed-mistakes.html" },
-    { "source": "/ar/how-qari-ai-works", "destination": "/ar/how-qari-ai-works.html" },
-    { "source": "/maqamat-quran-guide", "destination": "/maqamat-quran-guide.html" },
-    { "source": "/al-nabr-tajweed", "destination": "/al-nabr-tajweed.html" },
-    { "source": "/ar/al-nabr", "destination": "/ar/al-nabr.html" },
-    { "source": "/quran-app-comparison-2026", "destination": "/quran-app-comparison-2026.html" },
-    { "source": "/.well-known/security.txt", "destination": "/.well-known/security.txt" },
-    { "source": "/fr", "destination": "/fr.html" },
-    { "source": "/ms", "destination": "/ms.html" },
-    { "source": "/challenge", "destination": "/challenge.html" },
-    { "source": "/academy/ai-quran", "destination": "/academy/ai-quran.html" },
-    { "source": "/academy/ai-tajweed", "destination": "/academy/ai-tajweed.html" },
-    { "source": "/academy/ai-hifz", "destination": "/academy/ai-hifz.html" },
-    { "source": "/academy/memorize-quran-at-home", "destination": "/academy/memorize-quran-at-home.html" },
-    { "source": "/academy/ai-quran-app", "destination": "/academy/ai-quran-app.html" },
-    { "source": "/academy/ai-vs-human-quran-teacher", "destination": "/academy/ai-vs-human-quran-teacher.html" },
-    { "source": "/academy/best-ai-quran-apps", "destination": "/academy/best-ai-quran-apps.html" },
-    { "source": "/academy/can-ai-teach-tajweed", "destination": "/academy/can-ai-teach-tajweed.html" },
-    { "source": "/academy/future-of-quran-learning", "destination": "/academy/future-of-quran-learning.html" },
-    { "source": "/academy/how-ai-detects-tajweed-mistakes", "destination": "/academy/how-ai-detects-tajweed-mistakes.html" },
-    { "source": "/academy/tarteel-alternative", "destination": "/academy/tarteel-alternative.html" },
-    { "source": "/academy/hifz-planner", "destination": "/academy/hifz-planner.html" },
-    { "source": "/academy/hifz-self-study-roadmap", "destination": "/academy/hifz-self-study-roadmap.html" },
-    { "source": "/academy/makharij-chart", "destination": "/academy/makharij-chart.html" }
+    {
+      "source": "/feedback",
+      "destination": "/feedback.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/ar",
+      "destination": "/ar.html"
+    },
+    {
+      "source": "/qaef",
+      "destination": "/qaef.html"
+    },
+    {
+      "source": "/how-qari-ai-works",
+      "destination": "/how-qari-ai-works.html"
+    },
+    {
+      "source": "/tajweed-mistakes-checker",
+      "destination": "/tajweed-mistakes-checker.html"
+    },
+    {
+      "source": "/best-ai-quran-app",
+      "destination": "/best-ai-quran-app.html"
+    },
+    {
+      "source": "/apps-like-tarteel",
+      "destination": "/apps-like-tarteel.html"
+    },
+    {
+      "source": "/learn/common-tajweed-mistakes",
+      "destination": "/common-tajweed-mistakes.html"
+    },
+    {
+      "source": "/learn/pronounce-ayn",
+      "destination": "/pronounce-ayn.html"
+    },
+    {
+      "source": "/learn/qalqalah-explained",
+      "destination": "/qalqalah-explained.html"
+    },
+    {
+      "source": "/compare/qari-ai-vs-tarteel",
+      "destination": "/qari-ai-vs-tarteel.html"
+    },
+    {
+      "source": "/compare/qari-ai-vs-tajweedmate",
+      "destination": "/qari-ai-vs-tajweedmate.html"
+    },
+    {
+      "source": "/open-methodology",
+      "destination": "/open-methodology.html"
+    },
+    {
+      "source": "/tajweed-rules",
+      "destination": "/tajweed-rules.html"
+    },
+    {
+      "source": "/tajweed-app-evaluation",
+      "destination": "/tajweed-app-evaluation.html"
+    },
+    {
+      "source": "/ai-quran-education-2026",
+      "destination": "/ai-quran-education-2026.html"
+    },
+    {
+      "source": "/teachers-guide-ai-tajweed",
+      "destination": "/teachers-guide-ai-tajweed.html"
+    },
+    {
+      "source": "/ar/tajweed-rules",
+      "destination": "/ar/tajweed-rules.html"
+    },
+    {
+      "source": "/ar/tajweed-mistakes",
+      "destination": "/ar/tajweed-mistakes.html"
+    },
+    {
+      "source": "/ar/how-qari-ai-works",
+      "destination": "/ar/how-qari-ai-works.html"
+    },
+    {
+      "source": "/maqamat-quran-guide",
+      "destination": "/maqamat-quran-guide.html"
+    },
+    {
+      "source": "/al-nabr-tajweed",
+      "destination": "/al-nabr-tajweed.html"
+    },
+    {
+      "source": "/ar/al-nabr",
+      "destination": "/ar/al-nabr.html"
+    },
+    {
+      "source": "/quran-app-comparison-2026",
+      "destination": "/quran-app-comparison-2026.html"
+    },
+    {
+      "source": "/.well-known/security.txt",
+      "destination": "/.well-known/security.txt"
+    },
+    {
+      "source": "/fr",
+      "destination": "/fr.html"
+    },
+    {
+      "source": "/ms",
+      "destination": "/ms.html"
+    },
+    {
+      "source": "/challenge",
+      "destination": "/challenge.html"
+    },
+    {
+      "source": "/academy/ai-quran",
+      "destination": "/academy/ai-quran.html"
+    },
+    {
+      "source": "/academy/ai-tajweed",
+      "destination": "/academy/ai-tajweed.html"
+    },
+    {
+      "source": "/academy/ai-hifz",
+      "destination": "/academy/ai-hifz.html"
+    },
+    {
+      "source": "/academy/memorize-quran-at-home",
+      "destination": "/academy/memorize-quran-at-home.html"
+    },
+    {
+      "source": "/academy/ai-quran-app",
+      "destination": "/academy/ai-quran-app.html"
+    },
+    {
+      "source": "/academy/ai-vs-human-quran-teacher",
+      "destination": "/academy/ai-vs-human-quran-teacher.html"
+    },
+    {
+      "source": "/academy/best-ai-quran-apps",
+      "destination": "/academy/best-ai-quran-apps.html"
+    },
+    {
+      "source": "/academy/can-ai-teach-tajweed",
+      "destination": "/academy/can-ai-teach-tajweed.html"
+    },
+    {
+      "source": "/academy/future-of-quran-learning",
+      "destination": "/academy/future-of-quran-learning.html"
+    },
+    {
+      "source": "/academy/how-ai-detects-tajweed-mistakes",
+      "destination": "/academy/how-ai-detects-tajweed-mistakes.html"
+    },
+    {
+      "source": "/academy/tarteel-alternative",
+      "destination": "/academy/tarteel-alternative.html"
+    },
+    {
+      "source": "/academy/hifz-planner",
+      "destination": "/academy/hifz-planner.html"
+    },
+    {
+      "source": "/academy/hifz-self-study-roadmap",
+      "destination": "/academy/hifz-self-study-roadmap.html"
+    },
+    {
+      "source": "/academy/makharij-chart",
+      "destination": "/academy/makharij-chart.html"
+    }
   ]
 }
