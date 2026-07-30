@@ -420,7 +420,9 @@
     .qc-points{list-style:none;display:grid;gap:10px;margin:0 0 26px}
     .qc-points li{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:rgba(255,253,248,.88)}
     .qc-points li::before{content:"✓";display:grid;place-items:center;width:21px;height:21px;flex:0 0 21px;border-radius:50%;background:#0b6e52;color:#fff;font-size:11px}
+    .qc-actions{display:flex;flex-wrap:wrap;gap:11px;align-items:center}
     .qc-cta{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:#be8a2c;color:#fff;text-decoration:none;font-size:13px;font-weight:800}
+    .qc-cta--demo{background:transparent;border:1px solid rgba(255,255,255,.34);color:#fffdf8}
     .qc-visual{display:flex;align-items:center;justify-content:center;min-width:0}
     .qc-phone{width:min(300px,72vw);padding:9px;border-radius:38px;background:#0c1410;box-shadow:0 24px 50px rgba(0,0,0,.3)}
     .qc-phone img{display:block;width:100%;height:auto;border-radius:31px}
@@ -733,7 +735,10 @@
           <li>Meaning-led vocabulary practice</li>
           <li>Progress stays inside QariAI</li>
         </ul>
-        <a class="qc-cta" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="games_play_store_click">Get QariAI on Google Play</a>
+        <div class="qc-actions">
+          <a class="qc-cta" href="/quran-games" data-ga-event="games_demo_click">Play Wasl &amp; Connect free</a>
+          <a class="qc-cta qc-cta--demo" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="games_play_store_click">Get QariAI on Google Play</a>
+        </div>
       </div>
       <div class="qc-visual">
         <div class="qc-phone">
@@ -1015,7 +1020,7 @@
           <a href="https://qariai.app/about" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">About Us</a>
           <a href="https://qariai.app/privacy" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Privacy Policy</a>
           <a href="https://qariai.app/terms" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Terms of Service</a>
-          <a href="mailto:salam@qariai.app" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Contact</a>
+          <a href="/cdn-cgi/l/email-protection#b8cbd9d4d9d5f8c9d9cad1d9d196d9c8c8" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Contact</a>
         </div>
       </div>
 
@@ -1062,7 +1067,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;stickyCTA&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;stickyCTA&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
 class Component extends DCLogic {
   state = { scrolled: false };
 
@@ -1331,5 +1336,5 @@ class Component extends DCLogic {
   restart();
 })();
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2370b8f5cc4c6f0',t:'MTc4NTQ0MjYyOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
