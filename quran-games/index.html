@@ -216,30 +216,26 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
       text-decoration: none;
       font-family: "Spectral", serif;
       font-size: 28px;
       font-weight: 800;
       letter-spacing: -.03em;
     }
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4px;
-      padding: 9px;
-      overflow: hidden;
+    .brand-logo-shell {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
       border: 1px solid var(--border);
       border-radius: 13px;
       background: #fff;
       box-shadow: 0 3px 10px rgba(18, 56, 41, .08);
     }
-    .brand-mark span { border-radius: 5px; background: var(--emerald); }
-    .brand-mark span:nth-child(2) { background: var(--purple); }
-    .brand-mark span:nth-child(3) { background: var(--blue); }
-    .brand-mark span:nth-child(4) { background: var(--orange); }
+    .brand-logo-shell img { width: 100%; height: 100%; object-fit: contain; }
     .brand em { color: var(--emerald); font-style: normal; }
     .nav-links { display: flex; align-items: center; gap: 24px; }
     .nav-links a {
@@ -526,238 +522,523 @@
         radial-gradient(circle at 88% 12%, rgba(118, 85, 183, .12), transparent 25%),
         var(--cream);
     }
-    .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-    .demo-card {
+    .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
+    .game-preview {
       position: relative;
-      min-height: 610px;
-      display: flex;
-      flex-direction: column;
       overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 30px;
+      border: 1px solid rgba(18, 56, 41, .11);
+      border-radius: 32px;
       background: var(--paper);
-      box-shadow: var(--shadow);
+      box-shadow: 0 28px 66px rgba(18, 56, 41, .14);
     }
-    .demo-card--wasl { background: linear-gradient(180deg, #fffaf0, #fffdf8 44%); }
-    .demo-card--connect { background: linear-gradient(180deg, #f2ebff, #fffdf8 44%); }
-    .demo-head { padding: 27px 28px 0; }
-    .demo-name {
+    .preview-intro {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 8px;
+      gap: 18px;
+      min-height: 122px;
+      padding: 27px 28px 24px;
+      background: var(--paper);
     }
-    .demo-name h3 {
-      margin: 0;
+    .preview-intro h3 {
+      margin-bottom: 7px;
       font-family: "Spectral", serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-size: clamp(1.75rem, 3vw, 2.35rem);
       line-height: 1;
     }
-    .demo-badge {
-      padding: 6px 10px;
+    .preview-intro p { max-width: 365px; margin-bottom: 0; color: #657068; font-size: 13px; line-height: 1.55; }
+    .preview-badge {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border: 1px solid rgba(12, 107, 72, .13);
       border-radius: 999px;
-      background: var(--emerald-deep);
-      color: #fff;
+      background: var(--mint);
+      color: var(--emerald);
       font-size: 10px;
       font-weight: 900;
       letter-spacing: .08em;
       text-transform: uppercase;
     }
-    .demo-card--connect .demo-badge { background: var(--purple); }
-    .demo-head p { margin-bottom: 0; color: #677269; font-size: 13px; }
-    .demo-stage {
-      flex: 1;
+    .connect-preview .preview-badge { border-color: rgba(118, 85, 183, .18); background: #eee8fb; color: var(--purple); }
+
+    .mini-game {
+      position: relative;
+      min-height: 760px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .game-hud {
+      position: relative;
+      z-index: 5;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 24px 28px 28px;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 20px 22px 8px;
+      color: #fff;
     }
-    .demo-instruction {
-      margin-bottom: 15px;
-      color: var(--ink-soft);
-      font-size: 12px;
-      font-weight: 800;
-      text-align: center;
-    }
-    .wasl-answer {
-      width: min(100%, 270px);
-      min-height: 58px;
+    .hud-world { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .hud-back {
+      width: 36px;
+      height: 36px;
       display: grid;
       place-items: center;
-      margin-bottom: 17px;
-      padding: 8px 16px;
-      border: 1px solid rgba(12, 107, 72, .13);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, .82);
-      color: var(--emerald-deep);
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, .23);
+      border-radius: 50%;
+      background: rgba(12, 51, 39, .19);
+      color: #fff;
+      font-size: 19px;
+      font-weight: 700;
+    }
+    .hud-world small, .hud-progress small { display: block; color: rgba(255, 255, 255, .72); font-size: 9px; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+    .hud-world strong { display: block; overflow: hidden; font-size: 14px; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
+    .hud-progress { text-align: right; }
+    .hud-progress strong { display: block; font-size: 14px; }
+    .hud-meter {
+      width: 88px;
+      height: 6px;
+      margin-top: 5px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, .21);
+    }
+    .hud-meter span { display: block; width: 0; height: 100%; border-radius: inherit; background: #f7d879; transition: width .35s ease; }
+
+    .wasl-game {
+      background:
+        linear-gradient(180deg, rgba(30, 123, 133, .04), rgba(255, 244, 207, .03)),
+        linear-gradient(180deg, #71c8cf 0 27%, #f6bf67 57%, #d78844 100%);
+    }
+    .wasl-game::before {
+      content: "";
+      position: absolute;
+      z-index: -3;
+      width: 124px;
+      height: 124px;
+      top: 70px;
+      right: 58px;
+      border-radius: 50%;
+      background: #ffe7a2;
+      box-shadow: 0 0 70px 24px rgba(255, 224, 137, .42);
+    }
+    .wasl-game::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 46% -12% -18%;
+      border-radius: 50% 50% 0 0;
+      background: #d88b43;
+      box-shadow: 0 -35px 0 2px #e6a151, 0 -68px 0 4px #efbb6d;
+      transform: rotate(-4deg);
+    }
+    .oasis-silhouette {
+      position: absolute;
+      z-index: -2;
+      left: 0;
+      right: 0;
+      top: 196px;
+      height: 180px;
+      opacity: .72;
+      background:
+        radial-gradient(ellipse at 15% 100%, #276e62 0 18%, transparent 19%),
+        radial-gradient(ellipse at 39% 100%, #2f7867 0 22%, transparent 23%),
+        radial-gradient(ellipse at 68% 100%, #235e56 0 19%, transparent 20%),
+        radial-gradient(ellipse at 89% 100%, #2a675b 0 21%, transparent 22%);
+    }
+    .oasis-silhouette::before, .oasis-silhouette::after {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      width: 18px;
+      height: 90px;
+      border-radius: 50% 50% 6px 6px;
+      background: #235e56;
+      box-shadow: -27px -21px 0 -5px #235e56, 27px -26px 0 -5px #235e56;
+    }
+    .oasis-silhouette::before { left: 22%; transform: rotate(-3deg); }
+    .oasis-silhouette::after { right: 18%; height: 112px; transform: rotate(3deg); }
+    .wasl-board-wrap {
+      position: relative;
+      z-index: 3;
+      width: min(100% - 34px, 380px);
+      margin: 8px auto 4px;
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(255, 255, 255, .35);
+      border-radius: 22px;
+      background: rgba(23, 77, 64, .16);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
+      backdrop-filter: blur(3px);
+    }
+    .wasl-board-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; color: #fff; }
+    .wasl-board-top strong { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; }
+    .wasl-board-top span { font-size: 10px; font-weight: 800; opacity: .78; }
+    .wasl-crossword {
+      width: 258px;
+      display: grid;
+      grid-template-columns: repeat(5, 46px);
+      grid-template-rows: repeat(5, 46px);
+      gap: 7px;
+      margin: 0 auto;
+    }
+    .wasl-slot {
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(128, 76, 20, .2);
+      border-radius: 12px;
+      background: #fff6df;
+      color: #6c461d;
       font-family: "Amiri", serif;
-      font-size: 31px;
+      font-size: 27px;
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: 0 5px 0 rgba(111, 66, 19, .18), inset 0 2px 0 rgba(255,255,255,.82);
+      transition: background .25s ease, color .25s ease, transform .25s ease;
+    }
+    .wasl-slot.is-blank { visibility: hidden; }
+    .wasl-slot.is-revealed { background: #fffdf6; color: #174f3d; animation: tile-reveal .34s ease; }
+    .wasl-slot.is-hint { animation: hint-glow .9s ease 2; }
+    .wasl-word-pips { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+    .wasl-word-pips span {
+      width: 9px;
+      height: 9px;
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      transition: transform .25s ease, background .25s ease;
+    }
+    .wasl-word-pips span.is-found { border-color: #ffe28b; background: #ffe28b; transform: scale(1.18); }
+    .wasl-play-zone {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+      margin-top: 8px;
+      padding: 0 18px 18px;
+    }
+    .wasl-answer-v2 {
+      width: 178px;
+      min-height: 42px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 5px;
+      padding: 4px 15px;
+      border: 1px solid rgba(255, 255, 255, .32);
+      border-radius: 999px;
+      background: rgba(21, 74, 58, .55);
+      color: #fff;
+      font-family: "Amiri", serif;
+      font-size: 25px;
       font-weight: 700;
       direction: rtl;
-      box-shadow: inset 0 -2px 0 rgba(12, 107, 72, .04);
+      box-shadow: 0 8px 20px rgba(80, 45, 15, .14);
+      backdrop-filter: blur(5px);
     }
-    .wasl-answer.is-empty {
-      color: #8a938c;
-      font-family: "Inter", sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      direction: ltr;
-    }
+    .wasl-answer-v2.is-empty { color: rgba(255,255,255,.72); font-family: "Inter", sans-serif; font-size: 10px; letter-spacing: .04em; direction: ltr; }
+    .wasl-wheel-row { position: relative; width: min(100%, 390px); margin: 0 auto; }
     .wasl-wheel {
       position: relative;
-      width: 230px;
-      height: 230px;
-      margin: 0 auto 20px;
-      border: 1px solid rgba(12, 107, 72, .12);
+      width: 260px;
+      height: 260px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, .33);
       border-radius: 50%;
-      background:
-        radial-gradient(circle, #fffdf8 0 24%, transparent 25%),
-        radial-gradient(circle, rgba(18, 146, 94, .11), rgba(18, 146, 94, .03) 68%, transparent 69%);
-      box-shadow: inset 0 0 0 10px rgba(255, 255, 255, .54), 0 18px 38px rgba(18, 56, 41, .1);
+      background: rgba(255, 250, 232, .88);
+      box-shadow: inset 0 0 0 11px rgba(255,255,255,.34), 0 20px 45px rgba(86, 48, 14, .23);
+      touch-action: none;
+      user-select: none;
     }
+    .wasl-trace {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .wasl-trace polyline { fill: none; stroke: rgba(14, 111, 78, .54); stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
     .wasl-letter {
       position: absolute;
-      width: 58px;
-      height: 58px;
+      z-index: 2;
+      left: var(--x);
+      top: var(--y);
+      width: 62px;
+      height: 62px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(12, 107, 72, .14);
+      padding: 0;
+      border: 1px solid rgba(32, 88, 66, .13);
       border-radius: 50%;
-      background: #fff;
-      color: var(--emerald-deep);
+      background: #fffdf6;
+      color: #173c2e;
       font-family: "Amiri", serif;
-      font-size: 34px;
+      font-size: 35px;
       font-weight: 700;
+      line-height: 1;
       cursor: pointer;
-      box-shadow: 0 8px 18px rgba(18, 56, 41, .12);
-      transition: transform .18s ease, background .18s ease, color .18s ease;
+      box-shadow: 0 8px 17px rgba(66, 44, 19, .16);
+      transition: transform .16s ease, background .16s ease, color .16s ease, left .25s ease, top .25s ease;
     }
     .wasl-letter:hover { transform: scale(1.06); }
-    .wasl-letter[disabled] { background: var(--emerald); color: #fff; transform: scale(.92); opacity: .82; }
-    .wasl-letter:nth-child(1) { top: 12px; left: 86px; }
-    .wasl-letter:nth-child(2) { top: 86px; right: 12px; }
-    .wasl-letter:nth-child(3) { bottom: 12px; left: 86px; }
-    .wasl-letter:nth-child(4) { top: 86px; left: 12px; }
+    .wasl-letter.is-selected { background: #147b56; color: #fff; transform: scale(.94); }
+    .wasl-letter.is-hint { animation: hint-glow .9s ease 2; }
     .wheel-shuffle {
       position: absolute;
+      z-index: 3;
       inset: 50% auto auto 50%;
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
       display: grid;
       place-items: center;
       padding: 0;
       border: 0;
       border-radius: 50%;
-      background: var(--emerald-deep);
+      background: #147b56;
       color: #fff;
       transform: translate(-50%, -50%);
       cursor: pointer;
-      box-shadow: 0 6px 15px rgba(18, 56, 41, .2);
+      box-shadow: 0 7px 16px rgba(18, 56, 41, .25);
     }
-    .wheel-shuffle:hover { background: var(--emerald); }
-    .demo-actions { display: flex; justify-content: center; gap: 9px; width: 100%; }
-    .demo-action {
-      min-height: 40px;
-      padding: 9px 17px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: #fff;
-      color: var(--ink);
-      font: inherit;
-      font-size: 12px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-    .demo-action--primary { border-color: var(--emerald); background: var(--emerald); color: #fff; }
-    .demo-action--purple { border-color: var(--purple); background: var(--purple); color: #fff; }
-    .demo-status {
-      min-height: 40px;
-      margin: 13px 0 0;
-      color: #667169;
-      font-size: 12px;
-      font-weight: 700;
-      text-align: center;
-    }
-    .demo-status.is-success { color: var(--emerald); }
-    .demo-status.is-error { color: #b6493e; }
-    .found-words { display: flex; justify-content: center; gap: 8px; min-height: 30px; margin: 4px 0 0; padding: 0; list-style: none; }
-    .found-word {
-      padding: 5px 10px;
-      border: 1px dashed rgba(12, 107, 72, .2);
-      border-radius: 999px;
-      color: #879087;
-      background: rgba(255, 255, 255, .6);
-      font-size: 11px;
-      font-weight: 800;
-    }
-    .found-word.is-found { border-style: solid; border-color: rgba(12, 107, 72, .2); background: var(--mint); color: var(--emerald); }
-
-    .connect-clues {
-      width: min(100%, 330px);
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-      color: #635b70;
-      font-size: 11px;
-      font-weight: 800;
-    }
-    .connect-board {
-      width: 250px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 0 auto 23px;
-      direction: rtl;
-    }
-    .connect-cell {
-      aspect-ratio: 1;
+    .wasl-side-action {
+      position: absolute;
+      top: 102px;
+      width: 48px;
+      height: 48px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(118, 85, 183, .14);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, .86);
-      color: var(--purple);
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 50%;
+      background: rgba(22, 74, 58, .67);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 9px 20px rgba(75, 42, 12, .18);
+      backdrop-filter: blur(4px);
+    }
+    .wasl-side-action span { position: absolute; right: -3px; top: -5px; min-width: 20px; height: 20px; display: grid; place-items: center; border-radius: 99px; background: #f7cf67; color: #56400f; font-size: 9px; font-weight: 900; }
+    #wasl-hint { left: 0; }
+    #wasl-clear { right: 0; }
+    .game-status {
+      position: relative;
+      z-index: 5;
+      min-height: 34px;
+      margin: 2px 0 0;
+      color: rgba(255,255,255,.88);
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+    }
+    .game-status.is-error { color: #ffe0d7; }
+    .game-status.is-success { color: #fff1a9; }
+
+    .connect-game {
+      background:
+        linear-gradient(45deg, transparent 47%, rgba(255,255,255,.045) 48% 52%, transparent 53%) 0 0 / 86px 86px,
+        linear-gradient(-45deg, transparent 47%, rgba(255,255,255,.045) 48% 52%, transparent 53%) 0 0 / 86px 86px,
+        linear-gradient(180deg, #282777, #201d68 68%, #171557);
+    }
+    .connect-game::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .36;
+      background: radial-gradient(circle at 12% 20%, rgba(105, 102, 207, .58), transparent 28%), radial-gradient(circle at 86% 74%, rgba(40, 126, 180, .22), transparent 29%);
+    }
+    .connect-board-v2 {
+      position: relative;
+      z-index: 3;
+      width: 356px;
+      height: 320px;
+      display: grid;
+      grid-template-columns: repeat(5, 62px);
+      grid-template-rows: repeat(4, 62px);
+      gap: 10px;
+      margin: 22px auto 8px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 25px;
+      background: rgba(255,255,255,.025);
+    }
+    .connect-tile {
+      position: relative;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255,255,255,.28);
+      border-radius: 16px;
+      color: #fff;
+      font-family: "Amiri", serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: 0 8px 0 rgba(8, 8, 51, .28), inset 0 2px 0 rgba(255,255,255,.28);
+      transition: transform .2s ease, background .2s ease, opacity .2s ease;
+    }
+    .connect-tile--green { background: linear-gradient(145deg, #74c943, #4ba12e); }
+    .connect-tile--purple { background: linear-gradient(145deg, #a77ae2, #7852b7); }
+    .connect-tile--orange { background: linear-gradient(145deg, #f7a52e, #dc771e); }
+    .connect-tile--blue { background: linear-gradient(145deg, #58a8e5, #397dbe); }
+    .connect-fill-slot {
+      border-color: rgba(255,255,255,.58);
+      background: #fffdf5;
+      color: #25234e;
+      opacity: .7;
+    }
+    .connect-fill-slot.is-active {
+      opacity: 1;
+      outline: 4px solid #ffd76e;
+      outline-offset: 4px;
+      animation: active-tile 1.3s ease infinite;
+    }
+    .connect-fill-slot.is-active::before { content: "؟"; position: absolute; inset: 0; display: grid; place-items: center; color: #77738f; font-size: 25px; }
+    .connect-fill-slot.is-filled { opacity: 1; color: #fff; animation: tile-reveal .32s ease; }
+    .connect-fill-slot.is-filled::before { content: none; }
+    .connect-letter-value { position: relative; z-index: 1; }
+    .connect-fill-slot.is-wrong { border-color: #ffb4aa; background: #642b58; animation: demo-shake .24s ease; }
+    .connect-order {
+      position: absolute;
+      z-index: 5;
+      top: -14px;
+      right: -12px;
+      min-width: 29px;
+      height: 29px;
+      display: grid;
+      place-items: center;
+      border: 3px solid #26246e;
+      border-radius: 50%;
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      box-shadow: 0 4px 8px rgba(7,7,48,.22);
+    }
+    .connect-order--1 { background: #70c740; }
+    .connect-order--2 { background: #9b6cd6; }
+    .connect-order--3 { background: #4b9bd8; }
+    .connect-order--4 { background: #f29529; }
+    .connect-round-label {
+      position: relative;
+      z-index: 4;
+      width: max-content;
+      margin: 0 auto 12px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.88);
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .connect-letter-bank {
+      position: relative;
+      z-index: 4;
+      min-height: 150px;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px 34px 15px;
+    }
+    .connect-letter-choice {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid rgba(33, 30, 69, .13);
+      border-radius: 17px;
+      background: #fffdf7;
+      color: #211f46;
       font-family: "Amiri", serif;
       font-size: 38px;
       font-weight: 700;
-      box-shadow: 0 8px 18px rgba(74, 46, 125, .09);
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 9px 0 rgba(8, 8, 51, .25), 0 16px 24px rgba(8,8,51,.16);
+      transition: transform .16s ease;
     }
-    .connect-cell.blank { visibility: hidden; }
-    .connect-cell.shared {
-      border: 2px dashed rgba(118, 85, 183, .4);
-      background: #fff;
-      color: #a095ae;
+    .connect-letter-choice:nth-child(2) { transform: translateY(11px) rotate(2deg); }
+    .connect-letter-choice:nth-child(3) { transform: translateY(-6px) rotate(-2deg); }
+    .connect-letter-choice:hover { transform: translateY(-4px); }
+    .connect-letter-choice.is-hint { animation: hint-letter 1s ease 2; }
+    .connect-letter-choice.is-wrong { background: #ffe5e0; animation: demo-shake .24s ease; }
+    .connect-controls {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 8px 20px 4px;
+      border-top: 1px solid rgba(255,255,255,.09);
     }
-    .connect-cell.shared.is-correct {
-      border-style: solid;
-      border-color: var(--emerald);
-      background: var(--mint);
-      color: var(--emerald);
-      animation: demo-pop .28s ease;
+    .connect-control {
+      min-width: 78px;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,.07);
+      color: #fff;
+      font: inherit;
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
     }
-    .connect-cell.shared.is-wrong { border-color: #c8544a; background: #fff1ef; animation: demo-shake .22s ease; }
-    .letter-choices { display: flex; justify-content: center; gap: 11px; margin-bottom: 18px; }
-    .letter-choice {
-      width: 53px;
-      height: 53px;
+    .connect-control--primary { background: #148866; box-shadow: 0 7px 0 rgba(8,8,51,.22); }
+    .connect-control span { min-width: 19px; height: 19px; display: grid; place-items: center; border-radius: 99px; background: #ed7d65; font-size: 9px; }
+    .connect-game .game-status { padding: 8px 18px 14px; color: rgba(255,255,255,.75); }
+    .connect-game .game-status.is-error { color: #ffc9c1; }
+    .connect-game .game-status.is-success { color: #8ff0c9; }
+
+    .game-celebration {
+      position: absolute;
+      z-index: 20;
+      inset: 0;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(118, 85, 183, .18);
-      border-radius: 15px;
-      background: #fff;
-      color: var(--purple);
-      font-family: "Amiri", serif;
-      font-size: 31px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 7px 16px rgba(74, 46, 125, .09);
+      padding: 28px;
+      visibility: hidden;
+      opacity: 0;
+      background: rgba(11, 32, 25, .38);
+      backdrop-filter: blur(4px);
+      transition: opacity .28s ease, visibility .28s ease;
     }
-    .letter-choice:hover { border-color: var(--purple); transform: translateY(-2px); }
-    .letter-choice[disabled] { opacity: .48; cursor: default; transform: none; }
-    @keyframes demo-pop { 50% { transform: scale(1.12); } }
+    .game-celebration.is-visible { visibility: visible; opacity: 1; }
+    .celebration-card {
+      width: min(100%, 310px);
+      padding: 28px 24px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 24px;
+      background: rgba(255,253,248,.96);
+      color: var(--emerald-deep);
+      text-align: center;
+      box-shadow: 0 26px 60px rgba(10,27,21,.28);
+      animation: celebration-in .38s ease;
+    }
+    .celebration-card strong { display: block; margin-bottom: 5px; color: #a77420; font-family: "Amiri", serif; font-size: 42px; line-height: 1; }
+    .celebration-card span { display: block; margin-bottom: 18px; font-size: 12px; font-weight: 800; }
+    .celebration-card button {
+      min-height: 40px;
+      padding: 9px 17px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--emerald);
+      color: #fff;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    @keyframes tile-reveal { 50% { transform: scale(1.13); } }
+    @keyframes hint-glow { 50% { border-color: #ffe377; box-shadow: 0 0 0 5px rgba(255,227,119,.32), 0 5px 0 rgba(111,66,19,.18); } }
+    @keyframes hint-letter { 50% { box-shadow: 0 0 0 7px rgba(255,215,110,.35), 0 9px 0 rgba(8,8,51,.25); } }
+    @keyframes active-tile { 50% { outline-color: rgba(255,215,110,.38); } }
+    @keyframes celebration-in { from { transform: translateY(14px) scale(.94); opacity: 0; } }
     @keyframes demo-shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
 
     .why { background: var(--paper); }
@@ -1145,7 +1426,7 @@
       .hero-board { min-height: 480px; }
       .reason-grid { grid-template-columns: 1fr 1fr; }
       .demo-grid { grid-template-columns: 1fr; }
-      .demo-card { min-height: 580px; }
+      .game-preview { width: min(100%, 610px); margin: 0 auto; }
       .selector-box, .guardrail-box { grid-template-columns: 1fr; }
       .guardrail-box { gap: 28px; }
       .guardrail-seal { width: 220px; }
@@ -1155,7 +1436,7 @@
     @media (max-width: 720px) {
       .nav { height: 66px; padding: 0 17px; }
       .brand { font-size: 24px; }
-      .brand-mark { width: 43px; height: 43px; }
+      .brand-logo-shell { width: 43px; height: 43px; padding: 5px; }
       .nav-links > a:not(.button) { display: none; }
       .nav .button { min-height: 42px; padding: 10px 15px; font-size: 12px; }
       .hero { padding: 112px 20px 64px; }
@@ -1167,8 +1448,7 @@
       .section { padding: 70px 20px; }
       .section-head { margin-bottom: 34px; }
       .reason-grid, .game-grid { grid-template-columns: 1fr; }
-      .demo-head { padding: 24px 21px 0; }
-      .demo-stage { padding: 22px 18px 25px; }
+      .preview-intro { min-height: 0; padding: 24px 21px 21px; }
       .selector-box { padding: 25px 18px; border-radius: 23px; }
       .goal-options { grid-template-columns: 1fr; }
       .game-card { min-height: 430px; }
@@ -1189,6 +1469,20 @@
       .hero-board { min-height: 340px; }
       .new-badge { right: 2%; }
       .section { padding-right: 17px; padding-left: 17px; }
+      .preview-intro { display: block; }
+      .preview-badge { display: inline-block; margin-top: 14px; }
+      .mini-game { min-height: 715px; }
+      .game-hud { padding-right: 15px; padding-left: 15px; }
+      .wasl-board-wrap { width: calc(100% - 24px); padding-right: 7px; padding-left: 7px; }
+      .wasl-crossword { transform: scale(.9); margin-top: -12px; margin-bottom: -12px; }
+      .wasl-play-zone { padding-right: 9px; padding-left: 9px; }
+      .wasl-wheel { transform: scale(.89); margin-top: -9px; margin-bottom: -16px; }
+      .wasl-side-action { top: 97px; width: 44px; height: 44px; }
+      .connect-board-v2 { transform: scale(.88); transform-origin: top center; margin-bottom: -28px; }
+      .connect-letter-bank { padding-right: 18px; padding-left: 18px; }
+      .connect-letter-choice { width: 64px; height: 64px; }
+      .connect-controls { gap: 8px; padding-right: 10px; padding-left: 10px; }
+      .connect-control { min-width: 70px; padding-right: 9px; padding-left: 9px; }
       .days { grid-template-columns: 1fr; }
       .day { min-height: 0; }
     }
@@ -1204,7 +1498,7 @@
 
   <nav class="nav" aria-label="Primary navigation">
     <a class="brand" href="/" aria-label="QariAI home">
-      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+      <span class="brand-logo-shell"><img src="/uploads/logo.png?v=20260726" alt="" width="50" height="50"></span>
       <span>Qari<em>AI</em></span>
     </a>
     <div class="nav-links">
@@ -1267,69 +1561,166 @@
         </div>
 
         <div class="demo-grid">
-          <article class="demo-card demo-card--wasl" aria-labelledby="wasl-demo-title">
-            <div class="demo-head">
-              <div class="demo-name">
+          <article class="game-preview wasl-preview" aria-labelledby="wasl-demo-title">
+            <div class="preview-intro">
+              <div>
                 <h3 id="wasl-demo-title">Wasl</h3>
-                <span class="demo-badge">Playable demo</span>
+                <p>A complete scenic mini-level: trace letters, reveal the board, use hints and finish all four Qur’anic words.</p>
               </div>
-              <p>Connect letters, find the words and build Qur’anic vocabulary.</p>
+              <span class="preview-badge">Playable mini-level</span>
             </div>
-            <div class="demo-stage">
-              <p class="demo-instruction">Find both words: <strong>light</strong> and <strong>fire</strong></p>
-              <div class="wasl-answer is-empty" id="wasl-answer" aria-live="polite">Tap a letter</div>
-              <div class="wasl-wheel" id="wasl-wheel" role="group" aria-label="Wasl Arabic letter wheel">
-                <button class="wasl-letter" type="button" data-letter="ن" aria-label="Arabic letter noon">ن</button>
-                <button class="wasl-letter" type="button" data-letter="و" aria-label="Arabic letter waw">و</button>
-                <button class="wasl-letter" type="button" data-letter="ر" aria-label="Arabic letter ra">ر</button>
-                <button class="wasl-letter" type="button" data-letter="ا" aria-label="Arabic letter alif">ا</button>
-                <button class="wheel-shuffle" id="wasl-shuffle" type="button" aria-label="Shuffle letters" title="Shuffle letters">
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 3h5v5M4 20l5.5-5.5M21 3l-7 7M16 21h5v-5M15 15l6 6M4 4l5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                </button>
+            <div class="mini-game wasl-game" id="wasl-game">
+              <div class="oasis-silhouette" aria-hidden="true"></div>
+              <div class="game-hud">
+                <div class="hud-world">
+                  <span class="hud-back" aria-hidden="true">‹</span>
+                  <span><small>Sunrise Oasis</small><strong lang="ar" dir="rtl">واحة الشروق</strong></span>
+                </div>
+                <div class="hud-progress">
+                  <small>Level 18</small>
+                  <strong id="wasl-progress">0 / 4 words</strong>
+                  <span class="hud-meter" aria-hidden="true"><span id="wasl-meter"></span></span>
+                </div>
               </div>
-              <div class="demo-actions">
-                <button class="demo-action" id="wasl-clear" type="button">Clear</button>
-                <button class="demo-action demo-action--primary" id="wasl-check" type="button">Check word</button>
+
+              <div class="wasl-board-wrap">
+                <div class="wasl-board-top"><strong>Complete the board</strong><span>4 Qur’anic words</span></div>
+                <div class="wasl-crossword" role="img" aria-label="Arabic crossword board with four hidden words">
+                  <span class="wasl-slot" id="wasl-r1c1" data-letter="م"></span>
+                  <span class="wasl-slot" id="wasl-r1c2" data-letter="ي"></span>
+                  <span class="wasl-slot" id="wasl-r1c3" data-letter="ل"></span>
+                  <span class="wasl-slot" id="wasl-r1c4" data-letter="ع"></span>
+                  <span class="wasl-slot is-blank"></span>
+
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot" id="wasl-r2c4" data-letter="ل"></span>
+                  <span class="wasl-slot is-blank"></span>
+
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot" id="wasl-r3c3" data-letter="ل"></span>
+                  <span class="wasl-slot" id="wasl-r3c4" data-letter="م"></span>
+                  <span class="wasl-slot" id="wasl-r3c5" data-letter="ع"></span>
+
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot" id="wasl-r4c4" data-letter="ا"></span>
+                  <span class="wasl-slot is-blank"></span>
+
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot is-blank"></span>
+                  <span class="wasl-slot" id="wasl-r5c4" data-letter="ل"></span>
+                  <span class="wasl-slot is-blank"></span>
+                </div>
+                <div class="wasl-word-pips" aria-label="Four words to find">
+                  <span id="wasl-pip-0"></span><span id="wasl-pip-1"></span><span id="wasl-pip-2"></span><span id="wasl-pip-3"></span>
+                </div>
               </div>
-              <p class="demo-status" id="wasl-status" aria-live="polite">Tap the letters in word order, then check your answer.</p>
-              <ul class="found-words">
-                <li class="found-word" id="found-noor">Light · نور</li>
-                <li class="found-word" id="found-naar">Fire · نار</li>
-              </ul>
+
+              <div class="wasl-play-zone">
+                <div class="wasl-answer-v2 is-empty" id="wasl-answer" aria-live="polite">Tap or trace letters</div>
+                <div class="wasl-wheel-row">
+                  <button class="wasl-side-action" id="wasl-hint" type="button" aria-label="Reveal one letter hint" title="Hint">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 22h4M8.7 15.2A7 7 0 1 1 15.3 15c-.9.7-1.3 1.4-1.3 2H10c0-.6-.4-1.2-1.3-1.8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                    <span id="wasl-hint-count">2</span>
+                  </button>
+                  <div class="wasl-wheel" id="wasl-wheel" role="group" aria-label="Wasl Arabic letter wheel">
+                    <svg class="wasl-trace" viewBox="0 0 260 260" aria-hidden="true"><polyline id="wasl-trace-line" points=""></polyline></svg>
+                    <button class="wasl-letter" type="button" data-letter="ع" aria-label="Arabic letter ain">ع</button>
+                    <button class="wasl-letter" type="button" data-letter="ل" aria-label="Arabic letter lam">ل</button>
+                    <button class="wasl-letter" type="button" data-letter="ي" aria-label="Arabic letter ya">ي</button>
+                    <button class="wasl-letter" type="button" data-letter="م" aria-label="Arabic letter meem">م</button>
+                    <button class="wasl-letter" type="button" data-letter="ا" aria-label="Arabic letter alif">ا</button>
+                    <button class="wheel-shuffle" id="wasl-shuffle" type="button" aria-label="Shuffle letters" title="Shuffle letters">
+                      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 3h5v5M4 20l5.5-5.5M21 3l-7 7M16 21h5v-5M15 15l6 6M4 4l5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </button>
+                  </div>
+                  <button class="wasl-side-action" id="wasl-clear" type="button" aria-label="Clear selected letters" title="Clear">
+                    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4 7 6-4h9a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-9l-6-4V7Zm8 3 5 5m0-5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </button>
+                </div>
+                <p class="game-status" id="wasl-status" aria-live="polite">Trace or tap letters in order. Words reveal automatically.</p>
+              </div>
+
+              <div class="game-celebration" id="wasl-celebration" aria-hidden="true">
+                <div class="celebration-card">
+                  <strong lang="ar" dir="rtl">أَحْسَنْتَ!</strong>
+                  <span>Sunrise Oasis mini-level complete</span>
+                  <button id="wasl-replay" type="button">Play again</button>
+                </div>
+              </div>
             </div>
           </article>
 
-          <article class="demo-card demo-card--connect" aria-labelledby="connect-demo-title">
-            <div class="demo-head">
-              <div class="demo-name">
+          <article class="game-preview connect-preview" aria-labelledby="connect-demo-title">
+            <div class="preview-intro">
+              <div>
                 <h3 id="connect-demo-title">Qur’an Connect</h3>
-                <span class="demo-badge">Playable demo</span>
+                <p>A connected-tile mini-level with the real game’s coloured word paths, letter tray, hints, shuffle and progression.</p>
               </div>
-              <p>Use one shared letter to complete two connected Qur’anic words.</p>
+              <span class="preview-badge">Playable mini-level</span>
             </div>
-            <div class="demo-stage">
-              <p class="demo-instruction">Which letter completes both words?</p>
-              <div class="connect-clues" aria-hidden="true"><span>Light →</span><span>Fire ↓</span></div>
-              <div class="connect-board" role="img" aria-label="Connected Arabic word puzzle">
-                <div class="connect-cell shared" id="connect-shared" role="img" aria-label="Missing shared letter">؟</div>
-                <div class="connect-cell">و</div>
-                <div class="connect-cell">ر</div>
-                <div class="connect-cell">ا</div>
-                <div class="connect-cell blank"></div>
-                <div class="connect-cell blank"></div>
-                <div class="connect-cell">ر</div>
-                <div class="connect-cell blank"></div>
-                <div class="connect-cell blank"></div>
+            <div class="mini-game connect-game" id="connect-game">
+              <div class="game-hud">
+                <div class="hud-world">
+                  <span class="hud-back" aria-hidden="true">‹</span>
+                  <span><small>Connected words</small><strong>Qur’an Connect</strong></span>
+                </div>
+                <div class="hud-progress">
+                  <small>Mini level 5</small>
+                  <strong id="connect-progress">0 / 4 words</strong>
+                  <span class="hud-meter" aria-hidden="true"><span id="connect-meter"></span></span>
+                </div>
               </div>
-              <div class="letter-choices" role="group" aria-label="Choose the shared Arabic letter">
-                <button class="letter-choice" type="button" data-connect-letter="م" aria-label="Arabic letter meem">م</button>
-                <button class="letter-choice" type="button" data-connect-letter="ن" aria-label="Arabic letter noon">ن</button>
-                <button class="letter-choice" type="button" data-connect-letter="ب" aria-label="Arabic letter ba">ب</button>
+
+              <div class="connect-board-v2" role="img" aria-label="Four connected Qur’anic words with four missing letters">
+                <span class="connect-tile connect-tile--green" style="grid-row:1;grid-column:1">ة</span>
+                <span class="connect-tile connect-fill-slot" id="connect-slot-0" data-round="0" style="grid-row:1;grid-column:2"><span class="connect-letter-value"></span><span class="connect-order connect-order--1">1</span></span>
+                <span class="connect-tile connect-tile--green" style="grid-row:1;grid-column:3">ح</span>
+                <span class="connect-tile connect-tile--green" style="grid-row:1;grid-column:4">ر</span>
+
+                <span class="connect-tile connect-tile--purple" style="grid-row:2;grid-column:1">م</span>
+                <span class="connect-tile connect-tile--orange" style="grid-row:2;grid-column:2">ل</span>
+                <span class="connect-tile connect-fill-slot" id="connect-slot-2" data-round="2" style="grid-row:2;grid-column:3"><span class="connect-letter-value"></span><span class="connect-order connect-order--2">3</span></span>
+
+                <span class="connect-tile connect-fill-slot" id="connect-slot-1" data-round="1" style="grid-row:3;grid-column:2"><span class="connect-letter-value"></span><span class="connect-order connect-order--4">2</span></span>
+                <span class="connect-tile connect-tile--blue" style="grid-row:3;grid-column:3">م</span>
+
+                <span class="connect-tile connect-fill-slot" id="connect-slot-3" data-round="3" style="grid-row:4;grid-column:3"><span class="connect-letter-value"></span><span class="connect-order connect-order--3">4</span></span>
               </div>
-              <div class="demo-actions">
-                <button class="demo-action demo-action--purple" id="connect-reset" type="button">Try again</button>
+
+              <div class="connect-round-label" id="connect-round-label">Complete word 1 of 4</div>
+              <div class="connect-letter-bank" id="connect-letter-bank" role="group" aria-label="Choose an Arabic letter for the highlighted tile">
+                <button class="connect-letter-choice" type="button" data-connect-letter="م" aria-label="Arabic letter meem">م</button>
+                <button class="connect-letter-choice" type="button" data-connect-letter="ع" aria-label="Arabic letter ain">ع</button>
+                <button class="connect-letter-choice" type="button" data-connect-letter="ك" aria-label="Arabic letter kaf">ك</button>
+                <button class="connect-letter-choice" type="button" data-connect-letter="ل" aria-label="Arabic letter lam">ل</button>
               </div>
-              <p class="demo-status" id="connect-status" aria-live="polite">Choose the letter shared by نور (light) and نار (fire).</p>
+
+              <div class="connect-controls">
+                <button class="connect-control connect-control--primary" id="connect-undo" type="button" aria-label="Undo last letter">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7 4 12l5 5M5 12h8a6 6 0 0 1 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg> Undo
+                </button>
+                <button class="connect-control" id="connect-shuffle" type="button" aria-label="Shuffle letter choices">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 3h5v5M4 20l5.5-5.5M21 3l-7 7M16 21h5v-5M15 15l6 6M4 4l5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg> Shuffle
+                </button>
+                <button class="connect-control" id="connect-hint" type="button" aria-label="Highlight the correct letter">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 22h4M8.7 15.2A7 7 0 1 1 15.3 15c-.9.7-1.3 1.4-1.3 2H10c0-.6-.4-1.2-1.3-1.8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg> Hint <span id="connect-hint-count">2</span>
+                </button>
+              </div>
+              <p class="game-status" id="connect-status" aria-live="polite">Tap a loose letter to fill the highlighted tile.</p>
+
+              <div class="game-celebration" id="connect-celebration" aria-hidden="true">
+                <div class="celebration-card">
+                  <strong lang="ar" dir="rtl">أَحْسَنْتَ!</strong>
+                  <span>All four connected words are complete</span>
+                  <button id="connect-replay" type="button">Play again</button>
+                </div>
+              </div>
             </div>
           </article>
         </div>
@@ -1570,109 +1961,338 @@
       var waslStatus = document.getElementById("wasl-status");
       var waslWheel = document.getElementById("wasl-wheel");
       var waslLetters = Array.prototype.slice.call(waslWheel.querySelectorAll(".wasl-letter"));
+      var waslTraceLine = document.getElementById("wasl-trace-line");
+      var waslProgress = document.getElementById("wasl-progress");
+      var waslMeter = document.getElementById("wasl-meter");
+      var waslCelebration = document.getElementById("wasl-celebration");
       var selectedLetters = [];
-      var foundWords = {};
+      var foundWords = Object.create(null);
+      var waslHints = 2;
+      var waslPositions = [
+        { x: 99, y: 8 },
+        { x: 184, y: 67 },
+        { x: 151, y: 169 },
+        { x: 47, y: 169 },
+        { x: 14, y: 67 }
+      ];
+      var waslWords = {
+        "عليم": ["wasl-r1c4", "wasl-r1c3", "wasl-r1c2", "wasl-r1c1"],
+        "علم": ["wasl-r1c4", "wasl-r2c4", "wasl-r3c4"],
+        "عمل": ["wasl-r3c5", "wasl-r3c4", "wasl-r3c3"],
+        "مال": ["wasl-r3c4", "wasl-r4c4", "wasl-r5c4"]
+      };
+      var waslWordOrder = ["عليم", "علم", "عمل", "مال"];
+
+      function layoutWaslLetters(order) {
+        order.forEach(function (button, index) {
+          button.style.setProperty("--x", waslPositions[index].x + "px");
+          button.style.setProperty("--y", waslPositions[index].y + "px");
+        });
+      }
+
+      function updateWaslTrace() {
+        var wheelRect = waslWheel.getBoundingClientRect();
+        var scaleX = 260 / wheelRect.width;
+        var scaleY = 260 / wheelRect.height;
+        var points = selectedLetters.map(function (item) {
+          var rect = item.button.getBoundingClientRect();
+          return [
+            ((rect.left + rect.width / 2) - wheelRect.left) * scaleX,
+            ((rect.top + rect.height / 2) - wheelRect.top) * scaleY
+          ].join(",");
+        }).join(" ");
+        waslTraceLine.setAttribute("points", points);
+      }
 
       function renderWaslAnswer() {
         var word = selectedLetters.map(function (item) { return item.letter; }).join("");
-        waslAnswer.textContent = word || "Tap a letter";
+        waslAnswer.textContent = word || "Tap or trace letters";
         waslAnswer.classList.toggle("is-empty", !word);
+        updateWaslTrace();
       }
 
       function clearWaslSelection() {
         selectedLetters = [];
-        waslLetters.forEach(function (button) { button.disabled = false; });
+        waslLetters.forEach(function (button) { button.classList.remove("is-selected"); });
         renderWaslAnswer();
       }
 
-      waslLetters.forEach(function (button) {
-        button.addEventListener("click", function () {
-          selectedLetters.push({ letter: button.getAttribute("data-letter"), button: button });
-          button.disabled = true;
-          waslStatus.className = "demo-status";
-          waslStatus.textContent = "Now check the word, or clear and try again.";
-          renderWaslAnswer();
+      function revealWaslWord(word) {
+        waslWords[word].forEach(function (id) {
+          var cell = document.getElementById(id);
+          cell.textContent = cell.getAttribute("data-letter");
+          cell.classList.add("is-revealed");
         });
+        document.getElementById("wasl-pip-" + waslWordOrder.indexOf(word)).classList.add("is-found");
+      }
+
+      function updateWaslProgress() {
+        var count = Object.keys(foundWords).length;
+        waslProgress.textContent = count + " / 4 words";
+        waslMeter.style.width = (count * 25) + "%";
+        if (count === 4) {
+          waslStatus.className = "game-status";
+          waslStatus.textContent = "";
+          waslCelebration.classList.add("is-visible");
+          waslCelebration.setAttribute("aria-hidden", "false");
+          track("quran_games_wasl_complete");
+        }
+      }
+
+      function evaluateWaslSelection(force) {
+        var word = selectedLetters.map(function (item) { return item.letter; }).join("");
+        if (!word) return;
+
+        if (waslWords[word]) {
+          if (foundWords[word]) {
+            waslStatus.className = "game-status";
+            waslStatus.textContent = "You already found that word.";
+          } else {
+            foundWords[word] = true;
+            revealWaslWord(word);
+            waslStatus.className = "game-status is-success";
+            waslStatus.textContent = "Word found — " + (4 - Object.keys(foundWords).length) + " remaining.";
+            track("quran_games_wasl_attempt", { result: "correct", word_length: word.length });
+            updateWaslProgress();
+          }
+          window.setTimeout(clearWaslSelection, 260);
+          return;
+        }
+
+        var isPrefix = waslWordOrder.some(function (target) {
+          return !foundWords[target] && target.indexOf(word) === 0;
+        });
+        if (!isPrefix || force) {
+          waslStatus.className = "game-status is-error";
+          waslStatus.textContent = "Not on this board — try another path.";
+          track("quran_games_wasl_attempt", { result: "incorrect" });
+          window.setTimeout(clearWaslSelection, 360);
+        } else {
+          waslStatus.className = "game-status";
+          waslStatus.textContent = "Keep going…";
+        }
+      }
+
+      function addWaslLetter(button) {
+        if (button.classList.contains("is-selected")) return;
+        selectedLetters.push({ letter: button.getAttribute("data-letter"), button: button });
+        button.classList.add("is-selected");
+        renderWaslAnswer();
+        evaluateWaslSelection(false);
+      }
+
+      var waslTracing = false;
+      var waslTraceMoved = false;
+      waslLetters.forEach(function (button) {
+        button.addEventListener("pointerdown", function (event) {
+          event.preventDefault();
+          waslTracing = true;
+          waslTraceMoved = false;
+          addWaslLetter(button);
+        });
+        button.addEventListener("click", function (event) {
+          if (event.detail === 0) addWaslLetter(button);
+        });
+      });
+
+      document.addEventListener("pointermove", function (event) {
+        if (!waslTracing) return;
+        var target = document.elementFromPoint(event.clientX, event.clientY);
+        var button = target && target.closest ? target.closest(".wasl-letter") : null;
+        if (button && waslWheel.contains(button) && !button.classList.contains("is-selected")) {
+          waslTraceMoved = true;
+          addWaslLetter(button);
+        }
+      });
+
+      document.addEventListener("pointerup", function () {
+        if (!waslTracing) return;
+        waslTracing = false;
+        var word = selectedLetters.map(function (item) { return item.letter; }).join("");
+        if (waslTraceMoved && !waslWords[word]) evaluateWaslSelection(true);
       });
 
       document.getElementById("wasl-clear").addEventListener("click", function () {
         clearWaslSelection();
-        waslStatus.className = "demo-status";
-        waslStatus.textContent = "Tap the letters in word order, then check your answer.";
-      });
-
-      document.getElementById("wasl-check").addEventListener("click", function () {
-        var word = selectedLetters.map(function (item) { return item.letter; }).join("");
-        var valid = word === "نور" || word === "نار";
-
-        if (!word) {
-          waslStatus.className = "demo-status is-error";
-          waslStatus.textContent = "Choose some letters first.";
-          return;
-        }
-
-        if (!valid) {
-          waslStatus.className = "demo-status is-error";
-          waslStatus.textContent = "Not this word. Clear the letters and try another order.";
-          track("quran_games_wasl_attempt", { result: "incorrect" });
-          return;
-        }
-
-        foundWords[word] = true;
-        document.getElementById(word === "نور" ? "found-noor" : "found-naar").classList.add("is-found");
-        waslStatus.className = "demo-status is-success";
-        waslStatus.textContent = foundWords["نور"] && foundWords["نار"]
-          ? "Ahsant! You found both words."
-          : "Ahsant! One word found—now find the other.";
-        track("quran_games_wasl_attempt", { result: "correct", word_length: word.length });
-        window.setTimeout(clearWaslSelection, 450);
+        waslStatus.className = "game-status";
+        waslStatus.textContent = "Selection cleared. Trace or tap a new word.";
       });
 
       document.getElementById("wasl-shuffle").addEventListener("click", function () {
         clearWaslSelection();
         var shuffled = waslLetters.slice().sort(function () { return Math.random() - .5; });
-        shuffled.forEach(function (button) { waslWheel.insertBefore(button, document.getElementById("wasl-shuffle")); });
-        waslStatus.className = "demo-status";
-        waslStatus.textContent = "Letters shuffled. Find light or fire.";
+        layoutWaslLetters(shuffled);
+        waslStatus.className = "game-status";
+        waslStatus.textContent = "Letters shuffled — the board stays the same.";
         track("quran_games_wasl_shuffle");
       });
 
-      var connectShared = document.getElementById("connect-shared");
-      var connectStatus = document.getElementById("connect-status");
-      var connectChoices = Array.prototype.slice.call(document.querySelectorAll("[data-connect-letter]"));
+      document.getElementById("wasl-hint").addEventListener("click", function () {
+        if (!waslHints) {
+          waslStatus.className = "game-status";
+          waslStatus.textContent = "No hints left in this mini-level.";
+          return;
+        }
+        var target = waslWordOrder.filter(function (word) { return !foundWords[word]; })[0];
+        if (!target) return;
+        var hintCell = waslWords[target].map(function (id) { return document.getElementById(id); }).filter(function (cell) {
+          return !cell.classList.contains("is-revealed");
+        })[0];
+        if (hintCell) {
+          hintCell.textContent = hintCell.getAttribute("data-letter");
+          hintCell.classList.add("is-hint");
+          window.setTimeout(function () {
+            if (!hintCell.classList.contains("is-revealed")) hintCell.textContent = "";
+            hintCell.classList.remove("is-hint");
+          }, 1800);
+        }
+        waslHints -= 1;
+        document.getElementById("wasl-hint-count").textContent = waslHints;
+        waslStatus.className = "game-status is-success";
+        waslStatus.textContent = "A board letter is glowing.";
+        track("quran_games_wasl_hint");
+      });
 
-      function resetConnect() {
-        connectShared.textContent = "؟";
-        connectShared.className = "connect-cell shared";
-        connectChoices.forEach(function (button) { button.disabled = false; });
-        connectStatus.className = "demo-status";
-        connectStatus.textContent = "Choose the letter shared by نور (light) and نار (fire).";
+      document.getElementById("wasl-replay").addEventListener("click", function () {
+        foundWords = Object.create(null);
+        waslHints = 2;
+        document.getElementById("wasl-hint-count").textContent = "2";
+        clearWaslSelection();
+        Object.keys(waslWords).forEach(function (word) {
+          waslWords[word].forEach(function (id) {
+            var cell = document.getElementById(id);
+            cell.textContent = "";
+            cell.classList.remove("is-revealed", "is-hint");
+          });
+        });
+        document.querySelectorAll(".wasl-word-pips span").forEach(function (pip) { pip.classList.remove("is-found"); });
+        waslCelebration.classList.remove("is-visible");
+        waslCelebration.setAttribute("aria-hidden", "true");
+        waslStatus.className = "game-status";
+        waslStatus.textContent = "Trace or tap letters in order. Words reveal automatically.";
+        updateWaslProgress();
+      });
+
+      layoutWaslLetters(waslLetters);
+
+      var connectStatus = document.getElementById("connect-status");
+      var connectChoices = Array.prototype.slice.call(document.querySelectorAll(".connect-letter-choice"));
+      var connectBank = document.getElementById("connect-letter-bank");
+      var connectProgress = document.getElementById("connect-progress");
+      var connectMeter = document.getElementById("connect-meter");
+      var connectRoundLabel = document.getElementById("connect-round-label");
+      var connectCelebration = document.getElementById("connect-celebration");
+      var connectAnswers = ["م", "ك", "ع", "ل"];
+      var connectColours = ["connect-tile--green", "connect-tile--orange", "connect-tile--purple", "connect-tile--blue"];
+      var connectRound = 0;
+      var connectHints = 2;
+
+      function updateConnectGame() {
+        Array.prototype.slice.call(document.querySelectorAll(".connect-fill-slot")).forEach(function (slot) {
+          var round = Number(slot.getAttribute("data-round"));
+          slot.classList.toggle("is-active", round === connectRound && connectRound < connectAnswers.length);
+        });
+        connectProgress.textContent = connectRound + " / 4 words";
+        connectMeter.style.width = (connectRound * 25) + "%";
+        connectRoundLabel.textContent = connectRound < 4 ? "Complete word " + (connectRound + 1) + " of 4" : "Mini-level complete";
+        if (connectRound === 4) {
+          connectStatus.className = "game-status";
+          connectStatus.textContent = "";
+          connectCelebration.classList.add("is-visible");
+          connectCelebration.setAttribute("aria-hidden", "false");
+          track("quran_games_connect_complete");
+        }
       }
 
       connectChoices.forEach(function (button) {
         button.addEventListener("click", function () {
+          if (connectRound >= connectAnswers.length) return;
           var letter = button.getAttribute("data-connect-letter");
-          connectShared.textContent = letter;
-          if (letter === "ن") {
-            connectShared.className = "connect-cell shared is-correct";
-            connectStatus.className = "demo-status is-success";
-            connectStatus.textContent = "Ahsant! ن completes نور and نار.";
-            connectChoices.forEach(function (choice) { choice.disabled = true; });
-            track("quran_games_connect_attempt", { result: "correct" });
+          var slot = document.getElementById("connect-slot-" + connectRound);
+          if (letter === connectAnswers[connectRound]) {
+            slot.querySelector(".connect-letter-value").textContent = letter;
+            slot.classList.remove("is-active", "is-wrong");
+            slot.classList.add("is-filled", connectColours[connectRound]);
+            connectRound += 1;
+            connectStatus.className = "game-status is-success";
+            connectStatus.textContent = connectRound < 4 ? "Connected — the next tile is ready." : "";
+            track("quran_games_connect_attempt", { result: "correct", word_number: connectRound });
+            updateConnectGame();
           } else {
-            connectShared.className = "connect-cell shared is-wrong";
-            connectStatus.className = "demo-status is-error";
-            connectStatus.textContent = "Not quite. Try the letter both words begin with.";
-            track("quran_games_connect_attempt", { result: "incorrect" });
+            slot.classList.add("is-wrong");
+            button.classList.add("is-wrong");
+            connectStatus.className = "game-status is-error";
+            connectStatus.textContent = "That letter does not complete this word. Try again.";
+            track("quran_games_connect_attempt", { result: "incorrect", word_number: connectRound + 1 });
             window.setTimeout(function () {
-              connectShared.textContent = "؟";
-              connectShared.className = "connect-cell shared";
-            }, 480);
+              slot.classList.remove("is-wrong");
+              button.classList.remove("is-wrong");
+            }, 430);
           }
         });
       });
 
-      document.getElementById("connect-reset").addEventListener("click", resetConnect);
+      document.getElementById("connect-undo").addEventListener("click", function () {
+        if (!connectRound) {
+          connectStatus.className = "game-status";
+          connectStatus.textContent = "There is no placed letter to undo.";
+          return;
+        }
+        connectCelebration.classList.remove("is-visible");
+        connectCelebration.setAttribute("aria-hidden", "true");
+        connectRound -= 1;
+        var slot = document.getElementById("connect-slot-" + connectRound);
+        slot.querySelector(".connect-letter-value").textContent = "";
+        slot.className = "connect-tile connect-fill-slot";
+        connectStatus.className = "game-status";
+        connectStatus.textContent = "Last letter returned to the tray.";
+        updateConnectGame();
+      });
+
+      document.getElementById("connect-shuffle").addEventListener("click", function () {
+        connectChoices.slice().sort(function () { return Math.random() - .5; }).forEach(function (button) {
+          connectBank.appendChild(button);
+        });
+        connectStatus.className = "game-status";
+        connectStatus.textContent = "Loose letters shuffled.";
+        track("quran_games_connect_shuffle");
+      });
+
+      document.getElementById("connect-hint").addEventListener("click", function () {
+        if (!connectHints || connectRound >= 4) {
+          connectStatus.className = "game-status";
+          connectStatus.textContent = connectRound >= 4 ? "" : "No hints left in this mini-level.";
+          return;
+        }
+        var correct = connectAnswers[connectRound];
+        var choice = connectChoices.filter(function (button) {
+          return button.getAttribute("data-connect-letter") === correct;
+        })[0];
+        choice.classList.add("is-hint");
+        window.setTimeout(function () { choice.classList.remove("is-hint"); }, 1900);
+        connectHints -= 1;
+        document.getElementById("connect-hint-count").textContent = connectHints;
+        connectStatus.className = "game-status is-success";
+        connectStatus.textContent = "The correct loose tile is glowing.";
+        track("quran_games_connect_hint");
+      });
+
+      document.getElementById("connect-replay").addEventListener("click", function () {
+        connectRound = 0;
+        connectHints = 2;
+        document.getElementById("connect-hint-count").textContent = "2";
+        Array.prototype.slice.call(document.querySelectorAll(".connect-fill-slot")).forEach(function (slot) {
+          slot.querySelector(".connect-letter-value").textContent = "";
+          slot.className = "connect-tile connect-fill-slot";
+        });
+        connectCelebration.classList.remove("is-visible");
+        connectCelebration.setAttribute("aria-hidden", "true");
+        connectStatus.className = "game-status";
+        connectStatus.textContent = "Tap a loose letter to fill the highlighted tile.";
+        updateConnectGame();
+      });
+
+      updateConnectGame();
 
       var gameNames = {
         "tajweed-quest": "Start with Tajweed Quest — recite and practise one rule at a time.",
