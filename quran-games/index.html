@@ -958,7 +958,7 @@
       outline-offset: 4px;
       animation: active-tile 1.3s ease infinite;
     }
-    .connect-fill-slot.is-active::before { content: "؟"; position: absolute; inset: 0; display: grid; place-items: center; color: #77738f; font-size: 25px; }
+    .connect-fill-slot.is-active::before { content: ""; position: absolute; inset: 7px; border: 2px dashed #8b82a8; border-radius: 9px; animation: hint-letter 1.15s ease infinite; }
     .connect-fill-slot.is-filled { opacity: 1; color: #fff; animation: tile-reveal .32s ease; }
     .connect-fill-slot.is-filled::before { content: none; }
     .connect-letter-value { position: relative; z-index: 1; }
@@ -2548,33 +2548,25 @@
         }
       }
 
-      connectChoices.forEach(function (button) {
-        button.addEventListener("click", function () {
-          if (connectResolving || connectRound >= connectAnswers.length) return;
+      connectBank.addEventListener("click", function (event) {
+          var button = event.target.closest(".connect-letter-choice");
+          if (!button || connectRound >= connectAnswers.length) return;
           startConnectDemo();
           clearConnectFeedbackTimer();
           var letter = button.getAttribute("data-connect-letter");
           var slot = document.getElementById("connect-slot-" + connectRound);
           if (letter === connectAnswers[connectRound]) {
-            connectResolving = true;
-            connectBank.classList.add("is-locked");
-            button.classList.add("is-placing");
             slot.querySelector(".connect-letter-value").textContent = letter;
             slot.classList.remove("is-active", "is-wrong");
             slot.classList.add("is-filled", connectColours[connectRound]);
             var completedRound = connectRound + 1;
-            setConnectStatus("Correct — word " + completedRound + " completed.", "is-success", 0);
             track("quran_games_connect_attempt", { result: "correct", word_number: completedRound });
-            window.setTimeout(function () {
-              button.classList.remove("is-placing");
-              connectRound = completedRound;
-              connectResolving = false;
-              connectBank.classList.remove("is-locked");
-              updateConnectGame();
-              if (connectRound < connectAnswers.length) {
-                setConnectStatus("Tile " + (connectRound + 1) + " is ready.", "", 750);
-              }
-            }, 210);
+            connectRound = completedRound;
+            connectStatus.className = "game-status";
+            connectStatus.textContent = connectRound < connectAnswers.length
+              ? "Word complete. Choose a letter for word " + (connectRound + 1) + "."
+              : "";
+            updateConnectGame();
           } else {
             slot.classList.add("is-wrong");
             button.classList.add("is-wrong");
@@ -2585,7 +2577,6 @@
               button.classList.remove("is-wrong");
             }, 430);
           }
-        });
       });
 
       document.getElementById("connect-undo").addEventListener("click", function () {
