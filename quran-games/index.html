@@ -848,6 +848,7 @@
     }
     .wasl-letter:hover { transform: scale(1.06); }
     .wasl-letter.is-selected { background: #147b56; color: #fff; transform: scale(.94); }
+    .wasl-letter.is-accepted { background: #f3cf68; color: #173c2e; transform: scale(1.08); }
     .wasl-letter.is-hint { animation: hint-glow .9s ease 2; }
     .wheel-shuffle {
       position: absolute;
@@ -1030,6 +1031,14 @@
     .connect-letter-choice:hover { transform: translateY(-4px); }
     .connect-letter-choice.is-hint { animation: hint-letter 1s ease 2; }
     .connect-letter-choice.is-wrong { background: #ffe5e0; animation: demo-shake .24s ease; }
+    .connect-letter-choice.is-placing {
+      pointer-events: none;
+      background: #dff7eb;
+      color: #0c6b48;
+      transform: translateY(-5px) scale(.94);
+      box-shadow: 0 4px 0 rgba(8, 8, 51, .2), 0 9px 18px rgba(8,8,51,.12);
+    }
+    .connect-letter-bank.is-locked .connect-letter-choice { pointer-events: none; }
     .connect-controls {
       position: relative;
       z-index: 4;
@@ -2225,6 +2234,7 @@
       var waslStarted = false;
       var waslResetTimer = 0;
       var waslResolving = false;
+      var waslStatusTimer = 0;
       var waslPositions = [
         { x: 99, y: 8 },
         { x: 184, y: 67 },
@@ -2280,7 +2290,7 @@
           waslResetTimer = 0;
         }
         selectedLetters = [];
-        waslLetters.forEach(function (button) { button.classList.remove("is-selected"); });
+        waslLetters.forEach(function (button) { button.classList.remove("is-selected", "is-accepted"); });
         renderWaslAnswer();
         waslResolving = false;
       }
@@ -2291,6 +2301,20 @@
         waslResetTimer = window.setTimeout(function () {
           waslResetTimer = 0;
           clearWaslSelection();
+        }, delay);
+      }
+
+      function settleWaslStatus(message, className, delay) {
+        if (waslStatusTimer) window.clearTimeout(waslStatusTimer);
+        waslStatus.className = "game-status" + (className ? " " + className : "");
+        waslStatus.textContent = message;
+        if (!delay) return;
+        waslStatusTimer = window.setTimeout(function () {
+          waslStatusTimer = 0;
+          if (!waslCelebration.classList.contains("is-visible")) {
+            waslStatus.className = "game-status";
+            waslStatus.textContent = "Tap or trace the next word.";
+          }
         }, delay);
       }
 
@@ -2328,12 +2352,12 @@
           } else {
             foundWords[word] = true;
             revealWaslWord(word);
-            waslStatus.className = "game-status is-success";
-            waslStatus.textContent = "Correct: " + word + " — " + (4 - Object.keys(foundWords).length) + " remaining.";
+            selectedLetters.forEach(function (item) { item.button.classList.add("is-accepted"); });
+            settleWaslStatus("Correct: " + word + " — " + (4 - Object.keys(foundWords).length) + " remaining.", "is-success", 900);
             track("quran_games_wasl_attempt", { result: "correct", word_length: word.length });
             updateWaslProgress();
           }
-          scheduleWaslClear(320);
+          scheduleWaslClear(220);
           return;
         }
 
@@ -2344,7 +2368,7 @@
           waslStatus.className = "game-status is-error";
           waslStatus.textContent = "Not on this board — try another path.";
           track("quran_games_wasl_attempt", { result: "incorrect" });
-          scheduleWaslClear(420);
+          scheduleWaslClear(280);
         } else {
           waslStatus.className = "game-status";
           waslStatus.textContent = "Keep going…";
@@ -2352,7 +2376,14 @@
       }
 
       function addWaslLetter(button) {
-        if (waslResolving || button.classList.contains("is-selected")) return;
+        /* A fast next tap starts the next word instead of being swallowed by
+           the previous word's short success/error animation. */
+        if (waslResolving) clearWaslSelection();
+        if (button.classList.contains("is-selected")) return;
+        if (waslStatusTimer) {
+          window.clearTimeout(waslStatusTimer);
+          waslStatusTimer = 0;
+        }
         startWaslDemo();
         selectedLetters.push({ letter: button.getAttribute("data-letter"), button: button });
         button.classList.add("is-selected");
@@ -2366,9 +2397,12 @@
         button.addEventListener("click", function () {
           addWaslLetter(button);
         });
-        button.addEventListener("pointerdown", function () {
+        button.addEventListener("pointerdown", function (event) {
           waslTracing = true;
           waslTraceMoved = false;
+          /* Select the first traced letter immediately. The following click is
+             harmless because selected letters are de-duplicated. */
+          if (event.pointerType !== "mouse" || event.buttons === 1) addWaslLetter(button);
         });
       });
 
@@ -2467,6 +2501,28 @@
       var connectRound = 0;
       var connectHints = 2;
       var connectStarted = false;
+      var connectResolving = false;
+      var connectFeedbackTimer = 0;
+
+      function clearConnectFeedbackTimer() {
+        if (!connectFeedbackTimer) return;
+        window.clearTimeout(connectFeedbackTimer);
+        connectFeedbackTimer = 0;
+      }
+
+      function setConnectStatus(message, className, delay) {
+        clearConnectFeedbackTimer();
+        connectStatus.className = "game-status" + (className ? " " + className : "");
+        connectStatus.textContent = message;
+        if (!delay) return;
+        connectFeedbackTimer = window.setTimeout(function () {
+          connectFeedbackTimer = 0;
+          if (connectRound < connectAnswers.length && !connectResolving) {
+            connectStatus.className = "game-status";
+            connectStatus.textContent = "Tap a loose letter for tile " + (connectRound + 1) + ".";
+          }
+        }, delay);
+      }
 
       function startConnectDemo() {
         if (connectStarted) return;
@@ -2494,24 +2550,35 @@
 
       connectChoices.forEach(function (button) {
         button.addEventListener("click", function () {
-          if (connectRound >= connectAnswers.length) return;
+          if (connectResolving || connectRound >= connectAnswers.length) return;
           startConnectDemo();
+          clearConnectFeedbackTimer();
           var letter = button.getAttribute("data-connect-letter");
           var slot = document.getElementById("connect-slot-" + connectRound);
           if (letter === connectAnswers[connectRound]) {
+            connectResolving = true;
+            connectBank.classList.add("is-locked");
+            button.classList.add("is-placing");
             slot.querySelector(".connect-letter-value").textContent = letter;
             slot.classList.remove("is-active", "is-wrong");
             slot.classList.add("is-filled", connectColours[connectRound]);
-            connectRound += 1;
-            connectStatus.className = "game-status is-success";
-            connectStatus.textContent = connectRound < 4 ? "Correct — word " + connectRound + " completed. The next tile is ready." : "";
-            track("quran_games_connect_attempt", { result: "correct", word_number: connectRound });
-            updateConnectGame();
+            var completedRound = connectRound + 1;
+            setConnectStatus("Correct — word " + completedRound + " completed.", "is-success", 0);
+            track("quran_games_connect_attempt", { result: "correct", word_number: completedRound });
+            window.setTimeout(function () {
+              button.classList.remove("is-placing");
+              connectRound = completedRound;
+              connectResolving = false;
+              connectBank.classList.remove("is-locked");
+              updateConnectGame();
+              if (connectRound < connectAnswers.length) {
+                setConnectStatus("Tile " + (connectRound + 1) + " is ready.", "", 750);
+              }
+            }, 210);
           } else {
             slot.classList.add("is-wrong");
             button.classList.add("is-wrong");
-            connectStatus.className = "game-status is-error";
-            connectStatus.textContent = "That letter does not complete this word. Try again.";
+            setConnectStatus("That letter does not complete this word. Try again.", "is-error", 850);
             track("quran_games_connect_attempt", { result: "incorrect", word_number: connectRound + 1 });
             window.setTimeout(function () {
               slot.classList.remove("is-wrong");
@@ -2522,6 +2589,8 @@
       });
 
       document.getElementById("connect-undo").addEventListener("click", function () {
+        if (connectResolving) return;
+        clearConnectFeedbackTimer();
         startConnectDemo();
         if (!connectRound) {
           connectStatus.className = "game-status";
@@ -2540,6 +2609,7 @@
       });
 
       document.getElementById("connect-shuffle").addEventListener("click", function () {
+        if (connectResolving) return;
         startConnectDemo();
         connectChoices.slice().sort(function () { return Math.random() - .5; }).forEach(function (button) {
           connectBank.appendChild(button);
@@ -2550,6 +2620,7 @@
       });
 
       document.getElementById("connect-hint").addEventListener("click", function () {
+        if (connectResolving) return;
         startConnectDemo();
         if (!connectHints || connectRound >= 4) {
           connectStatus.className = "game-status";
@@ -2570,6 +2641,10 @@
       });
 
       document.getElementById("connect-replay").addEventListener("click", function () {
+        clearConnectFeedbackTimer();
+        connectResolving = false;
+        connectBank.classList.remove("is-locked");
+        connectChoices.forEach(function (button) { button.classList.remove("is-placing", "is-wrong", "is-hint"); });
         connectRound = 0;
         connectHints = 2;
         document.getElementById("connect-hint-count").textContent = "2";
