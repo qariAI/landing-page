@@ -1257,10 +1257,51 @@
         linear-gradient(180deg, #79cbd1 0 42%, #f3bd67 42% 69%, #c8793d 69%);
     }
     .wasl-card-logo {
-      width: min(174px, 54%);
-      max-height: 192px;
-      object-fit: contain;
+      width: min(210px, 66%);
+      display: grid;
+      justify-items: center;
+      gap: 4px;
+      color: #fffdf6;
       filter: drop-shadow(0 16px 24px rgba(33, 47, 42, .28));
+    }
+    .wasl-card-logo strong {
+      font-family: "Noto Naskh Arabic", serif;
+      font-size: 56px;
+      line-height: .9;
+      color: #fffdf6;
+    }
+    .wasl-card-logo small {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .34em;
+      padding-left: .34em;
+      color: rgba(255,255,255,.84);
+    }
+    .wasl-mark {
+      position: relative;
+      width: 78px;
+      height: 78px;
+      transform: rotate(45deg);
+    }
+    .wasl-mark i {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #fff7dd;
+      box-shadow: inset 0 0 0 2px rgba(8,76,57,.16);
+    }
+    .wasl-mark i:nth-child(1) { left: 0; top: 0; }
+    .wasl-mark i:nth-child(2) { right: 0; top: 0; background: #f3c561; }
+    .wasl-mark i:nth-child(3) { left: 0; bottom: 0; background: #0c7457; }
+    .wasl-mark i:nth-child(4) { right: 0; bottom: 0; background: #33417f; }
+    .wasl-mark::after {
+      content: "";
+      position: absolute;
+      inset: 27px;
+      border-radius: 5px;
+      background: #fffdf6;
+      box-shadow: 0 0 0 5px rgba(8,76,57,.22);
     }
     .wasl-card-wheel {
       position: relative;
@@ -1728,7 +1769,7 @@
               <span class="preview-badge">Web preview · Coming soon</span>
             </div>
             <div class="mini-game wasl-game" id="wasl-game">
-              <div class="demo-start-screen" id="wasl-start-screen">
+              <div class="demo-start-screen is-hidden" id="wasl-start-screen" aria-hidden="true">
                 <div class="demo-start-card">
                   <span class="demo-start-kicker">How to play</span>
                   <h4>Build a word from the wheel</h4>
@@ -1835,7 +1876,7 @@
               <span class="preview-badge">Playable now</span>
             </div>
             <div class="mini-game connect-game" id="connect-game">
-              <div class="demo-start-screen" id="connect-start-screen">
+              <div class="demo-start-screen is-hidden" id="connect-start-screen" aria-hidden="true">
                 <div class="demo-start-card">
                   <span class="demo-start-kicker">How to play</span>
                   <h4>Complete the highlighted tile</h4>
@@ -2050,7 +2091,11 @@
 
           <article class="game-card game-card--wasl" id="wasl" data-game-card="wasl">
             <div class="game-art">
-              <img class="wasl-card-logo" src="/quran-games/assets/wasl-logo.png" alt="Wasl — وَصْل game logo" width="546" height="900">
+              <div class="wasl-card-logo" role="img" aria-label="Wasl — وَصْل">
+                <span class="wasl-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                <strong lang="ar" dir="rtl">وَصْل</strong>
+                <small>WASL</small>
+              </div>
             </div>
             <div class="game-content">
               <div class="game-topline"><span class="game-label">Scenic word wheel</span><span class="game-status game-status--soon">Coming Soon</span></div>
@@ -2318,14 +2363,12 @@
       var waslTracing = false;
       var waslTraceMoved = false;
       waslLetters.forEach(function (button) {
-        button.addEventListener("pointerdown", function (event) {
-          event.preventDefault();
-          waslTracing = true;
-          waslTraceMoved = false;
+        button.addEventListener("click", function () {
           addWaslLetter(button);
         });
-        button.addEventListener("click", function (event) {
-          if (event.detail === 0) addWaslLetter(button);
+        button.addEventListener("pointerdown", function () {
+          waslTracing = true;
+          waslTraceMoved = false;
         });
       });
 
@@ -2410,6 +2453,7 @@
       });
 
       layoutWaslLetters(waslLetters);
+      document.getElementById("wasl-game").classList.add("demo-active");
 
       var connectStatus = document.getElementById("connect-status");
       var connectChoices = Array.prototype.slice.call(document.querySelectorAll(".connect-letter-choice"));
@@ -2541,6 +2585,7 @@
       });
 
       updateConnectGame();
+      document.getElementById("connect-game").classList.add("demo-active");
 
       function launchDemo(name, trigger) {
         var game = document.getElementById(name === "wasl" ? "wasl-game" : "connect-game");
