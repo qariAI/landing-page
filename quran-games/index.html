@@ -4,24 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <title>Free Qur’an Word Games: Try Wasl &amp; Qur’an Connect | QariAI</title>
-  <meta name="description" content="Play free demos of Wasl and Qur’an Connect, then discover respectful Qur’an learning games for Tajweed, Arabic letters and Qur’anic vocabulary inside QariAI.">
+  <title>Free Qur’an Games Online: Play Wasl &amp; Qur’an Connect | QariAI</title>
+  <meta name="description" content="Play free Qur’an games online with Wasl and Qur’an Connect demos. Practise Qur’anic vocabulary, then download QariAI for the complete Android games.">
   <link rel="canonical" href="https://qariai.app/quran-games">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="QariAI">
-  <meta property="og:title" content="Play Wasl & Qur’an Connect — Free Qur’an Word Game Demos">
-  <meta property="og:description" content="Try two focused Qur’an word games, then turn a few playful minutes into meaningful practice.">
+  <meta property="og:title" content="Free Qur’an Games Online — Wasl & Qur’an Connect">
+  <meta property="og:description" content="Play two Qur’an word game demos, then continue with the complete learning games inside QariAI.">
   <meta property="og:url" content="https://qariai.app/quran-games">
-  <meta property="og:image" content="https://qariai.app/screenshots/og-image.png">
+  <meta property="og:image" content="https://qariai.app/quran-games/social-card.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="QariAI Qur’an learning app">
+  <meta property="og:image:alt" content="Free Qur’an games online with Wasl and Qur’an Connect by QariAI">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Play Wasl & Qur’an Connect">
-  <meta name="twitter:description" content="Try two free Qur’an word game demos from QariAI.">
-  <meta name="twitter:image" content="https://qariai.app/screenshots/og-image.png">
+  <meta name="twitter:title" content="Free Qur’an Games Online — Wasl & Qur’an Connect">
+  <meta name="twitter:description" content="Play two Qur’an word game demos, then continue with the complete learning games inside QariAI.">
+  <meta name="twitter:image" content="https://qariai.app/quran-games/social-card.png">
 
   <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2">
   <link rel="apple-touch-icon" href="/favicon.png?v=2">
@@ -37,9 +38,15 @@
         "@type": "WebPage",
         "@id": "https://qariai.app/quran-games#webpage",
         "url": "https://qariai.app/quran-games",
-        "name": "Free Qur’an Word Games: Try Wasl and Qur’an Connect",
-        "description": "Two playable Qur’an word game demos plus a practical guide to respectful game-based Qur’an learning.",
+        "name": "Free Qur’an Games Online: Play Wasl and Qur’an Connect",
+        "description": "Play free Qur’an game demos online, practise Qur’anic Arabic vocabulary and continue with the complete learning games in the QariAI Android app.",
         "isPartOf": { "@id": "https://qariai.app/#website" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://qariai.app/quran-games/social-card.png",
+          "width": 1200,
+          "height": 630
+        },
         "about": [
           { "@type": "Thing", "name": "Qur’an learning" },
           { "@type": "Thing", "name": "Tajweed practice" },
@@ -1021,19 +1028,50 @@
       animation: celebration-in .38s ease;
     }
     .celebration-card strong { display: block; margin-bottom: 5px; color: #a77420; font-family: "Amiri", serif; font-size: 42px; line-height: 1; }
-    .celebration-card span { display: block; margin-bottom: 18px; font-size: 12px; font-weight: 800; }
-    .celebration-card button {
+    .celebration-card > span { display: block; margin-bottom: 18px; font-size: 12px; font-weight: 800; }
+    .celebration-actions { display: grid; gap: 9px; }
+    .celebration-card button,
+    .celebration-install {
       min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 9px 17px;
       border: 0;
       border-radius: 999px;
-      background: var(--emerald);
-      color: #fff;
       font: inherit;
       font-size: 11px;
       font-weight: 900;
       cursor: pointer;
     }
+    .celebration-install {
+      background: var(--emerald);
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(12, 107, 72, .22);
+    }
+    .celebration-card button { background: #e9f3ed; color: var(--emerald-deep); }
+    .demo-install-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 24px;
+      padding: 22px 24px;
+      border: 1px solid rgba(12, 107, 72, .16);
+      border-radius: 22px;
+      background: linear-gradient(110deg, #eef8f2, #fffaf0);
+      box-shadow: 0 12px 34px rgba(18, 56, 41, .07);
+    }
+    .demo-install-copy strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--emerald-deep);
+      font-family: "Spectral", serif;
+      font-size: 20px;
+    }
+    .demo-install-copy span { color: var(--ink-soft); font-size: 13px; line-height: 1.55; }
+    .demo-install-strip .button { flex: 0 0 auto; }
     @keyframes tile-reveal { 50% { transform: scale(1.13); } }
     @keyframes hint-glow { 50% { border-color: #ffe377; box-shadow: 0 0 0 5px rgba(255,227,119,.32), 0 5px 0 rgba(111,66,19,.18); } }
     @keyframes hint-letter { 50% { box-shadow: 0 0 0 7px rgba(255,215,110,.35), 0 9px 0 rgba(8,8,51,.25); } }
@@ -1426,6 +1464,8 @@
       .hero-board { min-height: 480px; }
       .reason-grid { grid-template-columns: 1fr 1fr; }
       .demo-grid { grid-template-columns: 1fr; }
+      .demo-install-strip { align-items: stretch; flex-direction: column; }
+      .demo-install-strip .button { width: 100%; }
       .game-preview { width: min(100%, 610px); margin: 0 auto; }
       .selector-box, .guardrail-box { grid-template-columns: 1fr; }
       .guardrail-box { gap: 28px; }
@@ -1504,7 +1544,7 @@
     <div class="nav-links">
       <a href="#why">Why games work</a>
       <a href="#games">Explore games</a>
-      <a class="button button-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="quran_games_nav_install">
+      <a class="button button-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dnav" data-ga-event="quran_games_nav_install" data-ga-placement="nav">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"></path></svg>
         <span>Get QariAI</span>
       </a>
@@ -1515,12 +1555,12 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="hero-copy">
-          <div class="eyebrow"><span class="eyebrow-dot"></span> Play two free Qur’an game demos</div>
-          <h1 id="hero-title">Learning the Qur’an can feel <em>joyful.</em></h1>
-          <p>Meaningful practice does not have to feel heavy. Short, focused games can make repetition easier to begin, help skills stick, and give every session a clear purpose.</p>
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Try Wasl and Qur’an Connect</div>
+          <h1 id="hero-title">Free Qur’an games <em>online.</em></h1>
+          <p>Play two short Qur’anic word-game demos, then continue with complete learning games for Tajweed, Arabic letters and vocabulary inside QariAI.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#play" data-ga-event="quran_games_hero_explore">Play the demos</a>
-            <a class="button button-outline" href="#plan" data-ga-event="quran_games_hero_plan">Try the 7-day plan</a>
+            <a class="button button-primary" href="#play" data-ga-event="quran_games_hero_explore">Play free demos</a>
+            <a class="button button-outline" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dhero" data-ga-event="quran_games_hero_install" data-ga-placement="hero">Get the full games</a>
           </div>
           <ul class="trust-line">
             <li>Learning-first</li>
@@ -1650,7 +1690,10 @@
                 <div class="celebration-card">
                   <strong lang="ar" dir="rtl">أَحْسَنْتَ!</strong>
                   <span>Sunrise Oasis mini-level complete</span>
-                  <button id="wasl-replay" type="button">Play again</button>
+                  <div class="celebration-actions">
+                    <a class="celebration-install" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dwasl_complete" data-ga-event="quran_games_wasl_complete_install" data-ga-placement="wasl_complete">Continue in QariAI</a>
+                    <button id="wasl-replay" type="button">Play this demo again</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1718,11 +1761,25 @@
                 <div class="celebration-card">
                   <strong lang="ar" dir="rtl">أَحْسَنْتَ!</strong>
                   <span>All four connected words are complete</span>
-                  <button id="connect-replay" type="button">Play again</button>
+                  <div class="celebration-actions">
+                    <a class="celebration-install" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dconnect_complete" data-ga-event="quran_games_connect_complete_install" data-ga-placement="connect_complete">Continue in QariAI</a>
+                    <button id="connect-replay" type="button">Play this demo again</button>
+                  </div>
                 </div>
               </div>
             </div>
           </article>
+        </div>
+
+        <div class="demo-install-strip" aria-label="Continue playing in QariAI">
+          <div class="demo-install-copy">
+            <strong>These are only the previews.</strong>
+            <span>Download QariAI to open the complete games, levels and learning journeys.</span>
+          </div>
+          <a class="button button-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dafter_demos" data-ga-event="quran_games_after_demos_install" data-ga-placement="after_demos">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"></path></svg>
+            Get the full games
+          </a>
         </div>
       </div>
     </section>
@@ -1925,7 +1982,7 @@
         <span class="kicker">Start where you are</span>
         <h2 id="final-title">Make today’s practice the one you want to repeat.</h2>
         <p>Choose a game, practise one skill and carry it back into your recitation.</p>
-        <a class="button button-light" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="quran_games_final_install">
+        <a class="button button-light" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dfinal_cta" data-ga-event="quran_games_final_install" data-ga-placement="final_cta">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"></path></svg>
           Get QariAI on Google Play
         </a>
@@ -1968,6 +2025,7 @@
       var selectedLetters = [];
       var foundWords = Object.create(null);
       var waslHints = 2;
+      var waslStarted = false;
       var waslPositions = [
         { x: 99, y: 8 },
         { x: 184, y: 67 },
@@ -1982,6 +2040,12 @@
         "مال": ["wasl-r3c4", "wasl-r4c4", "wasl-r5c4"]
       };
       var waslWordOrder = ["عليم", "علم", "عمل", "مال"];
+
+      function startWaslDemo() {
+        if (waslStarted) return;
+        waslStarted = true;
+        track("quran_games_demo_start", { game_name: "wasl" });
+      }
 
       function layoutWaslLetters(order) {
         order.forEach(function (button, index) {
@@ -2036,6 +2100,7 @@
           waslCelebration.classList.add("is-visible");
           waslCelebration.setAttribute("aria-hidden", "false");
           track("quran_games_wasl_complete");
+          track("quran_games_demo_complete", { game_name: "wasl" });
         }
       }
 
@@ -2075,6 +2140,7 @@
 
       function addWaslLetter(button) {
         if (button.classList.contains("is-selected")) return;
+        startWaslDemo();
         selectedLetters.push({ letter: button.getAttribute("data-letter"), button: button });
         button.classList.add("is-selected");
         renderWaslAnswer();
@@ -2119,6 +2185,7 @@
       });
 
       document.getElementById("wasl-shuffle").addEventListener("click", function () {
+        startWaslDemo();
         clearWaslSelection();
         var shuffled = waslLetters.slice().sort(function () { return Math.random() - .5; });
         layoutWaslLetters(shuffled);
@@ -2128,6 +2195,7 @@
       });
 
       document.getElementById("wasl-hint").addEventListener("click", function () {
+        startWaslDemo();
         if (!waslHints) {
           waslStatus.className = "game-status";
           waslStatus.textContent = "No hints left in this mini-level.";
@@ -2186,6 +2254,13 @@
       var connectColours = ["connect-tile--green", "connect-tile--orange", "connect-tile--purple", "connect-tile--blue"];
       var connectRound = 0;
       var connectHints = 2;
+      var connectStarted = false;
+
+      function startConnectDemo() {
+        if (connectStarted) return;
+        connectStarted = true;
+        track("quran_games_demo_start", { game_name: "quran_connect" });
+      }
 
       function updateConnectGame() {
         Array.prototype.slice.call(document.querySelectorAll(".connect-fill-slot")).forEach(function (slot) {
@@ -2201,12 +2276,14 @@
           connectCelebration.classList.add("is-visible");
           connectCelebration.setAttribute("aria-hidden", "false");
           track("quran_games_connect_complete");
+          track("quran_games_demo_complete", { game_name: "quran_connect" });
         }
       }
 
       connectChoices.forEach(function (button) {
         button.addEventListener("click", function () {
           if (connectRound >= connectAnswers.length) return;
+          startConnectDemo();
           var letter = button.getAttribute("data-connect-letter");
           var slot = document.getElementById("connect-slot-" + connectRound);
           if (letter === connectAnswers[connectRound]) {
@@ -2233,6 +2310,7 @@
       });
 
       document.getElementById("connect-undo").addEventListener("click", function () {
+        startConnectDemo();
         if (!connectRound) {
           connectStatus.className = "game-status";
           connectStatus.textContent = "There is no placed letter to undo.";
@@ -2250,6 +2328,7 @@
       });
 
       document.getElementById("connect-shuffle").addEventListener("click", function () {
+        startConnectDemo();
         connectChoices.slice().sort(function () { return Math.random() - .5; }).forEach(function (button) {
           connectBank.appendChild(button);
         });
@@ -2259,6 +2338,7 @@
       });
 
       document.getElementById("connect-hint").addEventListener("click", function () {
+        startConnectDemo();
         if (!connectHints || connectRound >= 4) {
           connectStatus.className = "game-status";
           connectStatus.textContent = connectRound >= 4 ? "" : "No hints left in this mini-level.";
@@ -2324,7 +2404,17 @@
 
       document.querySelectorAll("[data-ga-event]").forEach(function (link) {
         link.addEventListener("click", function () {
-          track(link.getAttribute("data-ga-event"), { page_path: location.pathname });
+          var placement = link.getAttribute("data-ga-placement") || "page";
+          track(link.getAttribute("data-ga-event"), {
+            page_path: location.pathname,
+            placement: placement
+          });
+          if (link.href && link.href.indexOf("play.google.com") !== -1) {
+            track("quran_games_google_play_click", {
+              page_path: location.pathname,
+              placement: placement
+            });
+          }
         });
       });
     }());
