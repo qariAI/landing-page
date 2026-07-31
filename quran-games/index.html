@@ -1256,6 +1256,12 @@
         radial-gradient(circle at 78% 20%, rgba(255, 240, 171, .9) 0 8%, transparent 8.4%),
         linear-gradient(180deg, #79cbd1 0 42%, #f3bd67 42% 69%, #c8793d 69%);
     }
+    .wasl-card-logo {
+      width: min(174px, 54%);
+      max-height: 192px;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 24px rgba(33, 47, 42, .28));
+    }
     .wasl-card-wheel {
       position: relative;
       width: 174px;
@@ -2043,10 +2049,8 @@
           </article>
 
           <article class="game-card game-card--wasl" id="wasl" data-game-card="wasl">
-            <div class="game-art" role="img" aria-label="Wasl Arabic word wheel in Sunrise Oasis">
-              <div class="wasl-card-wheel" aria-hidden="true">
-                <span>ع</span><span>ل</span><span>ي</span><span>م</span><span>ا</span>
-              </div>
+            <div class="game-art">
+              <img class="wasl-card-logo" src="/quran-games/assets/wasl-logo.png" alt="Wasl — وَصْل game logo" width="546" height="900">
             </div>
             <div class="game-content">
               <div class="game-topline"><span class="game-label">Scenic word wheel</span><span class="game-status game-status--soon">Coming Soon</span></div>
@@ -2174,6 +2178,8 @@
       var foundWords = Object.create(null);
       var waslHints = 2;
       var waslStarted = false;
+      var waslResetTimer = 0;
+      var waslResolving = false;
       var waslPositions = [
         { x: 99, y: 8 },
         { x: 184, y: 67 },
@@ -2224,9 +2230,23 @@
       }
 
       function clearWaslSelection() {
+        if (waslResetTimer) {
+          window.clearTimeout(waslResetTimer);
+          waslResetTimer = 0;
+        }
         selectedLetters = [];
         waslLetters.forEach(function (button) { button.classList.remove("is-selected"); });
         renderWaslAnswer();
+        waslResolving = false;
+      }
+
+      function scheduleWaslClear(delay) {
+        if (waslResetTimer) window.clearTimeout(waslResetTimer);
+        waslResolving = true;
+        waslResetTimer = window.setTimeout(function () {
+          waslResetTimer = 0;
+          clearWaslSelection();
+        }, delay);
       }
 
       function revealWaslWord(word) {
@@ -2264,11 +2284,11 @@
             foundWords[word] = true;
             revealWaslWord(word);
             waslStatus.className = "game-status is-success";
-            waslStatus.textContent = "Word found — " + (4 - Object.keys(foundWords).length) + " remaining.";
+            waslStatus.textContent = "Correct: " + word + " — " + (4 - Object.keys(foundWords).length) + " remaining.";
             track("quran_games_wasl_attempt", { result: "correct", word_length: word.length });
             updateWaslProgress();
           }
-          window.setTimeout(clearWaslSelection, 260);
+          scheduleWaslClear(320);
           return;
         }
 
@@ -2279,7 +2299,7 @@
           waslStatus.className = "game-status is-error";
           waslStatus.textContent = "Not on this board — try another path.";
           track("quran_games_wasl_attempt", { result: "incorrect" });
-          window.setTimeout(clearWaslSelection, 360);
+          scheduleWaslClear(420);
         } else {
           waslStatus.className = "game-status";
           waslStatus.textContent = "Keep going…";
@@ -2287,7 +2307,7 @@
       }
 
       function addWaslLetter(button) {
-        if (button.classList.contains("is-selected")) return;
+        if (waslResolving || button.classList.contains("is-selected")) return;
         startWaslDemo();
         selectedLetters.push({ letter: button.getAttribute("data-letter"), button: button });
         button.classList.add("is-selected");
@@ -2440,7 +2460,7 @@
             slot.classList.add("is-filled", connectColours[connectRound]);
             connectRound += 1;
             connectStatus.className = "game-status is-success";
-            connectStatus.textContent = connectRound < 4 ? "Connected — the next tile is ready." : "";
+            connectStatus.textContent = connectRound < 4 ? "Correct — word " + connectRound + " completed. The next tile is ready." : "";
             track("quran_games_connect_attempt", { result: "correct", word_number: connectRound });
             updateConnectGame();
           } else {
