@@ -4,24 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <title>Free Qur’an Games Online: Play Wasl &amp; Qur’an Connect | QariAI</title>
-  <meta name="description" content="Play free Qur’an games online with Wasl and Qur’an Connect demos. Practise Qur’anic vocabulary, then download QariAI for the complete Android games.">
+  <title>Free Qur’an Games Online: Try QariAI Game Demos | QariAI</title>
+  <meta name="description" content="Try interactive Qur’an game previews, discover five QariAI learning games and preview Wasl before it arrives in the Android app.">
   <link rel="canonical" href="https://qariai.app/quran-games">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="QariAI">
-  <meta property="og:title" content="Free Qur’an Games Online — Wasl & Qur’an Connect">
-  <meta property="og:description" content="Play two Qur’an word game demos, then continue with the complete learning games inside QariAI.">
+  <meta property="og:title" content="Free Qur’an Games Online — Try QariAI Game Demos">
+  <meta property="og:description" content="Try two interactive previews, discover five Qur’an learning games and preview Wasl—coming soon to QariAI.">
   <meta property="og:url" content="https://qariai.app/quran-games">
   <meta property="og:image" content="https://qariai.app/quran-games/social-card.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Free Qur’an games online with Wasl and Qur’an Connect by QariAI">
+  <meta property="og:image:alt" content="Free Qur’an learning game previews by QariAI">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Free Qur’an Games Online — Wasl & Qur’an Connect">
-  <meta name="twitter:description" content="Play two Qur’an word game demos, then continue with the complete learning games inside QariAI.">
+  <meta name="twitter:title" content="Free Qur’an Games Online — Try QariAI Game Demos">
+  <meta name="twitter:description" content="Try two interactive previews, discover five Qur’an learning games and preview Wasl—coming soon to QariAI.">
   <meta name="twitter:image" content="https://qariai.app/quran-games/social-card.png">
 
   <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2">
@@ -38,8 +38,8 @@
         "@type": "WebPage",
         "@id": "https://qariai.app/quran-games#webpage",
         "url": "https://qariai.app/quran-games",
-        "name": "Free Qur’an Games Online: Play Wasl and Qur’an Connect",
-        "description": "Play free Qur’an game demos online, practise Qur’anic Arabic vocabulary and continue with the complete learning games in the QariAI Android app.",
+        "name": "Free Qur’an Games Online: Try QariAI Game Demos",
+        "description": "Try interactive Qur’an game previews, discover five QariAI learning games and preview Wasl before it arrives in the Android app.",
         "isPartOf": { "@id": "https://qariai.app/#website" },
         "primaryImageOfPage": {
           "@type": "ImageObject",
@@ -63,17 +63,6 @@
             "position": 1,
             "item": {
               "@type": "SoftwareApplication",
-              "name": "Wasl",
-              "applicationCategory": "GameApplication",
-              "operatingSystem": "Web",
-              "description": "Find Qur’anic words by connecting Arabic letters in a word wheel."
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "item": {
-              "@type": "SoftwareApplication",
               "name": "Tajweed Quest",
               "applicationCategory": "EducationalApplication",
               "operatingSystem": "Android",
@@ -82,7 +71,7 @@
           },
           {
             "@type": "ListItem",
-            "position": 3,
+            "position": 2,
             "item": {
               "@type": "SoftwareApplication",
               "name": "Harf Writer",
@@ -93,7 +82,7 @@
           },
           {
             "@type": "ListItem",
-            "position": 4,
+            "position": 3,
             "item": {
               "@type": "SoftwareApplication",
               "name": "Word Builder",
@@ -104,13 +93,24 @@
           },
           {
             "@type": "ListItem",
-            "position": 5,
+            "position": 4,
             "item": {
               "@type": "SoftwareApplication",
               "name": "Qur’an Connect",
               "applicationCategory": "EducationalApplication",
               "operatingSystem": "Android",
               "description": "Connect Qur’anic words through shared letters in a focused word puzzle."
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Wasl",
+              "applicationCategory": "GameApplication",
+              "operatingSystem": "Android",
+              "description": "Coming soon to QariAI: find Qur’anic words by connecting Arabic letters in a scenic word wheel."
             }
           }
         ]
@@ -139,7 +139,7 @@
             "name": "Where can I play the QariAI games?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Tajweed Quest, Harf Writer, Word Builder and Qur’an Connect are available from the Games tab in the QariAI Android app."
+              "text": "Tajweed Quest, Harf Writer, Word Builder and Qur’an Connect are available from the Games tab in the QariAI Android app. Wasl is coming soon."
             }
           }
         ]
@@ -574,6 +574,66 @@
       overflow: hidden;
       isolation: isolate;
     }
+    .demo-start-screen {
+      position: absolute;
+      z-index: 30;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background: rgba(8, 30, 23, .66);
+      backdrop-filter: blur(7px);
+      transition: opacity .24s ease, visibility .24s ease;
+    }
+    .demo-start-screen.is-hidden {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .demo-start-card {
+      width: min(100%, 355px);
+      padding: 28px 26px;
+      border: 1px solid rgba(255, 255, 255, .34);
+      border-radius: 26px;
+      background: rgba(255, 253, 248, .97);
+      color: var(--emerald-deep);
+      text-align: center;
+      box-shadow: 0 28px 70px rgba(4, 20, 14, .3);
+    }
+    .demo-start-kicker {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--mint);
+      color: var(--emerald);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .connect-game .demo-start-kicker { background: #eee8fb; color: var(--purple); }
+    .demo-start-card h4 {
+      margin: 0 0 9px;
+      font-family: "Spectral", serif;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+    .demo-start-card p {
+      margin: 0 0 18px;
+      color: #5f6b63;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .demo-start-card .button { width: 100%; }
+    .demo-start-note {
+      display: block;
+      margin-top: 12px;
+      color: #7a837d;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .mini-game.demo-active { box-shadow: inset 0 0 0 3px rgba(255, 224, 120, .62); }
     .game-hud {
       position: relative;
       z-index: 5;
@@ -1189,6 +1249,56 @@
     .game-card--harf .game-art { background: linear-gradient(145deg, #fff4dc, #f5d59d); }
     .game-card--word .game-art { background: linear-gradient(145deg, #e4f3e8, #bfe0ca); }
     .game-card--connect .game-art { background: linear-gradient(145deg, #eee6ff, #cbb7ef); }
+    .game-card--wasl { grid-column: 1 / -1; min-height: 390px; }
+    .game-card--wasl .game-art {
+      height: 220px;
+      background:
+        radial-gradient(circle at 78% 20%, rgba(255, 240, 171, .9) 0 8%, transparent 8.4%),
+        linear-gradient(180deg, #79cbd1 0 42%, #f3bd67 42% 69%, #c8793d 69%);
+    }
+    .wasl-card-wheel {
+      position: relative;
+      width: 174px;
+      height: 174px;
+      border: 2px solid rgba(255, 255, 255, .54);
+      border-radius: 50%;
+      background: rgba(20, 62, 52, .46);
+      box-shadow: 0 18px 35px rgba(64, 41, 17, .25);
+    }
+    .wasl-card-wheel span {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fffdf8;
+      color: var(--emerald-deep);
+      font-family: "Amiri", serif;
+      font-size: 30px;
+      font-weight: 700;
+      box-shadow: 0 7px 16px rgba(22, 53, 43, .18);
+    }
+    .wasl-card-wheel span:nth-child(1) { top: 8px; left: 61px; }
+    .wasl-card-wheel span:nth-child(2) { top: 61px; right: 8px; }
+    .wasl-card-wheel span:nth-child(3) { right: 29px; bottom: 10px; }
+    .wasl-card-wheel span:nth-child(4) { bottom: 10px; left: 29px; }
+    .wasl-card-wheel span:nth-child(5) { top: 61px; left: 8px; }
+    .wasl-card-wheel::after {
+      content: "↻";
+      position: absolute;
+      top: 61px;
+      left: 61px;
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #f4d477;
+      color: #6e4b15;
+      font-size: 22px;
+      font-weight: 900;
+    }
     .harf-demo {
       position: relative;
       width: 150px;
@@ -1270,6 +1380,7 @@
       font-weight: 900;
       text-transform: uppercase;
     }
+    .game-status--soon { background: #fff0d8; color: #9a5b16; }
     .game-card h3 {
       margin-bottom: 9px;
       font-family: "Spectral", serif;
@@ -1488,6 +1599,7 @@
       .section { padding: 70px 20px; }
       .section-head { margin-bottom: 34px; }
       .reason-grid, .game-grid { grid-template-columns: 1fr; }
+      .game-card--wasl { grid-column: auto; }
       .preview-intro { min-height: 0; padding: 24px 21px 21px; }
       .selector-box { padding: 25px 18px; border-radius: 23px; }
       .goal-options { grid-template-columns: 1fr; }
@@ -1555,11 +1667,11 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="hero-copy">
-          <div class="eyebrow"><span class="eyebrow-dot"></span> Try Wasl and Qur’an Connect</div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Five learning games · Wasl coming soon</div>
           <h1 id="hero-title">Free Qur’an games <em>online.</em></h1>
-          <p>Play two short Qur’anic word-game demos, then continue with complete learning games for Tajweed, Arabic letters and vocabulary inside QariAI.</p>
+          <p>Try two interactive previews, then discover five learning games for Tajweed, Arabic letters and Qur’anic vocabulary inside QariAI.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#play" data-ga-event="quran_games_hero_explore">Play free demos</a>
+            <a class="button button-primary" href="#wasl-demo-title" data-start-demo="wasl" data-ga-event="quran_games_hero_explore">Start Wasl preview</a>
             <a class="button button-outline" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dhero" data-ga-event="quran_games_hero_install" data-ga-placement="hero">Get the full games</a>
           </div>
           <ul class="trust-line">
@@ -1596,8 +1708,8 @@
       <div class="section-inner">
         <div class="section-head center">
           <span class="kicker">Playable previews</span>
-          <h2 id="play-title">Try Wasl and Qur’an Connect.</h2>
-          <p>No sign-up. No timer. Just two small puzzles built around familiar, correctly spelled Qur’anic words.</p>
+          <h2 id="play-title">Choose a demo, then press Start.</h2>
+          <p>No sign-up and no timer. Each preview now opens with clear instructions before the puzzle begins.</p>
         </div>
 
         <div class="demo-grid">
@@ -1605,11 +1717,20 @@
             <div class="preview-intro">
               <div>
                 <h3 id="wasl-demo-title">Wasl</h3>
-                <p>A complete scenic mini-level: trace letters, reveal the board, use hints and finish all four Qur’anic words.</p>
+                <p>Trace or tap letters in order to find four Qur’anic words and reveal the scenic board.</p>
               </div>
-              <span class="preview-badge">Playable mini-level</span>
+              <span class="preview-badge">Web preview · Coming soon</span>
             </div>
             <div class="mini-game wasl-game" id="wasl-game">
+              <div class="demo-start-screen" id="wasl-start-screen">
+                <div class="demo-start-card">
+                  <span class="demo-start-kicker">How to play</span>
+                  <h4>Build a word from the wheel</h4>
+                  <p>Tap—or drag across—the Arabic letters in order. A correct word appears automatically on the board.</p>
+                  <button class="button button-primary" type="button" data-start-demo="wasl">Start Wasl preview</button>
+                  <span class="demo-start-note">Wasl is coming soon to the QariAI app.</span>
+                </div>
+              </div>
               <div class="oasis-silhouette" aria-hidden="true"></div>
               <div class="game-hud">
                 <div class="hud-world">
@@ -1691,7 +1812,7 @@
                   <strong lang="ar" dir="rtl">أَحْسَنْتَ!</strong>
                   <span>Sunrise Oasis mini-level complete</span>
                   <div class="celebration-actions">
-                    <a class="celebration-install" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dwasl_complete" data-ga-event="quran_games_wasl_complete_install" data-ga-placement="wasl_complete">Continue in QariAI</a>
+                    <a class="celebration-install" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dwasl_complete" data-ga-event="quran_games_wasl_complete_install" data-ga-placement="wasl_complete">Get QariAI · Wasl coming soon</a>
                     <button id="wasl-replay" type="button">Play this demo again</button>
                   </div>
                 </div>
@@ -1703,11 +1824,20 @@
             <div class="preview-intro">
               <div>
                 <h3 id="connect-demo-title">Qur’an Connect</h3>
-                <p>A connected-tile mini-level with the real game’s coloured word paths, letter tray, hints, shuffle and progression.</p>
+                <p>Choose the loose Arabic letter that completes each highlighted position on the connected board.</p>
               </div>
-              <span class="preview-badge">Playable mini-level</span>
+              <span class="preview-badge">Playable now</span>
             </div>
             <div class="mini-game connect-game" id="connect-game">
+              <div class="demo-start-screen" id="connect-start-screen">
+                <div class="demo-start-card">
+                  <span class="demo-start-kicker">How to play</span>
+                  <h4>Complete the highlighted tile</h4>
+                  <p>Tap one loose Arabic letter below the board. Choose correctly to unlock the next connected word.</p>
+                  <button class="button button-primary" type="button" data-start-demo="connect">Start Connect demo</button>
+                  <span class="demo-start-note">Qur’an Connect is available in QariAI.</span>
+                </div>
+              </div>
               <div class="game-hud">
                 <div class="hud-world">
                   <span class="hud-back" aria-hidden="true">‹</span>
@@ -1774,7 +1904,7 @@
         <div class="demo-install-strip" aria-label="Continue playing in QariAI">
           <div class="demo-install-copy">
             <strong>These are only the previews.</strong>
-            <span>Download QariAI to open the complete games, levels and learning journeys.</span>
+            <span>Download QariAI for four complete games now. Wasl will join them soon.</span>
           </div>
           <a class="button button-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games%26utm_content%3Dafter_demos" data-ga-event="quran_games_after_demos_install" data-ga-placement="after_demos">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"></path></svg>
@@ -1841,6 +1971,10 @@
               <strong>Qur’anic vocabulary</strong>
               <span>Recognise and connect recurring words through shared letters.</span>
             </button>
+            <button class="goal" type="button" data-game="wasl" aria-pressed="false">
+              <strong>Word discovery</strong>
+              <span>Find Qur’anic words in a scenic wheel challenge—coming soon.</span>
+            </button>
             <p class="recommendation" id="recommendation" aria-live="polite"><strong>Pick a goal:</strong> your recommended game will appear here.</p>
           </div>
         </div>
@@ -1850,9 +1984,9 @@
     <section class="section games" id="games" aria-labelledby="games-title">
       <div class="section-inner">
         <div class="section-head">
-          <span class="kicker">Now inside QariAI</span>
-          <h2 id="games-title">Four games. Four ways to grow.</h2>
-          <p>Each game has one clear learning job, so play stays connected to real Qur’an practice.</p>
+          <span class="kicker">The QariAI games collection</span>
+          <h2 id="games-title">Five games. Five ways to grow.</h2>
+          <p>Four are available now in the app. Wasl is the fifth game and is clearly marked Coming Soon.</p>
         </div>
 
         <div class="game-grid">
@@ -1905,6 +2039,20 @@
               <h3>Qur’an Connect</h3>
               <p>Connect Qur’anic words through shared letters, recognise recurring vocabulary and solve each board through careful observation.</p>
               <span class="game-skill">Best for Qur’anic vocabulary</span>
+            </div>
+          </article>
+
+          <article class="game-card game-card--wasl" id="wasl" data-game-card="wasl">
+            <div class="game-art" role="img" aria-label="Wasl Arabic word wheel in Sunrise Oasis">
+              <div class="wasl-card-wheel" aria-hidden="true">
+                <span>ع</span><span>ل</span><span>ي</span><span>م</span><span>ا</span>
+              </div>
+            </div>
+            <div class="game-content">
+              <div class="game-topline"><span class="game-label">Scenic word wheel</span><span class="game-status game-status--soon">Coming Soon</span></div>
+              <h3>Wasl <span lang="ar" dir="rtl">وَصْل</span></h3>
+              <p>Trace connected letters, discover correctly spelled Qur’anic words and complete scenic boards across a growing level journey.</p>
+              <span class="game-skill">Best for vocabulary and word recognition</span>
             </div>
           </article>
         </div>
@@ -1971,7 +2119,7 @@
           </details>
           <details>
             <summary>Where do I find the games?</summary>
-            <p>Install QariAI on Android and open the Games tab. Tajweed Quest, Harf Writer, Word Builder and Qur’an Connect are all available from the same hub.</p>
+            <p>Install QariAI on Android and open the Games tab. Tajweed Quest, Harf Writer, Word Builder and Qur’an Connect are available now. Wasl is the fifth game and is coming soon.</p>
           </details>
         </div>
       </div>
@@ -2374,11 +2522,43 @@
 
       updateConnectGame();
 
+      function launchDemo(name, trigger) {
+        var game = document.getElementById(name === "wasl" ? "wasl-game" : "connect-game");
+        var screen = document.getElementById(name === "wasl" ? "wasl-start-screen" : "connect-start-screen");
+        if (!game || !screen) return;
+        screen.classList.add("is-hidden");
+        game.classList.add("demo-active");
+        if (name === "wasl") {
+          startWaslDemo();
+          waslStatus.className = "game-status is-success";
+          waslStatus.textContent = "Start with ع → ل → م to find عِلْم.";
+        } else {
+          startConnectDemo();
+          connectStatus.className = "game-status is-success";
+          connectStatus.textContent = "Word 1: tap م to complete رَحْمَة.";
+        }
+        track("quran_games_demo_launched", {
+          game_name: name,
+          placement: trigger && trigger.closest(".demo-start-screen") ? "demo_card" : "hero"
+        });
+        window.setTimeout(function () {
+          game.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 80);
+      }
+
+      document.querySelectorAll("[data-start-demo]").forEach(function (trigger) {
+        trigger.addEventListener("click", function (event) {
+          event.preventDefault();
+          launchDemo(trigger.getAttribute("data-start-demo"), trigger);
+        });
+      });
+
       var gameNames = {
         "tajweed-quest": "Start with Tajweed Quest — recite and practise one rule at a time.",
         "harf-writer": "Start with Harf Writer — learn each letter through guided tracing.",
         "word-builder": "Start with Word Builder — assemble letters and marks into complete words.",
-        "quran-connect": "Start with Qur’an Connect — recognise vocabulary through connected-word puzzles."
+        "quran-connect": "Start with Qur’an Connect — recognise vocabulary through connected-word puzzles.",
+        "wasl": "Wasl is coming soon — preview its scenic word-wheel challenge above."
       };
 
       var goals = Array.prototype.slice.call(document.querySelectorAll(".goal"));
