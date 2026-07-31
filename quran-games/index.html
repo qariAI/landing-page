@@ -26,16 +26,15 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
 .wrap{width:min(1160px,calc(100% - 36px));margin:auto}
 .nav{height:74px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:rgba(251,250,245,.96);position:sticky;top:0;z-index:10}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:22px;font-weight:850}
-.mark{width:42px;height:42px;border-radius:13px;background:var(--green);display:grid;place-items:center;box-shadow:0 7px 18px rgba(8,116,88,.18)}
-.mark svg{width:31px;height:31px}
-.brand em{color:var(--green);font-style:normal}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:#18191a;font-weight:900;letter-spacing:-.045em;font-size:22px}
+.brand img{display:block;width:45px;height:45px;object-fit:contain}
+.brand em{color:#15958f;font-style:normal}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between}
 .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 19px;border-radius:13px;text-decoration:none;font-weight:800;font-size:14px}
 .primary{background:var(--green);color:white;box-shadow:0 8px 20px rgba(8,116,88,.2)}
 .primary:hover{background:#065f49}
 .outline{border:1px solid #b7cec6;color:var(--green);background:white}
-.hero{padding:78px 0 64px;background:radial-gradient(circle at 75% 25%,#e4f4ed 0,transparent 32%),linear-gradient(180deg,#fff 0,#f7f5ec 100%)}
+.hero{padding:72px 0 64px;background:radial-gradient(circle at 75% 25%,#e4f4ed 0,transparent 32%),linear-gradient(180deg,#fff 0,#f7f5ec 100%)}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
 .eyebrow,.status{display:inline-flex;align-items:center;border-radius:99px;font-size:12px;font-weight:850;letter-spacing:.03em}
 .eyebrow{padding:8px 12px;background:#e5f2ed;color:var(--green)}
@@ -45,21 +44,18 @@ h1 em{color:var(--green);font-style:italic}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .trust{display:flex;gap:22px;flex-wrap:wrap;margin-top:25px;color:#527068;font-size:13px;font-weight:700}
 .trust span:before{content:"✓";color:var(--green);margin-right:7px}
-.hero-art{background:#102f28;border-radius:32px;padding:28px;min-height:410px;position:relative;overflow:hidden;box-shadow:0 28px 70px rgba(18,61,49,.22)}
-.hero-art:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,rgba(239,198,93,.25),transparent 32%),linear-gradient(145deg,transparent,rgba(255,255,255,.05))}
-.character-row{position:absolute;left:20px;right:20px;bottom:-12px;height:150px;display:flex;align-items:flex-end;justify-content:center;gap:2px;opacity:.96}
-.character-row img{width:108px;height:108px;object-fit:contain;filter:drop-shadow(0 10px 10px rgba(0,0,0,.22))}
-.character-row img:nth-child(2){width:124px;height:124px}
-.hero-art .art-copy{margin-top:22px;padding-bottom:112px}
-.tiles{position:relative;display:grid;grid-template-columns:repeat(4,74px);gap:10px;justify-content:center;margin-top:36px}
-.tile{aspect-ratio:1;border-radius:18px;display:grid;place-items:center;color:white;font:700 34px Georgia;box-shadow:inset 0 2px rgba(255,255,255,.3),0 8px 16px rgba(0,0,0,.2)}
-.tile:nth-child(4n+1){background:var(--green2)}
-.tile:nth-child(4n+2){background:var(--purple)}
-.tile:nth-child(4n+3){background:var(--blue)}
-.tile:nth-child(4n){background:var(--orange)}
-.art-copy{position:relative;text-align:center;color:white;margin-top:30px}
-.art-copy strong{display:block;font-family:Georgia,serif;font-size:31px}
-.art-copy span{display:block;color:#bcd4cd;margin-top:8px}
+.hero-art{min-height:470px;border-radius:32px;position:relative;overflow:hidden;background:url('assets/wasl-sunrise-oasis.png') center/cover no-repeat;box-shadow:0 28px 70px rgba(82,55,23,.24)}
+.hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,47,40,.02),rgba(16,47,40,.2));pointer-events:none}
+.wasl-scene-label{position:absolute;z-index:2;top:20px;left:20px;right:20px;display:flex;align-items:center;justify-content:space-between;color:white;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.wasl-scene-label strong{font:800 27px Georgia,serif}
+.wasl-scene-label span{background:#fff1cc;color:#684b05;text-shadow:none;padding:7px 11px;border-radius:999px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
+.wasl-board{position:absolute;z-index:2;left:50%;bottom:24px;transform:translateX(-50%);width:290px;display:grid;justify-items:center;gap:13px}
+.word-slots{display:flex;gap:7px;direction:rtl}
+.word-slots i{width:42px;height:42px;border-radius:10px;background:rgba(255,250,231,.94);border:2px solid rgba(126,83,35,.28);box-shadow:0 5px 12px rgba(72,40,16,.18);font:700 24px Georgia;color:#5c3a18;display:grid;place-items:center;font-style:normal}
+.letter-wheel{width:188px;height:188px;border-radius:50%;background:rgba(255,250,231,.94);border:7px solid rgba(255,255,255,.62);box-shadow:0 15px 30px rgba(72,40,16,.28);position:relative}
+.letter-wheel b{position:absolute;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:white;font:700 28px Georgia;box-shadow:0 5px 12px rgba(8,75,58,.25)}
+.letter-wheel b:nth-child(1){top:13px;left:70px}.letter-wheel b:nth-child(2){right:15px;top:70px}.letter-wheel b:nth-child(3){bottom:14px;left:70px}.letter-wheel b:nth-child(4){left:15px;top:70px}
+.letter-wheel:after{content:"↻";position:absolute;inset:0;display:grid;place-items:center;color:#9b794a;font-size:25px;font-weight:800}
 .section{padding:84px 0}
 .section-head{text-align:center;max-width:720px;margin:0 auto 42px}
 .kicker{font-weight:900;color:var(--green);text-transform:uppercase;letter-spacing:.12em;font-size:11px}
@@ -122,8 +118,7 @@ h1 em{color:var(--green);font-style:italic}
 }
 @media(max-width:560px){.wrap{width:min(100% - 24px,1160px)}
 .nav{height:66px}
-.brand{font-size:19px}
-.mark{width:38px;height:38px}
+.brand{font-size:19px}.brand img{width:39px;height:39px}
 .nav .primary{min-height:40px;padding:0 13px}
 .hero{padding:44px 0}
 .lead{font-size:16px}
@@ -142,9 +137,9 @@ h1 em{color:var(--green);font-style:italic}
   </style>
 </head>
 <body>
-  <nav class="nav"><div class="wrap"><a class="brand" href="/" aria-label="QariAI home"><span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M9 8.5c4.2 0 7.9 1.1 11 3.4 3.1-2.3 6.8-3.4 11-3.4v18.2c-4.2 0-7.9 1.1-11 3.4-3.1-2.3-6.8-3.4-11-3.4V8.5Z" fill="none" stroke="white" stroke-width="2.4" stroke-linejoin="round"/><path d="M20 12v18.1M15.5 17.2v2.8a4.5 4.5 0 0 0 9 0v-2.8M17.3 17.2v-3.1a2.7 2.7 0 0 1 5.4 0v3.1" fill="none" stroke="white" stroke-width="2.1" stroke-linecap="round"/></svg></span><span>Qari<em>AI</em></span></a><a class="button primary" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games_static%26utm_content%3Dnav">Get QariAI</a></div></nav>
+  <nav class="nav"><div class="wrap"><a class="brand" href="/" aria-label="QariAI home"><img src="assets/qariai-logo-mark.png" alt=""><span>QARI <em>AI</em></span></a><a class="button primary" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games_static%26utm_content%3Dnav">Get QariAI</a></div></nav>
   <main>
-    <section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">4 games available · Wasl coming soon</span><h1>Learn the Qur’an through <em>play.</em></h1><p class="lead">Five focused learning games for Tajweed, Arabic letters and Qur’anic vocabulary—built into QariAI, your Qur’an coach in your pocket.</p><div class="actions"><a class="button primary" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games_static%26utm_content%3Dhero">Download on Google Play</a><a class="button outline" href="#games">Explore the games</a></div><div class="trust"><span>Learning-first</span><span>Teacher-aligned</span><span>Sacred text respected</span></div></div><div class="hero-art" aria-label="QariAI learning tiles with Tajweed Quest characters"><div class="tiles" dir="rtl"><span class="tile">ر</span><span class="tile">و</span><span class="tile">ن</span><span class="tile">ع</span><span class="tile">ل</span><span class="tile">م</span><span class="tile">ح</span><span class="tile">ق</span></div><div class="art-copy"><strong>Every letter matters.</strong><span>Practice with purpose inside QariAI.</span></div><div class="character-row" aria-hidden="true"><img src="assets/naml.png" alt=""><img src="assets/hudhud.png" alt=""><img src="assets/bee.png" alt=""></div></div></div></section>
+    <section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">Qur’an learning for every level</span><h1>Build every skill. <em>Keep progressing.</em></h1><p class="lead">Start with Arabic letters, practise Tajweed, strengthen Hifz and improve your recitation with AI-guided feedback—all in one Qur’an learning platform.</p><div class="actions"><a class="button primary" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games_static%26utm_content%3Dhero">Download on Google Play</a><a class="button outline" href="#games">Explore the games</a></div><div class="trust"><span>All learning levels</span><span>Teacher-aligned</span><span>Sacred text respected</span></div></div><div class="hero-art" aria-label="Wasl Sunrise Oasis game preview"><div class="wasl-scene-label"><strong lang="ar" dir="rtl">وَصْل</strong><span>Coming soon</span></div><div class="wasl-board" aria-hidden="true"><div class="word-slots"><i>ن</i><i>و</i><i>ر</i></div><div class="letter-wheel" dir="rtl"><b>ن</b><b>و</b><b>ر</b><b>ب</b></div></div></div></div></section>
     <section class="section" id="games"><div class="wrap"><header class="section-head"><span class="kicker">Inside QariAI</span><h2>Five ways to build lasting skills</h2><p>This page is now a reliable showcase. The full, polished gameplay stays where it belongs: inside the QariAI Android app.</p></header><div class="games">
       <article class="card"><div class="game-art quest"><img class="quest-character" src="assets/hudhud.png" alt="HudHud, the Tajweed Quest guide"></div><div class="copy"><span class="status">Available now</span><h3>Tajweed Quest</h3><p>Journey through Tajweed rules with guided practice, characters and progressive challenges.</p><a class="text-link" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games_static%26utm_content%3Dtajweed_quest">Play in QariAI →</a></div></article>
       <article class="card"><div class="game-art writer"><span class="big-letter">ع</span><span class="pencil" aria-hidden="true"></span></div><div class="copy"><span class="status">Available now</span><h3>Harf Writer</h3><p>Learn Arabic letter shapes through clear, guided tracing and immediate visual practice.</p><a class="text-link" href="https://play.google.com/store/apps/details?id=app.qari.ai&amp;referrer=utm_source%3Dqariai.app%26utm_medium%3Dweb%26utm_campaign%3Dquran_games_static%26utm_content%3Dharf_writer">Play in QariAI →</a></div></article>
