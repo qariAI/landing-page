@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url><loc>https://qariai.app/</loc><lastmod>2026-07-29</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-<url><loc>https://qariai.app/quran-games</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://qariai.app/quran-games</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://qariai.app/how-qari-ai-works</loc><lastmod>2026-07-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://qariai.app/about</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 <url><loc>https://qariai.app/qaef</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -52,5 +52,11 @@
 <url><loc>https://qariai.app/ar/how-qari-ai-works</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
 <url><loc>https://qariai.app/fr</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 <url><loc>https://qariai.app/ms</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+<url><loc>https://qariai.app/ar/quran-games</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<url><loc>https://qariai.app/fr/quran-games</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<url><loc>https://qariai.app/ms/quran-games</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
 </urlset>
