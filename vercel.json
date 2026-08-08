@@ -348,6 +348,22 @@
       "destination": "/challenge.html"
     },
     {
+      "source": "/quran-games",
+      "destination": "/quran-games/index.html"
+    },
+    {
+      "source": "/ar/quran-games",
+      "destination": "/ar/quran-games/index.html"
+    },
+    {
+      "source": "/fr/quran-games",
+      "destination": "/fr/quran-games/index.html"
+    },
+    {
+      "source": "/ms/quran-games",
+      "destination": "/ms/quran-games/index.html"
+    },
+    {
       "source": "/academy/ai-quran",
       "destination": "/academy/ai-quran.html"
     },
