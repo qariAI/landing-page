@@ -138,15 +138,6 @@
     }
     .qnav-links{ display:flex; align-items:center; gap:26px; }
     .qnav-burger, .qnav-check{ display:none; }
-    .q-lang{position:relative}
-    .q-lang summary{list-style:none;display:flex;align-items:center;gap:7px;cursor:pointer;padding:10px 12px;border-radius:999px;color:#34483d;font-size:13px;font-weight:750;white-space:nowrap;transition:.2s ease}
-    .q-lang summary::-webkit-details-marker{display:none}
-    .q-lang summary:hover,.q-lang[open] summary{background:#f4efe4;color:#0c6b48}
-    .q-lang__menu{position:absolute;right:0;top:calc(100% + 10px);width:190px;padding:9px;background:#fff;border:1px solid rgba(18,56,41,.11);border-radius:18px;box-shadow:0 18px 48px rgba(18,56,41,.18);z-index:150}
-    .q-lang__option{display:flex;width:100%;align-items:center;justify-content:space-between;border:0;background:transparent;padding:11px 12px;border-radius:11px;color:#455149;font:inherit;font-size:14px;text-align:left;cursor:pointer}
-    .q-lang__option:hover{background:#f5f0e6;color:#0c6b48}
-    .q-lang__option[aria-current="true"]{background:#eaf3ed;color:#0c6b48;font-weight:800}
-    .q-lang__code{font-size:10px;font-weight:850;letter-spacing:.08em;color:#9a7a3d}
     @media (max-width:760px){
       .qnav-links{ position:fixed; top:70px; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0;
         background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 12px 24px rgba(18,56,41,0.08);
@@ -469,7 +460,6 @@
     .qc-phone{width:min(300px,72vw);padding:9px;border-radius:38px;background:#0c1410;box-shadow:0 24px 50px rgba(0,0,0,.3)}
     .qc-phone img{display:block;width:100%;height:auto;border-radius:31px}
     @media(max-width:820px){.qc-card{grid-template-columns:1fr;text-align:center}.qc-logo{margin-left:auto;margin-right:auto}.qc-copy{margin-left:auto;margin-right:auto}.qc-points{width:max-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:left}.qc-phone{width:min(270px,72vw)}}
-    @media(max-width:760px){.q-lang{margin-left:auto}.q-lang summary{padding:9px}.q-lang summary span{display:none}.q-lang__menu{position:fixed;right:16px;top:66px}}
 
     /* Primary story order is CSS-controlled and does not depend on JavaScript. */
     .qariai-page{display:flex;flex-direction:column}
@@ -591,6 +581,28 @@
     .qbrand__wordmark-ai{color:#15988f;margin-left:3px}
     .qbrand__wordmark--footer{font-size:19px;color:#fdf8ee;letter-spacing:-.045em}
     @media(max-width:520px){.qbrand{gap:5px}.qbrand__mark{width:42px;height:36px;flex-basis:42px}.qbrand__wordmark{font-size:20px}}
+    .pricing-section{padding:100px max(24px,4vw);background:#fffdf8}
+    .pricing-head{max-width:700px;margin:0 auto 46px;text-align:center}
+    .pricing-kicker{display:inline-block;margin-bottom:14px;color:#0c6b48;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    .pricing-title{margin:0 0 14px;color:#12251b;font-family:'Spectral',serif;font-size:clamp(2.15rem,3.6vw,3.1rem);font-weight:800;line-height:1.05;letter-spacing:-.03em}
+    .pricing-intro{margin:0;color:#5c675f;font-size:16px;line-height:1.65}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1040px;margin:0 auto}
+    .price-card{position:relative;display:flex;flex-direction:column;min-height:330px;padding:30px;border:1px solid rgba(18,56,41,.11);border-radius:24px;background:#fbf7ed;box-shadow:0 18px 45px rgba(18,56,41,.07)}
+    .price-card--featured{color:#fff;background:linear-gradient(145deg,#123829,#0b6e52);border-color:transparent;box-shadow:0 24px 58px rgba(11,110,82,.25);transform:translateY(-8px)}
+    .price-badge{position:absolute;top:18px;right:18px;padding:6px 9px;border-radius:999px;background:#c9973f;color:#fff;font-size:9.5px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+    .price-name{margin:0 0 19px;color:#536158;font-size:13px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+    .price-card--featured .price-name{color:rgba(255,255,255,.7)}
+    .price-value{display:flex;align-items:flex-end;gap:5px;margin-bottom:16px;color:#123829}
+    .price-card--featured .price-value{color:#fff}
+    .price-value strong{font-family:'Spectral',serif;font-size:3rem;line-height:.92;letter-spacing:-.045em}
+    .price-value span{padding-bottom:5px;color:#68736b;font-size:13px;font-weight:650}
+    .price-card--featured .price-value span{color:rgba(255,255,255,.68)}
+    .price-copy{margin:0 0 22px;color:#607067;font-size:14.5px;line-height:1.55}
+    .price-card--featured .price-copy{color:rgba(255,255,255,.78)}
+    .price-cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-top:auto;padding:13px 18px;border-radius:999px;background:#0c6b48;color:#fff;text-decoration:none;font-size:13.5px;font-weight:800}
+    .price-card--featured .price-cta{background:#fffdf8;color:#123829}
+    .pricing-note{max-width:760px;margin:27px auto 0;text-align:center;color:#7a847c;font-size:12.5px;line-height:1.55}
+    @media(max-width:820px){.pricing-grid{grid-template-columns:1fr;max-width:520px}.price-card{min-height:0}.price-card--featured{transform:none}.pricing-section{padding:82px 20px}}
 
   </style>
 </helmet>
@@ -634,15 +646,6 @@
         <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Learn</a>
         <a href="https://qariai.app/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">About</a>
       </div>
-      <details class="q-lang">
-        <summary aria-label="Choose website language"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 12h17M12 3c2.2 2.4 3.3 5.4 3.3 9S14.2 18.6 12 21M12 3C9.8 5.4 8.7 8.4 8.7 12S9.8 18.6 12 21" stroke="currentColor" stroke-width="1.5"/></svg><span id="q-lang-label">English</span><span aria-hidden="true">⌄</span></summary>
-        <div class="q-lang__menu" role="menu" aria-label="Website languages">
-          <button class="q-lang__option" type="button" data-lang="en" aria-current="true"><span>English</span><span class="q-lang__code">EN</span></button>
-          <button class="q-lang__option" type="button" data-lang="ar"><span lang="ar">العربية</span><span class="q-lang__code">AR</span></button>
-          <button class="q-lang__option" type="button" data-lang="fr"><span>Français</span><span class="q-lang__code">FR</span></button>
-          <button class="q-lang__option" type="button" data-lang="ms"><span>Bahasa Melayu</span><span class="q-lang__code">MS</span></button>
-        </div>
-      </details>
       <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="nav_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fffdf8; text-decoration:none; padding:11px 22px; background:#0c6b48; border-radius:40px; box-shadow:0 6px 18px rgba(12,107,72,.28); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-1px); box-shadow:0 10px 22px rgba(12,107,72,.36);"><svg class="google-play-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg><span class="qnav-playtext">Get it on Google Play</span></a>
       <label for="qnav-toggle" class="qnav-burger" aria-label="Open menu" role="button" tabindex="0">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#123829" stroke-width="2" stroke-linecap="round"/></svg>
@@ -1017,6 +1020,37 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ══ PRICING ══ -->
+  <section id="pricing" class="pricing-section" aria-labelledby="pricing-title">
+    <div class="pricing-head">
+      <span class="pricing-kicker">Simple pricing</span>
+      <h2 id="pricing-title" class="pricing-title">Start free. Upgrade when you’re ready.</h2>
+      <p class="pricing-intro">Choose the QariAI Pro plan that fits your practice. Every paid option unlocks the same complete coaching experience.</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="price-card">
+        <h3 class="price-name">Monthly</h3>
+        <div class="price-value"><strong>£2.39</strong><span>/ month</span></div>
+        <p class="price-copy">A flexible way to use QariAI Pro, with the freedom to cancel whenever you need.</p>
+        <a class="price-cta" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="pricing_monthly_click"><svg class="google-play-mark" width="17" height="17" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg>Choose monthly</a>
+      </article>
+      <article class="price-card price-card--featured">
+        <span class="price-badge">Best value</span>
+        <h3 class="price-name">Annual</h3>
+        <div class="price-value"><strong>£24.99</strong><span>/ year</span></div>
+        <p class="price-copy">A full year of QariAI Pro for about £2.08 per month—ideal for building a consistent practice.</p>
+        <a class="price-cta" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="pricing_annual_click"><svg class="google-play-mark" width="17" height="17" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg>Choose annual</a>
+      </article>
+      <article class="price-card">
+        <h3 class="price-name">Lifetime</h3>
+        <div class="price-value"><strong>£71.99</strong><span>one time</span></div>
+        <p class="price-copy">Pay once for lasting QariAI Pro access, without a recurring subscription.</p>
+        <a class="price-cta" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="pricing_lifetime_click"><svg class="google-play-mark" width="17" height="17" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg>Choose lifetime</a>
+      </article>
+    </div>
+    <p class="pricing-note">Purchases are completed securely through Google Play. UK prices shown; local pricing may vary. Subscriptions can be cancelled through Google Play.</p>
   </section>
 
   <!-- ══ COMPARISON TABLE ══ -->
@@ -1494,43 +1528,7 @@ class Component extends DCLogic {
 })();
 </script>
 
-<script>
-  (function () {
-    var copy = {
-      en:{name:'English',nav:['Features','Learn','About'],heroLabel:'The AI Quran Coach',heroTitle:'<span class="hero-line">From recitation</span><span class="hero-line">to understanding—</span><span class="hero-line">all in one app.</span>',heroCopy:'QariAI brings Tajweed feedback, Hifz practice and Qur’anic Arabic stories together—so every session brings you closer to the Qur’an.',storiesTitle:'Learn Qur’anic Arabic through <em>stories.</em>',storiesCopy:'Read short illustrated stories in Arabic, tap any word when you need help, listen and shadow each scene, then strengthen your vocabulary in the Word Garden.',storiesPoints:['Arabic-first reading','Tap-to-discover words','Story-based review'],connectTitle:'Connect Qur’anic words.',connectCopy:'Build connected word chains, recognise recurring Qur’anic vocabulary and strengthen recall through short, focused puzzles—all inside the QariAI app.',connectPoints:['Real words from the Qur’an','Meaning-led vocabulary practice','Progress stays inside QariAI'],connectCtas:['Play Wasl & Connect free','Get QariAI on Google Play']},
-      ar:{name:'العربية',nav:['المزايا','تعلّم','من نحن'],heroLabel:'مدرّب القرآن بالذكاء الاصطناعي',heroTitle:'<span class="hero-line">من التلاوة</span><span class="hero-line">إلى الفهم—</span><span class="hero-line">كلّها في تطبيق واحد.</span>',heroCopy:'يجمع QariAI بين ملاحظات التجويد، وتدريب الحفظ، وقصص العربية القرآنية—لتقرّبك كل جلسة من القرآن.',storiesTitle:'تعلّم العربية القرآنية من خلال <em>القصص.</em>',storiesCopy:'اقرأ قصصًا عربية قصيرة مصوّرة، واضغط على أي كلمة للمساعدة، واستمع وردّد كل مشهد، ثم ثبّت مفرداتك في حديقة الكلمات.',storiesPoints:['القراءة بالعربية أولًا','معنى الكلمة بلمسة','مراجعة مبنية على القصة'],connectTitle:'صِلْ كلماتٍ قرآنية.',connectCopy:'كوّن سلاسل مترابطة من الكلمات، وتعرّف على المفردات القرآنية المتكررة، وقوِّ تذكّرك عبر ألغاز قصيرة ومركّزة داخل تطبيق QariAI.',connectPoints:['كلمات حقيقية من القرآن','تدريب مفردات قائم على المعنى','تقدّمك محفوظ داخل QariAI'],connectCtas:['العب Wasl وConnect مجانًا','حمّل QariAI من Google Play']},
-      fr:{name:'Français',nav:['Fonctionnalités','Apprendre','À propos'],heroLabel:'Le coach du Coran par IA',heroTitle:'<span class="hero-line">De la récitation</span><span class="hero-line">à la compréhension—</span><span class="hero-line">tout dans une seule app.</span>',heroCopy:'QariAI réunit le retour sur le Tajwid, la pratique du Hifz et des histoires en arabe coranique—pour que chaque session vous rapproche du Coran.',storiesTitle:'Apprenez l’arabe coranique grâce aux <em>histoires.</em>',storiesCopy:'Lisez de courtes histoires illustrées en arabe, touchez un mot pour obtenir de l’aide, écoutez et répétez chaque scène, puis consolidez votre vocabulaire dans le Jardin des mots.',storiesPoints:['Lecture d’abord en arabe','Un mot expliqué en un geste','Révision par les histoires'],connectTitle:'Reliez les mots coraniques.',connectCopy:'Créez des chaînes de mots, reconnaissez le vocabulaire récurrent du Coran et renforcez votre mémoire grâce à de courts puzzles ciblés dans l’application QariAI.',connectPoints:['De vrais mots du Coran','Vocabulaire guidé par le sens','Votre progression reste dans QariAI'],connectCtas:['Jouer gratuitement à Wasl et Connect','Télécharger QariAI sur Google Play']},
-      ms:{name:'Bahasa Melayu',nav:['Ciri-ciri','Belajar','Tentang'],heroLabel:'Jurulatih al-Quran berkuasa AI',heroTitle:'<span class="hero-line">Daripada bacaan</span><span class="hero-line">kepada pemahaman—</span><span class="hero-line">semuanya dalam satu aplikasi.</span>',heroCopy:'QariAI menggabungkan maklum balas Tajwid, latihan Hifz dan cerita Bahasa Arab al-Quran—supaya setiap sesi mendekatkan anda kepada al-Quran.',storiesTitle:'Pelajari Bahasa Arab al-Quran melalui <em>cerita.</em>',storiesCopy:'Baca cerita Arab bergambar yang ringkas, ketik mana-mana perkataan untuk bantuan, dengar dan ikuti setiap babak, kemudian kukuhkan kosa kata dalam Taman Perkataan.',storiesPoints:['Baca dalam bahasa Arab dahulu','Fahami perkataan dengan satu ketikan','Ulang kaji melalui cerita'],connectTitle:'Hubungkan perkataan al-Quran.',connectCopy:'Bina rangkaian perkataan, kenali kosa kata al-Quran yang berulang dan kuatkan ingatan melalui teka-teki ringkas dan fokus dalam aplikasi QariAI.',connectPoints:['Perkataan sebenar daripada al-Quran','Latihan kosa kata berasaskan makna','Kemajuan kekal dalam QariAI'],connectCtas:['Main Wasl & Connect secara percuma','Dapatkan QariAI di Google Play']}
-    };
-    var languageMenu = document.querySelector('.q-lang');
-    var label = document.getElementById('q-lang-label');
-    function setList(nodes, values){Array.prototype.forEach.call(nodes,function(node,index){if(values[index])node.textContent=values[index];});}
-    function applyLanguage(code){
-      var value=copy[code]||copy.en;
-      document.documentElement.lang=code;
-      document.documentElement.dir=code==='ar'?'rtl':'ltr';
-      if(label)label.textContent=value.name;
-      setList(document.querySelectorAll('.qnav-links a'),value.nav);
-      var heroLabel=document.querySelector('.seo-hero-label');if(heroLabel)heroLabel.textContent=value.heroLabel;
-      var heroTitle=document.getElementById('hero-title');if(heroTitle)heroTitle.innerHTML=value.heroTitle;
-      var heroCopy=document.querySelector('.seo-hero-copy>p');if(heroCopy)heroCopy.textContent=value.heroCopy;
-      var storiesTitle=document.getElementById('stories-preview-title');if(storiesTitle)storiesTitle.innerHTML=value.storiesTitle;
-      var storiesCopy=document.querySelector('.stories-preview__copy');if(storiesCopy)storiesCopy.textContent=value.storiesCopy;
-      setList(document.querySelectorAll('.stories-preview__points li'),value.storiesPoints);
-      var connectTitle=document.getElementById('qc-title');if(connectTitle)connectTitle.textContent=value.connectTitle;
-      var connectCopy=document.querySelector('.qc-copy');if(connectCopy)connectCopy.textContent=value.connectCopy;
-      setList(document.querySelectorAll('.qc-points li'),value.connectPoints);
-      setList(document.querySelectorAll('.qc-actions a'),value.connectCtas);
-      document.querySelectorAll('.q-lang__option').forEach(function(button){button.setAttribute('aria-current',button.dataset.lang===code?'true':'false');});
-      try{localStorage.setItem('qariai-site-language',code);}catch(error){}
-    }
-    document.querySelectorAll('.q-lang__option').forEach(function(button){
-      button.addEventListener('click',function(){applyLanguage(button.dataset.lang);if(languageMenu)languageMenu.removeAttribute('open');});
-    });
-    var initial='en';try{initial=localStorage.getItem('qariai-site-language')||'en';}catch(error){}
-    applyLanguage(initial);
-  }());
-</script>
+
 <script>
   (function () {
     var page = document.querySelector('.qariai-page');
