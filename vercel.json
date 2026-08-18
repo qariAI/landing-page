@@ -418,6 +418,10 @@
     {
       "source": "/academy/makharij-chart",
       "destination": "/academy/makharij-chart.html"
+    },
+    {
+      "source": "/delete-account",
+      "destination": "/delete-account.html"
     }
   ]
 }
