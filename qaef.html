@@ -4,113 +4,265 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QAEF — Quranic AI Evaluation Framework | QariAI</title>
-    <!-- Stable Tailwind CSS Core Script -->
-    <script src="https://tailwindcss.com"></script>
     
-    <!-- 🤖 SEO & LLM Optimization Metadata Block -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "TechArticle",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://qariai.app"
-      },
-      "headline": "Quranic AI Evaluation Framework (QAEF) Technical Specification",
-      "description": "An open standard methodology for evaluating AI Quranic recitation systems, measuring phonetic accuracy, Tajweed compliance, and timing precision.",
-      "image": "https://qariai.app",
-      "author": {
-        "@type": "Organization",
-        "name": "QariAI"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "QariAI",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://qariai.app"
+    <!-- Pure Embedded CSS: Eliminates all external script blocks -->
+    <style>
+        :root {
+            --bg-main: #020617;
+            --bg-card: #0f172a;
+            --border-color: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-emerald: #10b981;
+            --accent-sky: #38bdf8;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
         }
-      },
-      "datePublished": "2026-03-30",
-      "dateModified": "2026-08-26",
-      "keywords": "Quranic AI, QAEF, Tajweed Evaluation, Speech Recognition, Arabic Phonemes, Open Evaluation Framework"
-    }
-    </script>
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-cols: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .grid {
+                grid-template-cols: 1fr 1fr;
+            }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--accent-emerald);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-emerald);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin: 1.5rem 0;
+        }
+
+        @media (min-width: 640px) {
+            h1 { font-size: 3rem; }
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--accent-emerald), var(--accent-sky));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .btn-group { flex-direction: row; }
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            background-color: var(--accent-emerald);
+            color: #020617;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #34d399;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-color);
+            color: #cbd5e1;
+            font-weight: 500;
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: #475569;
+        }
+
+        /* Mock Terminal Simulator Layout */
+        .terminal {
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background-color: #020617;
+            border-b: 1px solid var(--border-color);
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 0.375rem;
+        }
+
+        .control-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .terminal-title {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-left: 0.5rem;
+        }
+
+        .status-badge {
+            font-family: monospace;
+            font-size: 10px;
+            color: var(--accent-emerald);
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 0.125rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+            font-family: monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            overflow-x: auto;
+            margin: 0;
+        }
+
+        /* Syntax Highlight Rules */
+        .key { color: var(--accent-emerald); }
+        .string { color: #fba156; }
+        .number { color: var(--accent-sky); }
+        .error { color: var(--accent-rose); }
+    </style>
 </head>
-<body class="bg-[#020617] text-slate-100 selection:bg-emerald-500/30 selection:text-emerald-300">
+<body>
 
-    <!-- 🎨 HERO HUB & CRASH-PROOF PAYLOAD SIMULATOR -->
-    <section class="relative overflow-hidden py-24 sm:py-32 border-b border-slate-900">
-        <!-- Ambient Radial Background Lighting -->
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(16,185,129,0.08),transparent_45%)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(14,165,233,0.08),transparent_50%)]"></div>
-
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+    <section class="container">
+        <div class="grid">
             
             <!-- Left Info Panel -->
-            <div class="lg:col-span-6 space-y-8">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold tracking-wide">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <div class="info-panel">
+                <div class="badge">
+                    <span class="dot"></span>
                     Open Standard Specification · v1.0
                 </div>
                 
-                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight lg:leading-tight">
-                    The Open Standard for <span class="bg-gradient-to-r from-emerald-400 to-sky-400 bg-clip-text text-transparent">Quranic Audio AI</span> Evaluation
-                </h1>
+                <h1>The Open Standard for <span class="gradient-text">Quranic Audio AI</span> Evaluation</h1>
                 
-                <p class="text-slate-400 text-lg leading-relaxed max-w-xl">
+                <p class="description">
                     QAEF provides an open, standardized framework to evaluate and benchmark machine-learning models on phoneme articulation accuracy, Tajweed rule compliance, and millisecond latency.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                    <a href="https://github.com" class="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold tracking-wide transition-all shadow-lg shadow-emerald-500/15">
-                        View Spec on GitHub
-                    </a>
-                    <a href="https://qariai.app" class="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 font-medium transition-all">
-                        Try Live Recitation API
-                    </a>
+                <div class="btn-group">
+                    <a href="https://github.com" class="btn-primary">View Spec on GitHub</a>
+                    <a href="https://qariai.app" class="btn-secondary">Try Live Recitation API</a>
                 </div>
             </div>
 
-            <!-- Right Visual Interactive Panel -->
-            <div class="lg:col-span-6 w-full">
-                <div class="w-full bg-[#0f172a]/80 border border-slate-800 rounded-xl overflow-hidden shadow-2xl backdrop-blur-sm">
-                    
-                    <!-- Chrome Header Window Bar -->
-                    <div class="flex items-center justify-between px-4 py-3 bg-[#020617] border-b border-slate-800">
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-3 h-3 rounded-full bg-rose-500/40"></span>
-                            <span class="w-3 h-3 rounded-full bg-amber-500/40"></span>
-                            <span class="w-3 h-3 rounded-full bg-emerald-500/40"></span>
-                            <span class="text-xs text-slate-500 font-mono ml-2">qaef_evaluation_stream.json</span>
+            <!-- Right Terminal Sandbox Panel -->
+            <div class="visual-panel">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div style="display: flex; align-items: center;">
+                            <div class="window-controls">
+                                <span class="control-dot" style="background-color: var(--accent-rose);"></span>
+                                <span class="control-dot" style="background-color: var(--accent-amber);"></span>
+                                <span class="control-dot" style="background-color: var(--accent-emerald);"></span>
+                            </div>
+                            <span class="terminal-title">qaef_evaluation_stream.json</span>
                         </div>
-                        <span class="text-[10px] text-emerald-400 font-mono bg-emerald-500/10 px-2 py-0.5 rounded">200 OK</span>
+                        <span class="status-badge">200 OK</span>
                     </div>
-
-                    <!-- Live Formatted Stream Output -->
-                    <div class="p-6 font-mono text-xs sm:text-sm text-slate-400 overflow-x-auto leading-relaxed">
-<pre><code>{
-  <span class="text-emerald-400">"session_id"</span>: <span class="text-sky-300">"qari_eval_2026_090x"</span>,
-  <span class="text-emerald-400">"phoneme_accuracy"</span>: {
-    <span class="text-emerald-400">"target_makhraj"</span>: <span class="text-amber-300">"ص"</span>,
-    <span class="text-emerald-400">"detected_makhraj"</span>: <span class="text-rose-400">"س"</span>,
-    <span class="text-emerald-400">"status"</span>: <span class="text-rose-400">"Phoneme Confusion Detected"</span>
+                    <pre class="terminal-content"><code>{
+  <span class="key">"session_id"</span>: <span class="string">"qari_eval_2026_090x"</span>,
+  <span class="key">"phoneme_accuracy"</span>: {
+    <span class="key">"target_makhraj"</span>: <span class="string">"ص"</span>,
+    <span class="key">"detected_makhraj"</span>: <span class="string">"س"</span>,
+    <span class="key">"status"</span>: <span class="error">"Phoneme Confusion Detected"</span>
   },
-  <span class="text-emerald-400">"tajweed_compliance"</span>: {
-    <span class="text-emerald-400">"rule_type"</span>: <span class="text-amber-300">"Ghunnah"</span>,
-    <span class="text-emerald-400">"required_duration_ms"</span>: <span class="text-sky-300">1200</span>,
-    <span class="text-emerald-400">"measured_duration_ms"</span>: <span class="text-rose-400">540</span>,
-    <span class="text-emerald-400">"verdict"</span>: <span class="text-rose-400">"Insufficient Duration Error"</span>
+  <span class="key">"tajweed_compliance"</span>: {
+    <span class="key">"rule_type"</span>: <span class="string">"Ghunnah"</span>,
+    <span class="key">"required_duration_ms"</span>: <span class="number">1200</span>,
+    <span class="key">"measured_duration_ms"</span>: <span class="number">540</span>,
+    <span class="key">"verdict"</span>: <span class="error">"Insufficient Duration Error"</span>
   },
-  <span class="text-emerald-400">"latency_metrics"</span>: {
-    <span class="text-emerald-400">"processing_time_ms"</span>: <span class="text-sky-300">42</span>,
-    <span class="text-emerald-400">"standard_compliance"</span>: <span class="text-sky-300">true</span>
+  <span class="key">"latency_metrics"</span>: {
+    <span class="key">"processing_time_ms"</span>: <span class="number">42</span>,
+    <span class="key">"standard_compliance"</span>: <span class="number">true</span>
   }
 }</code></pre>
-                    </div>
                 </div>
             </div>
+
         </div>
     </section>
+
 </body>
 </html>
