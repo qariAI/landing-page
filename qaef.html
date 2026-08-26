@@ -131,7 +131,9 @@
             color: #020617;
             font-weight: 700;
             text-decoration: none;
+            cursor: pointer;
             transition: opacity 0.2s;
+            border: none;
         }
         .btn-primary:hover { opacity: 0.9; }
 
@@ -193,28 +195,7 @@
             color: #cbd5e1;
         }
 
-        /* Table Matrix Configuration */
-        .matrix-wrapper {
-            overflow-x: auto;
-            border: 1px solid var(--border-color);
-            border-radius: 0.75rem;
-            margin-top: 3rem;
-            background-color: rgba(15, 23, 42, 0.2);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 0.95rem;
-        }
-
-        th, td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color); }
-        th { background-color: #020617; color: #f1f5f9; font-weight: 600; }
-        tr:last-child td { border-bottom: none; }
-        .td-highlight { color: var(--accent-emerald); font-weight: 500; }
-
-        /* Terminal Simulator Configuration */
+        /* Terminal System Configuration */
         .terminal {
             background-color: rgba(15, 23, 42, 0.8);
             border: 1px solid var(--border-color);
@@ -240,6 +221,54 @@
         .number { color: var(--accent-sky); }
         .error { color: var(--accent-rose); }
 
+        /* Integrated Automated Simulator Engine Styles */
+        .test-box {
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-cols: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .test-grid { grid-template-cols: 1fr 2fr; }
+        }
+        .test-btn {
+            width: 100%;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            font-family: monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        .test-btn:hover { background-color: #334155; border-color: #475569; }
+        .test-btn.active {
+            background-color: rgba(16, 185, 129, 0.1);
+            border-color: var(--accent-emerald);
+            color: #34d399;
+        }
+        .console-output {
+            background-color: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.825rem;
+            color: #cbd5e1;
+            height: 160px;
+            overflow-y: auto;
+        }
+
         .divider { border-bottom: 1px solid #1e293b; margin: 4rem 0; }
     </style>
 </head>
@@ -258,7 +287,6 @@
                     QAEF provides an open, standardized framework to evaluate and benchmark machine-learning models on phoneme articulation accuracy, Tajweed rule compliance, and millisecond latency.
                 </p>
                 <div class="btn-group">
-                    <!-- Real Open-Source Git Link Added Below -->
                     <a href="https://github.com" class="btn-primary" target="_blank" rel="noopener noreferrer">View Spec on GitHub</a>
                     <a href="https://qariai.app" class="btn-secondary">Try Live Recitation API</a>
                 </div>
@@ -269,12 +297,3 @@
                     <div class="terminal-header">
                         <div style="display: flex; align-items: center;">
                             <div class="window-controls">
-                                <span class="control-dot" style="background-color: var(--accent-rose);"></span>
-                                <span class="control-dot" style="background-color: var(--accent-amber);"></span>
-                                <span class="control-dot" style="background-color: var(--accent-emerald);"></span>
-                            </div>
-                            <span class="terminal-title">qaef_evaluation_stream.json</span>
-                        </div>
-                        <span class="status-badge">200 OK</span>
-                    </div>
-                    <pre class="terminal-content"><code>{
