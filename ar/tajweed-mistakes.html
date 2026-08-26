@@ -45,36 +45,34 @@
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg:#080e12; --bg2:#0d1820; --bg3:#111f2a;
-  --emerald:#10b981; --emerald2:#059669; --emerald3:#047857;
-  --gold:#d4af37; --text:#e8f0eb; --muted:#6b8a7a;
-  --border:rgba(16,185,129,0.15); --card:rgba(13,24,32,0.85);
+  --bg:#f4efe4; --bg2:#efe8d9; --bg3:#faf6ea;
+  --emerald:#0b6e52; --emerald2:#095f47; --emerald3:#0a5438;
+  --gold:#be8a2c; --text:#12251b; --muted:#687269;
+  --border:rgba(18,56,41,0.1); --card:#fffdf8;
 }
 *,::before,::after{box-sizing:border-box;margin:0;padding:0}
 html{line-height:1.6;scroll-behavior:smooth}
 body{font-family:'Amiri',serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;direction:rtl}
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(16,185,129,0.04)' stroke-width='0.8'%3E%3Cpolygon points='40,4 72,22 72,58 40,76 8,58 8,22'/%3E%3Cpolygon points='40,14 64,27 64,53 40,66 16,53 16,27'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:80px 80px}
+body::before{display:none}
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,1);backdrop-filter:blur(12px);box-shadow:0 1px 3px rgba(0,0,0,0.08);padding:0 2rem;height:72px;display:flex;align-items:center;justify-content:space-between;direction:rtl}
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(244,239,228,0.92);backdrop-filter:blur(12px);box-shadow:0 1px 3px rgba(0,0,0,0.08);padding:0 2rem;height:72px;display:flex;align-items:center;justify-content:space-between;direction:rtl}
 .nav-logo{display:flex;align-items:center;gap:10px}
 .nav-right{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
-.nav-link{color:#475569;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;transition:color 0.2s}
+.nav-link{color:#475569;font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:500;transition:color 0.2s}
 .nav-link:hover{color:#059669}
-.nav-cta{background:#059669;color:#fff;padding:9px 20px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;transition:background 0.2s}
+.nav-cta{background:#059669;color:#fff;padding:9px 20px;border-radius:100px;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:600;transition:background 0.2s}
 .nav-cta:hover{background:#047857}
-.lang-badge{border:1.5px solid #059669;color:#34d399;padding:5px 12px;border-radius:9999px;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:700}
+.lang-badge{border:1.5px solid #059669;color:#34d399;padding:5px 12px;border-radius:9999px;font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:700}
 
 /* PAGE */
 .page-wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:110px 2rem 80px}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);border-radius:100px;padding:5px 16px;font-size:0.78rem;font-weight:700;color:var(--gold);letter-spacing:0.04em;margin-bottom:20px;font-family:'DM Sans',sans-serif}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);border-radius:100px;padding:5px 16px;font-size:0.78rem;font-weight:700;color:var(--gold);letter-spacing:0.04em;margin-bottom:20px;font-family:'Inter',sans-serif}
 h1{font-family:'Amiri',serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.3;margin-bottom:18px;color:var(--text)}
 h1 em{font-style:normal;color:var(--emerald)}
 .lead{color:var(--muted);font-size:1.1rem;line-height:1.9;margin-bottom:48px;max-width:680px}
@@ -91,7 +89,7 @@ strong{color:var(--text);font-weight:700}
 .mistake-item.good{border-right-color:var(--emerald)}
 .mistake-item.tip{border-right-color:var(--gold)}
 .m-icon{font-size:1.15rem;flex-shrink:0;margin-top:3px}
-.m-text .m-title{font-size:0.8rem;font-weight:700;letter-spacing:0.04em;color:var(--muted);margin-bottom:5px;font-family:'DM Sans',sans-serif}
+.m-text .m-title{font-size:0.8rem;font-weight:700;letter-spacing:0.04em;color:var(--muted);margin-bottom:5px;font-family:'Inter',sans-serif}
 .m-text p{font-size:0.92rem;margin:0;color:#a8c0b0;line-height:1.8}
 
 /* HIGHLIGHT BOX */
@@ -101,14 +99,14 @@ strong{color:var(--text);font-weight:700}
 /* QURANIC TEXT */
 .quranic{font-family:'Amiri',serif;font-size:1.5rem;color:var(--gold);direction:rtl;text-align:center;padding:14px 20px;background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.15);border-radius:10px;margin:14px 0;line-height:2}
 .quranic-small{font-family:'Amiri',serif;font-size:1.25rem;color:var(--gold);direction:rtl}
-.latin{font-family:'DM Sans',sans-serif;font-size:0.78rem;color:var(--muted);font-style:italic;display:block;margin-top:4px;text-align:center}
+.latin{font-family:'Inter',sans-serif;font-size:0.78rem;color:var(--muted);font-style:italic;display:block;margin-top:4px;text-align:center}
 
 /* COUNT BADGE */
-.mistake-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(16,185,129,0.1);border:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:700;color:var(--emerald);flex-shrink:0;margin-left:10px}
+.mistake-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(16,185,129,0.1);border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:700;color:var(--emerald);flex-shrink:0;margin-left:10px}
 
 /* INTERNAL LINKS */
 .internal-links{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin:40px 0}
-.internal-links h4{font-size:0.75rem;font-weight:700;letter-spacing:0.06em;color:var(--muted);margin-bottom:12px;font-family:'DM Sans',sans-serif}
+.internal-links h4{font-size:0.75rem;font-weight:700;letter-spacing:0.06em;color:var(--muted);margin-bottom:12px;font-family:'Inter',sans-serif}
 .internal-links ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
 .internal-links ul li a{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.08);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:0.85rem;color:var(--emerald);transition:all 0.2s;font-family:'Amiri',serif}
 .internal-links ul li a:hover{background:rgba(16,185,129,0.15);border-color:var(--emerald)}
@@ -129,7 +127,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
 .footer-col .col-links a{font-size:0.875rem;color:#94a3b8;text-decoration:none;font-family:'Amiri',serif;transition:color 0.2s}
 .footer-col .col-links a:hover{color:#34d399}
 .footer-bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
-.footer-bottom p{font-size:0.82rem;color:#94a3b8;font-family:'DM Sans',sans-serif}
+.footer-bottom p{font-size:0.82rem;color:#94a3b8;font-family:'Inter',sans-serif}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .fade{animation:fadeUp 0.7s ease-out both}
@@ -174,7 +172,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
   <h2>
     <span class="mistake-number">١</span>
     عدم إتمام الغنّة
-    <span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Incomplete Ghunnah)</span>
+    <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Incomplete Ghunnah)</span>
   </h2>
   <p>
     الغنّة صوتٌ أنفيٌّ جميل يُرافق النون المشدّدة والميم المشدّدة، ومقدارها <strong>حركتان</strong> — أي بقدر ضربتَين متساويتَين. كثير من القرّاء يُسرعون فيها فتبلغ حركة واحدة أو أقل، فيُفقدون التلاوة جزءًا من بهائها، بل يخرجون عن حكم التجويد المقرّر.
@@ -214,7 +212,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
   <h2>
     <span class="mistake-number">٢</span>
     عدم إعطاء المدّ حقّه
-    <span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Wrong Madd Timing)</span>
+    <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Wrong Madd Timing)</span>
   </h2>
   <p>
     المدّ ليس تحسينًا جماليًا فحسب، بل حكمٌ شرعيٌّ لازم. المدّ الطبيعي حركتان، والمدّ المتصل والمنفصل من أربع إلى ست، والمدّ اللازم ستّ حركات. تقصير المدّ عن مقداره تغيير في بنية الكلمة، وربما في معناها. إطالته زيادةً عن حدّه مجانبةٌ للصواب ذاته.
@@ -261,7 +259,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
   <h2>
     <span class="mistake-number">٣</span>
     خلط القلقلة مع الحركة
-    <span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Qalqalah vs. Vowel Movement)</span>
+    <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Qalqalah vs. Vowel Movement)</span>
   </h2>
   <p>
     القلقلة اضطراب خاص يُصاحب حروف <strong style="font-size:1.2rem;">ق ط ب ج د</strong> حين تكون ساكنة. كثير من المتعلمين يُضيفون إليها صوت حركة (فتحة أو ضمة)، فيقلبون الساكن متحرّكًا، وذلك خطأ مخالف لأصل الحكم. القلقلة ارتداد صوتي خفيف، لا نطق بحركة كاملة.
@@ -301,7 +299,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
   <h2>
     <span class="mistake-number">٤</span>
     تسكين الحركات وسط الكلام
-    <span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Dropping Short Vowels)</span>
+    <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Dropping Short Vowels)</span>
   </h2>
   <p>
     يحدث هذا الخطأ حين يُسقط القارئ الحركة القصيرة (فتحة، كسرة، ضمة) من وسط الكلمة أو آخرها بسبب السرعة أو الإجهاد، فيجعل المتحرّك ساكنًا. والحركات في القرآن الكريم ليست زخرفة، بل هي جزء من بنية الكلمة ومعناها؛ فـ<span class="quranic-small">نَعْبُدُ</span> غيرُ <span class="quranic-small">نَعْبُدْ</span>، وكلاهما غير <span class="quranic-small">نَعْبِدُ</span>.
@@ -346,7 +344,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
   <h2>
     <span class="mistake-number">٥</span>
     الخطأ في مخارج الحروف
-    <span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Wrong Articulation Points — Makharij)</span>
+    <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Wrong Articulation Points — Makharij)</span>
   </h2>
   <p>
     يُقسّم علماء التجويد مخارج الحروف إلى سبعة عشر مخرجًا في خمسة مواضع رئيسية. الخلط بين الأصوات المتقاربة أشيع الأخطاء وأصعبها إدراكًا على القارئ بنفسه، لأن الأذن تستأنس بالصوت الخاطئ المتكرر.
@@ -398,7 +396,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
   <h2>
     <span class="mistake-number">٦</span>
     عدم التفريق بين التفخيم والترقيق
-    <span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Tafkhim vs. Tarqiq)</span>
+    <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Tafkhim vs. Tarqiq)</span>
   </h2>
   <p>
     التفخيم تسمين الصوت بترفيع مؤخرة اللسان نحو الحنك الأعلى، والترقيق إنحافه وإبعاده. حروف الاستعلاء السبعة (<strong>خص ضغط قظ</strong>) دائمة التفخيم، وحروف كالراء واللام لها أحكام تفصيلية. كثير من القرّاء يُرقّقون المفخّم أو يُفخّمون المرقّق فيُغيّرون الجرس الصوتي للآية كليًا.
@@ -445,7 +443,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
   <h2>
     <span class="mistake-number">٧</span>
     التعجّل في القراءة وكسر الترتيل
-    <span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Rushing — Breaking Tartil)</span>
+    <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Rushing — Breaking Tartil)</span>
   </h2>
   <p>
     قال الله تعالى: <span class="quranic-small">وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا</span>. الترتيل أمرٌ إلهيٌّ مباشر. ومع ذلك، يُعاني أغلب المتعلمين من داء التعجّل — إما لاتباع الإيقاع السريع للقرّاء المحترفين قبل الأوان، أو لحرج الصمت أمام المستمعين. التعجّل يُسقط الغنن ويقصّر المدود ويُسكّن الحركات — أي يجمع أخطاءً متعددة في خطأ واحد.
@@ -490,7 +488,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
   <h2>
     <span class="mistake-number">٨</span>
     إهمال أحكام الوقف والابتداء
-    <span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Ignoring Proper Stopping Points)</span>
+    <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:8px;">(Ignoring Proper Stopping Points)</span>
   </h2>
   <p>
     الوقف علمٌ مستقل في علوم القرآن. الوقف في غير موضعه أو الابتداء من غير موضعه قد يُحيل المعنى إلى نقيضه تمامًا. كثير من القرّاء يقفون حيث ينفد نَفَسهم، لا حيث يأذن الرسم المصحفي. وهذا خطأ بيّن في التلاوة.
@@ -613,7 +611,7 @@ footer{position:relative;z-index:1;background:#064e3b;color:#e2e8f0;padding:3rem
     </div>
     <div class="footer-bottom">
       <p>© 2026 QariAI · بُني من أجل الأمة · مدعوم بالذكاء الاصطناعي</p>
-      <a href="/learn/common-tajweed-mistakes" style="border:1.5px solid #475569;color:#94a3b8;padding:5px 12px;border-radius:9999px;font-size:0.8rem;font-weight:700;text-decoration:none;font-family:'DM Sans',sans-serif;">🇬🇧 English</a>
+      <a href="/learn/common-tajweed-mistakes" style="border:1.5px solid #475569;color:#94a3b8;padding:5px 12px;border-radius:9999px;font-size:0.8rem;font-weight:700;text-decoration:none;font-family:'Inter',sans-serif;">🇬🇧 English</a>
     </div>
   </div>
 </footer>
