@@ -172,15 +172,14 @@
             border-radius: 0.5rem;
             height: 120px;
             width: 100%;
-            position: relative;
+            overflow: hidden;
         }
 
+        /* Fixed Dimensions Allocation */
         canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+            background-color: #020617;
         }
 
         .console-output {
@@ -230,7 +229,8 @@
                         
                         <div class="display-panel">
                             <div class="wave-container">
-                                <canvas id="waveCanvas"></canvas>
+                                <!-- Hardcoded explicit resolution coordinates completely skip sizing lookup bugs -->
+                                <canvas id="waveCanvas" width="600" height="120"></canvas>
                             </div>
                             <div class="console-output" id="console-logs">Processing streaming vectors...</div>
                         </div>
@@ -240,18 +240,11 @@
         </div>
     </main>
 
-    <!-- Hardened Dimensions Script Engine Layer -->
+    <!-- Hardened Execution Render Loop Script Layer -->
     <script>
         (function() {
             var canvas = document.getElementById('waveCanvas');
             var ctx = canvas.getContext('2d');
-
-            function syncSize() {
-                canvas.width = canvas.parentElement.clientWidth || 500;
-                // Definitively patched: Swaps clientHeight lookup dependencies with a hard default fallback metric
-                canvas.height = canvas.parentElement.clientHeight || 120;
-            }
-            window.addEventListener('resize', syncSize);
 
             var amp = 25;
             var freq = 0.03;
@@ -266,15 +259,24 @@
             };
 
             function drawLoop() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // Keep dimensions absolute relative to internal coordinates explicitly
+                ctx.clearRect(0, 0, 600, 120);
                 
-                // Clear and render fresh deep space canvas block colors directly
                 ctx.fillStyle = '#020617';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillRect(0, 0, 600, 120);
                 
                 ctx.beginPath();
                 ctx.strokeStyle = color;
-                ctx.lineWidth = 3;
-                for (var x = 0; x < canvas.width; x++) {
-                    var y = (canvas.height / 2) + Math.sin(x * freq + phase) * amp;
+                ctx.lineWidth = 4; // Thick high-visibility stroke path
+                
+                for (var x = 0; x < 600; x++) {
+                    var y = 60 + Math.sin(x * freq + phase) * amp;
                     if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                phase += speed;
+                requestAnimationFrame(drawLoop);
+            }
+
+            function triggerUpdate(id) {
