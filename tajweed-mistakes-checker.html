@@ -19,17 +19,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:        #080e12;
-  --bg2:       #0d1820;
-  --bg3:       #111f2a;
-  --emerald:   #10b981;
-  --emerald2:  #059669;
-  --emerald3:  #047857;
-  --gold:      #d4af37;
+  --bg:        #f4efe4;
+  --bg2:       #efe8d9;
+  --bg3:       #faf6ea;
+  --emerald:   #0b6e52;
+  --emerald2:  #095f47;
+  --emerald3:  #0a5438;
+  --gold:      #be8a2c;
   --gold2:     #f0c040;
-  --text:      #e8f0eb;
-  --muted:     #6b8a7a;
-  --border:    rgba(16,185,129,0.15);
+  --text:      #12251b;
+  --muted:     #687269;
+  --border:    rgba(11,110,82,0.15);
   --border2:   rgba(212,175,55,0.2);
   --card:      rgba(13,24,32,0.8);
   --radius:    14px;
@@ -49,7 +49,7 @@ body {
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(16,185,129,0.04)' stroke-width='0.8'%3E%3Cpolygon points='40,4 72,22 72,58 40,76 8,58 8,22'/%3E%3Cpolygon points='40,14 64,27 64,53 40,66 16,53 16,27'/%3E%3Cline x1='40' y1='4' x2='40' y2='14'/%3E%3Cline x1='72' y1='22' x2='64' y2='27'/%3E%3Cline x1='72' y1='58' x2='64' y2='53'/%3E%3Cline x1='40' y1='76' x2='40' y2='66'/%3E%3Cline x1='8' y1='58' x2='16' y2='53'/%3E%3Cline x1='8' y1='22' x2='16' y2='27'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(11,110,82,0.04)' stroke-width='0.8'%3E%3Cpolygon points='40,4 72,22 72,58 40,76 8,58 8,22'/%3E%3Cpolygon points='40,14 64,27 64,53 40,66 16,53 16,27'/%3E%3Cline x1='40' y1='4' x2='40' y2='14'/%3E%3Cline x1='72' y1='22' x2='64' y2='27'/%3E%3Cline x1='72' y1='58' x2='64' y2='53'/%3E%3Cline x1='40' y1='76' x2='40' y2='66'/%3E%3Cline x1='8' y1='58' x2='16' y2='53'/%3E%3Cline x1='8' y1='22' x2='16' y2='27'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 80px 80px;
 }
 
@@ -70,12 +70,12 @@ nav {
   border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
   font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.1rem;
-  color: #fff; box-shadow: 0 0 20px rgba(16,185,129,0.3);
+  color: #fff; box-shadow: 0 0 20px rgba(11,110,82,0.3);
 }
-.nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: #059669; }
+.nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: #095f47; }
 .nav-right { display: flex; align-items: center; gap: 1rem; }
 .nav-link { color: #475569; font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
-.nav-link:hover { color: #059669; }
+.nav-link:hover { color: #095f47; }
 .nav-cta {
   background: var(--emerald2); color: #fff;
   padding: 8px 18px; border-radius: 100px;
@@ -124,7 +124,7 @@ nav {
   border-radius: 20px;
   padding: 40px;
   backdrop-filter: blur(20px);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(16,185,129,0.05);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(11,110,82,0.05);
   animation: fadeUp 0.8s ease-out 0.3s both;
 }
 .tool-card::before {
@@ -138,8 +138,8 @@ nav {
 .internal-links{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin:40px 0}
 .internal-links h4{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
 .internal-links ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-.internal-links ul li a{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.08);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:0.8rem;color:var(--emerald);transition:all 0.2s}
-.internal-links ul li a:hover{background:rgba(16,185,129,0.15);border-color:var(--emerald)}
+.internal-links ul li a{display:inline-flex;align-items:center;gap:6px;background:rgba(11,110,82,0.08);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:0.8rem;color:var(--emerald);transition:all 0.2s}
+.internal-links ul li a:hover{background:rgba(11,110,82,0.15);border-color:var(--emerald)}
 
 /* ── SOCIAL PROOF ── */
 .proof-bar {
@@ -210,11 +210,11 @@ footer a:hover { text-decoration: underline; }
     <span style="font-family:'Spectral',serif;font-size:1.15rem;font-weight:700;color:#12251b;">Qari<span style="color:#0b6e52;">AI</span></span>
   </a>
     <div style="display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
-      <a href="/tajweed-mistakes-checker" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#475569'">Free Checker</a>
-      <a href="/learn/common-tajweed-mistakes" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#475569'">Learn Tajweed</a>
-      <a href="/best-ai-quran-app" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#475569'">Compare Apps</a>
-      <a href="/ar" style="border:1.5px solid #059669;color:#34d399;padding:5px 12px;border-radius:9999px;font-size:0.8rem;font-weight:700;text-decoration:none;">AR</a>
-      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" style="background:#059669;color:#fff;padding:8px 18px;border-radius:9999px;font-size:0.82rem;font-weight:600;text-decoration:none;" onmouseover="this.style.background='#047857'" onmouseout="this.style.background='#059669'">Download Free</a>
+      <a href="/tajweed-mistakes-checker" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#095f47'" onmouseout="this.style.color='#475569'">Free Checker</a>
+      <a href="/learn/common-tajweed-mistakes" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#095f47'" onmouseout="this.style.color='#475569'">Learn Tajweed</a>
+      <a href="/best-ai-quran-app" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#095f47'" onmouseout="this.style.color='#475569'">Compare Apps</a>
+      <a href="/ar" style="border:1.5px solid #095f47;color:#34d399;padding:5px 12px;border-radius:9999px;font-size:0.8rem;font-weight:700;text-decoration:none;">AR</a>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" style="background:#095f47;color:#fff;padding:8px 18px;border-radius:9999px;font-size:0.82rem;font-weight:600;text-decoration:none;" onmouseover="this.style.background='#0a5438'" onmouseout="this.style.background='#095f47'">Download Free</a>
     </div>
   </div>
 </nav>
