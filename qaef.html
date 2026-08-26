@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QAEF — Quranic AI Evaluation Framework | QariAI</title>
     
-    <!-- Pure Embedded CSS: Guaranteed delivery across all secure hosting environments -->
+    <!-- Pure Embedded CSS: Guaranteed execution on all hosting environments -->
     <style>
         :root {
             --bg-main: #020617;
@@ -41,20 +41,8 @@
             align-items: center;
         }
 
-        .grid-3col {
-            display: grid;
-            grid-template-cols: 1fr;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        @media (min-width: 768px) {
-            .grid-3col { grid-template-cols: repeat(2, 1fr); }
-        }
-
         @media (min-width: 1024px) {
             .grid-hero { grid-template-cols: 1fr 1fr; }
-            .grid-3col { grid-template-cols: repeat(3, 1fr); }
         }
 
         .badge {
@@ -89,14 +77,6 @@
 
         @media (min-width: 640px) { h1 { font-size: 3rem; } }
 
-        h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
         .gradient-text {
             background: linear-gradient(to right, var(--accent-emerald), var(--accent-sky));
             -webkit-background-clip: text;
@@ -108,14 +88,6 @@
             font-size: 1.125rem;
             line-height: 1.6;
             margin-bottom: 2rem;
-        }
-
-        .section-desc {
-            color: var(--text-muted);
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
-            font-size: 1rem;
         }
 
         .btn-group { display: flex; flex-direction: column; gap: 1rem; }
@@ -131,9 +103,7 @@
             color: #020617;
             font-weight: 700;
             text-decoration: none;
-            cursor: pointer;
             transition: opacity 0.2s;
-            border: none;
         }
         .btn-primary:hover { opacity: 0.9; }
 
@@ -150,78 +120,7 @@
             text-decoration: none;
         }
 
-        /* Card System Styling */
-        .card {
-            background-color: rgba(15, 23, 42, 0.5);
-            border: 1px solid var(--border-color);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            transition: border-color 0.2s;
-        }
-        .card:hover { border-color: #334155; }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-num {
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
-            background-color: rgba(56, 189, 248, 0.1);
-            color: var(--accent-sky);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-            font-family: monospace;
-        }
-
-        .card h3 { font-size: 1.25rem; margin: 0; color: #f1f5f9; }
-        .card p { color: var(--text-muted); font-size: 0.925rem; line-height: 1.5; margin: 0 0 1rem 0; }
-
-        .pill-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .pill {
-            font-family: monospace;
-            font-size: 11px;
-            background-color: #020617;
-            border: 1px solid var(--border-color);
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            color: #cbd5e1;
-        }
-
-        /* Terminal System Configuration */
-        .terminal {
-            background-color: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--border-color);
-            border-radius: 0.75rem;
-            overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-        }
-        .terminal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.75rem 1rem;
-            background-color: #020617;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .window-controls { display: flex; gap: 0.375rem; }
-        .control-dot { width: 12px; height: 12px; border-radius: 50%; opacity: 0.4; }
-        .terminal-title { font-family: monospace; font-size: 0.75rem; color: #64748b; margin-left: 0.5rem; }
-        .status-badge { font-family: monospace; font-size: 10px; color: var(--accent-emerald); background-color: rgba(16, 185, 129, 0.1); padding: 0.125rem 0.5rem; border-radius: 0.25rem; }
-        .terminal-content { padding: 1.5rem; font-family: monospace; font-size: 0.875rem; line-height: 1.6; color: #cbd5e1; overflow-x: auto; margin: 0; }
-        .key { color: var(--accent-emerald); }
-        .string { color: #fba156; }
-        .number { color: var(--accent-sky); }
-        .error { color: var(--accent-rose); }
-
-        /* Integrated Automated Simulator Engine Styles */
+        /* Simulator Board UI Layout */
         .test-box {
             background-color: #0f172a;
             border: 1px solid var(--border-color);
@@ -229,14 +128,17 @@
             padding: 1.5rem;
             margin-top: 3rem;
         }
+
         .test-grid {
             display: grid;
             grid-template-cols: 1fr;
             gap: 1.5rem;
         }
+
         @media (min-width: 768px) {
             .test-grid { grid-template-cols: 1fr 2fr; }
         }
+
         .test-btn {
             width: 100%;
             background-color: #1e293b;
@@ -251,32 +153,54 @@
             margin-bottom: 0.5rem;
             transition: all 0.2s;
         }
-        .test-btn:hover { background-color: #334155; border-color: #475569; }
+
+        .test-btn:hover { background-color: #334155; }
         .test-btn.active {
             background-color: rgba(16, 185, 129, 0.1);
             border-color: var(--accent-emerald);
             color: #34d399;
         }
+
+        /* Visual Wave Canvas & Display Box */
+        .display-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .wave-container {
+            background-color: #020617;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            height: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
         .console-output {
             background-color: #020617;
-            border: 1px solid #1e293b;
+            border: 1px solid var(--border-color);
             border-radius: 0.5rem;
             padding: 1rem;
             font-family: monospace;
             font-size: 0.825rem;
             color: #cbd5e1;
-            height: 160px;
+            height: 100px;
             overflow-y: auto;
             white-space: pre-wrap;
         }
-
-        .divider { border-bottom: 1px solid #1e293b; margin: 4rem 0; }
     </style>
 </head>
 <body>
 
-    <!-- 🏛️ SECTION 1: HERO HUB -->
     <main class="container">
+        <!-- HERO SEGMENT -->
         <div class="grid-hero">
             <div class="info-panel">
                 <div class="badge">
@@ -288,12 +212,65 @@
                     QAEF provides an open, standardized framework to evaluate and benchmark machine-learning models on phoneme articulation accuracy, Tajweed rule compliance, and millisecond latency.
                 </p>
                 <div class="btn-group">
-                    <!-- Updated Canonical Open-Source Reference Repository Target -->
-                    <a href="https://github.com/qariAI/open-eval-methodology" class="btn-primary" target="_blank" rel="noopener noreferrer">View Spec on GitHub</a>
+                    <a href="https://github.com" class="btn-primary" target="_blank" rel="noopener noreferrer">View Spec on GitHub</a>
                     <a href="https://qariai.app" class="btn-secondary">Try Live Recitation API</a>
                 </div>
             </div>
 
+            <!-- INTERACTIVE SUITE WORKSPACE -->
             <div class="visual-panel">
-                <div class="terminal">
-                    <div class="terminal-header">
+                <div class="test-box">
+                    <div style="font-family: monospace; font-size: 0.75rem; color: #64748b; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Test Matrix Suite</div>
+                    <div class="test-grid">
+                        <!-- Side Control Selectors -->
+                        <div>
+                            <button class="test-btn active" id="btn-1" onclick="changeTest(1)">test_makhraj_delta.py</button>
+                            <button class="test-btn" id="btn-2" onclick="changeTest(2)">test_ghunnah_len.py</button>
+                            <button class="test-btn" id="btn-3" onclick="changeTest(3)">test_latency_bounds.py</button>
+                        </div>
+                        
+                        <!-- Visual Display Layer with Canvas Wave Animation -->
+                        <div class="display-panel">
+                            <div class="wave-container">
+                                <canvas id="waveCanvas"></canvas>
+                            </div>
+                            <div class="console-output" id="console-logs">Initializing testing stream sequence loop... Click a script module above to process metrics.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript Wave Render Animation Loop Engine -->
+    <script>
+        const canvas = document.getElementById('waveCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Match resolution variables
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let currentAmplitude = 15;
+        let currentFrequency = 0.04;
+        let currentSpeed = 0.15;
+        let phase = 0;
+        let waveColor = '#10b981'; // Primary Emerald Anchor
+
+        // Dynamic Configuration State Definitions
+        const testConfigs = {
+            1: { amplitude: 22, frequency: 0.06, speed: 0.25, color: '#f43f5e', text: "[RUNNING] test_makhraj_delta.py\n[DATA] Processing pharyngealized sibilant wave inputs...\n[ASSERT] Variance caught inside makhraj index: target='ص', read='س'.\n[STATUS] Result: Phoneme Isolation Deviation Error." },
+            2: { amplitude: 8, frequency: 0.02, speed: 0.08, color: '#f59e0b', text: "[RUNNING] test_ghunnah_len.py\n[DATA] Scanning continuous acoustic tracking frames...\n[ASSERT] Targeted Ghunnah holds measure 540ms (Required: 1200ms bounds).\n[STATUS] Result: Insufficient Rule Duration Deficit." },
+            3: { amplitude: 14, frequency: 0.09, speed: 0.35, color: '#38bdf8', text: "[RUNNING] test_latency_bounds.py\n[DATA] Pinging downstream streaming runtime array nodes...\n[METRIC] Processing calculation time registers solid latency check: 42ms.\n[STATUS] Result: Framework Runtime Compliant." }
+        };
+
+        function animateWave() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.strokeStyle = waveColor;
+            ctx.lineWidth = 2;
+
