@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QAEF — Quranic AI Evaluation Framework | QariAI</title>
     
-    <!-- Pure Embedded CSS styling layer -->
+    <!-- Pure Embedded CSS layout configuration sheet -->
     <style>
         :root {
             --bg-main: #020617;
@@ -166,11 +166,12 @@
             gap: 1rem;
         }
 
+        /* Fixed container positioning trace rules layout */
         .wave-container {
-            background-color: #020617;
-            border: 1px solid var(--border-color);
+            background-color: #020617 !important;
+            border: 1px solid var(--border-color) !important;
             border-radius: 0.5rem;
-            height: 80px;
+            height: 120px !important;
             position: relative;
             overflow: hidden;
             display: block;
@@ -179,8 +180,12 @@
 
         canvas {
             display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100% !important;
             height: 100% !important;
+            z-index: 10;
         }
 
         .console-output {
@@ -200,7 +205,7 @@
 <body>
 
     <main class="container">
-        <!-- HERO MAIN SPLIT BLOCK -->
+        <!-- HERO MAIN SPLIT LAYOUT -->
         <div class="grid-hero">
             <div class="info-panel">
                 <div class="badge">
@@ -217,7 +222,7 @@
                 </div>
             </div>
 
-            <!-- SIMULATOR CONTROL CORE PANEL -->
+            <!-- AUTOMATED SUITE VERIFICATION WORKSPACE -->
             <div class="visual-panel">
                 <div class="test-box">
                     <div style="font-family: monospace; font-size: 0.75rem; color: #64748b; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Test Matrix Suite</div>
@@ -230,10 +235,9 @@
                         
                         <div class="display-panel">
                             <div class="wave-container">
-                                <!-- Explicit height and width mappings added below to prevent viewport layout collapse -->
-                                <canvas id="waveCanvas" width="600" height="80"></canvas>
+                                <canvas id="waveCanvas"></canvas>
                             </div>
-                            <div class="console-output" id="console-logs">Processing streams...</div>
+                            <div class="console-output" id="console-logs">Processing stream logs...</div>
                         </div>
                     </div>
                 </div>
@@ -249,32 +253,30 @@
 
             function resize() {
                 canvas.width = canvas.parentElement.clientWidth || 600;
-                canvas.height = 80;
+                canvas.height = 120;
             }
             window.addEventListener('resize', resize);
             resize();
 
-            var amp = 15;
-            var freq = 0.04;
-            var speed = 0.15;
+            var amp = 20;
+            var freq = 0.03;
+            var speed = 0.12;
             var phase = 0;
             var color = '#10b981';
 
             var configs = {
-                1: { a: 22, f: 0.06, s: 0.25, c: '#f43f5e', t: "[RUNNING] test_makhraj_delta.py\n[DATA] Processing sibilant frames...\n[ASSERT] Discrepancy: target='ص', read='س'.\n[STATUS] Result: Phoneme Isolation Deviation Error." },
-                2: { a: 8, f: 0.02, s: 0.08, c: '#f59e0b', t: "[RUNNING] test_ghunnah_len.py\n[DATA] Scanning continuous acoustic tracking indices...\n[ASSERT] Duration: 540ms (Required: 1200ms bounds).\n[STATUS] Result: Insufficient Rule Duration Deficit." },
-                3: { a: 14, f: 0.09, s: 0.35, c: '#38bdf8', t: "[RUNNING] test_latency_bounds.py\n[DATA] Pinging downstream streaming runtime array nodes...\n[METRIC] Pipeline engine processing time logs: 42ms runtime speed.\n[STATUS] Result: Framework Runtime Compliant." }
+                1: { a: 28, f: 0.05, s: 0.20, c: '#f43f5e', t: "[RUNNING] test_makhraj_delta.py\n[DATA] Processing sibilant frames...\n[ASSERT] Discrepancy: target='ص', read='س'.\n[STATUS] Result: Phoneme Isolation Deviation Error." },
+                2: { a: 12, f: 0.02, s: 0.07, c: '#f59e0b', t: "[RUNNING] test_ghunnah_len.py\n[DATA] Scanning continuous acoustic tracking indices...\n[ASSERT] Duration: 540ms (Required: 1200ms bounds).\n[STATUS] Result: Insufficient Rule Duration Deficit." },
+                3: { a: 18, f: 0.07, s: 0.28, c: '#38bdf8', t: "[RUNNING] test_latency_bounds.py\n[DATA] Pinging downstream streaming runtime array nodes...\n[METRIC] Pipeline engine processing time logs: 42ms runtime speed.\n[STATUS] Result: Framework Runtime Compliant." }
             };
 
             function draw() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Native background fill layer inside runtime scope loop bounds
+                ctx.fillStyle = '#020617';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
                 ctx.beginPath();
                 ctx.strokeStyle = color;
-                ctx.lineWidth = 3; // Enhanced visual visibility lines
-                for (var x = 0; x < canvas.width; x++) {
-                    var y = (canvas.height / 2) + Math.sin(x * freq + phase) * amp;
-                    if (x === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                }
-                ctx.stroke();
-                phase += speed;
+                ctx.lineWidth = 3;
