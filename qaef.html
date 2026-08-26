@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QAEF — Quranic AI Evaluation Framework | QariAI</title>
     
-    <!-- Pure Embedded CSS: Guaranteed execution on all hosting environments -->
+    <!-- Pure Embedded CSS styling layer -->
     <style>
         :root {
             --bg-main: #020617;
@@ -120,7 +120,6 @@
             text-decoration: none;
         }
 
-        /* Simulator Board UI Layout */
         .test-box {
             background-color: #0f172a;
             border: 1px solid var(--border-color);
@@ -161,7 +160,6 @@
             color: #34d399;
         }
 
-        /* Visual Wave Canvas & Display Box */
         .display-panel {
             display: flex;
             flex-direction: column;
@@ -200,7 +198,7 @@
 <body>
 
     <main class="container">
-        <!-- HERO SEGMENT -->
+        <!-- HERO MAIN SPLIT BLOCK -->
         <div class="grid-hero">
             <div class="info-panel">
                 <div class="badge">
@@ -217,24 +215,22 @@
                 </div>
             </div>
 
-            <!-- INTERACTIVE SUITE WORKSPACE -->
+            <!-- SIMULATOR CONTROL CORE PANEL -->
             <div class="visual-panel">
                 <div class="test-box">
                     <div style="font-family: monospace; font-size: 0.75rem; color: #64748b; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Test Matrix Suite</div>
                     <div class="test-grid">
-                        <!-- Side Control Selectors -->
                         <div>
                             <button class="test-btn active" id="btn-1" onclick="changeTest(1)">test_makhraj_delta.py</button>
                             <button class="test-btn" id="btn-2" onclick="changeTest(2)">test_ghunnah_len.py</button>
                             <button class="test-btn" id="btn-3" onclick="changeTest(3)">test_latency_bounds.py</button>
                         </div>
                         
-                        <!-- Visual Display Layer with Canvas Wave Animation -->
                         <div class="display-panel">
                             <div class="wave-container">
                                 <canvas id="waveCanvas"></canvas>
                             </div>
-                            <div class="console-output" id="console-logs">Initializing testing stream sequence loop... Click a script module above to process metrics.</div>
+                            <div class="console-output" id="console-logs">Processing streams...</div>
                         </div>
                     </div>
                 </div>
@@ -242,35 +238,49 @@
         </div>
     </main>
 
-    <!-- JavaScript Wave Render Animation Loop Engine -->
+    <!-- Clean, Isolated Script Layer Engine -->
     <script>
-        const canvas = document.getElementById('waveCanvas');
-        const ctx = canvas.getContext('2d');
+        var canvas = document.getElementById('waveCanvas');
+        var ctx = canvas.getContext('2d');
 
-        // Match resolution variables
-        function resizeCanvas() {
+        function resize() {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        window.addEventListener('resize', resize);
+        resize();
 
-        let currentAmplitude = 15;
-        let currentFrequency = 0.04;
-        let currentSpeed = 0.15;
-        let phase = 0;
-        let waveColor = '#10b981'; // Primary Emerald Anchor
+        var amp = 15;
+        var freq = 0.04;
+        var speed = 0.15;
+        var phase = 0;
+        var color = '#10b981';
 
-        // Dynamic Configuration State Definitions
-        const testConfigs = {
-            1: { amplitude: 22, frequency: 0.06, speed: 0.25, color: '#f43f5e', text: "[RUNNING] test_makhraj_delta.py\n[DATA] Processing pharyngealized sibilant wave inputs...\n[ASSERT] Variance caught inside makhraj index: target='ص', read='س'.\n[STATUS] Result: Phoneme Isolation Deviation Error." },
-            2: { amplitude: 8, frequency: 0.02, speed: 0.08, color: '#f59e0b', text: "[RUNNING] test_ghunnah_len.py\n[DATA] Scanning continuous acoustic tracking frames...\n[ASSERT] Targeted Ghunnah holds measure 540ms (Required: 1200ms bounds).\n[STATUS] Result: Insufficient Rule Duration Deficit." },
-            3: { amplitude: 14, frequency: 0.09, speed: 0.35, color: '#38bdf8', text: "[RUNNING] test_latency_bounds.py\n[DATA] Pinging downstream streaming runtime array nodes...\n[METRIC] Processing calculation time registers solid latency check: 42ms.\n[STATUS] Result: Framework Runtime Compliant." }
+        var configs = {
+            1: { a: 22, f: 0.06, s: 0.25, c: '#f43f5e', t: "[RUNNING] test_makhraj_delta.py\n[DATA] Processing sibilant frames...\n[ASSERT] Discrepancy: target='ص', read='س'.\n[STATUS] Result: Phoneme Isolation Deviation Error." },
+            2: { a: 8, f: 0.02, s: 0.08, c: '#f59e0b', t: "[RUNNING] test_ghunnah_len.py\n[DATA] Scanning continuous acoustic tracking indices...\n[ASSERT] Duration: 540ms (Required: 1200ms bounds).\n[STATUS] Result: Insufficient Rule Duration Deficit." },
+            3: { a: 14, f: 0.09, s: 0.35, c: '#38bdf8', t: "[RUNNING] test_latency_bounds.py\n[DATA] Pinging downstream streaming runtime array nodes...\n[METRIC] Pipeline engine processing time logs: 42ms runtime speed.\n[STATUS] Result: Framework Runtime Compliant." }
         };
 
-        function animateWave() {
+        function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.beginPath();
-            ctx.strokeStyle = waveColor;
+            ctx.strokeStyle = color;
             ctx.lineWidth = 2;
+            for (var x = 0; x < canvas.width; x++) {
+                var y = (canvas.height / 2) + Math.sin(x * freq + phase) * amp;
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            phase += speed;
+            requestAnimationFrame(draw);
+        }
 
+        function changeTest(id) {
+            document.querySelectorAll('.test-btn').forEach(function(b) { b.classList.remove('active'); });
+            document.getElementById('btn-' + id).classList.add('active');
+            amp = configs[id].a;
+            freq = configs[id].f;
+            speed = configs[id].s;
+            color = configs[id].c;
