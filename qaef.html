@@ -1,275 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
-<link rel="apple-touch-icon" href="/favicon.png?v=2">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
-<title>QAEF — Quranic AI Evaluation Framework | QariAI</title>
-<link rel="canonical" href="https://qariai.app/qaef">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://qariai.app"},{"@type":"ListItem","position":2,"name":"Academy","item":"https://qariai.app/academy"},{"@type":"ListItem","position":3,"name":"Open Evaluation Framework","item":"https://qariai.app/qaef"}]}
-</script>
-<meta name="description" content="QAEF is QariAI's implementation of an open evaluation framework for Quranic recitation analysis — measuring phoneme accuracy, Tajweed detection, timing, feedback quality, and robustness.">
-<meta name="keywords" content="QAEF, quran ai evaluation, tajweed evaluation framework, quran recitation benchmark, ai tajweed checker methodology, qari ai framework">
-<meta property="og:title" content="QAEF — Quranic AI Evaluation Framework | QariAI">
-<meta property="og:description" content="The first standardized framework for evaluating AI Quranic recitation systems. Open, reproducible, and grounded in classical Tajweed scholarship.">
-<meta property="og:url" content="https://qariai.app/qaef">
-<meta property="og:type" content="article">
-<meta property="og:image" content="https://qariai.app/screenshots/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="QAEF — Quranic AI Evaluation Framework">
-<meta name="twitter:description" content="Open, standardized methodology for benchmarking AI Quran recitation systems.">
-<meta name="twitter:image" content="https://qariai.app/screenshots/og-image.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ScholarlyArticle",
-  "headline": "QAEF: The Quranic AI Evaluation Framework",
-  "description": "QAEF is QariAI's implementation of an open, standardized methodology for evaluating Quranic recitation systems across five dimensions.",
-  "author": {"@type": "Organization", "name": "QariAI", "url": "https://qariai.app"},
-  "publisher": {"@type": "Organization", "name": "QariAI", "url": "https://qariai.app"},
-  "datePublished": "2026-03-30",
-  "dateModified": "2026-04-01",
-  "url": "https://qariai.app/qaef",
-  "license": "https://creativecommons.org/licenses/by/4.0/",
-  "keywords": ["QAEF", "Quran recitation", "Tajweed", "AI evaluation", "Islamic education technology"]
-}
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
-<style>
-:root{
-  --bg:#080e12;--bg2:#0d1820;--bg3:#111f2a;
-  --emerald:#10b981;--emerald2:#059669;--emerald3:#047857;
-  --gold:#d4af37;--text:#e8f0eb;--muted:#6b8a7a;
-  --border:rgba(16,185,129,0.15);--card:rgba(13,24,32,0.85);
-}
-*,::before,::after{box-sizing:border-box;margin:0;padding:0}
-html{line-height:1.6;scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(16,185,129,0.04)' stroke-width='0.8'%3E%3Cpolygon points='40,4 72,22 72,58 40,76 8,58 8,22'/%3E%3Cpolygon points='40,14 64,27 64,53 40,66 16,53 16,27'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:80px 80px}
-a{color:inherit;text-decoration:none}
-nav{position:fixed;top:0;width:100%;z-index:100;background:#ffffff;backdrop-filter:blur(16px);border-bottom:1px solid rgba(16,185,129,0.1);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--text)}
-.nav-logo span{color:var(--emerald)}
-.nav-right{display:flex;align-items:center;gap:1rem}
-.nav-link{color:var(--muted);font-size:0.85rem;transition:color 0.2s}
-.nav-link:hover{color:var(--emerald)}
-.nav-cta{background:var(--emerald2);color:#fff;padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600;transition:background 0.2s}
-.nav-cta:hover{background:var(--emerald3)}
-.page-wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:110px 2rem 80px}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);border-radius:100px;padding:5px 14px;font-size:0.72rem;font-weight:600;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:20px}
-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;margin-bottom:16px}
-h1 em{font-style:normal;color:var(--emerald)}
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-.badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:100px;font-size:0.72rem;font-weight:600;letter-spacing:0.04em}
-.badge-version{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);color:var(--emerald)}
-.badge-id{background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);color:var(--gold)}
-.badge-status{background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);color:var(--emerald)}
-.subtitle{color:var(--muted);font-size:1.05rem;line-height:1.75;margin-bottom:8px;max-width:640px}
-.github-link{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:0.88rem;text-decoration:underline;text-underline-offset:3px;margin-bottom:36px}
-.definition-box{background:rgba(212,175,55,0.05);border:1px solid rgba(212,175,55,0.2);border-left:3px solid var(--gold);border-radius:10px;padding:20px 24px;margin-bottom:48px}
-.definition-box p{font-size:0.95rem;color:#c8b882;line-height:1.7;font-style:italic}
-.section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--emerald);margin:52px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;margin-bottom:14px;color:var(--text)}
-h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:10px}
-.dim-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px;display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;transition:border-color 0.2s}
-.dim-card:hover{border-color:rgba(16,185,129,0.3)}
-.dim-num{width:36px;height:36px;border-radius:50%;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;color:var(--emerald)}
-.dim-body h3{margin-bottom:6px}
-.dim-body p{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:10px}
-.dim-examples{display:flex;flex-wrap:wrap;gap:6px}
-.dim-tag{display:inline-block;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);border-radius:6px;padding:2px 10px;font-size:0.76rem;color:var(--emerald)}
-.compare-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:0.875rem}
-.compare-table th{text-align:left;padding:10px 14px;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-.compare-table td{padding:12px 14px;border-bottom:1px solid rgba(16,185,129,0.06);color:var(--text)}
-.compare-table tr:last-child td{border-bottom:none}
-.compare-table td:first-child{color:var(--muted)}
-.compare-table td:last-child{color:var(--emerald);font-weight:500}
-.limitations-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:16px}
-.limitations-list li{display:flex;align-items:flex-start;gap:12px;font-size:0.9rem;color:var(--muted);line-height:1.6}
-.limitations-list li::before{content:'—';color:var(--border);flex-shrink:0;margin-top:2px}
-.methodology-link-block{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin:40px 0;display:flex;flex-direction:column;gap:12px}
-.methodology-link-block p{font-size:0.88rem;color:var(--muted)}
-.methodology-link-block a{color:var(--emerald);text-decoration:underline;text-underline-offset:3px}
-.cta-block{background:rgba(212,175,55,0.05);border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:32px;text-align:center;margin-top:56px}
-.cta-block h2{font-size:1.6rem;margin-bottom:10px}
-.cta-block p{color:var(--muted);font-size:0.95rem;margin-bottom:24px;max-width:440px;margin-left:auto;margin-right:auto}
-.cta-btn{display:inline-block;background:var(--emerald2);color:#fff;padding:12px 28px;border-radius:100px;font-size:0.9rem;font-weight:600;transition:background 0.2s}
-.cta-btn:hover{background:var(--emerald3)}
-footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:32px 2rem;text-align:center;font-size:0.8rem;color:var(--muted)}
-footer a{color:var(--emerald)}
-@media(max-width:600px){.dim-card{grid-template-columns:1fr}.dim-num{width:28px;height:28px;font-size:0.72rem}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QAEF — Quranic AI Evaluation Framework | QariAI</title>
+    <!-- Tailwind CSS Script CDN for Immediate Evaluation -->
+    <script src="https://tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            950: '#020617',
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 🤖 SEO & LLM Optimization Metadata Block -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://qariai.app"
+      },
+      "headline": "Quranic AI Evaluation Framework (QAEF) Technical Specification",
+      "description": "An open standard methodology for evaluating AI Quranic recitation systems, measuring phonetic accuracy, Tajweed compliance, and timing precision.",
+      "image": "https://qariai.app",
+      "author": {
+        "@type": "Organization",
+        "name": "QariAI"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "QariAI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://qariai.app"
+        }
+      },
+      "datePublished": "2026-03-30",
+      "dateModified": "2026-08-26",
+      "keywords": "Quranic AI, QAEF, Tajweed Evaluation, Speech Recognition, Arabic Phonemes, Open Evaluation Framework"
+    }
+    </script>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 selection:bg-emerald-500/30 selection:text-emerald-300">
 
-<nav>
-  <a href="https://qariai.app" class="nav-logo">Qari<span>AI</span></a>
-  <div class="nav-right">
-    <a href="https://qariai.app/academy" class="nav-link">Academy</a>
-    <a href="https://qariai.app/tajweed-rules" class="nav-link">Tajweed Rules</a>
-    <a href="https://qariai.app/open-methodology" class="nav-link">Methodology</a>
-    <a href="https://qariai.app" class="nav-cta">Try Free</a>
-  </div>
-</nav>
+    <!-- 🎨 PART 1: HERO HUB & PAYLOAD SIMULATOR -->
+    <section class="relative overflow-hidden py-24 sm:py-32 border-b border-slate-900">
+        <!-- Ambient Radial Background Lighting -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(16,185,129,0.08),transparent_45%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(14,165,233,0.08),transparent_50%)]"></div>
 
-<div class="page-wrap">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Left Info Panel -->
+            <div class="lg:col-span-6 space-y-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold tracking-wide">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Open Standard Specification · v1.0
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight lg:leading-tight">
+                    The Open Standard for <span class="bg-gradient-to-r from-emerald-400 to-sky-400 bg-clip-text text-transparent">Quranic Audio AI</span> Evaluation
+                </h1>
+                
+                <p class="text-slate-400 text-lg leading-relaxed max-w-xl">
+                    QAEF provides an open, standardized framework to evaluate and benchmark machine-learning models on phoneme articulation accuracy, Tajweed rule compliance, and millisecond latency.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                    <a href="https://github.com" class="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold tracking-wide transition-all shadow-lg shadow-emerald-500/15">
+                        View Spec on GitHub
+                    </a>
+                    <a href="https://qariai.app" class="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 font-medium transition-all">
+                        Try Live Recitation API
+                    </a>
+                </div>
+            </div>
 
-  <div style="font-size:0.82rem;color:var(--muted);margin-bottom:16px;">
-    <a href="https://qariai.app/academy" style="color:var(--emerald);">Academy</a> <span style="opacity:.5;">›</span> Open Evaluation Framework
-  </div>
+            <!-- Right Visual Interactive Panel -->
+            <div class="lg:col-span-6 w-full">
+                <div class="w-full bg-slate-900/80 border border-slate-800 rounded-xl overflow-hidden shadow-2xl backdrop-blur-sm">
+                    
+                    <!-- Chrome Header Window Bar -->
+                    <div class="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-slate-800">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-rose-500/40"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500/40"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500/40"></span>
+                            <span class="text-xs text-slate-500 font-mono ml-2">qaef_evaluation_stream.json</span>
+                        </div>
+                        <span class="text-[10px] text-emerald-400 font-mono bg-emerald-500/10 px-2 py-0.5 rounded">200 OK</span>
+                    </div>
 
-  <div class="hero-tag">Open Standard · Version 1.0</div>
-
-  <div class="badges">
-    <span class="badge badge-version">Version 1.0 · March 30, 2026</span>
-    <span class="badge badge-id">ID: QARI-QAEF-2026-001</span>
-    <span class="badge badge-status">Open Standard</span>
-  </div>
-
-  <h1>Quranic AI <em>Evaluation Framework</em></h1>
-  <p class="subtitle">QAEF is QariAI's implementation of an open, standardized methodology for evaluating AI Quranic recitation systems — the first of its kind.</p>
-  <a href="https://github.com/qariAI/open-eval-methodology" target="_blank" rel="noopener noreferrer" class="github-link">
-    Technical specification on GitHub →
-  </a>
-
-  <!-- DEFINITION -->
-  <div class="definition-box">
-    <p><strong style="color:var(--gold)">Definition:</strong> Quranic recitation evaluation is the measurement of phonetic accuracy, rule compliance, temporal precision, feedback quality, and robustness across speakers.</p>
-  </div>
-
-  <!-- DIMENSIONS -->
-  <div class="section-label">Five Evaluation Dimensions</div>
-
-  <div class="dim-card">
-    <div class="dim-num">1</div>
-    <div class="dim-body">
-      <h3>Phoneme Accuracy</h3>
-      <p>QAEF analyzes recitation at the phoneme level, identifying errors in articulation points (makharij) and phonetic characteristics (sifaat).</p>
-      <div class="dim-examples">
-        <span class="dim-tag">ص vs س confusion</span>
-        <span class="dim-tag">ح vs ه confusion</span>
-        <span class="dim-tag">Incorrect makhraj</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="dim-card">
-    <div class="dim-num">2</div>
-    <div class="dim-body">
-      <h3>Tajweed Rule Detection</h3>
-      <p>The system detects application of Tajweed rules in real time and classifies errors by rule type, enabling precise correction.</p>
-      <div class="dim-examples">
-        <span class="dim-tag">Ghunnah</span>
-        <span class="dim-tag">Idgham</span>
-        <span class="dim-tag">Ikhfa</span>
-        <span class="dim-tag">Qalqalah</span>
-        <span class="dim-tag">Madd</span>
-        <span class="dim-tag">Lam Shamsiyyah</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="dim-card">
-    <div class="dim-num">3</div>
-    <div class="dim-body">
-      <h3>Timing &amp; Prosody</h3>
-      <p>QAEF evaluates temporal aspects of recitation to ensure alignment with proper recitation structure.</p>
-      <div class="dim-examples">
-        <span class="dim-tag">Madd duration (2, 4, 6 counts)</span>
-        <span class="dim-tag">Waqf placement</span>
-        <span class="dim-tag">Rhythm &amp; flow</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="dim-card">
-    <div class="dim-num">4</div>
-    <div class="dim-body">
-      <h3>Feedback Quality</h3>
-      <p>QAEF generates structured feedback designed to be pedagogically actionable — not just flagging errors, but guiding correction.</p>
-      <div class="dim-examples">
-        <span class="dim-tag">Accurate</span>
-        <span class="dim-tag">Specific</span>
-        <span class="dim-tag">Actionable</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="dim-card">
-    <div class="dim-num">5</div>
-    <div class="dim-body">
-      <h3>Demographic Robustness</h3>
-      <p>The system is designed to perform consistently regardless of speaker background.</p>
-      <div class="dim-examples">
-        <span class="dim-tag">Arab accents</span>
-        <span class="dim-tag">South Asian accents</span>
-        <span class="dim-tag">Western accents</span>
-        <span class="dim-tag">All age groups</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- COMPARISON -->
-  <div class="section-label">QAEF vs Traditional Learning</div>
-
-  <table class="compare-table">
-    <thead>
-      <tr>
-        <th>Dimension</th>
-        <th>Traditional Learning</th>
-        <th>QAEF</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Feedback latency</td><td>Delayed</td><td>Immediate</td></tr>
-      <tr><td>Practice frequency</td><td>Limited</td><td>Unlimited</td></tr>
-      <tr><td>Consistency</td><td>Variable</td><td>Standardized</td></tr>
-      <tr><td>Error specificity</td><td>Instructor-dependent</td><td>Rule-based</td></tr>
-    </tbody>
-  </table>
-  <p style="font-size:0.85rem;color:var(--muted);margin-top:-8px">QAEF complements traditional learning — it enables high-frequency structured practice, not a replacement for scholarship.</p>
-
-  <!-- LIMITATIONS -->
-  <div class="section-label">Limitations</div>
-  <p style="font-size:0.9rem;color:var(--muted);margin-bottom:16px">QAEF is a support system, not a replacement for human scholarship.</p>
-  <ul class="limitations-list">
-    <li>Nuanced recitation styles and qira'at variations may require expert scholars</li>
-    <li>Spiritual and mentorship aspects of Tajweed are not replicable by AI</li>
-    <li>Accuracy depends on recording quality and ambient noise conditions</li>
-  </ul>
-
-  <!-- METHODOLOGY LINK -->
-  <div class="methodology-link-block">
-    <p><strong style="color:var(--text)">Built on the Open Evaluation Methodology</strong></p>
-    <p>QAEF operationalizes the principles defined in QariAI's open methodology. Both documents are publicly licensed (CC BY 4.0) to enable transparent, reproducible benchmarking.</p>
-    <div>
-      <a href="https://qariai.app/open-methodology">Conceptual overview →</a>
-      &nbsp;&nbsp;
-      <a href="https://github.com/qariAI/open-eval-methodology" target="_blank" rel="noopener noreferrer">Technical specification on GitHub →</a>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="cta-block">
-    <h2>See QAEF in action</h2>
-    <p>QariAI applies QAEF to your recitation in real time — identify your weak rules and improve systematically.</p>
-    <a href="https://qariai.app" class="cta-btn">Try QariAI free</a>
-  </div>
-
-</div>
-
-<footer>
-  <p>© 2026 QariAI · <a href="https://qariai.app/tajweed-rules">Tajweed Rules</a> · <a href="https://qariai.app/open-methodology">Open Methodology</a> · <a href="https://github.com/qariAI/open-eval-methodology">GitHub</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
-</footer>
-
+                    <!-- Live Formatted Stream Output -->
+                    <div class="p-6 font-mono text-xs sm:text-sm text-slate-400 overflow-x-auto leading-relaxed">
+<pre><code>{
+  <span class="text-emerald-400">"session_id"</span>: <span class="text-sky-300">"qari_eval_2026_090x"</span>,
+  <span class="text-emerald-400">"phoneme_accuracy"</span>: {
+    <span class="text-emerald-400">"target_makhraj"</span>: <span class="text-amber-300">"ص"</span>,
+    <span class="text-emerald-400">"detected_makhraj"</span>: <span class="text-rose-400">"س"</span>,
+    <span class="text-emerald-400">"status"</span>: <span class="text-rose-400">"Phoneme Confusion Detected"</span>
+  },
+  <span class="text-emerald-400">"tajweed_compliance"</span>: {
+    <span class="text-emerald-400">"rule_type"</span>: <span class="text-amber-300">"Ghunnah"</span>,
+    <span class="text-emerald-400">"required_duration_ms"</span>: <span class="text-sky-300">1200</span>,
+    <span class="text-emerald-400">"measured_duration_ms"</span>: <span class="text-rose-400">540</span>,
+    <span class="text-emerald-400">"verdict"</span>: <span class="text-rose-400">"Insufficient Duration Error"</span>
+  },
+  <span class="text-emerald-400">"latency_metrics"</span>: {
+    <span class="text-emerald-400">"processing_time_ms"</span>: <span class="text-sky-300">42</span>,
+    <span class="text-emerald-400">"standard_compliance"</span>: <span class="text-sky-300">true</span>
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
