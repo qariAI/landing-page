@@ -1,11 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QAEF — Quranic AI Evaluation Framework | QariAI</title>
     <meta name="description" content="QAEF: an open, reproducible methodology for evaluating AI Quranic recitation tools on phoneme accuracy, Tajweed detection, and demographic robustness.">
-    
+    <link rel="icon" type="image/png" href="/favicon.png?v=20260726d">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png?v=20260726d">
+    <link rel="apple-touch-icon" href="/favicon.png?v=20260726d">
+
     <!-- Stable Server-Safe CSS Style Layer -->
     <style>
         :root {
@@ -227,7 +230,7 @@
                             <button class="test-btn" id="btn-2" data-test-id="2">test_ghunnah_len.py</button>
                             <button class="test-btn" id="btn-3" data-test-id="3">test_latency_bounds.py</button>
                         </div>
-                        
+
                         <div class="display-panel">
                             <div class="wave-container">
                                 <!-- Hardcoded explicit resolution coordinates completely skip sizing lookup bugs -->
@@ -262,14 +265,14 @@
             function drawLoop() {
                 // Keep dimensions absolute relative to internal coordinates explicitly
                 ctx.clearRect(0, 0, 600, 120);
-                
+
                 ctx.fillStyle = '#020617';
                 ctx.fillRect(0, 0, 600, 120);
-                
+
                 ctx.beginPath();
                 ctx.strokeStyle = color;
                 ctx.lineWidth = 4; // Thick high-visibility stroke path
-                
+
                 for (var x = 0; x < 600; x++) {
                     var y = 60 + Math.sin(x * freq + phase) * amp;
                     if (x === 0) ctx.moveTo(x, y);
@@ -281,3 +284,36 @@
             }
 
             function triggerUpdate(id) {
+                var config = configs[id];
+                if (!config) return;
+
+                amp = config.a;
+                freq = config.f;
+                speed = config.s;
+                color = config.c;
+
+                var logEl = document.getElementById('console-logs');
+                if (logEl) logEl.textContent = config.t;
+
+                var buttons = document.querySelectorAll('.test-btn');
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i].getAttribute('data-test-id') === String(id)) {
+                        buttons[i].classList.add('active');
+                    } else {
+                        buttons[i].classList.remove('active');
+                    }
+                }
+            }
+
+            var testButtons = document.querySelectorAll('.test-btn');
+            for (var j = 0; j < testButtons.length; j++) {
+                testButtons[j].addEventListener('click', function() {
+                    triggerUpdate(this.getAttribute('data-test-id'));
+                });
+            }
+
+            drawLoop();
+        })();
+    </script>
+</body>
+</html>
