@@ -420,6 +420,18 @@
       "destination": "/academy/makharij-chart.html"
     },
     {
+      "source": "/academy/best-hifz-memorization-apps",
+      "destination": "/academy/best-hifz-memorization-apps.html"
+    },
+    {
+      "source": "/academy/self-paced-quran-study-guide",
+      "destination": "/academy/self-paced-quran-study-guide.html"
+    },
+    {
+      "source": "/academy/quran-learning-for-families-and-schools",
+      "destination": "/academy/quran-learning-for-families-and-schools.html"
+    },
+    {
       "source": "/delete-account",
       "destination": "/delete-account.html"
     }
