@@ -420,6 +420,10 @@
       "destination": "/academy/makharij-chart.html"
     },
     {
+      "source": "/academy/curriculum",
+      "destination": "/academy/curriculum.html"
+    },
+    {
       "source": "/academy/best-hifz-memorization-apps",
       "destination": "/academy/best-hifz-memorization-apps.html"
     },
