@@ -440,6 +440,14 @@
       "destination": "/academy/quran-learning-for-families-and-schools.html"
     },
     {
+      "source": "/academy/tajweed-help-for-kids",
+      "destination": "/academy/tajweed-help-for-kids.html"
+    },
+    {
+      "source": "/academy/teaching-tajweed-to-kids-at-home",
+      "destination": "/academy/teaching-tajweed-to-kids-at-home.html"
+    },
+    {
       "source": "/delete-account",
       "destination": "/delete-account.html"
     }
