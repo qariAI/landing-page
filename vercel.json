@@ -1,4 +1,4 @@
-{
+﻿{
   "redirects": [
     {
       "source": "/index.html",
@@ -266,6 +266,10 @@
     {
       "source": "/learn/common-tajweed-mistakes",
       "destination": "/common-tajweed-mistakes.html"
+    },
+    {
+      "source": "/learn/beginner-tajweed-curriculum",
+      "destination": "/beginner-tajweed-curriculum.html"
     },
     {
       "source": "/learn/pronounce-ayn",
