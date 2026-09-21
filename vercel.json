@@ -66,6 +66,11 @@
       "permanent": true
     },
     {
+      "source": "/academy/best-ai-quran-apps",
+      "destination": "https://qariai.app/best-ai-quran-app",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -395,10 +400,6 @@
     {
       "source": "/academy/ai-vs-human-quran-teacher",
       "destination": "/academy/ai-vs-human-quran-teacher.html"
-    },
-    {
-      "source": "/academy/best-ai-quran-apps",
-      "destination": "/academy/best-ai-quran-apps.html"
     },
     {
       "source": "/academy/can-ai-teach-tajweed",
