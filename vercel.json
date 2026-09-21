@@ -280,6 +280,10 @@
       "destination": "/about.html"
     },
     {
+      "source": "/hifz",
+      "destination": "/hifz.html"
+    },
+    {
       "source": "/ar",
       "destination": "/ar.html"
     },

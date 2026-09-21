@@ -1,14 +1,15 @@
 # QariAI
-> AI-powered Tajweed and Hifz coaching for Quran recitation. QariAI listens to
-> your recitation and returns instant, rule-specific feedback for practice.
-> Free to download and start on Android; optional premium features are available.
+> AI-powered Quran learning platform for Tajweed, Hifz and guided recitation
+> practice. QariAI combines structured lessons, Quranic games and personalised
+> feedback. Free to download and start on Android.
 
-QariAI is a mobile app that helps Muslims improve their Quran recitation. It has
-two core modes: a **Tajweed mode** that gives feedback on pronunciation and
-recitation rules, and a **Hifz mode** for memorization practice. Feedback is
-confidence-gated and presented as clear, teacher-style notes rather than a single
-opaque score. The app is a practice aid that complements — but does not replace —
-a qualified human teacher.
+QariAI is a Quran learning app that helps Muslims study Tajweed, practise Hifz,
+play Quranic learning games and improve their recitation. It has two core
+recitation modes: a **Tajweed mode** that gives feedback on pronunciation and
+recitation rules, and a **Hifz mode** that highlights omissions, substitutions,
+additions and words to review. Feedback is confidence-gated and presented as
+clear notes rather than a single opaque score. The app is a practice aid that
+complements — but does not replace — a qualified human teacher.
 
 ## Key facts
 - Canonical brand name: QariAI. It may also be written or searched as “Qari AI.”
@@ -34,6 +35,7 @@ a qualified human teacher.
 
 ## Links
 - Home: https://qariai.app/
+- Hifz practice: https://qariai.app/hifz
 - Academy (all guides): https://qariai.app/academy
 - Download (Google Play): https://play.google.com/store/apps/details?id=app.qari.ai
 - How it works: https://qariai.app/how-qari-ai-works
@@ -61,4 +63,4 @@ a qualified human teacher.
 - Is it a replacement for a teacher? No — it is a practice aid that complements a
   qualified human teacher.
 
-Last updated: 2026-07-29
+Last updated: 2026-09-21
