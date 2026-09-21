@@ -11,6 +11,36 @@
       "permanent": true
     },
     {
+      "source": "/learn",
+      "destination": "https://qariai.app/academy",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "https://qariai.app/academy",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "https://qariai.app/#pricing",
+      "permanent": true
+    },
+    {
+      "source": "/media-kit",
+      "destination": "https://qariai.app/about",
+      "permanent": true
+    },
+    {
+      "source": "/common-tajweed-mistakes",
+      "destination": "https://qariai.app/learn/common-tajweed-mistakes",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "https://qariai.app/about",
+      "permanent": true
+    },
+    {
       "source": "/tajweed-checker",
       "destination": "https://qariai.app/tajweed-mistakes-checker",
       "permanent": true
