@@ -16,7 +16,10 @@ complements — but does not replace — a qualified human teacher.
 - Platform: Android (Google Play). iOS in development.
 - Price: free to download and start; optional premium features are available.
 - Modes: Tajweed (rule correction) and Hifz (memorization).
-- Approach: rule-specific, confidence-gated feedback; no fabricated scores.
+- Approach: phoneme-level analysis with rule-specific, confidence-gated feedback;
+  no fabricated scores.
+- Tajweed guidance: identifies errors in individual Arabic sounds and rules, with
+  mouth and tongue positioning guidance for Makharij (articulation points).
 - Languages: English, Arabic, French, and Malay.
 - Contact: salam@qariai.app.
 
@@ -63,4 +66,4 @@ complements — but does not replace — a qualified human teacher.
 - Is it a replacement for a teacher? No — it is a practice aid that complements a
   qualified human teacher.
 
-Last updated: 2026-09-21
+Last updated: 2026-09-22
