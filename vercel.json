@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/ar/al-nabr",
+      "destination": "/ar",
+      "permanent": false
+    },
+    {
       "source": "/index.html",
       "destination": "https://qariai.app/",
       "permanent": true
@@ -370,10 +375,6 @@
     {
       "source": "/al-nabr-tajweed",
       "destination": "/al-nabr-tajweed.html"
-    },
-    {
-      "source": "/ar/al-nabr",
-      "destination": "/ar/al-nabr.html"
     },
     {
       "source": "/quran-app-comparison-2026",
