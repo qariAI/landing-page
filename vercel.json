@@ -491,6 +491,18 @@
     {
       "source": "/qaf",
       "destination": "/qaf.html"
+    },
+    {
+      "source": "/ar/about",
+      "destination": "/ar/about.html"
+    },
+    {
+      "source": "/fr/about",
+      "destination": "/fr/about.html"
+    },
+    {
+      "source": "/ms/about",
+      "destination": "/ms/about.html"
     }
   ]
 }

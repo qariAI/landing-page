@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+<link rel="apple-touch-icon" href="/favicon.png?v=2">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+    <title>À propos de QariAI — plateforme d'apprentissage du Coran par IA</title>
+    <link rel="canonical" href="https://qariai.app/fr/about">
+    <meta name="description" content="QariAI est une plateforme d'apprentissage du Coran par IA réunissant leçons de Tajwid, pratique du Hifz, jeux coraniques et retours personnalisés de récitation.">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://qariai.app/#organization","name":"QariAI","alternateName":"Qari AI","url":"https://qariai.app/","description":"QariAI is an AI-powered Quran learning platform for Tajweed, Hifz and guided recitation practice.","logo":"https://qariai.app/logo.png","email":"salam@qariai.app"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://qariai.app"},{"@type":"ListItem","position":2,"name":"About","item":"https://qariai.app/about"}]}]}
+    </script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+    <style>
+        *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { line-height: 1.5; scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%); color: #0f172a; min-height: 100vh; }
+        a { color: inherit; text-decoration: none; }
+        img, svg { display: block; }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap');
+
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            z-index: 50;
+        }
+        .nav-inner {
+            max-width: 80rem; margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 5rem;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+        .nav-logo-icon {
+            width: 2.5rem; height: 2.5rem;
+            background: linear-gradient(135deg, #10b981, #047857);
+            border-radius: 0.75rem;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 1.25rem;
+            box-shadow: 0 4px 12px rgba(16,185,129,0.3);
+        }
+        .nav-brand { font-family: 'Merriweather', Georgia, serif; font-size: 1.5rem; font-weight: 700; }
+        .nav-link { color: #475569; font-weight: 500; font-size: 0.9rem; transition: color 0.15s; }
+        .nav-link:hover { color: #059669; }
+        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-cta {
+            background: #059669; color: white;
+            padding: 0.5rem 1.25rem; border-radius: 9999px;
+            font-weight: 700; font-size: 0.9rem; transition: background 0.15s;
+        }
+        .nav-cta:hover { background: #047857; }
+
+        /* PAGE */
+        .page-wrapper { max-width: 52rem; margin: 0 auto; padding: 8rem 1.5rem 5rem; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-header { text-align: center; margin-bottom: 3rem; animation: fadeInUp 0.7s ease-out; }
+        .page-tag {
+            display: inline-block; background: #d1fae5; color: #065f46;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+            padding: 0.35rem 1rem; border-radius: 9999px; margin-bottom: 1rem;
+        }
+        .page-title {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 2.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 0.75rem;
+        }
+        .page-subtitle { color: #64748b; font-size: 0.95rem; }
+
+        /* CARD */
+        .card {
+            background: white; border-radius: 1.25rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 2.5rem; margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .section { margin-bottom: 2.25rem; }
+        .section:last-child { margin-bottom: 0; }
+
+        .section-title {
+            font-size: 1.125rem; font-weight: 700; color: #065f46;
+            display: flex; align-items: center; gap: 0.6rem;
+            margin-bottom: 0.75rem; padding-bottom: 0.5rem;
+            border-bottom: 1px solid #d1fae5;
+        }
+        .section-icon {
+            width: 1.75rem; height: 1.75rem; background: #ecfdf5;
+            border-radius: 0.4rem; display: flex; align-items: center;
+            justify-content: center; font-size: 0.9rem;
+        }
+
+        .card p { color: #334155; line-height: 1.8; margin-bottom: 0.85rem; font-size: 0.95rem; }
+        .card p:last-child { margin-bottom: 0; }
+        .card a { color: #059669; text-decoration: underline; }
+        .card a:hover { color: #047857; }
+        .card strong { font-weight: 700; color: #0f172a; }
+
+        /* Highlight box */
+        .highlight-box {
+            background: #f0fdf4; border: 1px solid #bbf7d0;
+            border-radius: 0.75rem; padding: 1.25rem 1.5rem;
+            margin: 1rem 0; font-size: 0.95rem; color: #065f46; line-height: 1.7;
+        }
+        .highlight-box strong { font-weight: 700; }
+
+        /* Arabic quote */
+        .arabic-quote {
+            background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
+            border-left: 4px solid #059669;
+            border-radius: 0 0.75rem 0.75rem 0;
+            padding: 1.25rem 1.5rem; margin: 1.25rem 0;
+        }
+        .arabic-quote .arabic { font-size: 1.4rem; color: #065f46; direction: rtl; text-align: right; margin-bottom: 0.5rem; font-weight: 600; }
+        .arabic-quote .translation { font-size: 0.85rem; color: #475569; font-style: italic; }
+
+        /* Values grid */
+        .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .value-card {
+            background: #f8fafc; border: 1px solid #e2e8f0;
+            border-radius: 0.75rem; padding: 1rem 1.25rem;
+        }
+        .value-card .v-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+        .value-card .v-title { font-weight: 700; color: #0f172a; font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .value-card .v-desc { font-size: 0.82rem; color: #64748b; line-height: 1.5; }
+
+        /* CTA section */
+        .cta-card {
+            background: linear-gradient(135deg, #059669, #047857);
+            border-radius: 1.25rem; padding: 2.5rem;
+            text-align: center; color: white;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .cta-card h3 { font-family: 'Merriweather', serif; font-size: 1.5rem; font-weight: 900; margin-bottom: 0.75rem; }
+        .cta-card p { color: rgba(255,255,255,0.85); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
+        .cta-btn {
+            display: inline-block; background: white; color: #059669;
+            padding: 0.75rem 2rem; border-radius: 9999px;
+            font-weight: 700; font-size: 0.95rem; transition: transform 0.15s;
+        }
+        .cta-btn:hover { transform: scale(1.04); }
+
+        /* FOOTER */
+        footer { background: #0f172a; color: #e2e8f0; padding: 3rem 1.5rem 2rem; margin-top: 4rem; }
+        .footer-inner { max-width: 80rem; margin: 0 auto; }
+        .footer-top {
+            display: flex; flex-wrap: wrap; gap: 2.5rem;
+            justify-content: space-between; margin-bottom: 2rem;
+            padding-bottom: 2rem; border-bottom: 1px solid #1e293b;
+        }
+        .footer-brand-col { max-width: 18rem; }
+        .footer-brand { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+        .footer-brand-icon {
+            width: 2rem; height: 2rem;
+            background: linear-gradient(135deg, #10b981, #047857);
+            border-radius: 0.5rem; display: flex; align-items: center;
+            justify-content: center; color: white; font-weight: 700; font-size: 1rem;
+        }
+        .footer-brand-name { font-family: 'Merriweather', serif; font-size: 1.25rem; font-weight: 700; }
+        .footer-tagline { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
+        .footer-links-col h4 { font-weight: 700; margin-bottom: 0.75rem; font-size: 0.9rem; }
+        .footer-links-col ul { list-style: none; padding: 0; }
+        .footer-links-col ul li { margin-bottom: 0.4rem; }
+        .footer-links-col ul li a { font-size: 0.85rem; color: #94a3b8; transition: color 0.15s; }
+        .footer-links-col ul li a:hover { color: #34d399; }
+        .footer-bottom { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; }
+        .footer-copy { font-size: 0.82rem; color: #94a3b8; }
+        .footer-dua { font-size: 0.75rem; color: #475569; }
+
+        @media (max-width: 640px) {
+            .page-title { font-size: 1.8rem; }
+            .card { padding: 1.5rem; }
+            .nav-links { display: none; }
+            .values-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav style="background:rgba(255,255,255,1);backdrop-filter:blur(12px);box-shadow:0 1px 3px rgba(0,0,0,0.08);z-index:100;height:116px;display:flex;align-items:center;padding:0 2rem;">
+  <div style="max-width:80rem;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;">
+    <a href="/fr"><img src="/logo.png?v=20260923" style="width:76px;height:76px;object-fit:contain;mix-blend-mode:multiply;" alt="QariAI" style="height:88px;width:auto;object-fit:contain;"></a>
+    <div style="display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+      <a href="/academy" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#475569'">Académie</a>
+      <a href="/tajweed-mistakes-checker" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#475569'">Vérificateur gratuit</a>
+      <a href="/learn/common-tajweed-mistakes" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#475569'">Apprendre le Tajwid</a>
+      <a href="/best-ai-quran-app" style="color:#0f172a;font-size:0.85rem;font-weight:500;text-decoration:none;" onmouseover="this.style.color='#059669'" onmouseout="this.style.color='#475569'">Comparer les apps</a>
+      <a href="/about" style="border:1.5px solid #059669;color:#34d399;padding:5px 12px;border-radius:9999px;font-size:0.8rem;font-weight:700;text-decoration:none;">EN</a>
+      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" style="background:#059669;color:#fff;padding:8px 18px;border-radius:9999px;font-size:0.82rem;font-weight:600;text-decoration:none;" onmouseover="this.style.background='#047857'" onmouseout="this.style.background='#059669'">Télécharger gratuitement</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="page-wrapper">
+
+    <div class="page-header">
+        <span class="page-tag">🕌 Notre histoire</span>
+        <h1 class="page-title">À propos de <span class="gradient-text">QariAI</span></h1>
+        <p class="page-subtitle">Une plateforme d'apprentissage du Coran conçue pour l'étude, la pratique et une progression régulière</p>
+    </div>
+
+    <div class="card">
+
+        <!-- Mission -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span> Notre mission
+            </h2>
+            <p>QariAI existe pour un seul but : <strong>rendre l'apprentissage structuré du Coran et une pratique de récitation porteuse de sens plus accessibles.</strong></p>
+            <p>Nous réunissons les fondations du Tajwid, la pratique du Hifz, des jeux d'apprentissage coraniques et des retours d'IA personnalisés dans un seul parcours d'apprentissage. Que vous débutiez, repreniez après des années, mémorisiez de nouveaux passages ou renforciez votre récitation quotidienne, QariAI vous aide à étudier, pratiquer et progresser avec une prochaine étape claire.</p>
+            <div class="arabic-quote">
+                <div class="arabic">وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا</div>
+                <div class="translation">« Et récite le Coran avec une récitation posée et mesurée. » — Sourate Al-Muzzammil (73:4)</div>
+            </div>
+            <p>Ce verset est au cœur de la raison d'être de QariAI. La récitation mérite soin et précision, et notre rôle est de faciliter une étude et une pratique régulières — une leçon, un verset et une correction à la fois.</p>
+        </div>
+
+        <!-- Why we built it -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">💡</span> Pourquoi nous avons créé QariAI
+            </h2>
+            <p>Le problème est réel et répandu. Beaucoup de musulmans souhaitent améliorer leur récitation ou renforcer leur Hifz, mais le chemin entre comprendre une règle et l'appliquer de façon constante reste souvent flou.</p>
+            <p>Un enseignant qualifié reste indispensable pour la transmission, la correction experte et la relation humaine au cœur de l'apprentissage du Coran. Mais les apprenants ont aussi besoin de structure et de répétition entre les cours : un moyen de réviser les fondations, de pratiquer en privé, de repérer les faiblesses récurrentes et de revenir avec de meilleures questions.</p>
+            <p>Nous avons créé QariAI pour soutenir cette boucle d'apprentissage quotidienne — leçons courtes, pratique guidée du Hifz, jeux coraniques et retours d'IA qui orientent l'apprenant vers la règle ou le passage nécessitant de l'attention.</p>
+            <div class="highlight-box">
+                <strong>Voilà ce qu'est QariAI.</strong> Une plateforme d'apprentissage du Coran par IA conçue pour compléter les enseignants qualifiés — pas les remplacer — et rendre le temps entre les cours plus utile.
+            </div>
+        </div>
+
+        <!-- Values -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🌿</span> Nos valeurs
+            </h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="v-icon">🤲</div>
+                    <div class="v-title">Ikhlas (Sincérité)</div>
+                    <div class="v-desc">Ce projet a été lancé avec une intention sincère. Nous demandons à Allah de le garder ainsi.</div>
+                </div>
+                <div class="value-card">
+                    <div class="v-icon">🌍</div>
+                    <div class="v-title">Accès pour tous</div>
+                    <div class="v-desc">Chaque apprenant, quel que soit son lieu ou son emploi du temps, mérite un chemin clair pour étudier et pratiquer.</div>
+                </div>
+                <div class="value-card">
+                    <div class="v-icon">📖</div>
+                    <div class="v-title">Respect du Coran</div>
+                    <div class="v-desc">La technologie au service du Coran — jamais l'inverse.</div>
+                </div>
+                <div class="value-card">
+                    <div class="v-icon">🔒</div>
+                    <div class="v-title">Confidentialité avant tout</div>
+                    <div class="v-desc">Vos récitations sont sacrées. Nous traitons vos données avec le même respect.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span> Notre vision
+            </h2>
+            <p>QariAI est disponible dès aujourd'hui sur Android avec les modes Tajwid et Hifz, des leçons structurées, des retours personnalisés de récitation, des outils de progression et des jeux d'apprentissage coraniques. Nous continuons d'approfondir ce parcours d'apprentissage connecté tout en travaillant vers iOS et des fonctionnalités communautaires mûrement réfléchies.</p>
+            <p>Notre vision est un monde où <strong>chaque musulman peut étudier, pratiquer et renforcer sa relation avec le Coran de façon constante</strong>— soutenu par une technologie utile, ancré dans les valeurs islamiques et aligné avec des enseignants qualifiés.</p>
+            <p>In shâ' Allah, puisse ceci être une sadaqah jariyah pour tous ceux qui ont participé à sa construction.</p>
+        </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-card">
+        <h3>Prêt à franchir la prochaine étape ?</h3>
+        <p>Étudiez le Tajwid, pratiquez le Hifz et recevez des retours personnalisés de récitation avec QariAI. Gratuit pour commencer sur Android.</p>
+        <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener" class="cta-btn">
+            🤖 Télécharger gratuitement sur Google Play
+        </a>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div style="max-width:760px;margin:40px auto 0;padding:0 2rem">
+  <div style="background:#0d1820;border:1px solid rgba(16,185,129,0.15);border-radius:14px;padding:20px 24px">
+    <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b8a7a;margin-bottom:12px">📚 EXPLORER</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <a href='/best-ai-quran-app' style='display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15);border-radius:100px;padding:6px 14px;font-size:0.8rem;color:#10b981;text-decoration:none'>→ Meilleures apps Coran IA 2026</a>
+      <a href='/compare/qari-ai-vs-tarteel' style='display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15);border-radius:100px;padding:6px 14px;font-size:0.8rem;color:#10b981;text-decoration:none'>→ Qari AI contre Tarteel</a>
+      <a href='/tajweed-mistakes-checker' style='display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15);border-radius:100px;padding:6px 14px;font-size:0.8rem;color:#10b981;text-decoration:none'>→ Vérificateur de Tajwid gratuit</a>
+    </div>
+  </div>
+</div>
+<footer style="background:#064e3b;color:#e2e8f0;padding:3rem 1.5rem 2rem;position:relative;z-index:1;">
+  <div style="max-width:80rem;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;gap:2.5rem;justify-content:space-between;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.1);">
+      <div>
+        <img src="/logo.png?v=20260923" style="width:76px;height:76px;object-fit:contain;mix-blend-mode:multiply;" alt="QariAI" style="height:52px;width:auto;object-fit:contain;margin-bottom:8px;">
+        <p style="font-size:0.875rem;color:#94a3b8;line-height:1.6;margin-top:0.5rem;">Plateforme d'apprentissage du Coran par IA<br>Conçue pour la Oumma</p>
+      </div>
+      <div>
+        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;">Produit</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <a href="/tajweed-mistakes-checker" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Vérificateur de Tajwid gratuit</a>
+          <a href="/how-qari-ai-works" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Comment ça marche</a>
+          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Télécharger gratuitement</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;">Apprendre</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <a href="/hifz" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Pratique du Hifz</a>
+          <a href="/learn/common-tajweed-mistakes" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Erreurs courantes de Tajwid</a>
+          <a href="/learn/pronounce-ayn" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Prononcer le Ayn (ع)</a>
+          <a href="/learn/qalqalah-explained" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">La Qalqalah expliquée</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;">Comparer</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <a href="/best-ai-quran-app" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Meilleure app Coran IA</a>
+          <a href="/compare/qari-ai-vs-tarteel" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Qari AI contre Tarteel</a>
+          <a href="/compare/qari-ai-vs-tajweedmate" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Qari AI contre TajweedMate</a>
+          <a href="/apps-like-tarteel" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Apps similaires à Tarteel</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-weight:700;margin-bottom:0.75rem;font-size:0.9rem;">Entreprise</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <a href="/fr/about" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">À propos de</a>
+          <a href="/privacy" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Politique de confidentialité</a>
+          <a href="/terms" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Conditions d'utilisation</a>
+          <a href="mailto:salam@qariai.app" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#94a3b8'">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;">
+      <p style="font-size:0.82rem;color:#94a3b8;">© 2026 QariAI · Built by <a href="/qaf" style="color:#94a3b8;">Qaf Studio</a> pour la Oumma</p>
+      <a href="/about" style="border:1.5px solid #475569;color:#94a3b8;padding:5px 12px;border-radius:9999px;font-size:0.8rem;font-weight:700;text-decoration:none;">🇬🇧 English</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
