@@ -106,12 +106,8 @@
   ]
 }
 </script>
-<script src="./support.js"></script>
 
-</head>
-<body>
-<x-dc>
-<helmet>
+
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,700&family=Inter:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet"/>
@@ -482,7 +478,9 @@
     }
 
   </style>
-</helmet>
+</head>
+<body>
+
 
 <div class="qariai-page" style="position:relative; background:#f4efe4; overflow:hidden;">
 
@@ -553,7 +551,7 @@
       </div>
     </div>
     <div class="seo-hero-visual">
-      <img src="/uploads/qariai-hero-phone-hudhud-v3.png?v=20260726c" alt="QariAI mobile app showing Quran recitation feedback beside the HudHud learning guide" width="1275" height="1353" fetchpriority="high"/>
+      <img src="/uploads/qariai-hero-phone-hudhud-v3.webp?v=20260923" alt="QariAI mobile app showing Quran recitation feedback beside the HudHud learning guide" width="1275" height="1353" fetchpriority="high"/>
     </div>
   </section>
 
@@ -1027,7 +1025,7 @@
           <a href="https://qariai.app/about" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">À propos</a>
           <a href="https://qariai.app/privacy" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Politique de confidentialité</a>
           <a href="https://qariai.app/terms" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Conditions d’utilisation</a>
-          <a href="mailto:salam@qariai.app" data-cfemail="false" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Contact</a>
+          <a href="mailto:salam@qariai.app" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Contact</a>
         </div>
       </div>
 
@@ -1052,12 +1050,12 @@
   </footer>
 
   <!-- sticky CTA -->
-  <sc-if value="{{ stickyOn }}" hint-placeholder-val="{{ false }}">
+  <div id="qsticky" hidden>
     <div style="position:fixed; left:0; right:0; bottom:0; z-index:110; background:rgba(15,21,18,0.95); backdrop-filter:blur(12px); border-top:1px solid rgba(253,248,238,0.1); padding:12px max(24px,4vw) calc(12px + env(safe-area-inset-bottom)); display:flex; align-items:center; justify-content:space-between; gap:16px; animation:qRise .35s ease both;">
       <span style="font-size:14.5px; font-weight:600; color:#fdf8ee;">Votre coach est prêt quand vous l’êtes.</span>
       <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="sticky_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0f1512; text-decoration:none; padding:11px 24px; background:#fdf8ee; border-radius:40px; white-space:nowrap;" style-hover="background:#fff;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0f1512" aria-hidden="true"><path d="M3 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 3 3.5z"/></svg>Disponible sur Google Play</a>
     </div>
-  </sc-if>
+  </div>
 
   <!-- Demo modal — vanilla JS (not the x-dc runtime), so it doesn't depend on custom onClick bindings.
        Trigger button (#qdemo-open) is hidden by default in the hero until a real video ID is confirmed. -->
@@ -1073,31 +1071,6 @@
   </div>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;stickyCTA&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
-class Component extends DCLogic {
-  state = { scrolled: false };
-
-  componentDidMount() {
-    this._onScroll = () => {
-      const y = window.scrollY || document.documentElement.scrollTop || 0;
-      const s = y > 780;
-      if (s !== this.state.scrolled) this.setState({ scrolled: s });
-    };
-    window.addEventListener('scroll', this._onScroll, { passive: true });
-  }
-  componentWillUnmount() {
-    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
-  }
-
-  renderVals() {
-    const p = this.props || {};
-    return {
-      stickyOn: (p.stickyCTA ?? true) && this.state.scrolled,
-    };
-  }
-}
-</script>
 <script>
 (function(){
   "use strict";
@@ -1343,5 +1316,12 @@ class Component extends DCLogic {
   restart();
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2370b8f5cc4c6f0',t:'MTc4NTQ0MjYyOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>
+(function(){
+  var s=document.getElementById('qsticky'); if(!s) return;
+  function u(){ var on=(window.scrollY||document.documentElement.scrollTop||0)>780; if(s.hidden===on) s.hidden=!on; }
+  window.addEventListener('scroll',u,{passive:true}); u();
+})();
+</script>
+</body>
 </html>
