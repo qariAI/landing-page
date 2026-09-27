@@ -195,7 +195,7 @@
       ]
     },
     {
-      "source": "/feedback-email.html",
+      "source": "/feedback",
       "headers": [
         {
           "key": "X-Robots-Tag",

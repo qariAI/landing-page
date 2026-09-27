@@ -4,6 +4,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) — GA4 G-D55KK2YBKH, shared with the QariAI app; app_platform separates website traffic -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D55KK2YBKH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('set','user_properties',{app_platform:'website'});gtag('config','G-D55KK2YBKH');</script>
 <title>QariAI: Platform Pembelajaran al-Quran Berkuasa AI</title>
 <link rel="icon" type="image/png" href="/favicon.png?v=20260726d">
 <link rel="shortcut icon" type="image/png" href="/favicon.png?v=20260726d">
@@ -1156,8 +1159,8 @@
 (function(){
   "use strict";
 
-  // ---- Lightweight analytics: fires through whatever GA4/Firebase/GTM is already loaded on the page.
-  // Does not load or configure analytics itself — assumes the existing site-wide tracking snippet is present elsewhere.
+  // ---- Lightweight analytics: sends through the gtag.js snippet in <head> (GA4 G-D55KK2YBKH).
+  // The inline gtag() stub queues calls in dataLayer, so events fired before gtag.js finishes loading are not lost.
   function qTrack(name, extra) {
     try {
       var params = Object.assign({ page_path: location.pathname }, extra || {});
