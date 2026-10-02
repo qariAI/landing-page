@@ -372,12 +372,15 @@
     .seo-hero-secondary{color:#123829;background:rgba(255,255,255,.7);border:1px solid rgba(18,56,41,.16)}
     .seo-hero-secondary:hover{transform:translateY(-2px);background:#fff}
     .seo-hero-points{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;font-size:12.5px;color:#667168;font-weight:650}
+    .seo-hero-proof{display:flex;align-items:center;gap:10px;margin:16px 0 0;font-size:13px;color:#455149;font-weight:600}
+    .seo-hero-proof__stars{color:#be8a2c;letter-spacing:2px;font-size:14px}
+    .seo-hero-proof__divider{width:1px;height:14px;background:rgba(18,56,41,.18)}
     .seo-hero-points strong{color:#123829}
     .seo-hero-visual{position:relative;height:470px;min-height:0;display:flex;align-items:center;justify-content:center;padding:36px 4px 0 0;overflow:visible;transform:translateY(18px)}
     .seo-hero-visual::before{content:"";position:absolute;left:12%;right:10%;bottom:8%;height:17%;border-radius:50%;background:rgba(18,56,41,.2);filter:blur(34px);transform:scaleX(.9);opacity:.42}
     .hero-art-stage{position:relative;z-index:2;width:min(116%,688px);aspect-ratio:1275/1353;flex:0 0 auto}
     .hero-art-stage>img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 22px 22px rgba(18,56,41,.14))}
-    @media(max-width:1120px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:6px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points{justify-content:center}.seo-hero-visual{height:auto;min-height:auto;padding:32px 28px 20px;transform:translateY(10px)}.hero-art-stage{width:min(94%,688px)}}
+    @media(max-width:1120px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:6px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points,.seo-hero-proof{justify-content:center}.seo-hero-visual{height:auto;min-height:auto;padding:32px 28px 20px;transform:translateY(10px)}.hero-art-stage{width:min(94%,688px)}}
     @media(max-width:640px){.seo-hero{padding:96px 14px 38px}.seo-hero::before{inset:72px 0 0;border-radius:0}.seo-hero-copy{padding:32px 18px 0}.seo-hero-label{font-size:10px}.seo-hero-title{font-size:clamp(2.65rem,14vw,4rem)}.seo-hero-title .hero-line{white-space:normal}.seo-hero-copy p{font-size:15px;line-height:1.58}.seo-hero-actions{display:grid;grid-template-columns:1fr}.seo-hero-primary,.seo-hero-secondary{width:100%}.seo-hero-visual{padding:30px 0 0;transform:translateY(8px)}.hero-art-stage{width:108%;max-width:680px}}
 
     /* App feature carousel */
@@ -641,6 +644,12 @@
       </div>
       <div class="seo-hero-points" aria-label="QariAI key benefits">
         <span><strong>Learn</strong> the foundations</span><span>•</span><span><strong>Play</strong> Qur’anic games</span><span>•</span><span><strong>Improve</strong> with AI feedback</span>
+      </div>
+      <div class="seo-hero-proof">
+        <span class="seo-hero-proof__stars" aria-hidden="true">★★★★★</span>
+        <span>Loved on Google Play</span>
+        <span class="seo-hero-proof__divider"></span>
+        <span>6,000+ active learners</span>
       </div>
     </div>
     <div class="seo-hero-visual">
@@ -1275,5 +1284,6 @@
   window.addEventListener('scroll',u,{passive:true}); u();
 })();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
