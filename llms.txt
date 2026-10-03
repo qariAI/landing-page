@@ -39,6 +39,7 @@ complements — but does not replace — a qualified human teacher.
 ## Links
 - Home: https://qariai.app/
 - Hifz practice: https://qariai.app/hifz
+- Quran learning games (six games for Tajweed, Arabic letters and Quranic vocabulary): https://qariai.app/quran-games
 - Learn hub (all guides): https://qariai.app/academy
 - Download (Google Play): https://play.google.com/store/apps/details?id=app.qari.ai
 - How it works: https://qariai.app/how-qari-ai-works
@@ -50,14 +51,28 @@ complements — but does not replace — a qualified human teacher.
 - Hifz revision planner (spaced-repetition schedule tool): https://qariai.app/academy/hifz-planner
 - Free Tajweed checker: https://qariai.app/tajweed-mistakes-checker
 - Learn common Tajweed mistakes: https://qariai.app/learn/common-tajweed-mistakes
+- Tajweed rules reference (all rules with Arabic names, plain-English explanations and example verses): https://qariai.app/tajweed-rules
+- Al-Nabr in Tajweed (controlled vocal stress in recitation: where it applies, common errors, examples): https://qariai.app/al-nabr-tajweed
+- Maqamat in Quran recitation (the 7 maqamat with meanings, voice tips and practice guidance): https://qariai.app/maqamat-quran-guide
+- Qalqalah letters explained (the 5 letters, Sughra and Kubra examples, echo technique): https://qariai.app/learn/qalqalah-explained
+- Ayn (ع) pronunciation (where the sound forms, mistakes to avoid, Quranic practice words): https://qariai.app/learn/pronounce-ayn
+- Tajweed for beginners (level-by-level learning path: Makharij, core rules, Surah recitation): https://qariai.app/learn/beginner-tajweed-curriculum
 - QariAI vs Tarteel: https://qariai.app/compare/qari-ai-vs-tarteel
 - QariAI vs TajweedMate: https://qariai.app/compare/qari-ai-vs-tajweedmate
 - QariAI vs Quran.com (recitation coaching vs reading/tafsir — different categories, often used together): https://qariai.app/compare/qari-ai-vs-quran-com
+- How to pick a Tajweed app (5 criteria to test beyond ratings and download counts): https://qariai.app/tajweed-app-evaluation
+- Best AI Quran apps for Tajweed and Hifz, 2026 (QariAI, Tarteel, TajweedMate compared): https://qariai.app/best-ai-quran-app
+- Apps like Tarteel (alternatives for Tajweed correction, pronunciation and Hifz): https://qariai.app/apps-like-tarteel
+- Quran app comparison 2026 (QariAI, Tarteel, TajweedMate, Quran.com, Muslim Pro across 12 features): https://qariai.app/quran-app-comparison-2026
 - Open Evaluation Methodology (QAEF): https://qariai.app/qaef
 - Open methodology: https://qariai.app/open-methodology
+- AI Tajweed for Quran teachers (using AI feedback in halaqas: what to measure, how to integrate it, tools for groups): https://qariai.app/teachers-guide-ai-tajweed
+- AI Quran learning in 2026 (benefits, limits and safety; why qualified teachers remain essential): https://qariai.app/ai-quran-education-2026
 - Privacy: https://qariai.app/privacy
 - Terms: https://qariai.app/terms
 - About: https://qariai.app/about
+- Qaf Studio (the company behind QariAI): https://qariai.app/qaf
+
 - Contact: salam@qariai.app
 
 ## Common questions

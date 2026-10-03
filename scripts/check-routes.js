@@ -6,8 +6,9 @@
 //      <path>.html, or <path>/index.html).
 //   2. Every vercel.json rewrite to a local .html file points at a file that
 //      exists, and that page is in the sitemap (unless it is a utility page).
-//   3. Every content / academy / comparison page in the sitemap is linked from
-//      llms.txt, so AI crawlers can find it. Legal and utility pages are exempt.
+//   3. Every content / comparison page in the sitemap is linked from llms.txt,
+//      so AI crawlers can find it. Legal and utility pages are exempt, and
+//      /academy/* articles are only required if listed in ACADEMY_PINNED.
 //
 // Exits 1 if any check fails, 0 otherwise.
 
@@ -20,6 +21,18 @@ const SITE = 'https://qariai.app';
 // Pages that do not need a sitemap entry (check 2) or an llms.txt entry (check 3).
 const UTILITY = new Set([
   '/', '/privacy', '/terms', '/delete-account', '/feedback', '/thank-you',
+  '/challenge', // retired page, deliberately not promoted
+]);
+// Academy articles are discovered through the Academy hub link in llms.txt, so
+// check 3 skips /academy/* unless the article is pinned here (i.e. it has been
+// linked from llms.txt on purpose and must stay linked).
+const ACADEMY_PINNED = new Set([
+  '/academy/ai-quran',
+  '/academy/ai-tajweed',
+  '/academy/ai-hifz',
+  '/academy/memorize-quran-at-home',
+  '/academy/hifz-self-study-roadmap',
+  '/academy/hifz-planner',
 ]);
 // Translated trees mirror English pages; llms.txt lists the English originals.
 const LOCALE_PREFIX = /^\/(ar|fr|ms)(\/|$)/;
@@ -100,6 +113,7 @@ for (const [src, dest] of rewrites) {
 // ---- check 3: content pages are in llms.txt ----
 for (const p of new Set(sitemap)) {
   if (UTILITY.has(p) || LOCALE_PREFIX.test(p)) continue;
+  if (p.startsWith('/academy/') && !ACADEMY_PINNED.has(p)) continue;
   if (!llms.has(p)) fail(3, `in sitemap but not linked from llms.txt: ${p}`);
 }
 
