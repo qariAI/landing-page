@@ -91,6 +91,11 @@
       "permanent": true
     },
     {
+      "source": "/qari-ai-vs-quran-com",
+      "destination": "https://qariai.app/compare/qari-ai-vs-quran-com",
+      "permanent": true
+    },
+    {
       "source": "/qari-ai-vs-tajweedmate",
       "destination": "https://qariai.app/compare/qari-ai-vs-tajweedmate",
       "permanent": true
@@ -339,6 +344,10 @@
     {
       "source": "/compare/qari-ai-vs-tajweedmate",
       "destination": "/qari-ai-vs-tajweedmate.html"
+    },
+    {
+      "source": "/compare/qari-ai-vs-quran-com",
+      "destination": "/qari-ai-vs-quran-com.html"
     },
     {
       "source": "/open-methodology",

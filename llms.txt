@@ -52,6 +52,7 @@ complements — but does not replace — a qualified human teacher.
 - Learn common Tajweed mistakes: https://qariai.app/learn/common-tajweed-mistakes
 - QariAI vs Tarteel: https://qariai.app/compare/qari-ai-vs-tarteel
 - QariAI vs TajweedMate: https://qariai.app/compare/qari-ai-vs-tajweedmate
+- QariAI vs Quran.com (recitation coaching vs reading/tafsir — different categories, often used together): https://qariai.app/compare/qari-ai-vs-quran-com
 - Open Evaluation Methodology (QAEF): https://qariai.app/qaef
 - Open methodology: https://qariai.app/open-methodology
 - Privacy: https://qariai.app/privacy
