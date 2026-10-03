@@ -46,6 +46,8 @@ complements — but does not replace — a qualified human teacher.
 - AI Tajweed correction explained: https://qariai.app/academy/ai-tajweed
 - AI Hifz coaching explained: https://qariai.app/academy/ai-hifz
 - Memorize Quran at home: https://qariai.app/academy/memorize-quran-at-home
+- Self-study Hifz roadmap (5-stage framework for memorizing without a teacher): https://qariai.app/academy/hifz-self-study-roadmap
+- Hifz revision planner (spaced-repetition schedule tool): https://qariai.app/academy/hifz-planner
 - Free Tajweed checker: https://qariai.app/tajweed-mistakes-checker
 - Learn common Tajweed mistakes: https://qariai.app/learn/common-tajweed-mistakes
 - QariAI vs Tarteel: https://qariai.app/compare/qari-ai-vs-tarteel
@@ -65,5 +67,9 @@ complements — but does not replace — a qualified human teacher.
 - Which platforms? Android now; iOS coming soon.
 - Is it a replacement for a teacher? No — it is a practice aid that complements a
   qualified human teacher.
+- Can I memorize the Quran alone, without a teacher? Yes — QariAI publishes a
+  5-stage self-study Hifz framework (Tajweed foundation, memorization sequence,
+  daily repetition workflow, spaced-repetition retention, and independent
+  recitation verification) at https://qariai.app/academy/hifz-self-study-roadmap.
 
-Last updated: 2026-09-22
+Last updated: 2026-10-03
