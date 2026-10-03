@@ -9,6 +9,9 @@
 //   3. Every content / comparison page in the sitemap is linked from llms.txt,
 //      so AI crawlers can find it. Legal and utility pages are exempt, and
 //      /academy/* articles are only required if listed in ACADEMY_PINNED.
+//   4. Every non-utility sitemap page has Open Graph / Twitter card tags
+//      (og:title, og:description, og:image, og:url, og:type, twitter:card, twitter:image),
+//      so shared links get a proper preview.
 //
 // Exits 1 if any check fails, 0 otherwise.
 
@@ -115,6 +118,24 @@ for (const p of new Set(sitemap)) {
   if (UTILITY.has(p) || LOCALE_PREFIX.test(p)) continue;
   if (p.startsWith('/academy/') && !ACADEMY_PINNED.has(p)) continue;
   if (!llms.has(p)) fail(3, `in sitemap but not linked from llms.txt: ${p}`);
+}
+
+// ---- check 4: social preview tags ----
+const OG_REQUIRED = [
+  ['og:title', 'property'], ['og:description', 'property'], ['og:image', 'property'],
+  ['og:url', 'property'], ['og:type', 'property'], ['twitter:card', 'name'], ['twitter:image', 'name'],
+];
+function hasMeta(html, key) {
+  return [...html.matchAll(/<meta\b[^>]*>/gi)].some((m) =>
+    new RegExp(`(?:property|name)=["']${key}["']`, 'i').test(m[0]) && /content=["'][^"']+["']/i.test(m[0]));
+}
+for (const p of new Set(sitemap)) {
+  if (UTILITY.has(p)) continue;
+  const file = resolveFile(p);
+  if (!file) continue; // already reported by check 1
+  const html = read(file);
+  const missing = OG_REQUIRED.filter(([k]) => !hasMeta(html, k)).map(([k]) => k);
+  if (missing.length) fail(4, `${file} (${p}) is missing: ${missing.join(', ')}`);
 }
 
 // ---- report ----
