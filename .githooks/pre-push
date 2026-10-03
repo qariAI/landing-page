@@ -1,0 +1,44 @@
+#!/bin/sh
+# Blocks a push if vercel.json, sitemap.xml and llms.txt are out of sync.
+# Enable once per clone:  git config core.hooksPath .githooks
+# Skip in an emergency:   git push --no-verify
+
+# Nothing to check when the push only deletes remote branches/tags.
+only_deletes=1
+while read -r _ local_sha _ _; do
+  case "$local_sha" in *[!0]*) only_deletes=0 ;; esac
+done
+[ "$only_deletes" = 1 ] && exit 0
+
+root=$(git rev-parse --show-toplevel) || exit 1
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-push: Node.js was not found on PATH, so the route check could not run." >&2
+  echo "  Install Node, or bypass once with:  git push --no-verify" >&2
+  exit 1
+fi
+
+out=$(node "$root/scripts/check-routes.js" 2>&1)
+status=$?
+[ "$status" = 0 ] && exit 0
+
+{
+  echo ""
+  echo "PUSH BLOCKED: scripts/check-routes.js found routing/discovery problems."
+  echo "------------------------------------------------------------------"
+  echo "$out"
+  echo "------------------------------------------------------------------"
+  echo "How to fix (by the [number] at the start of each line):"
+  echo "  [1] sitemap URL has no route or file"
+  echo "      -> add a rewrite for it in vercel.json, create the page, or remove it from sitemap.xml."
+  echo "  [2] page is routed but not in the sitemap (or the rewrite target file is missing)"
+  echo "      -> add a <url> entry to sitemap.xml, or fix/remove the rewrite in vercel.json."
+  echo "  [3] in sitemap but not linked from llms.txt"
+  echo "      -> add a '- Title (short description): https://qariai.app/<path>' line to llms.txt."
+  echo "         Legal/utility pages and /academy/* articles are exempt; see scripts/check-routes.js."
+  echo ""
+  echo "Re-run the check yourself:  node scripts/check-routes.js"
+  echo "Bypass once (not recommended):  git push --no-verify"
+  echo ""
+} >&2
+exit 1
