@@ -1,0 +1,41 @@
+# Runs the repo's consistency checks on every push to main, including commits
+# made through the GitHub web UI (which never run the local pre-push hook).
+#
+#   1. scripts/check-routes.js   - vercel.json / sitemap.xml / llms.txt agree,
+#                                  social tags and analytics scripts are present.
+#   2. scripts/check-rewrites.js - fails if a changed .html file lost >40% of its
+#                                  lines, or its <title> changed while >30% of its
+#                                  lines changed, versus the parent commit. Put
+#                                  [allow-rewrite] in the commit message for
+#                                  deliberate rewrites.
+#
+# Both are plain Node scripts with no dependencies; Node is preinstalled on
+# ubuntu-latest. This runs after the push, so it reports a bad commit rather
+# than blocking it.
+name: check-routes
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the rewrite guard needs every commit in the push and its parent
+
+      - name: Routes, sitemap, llms.txt, social tags, analytics
+        run: node scripts/check-routes.js
+
+      - name: Page rewrite guard
+        if: ${{ !cancelled() }}   # still run when step 1 fails, so both problems show up
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: node scripts/check-rewrites.js "$BEFORE" "$GITHUB_SHA"
