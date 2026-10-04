@@ -12,6 +12,10 @@
 //   4. Every non-utility sitemap page has Open Graph / Twitter card tags
 //      (og:title, og:description, og:image, og:url, og:type, twitter:card, twitter:image),
 //      so shared links get a proper preview.
+//   5. Every sitemap page except privacy, terms and challenge loads the GA4 tag
+//      (G-D55KK2YBKH), calls gtag('config', 'G-D55KK2YBKH') and loads the Vercel
+//      insights script, so no page goes untracked. Unlike checks 2-4 this includes
+//      the homepage.
 //
 // Exits 1 if any check fails, 0 otherwise.
 
@@ -136,6 +140,23 @@ for (const p of new Set(sitemap)) {
   const html = read(file);
   const missing = OG_REQUIRED.filter(([k]) => !hasMeta(html, k)).map(([k]) => k);
   if (missing.length) fail(4, `${file} (${p}) is missing: ${missing.join(', ')}`);
+}
+
+// ---- check 5: analytics scripts ----
+const GA4_ID = 'G-D55KK2YBKH';
+const TRACKING_EXEMPT = new Set(['/privacy', '/terms', '/challenge']);
+const GA4_CONFIG_RE = new RegExp(String.raw`gtag\(\s*['"]config['"]\s*,\s*['"]${GA4_ID}['"]`);
+const VERCEL_INSIGHTS_RE = /<script\b[^>]*\bsrc=["']\/_vercel\/insights\/script\.js["']/i;
+for (const p of new Set(sitemap)) {
+  if (TRACKING_EXEMPT.has(p)) continue;
+  const file = resolveFile(p);
+  if (!file) continue; // already reported by check 1
+  const html = read(file);
+  const missing = [];
+  if (!html.includes(`googletagmanager.com/gtag/js?id=${GA4_ID}`)) missing.push(`GA4 loader (${GA4_ID})`);
+  if (!GA4_CONFIG_RE.test(html)) missing.push(`gtag('config', '${GA4_ID}') call`);
+  if (!VERCEL_INSIGHTS_RE.test(html)) missing.push('Vercel insights script');
+  if (missing.length) fail(5, `${file} (${p}) is missing: ${missing.join(', ')}`);
 }
 
 // ---- report ----
