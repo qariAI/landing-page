@@ -502,14 +502,14 @@
         radial-gradient(circle at 14% 73%,rgba(190,138,44,.08),transparent 24%),
         linear-gradient(180deg,#fffdf8 0%,#f8f2e7 48%,#fffdf8 100%)!important;
     }
-    .qariai-page>section:not(#coach):not(.final-cta-section){
+    .qariai-page>section:not(#coach):not(#mosque-groups):not(.final-cta-section){
       background:transparent!important;
       border-top:0!important;
       border-bottom:0!important;
       position:relative;
       isolation:isolate;
     }
-    .qariai-page>section:not(#top):not(#coach):not(.final-cta-section)::before{
+    .qariai-page>section:not(#top):not(#coach):not(#mosque-groups):not(.final-cta-section)::before{
       content:"";
       position:absolute;
       z-index:-1;
@@ -536,7 +536,7 @@
       transform:none;
       filter:brightness(1) saturate(1);
     }
-    .scroll-effects .scroll-illuminate:not(#coach):not(.final-cta-section)::after{
+    .scroll-effects .scroll-illuminate:not(#coach):not(#mosque-groups):not(.final-cta-section)::after{
       content:"";
       position:absolute;
       z-index:-1;
@@ -548,7 +548,7 @@
       transition:opacity 1.15s ease .12s;
       pointer-events:none;
     }
-    .scroll-effects .scroll-illuminate.is-illuminated:not(#coach):not(.final-cta-section)::after{opacity:1}
+    .scroll-effects .scroll-illuminate.is-illuminated:not(#coach):not(#mosque-groups):not(.final-cta-section)::after{opacity:1}
     .scroll-effects .scroll-illuminate.is-illuminated>div>*{animation:section-child-rise .72s both}
     .scroll-effects .scroll-illuminate.is-illuminated>div>*:nth-child(2){animation-delay:.07s}
     .scroll-effects .scroll-illuminate.is-illuminated>div>*:nth-child(3){animation-delay:.14s}
