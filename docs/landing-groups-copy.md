@@ -128,3 +128,39 @@ The Quest section also has a three-question "Sample questions" demo (see `docs/q
 - Demo note: Contoh ringkas, bukan permainan itu sendiri.
 - Citation prefix in demo: Surah
 - Hero link: unchanged
+
+## Games page (`/ar/quran-games`, `/fr/quran-games`, `/ms/quran-games`)
+
+New strings for the Qur'an Quest featured card and the count changes. Everything else on these pages (the five existing games, their copy and links, hero, nav, footer) is unchanged and only restyled. The English page is the reference design (`/quran-games`).
+
+Common to all three: card title `Qur’an Quest`; the Play Store button uses the page's existing Play Store link (same URL and `referrer` pattern as the other games, with `utm_content=quran_quest`); "Try the sample questions" goes to the language landing page `#quest`; the small tag in the card visual is decorative (`aria-hidden`).
+
+### العربية (Arabic) — NEEDS TEACHER REVIEW before publishing
+Surah names only, no verses quoted. The page carries an HTML comment `TODO: pending teacher review`.
+- Tag: مميزة
+- Status: متاحة الآن
+- Description: لعبة أسئلة ومتاهة. كل سؤال يذكر السورة والآية.
+- Card visual chip: سورة · آية
+- Primary button (Play Store): حمّل من Google Play
+- Secondary link (to `/ar#quest`): جرّب الأسئلة التجريبية
+- Count changes: «خمس طرق لبناء مهارات راسخة» → «ست طرق لبناء مهارات راسخة»; «الألعاب الأربع المتاحة اليوم» → «الألعاب الخمس المتاحة اليوم»; meta description: «خمس ألعاب» → «ست ألعاب» and «أربع ألعاب متاحة الآن» → «خمس ألعاب متاحة الآن»
+
+### Français
+- Tag: À la une
+- Status: Disponible maintenant
+- Description: Un jeu de quiz et de labyrinthe. Chaque question cite sa sourate et son verset.
+- Card visual chip: Sourate · Verset
+- Primary button (Play Store): Disponible sur Google Play
+- Secondary link (to `/fr#quest`): Essayer les questions d’exemple
+- Count changes: « Cinq façons… » → « Six façons… »; « les quatre jeux disponibles » → « les cinq jeux disponibles »; meta and og descriptions and JSON-LD: cinq→six, quatre→cinq
+
+### Bahasa Melayu
+- Tag: Pilihan utama
+- Status: Tersedia sekarang
+- Description: Permainan kuiz dan maze. Setiap soalan menyatakan surah dan ayatnya.
+- Card visual chip: Surah · Ayat
+- Primary button (Play Store): Dapatkan di Google Play
+- Secondary link (to `/ms#quest`): Cuba soalan contoh
+- Count changes: «Lima cara…» → «Enam cara…»; «empat permainan yang tersedia hari ini» → «lima permainan yang tersedia hari ini»; meta and og descriptions and JSON-LD: lima→enam, empat→lima
+
+Note: these three localized pages are an older version than the English page. They list five games (no Quranic Cryptogram), show Wasl as "coming soon" and have no video section. They were kept as they are; only the Quest card and the counts above were added.
