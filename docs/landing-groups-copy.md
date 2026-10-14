@@ -10,6 +10,8 @@ Facts used (nothing else is claimed):
 
 The Quest section also has a three-question "Sample questions" demo (see `docs/quest-demo-questions.md`). It is a sample, not the game, and shows no maze mechanics.
 
+The Quest section also has a three-question "Sample questions" demo (see `docs/quest-demo-questions.md`). It is a sample, not the game, and shows no maze mechanics.
+
 ## English
 
 ### Mosque groups (#mosque-groups)
@@ -30,12 +32,14 @@ The Quest section also has a three-question "Sample questions" demo (see `docs/q
 - Heading: Qur’an Quest: trivia and a maze, cited verse by verse.
 - One-liner: A trivia and maze game. Every question cites its Surah and Verse.
 - Badges: Trivia · Maze · Every question cites Surah and Verse
-- Button (to /quran-games): See all Qur’anic games
+- Primary button (existing Play Store link): Get it on Google Play
+- Secondary small link (to /quran-games): See all Qur’anic games
 - Demo label: Sample questions
 - Demo counter: Question {n} of {t}
 - Demo results: Correct / Not quite; citation label: Citation
-- Demo buttons: Next · Play the full game (to /quran-games) · Try again
+- Demo buttons: Next · last screen: Get it on Google Play (Play Store, primary) + See all Qur’anic games (small link to /quran-games) · Try again
 - Demo note: A short sample, not the game itself.
+- Citation prefix in demo: Surah
 - Hero link: unchanged
 ## العربية (Arabic) — NEEDS TEACHER REVIEW before publishing
 
@@ -57,12 +61,14 @@ The Quest section also has a three-question "Sample questions" demo (see `docs/q
 - Heading: Qur’an Quest: أسئلة ومتاهة، مع ذكر السورة والآية.
 - One-liner: لعبة أسئلة ومتاهة. كل سؤال يذكر السورة والآية.
 - Badges: أسئلة · متاهة · كل سؤال يذكر السورة والآية
-- Button (to /quran-games): شاهد جميع الألعاب القرآنية
+- Primary button (existing Play Store link): حمّل من Google Play
+- Secondary small link (to /quran-games): شاهد جميع الألعاب القرآنية
 - Demo label: أسئلة تجريبية
 - Demo counter: السؤال {n} من {t}
 - Demo results: إجابة صحيحة / ليست صحيحة; citation label: المرجع
-- Demo buttons: التالي · العب اللعبة كاملة (to /quran-games) · أعد المحاولة
+- Demo buttons: التالي · last screen: حمّل من Google Play (Play Store, primary) + شاهد جميع الألعاب القرآنية (small link to /quran-games) · أعد المحاولة
 - Demo note: نموذج قصير، وليس اللعبة نفسها.
+- Citation prefix in demo: سورة
 - Hero link: unchanged
 ## Français
 
@@ -84,12 +90,14 @@ The Quest section also has a three-question "Sample questions" demo (see `docs/q
 - Heading: Qur’an Quest : quiz et labyrinthe, sourcés verset par verset.
 - One-liner: Un jeu de quiz et de labyrinthe. Chaque question cite sa sourate et son verset.
 - Badges: Quiz · Labyrinthe · Chaque question cite sourate et verset
-- Button (to /quran-games): Voir tous les jeux coraniques
+- Primary button (existing Play Store link): Disponible sur Google Play
+- Secondary small link (to /quran-games): Voir tous les jeux coraniques
 - Demo label: Questions d’exemple
 - Demo counter: Question {n} sur {t}
 - Demo results: Bonne réponse / Pas tout à fait; citation label: Référence
-- Demo buttons: Suivant · Jouer au jeu complet (to /quran-games) · Recommencer
+- Demo buttons: Suivant · last screen: Disponible sur Google Play (Play Store, primary) + Voir tous les jeux coraniques (small link to /quran-games) · Recommencer
 - Demo note: Un court échantillon, pas le jeu lui-même.
+- Citation prefix in demo: Sourate
 - Hero link: unchanged
 ## Bahasa Melayu
 
@@ -111,10 +119,12 @@ The Quest section also has a three-question "Sample questions" demo (see `docs/q
 - Heading: Qur’an Quest: kuiz dan maze, bersumberkan surah dan ayat.
 - One-liner: Permainan kuiz dan maze. Setiap soalan menyatakan surah dan ayatnya.
 - Badges: Kuiz · Maze · Setiap soalan menyatakan surah dan ayat
-- Button (to /quran-games): Lihat semua permainan al-Quran
+- Primary button (existing Play Store link): Dapatkan di Google Play
+- Secondary small link (to /quran-games): Lihat semua permainan al-Quran
 - Demo label: Soalan contoh
 - Demo counter: Soalan {n} daripada {t}
 - Demo results: Betul / Belum tepat; citation label: Rujukan
-- Demo buttons: Seterusnya · Main permainan penuh (to /quran-games) · Cuba semula
+- Demo buttons: Seterusnya · last screen: Dapatkan di Google Play (Play Store, primary) + Lihat semua permainan al-Quran (small link to /quran-games) · Cuba semula
 - Demo note: Contoh ringkas, bukan permainan itu sendiri.
+- Citation prefix in demo: Surah
 - Hero link: unchanged

@@ -613,6 +613,13 @@
 .qq-next,.qq-play{font:inherit;font-size:14.5px;font-weight:700;color:#0f1512;background:#c9973f;border:0;border-radius:40px;padding:12px 24px;cursor:pointer;text-decoration:none;display:inline-flex}
 .qq-next:hover,.qq-play:hover{background:#e6b662}
 .qq-again{font:inherit;font-size:14px;font-weight:600;color:#fdf8ee;background:transparent;border:1.5px solid rgba(253,248,238,.3);border-radius:40px;padding:11px 20px;cursor:pointer}
+.qq-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.qq-btn svg{margin-inline-end:10px;flex:none}
+.qq-play svg{margin-inline-end:8px}
+.qq-link{font-size:13.5px;font-weight:700;color:#0c6b48;text-decoration:underline;text-underline-offset:3px}
+.qq-link:hover{color:#0a5a3c}
+.qq-card .qq-link{color:#e6b662}
+.qq-link:focus-visible{outline:3px solid #e6b662;outline-offset:2px;border-radius:4px}
 .qq-note{margin:14px 0 0;font-size:12px;color:rgba(253,248,238,.58)}
 @media(max-width:900px){.qq{padding:72px max(20px,4vw)}.qq-in{grid-template-columns:1fr;gap:44px}.qq-stage{max-width:520px}}
 @media(prefers-reduced-motion:no-preference){.qq-opt,.qq-next,.qq-play,.qq-btn{transition:background .2s ease,border-color .2s ease}}
@@ -733,7 +740,7 @@
         <h2 id="quest-title">Qur’an Quest: kuiz dan maze, <em>bersumberkan surah dan ayat.</em></h2>
         <p class="qq-p">Permainan kuiz dan maze. Setiap soalan menyatakan surah dan ayatnya.</p>
         <ul class="qq-badges"><li>Kuiz</li><li>Maze</li><li>Setiap soalan menyatakan surah dan ayat</li></ul>
-        <a class="qq-btn" href="/quran-games" data-ga-event="quest_games_click">Lihat semua permainan al-Quran</a>
+        <div class="qq-ctas"><a class="qq-btn" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="quest_play_store_click"><svg class="google-play-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg>Dapatkan di Google Play</a><a class="qq-link" href="/quran-games" data-ga-event="quest_games_click">Lihat semua permainan al-Quran</a></div>
       </div>
       <div class="qq-stage">
         <div class="qq-card" id="qq-demo" role="group" aria-labelledby="qq-demo-label">
@@ -742,14 +749,14 @@
           <div class="qq-opts" id="qq-opts"></div>
           <div class="qq-result" id="qq-result" aria-live="polite"></div>
           <div class="qq-actions" id="qq-actions"></div>
-          <noscript><a class="qq-play" href="/quran-games">Main permainan penuh</a></noscript>
+          <noscript><a class="qq-play" href="https://play.google.com/store/apps/details?id=app.qari.ai">Dapatkan di Google Play</a> <a class="qq-link" href="/quran-games">Lihat semua permainan al-Quran</a></noscript>
           <p class="qq-note">Contoh ringkas, bukan permainan itu sendiri.</p>
         </div>
       </div>
     </div>
     <script>
 (function(){
-  var D={"count": "Soalan {n} daripada {t}", "right": "Betul", "wrong": "Belum tepat", "cite": "Rujukan", "nxt": "Seterusnya", "play": "Main permainan penuh", "again": "Cuba semula", "qs": [{"q": "Dalam surah Al-Fatihah, kita memohon Allah memberi petunjuk ke jalan yang…", "o": ["Panjang", "Lurus", "Sempit"], "a": 1, "c": "Surah Al-Fatihah, 1:6"}, {"q": "Surah Asy-Syarh menyatakan bahawa bersama kesulitan ada…", "o": ["Kekayaan", "Ketakutan", "Kemudahan"], "a": 2, "c": "Surah Asy-Syarh, 94:6"}, {"q": "Ayat al-Kursi terdapat dalam surah yang mana?", "o": ["Al-Fatihah", "Al-Baqarah", "Yasin"], "a": 1, "c": "Surah Al-Baqarah, 2:255"}]};
+  var D={"count": "Soalan {n} daripada {t}", "right": "Betul", "wrong": "Belum tepat", "cite": "Rujukan", "nxt": "Seterusnya", "play": "Dapatkan di Google Play", "again": "Cuba semula", "qs": [{"q": "Dalam surah Al-Fatihah, kita memohon Allah memberi petunjuk ke jalan yang…", "o": ["Panjang", "Lurus", "Sempit"], "a": 1, "c": "Surah Al-Fatihah, 1:6"}, {"q": "Surah Asy-Syarh menyatakan bahawa bersama kesulitan ada…", "o": ["Kekayaan", "Ketakutan", "Kemudahan"], "a": 2, "c": "Surah Asy-Syarh, 94:6"}, {"q": "Ayat al-Kursi terdapat dalam surah yang mana?", "o": ["Al-Fatihah", "Al-Baqarah", "Yasin"], "a": 1, "c": "Surah Al-Baqarah, 2:255"}], "playUrl": "https://play.google.com/store/apps/details?id=app.qari.ai", "all": "Lihat semua permainan al-Quran"};
   var root=document.getElementById('qq-demo'); if(!root) return;
   var qEl=document.getElementById('qq-q'), optsEl=document.getElementById('qq-opts'),
       resEl=document.getElementById('qq-result'), actEl=document.getElementById('qq-actions'),
@@ -781,7 +788,10 @@
       var nx=el('button','qq-next',D.nxt); nx.type='button';
       nx.addEventListener('click',function(){i++; render(true);}); actEl.appendChild(nx);
     } else {
-      var pl=el('a','qq-play',D.play); pl.href='/quran-games'; actEl.appendChild(pl);
+      if(D.playUrl){
+        var pl=el('a','qq-play',D.play); pl.href=D.playUrl; pl.rel='noopener'; actEl.appendChild(pl);
+        var al=el('a','qq-link',D.all); al.href='/quran-games'; actEl.appendChild(al);
+      } else { var pl2=el('a','qq-play',D.play); pl2.href='/quran-games'; actEl.appendChild(pl2); }
       var ag=el('button','qq-again',D.again); ag.type='button';
       ag.addEventListener('click',function(){i=0; render(true);}); actEl.appendChild(ag);
     }

@@ -4,6 +4,8 @@
 
 Where: the `#quest` section of `index.html`, `ar.html`, `fr.html`, `ms.html` (plain inline JS, no network, no storage). It is labelled "Sample questions" and says it is a short sample, not the game itself. It does not show maze mechanics.
 
+Last screen: a primary "Get it on Google Play" button (the existing Play Store link, translated in ar/fr/ms) and a small "See all Qur'anic games" link to `/quran-games`, plus "Try again". No price, platform or version claims.
+
 Citation format shown to the reader: `Citation: Surah <name>, <surah>:<verse>` (French `Sourate`, Malay `Surah`, Arabic `سورة`).
 
 | # | Question (English) | Options (correct in bold) | Citation |
