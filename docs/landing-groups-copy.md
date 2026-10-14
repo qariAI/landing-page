@@ -139,9 +139,9 @@ Language switcher: EN `/quran-games`, العربية `/ar/quran-games`, FR `/fr/
 
 ### العربية (Arabic)
 
-Approved by the teacher (already on the site): the Qur'an Quest card strings (مميزة، متاحة الآن، لعبة أسئلة ومتاهة. كل سؤال يذكر السورة والآية.، سورة · آية، حمّل من Google Play، جرّب الأسئلة التجريبية), the existing card copy and the hero text.
+Approved by the teacher earlier (already on the site): the Qur'an Quest card strings (مميزة، متاحة الآن، لعبة أسئلة ومتاهة. كل سؤال يذكر السورة والآية.، سورة · آية، حمّل من Google Play، جرّب الأسئلة التجريبية), the existing card copy and the hero text.
 
-**New, needs review** (marked in `ar/quran-games/index.html` with `TODO: pending teacher review (new strings)`). No verses are quoted, only game names:
+**New strings, now approved by the teacher** (these were listed as "new, needs review"; the `TODO: pending teacher review (new strings)` comments have been removed from `ar/quran-games/index.html`). No verses are quoted, only game names:
 - Meta description: العب سبع ألعاب تعليمية قرآنية في QariAI للتجويد والحروف العربية والمفردات القرآنية، ومنها Qur’an Quest وTajweed Quest وHarf Writer وWord Builder وConnect وWasl وCryptogram.
 - og:description: العب سبع ألعاب تعليمية قرآنية في QariAI: Qur’an Quest وTajweed Quest وHarf Writer وWord Builder وConnect وWasl وQuranic Cryptogram.
 - JSON-LD description: سبع ألعاب تعليمية قرآنية، منها لعبة الأسئلة والمتاهة Qur’an Quest وألعاب للتجويد والحروف العربية والمفردات القرآنية.
