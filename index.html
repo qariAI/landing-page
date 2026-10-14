@@ -627,6 +627,40 @@
 @media(max-width:900px){.qq{padding:72px max(20px,4vw)}.qq-in{grid-template-columns:1fr;gap:44px}.qq-stage{max-width:520px}}
 @media(prefers-reduced-motion:no-preference){.qq-opt,.qq-next,.qq-play,.qq-btn{transition:background .2s ease,border-color .2s ease}}
 </style>
+<style id="mg-css">
+.mg{background:#123829;color:#fdf8ee;padding:100px max(24px,4vw);position:relative;overflow:hidden}
+.mg::before{content:"";position:absolute;top:-160px;inset-inline-end:-120px;width:560px;height:560px;background:radial-gradient(circle,rgba(18,146,94,.22),transparent 62%);border-radius:50%;pointer-events:none}
+.mg-in{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+.mg-head{text-align:center;max-width:720px;margin:0 auto 48px}
+.mg-badge{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:800;color:#0f1512;background:#e6b662;border-radius:999px;padding:10px 20px;margin-bottom:22px;box-shadow:0 0 0 6px rgba(230,182,98,.18)}
+.mg-dot{width:9px;height:9px;border-radius:50%;background:#0f1512;flex:none}
+.mg-eyebrow{display:block;font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c9973f;margin-bottom:14px}
+.mg h2{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2rem,3.4vw,2.9rem);line-height:1.1;letter-spacing:-.02em;color:#fdf8ee;margin:0 0 18px}
+.mg h2 em{font-style:italic;color:#c9973f}
+.mg-p{font-size:1.08rem;line-height:1.65;color:rgba(253,248,238,.74);margin:0 auto;max-width:560px}
+.mg-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+.mg-steps{display:grid;gap:14px;margin:0;padding:0;list-style:none}
+.mg-step{display:flex;gap:16px;align-items:flex-start;background:rgba(253,248,238,.06);border:1px solid rgba(253,248,238,.14);border-radius:20px;padding:20px}
+.mg-num{flex:none;width:36px;height:36px;border-radius:50%;background:#c9973f;color:#0f1512;font-weight:800;display:grid;place-items:center}
+.mg-step h3{font-family:'Spectral',serif;font-size:1.2rem;font-weight:700;margin:0 0 4px;color:#fdf8ee}
+.mg-step p{margin:0;font-size:14.5px;line-height:1.5;color:rgba(253,248,238,.72)}
+.mg-board{background:rgba(253,248,238,.07);border:1px solid rgba(201,151,63,.4);border-radius:24px;padding:22px}
+.mg-board-label{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#e6b662;margin:0 0 16px}
+.mg-rows{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.mg-row{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:center}
+.mg-rank{width:28px;height:28px;border-radius:50%;background:rgba(253,248,238,.12);font-size:13px;font-weight:800;display:grid;place-items:center}
+.mg-row:first-child .mg-rank{background:#c9973f;color:#0f1512}
+.mg-name{font-size:14.5px;font-weight:700;margin-bottom:6px}
+.mg-bar{height:8px;border-radius:99px;background:rgba(253,248,238,.12);overflow:hidden}
+.mg-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#12925e,#3fd39a)}
+.mg-cta{text-align:center;margin-top:44px}
+.mg-btn{display:inline-flex;align-items:center;font-size:14.5px;font-weight:600;color:#0f1512;background:#fdf8ee;text-decoration:none;padding:14px 28px;border-radius:40px}
+.mg-btn:hover{background:#fff}
+.mg-btn:focus-visible{outline:3px solid #e6b662;outline-offset:2px}
+.mg-line{font-size:13px;color:rgba(253,248,238,.6);margin:16px 0 0}
+@media(max-width:900px){.mg{padding:72px max(20px,4vw)}.mg-head{margin-bottom:36px}.mg-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:no-preference){.mg-btn{transition:background .2s ease}}
+</style>
 </head>
 <body>
 
@@ -865,6 +899,28 @@
         <div style="width:48px; height:48px; border-radius:14px; background:rgba(12,107,72,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0c6b48" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="#0c6b48" stroke-width="1.8"/><circle cx="12" cy="12" r="1.2" fill="#0c6b48"/></svg></div>
         <div style="font-size:14.5px; font-weight:700; color:#12251b; margin-bottom:5px;">Personalized Drills</div>
         <div style="font-size:12px; color:#7a8378; line-height:1.4;">Practise only what matters</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mosque-groups" class="mg" aria-labelledby="mosque-groups-title">
+    <div class="mg-in">
+      <div class="mg-head">
+        <span class="mg-badge"><span class="mg-dot" aria-hidden="true"></span>Coming soon, not yet available in the app</span>
+        <span class="mg-eyebrow">Mosque groups</span>
+        <h2 id="mosque-groups-title">Weekly recitation ranking for <em>your mosque.</em></h2>
+        <p class="mg-p">A private weekly ranking for mosques and study circles. Nicknames only, join by code.</p>
+      </div>
+      <div class="mg-grid">
+        <ol class="mg-steps"><li class="mg-step"><span class="mg-num" aria-hidden="true">1</span><div><h3>Create a group</h3><p>For a mosque or study circle.</p></div></li><li class="mg-step"><span class="mg-num" aria-hidden="true">2</span><div><h3>Share the join code</h3><p>Members join by code.</p></div></li><li class="mg-step"><span class="mg-num" aria-hidden="true">3</span><div><h3>Recite and rank weekly</h3><p>A private weekly recitation ranking, nicknames only.</p></div></li></ol>
+        <div class="mg-board">
+          <p class="mg-board-label">Example preview, coming soon</p>
+          <ol class="mg-rows" aria-label="Example leaderboard with made-up nicknames"><li class="mg-row"><span class="mg-rank" aria-hidden="true">1</span><div><div class="mg-name">Reciter 1</div><div class="mg-bar" aria-hidden="true"><i style="width:94%"></i></div></div></li><li class="mg-row"><span class="mg-rank" aria-hidden="true">2</span><div><div class="mg-name">Reciter 2</div><div class="mg-bar" aria-hidden="true"><i style="width:82%"></i></div></div></li><li class="mg-row"><span class="mg-rank" aria-hidden="true">3</span><div><div class="mg-name">Reciter 3</div><div class="mg-bar" aria-hidden="true"><i style="width:71%"></i></div></div></li><li class="mg-row"><span class="mg-rank" aria-hidden="true">4</span><div><div class="mg-name">Reciter 4</div><div class="mg-bar" aria-hidden="true"><i style="width:60%"></i></div></div></li><li class="mg-row"><span class="mg-rank" aria-hidden="true">5</span><div><div class="mg-name">Reciter 5</div><div class="mg-bar" aria-hidden="true"><i style="width:48%"></i></div></div></li></ol>
+        </div>
+      </div>
+      <div class="mg-cta">
+        <a class="mg-btn" href="mailto:salam@qariai.app?subject=Mosque%20groups%20pilot" data-ga-event="mosque_pilot_click">Join the mosque pilot</a>
+        <p class="mg-line">Mosque or study circle? Email us to join the pilot.</p>
       </div>
     </div>
   </section>
@@ -1193,17 +1249,6 @@
   </section>
 
   <!-- ══ FINAL CTA ══ -->
-  <section id="mosque-groups" style="background:#123829; padding:100px max(24px,4vw); position:relative; overflow:hidden;" aria-labelledby="mosque-groups-title">
-    <div style="max-width:760px; margin:0 auto; position:relative; z-index:2; text-align:center;">
-      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; margin-bottom:14px; color:#c9973f;">Mosque groups · Coming soon</span>
-      <h2 id="mosque-groups-title" style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.1; letter-spacing:-.02em; color:#fdf8ee; margin-bottom:20px;">Weekly recitation ranking for <em style="font-style:italic; color:#c9973f;">your mosque.</em></h2>
-      <p style="font-size:1.08rem; line-height:1.65; color:rgba(253,248,238,0.74); max-width:520px; margin:0 auto 14px;">A private weekly recitation ranking for mosques and study circles. Members appear by nickname only, and join with a code.</p>
-      <p style="font-size:.95rem; font-weight:700; color:#e6b662; margin:0 auto 28px;">Coming soon — not yet available in the app.</p>
-      <a href="mailto:salam@qariai.app?subject=Mosque%20groups%20pilot" data-ga-event="mosque_pilot_click" style="display:inline-flex; align-items:center; font-size:14.5px; font-weight:600; color:#0f1512; background:#fdf8ee; text-decoration:none; padding:14px 28px; border-radius:40px;" style-hover="background:#fff;">Join the mosque pilot</a>
-      <p style="font-size:13px; color:rgba(253,248,238,0.55); margin:16px 0 0;">Mosque or study circle? Email us to join the pilot.</p>
-    </div>
-  </section>
-
   <section class="final-cta-section" style="background:#0f1512; padding:120px max(24px,4vw); text-align:center; position:relative; overflow:hidden;">
     <div style="position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:640px; height:640px; background:radial-gradient(circle, rgba(18,146,94,0.2), transparent 64%); border-radius:50%; pointer-events:none;"></div>
     <div style="position:relative; z-index:2; max-width:680px; margin:0 auto;">
