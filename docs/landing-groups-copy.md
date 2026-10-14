@@ -41,7 +41,7 @@ The Quest section also has a three-question "Sample questions" demo (see `docs/q
 - Demo note: A short sample, not the game itself.
 - Citation prefix in demo: Surah
 - Hero link: unchanged
-## العربية (Arabic) — NEEDS TEACHER REVIEW before publishing
+## العربية (Arabic) — approved by the teacher
 
 ### مجموعات المساجد (#mosque-groups)
 - Badge: قريبًا، غير متاحة بعد في التطبيق
@@ -131,36 +131,49 @@ The Quest section also has a three-question "Sample questions" demo (see `docs/q
 
 ## Games page (`/ar/quran-games`, `/fr/quran-games`, `/ms/quran-games`)
 
-New strings for the Qur'an Quest featured card and the count changes. Everything else on these pages (the five existing games, their copy and links, hero, nav, footer) is unchanged and only restyled. The English page is the reference design (`/quran-games`).
+These three pages follow the English `/quran-games` page: featured Qur'an Quest card first, then Tajweed Quest, Harf Writer, Word Builder, Qur'an Connect, Wasl (available now) and Quranic Cryptogram, then the video section, then the closing call to action. The English page is the only source of facts. Game names stay in Latin script. The Qur'an Quest card, the language switcher labels (EN, العربية, FR, MS) and the existing card copy are unchanged.
 
-Common to all three: card title `Qur’an Quest`; the Play Store button uses the page's existing Play Store link (same URL and `referrer` pattern as the other games, with `utm_content=quran_quest`); "Try the sample questions" goes to the language landing page `#quest`; the small tag in the card visual is decorative (`aria-hidden`).
+Counts as on the English page: description, og and JSON-LD say seven; the video kicker and video label say six (they describe the video); the headline has no count.
 
-### العربية (Arabic) — NEEDS TEACHER REVIEW before publishing
-Surah names only, no verses quoted. The page carries an HTML comment `TODO: pending teacher review`.
-- Tag: مميزة
-- Status: متاحة الآن
-- Description: لعبة أسئلة ومتاهة. كل سؤال يذكر السورة والآية.
-- Card visual chip: سورة · آية
-- Primary button (Play Store): حمّل من Google Play
-- Secondary link (to `/ar#quest`): جرّب الأسئلة التجريبية
-- Count changes: «خمس طرق لبناء مهارات راسخة» → «ست طرق لبناء مهارات راسخة»; «الألعاب الأربع المتاحة اليوم» → «الألعاب الخمس المتاحة اليوم»; meta description: «خمس ألعاب» → «ست ألعاب» and «أربع ألعاب متاحة الآن» → «خمس ألعاب متاحة الآن»
+Language switcher: EN `/quran-games`, العربية `/ar/quran-games`, FR `/fr/quran-games`, MS `/ms/quran-games`. The current language is marked with `aria-current="page"` and is the only one highlighted. hreflang on all four games pages: en, ar, fr, ms and x-default (English), absolute `https://qariai.app/...` URLs.
+
+### العربية (Arabic)
+
+Approved by the teacher (already on the site): the Qur'an Quest card strings (مميزة، متاحة الآن، لعبة أسئلة ومتاهة. كل سؤال يذكر السورة والآية.، سورة · آية، حمّل من Google Play، جرّب الأسئلة التجريبية), the existing card copy and the hero text.
+
+**New, needs review** (marked in `ar/quran-games/index.html` with `TODO: pending teacher review (new strings)`). No verses are quoted, only game names:
+- Meta description: العب سبع ألعاب تعليمية قرآنية في QariAI للتجويد والحروف العربية والمفردات القرآنية، ومنها Qur’an Quest وTajweed Quest وHarf Writer وWord Builder وConnect وWasl وCryptogram.
+- og:description: العب سبع ألعاب تعليمية قرآنية في QariAI: Qur’an Quest وTajweed Quest وHarf Writer وWord Builder وConnect وWasl وQuranic Cryptogram.
+- JSON-LD description: سبع ألعاب تعليمية قرآنية، منها لعبة الأسئلة والمتاهة Qur’an Quest وألعاب للتجويد والحروف العربية والمفردات القرآنية.
+- Headline (the count was removed, as on English): طرق لبناء مهارات راسخة
+- Hero label on the Wasl picture (reuses the approved "متاحة الآن"): متاحة الآن
+- Wasl card (now available, status متاحة الآن and link العب في QariAI ← are approved wording): اعثر على كلمات قرآنية بربط الحروف العربية في عوالم جميلة، مع ألغاز جديدة تزداد صعوبة كلما تقدّمت.
+- Quranic Cryptogram card (title in Latin; status and link as above): فكّ شيفرة آية قرآنية باكتشاف الحرف العربي المخفي خلف كل رمز هندسي.
+- Video kicker: ست ألعاب · رحلة واحدة
+- Video heading: شاهد كل لعبة أثناء اللعب.
+- Video text: من تتبّع أول حرف عربي إلى إتقان التجويد والتعرّف إلى المفردات القرآنية، كل لعبة تبني مهارة تعود بها إلى التلاوة.
+- Video label (aria): فيديو متحرك يقدّم ألعاب QariAI القرآنية التعليمية الست
+- Video fallback text: متصفحك لا يدعم الفيديو المضمّن.
+- Closing call to action line: حمّل QariAI والعب جميع الألعاب القرآنية التعليمية السبع اليوم.
 
 ### Français
-- Tag: À la une
-- Status: Disponible maintenant
-- Description: Un jeu de quiz et de labyrinthe. Chaque question cite sa sourate et son verset.
-- Card visual chip: Sourate · Verset
-- Primary button (Play Store): Disponible sur Google Play
-- Secondary link (to `/fr#quest`): Essayer les questions d’exemple
-- Count changes: « Cinq façons… » → « Six façons… »; « les quatre jeux disponibles » → « les cinq jeux disponibles »; meta and og descriptions and JSON-LD: cinq→six, quatre→cinq
+- Description: Jouez à sept jeux d’apprentissage coranique dans QariAI pour le Tajwid, les lettres arabes et le vocabulaire coranique, dont Qur’an Quest, Tajweed Quest, Harf Writer, Word Builder, Connect, Wasl et Cryptogram.
+- og:description: Jouez à sept jeux d’apprentissage coranique dans QariAI : Qur’an Quest, Tajweed Quest, Harf Writer, Word Builder, Connect, Wasl et Quranic Cryptogram.
+- JSON-LD: Sept jeux coraniques, dont le jeu de quiz et de labyrinthe Qur’an Quest et des jeux pour le Tajwid, les lettres arabes et le vocabulaire coranique.
+- Headline: Façons de développer des compétences durables
+- Hero label: Disponible maintenant
+- Wasl: Trouvez des mots coraniques en reliant des lettres arabes à travers des mondes illustrés, avec de nouveaux puzzles de plus en plus difficiles au fil de votre progression. (Disponible maintenant · Jouer dans QariAI →)
+- Quranic Cryptogram: Décodez un verset coranique en découvrant quelle lettre arabe se cache derrière chaque symbole géométrique.
+- Video: Six jeux · un seul parcours / Découvrez chaque jeu en action. / Du tracé de la première lettre arabe à la maîtrise du Tajwid et à la reconnaissance du vocabulaire coranique, chaque jeu développe une compétence que vous pouvez ramener dans votre récitation. / label: Vidéo animée présentant les six jeux d’apprentissage coranique de QariAI / fallback: Votre navigateur ne prend pas en charge la vidéo intégrée.
+- Call to action line: Téléchargez QariAI et jouez dès aujourd'hui aux sept jeux d'apprentissage du Coran.
 
 ### Bahasa Melayu
-- Tag: Pilihan utama
-- Status: Tersedia sekarang
-- Description: Permainan kuiz dan maze. Setiap soalan menyatakan surah dan ayatnya.
-- Card visual chip: Surah · Ayat
-- Primary button (Play Store): Dapatkan di Google Play
-- Secondary link (to `/ms#quest`): Cuba soalan contoh
-- Count changes: «Lima cara…» → «Enam cara…»; «empat permainan yang tersedia hari ini» → «lima permainan yang tersedia hari ini»; meta and og descriptions and JSON-LD: lima→enam, empat→lima
-
-Note: these three localized pages are an older version than the English page. They list five games (no Quranic Cryptogram), show Wasl as "coming soon" and have no video section. They were kept as they are; only the Quest card and the counts above were added.
+- Description: Main tujuh permainan pembelajaran al-Quran dalam QariAI untuk Tajwid, huruf Arab dan kosa kata al-Quran—termasuk Qur’an Quest, Tajweed Quest, Harf Writer, Word Builder, Connect, Wasl dan Cryptogram.
+- og:description: Main tujuh permainan pembelajaran al-Quran dalam QariAI: Qur’an Quest, Tajweed Quest, Harf Writer, Word Builder, Connect, Wasl dan Quranic Cryptogram.
+- JSON-LD: Tujuh permainan pembelajaran al-Quran, termasuk permainan kuiz dan maze Qur’an Quest serta permainan untuk Tajwid, huruf Arab dan kosa kata al-Quran.
+- Headline: Cara membina kemahiran berkekalan
+- Hero label: Tersedia sekarang
+- Wasl: Cari perkataan al-Quran dengan menyambungkan huruf Arab merentasi dunia yang indah, dengan teka-teki baharu yang semakin mencabar apabila anda maju. (Tersedia sekarang · Main dalam QariAI →)
+- Quranic Cryptogram: Dekod ayat al-Quran dengan mencari huruf Arab yang tersembunyi di sebalik setiap simbol geometri.
+- Video: Enam permainan · satu perjalanan / Lihat setiap permainan beraksi. / Daripada menjejak huruf Arab pertama hingga menguasai Tajwid dan mengenali kosa kata al-Quran, setiap permainan membina kemahiran yang boleh anda bawa kembali ke dalam bacaan. / label: Video animasi yang memperkenalkan keenam-enam permainan pembelajaran al-Quran QariAI / fallback: Pelayar anda tidak menyokong video terbenam.
+- Call to action line: Muat turun QariAI dan main kesemua tujuh permainan pembelajaran al-Quran hari ini.
