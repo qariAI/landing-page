@@ -8,6 +8,8 @@ Facts used (nothing else is claimed):
 - **Mosque groups: coming soon.** Private weekly recitation ranking for mosques and study circles. Nicknames only. Join by code. Not yet in the app.
 - **Qur'an Quest: available now.** A trivia and maze game. Every question cites its Surah and Verse.
 
+The Quest section also has a three-question "Sample questions" demo (see `docs/quest-demo-questions.md`). It is a sample, not the game, and shows no maze mechanics.
+
 ## English
 
 ### Mosque groups (#mosque-groups)
@@ -20,11 +22,16 @@ Facts used (nothing else is claimed):
 
 ### Qur'an Quest (#quest)
 - Label: New · Available now
-- Heading: Qur'an Quest: trivia and a maze, cited verse by verse.
-- Body: Qur'an Quest is a trivia and maze game. Every question cites its Surah and Verse.
-- Button: See all Qur'anic games
-- Hero link: New: Qur'an Quest is available now →
-
+- Heading: Qur’an Quest: trivia and a maze, cited verse by verse.
+- One-liner: A trivia and maze game. Every question cites its Surah and Verse.
+- Badges: Trivia · Maze · Every question cites Surah and Verse
+- Button (to /quran-games): See all Qur’anic games
+- Demo label: Sample questions
+- Demo counter: Question {n} of {t}
+- Demo results: Correct / Not quite; citation label: Citation
+- Demo buttons: Next · Play the full game (to /quran-games) · Try again
+- Demo note: A short sample, not the game itself.
+- Hero link: unchanged
 ## العربية (Arabic) — NEEDS TEACHER REVIEW before publishing
 
 ### مجموعات المساجد (#mosque-groups)
@@ -37,13 +44,16 @@ Facts used (nothing else is claimed):
 
 ### Qur'an Quest (#quest)
 - Label: جديد · متاحة الآن
-- Heading: Qur'an Quest: أسئلة ومتاهة، مع ذكر السورة والآية.
-- Body: Qur'an Quest لعبة أسئلة ومتاهة. كل سؤال يذكر السورة والآية.
-- Button: شاهد جميع الألعاب القرآنية
-- Hero link: جديد: Qur'an Quest متاحة الآن ←
-
-Review notes for the teacher: confirm "الأسماء المستعارة" (nicknames), "حلقات الدراسة" (study circles), "البرنامج التجريبي" (pilot) and whether the game name should stay in Latin script.
-
+- Heading: Qur’an Quest: أسئلة ومتاهة، مع ذكر السورة والآية.
+- One-liner: لعبة أسئلة ومتاهة. كل سؤال يذكر السورة والآية.
+- Badges: أسئلة · متاهة · كل سؤال يذكر السورة والآية
+- Button (to /quran-games): شاهد جميع الألعاب القرآنية
+- Demo label: أسئلة تجريبية
+- Demo counter: السؤال {n} من {t}
+- Demo results: إجابة صحيحة / ليست صحيحة; citation label: المرجع
+- Demo buttons: التالي · العب اللعبة كاملة (to /quran-games) · أعد المحاولة
+- Demo note: نموذج قصير، وليس اللعبة نفسها.
+- Hero link: unchanged
 ## Français
 
 ### Groupes de mosquées (#mosque-groups)
@@ -56,11 +66,16 @@ Review notes for the teacher: confirm "الأسماء المستعارة" (nickn
 
 ### Qur'an Quest (#quest)
 - Label: Nouveau · Disponible maintenant
-- Heading: Qur'an Quest : quiz et labyrinthe, sourcés verset par verset.
-- Body: Qur'an Quest est un jeu de quiz et de labyrinthe. Chaque question cite sa sourate et son verset.
-- Button: Voir tous les jeux coraniques
-- Hero link: Nouveau : Qur'an Quest est disponible maintenant →
-
+- Heading: Qur’an Quest : quiz et labyrinthe, sourcés verset par verset.
+- One-liner: Un jeu de quiz et de labyrinthe. Chaque question cite sa sourate et son verset.
+- Badges: Quiz · Labyrinthe · Chaque question cite sourate et verset
+- Button (to /quran-games): Voir tous les jeux coraniques
+- Demo label: Questions d’exemple
+- Demo counter: Question {n} sur {t}
+- Demo results: Bonne réponse / Pas tout à fait; citation label: Référence
+- Demo buttons: Suivant · Jouer au jeu complet (to /quran-games) · Recommencer
+- Demo note: Un court échantillon, pas le jeu lui-même.
+- Hero link: unchanged
 ## Bahasa Melayu
 
 ### Kumpulan masjid (#mosque-groups)
@@ -73,7 +88,13 @@ Review notes for the teacher: confirm "الأسماء المستعارة" (nickn
 
 ### Qur'an Quest (#quest)
 - Label: Baharu · Sudah tersedia
-- Heading: Qur'an Quest: kuiz dan maze, bersumberkan surah dan ayat.
-- Body: Qur'an Quest ialah permainan kuiz dan maze. Setiap soalan menyatakan surah dan ayatnya.
-- Button: Lihat semua permainan al-Quran
-- Hero link: Baharu: Qur'an Quest sudah tersedia →
+- Heading: Qur’an Quest: kuiz dan maze, bersumberkan surah dan ayat.
+- One-liner: Permainan kuiz dan maze. Setiap soalan menyatakan surah dan ayatnya.
+- Badges: Kuiz · Maze · Setiap soalan menyatakan surah dan ayat
+- Button (to /quran-games): Lihat semua permainan al-Quran
+- Demo label: Soalan contoh
+- Demo counter: Soalan {n} daripada {t}
+- Demo results: Betul / Belum tepat; citation label: Rujukan
+- Demo buttons: Seterusnya · Main permainan penuh (to /quran-games) · Cuba semula
+- Demo note: Contoh ringkas, bukan permainan itu sendiri.
+- Hero link: unchanged
