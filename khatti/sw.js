@@ -1,0 +1,7 @@
+const FAMILY='harf-pwa-'+new URL(self.registration.scope).pathname.replace(/[^a-z0-9]/gi,'_')+'-';
+const CACHE=FAMILY+'74c477a23661';
+const FILES=['./','./index.html','./pwa.js','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch-icon-180.png'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES.map(p=>new Request(new URL(p,self.registration.scope),{cache:'reload'}))))));
+self.addEventListener('message',e=>{if(e.data?.type==='ACTIVATE_UPDATE')self.skipWaiting();});
+self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith(FAMILY)&&k!==CACHE)await caches.delete(k);await self.clients.claim();})()));
+self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET'||!u.href.startsWith(self.registration.scope))return;const p=u.pathname.slice(new URL(self.registration.scope).pathname.length);if(e.request.mode==='navigate'){e.respondWith(caches.open(CACHE).then(c=>c.match(new URL('./index.html',self.registration.scope))).then(r=>r||fetch(e.request)));return;}if(!['pwa.js','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon-180.png'].includes(p))return;e.respondWith(caches.open(CACHE).then(c=>c.match(e.request)).then(r=>r||fetch(e.request)));});
