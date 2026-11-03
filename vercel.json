@@ -362,6 +362,10 @@
       "destination": "/hifz.html"
     },
     {
+      "source": "/faq",
+      "destination": "/faq.html"
+    },
+    {
       "source": "/ar",
       "destination": "/ar.html"
     },

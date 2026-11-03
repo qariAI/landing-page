@@ -72,6 +72,7 @@ complements — but does not replace — a qualified human teacher.
 - Privacy: https://qariai.app/privacy
 - Terms: https://qariai.app/terms
 - About: https://qariai.app/about
+- FAQ: https://qariai.app/faq
 - Qaf Studio (the company behind QariAI): https://qariai.app/qaf
 
 - Contact: salam@qariai.app
