@@ -1,5 +1,5 @@
 const FAMILY='harf-pwa-'+new URL(self.registration.scope).pathname.replace(/[^a-z0-9]/gi,'_')+'-';
-const CACHE=FAMILY+'74c477a23661';
+const CACHE=FAMILY+'c26bab93536a';
 const FILES=['./','./index.html','./pwa.js','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch-icon-180.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES.map(p=>new Request(new URL(p,self.registration.scope),{cache:'reload'}))))));
 self.addEventListener('message',e=>{if(e.data?.type==='ACTIVATE_UPDATE')self.skipWaiting();});
