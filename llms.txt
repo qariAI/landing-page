@@ -54,8 +54,8 @@ complements — but does not replace — a qualified human teacher.
 - Learn common Tajweed mistakes: https://qariai.app/learn/common-tajweed-mistakes
 - Tajweed rules reference (all rules with Arabic names, plain-English explanations and example verses): https://qariai.app/tajweed-rules
 - Al-Nabr in Tajweed (controlled vocal stress in recitation: where it applies, common errors, examples): https://qariai.app/al-nabr-tajweed
-- Maqamat in Quran recitation (the 7 maqamat with meanings, voice tips and practice guidance): https://qariai.app/maqamat-quran-guide
-- Qalqalah letters explained (the 5 letters, Sughra and Kubra examples, echo technique): https://qariai.app/learn/qalqalah-explained
+- Maqamat in Quran recitation (the 7 maqamat with meanings, voice tips, how maqamat relate to tajweed, and FAQ): https://qariai.app/maqamat-quran-guide
+- Letters of Qalqalah explained (ق ط ب ج د, Qutb Jadd, the three levels, Quran examples, echo technique): https://qariai.app/learn/qalqalah-explained
 - Ayn (ع) pronunciation (where the sound forms, mistakes to avoid, Quranic practice words): https://qariai.app/learn/pronounce-ayn
 - Tajweed for beginners (level-by-level learning path: Makharij, core rules, Surah recitation): https://qariai.app/learn/beginner-tajweed-curriculum
 - QariAI vs Tarteel: https://qariai.app/compare/qari-ai-vs-tarteel

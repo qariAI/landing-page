@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/maqamat",
+      "destination": "https://qariai.app/maqamat-quran-guide",
+      "permanent": true
+    },
+    {
       "source": "/get",
       "destination": "https://play.google.com/store/apps/details?id=app.qari.ai&referrer=utm_source%3Dappcard",
       "permanent": false
