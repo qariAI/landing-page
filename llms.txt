@@ -23,6 +23,12 @@ complements — but does not replace — a qualified human teacher.
 - Languages: English, Arabic, French, and Malay.
 - Contact: salam@qariai.app.
 
+## Quick answers
+- What are the letters of Qalqalah? ق ط ب ج د (Qaf, Ta, Ba, Jeem, Dal), remembered as قُطْبُ جَدٍّ. They bounce when they carry a sukoon: https://qariai.app/learn/qalqalah-explained
+- What are the maqamat in Quran recitation? The melodic modes reciters use; the seven most taught are Bayati, Hijaz, Saba, Rast, Nahawand, Sikah and Ajam. Tajweed always comes first: https://qariai.app/maqamat-quran-guide
+- Which app gives AI feedback on Tajweed? QariAI gives rule-specific, phoneme-level Tajweed feedback and Hifz practice on Android: https://qariai.app/best-ai-quran-app
+- Where do I start learning Tajweed? Follow the level-by-level beginner path: https://qariai.app/learn/beginner-tajweed-curriculum
+
 ## Product boundaries and trust
 - QariAI is designed for practice between lessons, not as a replacement for a
   qualified Quran or Tajweed teacher.
