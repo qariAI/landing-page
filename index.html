@@ -205,7 +205,7 @@
     .unified-proof h2,.games-inside h2{font-family:'Spectral',serif;font-weight:800;letter-spacing:-.035em;color:#12251b}
     .unified-proof h2{font-size:clamp(2.3rem,4vw,4rem);line-height:1;margin-top:16px}
     .unified-proof__intro{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.7;color:#566159;max-width:690px}
-    .unified-proof__grid{display:grid;grid-template-columns:1.18fr repeat(3,1fr);border:1px solid rgba(18,56,41,.1);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 22px 55px rgba(18,56,41,.07)}
+    .unified-proof__grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(18,56,41,.1);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 22px 55px rgba(18,56,41,.07)}
     .unified-proof__item{min-height:210px;padding:30px;border-right:1px solid rgba(18,56,41,.09);display:flex;flex-direction:column;justify-content:flex-start}
     .unified-proof__item:last-child{border-right:0}
     .unified-proof__item--metric{background:#123829;color:#fffdf8}
@@ -247,7 +247,7 @@
     .combo-feature li{font-size:12.5px;font-weight:700;color:rgba(255,253,248,.86);display:flex;gap:9px;align-items:center}
     .combo-feature li::before{content:"✓";width:19px;height:19px;display:grid;place-items:center;border-radius:50%;background:#0b6e52;color:#fff;font-size:10px}
     .games-inside__cta{display:inline-flex;align-items:center;justify-content:center;margin-top:22px;padding:14px 22px;border-radius:999px;background:#be8a2c;color:#fff;text-decoration:none;font-size:13px;font-weight:800;box-shadow:0 12px 26px rgba(190,138,44,.23)}
-    @media(max-width:1050px){.unified-proof__grid{grid-template-columns:repeat(2,1fr)}.unified-proof__item:nth-child(2){border-right:0}.unified-proof__item{border-bottom:1px solid rgba(18,56,41,.09)}.unified-proof__item:nth-last-child(-n+2){border-bottom:0}.game-list{grid-template-columns:repeat(3,1fr)}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.combo-feature{max-width:100%;margin:auto}}
+    @media(max-width:1050px){.unified-proof__grid{grid-template-columns:repeat(2,1fr)}.unified-proof__item:last-child{grid-column:1/-1}.unified-proof__item:nth-child(2){border-right:0}.unified-proof__item{border-bottom:1px solid rgba(18,56,41,.09)}.unified-proof__item:nth-last-child(-n+2){border-bottom:0}.game-list{grid-template-columns:repeat(3,1fr)}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.combo-feature{max-width:100%;margin:auto}}
     @media(max-width:760px){.unified-proof__head,.games-inside__head{grid-template-columns:1fr;gap:18px}.unified-proof{padding:58px 16px 44px}.games-inside__shell{padding:54px 18px 64px}.game-list{grid-template-columns:1fr}.game-tile{grid-template-columns:52px 1fr auto}.game-tile__state{grid-column:auto}.combo-feature{grid-template-columns:1fr;text-align:center;padding:26px 18px}.combo-feature__logo{margin-left:auto;margin-right:auto}.combo-feature ul{width:max-content;max-width:100%;margin:auto;text-align:left}.combo-feature__phone{width:min(210px,66vw)}}
     @media(max-width:560px){.unified-proof__grid{grid-template-columns:1fr}.unified-proof__item{border-right:0!important;border-bottom:1px solid rgba(18,56,41,.09)!important;min-height:auto}.unified-proof__item:last-child{border-bottom:0!important}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.games-inside h2,.unified-proof h2{font-size:2.4rem}}
 
@@ -678,7 +678,7 @@
        FINAL CTA → FOOTER → demo modal
 
        EDITABLE CONTENT (things likely to change often):
-       - Hero rating (4.3 from 23 Google Play ratings, Play Console 2026-11-04) — update when the rating changes
+       - Learner-count and rating claims removed from the stats section; do not re-add unverified numbers
        - Testimonials (ام عامر, Matti-Ur Rehman, Sayeed Ahmed) — Google Play reviews, verified
             (uploads/tajweed-quest-preview.webp is no longer referenced — remove it, or ignore if kept for other use)
 
@@ -871,14 +871,6 @@
       <p class="unified-proof__intro">QariAI uses phoneme-level analysis to identify errors in individual sounds and Tajweed rules—not merely flag a mispronounced word.</p>
     </div>
     <div class="unified-proof__grid">
-      <article class="unified-proof__item unified-proof__item--metric">
-        <div class="unified-proof__icon" aria-hidden="true">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </div>
-        <div class="unified-proof__label">Rated by learners</div>
-        <div class="unified-proof__value">4.3 ★</div>
-        <p>Average rating on Google Play, from 23 ratings. Learners practise Tajweed, Hifz and Qur’anic Arabic with QariAI.</p>
-      </article>
       <article class="unified-proof__item">
         <div class="unified-proof__icon" aria-hidden="true">ص</div>
         <div class="unified-proof__label">Sound by sound</div>
