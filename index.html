@@ -379,8 +379,8 @@
     .seo-hero-primary,.seo-hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:750;text-decoration:none;transition:.2s ease}
     .seo-hero-primary{color:#fffdf8;background:#0b6e52;box-shadow:0 14px 30px rgba(11,110,82,.28)}
     .seo-hero-primary:hover{transform:translateY(-2px);background:#095f47;box-shadow:0 18px 38px rgba(11,110,82,.35)}
-    .seo-hero-secondary{color:#123829;background:rgba(255,255,255,.7);border:1px solid rgba(18,56,41,.16)}
-    .seo-hero-secondary:hover{transform:translateY(-2px);background:#fff}
+    .seo-hero-secondary{color:#0b6e52;background:none;border:0;padding:16px 8px;font-weight:650;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+    .seo-hero-secondary:hover{color:#095f47;text-decoration-thickness:2px}
     .seo-hero-points{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;font-size:12.5px;color:#667168;font-weight:650}
     .seo-hero-proof{display:inline-flex;align-items:center;gap:10px;margin:14px 0 0;padding:0 4px;font-size:13px;color:#5b665e;font-weight:500;cursor:default;user-select:none}
     .seo-hero-proof__stars{color:#be8a2c;letter-spacing:2px;font-size:14px}
@@ -675,7 +675,7 @@
        TAJWEED QUEST → HOW IT WORKS → FEATURES → PROGRESS →
        COACH REMEMBERS YOU → DAILY PLANS →
        TESTIMONIALS → COMPARISON TABLE → TOPIC HUB → WHO IT'S FOR →
-       FINAL CTA → FOOTER → sticky CTA → demo modal
+       FINAL CTA → FOOTER → demo modal
 
        EDITABLE CONTENT (things likely to change often):
        - Hero rating (4.3 from 23 Google Play ratings, Play Console 2026-11-04) — update when the rating changes
@@ -683,8 +683,7 @@
             (uploads/tajweed-quest-preview.webp is no longer referenced — remove it, or ignore if kept for other use)
 
        JS STATE (all vanilla, two separate mechanisms — do not conflate):
-       1. Sticky CTA visibility — vanilla JS at the bottom of this file
-          (#qsticky, shown after scrolling 780px).
+       1. Sticky CTA removed (was a duplicate of the hero and final CTAs).
        2. Mobile nav open/close — pure CSS checkbox toggle (#qnav-toggle),
           no JS required except closing it on anchor-link tap (see <script> below).
        3. Demo modal open/close — plain vanilla JS at the bottom of this file
@@ -722,7 +721,7 @@
           <svg class="google-play-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg>
           Start learning free
         </a>
-        <a class="seo-hero-secondary" href="https://qariai.app/academy" data-ga-event="hero_learn_click">Explore free lessons</a>
+        <a class="seo-hero-secondary" href="https://qariai.app/academy" data-ga-event="hero_learn_click">or explore free lessons →</a>
       </div>
       <div class="seo-hero-proof">
         <span class="seo-hero-proof__stars" aria-hidden="true">★</span>
@@ -1271,7 +1270,6 @@
           <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Features</a>
           <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">How It Works</a>
           <a href="https://qariai.app/qaef" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">QAEF Framework</a>
-          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="footer_play_store_click" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Get it on Google Play</a>
           <a href="https://qariai.app/hifz" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Hifz Practice</a>
           <a href="https://qariai.app/tajweed-mistakes-checker" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Free Tajweed Checker</a>
           <span aria-disabled="true" style="font-size:14px; color:rgba(253,248,238,0.6); cursor:default;">Khatti: Arabic Calligraphy <span style="font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#12925e;border:1px solid rgba(18,146,94,.4);border-radius:9999px;padding:2px 7px;margin-left:4px;">Soon</span></span>
@@ -1325,14 +1323,6 @@
       <span style="font-family:'Amiri',serif; font-size:13.5px; color:rgba(253,248,238,0.4);">May Allah accept this work and make it beneficial • إن شاء الله</span>
     </div>
   </footer>
-
-  <!-- sticky CTA -->
-  <div id="qsticky" hidden>
-    <div style="position:fixed; left:0; right:0; bottom:0; z-index:110; background:rgba(15,21,18,0.95); backdrop-filter:blur(12px); border-top:1px solid rgba(253,248,238,0.1); padding:12px max(24px,4vw) calc(12px + env(safe-area-inset-bottom)); display:flex; align-items:center; justify-content:space-between; gap:16px; animation:qRise .35s ease both;">
-      <span style="font-size:14.5px; font-weight:600; color:#fdf8ee;">Your coach is ready when you are.</span>
-      <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="sticky_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0f1512; text-decoration:none; padding:11px 24px; background:#fdf8ee; border-radius:40px; white-space:nowrap;" style-hover="background:#fff;"><svg class="google-play-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg>Get it on Google Play</a>
-    </div>
-  </div>
 
   <!-- Demo modal — vanilla JS.
        Trigger button (#qdemo-open) is hidden by default in the hero until a real video ID is confirmed. -->
