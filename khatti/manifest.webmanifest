@@ -1,15 +1,18 @@
 {
   "id": "./",
-  "name": "Khatti — Creative Studio",
+  "name": "Khatti - Arabic Calligraphy",
   "short_name": "Khatti",
-  "description": "Arabic letter practice, Qur’anic writing studies and a local creative canvas.",
+  "description": "Learn Arabic calligraphy the way it’s written: by hand.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#faf8f1",
-  "theme_color": "#faf8f1",
+  "background_color": "#f6edd6",
+  "theme_color": "#f6edd6",
   "lang": "en",
   "dir": "ltr",
+  "categories": [
+    "education"
+  ],
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -24,13 +27,13 @@
       "purpose": "any"
     },
     {
-      "src": "icons/icon-192.png",
+      "src": "icons/icon-maskable-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "icons/icon-maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

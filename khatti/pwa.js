@@ -1,3 +1,4 @@
+(()=>{try{const app=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true||document.referrer.startsWith('android-app://')||sessionStorage.getItem('khatti.twa')==='1';if(app){document.documentElement.classList.add('is-app');try{sessionStorage.setItem('khatti.twa','1');}catch{}}}catch{}})();
 /* HTTPS package only. Saved standalone HTML never registers a service worker. */
 (()=>{
  if(!('serviceWorker' in navigator)||!window.isSecureContext)return;

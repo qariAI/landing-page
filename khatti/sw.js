@@ -1,6 +1,6 @@
 const FAMILY='harf-pwa-'+new URL(self.registration.scope).pathname.replace(/[^a-z0-9]/gi,'_')+'-';
-const CACHE=FAMILY+'e7ed08f6eea2';
-const FILES=['./','./index.html','./pwa.js','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch-icon-180.png'];
+const CACHE=FAMILY+'2efc36348c8e';
+const FILES=['./','./index.html','./pwa.js','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-192.png','./icons/icon-maskable-512.png','./icons/apple-touch-icon-180.png','./privacy.html'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES.map(p=>new Request(new URL(p,self.registration.scope),{cache:'reload'}))))));
 self.addEventListener('message',e=>{if(e.data?.type==='ACTIVATE_UPDATE')self.skipWaiting();});
 self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith(FAMILY)&&k!==CACHE)await caches.delete(k);await self.clients.claim();})()));
