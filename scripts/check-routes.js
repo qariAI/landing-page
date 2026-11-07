@@ -12,7 +12,7 @@
 //   4. Every non-utility sitemap page has Open Graph / Twitter card tags
 //      (og:title, og:description, og:image, og:url, og:type, twitter:card, twitter:image),
 //      so shared links get a proper preview.
-//   5. Every sitemap page except privacy, terms and challenge loads the GA4 tag
+//   5. Every sitemap page except privacy, terms, challenge and khatti loads the GA4 tag
 //      (G-D55KK2YBKH), calls gtag('config', 'G-D55KK2YBKH') and loads the Vercel
 //      insights script, so no page goes untracked. Unlike checks 2-4 this includes
 //      the homepage.
@@ -144,7 +144,8 @@ for (const p of new Set(sitemap)) {
 
 // ---- check 5: analytics scripts ----
 const GA4_ID = 'G-D55KK2YBKH';
-const TRACKING_EXEMPT = new Set(['/privacy', '/terms', '/challenge']);
+// /khatti is a separate offline-first PWA with its own event tracking, so it does not load GA4 here.
+const TRACKING_EXEMPT = new Set(['/privacy', '/terms', '/challenge', '/khatti']);
 const GA4_CONFIG_RE = new RegExp(String.raw`gtag\(\s*['"]config['"]\s*,\s*['"]${GA4_ID}['"]`);
 const VERCEL_INSIGHTS_RE = /<script\b[^>]*\bsrc=["']\/_vercel\/insights\/script\.js["']/i;
 for (const p of new Set(sitemap)) {
