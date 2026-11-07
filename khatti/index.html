@@ -958,6 +958,9 @@ body.dark :is(.nb-dock,.wk-dock){background:rgba(30,26,18,.94);border-color:rgba
 @keyframes sppop{0%{transform:scale(.2);opacity:0}70%{transform:scale(1.35)}100%{transform:scale(1);opacity:1}}
 @media(prefers-reduced-motion:reduce){.nb-nudge,.sp-stamp,.sp-card .sp-stars i.on{animation:none}}
 .nb-hero:has(.nb-nudge:not([hidden])) .nb-hero-cta,.nb-hero:has(.nb-nudge:not([hidden])) .nb-stage~.btn{display:none}
+/* First screen: compact goal bar on wide screens and a notebook sized to the viewport, so the hero is never cropped on open. */
+@media(min-width:801px){.wl-card:not(.back){display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 14px;padding:8px 14px;margin-bottom:10px}.wl-card:not(.back) h2{margin:0;font-size:1rem}.wl-card:not(.back) p{display:none}.wl-card:not(.back) .wl-chips button{min-height:36px;padding:0 14px}.wl-card:not(.back) .wl-skip{margin:0}}
+.nb-stage{width:min(100%,640px,max(300px,calc((100svh - 410px)*1.25)))}
 
 @media(min-width:900px){
  #scribe-path .sp-scroll{max-width:1120px}
