@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "khatti.app",
+      "sha256_cert_fingerprints": [
+        "0C:D1:95:45:BB:8B:16:4A:E6:BC:D2:1B:47:23:1E:F5:66:23:F1:95:3D:26:12:4E:D7:B5:8A:3B:78:85:35:E7",
+        "92:0A:20:E8:7E:23:04:6A:4B:21:86:E2:35:6D:F5:50:26:3C:AB:D3:DB:CA:0E:8E:C6:63:A7:92:00:E2:64:B7"
+      ]
+    }
+  }
+]
