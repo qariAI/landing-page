@@ -421,7 +421,13 @@
     .hero-art-stage{position:relative;z-index:2;width:min(116%,688px);aspect-ratio:1275/1353;flex:0 0 auto}
     @font-face{font-family:HeroFatiha;src:url(/fonts/hero-fatiha.woff) format("woff");font-display:swap}
     .hero-art-stage{container-type:inline-size}
-    .hm{position:absolute;inset:0;font-size:1cqw}
+    .hm{position:absolute;inset:0;font-size:1cqw;z-index:1}
+    .hm-glow{position:absolute;inset:-4% -6% 0;background:radial-gradient(ellipse 48% 46% at 52% 48%,rgba(11,110,82,.2),transparent 70%),radial-gradient(ellipse 30% 22% at 78% 30%,rgba(245,198,90,.4),transparent 70%);pointer-events:none}
+    .hm-glow::after{content:"";position:absolute;left:4%;right:2%;top:58%;height:22%;border-top:1cqw solid rgba(222,170,60,.55);border-radius:50%;transform:rotate(-8deg)}
+    .hm-drill{display:flex;justify-content:space-between;margin-top:2.2cqw;background:#eef5f0;border:.2cqw solid #d6e6dc;border-radius:2cqw;padding:1.6cqw 2cqw;font-size:1.6cqw;font-weight:800;color:#0b6e52}
+    .hm-hud{position:absolute;left:5%;top:60%;z-index:2;display:flex;align-items:flex-end;gap:1.2cqw}
+    .hm-hud img{width:16cqw;height:16cqw;border-radius:50%;border:.9cqw solid #fff;box-shadow:0 1.6cqw 3cqw rgba(18,56,41,.3)}
+    .hm-hud span{margin-bottom:11cqw;background:#fff;color:#123829;font:800 2.2cqw Inter,system-ui,sans-serif;padding:1.2cqw 2cqw;border-radius:2cqw 2cqw 2cqw .4cqw;box-shadow:0 1cqw 2.4cqw rgba(18,56,41,.22);white-space:nowrap}
     .hm-phone{position:absolute;left:27%;top:12%;width:46%;height:66%;transform:rotate(-6deg);background:#fff;border:1.1cqw solid #0f3d2c;border-radius:6cqw;box-shadow:0 3cqw 4cqw rgba(18,56,41,.28),0 .6cqw 1.2cqw rgba(18,56,41,.18);padding:3.2cqw 2.4cqw;overflow:hidden;font-family:Inter,system-ui,sans-serif;color:#123829}
     .hm-top{display:grid;grid-template-columns:1fr auto;align-items:center;border-bottom:.15cqw solid #e6efe9;padding-bottom:1.6cqw}
     .hm-top b{font-size:2.6cqw;font-weight:800;line-height:1}
@@ -795,7 +801,7 @@
     </div>
     <div class="seo-hero-visual">
       <div class="hero-art-stage">
-        <div class="hm" role="img" aria-label="QariAI analysis result for Surah Al-Fatiha 1:5: each word marked correct or needing work, with a session summary and a Fix mistakes button">
+        <div class="hm-glow" aria-hidden="true"></div><div class="hm" role="img" aria-label="QariAI analysis result for Surah Al-Fatiha 1:5: each word marked correct or needing work, with a session summary and a Fix mistakes button">
           <div class="hm-phone">
             <div class="hm-top"><b>QariAI</b><small>TAJWEED &amp; HIFZ</small><i>Sign In</i></div>
             <div class="hm-title">Analysis Result</div>
@@ -805,7 +811,9 @@
               <div class="hm-legend"><span class="ok">Correct</span><span class="no">Mouth position</span></div>
             </div>
             <div class="hm-done"><small>● SESSION COMPLETE</small><p>Here's what we noticed in your recitation.</p><div><span>Recite again</span><b>Fix mistakes →</b></div></div>
+            <div class="hm-drill"><span>Show ◂</span><b>Today's Drill ⚡</b></div>
           </div>
+          <div class="hm-hud"><img src="/uploads/hudhud-avatar.webp" alt="HudHud, the QariAI learning guide" width="300" height="300" loading="lazy"/><span>Bounce the ق!</span></div>
           <div class="hm-float">
             <div class="hm-meta"><span>Surah 1:5</span><em>✓ Verified</em></div>
             <div class="hm-words" dir="rtl" lang="ar"><u>إِيَّاكَ</u><u class="bad">نَعْبُدُ</u><u>وَإِيَّاكَ</u><u>نَسْتَعِينُ</u></div>
