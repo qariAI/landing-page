@@ -379,6 +379,7 @@
     .seo-hero-primary,.seo-hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:750;text-decoration:none;transition:.2s ease}
     .seo-hero-primary{color:#fffdf8;background:#0b6e52;box-shadow:0 14px 30px rgba(11,110,82,.28)}
     @font-face{font-family:KhattiAllah;src:url(/fonts/khatti-allah.woff) format("woff");font-display:swap}
+    .knew{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:#b3122b;color:#fff;font:700 10px/1.4 Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
     .khatti-promo{width:100%;box-sizing:border-box;max-width:1120px;margin:0 auto;padding:40px max(24px,4vw) 56px}
     .kp-panel{display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:36px;padding:36px 40px;background:#e9e4d8;color:#1c1b1f;border-radius:24px}
     .kp-copy h2{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.02em;color:#b3122b;margin:0 0 14px}
@@ -458,6 +459,7 @@
     /* Primary story order is CSS-controlled and does not depend on JavaScript. */
     .qariai-page{display:flex;flex-direction:column}
     .qariai-page .seo-hero{order:-40}
+    .qariai-page .khatti-promo{order:-35}
     .qariai-page .unified-proof{order:-30}
     .qariai-page .stories-preview{order:-15}
     .qariai-page .qc-section{order:-10}
@@ -718,7 +720,7 @@
         <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Features</a>
         <a href="/quran-games" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Games</a>
         <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Learn</a>
-        <a href="/khatti/" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Khatti</a>
+        <a href="/khatti/" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Khatti <span class="knew">New</span></a>
         <a href="https://qariai.app/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">About</a>
         <a href="/faq" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">FAQ</a>
       </div>
@@ -777,6 +779,22 @@
       </div>
     </div>
   </section>
+
+  <!-- ══ KHATTI ══ -->
+  <section class="khatti-promo" aria-labelledby="khatti-promo-title">
+    <div class="kp-panel">
+      <div class="kp-copy">
+        <h2 id="khatti-promo-title">Khatti</h2>
+        <p>Learn Arabic calligraphy the way it’s written: by hand. Free.</p>
+        <a class="kp-btn" href="/khatti/" data-ga-event="khatti_card_click">Try Khatti free</a>
+      </div>
+      <div class="kp-sheet" aria-hidden="true">
+        <span class="kp-holes"><i></i><i></i><i></i><i></i></span>
+        <div class="kp-art"><div class="kp-word" dir="rtl" lang="ar"><span class="kp-red">الله</span><span class="kp-blk">الله</span></div><svg class="kp-flour" viewBox="0 0 600 280" aria-hidden="true"><path class="kp-draw" d="M70 232C160 272 270 188 350 234S500 268 548 206C566 182 540 170 528 186" fill="none" stroke="#b3122b" stroke-width="4" stroke-linecap="round"/><g transform="translate(72 62) rotate(-14) scale(0.95)" fill="none" stroke="#b3122b" stroke-width="2.2" stroke-linecap="round"><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(0)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(72)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(144)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(216)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(288)" fill="rgba(179,18,43,.08)"/><circle r="4" fill="#b3122b" stroke="none"/><path d="M0 22C-6 44-22 54-40 56M-14 44C-30 36-34 26-30 20"/></g><g transform="translate(528 74) rotate(18) scale(0.62)" fill="none" stroke="#b3122b" stroke-width="2.2" stroke-linecap="round"><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(0)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(72)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(144)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(216)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(288)" fill="rgba(179,18,43,.08)"/><circle r="4" fill="#b3122b" stroke="none"/><path d="M0 22C-6 44-22 54-40 56M-14 44C-30 36-34 26-30 20"/></g><path transform="translate(300 34) rotate(0) scale(0.9)" d="M0-5C-8-15-22-3 0 14 22-3 8-15 0-5Z" fill="#b3122b" opacity=".9"/><path transform="translate(470 246) rotate(14) scale(0.55)" d="M0-5C-8-15-22-3 0 14 22-3 8-15 0-5Z" fill="#b3122b" opacity=".9"/><path transform="translate(128 222) rotate(-12) scale(0.5)" d="M0-5C-8-15-22-3 0 14 22-3 8-15 0-5Z" fill="#b3122b" opacity=".9"/></svg></div>
+      </div>
+    </div>
+  </section>
+  <script>(function(){var s=document.querySelector('.khatti-promo');if(!s)return;try{if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window))return;s.classList.add('kp-armed');new IntersectionObserver(function(e,o){if(e[0].isIntersecting){s.classList.add('kp-in');o.disconnect()}},{threshold:.35}).observe(s)}catch(x){s.classList.remove('kp-armed')}})();</script>
 
   <!-- ══ TESTIMONIALS ══ -->
   <section id="reviews" style="background:#efe8d9; padding:96px max(24px,4vw);">
@@ -1229,22 +1247,6 @@
     </div>
   </section>
 
-  <!-- ══ KHATTI ══ -->
-  <section class="khatti-promo" aria-labelledby="khatti-promo-title">
-    <div class="kp-panel">
-      <div class="kp-copy">
-        <h2 id="khatti-promo-title">Khatti</h2>
-        <p>Learn Arabic calligraphy the way it’s written: by hand. Free.</p>
-        <a class="kp-btn" href="/khatti/" data-ga-event="khatti_card_click">Try Khatti free</a>
-      </div>
-      <div class="kp-sheet" aria-hidden="true">
-        <span class="kp-holes"><i></i><i></i><i></i><i></i></span>
-        <div class="kp-art"><div class="kp-word" dir="rtl" lang="ar"><span class="kp-red">الله</span><span class="kp-blk">الله</span></div><svg class="kp-flour" viewBox="0 0 600 280" aria-hidden="true"><path class="kp-draw" d="M70 232C160 272 270 188 350 234S500 268 548 206C566 182 540 170 528 186" fill="none" stroke="#b3122b" stroke-width="4" stroke-linecap="round"/><g transform="translate(72 62) rotate(-14) scale(0.95)" fill="none" stroke="#b3122b" stroke-width="2.2" stroke-linecap="round"><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(0)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(72)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(144)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(216)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(288)" fill="rgba(179,18,43,.08)"/><circle r="4" fill="#b3122b" stroke="none"/><path d="M0 22C-6 44-22 54-40 56M-14 44C-30 36-34 26-30 20"/></g><g transform="translate(528 74) rotate(18) scale(0.62)" fill="none" stroke="#b3122b" stroke-width="2.2" stroke-linecap="round"><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(0)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(72)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(144)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(216)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(288)" fill="rgba(179,18,43,.08)"/><circle r="4" fill="#b3122b" stroke="none"/><path d="M0 22C-6 44-22 54-40 56M-14 44C-30 36-34 26-30 20"/></g><path transform="translate(300 34) rotate(0) scale(0.9)" d="M0-5C-8-15-22-3 0 14 22-3 8-15 0-5Z" fill="#b3122b" opacity=".9"/><path transform="translate(470 246) rotate(14) scale(0.55)" d="M0-5C-8-15-22-3 0 14 22-3 8-15 0-5Z" fill="#b3122b" opacity=".9"/><path transform="translate(128 222) rotate(-12) scale(0.5)" d="M0-5C-8-15-22-3 0 14 22-3 8-15 0-5Z" fill="#b3122b" opacity=".9"/></svg></div>
-      </div>
-    </div>
-  </section>
-  <script>(function(){var s=document.querySelector('.khatti-promo');if(!s)return;try{if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window))return;s.classList.add('kp-armed');new IntersectionObserver(function(e,o){if(e[0].isIntersecting){s.classList.add('kp-in');o.disconnect()}},{threshold:.35}).observe(s)}catch(x){s.classList.remove('kp-armed')}})();</script>
-
   <!-- ══ WHO IT'S FOR ══ -->
   <section style="max-width:1120px; margin:0 auto; padding:96px max(24px,4vw);">
     <div style="text-align:center; margin-bottom:52px;">
@@ -1301,7 +1303,7 @@
           <a href="https://qariai.app/qaef" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">QAEF Framework</a>
           <a href="https://qariai.app/hifz" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Hifz Practice</a>
           <a href="https://qariai.app/tajweed-mistakes-checker" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Free Tajweed Checker</a>
-          <a href="/khatti/" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Khatti: Arabic Calligraphy</a>
+          <a href="/khatti/" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Khatti: Arabic Calligraphy <span class="knew">New</span></a>
         </div>
       </div>
 
