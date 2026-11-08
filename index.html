@@ -17,10 +17,10 @@
 <link rel="alternate" hreflang="ms" href="https://qariai.app/ms">
 <link rel="alternate" hreflang="x-default" href="https://qariai.app/">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-<meta name="description" content="QariAI — the AI Quran coach that listens to your recitation and tells you exactly what to fix. Phoneme-level Tajweed analysis, Hifz practice, Qur’anic games. Free to start — 1 recitation per day, upgrade from £1.99/month. Plus Khatti: learn Arabic calligraphy the way it’s written, by hand. Free.">
+<meta name="description" content="QariAI — the AI Quran coach that listens to your recitation and tells you exactly what to fix. Phoneme-level Tajweed analysis, Hifz practice, Qur’anic games. Free to start — 1 recitation per day, upgrade from £1.99/month.">
 
 <meta property="og:title" content="QariAI: AI-Powered Quran Learning Platform">
-<meta property="og:description" content="The AI coach that listens to your recitation and tells you exactly what to fix. Tajweed, Hifz and Qur’anic games — free to start. Plus Khatti: learn Arabic calligraphy the way it’s written, by hand. Free.">
+<meta property="og:description" content="The AI coach that listens to your recitation and tells you exactly what to fix. Tajweed, Hifz and Qur’anic games — free to start.">
 <meta property="og:image" content="https://qariai.app/screenshots/og-image.png">
 <meta property="og:url" content="https://qariai.app/">
 <meta property="og:type" content="website">
@@ -28,7 +28,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="QariAI: AI-Powered Quran Learning Platform">
-<meta name="twitter:description" content="The AI Quran coach that listens to your recitation and tells you exactly what to fix. Tajweed, Hifz & games — free to start, from £1.99/month. Plus Khatti: learn Arabic calligraphy the way it’s written, by hand. Free.">
+<meta name="twitter:description" content="The AI Quran coach that listens to your recitation and tells you exactly what to fix. Tajweed, Hifz & games — free to start, from £1.99/month.">
 <meta name="twitter:image" content="https://qariai.app/screenshots/og-image.png">
 
 <script type="application/ld+json">
@@ -382,14 +382,18 @@
     .kt-in{display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,56px);padding:26px clamp(20px,4vw,48px);border-radius:30px;border:1px solid rgba(18,56,41,.1);background:linear-gradient(145deg,#fffdf8 0%,#fbf3e4 70%,#eef4ec 100%);box-shadow:0 18px 50px rgba(18,56,41,.08)}
     .kt-art{flex:0 0 clamp(150px,22vw,250px)}
     .kt-art svg{display:block;width:100%;overflow:visible}
-    .kt-draw{stroke-dasharray:900;stroke-dashoffset:0;animation:ktDraw 5.6s ease-out infinite;animation-play-state:var(--kt-state,running)}
-    @keyframes ktDraw{0%{stroke-dashoffset:900}46%{stroke-dashoffset:0}100%{stroke-dashoffset:0}}
-    @media(prefers-reduced-motion:reduce){.kt-draw{animation:none}}
+    @font-face{font-family:HarfNaskh;src:url(/fonts/khatti-name.woff) format("woff");font-display:swap}
+    .kt-art{overflow:hidden;pointer-events:none}
+    .kw-text{font-family:HarfNaskh,Amiri,'Noto Naskh Arabic',serif;fill:#2a1f0e;stroke:#2a1f0e;stroke-width:0;stroke-dasharray:900;stroke-dashoffset:0;animation:kwText 7s ease-in-out infinite;animation-play-state:var(--kt-state,running)}
+    .kw-swash{fill:none;stroke:#8a1c1c;stroke-width:3;stroke-linecap:round;stroke-dasharray:320;stroke-dashoffset:0;animation:kwSwash 7s ease-out infinite;animation-play-state:var(--kt-state,running)}
+    @keyframes kwText{0%{fill:transparent;stroke-width:1.6;stroke-dashoffset:900;opacity:1}33%{fill:transparent;stroke-width:1.6;stroke-dashoffset:0}41%,92%{fill:#2a1f0e;stroke-width:0;stroke-dashoffset:0;opacity:1}98%,100%{fill:#2a1f0e;stroke-width:0;stroke-dashoffset:0;opacity:0}}
+    @keyframes kwSwash{0%,37%{stroke-dashoffset:320;opacity:1}51%,92%{stroke-dashoffset:0;opacity:1}98%,100%{stroke-dashoffset:0;opacity:0}}
+    @media(prefers-reduced-motion:reduce){.kw-text,.kw-swash{animation:none}}
     .kt-copy{text-align:start}
-    .kt-eyebrow{display:inline-block;margin-bottom:8px;padding:6px 12px;border-radius:999px;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.12);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0b6e52}
+    .kt-eyebrow{position:relative;z-index:10;display:inline-block;margin-bottom:8px;padding:4px 12px;border-radius:999px;background:#0B6E52;color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
     .kt-copy h2{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2rem,3.4vw,2.8rem);line-height:1;letter-spacing:-.03em;color:#123829;margin:0 0 8px}
     .kt-copy p{font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.6;color:#455149;margin:0;max-width:30ch}
-    @media(max-width:560px){.kt-in{flex-direction:column;text-align:center;gap:14px}.kt-copy{text-align:center}.kt-copy p{margin:0 auto}}
+    @media(max-width:560px){.kt-in{flex-direction:column;text-align:center;gap:14px}.kt-art{flex:none;width:min(260px,72%)}.kt-copy{text-align:center}.kt-copy p{margin:0 auto}}
     .seo-hero-primary:hover{transform:translateY(-2px);background:#095f47;box-shadow:0 18px 38px rgba(11,110,82,.35)}
     .seo-hero-secondary{color:#0b6e52;background:none;border:0;padding:16px 8px;font-weight:650;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
     .seo-hero-secondary:hover{color:#095f47;text-decoration-thickness:2px}
@@ -824,17 +828,9 @@
   <section class="kt" aria-label="Coming soon: Khatti">
     <div class="kt-in">
       <div class="kt-art" aria-hidden="true">
-        <svg viewBox="0 0 600 280" focusable="false">
-          <g font-family="Amiri,'Noto Naskh Arabic',serif" font-weight="700" font-size="150" text-anchor="middle" direction="ltr">
-            <text x="305" y="164" fill="#b3122b" opacity=".9">الله</text>
-            <text x="300" y="160" fill="#1c1b1f">الله</text>
-          </g>
-          <path class="kt-draw" d="M70 232C160 272 270 188 350 234S500 268 548 206C566 182 540 170 528 186" fill="none" stroke="#b3122b" stroke-width="4" stroke-linecap="round"/>
-          <g transform="translate(72 62) rotate(-14) scale(.95)" fill="none" stroke="#b3122b" stroke-width="2.2" stroke-linecap="round"><ellipse cx="0" cy="-15" rx="7" ry="13" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(72)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(144)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(216)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(288)" fill="rgba(179,18,43,.08)"/><circle r="4" fill="#b3122b" stroke="none"/><path d="M0 22C-6 44-22 54-40 56M-14 44C-30 36-34 26-30 20"/></g>
-          <g transform="translate(528 74) rotate(18) scale(.62)" fill="none" stroke="#b3122b" stroke-width="2.2" stroke-linecap="round"><ellipse cx="0" cy="-15" rx="7" ry="13" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(72)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(144)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(216)" fill="rgba(179,18,43,.08)"/><ellipse cx="0" cy="-15" rx="7" ry="13" transform="rotate(288)" fill="rgba(179,18,43,.08)"/><circle r="4" fill="#b3122b" stroke="none"/><path d="M0 22C-6 44-22 54-40 56M-14 44C-30 36-34 26-30 20"/></g>
-          <path transform="translate(300 34) scale(.9)" d="M0-5C-8-15-22-3 0 14 22-3 8-15 0-5Z" fill="#b3122b" opacity=".9"/>
-          <path transform="translate(470 246) rotate(14) scale(.55)" d="M0-5C-8-15-22-3 0 14 22-3 8-15 0-5Z" fill="#b3122b" opacity=".9"/>
-          <path transform="translate(128 222) rotate(-12) scale(.5)" d="M0-5C-8-15-22-3 0 14 22-3 8-15 0-5Z" fill="#b3122b" opacity=".9"/>
+        <svg viewBox="0 0 400 230" focusable="false" style="direction:ltr">
+          <text class="kw-text" x="200" y="160" text-anchor="middle" font-size="120">خطّي</text>
+          <path class="kw-swash" d="M70 200 C150 225 250 175 335 198"/>
         </svg>
       </div>
       <div class="kt-copy">
