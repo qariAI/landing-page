@@ -17,10 +17,10 @@
 <link rel="alternate" hreflang="ms" href="https://qariai.app/ms">
 <link rel="alternate" hreflang="x-default" href="https://qariai.app/">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-<meta name="description" content="QariAI — the AI Quran coach that listens to your recitation and tells you exactly what to fix. Phoneme-level Tajweed analysis, Hifz practice, Qur’anic games. Free to start — 1 recitation per day, upgrade from £1.99/month. Plus Khatti: learn Arabic calligraphy the way it’s written, by hand. Free.">
+<meta name="description" content="QariAI — the AI Quran coach that listens to your recitation and tells you exactly what to fix. Phoneme-level Tajweed analysis, Hifz practice, Qur’anic games. Free to start — 1 recitation per day, upgrade from £1.99/month.">
 
 <meta property="og:title" content="QariAI: AI-Powered Quran Learning Platform">
-<meta property="og:description" content="The AI coach that listens to your recitation and tells you exactly what to fix. Tajweed, Hifz and Qur’anic games — free to start. Plus Khatti: learn Arabic calligraphy the way it’s written, by hand. Free.">
+<meta property="og:description" content="The AI coach that listens to your recitation and tells you exactly what to fix. Tajweed, Hifz and Qur’anic games — free to start.">
 <meta property="og:image" content="https://qariai.app/screenshots/og-image.png">
 <meta property="og:url" content="https://qariai.app/">
 <meta property="og:type" content="website">
@@ -28,7 +28,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="QariAI: AI-Powered Quran Learning Platform">
-<meta name="twitter:description" content="The AI Quran coach that listens to your recitation and tells you exactly what to fix. Tajweed, Hifz & games — free to start, from £1.99/month. Plus Khatti: learn Arabic calligraphy the way it’s written, by hand. Free.">
+<meta name="twitter:description" content="The AI Quran coach that listens to your recitation and tells you exactly what to fix. Tajweed, Hifz & games — free to start, from £1.99/month.">
 <meta name="twitter:image" content="https://qariai.app/screenshots/og-image.png">
 
 <script type="application/ld+json">
@@ -378,28 +378,22 @@
     .seo-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px}
     .seo-hero-primary,.seo-hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:750;text-decoration:none;transition:.2s ease}
     .seo-hero-primary{color:#fffdf8;background:#0b6e52;box-shadow:0 14px 30px rgba(11,110,82,.28)}
-    @font-face{font-family:KhattiName;src:url(/fonts/khatti-name.woff) format("woff");font-display:swap}
-    .knew{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:#b3122b;color:#fff;font:700 10px/1.4 Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
-    .kpop{position:fixed;right:20px;bottom:20px;z-index:90;width:min(340px,calc(100vw - 32px));padding:16px 16px 18px;background:#e9e4d8;color:#1c1b1f;border-radius:22px;box-shadow:0 24px 60px -16px rgba(0,0,0,.45);opacity:0;transform:translateY(24px);pointer-events:none;transition:opacity .5s ease,transform .5s ease}
-    .kpop.is-open{opacity:1;transform:none;pointer-events:auto}
-    .kpop[hidden]{display:none}
-    .kpop__x{position:absolute;top:8px;right:8px;z-index:2;width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.7);color:#1c1b1f;font-size:20px;line-height:1;cursor:pointer}
-    .kpop__x:hover{background:#fff}
-    .kpop__link{display:block;color:inherit;text-decoration:none}
-    .kp-plate{position:relative;aspect-ratio:16/10;display:grid;place-items:center;overflow:hidden;border-radius:16px;border:1px solid #e4dac0;box-shadow:0 14px 34px -16px rgba(15,58,51,.35);
-      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23b8892b' stroke-opacity='.18' stroke-width='1'%3E%3Cpath d='M36 5l7 15 15-7-7 15 15 7-15 7 7 15-15-7-7 15-7-15-15 7 7-15-15-7 15-7-7-15 15 7z'/%3E%3Ccircle cx='36' cy='36' r='6'/%3E%3C/g%3E%3C/svg%3E"),radial-gradient(120% 80% at 50% 0%,#f7eed8,#ecdcb4)}
-    .kp-svg{width:92%;height:auto;overflow:visible}
-    .kp-write{font:120px KhattiName,'Noto Naskh Arabic','Amiri',serif;fill:transparent;stroke:#2a1f0e;stroke-width:1.6;stroke-dasharray:900;stroke-dashoffset:900}
-    .kp-swash{fill:none;stroke:#8a1c1c;stroke-width:3;stroke-linecap:round;stroke-dasharray:320;stroke-dashoffset:320}
-    .kpop.is-open .kp-write{animation:kpDraw 2.3s ease-in-out .5s forwards,kpFill .7s ease-out 2.5s forwards}
-    .kpop.is-open .kp-swash{animation:kpDraw 1s ease-out 2.9s forwards}
-    @keyframes kpDraw{to{stroke-dashoffset:0}}@keyframes kpFill{to{fill:#2a1f0e;stroke-width:0}}
-    .kpop__t{margin:14px 4px 0;font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:1.9rem;line-height:1.05;letter-spacing:-.02em;color:#b3122b}
-    .kpop__p{margin:6px 4px 0;font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:1.02rem;line-height:1.3}
-    .kpop__btn{display:flex;align-items:center;justify-content:center;min-height:48px;margin-top:14px;border-radius:999px;background:#1c1b1f;color:#f7f5f0;font-size:15px;font-weight:600;text-decoration:none;box-shadow:0 8px 18px -8px #000;transition:transform .15s ease,background .2s ease}
-    .kpop__btn:hover{background:#000;transform:translateY(-2px)}.kpop__btn:focus-visible,.kpop__x:focus-visible{outline:3px solid #b3122b;outline-offset:3px}
-    @media (max-width:520px){.kpop{right:12px;left:12px;bottom:12px;width:auto;padding:12px 12px 14px}.kp-plate{aspect-ratio:16/8}.kpop__t{font-size:1.6rem;margin-top:10px}.kpop__p{font-size:.95rem}.kpop__btn{min-height:44px;margin-top:10px}}
-    @media (prefers-reduced-motion:reduce){.kpop{transition:none;transform:none}.kpop.is-open .kp-write,.kpop.is-open .kp-swash,.kp-write,.kp-swash{animation:none;stroke-dashoffset:0}.kp-write{fill:#2a1f0e;stroke-width:0}}
+    .kt{max-width:1180px;margin:0 auto;padding:36px max(24px,3vw)}
+    .kt-in{display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,56px);padding:26px clamp(20px,4vw,48px);border-radius:30px;border:1px solid rgba(18,56,41,.1);background:linear-gradient(145deg,#fffdf8 0%,#fbf3e4 70%,#eef4ec 100%);box-shadow:0 18px 50px rgba(18,56,41,.08)}
+    .kt-art{flex:0 0 clamp(150px,22vw,250px)}
+    .kt-art svg{display:block;width:100%;overflow:visible}
+    @font-face{font-family:HarfNaskh;src:url(/fonts/khatti-name.woff) format("woff");font-display:swap}
+    .kt-art{overflow:hidden;pointer-events:none}
+    .kw-text{font-family:HarfNaskh,Amiri,'Noto Naskh Arabic',serif;fill:#2a1f0e;stroke:#2a1f0e;stroke-width:0;stroke-dasharray:900;stroke-dashoffset:0;animation:kwText 7s ease-in-out infinite;animation-play-state:var(--kt-state,running)}
+    .kw-swash{fill:none;stroke:#8a1c1c;stroke-width:3;stroke-linecap:round;stroke-dasharray:320;stroke-dashoffset:0;animation:kwSwash 7s ease-out infinite;animation-play-state:var(--kt-state,running)}
+    @keyframes kwText{0%{fill:transparent;stroke-width:1.6;stroke-dashoffset:900;opacity:1}33%{fill:transparent;stroke-width:1.6;stroke-dashoffset:0}41%,92%{fill:#2a1f0e;stroke-width:0;stroke-dashoffset:0;opacity:1}98%,100%{fill:#2a1f0e;stroke-width:0;stroke-dashoffset:0;opacity:0}}
+    @keyframes kwSwash{0%,37%{stroke-dashoffset:320;opacity:1}51%,92%{stroke-dashoffset:0;opacity:1}98%,100%{stroke-dashoffset:0;opacity:0}}
+    @media(prefers-reduced-motion:reduce){.kw-text,.kw-swash{animation:none}}
+    .kt-copy{text-align:start}
+    .kt-eyebrow{position:relative;z-index:10;display:inline-block;margin-bottom:8px;padding:4px 12px;border-radius:999px;background:#0B6E52;color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
+    .kt-copy h2{font-family:'Spectral',serif;font-weight:800;font-size:clamp(2rem,3.4vw,2.8rem);line-height:1;letter-spacing:-.03em;color:#123829;margin:0 0 8px}
+    .kt-copy p{font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.6;color:#455149;margin:0;max-width:30ch}
+    @media(max-width:560px){.kt-in{flex-direction:column;text-align:center;gap:14px}.kt-art{flex:none;width:min(260px,72%)}.kt-copy{text-align:center}.kt-copy p{margin:0 auto}}
     .seo-hero-primary:hover{transform:translateY(-2px);background:#095f47;box-shadow:0 18px 38px rgba(11,110,82,.35)}
     .seo-hero-secondary{color:#0b6e52;background:none;border:0;padding:16px 8px;font-weight:650;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
     .seo-hero-secondary:hover{color:#095f47;text-decoration-thickness:2px}
@@ -754,7 +748,6 @@
         <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Features</a>
         <a href="/quran-games" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Games</a>
         <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Learn</a>
-        <a href="/khatti/" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">Khatti <span class="knew">New</span></a>
         <a href="https://qariai.app/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">About</a>
         <a href="/faq" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">FAQ</a>
       </div>
@@ -827,6 +820,23 @@
           <div class="hero-chip__icon">ق</div>
           <div class="hero-chip__text"><span class="hero-chip__label">Tajweed rule</span><span class="hero-chip__value">Qalqalah ✓</span></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ KHATTI TEASER (no link) ══ -->
+  <section class="kt" aria-label="Coming soon: Khatti">
+    <div class="kt-in">
+      <div class="kt-art" aria-hidden="true">
+        <svg viewBox="0 0 400 230" focusable="false" style="direction:ltr">
+          <text class="kw-text" x="200" y="160" text-anchor="middle" font-size="120">خطّي</text>
+          <path class="kw-swash" d="M70 200 C150 225 250 175 335 198"/>
+        </svg>
+      </div>
+      <div class="kt-copy">
+        <span class="kt-eyebrow">Coming soon</span>
+        <h2>Khatti</h2>
+        <p>Learn Arabic calligraphy the way it’s written: by hand.</p>
       </div>
     </div>
   </section>
@@ -1338,7 +1348,6 @@
           <a href="https://qariai.app/qaef" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">QAEF Framework</a>
           <a href="https://qariai.app/hifz" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Hifz Practice</a>
           <a href="https://qariai.app/tajweed-mistakes-checker" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Free Tajweed Checker</a>
-          <a href="/khatti/" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">Khatti: Arabic Calligraphy <span class="knew">New</span></a>
         </div>
       </div>
 
@@ -1528,19 +1537,6 @@
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
-<aside class="kpop" id="khatti-popup" role="dialog" aria-label="Khatti, learn Arabic calligraphy" hidden>
-  <button class="kpop__x" type="button" aria-label="Close">×</button>
-  <a class="kpop__link" href="/khatti/" data-ga-event="khatti_popup_click" tabindex="-1" aria-hidden="true">
-    <div class="kp-plate"><svg class="kp-svg" viewBox="0 0 400 230" aria-hidden="true"><text class="kp-write" x="200" y="160" text-anchor="middle">خطّي</text><path class="kp-swash" d="M70 200 C150 225 250 175 335 198"/></svg></div>
-  </a>
-  <p class="kpop__t">Khatti</p>
-  <p class="kpop__p">Learn Arabic calligraphy the way it’s written: by hand. Free.</p>
-  <a class="kpop__btn" href="/khatti/" data-ga-event="khatti_popup_click">Try Khatti free</a>
-</aside>
-<script>(function(){var el=document.getElementById('khatti-popup');if(!el)return;var K='khattiPopupSeen';try{if(localStorage.getItem(K))return}catch(e){}
-function close(){el.classList.remove('is-open');setTimeout(function(){el.hidden=true},500);try{localStorage.setItem(K,'1')}catch(e){}}
-el.querySelector('.kpop__x').addEventListener('click',close);el.querySelector('.kpop__btn').addEventListener('click',function(){try{localStorage.setItem(K,'1')}catch(e){}});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&el.classList.contains('is-open'))close()});
-setTimeout(function(){el.hidden=false;requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('is-open')})})},1500)})();</script>
+<script>(function(){var el=document.querySelector('.kt');if(!el||!window.IntersectionObserver)return;new IntersectionObserver(function(e){el.style.setProperty('--kt-state',e[0].isIntersecting?'running':'paused')},{threshold:.05}).observe(el)})();</script>
 </body>
 </html>
