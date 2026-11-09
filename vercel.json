@@ -595,6 +595,10 @@
       "destination": "/fr/about.html"
     },
     {
+      "source": "/fr/types-de-tajwid",
+      "destination": "/fr/types-de-tajwid.html"
+    },
+    {
       "source": "/ms/about",
       "destination": "/ms/about.html"
     }
