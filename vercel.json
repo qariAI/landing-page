@@ -451,6 +451,10 @@
       "destination": "/ar/tajweed-rules.html"
     },
     {
+      "source": "/ar/anwa-al-tajweed",
+      "destination": "/ar/anwa-al-tajweed.html"
+    },
+    {
       "source": "/ar/tajweed-mistakes",
       "destination": "/ar/tajweed-mistakes.html"
     },
