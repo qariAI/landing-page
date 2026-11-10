@@ -152,7 +152,7 @@
         background:#ffffff; border-bottom:1px solid rgba(18,56,41,0.09); box-shadow:0 12px 24px rgba(18,56,41,0.08);
         max-height:0; overflow:hidden; transition:max-height .25s ease; }
       .qnav-links a{ width:100%; padding:16px max(24px,4vw); border-top:1px solid rgba(18,56,41,0.06); }
-      .qnav-check:checked ~ .qnav-links{ max-height:280px; }
+      .qnav-check:checked ~ .qnav-links{ max-height:340px; }
       .qnav-burger{ display:flex; align-items:center; justify-content:center; width:40px; height:40px;
         border-radius:10px; border:1px solid rgba(18,56,41,0.14); cursor:pointer; flex-shrink:0; }
     }
@@ -206,7 +206,7 @@
     .unified-proof h2,.games-inside h2{font-family:'Spectral',serif;font-weight:800;letter-spacing:-.035em;color:#12251b}
     .unified-proof h2{font-size:clamp(2.3rem,4vw,4rem);line-height:1;margin-top:16px}
     .unified-proof__intro{font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.7;color:#566159;max-width:690px}
-    .unified-proof__grid{display:grid;grid-template-columns:1.18fr repeat(3,1fr);border:1px solid rgba(18,56,41,.1);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 22px 55px rgba(18,56,41,.07)}
+    .unified-proof__grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(18,56,41,.1);border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 22px 55px rgba(18,56,41,.07)}
     .unified-proof__item{min-height:210px;padding:30px;border-right:1px solid rgba(18,56,41,.09);display:flex;flex-direction:column;justify-content:flex-start}
     .unified-proof__item:last-child{border-right:0}
     .unified-proof__item--metric{background:#123829;color:#fffdf8}
@@ -248,7 +248,7 @@
     .combo-feature li{font-size:12.5px;font-weight:700;color:rgba(255,253,248,.86);display:flex;gap:9px;align-items:center}
     .combo-feature li::before{content:"✓";width:19px;height:19px;display:grid;place-items:center;border-radius:50%;background:#0b6e52;color:#fff;font-size:10px}
     .games-inside__cta{display:inline-flex;align-items:center;justify-content:center;margin-top:22px;padding:14px 22px;border-radius:999px;background:#be8a2c;color:#fff;text-decoration:none;font-size:13px;font-weight:800;box-shadow:0 12px 26px rgba(190,138,44,.23)}
-    @media(max-width:1050px){.unified-proof__grid{grid-template-columns:repeat(2,1fr)}.unified-proof__item:nth-child(2){border-right:0}.unified-proof__item{border-bottom:1px solid rgba(18,56,41,.09)}.unified-proof__item:nth-last-child(-n+2){border-bottom:0}.game-list{grid-template-columns:repeat(3,1fr)}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.combo-feature{max-width:100%;margin:auto}}
+    @media(max-width:1050px){.unified-proof__grid{grid-template-columns:repeat(2,1fr)}.unified-proof__item:last-child{grid-column:1/-1}.unified-proof__item:nth-child(2){border-right:0}.unified-proof__item{border-bottom:1px solid rgba(18,56,41,.09)}.unified-proof__item:nth-last-child(-n+2){border-bottom:0}.game-list{grid-template-columns:repeat(3,1fr)}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.combo-feature{max-width:100%;margin:auto}}
     @media(max-width:760px){.unified-proof__head,.games-inside__head{grid-template-columns:1fr;gap:18px}.unified-proof{padding:58px 16px 44px}.games-inside__shell{padding:54px 18px 64px}.game-list{grid-template-columns:1fr}.game-tile{grid-template-columns:52px 1fr auto}.game-tile__state{grid-column:auto}.combo-feature{grid-template-columns:1fr;text-align:center;padding:26px 18px}.combo-feature__logo{margin-left:auto;margin-right:auto}.combo-feature ul{width:max-content;max-width:100%;margin:auto;text-align:left}.combo-feature__phone{width:min(210px,66vw)}}
     @media(max-width:560px){.unified-proof__grid{grid-template-columns:1fr}.unified-proof__item{border-right:0!important;border-bottom:1px solid rgba(18,56,41,.09)!important;min-height:auto}.unified-proof__item:last-child{border-bottom:0!important}.game-tile{grid-template-columns:46px 1fr}.game-tile__state{grid-column:2}.games-inside h2,.unified-proof h2{font-size:2.4rem}}
 
@@ -360,65 +360,123 @@
     /* SEO-first native HTML hero */
     .seo-hero{position:relative;max-width:1520px;margin:0 auto;padding:116px max(24px,3vw) 12px;display:grid;grid-template-columns:minmax(500px,.86fr) minmax(620px,1.14fr);gap:clamp(18px,2.5vw,40px);align-items:center;min-height:0}
     .seo-hero::before{content:"";position:absolute;inset:88px 0 24px;border-radius:42px;background:linear-gradient(135deg,#fffdf8 0%,#fbf3e4 62%,#eef4ec 100%);border:1px solid rgba(18,56,41,.08);box-shadow:0 30px 90px rgba(18,56,41,.09);z-index:-1}
+    .seo-hero::after{content:"";position:absolute;inset:88px 0 24px;border-radius:42px;pointer-events:none;z-index:-1;background:radial-gradient(ellipse 60% 45% at 78% 32%,rgba(255,214,138,.42) 0%,rgba(255,214,138,.18) 35%,transparent 70%),radial-gradient(ellipse 42% 55% at 22% 70%,rgba(11,110,82,.14) 0%,transparent 65%),radial-gradient(circle 180px at 85% 18%,rgba(255,244,210,.55) 0%,transparent 70%);mix-blend-mode:screen;opacity:.9;animation:hero-light-drift 14s ease-in-out infinite}
+    @keyframes hero-light-drift{0%,100%{opacity:.78;transform:translateX(0)}50%{opacity:1;transform:translateX(-10px)}}
+    @media(prefers-reduced-motion:reduce){.seo-hero::after{animation:none}}
     .seo-hero-copy{padding-left:clamp(12px,3vw,44px);position:relative;z-index:2}
-    .seo-hero-label{display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;padding:8px 13px;border-radius:999px;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.12);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b6e52}
-    .seo-hero-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
+    .seo-hero-label{display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;padding:8px 13px;border-radius:999px;background:rgba(11,110,82,.08);border:1px solid rgba(11,110,82,.12);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b6e52;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .seo-hero-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12),0 0 12px rgba(190,138,44,.6);animation:hero-dot-pulse 2.4s ease-in-out infinite}
+    @keyframes hero-dot-pulse{0%,100%{box-shadow:0 0 0 5px rgba(190,138,44,.12),0 0 10px rgba(190,138,44,.5);transform:scale(1)}50%{box-shadow:0 0 0 8px rgba(190,138,44,.06),0 0 18px rgba(190,138,44,.85);transform:scale(1.15)}}
+    @media(prefers-reduced-motion:reduce){.seo-hero-label::before{animation:none}}
     .seo-hero-title{font-family:'Spectral',serif;font-weight:800;font-size:clamp(3.15rem,4.15vw,4.35rem);line-height:.93;letter-spacing:-.045em;color:#123829;max-width:690px;margin:0 0 24px;text-wrap:balance}
+    @media(min-width:1280px){.seo-hero-title{letter-spacing:-.055em;line-height:.9}}
     .seo-hero-title .hero-line{display:block;white-space:nowrap}
     .seo-hero-title span{display:block;color:#123829}
-    .seo-hero-title .hero-line:nth-child(2){color:#be8a2c;font-style:italic}
+    .seo-hero-title .hero-line:nth-child(2){font-style:italic;background:linear-gradient(110deg,#16A34A 0%,#15803D 25%,#22C55E 42%,#F5E4A8 50%,#C49B45 55%,#15803D 72%,#065F46 100%);background-size:280% 100%;background-position:90% 50%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:accent-shimmer 8s ease-in-out infinite}
+    @media(prefers-reduced-motion:reduce){.seo-hero-title .hero-line:nth-child(2){animation:none;-webkit-text-fill-color:#be8a2c}}
     .seo-hero-title .hero-line:nth-child(3){margin-top:.1em;font-size:.84em;letter-spacing:-.025em}
     .seo-hero-copy p{font-size:clamp(1rem,1.42vw,1.16rem);line-height:1.68;color:#455149;max-width:590px;margin:0 0 30px}
     .seo-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px}
     .seo-hero-primary,.seo-hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:750;text-decoration:none;transition:.2s ease}
     .seo-hero-primary{color:#fffdf8;background:#0b6e52;box-shadow:0 14px 30px rgba(11,110,82,.28)}
+    .kt{position:fixed;inset-inline-end:20px;bottom:20px;z-index:90;width:min(320px,calc(100vw - 32px));padding:14px 16px 16px;border-radius:22px;border:1px solid rgba(18,56,41,.12);background:linear-gradient(145deg,#fffdf8 0%,#fbf3e4 70%,#eef4ec 100%);box-shadow:0 18px 50px rgba(18,56,41,.22);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .45s ease,transform .45s ease}
+    .kt-beta{margin-top:12px;padding-top:12px;border-top:1px solid rgba(18,56,41,.12);text-align:start;font-size:.9rem;color:#2b3a33}
+    .kt-beta strong{display:block;margin-bottom:6px;color:#123829;font-size:.95rem}
+    .kt-beta ol{margin:0;padding-inline-start:1.3em;line-height:1.7}
+    .kt-beta a{color:#0b6e52;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+    .kt-beta a:focus-visible{outline:2px solid #0b6e52;outline-offset:2px;border-radius:3px}
+    .kt-beta small{display:block;margin-top:6px;color:#5b6a62}
+    .kt{max-height:calc(100vh - 32px);overflow-y:auto}
+    .kt[hidden]{display:none}
+    .kt.is-open{opacity:1;transform:none;pointer-events:auto}
+    .kt-x{position:absolute;top:8px;inset-inline-end:8px;z-index:11;width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.8);color:#1c1b1f;font-size:20px;line-height:1;cursor:pointer}
+    .kt-x:hover{background:#fff}.kt-x:focus-visible{outline:2px solid #0b6e52;outline-offset:2px}
+    .kt-art{overflow:hidden;pointer-events:none;width:72%;margin:0 auto}
+    .kt-art svg{display:block;width:100%}
+    @font-face{font-family:HarfNaskh;src:url(/fonts/khatti-name.woff) format("woff");font-display:swap}
+    .kw-text{font-family:HarfNaskh,Amiri,'Noto Naskh Arabic',serif;fill:#2a1f0e;stroke:#2a1f0e;stroke-width:0;stroke-dasharray:900;stroke-dashoffset:0;animation:kwText 7s ease-in-out infinite;animation-play-state:var(--kt-state,running)}
+    .kw-swash{fill:none;stroke:#8a1c1c;stroke-width:3;stroke-linecap:round;stroke-dasharray:320;stroke-dashoffset:0;animation:kwSwash 7s ease-out infinite;animation-play-state:var(--kt-state,running)}
+    @keyframes kwText{0%{fill:transparent;stroke-width:1.6;stroke-dashoffset:900;opacity:1}33%{fill:transparent;stroke-width:1.6;stroke-dashoffset:0}41%,92%{fill:#2a1f0e;stroke-width:0;stroke-dashoffset:0;opacity:1}98%,100%{fill:#2a1f0e;stroke-width:0;stroke-dashoffset:0;opacity:0}}
+    @keyframes kwSwash{0%,37%{stroke-dashoffset:320;opacity:1}51%,92%{stroke-dashoffset:0;opacity:1}98%,100%{stroke-dashoffset:0;opacity:0}}
+    .kt-copy{text-align:center;margin-top:2px}
+    .kt-eyebrow{position:relative;z-index:10;display:inline-block;margin-bottom:6px;padding:4px 12px;border-radius:999px;background:#0B6E52;color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
+    .kt-copy h2{font-family:'Spectral',serif;font-weight:800;font-size:1.9rem;line-height:1;letter-spacing:-.03em;color:#123829;margin:0 0 6px}
+    .kt-copy p{font-size:.98rem;line-height:1.5;color:#455149;margin:0}
+    @media(max-width:520px){.kt{right:12px;left:12px;bottom:12px;width:auto;padding:8px 14px 10px}.kt-art{width:30%;margin-bottom:-6px}.kt-copy h2{font-size:1.4rem;margin-bottom:2px}.kt-copy p{font-size:.88rem;line-height:1.4}.kt-eyebrow{margin-bottom:2px}.kt-beta{margin-top:8px;padding-top:8px;font-size:.85rem}.kt-beta ol{line-height:1.55}.kt-beta strong{margin-bottom:3px}}
+    @media(prefers-reduced-motion:reduce){.kt{transition:none;transform:none}.kw-text,.kw-swash{animation:none}}
     .seo-hero-primary:hover{transform:translateY(-2px);background:#095f47;box-shadow:0 18px 38px rgba(11,110,82,.35)}
-    .seo-hero-secondary{color:#123829;background:rgba(255,255,255,.7);border:1px solid rgba(18,56,41,.16)}
-    .seo-hero-secondary:hover{transform:translateY(-2px);background:#fff}
+    .seo-hero-secondary{color:#0b6e52;background:none;border:0;padding:16px 8px;font-weight:650;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+    .seo-hero-secondary:hover{color:#095f47;text-decoration-thickness:2px}
     .seo-hero-points{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;font-size:12.5px;color:#667168;font-weight:650}
+    .seo-hero-proof{display:inline-flex;align-items:center;gap:10px;margin:14px 0 0;padding:0 4px;font-size:13px;color:#5b665e;font-weight:500;cursor:default;user-select:none}
+    .seo-hero-proof__stars{color:#be8a2c;letter-spacing:2px;font-size:14px}
+    .seo-hero-proof__divider{width:1px;height:14px;background:rgba(18,56,41,.18)}
+
+    @keyframes accent-shimmer{0%,100%{background-position:90% 50%}50%{background-position:10% 50%}}
+    .voice-wave{display:block;width:min(680px,92%);height:26px;margin:14px auto 0;color:#0c6b48;opacity:.45;pointer-events:none}
+    .voice-wave svg{width:100%;height:100%;display:block}
+    .voice-wave rect{transform-origin:center;animation:voice-wave-pulse 1.6s ease-in-out infinite}
+    @keyframes voice-wave-pulse{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+    @media(prefers-reduced-motion:reduce){.voice-wave rect{animation:none;transform:scaleY(.8)}}
     .seo-hero-points strong{color:#123829}
     .seo-hero-visual{position:relative;height:470px;min-height:0;display:flex;align-items:center;justify-content:center;padding:36px 4px 0 0;overflow:visible;transform:translateY(18px)}
-    .seo-hero-visual::before{content:"";position:absolute;left:12%;right:10%;bottom:8%;height:17%;border-radius:50%;background:rgba(18,56,41,.2);filter:blur(34px);transform:scaleX(.9);opacity:.42}
+    .seo-hero-visual::before{content:"";position:absolute;left:18%;right:16%;bottom:9%;height:14%;border-radius:50%;background:radial-gradient(ellipse,rgba(18,56,41,.38) 0%,rgba(18,56,41,.18) 55%,transparent 80%);filter:blur(26px);transform:scaleX(.85);opacity:.55}
+    .seo-hero-visual::after{content:"";position:absolute;left:28%;right:28%;bottom:11%;height:4%;border-radius:50%;background:rgba(18,56,41,.5);filter:blur(10px);opacity:.45;pointer-events:none}
     .hero-art-stage{position:relative;z-index:2;width:min(116%,688px);aspect-ratio:1275/1353;flex:0 0 auto}
-    .hero-art-stage>img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 22px 22px rgba(18,56,41,.14))}
-    @media(max-width:1120px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:6px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points{justify-content:center}.seo-hero-visual{height:auto;min-height:auto;padding:32px 28px 20px;transform:translateY(10px)}.hero-art-stage{width:min(94%,688px)}}
+    @font-face{font-family:HeroFatiha;src:url(/fonts/hero-fatiha.woff) format("woff");font-display:swap}
+    .hero-art-stage{container-type:inline-size}
+    .hm{position:absolute;inset:0;font-size:1cqw;z-index:1}
+    .hm-glow{position:absolute;inset:-4% -6% 0;background:radial-gradient(ellipse 48% 46% at 52% 48%,rgba(11,110,82,.2),transparent 70%),radial-gradient(ellipse 30% 22% at 78% 30%,rgba(245,198,90,.4),transparent 70%);pointer-events:none}
+    .hm-glow::after{content:"";position:absolute;left:4%;right:2%;top:58%;height:22%;border-top:1cqw solid rgba(222,170,60,.55);border-radius:50%;transform:rotate(-8deg)}
+    .hm-drill{display:flex;justify-content:space-between;margin-top:2.2cqw;background:#eef5f0;border:.2cqw solid #d6e6dc;border-radius:2cqw;padding:1.6cqw 2cqw;font-size:1.6cqw;font-weight:800;color:#0b6e52}
+    .hm-hud{position:absolute;left:5%;top:60%;z-index:2;display:flex;align-items:flex-end;gap:1.2cqw}
+    .hm-hud img{width:16cqw;height:16cqw;border-radius:50%;border:.9cqw solid #fff;box-shadow:0 1.6cqw 3cqw rgba(18,56,41,.3)}
+    .hm-hud span{margin-bottom:11cqw;background:#fff;color:#123829;font:800 2.2cqw Inter,system-ui,sans-serif;padding:1.2cqw 2cqw;border-radius:2cqw 2cqw 2cqw .4cqw;box-shadow:0 1cqw 2.4cqw rgba(18,56,41,.22);white-space:nowrap}
+    .hm-phone{position:absolute;left:27%;top:12%;width:46%;height:66%;transform:rotate(-6deg);background:#fff;border:1.1cqw solid #0f3d2c;border-radius:6cqw;box-shadow:0 3cqw 4cqw rgba(18,56,41,.28),0 .6cqw 1.2cqw rgba(18,56,41,.18);padding:3.2cqw 2.4cqw;overflow:hidden;font-family:Inter,system-ui,sans-serif;color:#123829}
+    .hm-top{display:grid;grid-template-columns:1fr auto;align-items:center;border-bottom:.15cqw solid #e6efe9;padding-bottom:1.6cqw}
+    .hm-top b{font-size:2.6cqw;font-weight:800;line-height:1}
+    .hm-top small{grid-column:1;font-size:1.15cqw;font-weight:700;letter-spacing:.04em;color:#0b6e52}
+    .hm-top i{grid-column:2;grid-row:1/3;font-style:normal;font-size:1.5cqw;font-weight:700;border:.2cqw solid #cfd8d3;border-radius:99cqw;padding:.8cqw 1.8cqw}
+    .hm-title{text-align:center;font-weight:800;font-size:2.4cqw;margin:3cqw 0 2.2cqw}
+    .hm-card{border:.2cqw solid #cfeadd;border-radius:2cqw;padding:1.6cqw;background:#fff}
+    .hm-meta{display:flex;justify-content:center;align-items:center;gap:1.2cqw;font-size:1.5cqw;font-weight:600;color:#8a97a6}
+    .hm-meta em{font-style:normal;font-weight:700;color:#0b6e52;border:.2cqw solid #bfe6d2;background:#effaf4;border-radius:99cqw;padding:.3cqw 1.2cqw}
+    .hm-words{display:flex;gap:1cqw;justify-content:center;margin-top:1.2cqw;font-family:HeroFatiha,'Amiri',serif}
+    .hm-words u{text-decoration:none;background:#e6f6ee;color:#0b6e52;border-radius:1.2cqw;padding:.8cqw 1.1cqw;font-size:2.7cqw;line-height:1.7}
+    .hm-words u.bad{background:#fbe0e0;color:#c4151c}
+    .hm-legend{display:flex;gap:2cqw;margin-top:1.4cqw;font-size:1.4cqw;font-weight:700}
+    .hm-legend .ok{color:#0b6e52}.hm-legend .no{color:#c4151c}
+    .hm-done{margin-top:2.4cqw;border:.2cqw solid #efe6d6;background:#fffdf8;border-radius:2.4cqw;padding:2cqw}
+    .hm-done small{font-size:1.4cqw;font-weight:800;letter-spacing:.08em;color:#0b6e52}
+    .hm-done p{font-size:1.7cqw;margin:1cqw 0 1.8cqw;color:#2b3a33}
+    .hm-done div{display:flex;gap:1.2cqw;font-size:1.6cqw;font-weight:800}
+    .hm-done span{flex:1;text-align:center;border:.2cqw solid #efe6d6;border-radius:1.6cqw;padding:1.3cqw 0}
+    .hm-done b{flex:1.2;text-align:center;background:#0b6e52;color:#fff;border-radius:1.6cqw;padding:1.3cqw 0}
+    .hm-float{position:absolute;left:8%;right:4%;top:31%;transform:rotate(-3deg);background:#fff;border-radius:3cqw;padding:2.6cqw 2cqw 2.4cqw;box-shadow:0 2.4cqw 5cqw rgba(18,56,41,.3),0 .5cqw 1.2cqw rgba(18,56,41,.15);font-family:Inter,system-ui,sans-serif}
+    .hm-float .hm-meta{font-size:2.8cqw}
+    .hm-float .hm-meta em{font-size:3cqw;padding:.5cqw 2cqw}
+    .hm-float .hm-words{gap:2cqw;margin-top:2cqw}
+    .hm-float .hm-words u{font-size:6.2cqw;border-radius:2.2cqw;padding:.8cqw 2cqw;line-height:1.75}
+    .hero-art-stage>img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 30px 32px rgba(18,56,41,.22)) drop-shadow(0 6px 12px rgba(18,56,41,.14))}
+    /* Floating glass chips overlaid on hero phone */
+    .hero-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;padding:11px 15px 11px 12px;border-radius:16px;background:rgba(255,253,248,.62);border:1px solid rgba(255,255,255,.75);box-shadow:0 14px 36px rgba(18,56,41,.14),inset 0 1px 0 rgba(255,255,255,.9);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);font-family:'Inter',sans-serif;color:#123829;animation:hero-chip-float 6s ease-in-out infinite;pointer-events:none}
+    .hero-chip__icon{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;flex:0 0 30px;font-size:14px;font-weight:800}
+    .hero-chip__text{display:flex;flex-direction:column;line-height:1.15}
+    .hero-chip__label{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#5a6d60}
+    .hero-chip__value{font-size:13px;font-weight:800;color:#123829;margin-top:2px}
+    .hero-chip--feedback{top:16%;left:-2%;animation-delay:0s}
+    .hero-chip--feedback .hero-chip__icon{background:linear-gradient(135deg,#0b6e52,#12925e);color:#fffdf8;box-shadow:0 4px 10px rgba(11,110,82,.3)}
+    .hero-chip--rule{bottom:22%;right:-1%;animation-delay:-3s}
+    .hero-chip--rule .hero-chip__icon{background:linear-gradient(135deg,#be8a2c,#e0a84a);color:#fffdf8;box-shadow:0 4px 10px rgba(190,138,44,.3)}
+    @keyframes hero-chip-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @media(prefers-reduced-motion:reduce){.hero-chip{animation:none}}
+    @media(max-width:1120px){.hero-chip--feedback{left:2%}.hero-chip--rule{right:2%}}
+    @media(max-width:640px){.hero-chip{display:none}}
+    @media(max-width:1120px){.seo-hero{grid-template-columns:1fr;padding-top:112px;gap:6px;text-align:center}.seo-hero-copy{padding:42px 46px 0}.seo-hero-title,.seo-hero-copy p{margin-left:auto;margin-right:auto}.seo-hero-actions,.seo-hero-points,.seo-hero-proof{justify-content:center}.seo-hero-visual{height:auto;min-height:auto;padding:32px 28px 20px;transform:translateY(10px)}.hero-art-stage{width:min(94%,688px)}}
     @media(max-width:640px){.seo-hero{padding:96px 14px 38px}.seo-hero::before{inset:72px 0 0;border-radius:0}.seo-hero-copy{padding:32px 18px 0}.seo-hero-label{font-size:10px}.seo-hero-title{font-size:clamp(2.65rem,14vw,4rem)}.seo-hero-title .hero-line{white-space:normal}.seo-hero-copy p{font-size:15px;line-height:1.58}.seo-hero-actions{display:grid;grid-template-columns:1fr}.seo-hero-primary,.seo-hero-secondary{width:100%}.seo-hero-visual{padding:30px 0 0;transform:translateY(8px)}.hero-art-stage{width:108%;max-width:680px}}
 
     /* App feature carousel */
     }
-    /* QariAI Word Tree — upcoming feature */
-    .word-tree-preview{padding:clamp(66px,8vw,108px) max(20px,4vw);background:#f4efe4;color:#123829}
-    .word-tree-preview__card{position:relative;isolation:isolate;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.85fr) minmax(380px,1.15fr);gap:clamp(38px,7vw,88px);align-items:center;padding:clamp(32px,5vw,60px);overflow:hidden;border:1px solid rgba(18,56,41,.1);border-radius:32px;background:linear-gradient(135deg,#fffdf8 0%,#f8f0de 58%,#edf4ec 100%);box-shadow:0 26px 70px rgba(18,56,41,.1)}
-    .word-tree-preview__card::before{content:"";position:absolute;z-index:-1;width:430px;height:430px;right:-190px;top:-230px;border-radius:50%;background:radial-gradient(circle,rgba(201,151,63,.22),rgba(201,151,63,0) 70%)}
-    .word-tree-preview__badge{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;margin-bottom:18px;border:1px solid rgba(11,110,82,.14);border-radius:999px;background:rgba(11,110,82,.08);color:#0b6e52;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-    .word-tree-preview__badge::before{content:"";width:8px;height:8px;border-radius:50%;background:#be8a2c;box-shadow:0 0 0 5px rgba(190,138,44,.12)}
-    .word-tree-preview__title{max-width:600px;margin:0 0 17px;font-family:'Spectral',serif;font-size:clamp(2.35rem,4vw,3.65rem);font-weight:800;line-height:1.02;letter-spacing:-.035em;color:#123829}
-    .word-tree-preview__title em{color:#be8a2c;font-style:italic}
-    .word-tree-preview__copy{max-width:570px;margin:0 0 23px;color:#536158;font-size:16px;line-height:1.68}
-    .word-tree-preview__copy .wt-ar{font-family:'Amiri','Noto Naskh Arabic',serif;color:#0b6e52}
-    .word-tree-preview__points{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 25px;padding:0;list-style:none}
-    .word-tree-preview__points li{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid rgba(18,56,41,.09);border-radius:999px;background:rgba(255,255,255,.62);color:#34463c;font-size:12px;font-weight:700}
-    .word-tree-preview__points li::before{content:"✓";color:#0b6e52;font-weight:900}
-    .word-tree-preview__state{display:inline-flex;align-items:center;gap:9px;padding:14px 20px;border-radius:999px;background:#123829;color:#fffdf8;font-size:13px;font-weight:800;box-shadow:0 12px 25px rgba(18,56,41,.18)}
-    .word-tree-preview__state svg{color:#f1d692}
-    .word-tree-preview__visual{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;padding:12px 0}
-    .word-tree-preview__tree{position:relative;width:100%;max-width:640px}
-    .word-tree-preview__art{position:relative;z-index:1;display:block;width:100%;height:auto}
-    .wt-stem-pulse{position:absolute;left:50%;top:78%;width:5%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(240,213,120,.95) 0%,rgba(11,110,82,.55) 45%,transparent 75%);filter:blur(2px);z-index:1;animation:wtStemPulse 4s ease-out infinite}
-    .wt-leaf-glow{position:absolute;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(11,110,82,.45) 0%,transparent 72%);filter:blur(3px);z-index:1;animation:wtLeafGlow 4s cubic-bezier(.34,1.56,.64,1) infinite}
-    .wt-leaf-glow--1{left:49%;top:9.4%;width:16%;animation-delay:.5s}
-    .wt-leaf-glow--2{left:81.9%;top:21.3%;width:18%;animation-delay:.65s}
-    .wt-leaf-glow--3{left:85.5%;top:38.6%;width:18%;animation-delay:.8s}
-    .wt-leaf-glow--4{left:72.4%;top:52.6%;width:18%;animation-delay:.95s}
-    .wt-leaf-glow--5{left:23.7%;top:46.6%;width:18%;animation-delay:1.1s}
-    .wt-leaf-glow--6{left:17.9%;top:26.2%;width:18%;animation-delay:1.25s}
-    .wt-root-pill{position:absolute;left:25.5%;top:84.1%;width:42.5%;height:9.9%;transform:translate(-50%,-50%);background:linear-gradient(135deg,#6b4226,#34200f);border-radius:999px;box-shadow:0 6px 14px rgba(52,32,15,.35),inset 0 1px 2px rgba(255,255,255,.08);z-index:2}
-    .wt-root-text{position:absolute;left:25.5%;top:84.1%;transform:translate(-50%,-50%);z-index:3;font-family:'Amiri',serif;font-size:26px;font-weight:700;color:#fef08a;white-space:nowrap;unicode-bidi:isolate}
-    @keyframes wtStemPulse{0%{opacity:0;top:78%;transform:translate(-50%,-50%) scale(.6)}6%{opacity:1}38%{opacity:.9;top:30%;transform:translate(-50%,-50%) scale(1.3)}48%,100%{opacity:0;top:28%;transform:translate(-50%,-50%) scale(.4)}}
-    @keyframes wtLeafGlow{0%,40%{opacity:0;transform:translate(-50%,-50%) scale(.5)}52%{opacity:.95;transform:translate(-50%,-50%) scale(1.25)}64%{opacity:.7;transform:translate(-50%,-50%) scale(.92)}74%{opacity:.85;transform:translate(-50%,-55%) scale(1.06)}88%{opacity:.55;transform:translate(-50%,-48%) scale(.98)}100%{opacity:0;transform:translate(-50%,-50%) scale(.5)}}
-    @media(max-width:820px){.word-tree-preview__card{grid-template-columns:1fr;text-align:center}.word-tree-preview__title,.word-tree-preview__copy{margin-left:auto;margin-right:auto}.word-tree-preview__points{justify-content:center}}
-    @media(max-width:520px){.word-tree-preview{padding:58px 14px}.word-tree-preview__card{padding:30px 18px;border-radius:24px}.word-tree-preview__copy{font-size:15px}.word-tree-preview__points{display:grid;justify-content:stretch}.word-tree-preview__points li{justify-content:center}}
-
     /* Standalone Qur'an Combo — isolated names prevent legacy game CSS collisions. */
     .qc-section{background:#123829;color:#fffdf8;padding:clamp(52px,6vw,82px) max(20px,4vw)}
     .qc-card{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:clamp(34px,6vw,82px);align-items:center;padding:clamp(28px,4vw,52px);border:1px solid rgba(18,56,41,.14);border-radius:30px;background:rgba(255,253,248,.92);box-shadow:0 28px 70px rgba(18,56,41,.11);overflow:hidden}
@@ -726,7 +784,7 @@
         <a href="#features" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">المزايا</a>
         <a href="/quran-games" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">الألعاب</a>
         <a href="https://qariai.app/academy" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">تعلّم</a>
-        <a href="https://qariai.app/ar/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">عن QariAI</a>
+        <a href="https://qariai.app/ar/about" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">عن QariAI</a><a href="/faq" style="font-size:14.5px; font-weight:500; color:#4a544c; text-decoration:none;" style-hover="color:#0c6b48;">الأسئلة الشائعة</a>
       </div>
       <select aria-label="اختر اللغة" onchange="if(this.value)location.href=this.value" style="border:1px solid rgba(18,56,41,.14);border-radius:999px;background:#fff;color:#123829;padding:9px 10px;font:600 12px Inter,sans-serif;max-width:72px"><option value="/">EN</option><option value="/ar" selected>AR</option><option value="/fr">FR</option><option value="/ms">MS</option></select>
       <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="nav_play_store_click" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fffdf8; text-decoration:none; padding:11px 22px; background:#0c6b48; border-radius:40px; box-shadow:0 6px 18px rgba(12,107,72,.28); white-space:nowrap;" style-hover="background:#12925e; transform:translateY(-1px); box-shadow:0 10px 22px rgba(12,107,72,.36);"><svg class="google-play-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg><span class="qnav-playtext">حمّل من Google Play</span></a>
@@ -741,22 +799,95 @@
     <div class="seo-hero-copy">
       <div class="seo-hero-label">منصة تعلّم القرآن بالذكاء الاصطناعي</div>
       <h1 id="hero-title" class="seo-hero-title"><span class="hero-line">تواصل مع</span><span class="hero-line">القرآن الكريم.</span></h1>
-      <p>تعلّم التجويد. مارس الحفظ. حافظ على تركيزك بألعاب قرآنية.</p>
+      <p>المدرّب الذكي الذي يستمع إلى تلاوتك ويخبرك بما يجب تصحيحه بالضبط. التجويد والحفظ وألعاب تحافظ على مستواك.</p>
       <div class="seo-hero-actions">
         <a class="seo-hero-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="hero_play_store_click">
           <svg class="google-play-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg>
-          ابدأ التعلّم مجانًا
+          حمّل من Google Play
         </a>
-        <a class="seo-hero-secondary" href="https://qariai.app/academy" data-ga-event="hero_learn_click">استكشف الدروس المجانية</a>
       </div>
-      <div class="seo-hero-points" aria-label="أبرز مزايا QariAI">
-        <span><strong>تعلّم</strong> الأساسيات</span><span>•</span><span><strong>العب</strong> ألعابًا قرآنية</span><span>•</span><span><strong>طوّر</strong> بتغذية راجعة ذكية</span>
+      <div class="voice-wave" aria-hidden="true">
+        <svg viewBox="0 0 220 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <g fill="currentColor">
+            <rect x="0"   y="10" width="3" height="4"  rx="1.5" style="animation-delay:-0.05s"/>
+            <rect x="6"   y="8"  width="3" height="8"  rx="1.5" style="animation-delay:-0.15s"/>
+            <rect x="12"  y="6"  width="3" height="12" rx="1.5" style="animation-delay:-0.25s"/>
+            <rect x="18"  y="3"  width="3" height="18" rx="1.5" style="animation-delay:-0.35s"/>
+            <rect x="24"  y="1"  width="3" height="22" rx="1.5" style="animation-delay:-0.45s"/>
+            <rect x="30"  y="4"  width="3" height="16" rx="1.5" style="animation-delay:-0.55s"/>
+            <rect x="36"  y="7"  width="3" height="10" rx="1.5" style="animation-delay:-0.65s"/>
+            <rect x="42"  y="2"  width="3" height="20" rx="1.5" style="animation-delay:-0.75s"/>
+            <rect x="48"  y="5"  width="3" height="14" rx="1.5" style="animation-delay:-0.85s"/>
+            <rect x="54"  y="8"  width="3" height="8"  rx="1.5" style="animation-delay:-0.95s"/>
+            <rect x="60"  y="3"  width="3" height="18" rx="1.5" style="animation-delay:-1.05s"/>
+            <rect x="66"  y="6"  width="3" height="12" rx="1.5" style="animation-delay:-1.15s"/>
+            <rect x="72"  y="2"  width="3" height="20" rx="1.5" style="animation-delay:-1.25s"/>
+            <rect x="78"  y="5"  width="3" height="14" rx="1.5" style="animation-delay:-1.35s"/>
+          </g>
+        </svg>
       </div>
-      <a href="#quest" data-ga-event="hero_quest_click" style="display:inline-block; margin-top:14px; font-size:13px; font-weight:700; color:#0c6b48; text-decoration:none;">جديد: Qur’an Quest متاحة الآن ←</a>
     </div>
     <div class="seo-hero-visual">
       <div class="hero-art-stage">
-        <img src="/uploads/qariai-hero-phone-hudhud-v3.webp?v=20260923" alt="تطبيق QariAI على الجوال يعرض تغذية راجعة لتلاوة القرآن بجانب دليل التعلّم هدهد" width="1275" height="1353" fetchpriority="high"/>
+        <div class="hm-glow" aria-hidden="true"></div><div class="hm" dir="ltr" role="img" aria-label="نتيجة تحليل QariAI لسورة الفاتحة 1:5: كل كلمة معلَّمة بأنها صحيحة أو تحتاج إلى تحسين، مع ملخص الجلسة وزر تصحيح الأخطاء">
+          <div class="hm-phone">
+            <div class="hm-top"><b>QariAI</b><small>التجويد والحفظ</small><i>تسجيل الدخول</i></div>
+            <div class="hm-title">نتيجة التحليل</div>
+            <div class="hm-card">
+              <div class="hm-meta"><span>سورة 1:5</span><em>✓ تم التحقق</em></div>
+              <div class="hm-words" dir="rtl" lang="ar"><u>إِيَّاكَ</u><u class="bad">نَعْبُدُ</u><u>وَإِيَّاكَ</u><u>نَسْتَعِينُ</u></div>
+              <div class="hm-legend"><span class="ok">صحيح</span><span class="no">موضع الفم</span></div>
+            </div>
+            <div class="hm-done"><small>● اكتملت الجلسة</small><p>إليك ما لاحظناه في تلاوتك.</p><div><span>أعد التلاوة</span><b>← صحّح الأخطاء</b></div></div>
+            <div class="hm-drill"><span>عرض ▸</span><b>تدريب اليوم ⚡</b></div>
+          </div>
+          <div class="hm-hud"><img src="/uploads/hudhud-avatar.webp" alt="هدهد، مرشد التعلّم في QariAI" width="300" height="300" loading="lazy"/><span>قلقل القاف!</span></div>
+          <div class="hm-float">
+            <div class="hm-meta"><span>سورة 1:5</span><em>✓ تم التحقق</em></div>
+            <div class="hm-words" dir="rtl" lang="ar"><u>إِيَّاكَ</u><u class="bad">نَعْبُدُ</u><u>وَإِيَّاكَ</u><u>نَسْتَعِينُ</u></div>
+          </div>
+        </div>
+        <div class="hero-chip hero-chip--feedback" aria-hidden="true">
+          <div class="hero-chip__icon">AI</div>
+          <div class="hero-chip__text"><span class="hero-chip__label">ملاحظات فورية</span><span class="hero-chip__value">على مستوى الصوت</span></div>
+        </div>
+        <div class="hero-chip hero-chip--rule" aria-hidden="true">
+          <div class="hero-chip__icon">ق</div>
+          <div class="hero-chip__text"><span class="hero-chip__label">قاعدة التجويد</span><span class="hero-chip__value">القلقلة ✓</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" style="background:#efe8d9; padding:96px max(24px,4vw);">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">What reciters say</span>
+      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Loved on Google Play.</h2>
+    </div>
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:22px;" class="qgrid2">
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"إنه أفضل برنامج"</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#c9973f; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#fff; flex-shrink:0;">ا</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">ام عامر</div><div style="font-size:11.5px; color:#8a938a;">Google Play · مترجم من العربية</div></div>
+        </div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"بارك الله فيكم. تطبيق رائع. جرّبت وضعي الحفظ والتجويد — على المستوى المتقدّم وهو يلتقط كل خطأ صغير بدقة."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#0c6b48; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">M</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Matti-Ur Rehman</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
+      </div>
+      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
+        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
+        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"أعتقد أنه رائع ودقيق جدًا ماشاء الله."</p>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:32px; height:32px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">S</span>
+          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Sayeed Ahmed</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -839,14 +970,6 @@
       <p class="unified-proof__intro">يستخدم QariAI تحليلًا على مستوى الصوت (الفونيم) لتحديد الأخطاء في الأصوات الفردية وأحكام التجويد — وليس مجرد الإشارة إلى كلمة نُطقت خطأ.</p>
     </div>
     <div class="unified-proof__grid">
-      <article class="unified-proof__item unified-proof__item--metric">
-        <div class="unified-proof__icon" aria-hidden="true">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </div>
-        <div class="unified-proof__label">موثوق من المتعلّمين</div>
-        <div class="unified-proof__value">6,000+</div>
-        <p>متعلّمون نشطون يمارسون التجويد والحفظ واللغة العربية القرآنية مع QariAI.</p>
-      </article>
       <article class="unified-proof__item">
         <div class="unified-proof__icon" aria-hidden="true">ص</div>
         <div class="unified-proof__label">صوتًا بصوت</div>
@@ -908,6 +1031,27 @@
 <section id="mosque-groups" class="mg" aria-labelledby="mosque-groups-title">
     <div class="mg-in">
       <div class="mg-head">
+        <div class="mg-logo" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- minaret left -->
+            <path d="M9 42V22c0-1 .7-1.5 1.5-1.5s1.5.5 1.5 1.5v20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="10.5" cy="18.5" r="1.6" fill="currentColor"/>
+            <path d="M10.5 15V12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <!-- minaret right -->
+            <path d="M36 42V22c0-1 .7-1.5 1.5-1.5s1.5.5 1.5 1.5v20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="37.5" cy="18.5" r="1.6" fill="currentColor"/>
+            <path d="M37.5 15V12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <!-- main dome -->
+            <path d="M14 42V26c0-5.5 4.5-10 10-10s10 4.5 10 10v16" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <!-- crescent on dome -->
+            <path d="M22 10a3 3 0 103 3 2.3 2.3 0 01-3-3z" fill="currentColor"/>
+            <path d="M24 6v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <!-- door arch -->
+            <path d="M21 42v-6a3 3 0 016 0v6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <!-- base -->
+            <path d="M6 42h36" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
         <span class="mg-badge"><span class="mg-dot" aria-hidden="true"></span>قريبًا، غير متاحة بعد في التطبيق</span>
         <span class="mg-eyebrow">مجموعات المساجد</span>
         <h2 id="mosque-groups-title">ترتيب أسبوعي للتلاوة <em>لمسجدك.</em></h2>
@@ -928,38 +1072,7 @@
   </section>
 
   <!-- ══ QARIAI WORD TREE ══ -->
-  <section id="stories" class="word-tree-preview" aria-labelledby="word-tree-preview-title">
-    <div class="word-tree-preview__card">
-      <div>
-        <span class="word-tree-preview__badge">جديد في QariAI</span>
-        <h2 id="word-tree-preview-title" class="word-tree-preview__title">أثرِ <em>مفرداتك</em> القرآنية.</h2>
-        <p class="word-tree-preview__copy">تدرّب يوميًا على كلمات تبقى في الذاكرة. جذر عربي واحد قد يتفرّع إلى عشرات الكلمات القرآنية. تعلّم النمط مرة واحدة، و <span class="wt-ar" dir="rtl">كِتَاب</span> (كتاب)، <span class="wt-ar" dir="rtl">كَاتِب</span> (كاتب)، <span class="wt-ar" dir="rtl">مَكْتَب</span> (مكتب)، <span class="wt-ar" dir="rtl">مَكْتُوب</span> (مكتوب)، و <span class="wt-ar" dir="rtl">كِتَابَة</span> (كتابة) — كلها تتضح لأنها جميعًا تنمو من الجذر نفسه: <span class="wt-ar" dir="rtl" style="unicode-bidi:isolate">ك-ت-ب</span>.</p>
-        <ul class="word-tree-preview__points" aria-label="مزايا تعلّم شجرة الكلمات">
-          <li>التعلّم من الجذر أولًا</li>
-          <li>اضغط على أي ورقة لرؤية كلمتها</li>
-          <li>تدريب يومي بفواصل مدروسة ليبقى راسخًا</li>
-        </ul>
-        <span class="word-tree-preview__state" aria-label="شجرة الكلمات في QariAI متاحة الآن">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 016.5 3H12v17H6.5A2.5 2.5 0 004 22V5.5zM20 5.5A2.5 2.5 0 0017.5 3H12v17h5.5A2.5 2.5 0 0120 22V5.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-          متاح الآن في QariAI
-        </span>
-      </div>
-      <div class="word-tree-preview__visual" aria-label="Preview of the QariAI Word Tree: the root ك-ت-ب branching into كِتَاب, كَاتِب, مَكْتَب, مَكْتُوب, and كِتَابَة">
-        <div class="word-tree-preview__tree">
-          <div class="wt-stem-pulse"></div>
-          <div class="wt-leaf-glow wt-leaf-glow--1"></div>
-          <div class="wt-leaf-glow wt-leaf-glow--2"></div>
-          <div class="wt-leaf-glow wt-leaf-glow--3"></div>
-          <div class="wt-leaf-glow wt-leaf-glow--4"></div>
-          <div class="wt-leaf-glow wt-leaf-glow--5"></div>
-          <div class="wt-leaf-glow wt-leaf-glow--6"></div>
-          <img class="word-tree-preview__art" src="/images/word-tree-preview.webp" alt="Word tree: the root ك-ت-ب branching into كِتَاب, كَاتِب, مَكْتَب, مَكْتُوب, and كِتَابَة" width="825" height="902" loading="lazy"/>
-          <div class="wt-root-pill"></div>
-          <div class="wt-root-text" dir="rtl">ك-ت-ب</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ══ PROGRESS (emotional) ══ -->
   <section style="background:#efe8d9; padding:100px max(24px,4vw);">
@@ -1092,30 +1205,7 @@
   </section>
 
   <!-- ══ TESTIMONIALS ══ -->
-  <section id="reviews" style="background:#efe8d9; padding:96px max(24px,4vw);">
-    <div style="text-align:center; margin-bottom:48px;">
-      <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">ماذا يقول القرّاء</span>
-      <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">محبوب على Google Play.</h2>
-    </div>
-    <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:22px;" class="qgrid2">
-      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
-        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
-        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"بارك الله فيكم. تطبيق رائع. جرّبت وضعي الحفظ والتجويد — على المستوى المتقدّم وهو يلتقط كل خطأ صغير بدقة."</p>
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="width:32px; height:32px; border-radius:50%; background:#0c6b48; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">M</span>
-          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Matti-Ur Rehman</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
-        </div>
-      </div>
-      <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
-        <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
-        <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"أعتقد أنه رائع ودقيق جدًا ماشاء الله."</p>
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="width:32px; height:32px; border-radius:50%; background:#12925e; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0;">S</span>
-          <div><div style="font-size:13.5px; font-weight:700; color:#12251b;">Sayeed Ahmed</div><div style="font-size:11.5px; color:#8a938a;">Google Play</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ══ PRICING ══ -->
   <section id="pricing" class="pricing-section" aria-labelledby="pricing-title">
@@ -1279,7 +1369,7 @@
           <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">المزايا</a>
           <a href="#features" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">كيف يعمل</a>
           <a href="https://qariai.app/qaef" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">إطار QAEF</a>
-          <a href="https://play.google.com/store/apps/details?id=app.qari.ai" data-ga-event="footer_play_store_click" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">حمّل من Google Play</a>
+          
           <a href="https://qariai.app/hifz" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">تدريب الحفظ</a>
           <a href="https://qariai.app/tajweed-mistakes-checker" style="font-size:14px; color:rgba(253,248,238,0.6); text-decoration:none;" style-hover="color:#12925e;">مدقّق التجويد المجاني</a>
         </div>
@@ -1488,7 +1578,7 @@
   </div>
   <div class="kt-copy">
     <span class="kt-eyebrow">قريباً</span>
-    <h2>خطّي</h2>
+    <h2>Khatti</h2>
     <p>تعلّم الخط العربي كما يُكتب: باليد.</p>
   </div>
   <div class="kt-beta">
