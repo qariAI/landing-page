@@ -659,6 +659,33 @@
 @media(max-width:900px){.mg{padding:72px max(20px,4vw)}.mg-head{margin-bottom:36px}.mg-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:no-preference){.mg-btn{transition:background .2s ease}}
 </style>
+<style>
+    .kt{position:fixed;inset-inline-end:20px;bottom:20px;z-index:90;width:min(320px,calc(100vw - 32px));padding:14px 16px 16px;border-radius:22px;border:1px solid rgba(18,56,41,.12);background:linear-gradient(145deg,#fffdf8 0%,#fbf3e4 70%,#eef4ec 100%);box-shadow:0 18px 50px rgba(18,56,41,.22);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .45s ease,transform .45s ease}
+    .kt-beta{margin-top:12px;padding-top:12px;border-top:1px solid rgba(18,56,41,.12);text-align:start;font-size:.9rem;color:#2b3a33}
+    .kt-beta strong{display:block;margin-bottom:6px;color:#123829;font-size:.95rem}
+    .kt-beta ol{margin:0;padding-inline-start:1.3em;line-height:1.7}
+    .kt-beta a{color:#0b6e52;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+    .kt-beta a:focus-visible{outline:2px solid #0b6e52;outline-offset:2px;border-radius:3px}
+    .kt-beta small{display:block;margin-top:6px;color:#5b6a62}
+    .kt{max-height:calc(100vh - 32px);overflow-y:auto}
+    .kt[hidden]{display:none}
+    .kt.is-open{opacity:1;transform:none;pointer-events:auto}
+    .kt-x{position:absolute;top:8px;inset-inline-end:8px;z-index:11;width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.8);color:#1c1b1f;font-size:20px;line-height:1;cursor:pointer}
+    .kt-x:hover{background:#fff}.kt-x:focus-visible{outline:2px solid #0b6e52;outline-offset:2px}
+    .kt-art{overflow:hidden;pointer-events:none;width:72%;margin:0 auto}
+    .kt-art svg{display:block;width:100%}
+    @font-face{font-family:HarfNaskh;src:url(/fonts/khatti-name.woff) format("woff");font-display:swap}
+    .kw-text{font-family:HarfNaskh,Amiri,'Noto Naskh Arabic',serif;fill:#2a1f0e;stroke:#2a1f0e;stroke-width:0;stroke-dasharray:900;stroke-dashoffset:0;animation:kwText 7s ease-in-out infinite;animation-play-state:var(--kt-state,running)}
+    .kw-swash{fill:none;stroke:#8a1c1c;stroke-width:3;stroke-linecap:round;stroke-dasharray:320;stroke-dashoffset:0;animation:kwSwash 7s ease-out infinite;animation-play-state:var(--kt-state,running)}
+    @keyframes kwText{0%{fill:transparent;stroke-width:1.6;stroke-dashoffset:900;opacity:1}33%{fill:transparent;stroke-width:1.6;stroke-dashoffset:0}41%,92%{fill:#2a1f0e;stroke-width:0;stroke-dashoffset:0;opacity:1}98%,100%{fill:#2a1f0e;stroke-width:0;stroke-dashoffset:0;opacity:0}}
+    @keyframes kwSwash{0%,37%{stroke-dashoffset:320;opacity:1}51%,92%{stroke-dashoffset:0;opacity:1}98%,100%{stroke-dashoffset:0;opacity:0}}
+    .kt-copy{text-align:center;margin-top:2px}
+    .kt-eyebrow{position:relative;z-index:10;display:inline-block;margin-bottom:6px;padding:4px 12px;border-radius:999px;background:#0B6E52;color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
+    .kt-copy h2{font-family:'Spectral',serif;font-weight:800;font-size:1.9rem;line-height:1;letter-spacing:-.03em;color:#123829;margin:0 0 6px}
+    .kt-copy p{font-size:.98rem;line-height:1.5;color:#455149;margin:0}
+    @media(max-width:520px){.kt{right:12px;left:12px;bottom:12px;width:auto;padding:8px 14px 10px}.kt-art{width:30%;margin-bottom:-6px}.kt-copy h2{font-size:1.4rem;margin-bottom:2px}.kt-copy p{font-size:.88rem;line-height:1.4}.kt-eyebrow{margin-bottom:2px}.kt-beta{margin-top:8px;padding-top:8px;font-size:.85rem}.kt-beta ol{line-height:1.55}.kt-beta strong{margin-bottom:3px}}
+    @media(prefers-reduced-motion:reduce){.kt{transition:none;transform:none}.kw-text,.kw-swash{animation:none}}
+</style>
 </head>
 <body>
 
@@ -1451,5 +1478,34 @@
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<aside class="kt" id="khatti-teaser" role="complementary" aria-label="Akan datang: Khatti" hidden>
+  <button class="kt-x" type="button" aria-label="Tutup">×</button>
+  <div class="kt-art" aria-hidden="true">
+    <svg viewBox="0 0 400 230" focusable="false" style="direction:ltr">
+      <text class="kw-text" x="200" y="160" text-anchor="middle" font-size="120">خطّي</text>
+      <path class="kw-swash" d="M70 200 C150 225 250 175 335 198"/>
+    </svg>
+  </div>
+  <div class="kt-copy">
+    <span class="kt-eyebrow">Akan datang</span>
+    <h2>Khatti</h2>
+    <p>Belajar kaligrafi Arab seperti cara ia ditulis: dengan tangan.</p>
+  </div>
+  <div class="kt-beta">
+    <strong>Beta Android: jadi penguji</strong>
+    <ol>
+      <li><a href="https://groups.google.com/g/khatti-testers" target="_blank" rel="noopener">Sertai kumpulan penguji</a></li>
+      <li><a href="https://play.google.com/apps/testing/khatti.app" target="_blank" rel="noopener">Jadi penguji</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=khatti.app" target="_blank" rel="noopener">Pasang dari Google Play</a></li>
+    </ol>
+    <small>Android sahaja. Kekalkan aplikasi dipasang selama 14 hari.</small>
+  </div>
+</aside>
+<script>(function(){var el=document.getElementById('khatti-teaser');if(!el)return;var K='khattiTeaserClosed';try{if(localStorage.getItem(K))return}catch(e){}
+function close(){el.classList.remove('is-open');setTimeout(function(){el.hidden=true},500);try{localStorage.setItem(K,'1')}catch(e){}}
+el.querySelector('.kt-x').addEventListener('click',close);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&el.classList.contains('is-open'))close()});
+if(window.IntersectionObserver)new IntersectionObserver(function(e){el.style.setProperty('--kt-state',e[0].isIntersecting?'running':'paused')},{threshold:.05}).observe(el);
+setTimeout(function(){el.hidden=false;requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('is-open')})})},1500)})();</script>
 </body>
 </html>
