@@ -595,6 +595,14 @@
       "destination": "/fr/about.html"
     },
     {
+      "source": "/ar/kashf-akhta-al-tajweed",
+      "destination": "/ar/kashf-akhta-al-tajweed.html"
+    },
+    {
+      "source": "/fr/comment-ia-detecte-erreurs-tajwid",
+      "destination": "/fr/comment-ia-detecte-erreurs-tajwid.html"
+    },
+    {
       "source": "/fr/erreurs-de-tajwid",
       "destination": "/fr/erreurs-de-tajwid.html"
     },

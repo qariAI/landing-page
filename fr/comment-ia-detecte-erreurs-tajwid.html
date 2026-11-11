@@ -1,0 +1,412 @@
+﻿<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Comment l’IA détecte les erreurs de tajwid en temps réel | QariAI</title>
+<link rel="alternate" hreflang="ar" href="https://qariai.app/ar/kashf-akhta-al-tajweed">
+<link rel="alternate" hreflang="fr" href="https://qariai.app/fr/comment-ia-detecte-erreurs-tajwid">
+<link rel="alternate" hreflang="en" href="https://qariai.app/academy/how-ai-detects-tajweed-mistakes">
+<link rel="canonical" href="https://qariai.app/fr/comment-ia-detecte-erreurs-tajwid">
+<meta name="description" content="Comment fonctionne la détection de tajwid par IA : traitement audio, extraction des phonèmes, comparaison aux règles et filtrage par confiance, expliqués simplement.">
+<meta name="keywords" content="IA tajwid, détection erreurs tajwid, reconnaissance phonèmes, correction tajwid IA">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Comment l’IA détecte les erreurs de tajwid en temps réel">
+<meta property="og:description" content="Du signal audio à la correction : comment l’IA repère vos erreurs de tajwid, et ses limites.">
+<meta property="og:url" content="https://qariai.app/fr/comment-ia-detecte-erreurs-tajwid">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://qariai.app/screenshots/og-image.png">
+<meta name="twitter:image" content="https://qariai.app/screenshots/og-image.png">
+<meta property="og:site_name" content="QariAI">
+<meta property="og:locale" content="fr_FR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Comment l’IA détecte les erreurs de tajwid en temps réel">
+<meta name="twitter:description" content="Du signal audio à la correction : comment l’IA repère vos erreurs de tajwid, et ses limites.">
+
+<!-- Schema.org Article -->
+<script type="application/ld+json">{
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "Comment l’IA détecte les erreurs de tajwid en temps réel",
+    "description":  "Comment fonctionne la détection de tajwid par IA : traitement audio, extraction des phonèmes, comparaison aux règles et filtrage par confiance, expliqués simplement.",
+    "inLanguage":  "fr",
+    "author":  {
+                   "@type":  "Organization",
+                   "name":  "QariAI",
+                   "url":  "https://qariai.app"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "QariAI"
+                  },
+    "datePublished":  "2026-11-11",
+    "dateModified":  "2026-11-11",
+    "mainEntityOfPage":  "https://qariai.app/fr/comment-ia-detecte-erreurs-tajwid",
+    "image":  "https://qariai.app/screenshots/og-image.png"
+}</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D55KK2YBKH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D55KK2YBKH');</script>
+
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Amiri', -apple-system, sans-serif;
+    color: #1c1917;
+    background: #fafaf9;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+  }
+
+  /* Nav */
+  nav {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    background: #ffffff;
+    backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nav-inner {
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-direction: row;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+    flex-direction: row;
+  }
+  .nav-brand img { width: 76px; height: 76px; object-fit: contain; mix-blend-mode: multiply; }
+  .nav-brand .brand-tagline {
+    font-size: 11px; font-weight: 700; color: #78716c;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    max-width: 100px; line-height: 1.4;
+    text-align: left;
+  }
+  .nav-cta {
+    background: #1c1917; color: white;
+    padding: 8px 20px; border-radius: 999px;
+    font-weight: 700; font-size: 14px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+  }
+
+  /* Article */
+  .article {
+    max-width: 800px; margin: 0 auto; padding: 48px 24px 80px;
+  }
+
+  .eyebrow {
+    font-size: 12px; font-weight: 800; color: #047857;
+    text-transform: uppercase; letter-spacing: 0.10em;
+    margin-bottom: 16px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1 {
+    font-size: 36px; font-weight: 900;
+    line-height: 1.3;
+    color: #0c0a09;
+    margin-bottom: 16px;
+    font-family: 'Inter', 'Amiri', sans-serif;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: #047857;
+  }
+
+  .subtitle {
+    font-size: 18px; color: #57534e;
+    margin-bottom: 12px;
+    line-height: 1.8;
+  }
+
+  .meta {
+    font-size: 12px; color: #a8a29e;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e7e5e4;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h2 {
+    font-size: 24px; font-weight: 800;
+    color: #0c0a09;
+    margin: 52px 0 16px;
+    padding-top: 16px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #fbbf24;
+    display: inline-block;
+  }
+
+  h3 {
+    font-size: 19px; font-weight: 700;
+    color: #1c1917;
+    margin: 28px 0 10px;
+  }
+
+  p { margin-bottom: 16px; color: #44403c; font-size: 16px; line-height: 1.9; }
+
+  .lead {
+    font-size: 18px; color: #44403c;
+    margin-bottom: 32px;
+    line-height: 2;
+  }
+
+  /* Qur'anic text */
+  .quran {
+    font-family: 'Amiri', serif;
+    font-size: 22px;
+    line-height: 2.2;
+    color: #1c1917;
+    direction: rtl;
+    text-align: right;
+  }
+
+  .quran .highlight {
+    color: #047857;
+    font-weight: 700;
+    background: #d1fae5;
+    padding: 0 4px;
+    border-radius: 4px;
+  }
+
+  /* Rule card */
+  .rule-card {
+    background: white;
+    border: 1px solid #e7e5e4;
+    border-radius: 16px;
+    padding: 28px;
+    margin: 20px 0;
+    transition: border-color 0.2s;
+  }
+  .rule-card:hover { border-color: #047857; }
+
+  .rule-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #047857; color: white;
+    border-radius: 999px;
+    font-size: 12px; font-weight: 800;
+    padding: 4px 14px;
+    margin-bottom: 14px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.04em;
+  }
+
+  .rule-card h3 {
+    margin-top: 8px;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  /* Example box */
+  .example-box {
+    background: #f0fdf4;
+    border-left: 4px solid #047857;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .example-label {
+    font-size: 11px; font-weight: 800; color: #047857;
+    text-transform: uppercase; letter-spacing: 0.10em;
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Insight box */
+  .insight-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+
+  .insight-box p {
+    margin: 0;
+    color: #78350f;
+    font-size: 15px;
+  }
+
+  .insight-box strong {
+    color: #92400e;
+  }
+
+  /* Transliteration */
+  .translit {
+    font-size: 13px;
+    color: #78716c;
+    font-style: italic;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Definition list */
+  .def-list { list-style: none; margin: 12px 0 16px; }
+  .def-list li {
+    padding: 8px 0 8px 0;
+    border-bottom: 1px solid #f5f5f4;
+    font-size: 15px; color: #44403c;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .def-list li:last-child { border-bottom: none; }
+  .def-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: #047857;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* Summary / CTA box */
+  .summary-box {
+    background: linear-gradient(160deg, #047857, #065f46);
+    color: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin: 56px 0 40px;
+    text-align: center;
+  }
+  .summary-box h2 {
+    color: white;
+    border-bottom: none;
+    display: block;
+    margin: 0 0 12px;
+    padding: 0;
+    font-size: 26px;
+  }
+  .summary-box p { color: rgba(255,255,255,0.88); margin-bottom: 24px; font-size: 17px; }
+  .summary-box a {
+    display: inline-block;
+    background: #fbbf24; color: #1c1917;
+    padding: 14px 32px; border-radius: 12px;
+    font-weight: 800; font-size: 16px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px 0;
+    text-align: center;
+    color: #a8a29e;
+    font-size: 13px;
+    border-top: 1px solid #e7e5e4;
+  }
+  footer a { color: #047857; text-decoration: none; font-weight: 600; margin: 0 8px; }
+
+  /* Section divider */
+  .section-intro {
+    background: #f5f5f4;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: #57534e;
+  }
+
+  /* Rule count badge in h2 area */
+  .rule-count {
+    display: inline-block;
+    background: #e7e5e4;
+    color: #57534e;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-family: 'Inter', sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; }
+    .rule-card { padding: 20px; }
+    .quran { font-size: 19px; }
+    .summary-box { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/fr" class="nav-brand">
+      <img src="/logo.png?v=20260923" alt="QariAI">
+      <div class="brand-tagline">Votre coach de tajwid</div>
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" class="nav-cta">Commencer</a>
+  </div>
+</nav>
+<article class="article">
+  <div class="eyebrow">Académie · Analyse technique</div>
+  <h1>Comment l’IA détecte les erreurs de tajwid <em>en temps réel</em></h1>
+  <p class="subtitle">Que se passe-t-il vraiment quand vous récitez dans une application de tajwid par IA ? Voici le processus, de l’onde sonore à la correction, expliqué simplement et honnêtement, y compris là où la technologie reste limitée.</p>
+  <div class="meta">Publié le 11 novembre 2026 · Par l’équipe QariAI · Lecture : 6 minutes</div>
+  <p class="lead">Tout système de tajwid par IA, quel que soit son modèle, suit quatre étapes. Les comprendre permet de saisir à la fois ce que l’outil sait faire et ses limites.</p>
+  <h2>Les quatre étapes</h2>
+  <div class="rule-card">
+    <div class="rule-badge">Étape 1</div>
+    <h3>Capture et prétraitement audio</h3>
+    <p>Le téléphone enregistre le son sous forme de signal numérique, puis le prétraite : filtrage du bruit, normalisation et conversion en spectrogramme, une carte des fréquences au fil du temps. Le bruit de fond dégrade tout ce qui suit : c’est pourquoi les outils sont moins fiables dans un environnement bruyant, car le problème vient de l’entrée et non du modèle.</p>
+  </div>
+  <div class="rule-card">
+    <div class="rule-badge">Étape 2</div>
+    <h3>Extraction des phonèmes</h3>
+    <p>Un phonème est la plus petite unité de son qui distingue un mot d’un autre. Un réseau de neurones entraîné sur de l’audio annoté associe chaque tranche du spectrogramme à des probabilités de phonèmes, par exemple « probablement un qaf à 80 %, peut-être un kaf à 15 % ». Il faut des modèles entraînés sur la récitation coranique, car l’arabe courant a perdu des distinctions que le Coran exige : consonnes emphatiques, qualité des voyelles longues, points d’articulation du ha, du ʿayn et du kha.</p>
+  </div>
+  <div class="rule-card">
+    <div class="rule-badge">Étape 3</div>
+    <h3>Comparaison aux règles</h3>
+    <p>C’est cette étape qui sépare un vrai système de tajwid d’une simple reconnaissance de mots. Pour chaque position du verset, le système sait quel phonème est attendu et quelle règle l’impose. Si le son observé diffère, l’écart est attribué à une règle précise.</p>
+    <div class="example-box">
+      <div class="example-label">Exemple</div>
+      <p class="quran">مِنْ <span class="highlight">بَ</span>عْدِ</p>
+      <p class="translit">(noun sakinah devant ba : iqlab, le noun devient un mim avec ghunnah)</p>
+    </div><p style="margin-top:12px">Pour le madd, on mesure la <strong>durée</strong> plutôt que l’identité du son : deux temps pour le madd naturel, quatre à cinq pour le muttasil. Une durée est une cible floue, donc les corrections de madd sont une indication, pas un verdict exact.</p>
+  </div>
+  <div class="rule-card">
+    <div class="rule-badge">Étape 4</div>
+    <h3>Filtrage par confiance</h3>
+    <p>Chaque étape comporte une incertitude, et elles s’additionnent. Un système avec filtrage fixe un seuil : si la confiance est trop basse, la correction n’est pas affichée. L’apprenant ne voit rien plutôt qu’une fausse correction. Une correction erronée n’est pas neutre : elle fait travailler la mauvaise chose. C’est pourquoi QariAI affiche des statuts clairs (correct / à retravailler) uniquement au-dessus d’un seuil de confiance, plutôt qu’un score numérique permanent.</p>
+  </div>
+  <h2>Là où l’IA fonctionne bien</h2>
+  <ul style="margin:12px 0 0 0;padding-left:22px"><li style="margin:8px 0">Noun sakinah : la règle dépend de la lettre suivante et donne des cibles phonétiques distinctes</li><li style="margin:8px 0">Qalqalah : le rebond laisse une signature acoustique nette sur les consonnes occlusives</li><li style="margin:8px 0">Ghunnah : la nasalisation se mesure par un changement de fréquences</li><li style="margin:8px 0">Chadda : le redoublement produit un arrêt détectable dans l’onde</li><li style="margin:8px 0">Madd (à titre indicatif) : la durée se mesure, même si le compte exact reste approximatif</li></ul>
+  <h2>Là où elle reste limitée</h2>
+  <ul style="margin:12px 0 0 0;padding-left:22px"><li style="margin:8px 0">Makharij : savoir si un son sort du bon point de la bouche ou de la gorge est souvent ambigu sur le plan acoustique, surtout dans un bruit réel</li><li style="margin:8px 0">Sifat (qualités du son) : épaisseur, légèreté, sifflement… demandent une analyse très fine que les modèles grand public ne maîtrisent pas encore</li><li style="margin:8px 0">Interactions entre versets : certaines règles dépassent la limite d’un verset, que des modèles entraînés verset par verset peuvent manquer</li></ul>
+  <div class="insight-box" style="margin-top:40px;"><p><strong>Ce que cela signifie pour vous :</strong> Considérez le retour de l’IA comme un signal fiable sur les règles qu’elle maîtrise : noun sakinah, madd, qalqalah, ghunnah. Observez les tendances plutôt que chaque correction isolée. Pour les makharij et les qualités du son, servez-vous-en comme point de départ, puis vérifiez avec votre enseignant.</p></div>
+  <div class="summary-box">
+    <h2>Exercez-vous avec un retour précis</h2>
+    <p>QariAI indique quelle règle de tajwid vous avez appliquée ou manquée. Gratuit sur Android.</p>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai">Commencer à réciter — gratuit</a>
+  </div>
+  <h2>Liens utiles</h2>
+  <p><a href="/fr" style="color:#047857;font-weight:600;">Accueil</a> · <a href="/fr/erreurs-de-tajwid" style="color:#047857;font-weight:600;">Erreurs de tajwid</a> · <a href="/fr/types-de-tajwid" style="color:#047857;font-weight:600;">Types de tajwid</a> · <a href="/ar/kashf-akhta-al-tajweed" style="color:#047857;font-weight:600;">العربية</a> · <a href="/academy/how-ai-detects-tajweed-mistakes" style="color:#047857;font-weight:600;">English</a> · <a href="/privacy" style="color:#047857;font-weight:600;">Confidentialité</a></p>
+</article>
+<footer>
+  <p>
+    © 2026 QariAI · <a href="/fr">Accueil</a> · <a href="/privacy">Confidentialité</a> · <a href="/terms">Conditions</a> · <a href="mailto:salam@qariai.app">Contact</a>
+  </p>
+</footer>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

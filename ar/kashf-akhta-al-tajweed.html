@@ -1,0 +1,411 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>كيف يكتشف الذكاء الاصطناعي أخطاء التجويد في لحظتها | QariAI</title>
+<link rel="alternate" hreflang="ar" href="https://qariai.app/ar/kashf-akhta-al-tajweed">
+<link rel="alternate" hreflang="fr" href="https://qariai.app/fr/comment-ia-detecte-erreurs-tajwid">
+<link rel="alternate" hreflang="en" href="https://qariai.app/academy/how-ai-detects-tajweed-mistakes">
+<link rel="canonical" href="https://qariai.app/ar/kashf-akhta-al-tajweed">
+<meta name="description" content="شرح مبسّط لكيفية عمل كشف التجويد بالذكاء الاصطناعي: معالجة الصوت، استخراج الفونيمات، مطابقة الأحكام، وتصفية النتائج بحسب الثقة.">
+<meta name="keywords" content="الذكاء الاصطناعي والتجويد، كشف أخطاء التجويد، استخراج الفونيمات، تصحيح التجويد بالذكاء الاصطناعي">
+
+<!-- Open Graph -->
+<meta property="og:title" content="كيف يكتشف الذكاء الاصطناعي أخطاء التجويد في لحظتها">
+<meta property="og:description" content="من الموجة الصوتية إلى التصحيح: كيف يكتشف الذكاء الاصطناعي أخطاء تجويدك، وأين تنتهي قدرته.">
+<meta property="og:url" content="https://qariai.app/ar/kashf-akhta-al-tajweed">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://qariai.app/screenshots/og-image.png">
+<meta name="twitter:image" content="https://qariai.app/screenshots/og-image.png">
+<meta property="og:site_name" content="QariAI">
+<meta property="og:locale" content="ar_SA">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="كيف يكتشف الذكاء الاصطناعي أخطاء التجويد في لحظتها">
+<meta name="twitter:description" content="من الموجة الصوتية إلى التصحيح: كيف يكتشف الذكاء الاصطناعي أخطاء تجويدك، وأين تنتهي قدرته.">
+
+<!-- Schema.org Article -->
+<script type="application/ld+json">{
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "كيف يكتشف الذكاء الاصطناعي أخطاء التجويد في لحظتها",
+    "description":  "شرح مبسّط لكيفية عمل كشف التجويد بالذكاء الاصطناعي: معالجة الصوت، استخراج الفونيمات، مطابقة الأحكام، وتصفية النتائج بحسب الثقة.",
+    "inLanguage":  "ar",
+    "author":  {
+                   "@type":  "Organization",
+                   "name":  "QariAI",
+                   "url":  "https://qariai.app"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "QariAI"
+                  },
+    "datePublished":  "2026-11-11",
+    "dateModified":  "2026-11-11",
+    "mainEntityOfPage":  "https://qariai.app/ar/kashf-akhta-al-tajweed",
+    "image":  "https://qariai.app/screenshots/og-image.png"
+}</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D55KK2YBKH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D55KK2YBKH');</script>
+
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Amiri', -apple-system, sans-serif;
+    color: #1c1917;
+    background: #fafaf9;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Nav */
+  nav {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    background: #ffffff;
+    backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nav-inner {
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+    flex-direction: row-reverse;
+  }
+  .nav-brand img { width: 76px; height: 76px; object-fit: contain; mix-blend-mode: multiply; }
+  .nav-brand .brand-tagline {
+    font-size: 11px; font-weight: 700; color: #78716c;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    max-width: 100px; line-height: 1.4;
+    text-align: right;
+  }
+  .nav-cta {
+    background: #1c1917; color: white;
+    padding: 8px 20px; border-radius: 999px;
+    font-weight: 700; font-size: 14px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+  }
+
+  /* Article */
+  .article {
+    max-width: 800px; margin: 0 auto; padding: 48px 24px 80px;
+  }
+
+  .eyebrow {
+    font-size: 12px; font-weight: 800; color: #047857;
+    text-transform: uppercase; letter-spacing: 0.10em;
+    margin-bottom: 16px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1 {
+    font-size: 36px; font-weight: 900;
+    line-height: 1.3;
+    color: #0c0a09;
+    margin-bottom: 16px;
+    font-family: 'Inter', 'Amiri', sans-serif;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: #047857;
+  }
+
+  .subtitle {
+    font-size: 18px; color: #57534e;
+    margin-bottom: 12px;
+    line-height: 1.8;
+  }
+
+  .meta {
+    font-size: 12px; color: #a8a29e;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e7e5e4;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h2 {
+    font-size: 24px; font-weight: 800;
+    color: #0c0a09;
+    margin: 52px 0 16px;
+    padding-top: 16px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #fbbf24;
+    display: inline-block;
+  }
+
+  h3 {
+    font-size: 19px; font-weight: 700;
+    color: #1c1917;
+    margin: 28px 0 10px;
+  }
+
+  p { margin-bottom: 16px; color: #44403c; font-size: 16px; line-height: 1.9; }
+
+  .lead {
+    font-size: 18px; color: #44403c;
+    margin-bottom: 32px;
+    line-height: 2;
+  }
+
+  /* Qur'anic text */
+  .quran {
+    font-family: 'Amiri', serif;
+    font-size: 22px;
+    line-height: 2.2;
+    color: #1c1917;
+    direction: rtl;
+  }
+
+  .quran .highlight {
+    color: #047857;
+    font-weight: 700;
+    background: #d1fae5;
+    padding: 0 4px;
+    border-radius: 4px;
+  }
+
+  /* Rule card */
+  .rule-card {
+    background: white;
+    border: 1px solid #e7e5e4;
+    border-radius: 16px;
+    padding: 28px;
+    margin: 20px 0;
+    transition: border-color 0.2s;
+  }
+  .rule-card:hover { border-color: #047857; }
+
+  .rule-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #047857; color: white;
+    border-radius: 999px;
+    font-size: 12px; font-weight: 800;
+    padding: 4px 14px;
+    margin-bottom: 14px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.04em;
+  }
+
+  .rule-card h3 {
+    margin-top: 8px;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  /* Example box */
+  .example-box {
+    background: #f0fdf4;
+    border-right: 4px solid #047857;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .example-label {
+    font-size: 11px; font-weight: 800; color: #047857;
+    text-transform: uppercase; letter-spacing: 0.10em;
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Insight box */
+  .insight-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+
+  .insight-box p {
+    margin: 0;
+    color: #78350f;
+    font-size: 15px;
+  }
+
+  .insight-box strong {
+    color: #92400e;
+  }
+
+  /* Transliteration */
+  .translit {
+    font-size: 13px;
+    color: #78716c;
+    font-style: italic;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Definition list */
+  .def-list { list-style: none; margin: 12px 0 16px; }
+  .def-list li {
+    padding: 8px 0 8px 0;
+    border-bottom: 1px solid #f5f5f4;
+    font-size: 15px; color: #44403c;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .def-list li:last-child { border-bottom: none; }
+  .def-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: #047857;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* Summary / CTA box */
+  .summary-box {
+    background: linear-gradient(160deg, #047857, #065f46);
+    color: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin: 56px 0 40px;
+    text-align: center;
+  }
+  .summary-box h2 {
+    color: white;
+    border-bottom: none;
+    display: block;
+    margin: 0 0 12px;
+    padding: 0;
+    font-size: 26px;
+  }
+  .summary-box p { color: rgba(255,255,255,0.88); margin-bottom: 24px; font-size: 17px; }
+  .summary-box a {
+    display: inline-block;
+    background: #fbbf24; color: #1c1917;
+    padding: 14px 32px; border-radius: 12px;
+    font-weight: 800; font-size: 16px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px 0;
+    text-align: center;
+    color: #a8a29e;
+    font-size: 13px;
+    border-top: 1px solid #e7e5e4;
+  }
+  footer a { color: #047857; text-decoration: none; font-weight: 600; margin: 0 8px; }
+
+  /* Section divider */
+  .section-intro {
+    background: #f5f5f4;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: #57534e;
+  }
+
+  /* Rule count badge in h2 area */
+  .rule-count {
+    display: inline-block;
+    background: #e7e5e4;
+    color: #57534e;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-right: 10px;
+    vertical-align: middle;
+    font-family: 'Inter', sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; }
+    .rule-card { padding: 20px; }
+    .quran { font-size: 19px; }
+    .summary-box { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/ar" class="nav-brand">
+      <img src="/logo.png?v=20260923" alt="QariAI">
+      <div class="brand-tagline">مدرّبك في التجويد والحفظ</div>
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" class="nav-cta">ابدأ التلاوة</a>
+  </div>
+</nav>
+<article class="article">
+  <div class="eyebrow">الأكاديمية · شرح تقني</div>
+  <h1>كيف يكتشف الذكاء الاصطناعي <em>أخطاء التجويد في لحظتها</em></h1>
+  <p class="subtitle">ماذا يحدث فعلاً حين تتلو في تطبيق تجويد بالذكاء الاصطناعي؟ هذا شرح مبسّط وصادق للعملية من الموجة الصوتية إلى التصحيح، بما في ذلك المواضع التي ما زالت فيها التقنية قاصرة.</p>
+  <div class="meta">نُشر في 11 نوفمبر 2026 · بقلم فريق QariAI · وقت القراءة: 6 دقائق</div>
+  <p class="lead">كل نظام تجويد بالذكاء الاصطناعي، أيًّا كان النموذج الذي يقوم عليه، يمرّ بأربع مراحل. وفهمها يعينك على معرفة ما يُحسنه التطبيق وما لا يُحسنه.</p>
+  <h2>المراحل الأربع</h2>
+  <div class="rule-card">
+    <div class="rule-badge">المرحلة الأولى</div>
+    <h3>التقاط الصوت ومعالجته</h3>
+    <p>يسجّل الهاتف صوتك إشارةً رقمية ثم يعالجها: تصفية الضجيج، وتوحيد المستوى، وتحويلها إلى مخطط طيفي (سبكتروغرام) يبيّن توزّع الترددات عبر الزمن. الضجيج في هذه المرحلة يفسد كل ما بعدها، ولهذا تضعف أدوات التجويد في البيئات الصاخبة؛ فالخلل في المدخل لا في النموذج.</p>
+  </div>
+  <div class="rule-card">
+    <div class="rule-badge">المرحلة الثانية</div>
+    <h3>استخراج الفونيمات</h3>
+    <p>الفونيم أصغر وحدة صوتية تميّز كلمة من أخرى. تتعلّم شبكة عصبية مدرَّبة على تسجيلات موسومة أن تحوّل كل شريحة من المخطط الطيفي إلى احتمالات، مثل: «غالبًا قاف بنسبة 80٪، وربما كاف بنسبة 15٪». ويلزم نماذج مدرَّبة على التلاوة القرآنية، لأن العربية المحكية فقدت فروقًا يشترطها القرآن: التفخيم والترقيق، وجودة المدود، ومخارج الحاء والعين والخاء.</p>
+  </div>
+  <div class="rule-card">
+    <div class="rule-badge">المرحلة الثالثة</div>
+    <h3>مطابقة الأحكام</h3>
+    <p>هذه المرحلة هي ما يفصل نظام التجويد الحقيقي عن مجرد التعرّف على الكلمات. ففي كل موضع من الآية يعرف النظام ما الفونيم المتوقع وأي حكم يوجبه. فإذا اختلف الصوت المسموع نُسب الفرق إلى حكم بعينه.</p>
+    <div class="example-box">
+      <div class="example-label">مثال</div>
+      <p class="quran">مِنْ <span class="highlight">بَ</span>عْدِ</p>
+      <p class="translit">(نون ساكنة قبل الباء: إقلاب، تنقلب النون ميمًا مع غنّة)</p>
+    </div><p style="margin-top:12px">أما المدود فيُقاس فيها <strong>الزمن</strong> لا هوية الصوت: حركتان للمد الطبيعي، وأربع إلى خمس للمتصل. والزمن هدف تقريبي، فتصحيحات المد إرشاد اتجاهي لا حكم قاطع.</p>
+  </div>
+  <div class="rule-card">
+    <div class="rule-badge">المرحلة الرابعة</div>
+    <h3>تصفية النتائج بحسب الثقة</h3>
+    <p>كل مرحلة تحمل قدرًا من عدم اليقين، وهي تتراكم. والنظام المُصفّي يضع حدًّا أدنى: إن انخفضت الثقة دونه لم يُعرض التصحيح. فلا يرى المتعلّم شيئًا بدل أن يرى تصحيحًا خاطئًا؛ لأن التصحيح الخاطئ لا يكتفي بعدم النفع بل يدرّب صاحبه على غير الصواب. ولهذا تعرض QariAI حالات واضحة (سليم / يحتاج مراجعة) فوق حدّ ثقة معقول، بدل درجة رقمية دائمة.</p>
+  </div>
+  <h2>حيث يُجيد الذكاء الاصطناعي</h2>
+  <ul style="margin:12px 0 0 0;padding-right:22px"><li style="margin:8px 0">أحكام النون الساكنة: يحدّدها الحرف التالي فتنتج أهدافًا صوتية واضحة</li><li style="margin:8px 0">القلقلة: ارتدادها يترك بصمة صوتية ظاهرة في الحروف الانفجارية</li><li style="margin:8px 0">الغنّة: يمكن قياس الخنّة بتغيّر مكوّنات الترددات</li><li style="margin:8px 0">الشدّة: التضعيف يترك وقفة قابلة للكشف في الموجة</li><li style="margin:8px 0">المدّ (على سبيل الإرشاد): الزمن قابل للقياس وإن لم يكن العدّ دقيقًا</li></ul>
+  <h2>حيث ما زال قاصرًا</h2>
+  <ul style="margin:12px 0 0 0;padding-right:22px"><li style="margin:8px 0">المخارج: كون الصوت خرج من موضعه الصحيح في الفم أو الحلق كثيرًا ما يلتبس صوتيًا، ولا سيما مع ضجيج الواقع</li><li style="margin:8px 0">الصفات: التفخيم والترقيق والصفير ونحوها تحتاج تحليلًا دقيقًا لا تحسنه النماذج الاستهلاكية بعد</li><li style="margin:8px 0">التداخل بين الآيات: بعض الأحكام يتجاوز حدّ الآية، وقد تفوت النماذج المدرَّبة على الآية منفردة</li></ul>
+  <div class="insight-box" style="margin-top:40px;"><p><strong>ماذا يعني هذا لك</strong>: اعتبر تصحيح الذكاء الاصطناعي إشارة موثوقة في الأحكام التي يُحسنها: النون الساكنة، والمد، والقلقلة، والغنّة. وانظر إلى الأنماط المتكررة لا إلى كل تصحيح منفرد. أما المخارج والصفات فاجعله نقطة انطلاق للانتباه ثم راجع معلّمك.</p></div>
+  <div class="summary-box">
+    <h2>تدرّب بتصحيح محدّد</h2>
+    <p>يبيّن لك QariAI أي حكم طبّقته وأي حكم فاتك. مجاني على أندرويد.</p>
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai">ابدأ التلاوة مجاناً</a>
+  </div>
+  <h2>روابط مفيدة</h2>
+  <p><a href="/ar" style="color:#047857;font-weight:600;">الرئيسية</a> · <a href="/ar/tajweed-mistakes" style="color:#047857;font-weight:600;">أخطاء التجويد</a> · <a href="/ar/anwa-al-tajweed" style="color:#047857;font-weight:600;">أنواع التجويد</a> · <a href="/fr/comment-ia-detecte-erreurs-tajwid" style="color:#047857;font-weight:600;">Français</a> · <a href="/academy/how-ai-detects-tajweed-mistakes" style="color:#047857;font-weight:600;">English</a> · <a href="/privacy" style="color:#047857;font-weight:600;">الخصوصية</a></p>
+</article>
+<footer>
+  <p>
+    © 2026 QariAI · <a href="/ar">الرئيسية</a> · <a href="/privacy">الخصوصية</a> · <a href="/terms">الشروط</a> · <a href="mailto:salam@qariai.app">تواصل</a>
+  </p>
+</footer>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
