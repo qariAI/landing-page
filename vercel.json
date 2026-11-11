@@ -595,6 +595,10 @@
       "destination": "/fr/about.html"
     },
     {
+      "source": "/ms/kesilapan-tajwid",
+      "destination": "/ms/kesilapan-tajwid.html"
+    },
+    {
       "source": "/ms/jenis-jenis-tajwid",
       "destination": "/ms/jenis-jenis-tajwid.html"
     },
