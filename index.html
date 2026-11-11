@@ -1552,11 +1552,11 @@
     <small>Android only. Keep it installed for 14 days.</small>
   </div>
 </aside>
-<script>(function(){var el=document.getElementById('khatti-teaser');if(!el)return;var L=(navigator.language||'en').toLowerCase();if(L.slice(0,2)!=='en')return;var K='khattiTeaserClosed';try{if(localStorage.getItem(K))return}catch(e){}
+<script>(function(){var el=document.getElementById('khatti-teaser');if(!el)return;var K='khattiTeaserClosed';try{if(localStorage.getItem(K))return}catch(e){}
 function close(){el.classList.remove('is-open');setTimeout(function(){el.hidden=true},500);try{localStorage.setItem(K,'1')}catch(e){}}
 el.querySelector('.kt-x').addEventListener('click',close);
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&el.classList.contains('is-open'))close()});
 if(window.IntersectionObserver)new IntersectionObserver(function(e){el.style.setProperty('--kt-state',e[0].isIntersecting?'running':'paused')},{threshold:.05}).observe(el);
-setTimeout(function(){el.hidden=false;requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('is-open')})})},1500)})();</script>
+setTimeout(function(){el.hidden=false;requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('is-open')})})},60000)})();</script>
 </body>
 </html>
