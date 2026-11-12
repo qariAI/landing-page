@@ -26,22 +26,23 @@ def chip(d, text, y, fill):
     d.text((W//2, y), text.upper(), font=f, fill=DARK, anchor="ma")
 
 def dots(d, i, n=6):
+    d.rounded_rectangle((W//2 - 140, 1858, W//2 + 140, 1900), 21, fill="#061b17")
     for k in range(n):
         x = W//2 - (n-1)*18 + k*36
         d.ellipse((x-7, 1872, x+7, 1886), fill=GOLD if k == i else "#4f7a6b")
 
-def phone(im, shot, top=470, width=640):
+def phone(im, shot, top=430, width=900):
     sc = Image.open(SHOTS / shot).convert("RGBA")
     sw = width - 36; sh = round(sw * sc.height / sc.width)
     sc = sc.resize((sw, sh), Image.Resampling.LANCZOS)
-    m = Image.new("L", sc.size, 0); ImageDraw.Draw(m).rounded_rectangle((0, 0, sw, sh), 54, fill=255); sc.putalpha(m)
+    m = Image.new("L", sc.size, 0); ImageDraw.Draw(m).rounded_rectangle((0, 0, sw, sh), 70, fill=255); sc.putalpha(m)
     fw, fh = width, sh + 36
     x, y = (W - fw)//2, top
     sh_ = Image.new("RGBA", (fw + 160, fh + 160), (0, 0, 0, 0))
     ImageDraw.Draw(sh_).rounded_rectangle((80, 100, fw + 80, fh + 100), 76, fill=(0, 0, 0, 130))
     im.alpha_composite(sh_.filter(ImageFilter.GaussianBlur(28)), (x - 80, y - 80))
     d = ImageDraw.Draw(im)
-    d.rounded_rectangle((x, y, x + fw, y + fh), 74, fill="#0b0f0e", outline="#2c4a40", width=3)
+    d.rounded_rectangle((x, y, x + fw, y + fh), 88, fill="#0b0f0e", outline="#2c4a40", width=3)
     im.alpha_composite(sc, (x + 18, y + 18))
 
 def save(im, n):
@@ -53,7 +54,7 @@ def scene(n, idx, label, title, sub, shot, accent):
     chip(d, label, 100, accent)
     d.text((W//2, 185), title, font=font(84), fill=WHITE, anchor="ma")
     d.multiline_text((W//2, 300), sub, font=font(35, "Medium"), fill=MUTED, anchor="ma", align="center", spacing=12)
-    phone(im, shot, top=455); dots(d, idx); save(im, n)
+    phone(im, shot, top=430); dots(d, idx); save(im, n)
 
 # 0 — opening
 im = gradient(); d = ImageDraw.Draw(im)
@@ -74,27 +75,17 @@ scene(4, 3, "4 of 6", "Connect", "Solve clues from Qur’anic vocabulary\nand fi
 scene(5, 4, "5 of 6", "Wasl", "Join letters to find Qur’anic words\nacross scenic worlds.", "wasl.jpg", "#8edbb8")
 scene(6, 5, "6 of 6", "Quranic Cryptogram", "Decode a verse by discovering which\nletter each symbol hides.", "cryptogram.jpg", "#cbd5e1")
 
-# 7 — close
-im = gradient(); d = ImageDraw.Draw(im)
-d.ellipse((-260, -220, 520, 560), fill="#123f35")
-chip(d, "Available now", 100, GOLD)
-d.multiline_text((W//2, 185), "Six games.\nOne learning journey.", font=font(70), fill=WHITE, anchor="ma", align="center", spacing=6)
-phone(im, "hub.jpg", top=470, width=600)
-d.rounded_rectangle((250, 1775, 830, 1850), 38, fill=WHITE)
-d.text((W//2, 1796), "PLAY FREE IN QARIAI", font=font(30), fill="#0c6b48", anchor="ma")
-save(im, 7)
-
-N = 8
+N = 7
 inputs = []
 for n in range(N):
     inputs += ["-loop", "1", "-framerate", "30", "-t", "2.7", "-i", str(OUT / f"slide-{n}.jpg")]
-filters = [f"[{n}:v]scale=1080:1920,zoompan=z='min(1+0.00045*on,1.035)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1080x1920:fps=30,format=yuv420p,setpts=PTS-STARTPTS[v{n}]" for n in range(N)]
+filters = [f"[{n}:v]scale=1080:1920,fps=30,format=yuv420p,setpts=PTS-STARTPTS[v{n}]" for n in range(N)]
 last = "v0"
 for n in range(1, N):
     filters.append(f"[{last}][v{n}]xfade=transition={'slideleft' if n % 2 else 'fadefast'}:duration=0.35:offset={2.35*n:.2f}[x{n}]")
     last = f"x{n}"
 video = ROOT / "marketing" / "qariai-games-vertical-24s.mp4"
-subprocess.run(["ffmpeg", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", f"[{last}]", "-r", "30", "-t", "19.15",
+subprocess.run(["ffmpeg", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", f"[{last}]", "-r", "30", "-t", "16.8",
                 "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(video)], check=True)
 Image.open(OUT / "slide-1.jpg").save(ROOT / "marketing" / "qariai-games-video-poster.jpg", quality=88, optimize=True)
 print(video)
