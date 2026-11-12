@@ -415,6 +415,10 @@
       "destination": "/qalqalah-explained.html"
     },
     {
+      "source": "/learn/what-is-qalqalah",
+      "destination": "/what-is-qalqalah.html"
+    },
+    {
       "source": "/compare/qari-ai-vs-tarteel",
       "destination": "/qari-ai-vs-tarteel.html"
     },
