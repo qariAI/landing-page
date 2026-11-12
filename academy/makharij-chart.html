@@ -5,7 +5,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D55KK2YBKH');</script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Makharij Chart &amp; Diagram: Arabic Articulation Points | QariAI</title>
+<title>Makharij Chart: All 17 Arabic Articulation Points (Diagram + Table) | QariAI</title>
 <meta name="description" content="Free interactive Makharij diagram: see where every Arabic letter is articulated (throat, tongue, lips, nose) with a 3D model view, searchable grid and audio pronunciation."/>
 <meta property="og:title" content="Makharij Chart &amp; Diagram: Arabic Articulation Points"/>
 <meta property="og:description" content="Explore where every Arabic letter is articulated with an interactive diagram, 3D view, and searchable grid. Free, no login."/>
@@ -20,6 +20,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Makharij Explorer","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://qariai.app/academy/makharij-chart","description":"Free interactive Makharij chart with diagram, 3D view, and searchable reference grid for Arabic letter articulation points.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"QariAI","url":"https://qariai.app"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many makharij are there?", "acceptedAnswer": {"@type": "Answer", "text": "Most teachers count 17 specific articulation points, grouped into five areas: the open space of the mouth and throat (al-jawf), the throat (al-halq), the tongue (al-lisan), the lips (ash-shafatan) and the nasal cavity (al-khayshum)."}}, {"@type": "Question", "name": "What are the five main areas of makharij?", "acceptedAnswer": {"@type": "Answer", "text": "Al-jawf (mouth and throat space), al-halq (throat), al-lisan (tongue), ash-shafatan (lips) and al-khayshum (nasal cavity)."}}, {"@type": "Question", "name": "Which letters come from the throat?", "acceptedAnswer": {"@type": "Answer", "text": "Six letters: ء and ه from the deepest throat, ع and ح from the middle, and غ and خ from the upper throat."}}, {"@type": "Question", "name": "What is the difference between makharij and sifat?", "acceptedAnswer": {"@type": "Answer", "text": "Makharij is where a letter is pronounced. Sifat are its qualities, such as heavy or light, strong or gentle. Together they define the letter's sound."}}, {"@type": "Question", "name": "How do I practise makharij?", "acceptedAnswer": {"@type": "Answer", "text": "Say each letter with a short vowel while paying attention to where it is made, then compare confusable pairs such as ح and ه, or ص and س. Use the diagram above and get feedback from a teacher or the free tajweed checker."}}]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://qariai.app"},{"@type":"ListItem","position":2,"name":"Academy","item":"https://qariai.app/academy"},{"@type":"ListItem","position":3,"name":"Makharij Chart","item":"https://qariai.app/academy/makharij-chart"}]}
@@ -78,6 +81,13 @@
     max-width: 820px; margin: 0 auto; padding: 44px 5vw 20px;
     font-family: 'Inter', sans-serif;
   }
+  .mk-wrap{overflow-x:auto;margin:10px 0}
+  .mk-table{width:100%;border-collapse:collapse;font-size:.9rem}
+  .mk-table th,.mk-table td{text-align:left;padding:8px 10px;border-bottom:1px solid rgba(128,128,128,.25);vertical-align:top}
+  .mk-table th{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+  .mk-faq{border:1px solid rgba(128,128,128,.25);border-radius:10px;padding:12px 14px;margin:10px 0}
+  .mk-faq summary{cursor:pointer;font-weight:700}
+  .mk-faq p{margin:10px 0 0!important}
   .site-about-section h2 { font-family: 'Merriweather', serif; font-size: 1.2rem; margin-bottom: 14px; color: var(--site-text); }
   .site-about-section p { font-size: 0.92rem; color: var(--site-text-mid); line-height: 1.75; margin-bottom: 14px; }
 
@@ -119,7 +129,7 @@
 <header class="site-hero">
   <div class="site-breadcrumb"><a href="https://qariai.app/academy">Academy</a><span>›</span><span>Makharij Chart</span></div>
   <span class="site-hero-tag">Free Interactive Tool</span>
-  <h1>Makharij <em>Explorer</em></h1>
+  <h1>Makharij Chart: <em>Arabic Articulation Points</em></h1>
   <p>Discover where every Arabic letter is articulated — diagram, 3D view, and full reference grid with audio.</p>
 </header>
 
@@ -133,11 +143,23 @@ function currentArea(){return areas.find(function(a){return a.id===state.area})|
 
 
 <section class="site-about-section">
+  <h2>Makharij chart: all 17 articulation points</h2>
+  <p>The table below lists every makhraj (point of articulation) with its letters, matching the diagram above.</p>
+  <div class="mk-wrap"><table class="mk-table"><thead><tr><th>#</th><th>Articulation point</th><th>Letters</th><th>Notes</th></tr></thead><tbody><tr><td>1</td><td>Al-Jawf (الجوف) — mouth and throat space</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ا و ي</td><td>The three long vowels (madd letters).</td></tr><tr><td>2</td><td>Deepest throat</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ء ه</td><td>Bottom of the throat, furthest from the mouth.</td></tr><tr><td>3</td><td>Middle throat</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ع ح</td><td>Middle of the throat. See <a href="/learn/pronounce-ayn">how to pronounce ayn</a>.</td></tr><tr><td>4</td><td>Upper throat</td><td lang="ar" dir="rtl" style="font-size:1.25rem">غ خ</td><td>Top of the throat, nearest the mouth.</td></tr><tr><td>5</td><td>Back of tongue</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ق</td><td>Back of the tongue against the soft palate.</td></tr><tr><td>6</td><td>Back of tongue, slightly forward</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ك</td><td>Just in front of Qaf.</td></tr><tr><td>7</td><td>Middle of tongue</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ج ش ي</td><td>Middle of the tongue against the hard palate.</td></tr><tr><td>8</td><td>Side of tongue</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ض</td><td>Side edge of the tongue against the upper molars.</td></tr><tr><td>9</td><td>Side of tongue tip</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ل</td><td>Edge of the tongue tip, above the front teeth.</td></tr><tr><td>10</td><td>Tongue tip</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ن</td><td>Tip of the tongue just below Lam's point.</td></tr><tr><td>11</td><td>Tongue tip, slightly back</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ر</td><td>Tip of the tongue, a little further back than Noon.</td></tr><tr><td>12</td><td>Tongue tip and upper front teeth</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ط د ت</td><td>Tip of the tongue at the base of the upper front teeth.</td></tr><tr><td>13</td><td>Tongue tip and lower front teeth</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ص س ز</td><td>Tip near the edge of the lower front teeth.</td></tr><tr><td>14</td><td>Tongue tip and edge of upper teeth</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ظ ذ ث</td><td>Tip of the tongue between or touching the edge of the upper teeth.</td></tr><tr><td>15</td><td>Lower lip and upper teeth</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ف</td><td>Inside of the lower lip against the upper front teeth.</td></tr><tr><td>16</td><td>Both lips</td><td lang="ar" dir="rtl" style="font-size:1.25rem">و ب م</td><td>Wau without a madd, Ba and Meem.</td></tr><tr><td>17</td><td>Nasal cavity (الخيشوم)</td><td lang="ar" dir="rtl" style="font-size:1.25rem">ن م (ghunnah)</td><td>Nasal resonance on doubled Noon and Meem, and in ikhfa.</td></tr></tbody></table></div>
+</section>
+
+<section class="site-about-section">
   <h2>About Makharij</h2>
   <p><strong>Makharij al-Huruf</strong> (مخارج الحروف) refers to the specific points in the mouth, throat, and nasal cavity where each Arabic letter is articulated. Correct Makharij is foundational to Tajweed — pronouncing a letter from the wrong point of articulation can change its sound enough to alter meaning, particularly for similar-sounding letter pairs like Daad and Dhaa, or Qaaf and Kaaf.</p>
-  <p>Classical Tajweed scholarship identifies five main articulation zones: the throat (<span style="font-family:serif;">الحلق</span>), the tongue (<span style="font-family:serif;">اللسان</span>) — which accounts for the largest number of letters — the lips (<span style="font-family:serif;">الشفتان</span>), the teeth (<span style="font-family:serif;">الأسنان</span>), and the nasal cavity (<span style="font-family:serif;">الخيشوم</span>), which governs Ghunna.</p>
+  <p>Classical Tajweed scholarship identifies five main articulation zones: the throat (<span style="font-family:serif;">الحلق</span>), the tongue (<span style="font-family:serif;">اللسان</span>) — which accounts for the largest number of letters — the lips (<span style="font-family:serif;">الشفتان</span>), the open space of the mouth and throat (<span style="font-family:serif;">الجوف</span>), and the nasal cavity (<span style="font-family:serif;">الخيشوم</span>), which governs Ghunna.</p>
   <p>This chart is a reference tool, not a substitute for a qualified Tajweed teacher. Correct articulation requires hearing and feedback that only a teacher — or, for practice between lessons, AI-assisted tools — can provide. The audio playback in this tool uses your browser's built-in speech synthesis as a rough pronunciation guide; it is not a substitute for hearing a qualified reciter.</p>
   <p>Working on the middle-throat letters? <a href="/learn/pronounce-ayn" style="color:#0f7a53;font-weight:700;">Learn how to pronounce ‘Ayn (ع)</a> with step-by-step exercises and Quran practice words.</p>
+</section>
+
+<section class="site-about-section">
+  <h2>Makharij FAQ</h2>
+  <details class="mk-faq"><summary>How many makharij are there?</summary><p>Most teachers count 17 specific articulation points, grouped into five areas: the open space of the mouth and throat (al-jawf), the throat (al-halq), the tongue (al-lisan), the lips (ash-shafatan) and the nasal cavity (al-khayshum).</p></details><details class="mk-faq"><summary>What are the five main areas of makharij?</summary><p>Al-jawf (mouth and throat space), al-halq (throat), al-lisan (tongue), ash-shafatan (lips) and al-khayshum (nasal cavity).</p></details><details class="mk-faq"><summary>Which letters come from the throat?</summary><p>Six letters: ء and ه from the deepest throat, ع and ح from the middle, and غ and خ from the upper throat.</p></details><details class="mk-faq"><summary>What is the difference between makharij and sifat?</summary><p>Makharij is where a letter is pronounced. Sifat are its qualities, such as heavy or light, strong or gentle. Together they define the letter's sound.</p></details><details class="mk-faq"><summary>How do I practise makharij?</summary><p>Say each letter with a short vowel while paying attention to where it is made, then compare confusable pairs such as ح and ه, or ص and س. Use the diagram above and get feedback from a teacher or the free tajweed checker.</p></details>
+  <p>Next: <a href="/learn/beginner-tajweed-curriculum" style="color:#0f7a53;font-weight:700;">Tajweed for beginners</a> · <a href="/tajweed-rules" style="color:#0f7a53;font-weight:700;">Tajweed rules reference</a> · <a href="/learn/what-is-qalqalah" style="color:#0f7a53;font-weight:700;">What is qalqalah?</a></p>
 </section>
 
 <footer class="site-footer">
