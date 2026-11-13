@@ -519,6 +519,10 @@
       "destination": "/ms.html"
     },
     {
+      "source": "/tr",
+      "destination": "/tr.html"
+    },
+    {
       "source": "/challenge",
       "destination": "/challenge.html"
     },

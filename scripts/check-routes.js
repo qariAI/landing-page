@@ -42,7 +42,7 @@ const ACADEMY_PINNED = new Set([
   '/academy/hifz-planner',
 ]);
 // Translated trees mirror English pages; llms.txt lists the English originals.
-const LOCALE_PREFIX = /^\/(ar|fr|ms)(\/|$)/;
+const LOCALE_PREFIX = /^\/(ar|fr|ms|tr)(\/|$)/;
 
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const exists = (rel) => fs.existsSync(path.join(ROOT, rel));
