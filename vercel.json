@@ -403,6 +403,18 @@
       "destination": "/common-tajweed-mistakes.html"
     },
     {
+      "source": "/ar/at-tajweed-lilmubtadiin",
+      "destination": "/ar/at-tajweed-lilmubtadiin.html"
+    },
+    {
+      "source": "/fr/tajwid-pour-debutants",
+      "destination": "/fr/tajwid-pour-debutants.html"
+    },
+    {
+      "source": "/ms/tajwid-untuk-pemula",
+      "destination": "/ms/tajwid-untuk-pemula.html"
+    },
+    {
       "source": "/learn/beginner-tajweed-curriculum",
       "destination": "/beginner-tajweed-curriculum.html"
     },
