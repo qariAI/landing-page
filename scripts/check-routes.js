@@ -28,6 +28,7 @@ const SITE = 'https://qariai.app';
 // Pages that do not need a sitemap entry (check 2) or an llms.txt entry (check 3).
 const UTILITY = new Set([
   '/', '/privacy', '/khatti/privacy', '/terms', '/delete-account', '/feedback', '/thank-you',
+  '/arabic-roots/app', // noindex app shell, linked from the landing page
   '/challenge', // retired page, deliberately not promoted
 ]);
 // Academy articles are discovered through the Academy hub link in llms.txt, so
