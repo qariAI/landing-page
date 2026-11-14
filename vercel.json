@@ -427,6 +427,14 @@
       "destination": "/beginner-tajweed-curriculum.html"
     },
     {
+      "source": "/arabic-roots",
+      "destination": "/arabic-roots-app.html"
+    },
+    {
+      "source": "/learn/arabic-roots-quran",
+      "destination": "/arabic-roots-quran.html"
+    },
+    {
       "source": "/learn/pronounce-ayn",
       "destination": "/pronounce-ayn.html"
     },
