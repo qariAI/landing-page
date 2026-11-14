@@ -415,6 +415,10 @@
       "destination": "/ms/tajwid-untuk-pemula.html"
     },
     {
+      "source": "/tr/yeni-baslayanlar-icin-tecvid",
+      "destination": "/tr/yeni-baslayanlar-icin-tecvid.html"
+    },
+    {
       "source": "/learn/beginner-tajweed-curriculum",
       "destination": "/beginner-tajweed-curriculum.html"
     },
@@ -447,6 +451,10 @@
       "destination": "/ms/apa-itu-qalqalah.html"
     },
     {
+      "source": "/tr/kalkale-nedir",
+      "destination": "/tr/kalkale-nedir.html"
+    },
+    {
       "source": "/ar/alaab-quran-lilkibar",
       "destination": "/ar/alaab-quran-lilkibar.html"
     },
@@ -457,6 +465,10 @@
     {
       "source": "/ms/permainan-quran-untuk-warga-emas",
       "destination": "/ms/permainan-quran-untuk-warga-emas.html"
+    },
+    {
+      "source": "/tr/yaslilar-icin-kuran-oyunlari",
+      "destination": "/tr/yaslilar-icin-kuran-oyunlari.html"
     },
     {
       "source": "/compare/qari-ai-vs-tarteel",
