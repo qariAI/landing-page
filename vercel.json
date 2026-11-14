@@ -419,6 +419,10 @@
       "destination": "/tr/yeni-baslayanlar-icin-tecvid.html"
     },
     {
+      "source": "/ur/mubtadi-ke-liye-tajweed",
+      "destination": "/ur/mubtadi-ke-liye-tajweed.html"
+    },
+    {
       "source": "/learn/beginner-tajweed-curriculum",
       "destination": "/beginner-tajweed-curriculum.html"
     },
@@ -455,6 +459,10 @@
       "destination": "/tr/kalkale-nedir.html"
     },
     {
+      "source": "/ur/qalqalah-kya-hai",
+      "destination": "/ur/qalqalah-kya-hai.html"
+    },
+    {
       "source": "/ar/alaab-quran-lilkibar",
       "destination": "/ar/alaab-quran-lilkibar.html"
     },
@@ -469,6 +477,10 @@
     {
       "source": "/tr/yaslilar-icin-kuran-oyunlari",
       "destination": "/tr/yaslilar-icin-kuran-oyunlari.html"
+    },
+    {
+      "source": "/ur/buzurgon-ke-liye-quran-games",
+      "destination": "/ur/buzurgon-ke-liye-quran-games.html"
     },
     {
       "source": "/compare/qari-ai-vs-tarteel",
