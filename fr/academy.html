@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D55KK2YBKH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D55KK2YBKH');</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apprendre le Coran : bases, tajwid et hifz | QariAI</title>
+<meta name="description" content="Commencez par les bases, étudiez le tajwid, renforcez votre hifz et apprenez à pratiquer avec l’IA. Guides gratuits de QariAI en français."/>
+<meta property="og:title" content="Apprendre le Coran : bases, tajwid et hifz | QariAI"/>
+<meta property="og:description" content="Commencez par les bases, étudiez le tajwid, renforcez votre hifz et apprenez à pratiquer avec l’IA. Guides gratuits de QariAI en français."/>
+<meta property="og:url" content="https://qariai.app/fr/academy"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:image" content="https://qariai.app/screenshots/og-image.png"/>
+<meta name="twitter:image" content="https://qariai.app/screenshots/og-image.png" />
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="canonical" href="https://qariai.app/fr/academy"/>
+<link rel="alternate" hreflang="ar" href="https://qariai.app/ar/academy"/>
+<link rel="alternate" hreflang="fr" href="https://qariai.app/fr/academy"/>
+<link rel="alternate" hreflang="ms" href="https://qariai.app/ms/academy"/>
+<link rel="alternate" hreflang="tr" href="https://qariai.app/tr/academy"/>
+<link rel="alternate" hreflang="ur" href="https://qariai.app/ur/academy"/>
+<link rel="alternate" hreflang="en" href="https://qariai.app/academy"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Apprendre le Coran : bases, tajwid et hifz | QariAI", "description": "Commencez par les bases, étudiez le tajwid, renforcez votre hifz et apprenez à pratiquer avec l’IA. Guides gratuits de QariAI en français.", "url": "https://qariai.app/fr/academy", "inLanguage": "fr", "publisher": {"@type": "Organization", "name": "QariAI", "url": "https://qariai.app"}}</script>
+<style>
+  :root {
+    --mint: #ecfdf5;
+    --mint-mid: #a7f3d0;
+    --green: #059669;
+    --green-bright: #10b981;
+    --green-dark: #065f46;
+    --accent: #34d399;
+    --sand: #fef9c3;
+    --sand-warm: #fef3c7;
+    --text: #0f172a;
+    --text-mid: #334155;
+    --text-light: #64748b;
+    --white: #ffffff;
+    --radius: 20px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--mint);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 68px;
+    background: rgba(232,247,240,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(39,199,111,0.12);
+  }
+  .nav-logo { text-decoration: none; display: flex; align-items: center; }
+  .nav-logo img { height: 40px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.9rem; font-weight: 500; color: var(--text-mid);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--green); }
+  .nav-cta { display: flex; align-items: center; gap: 10px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px; border-radius: 50px;
+    background: var(--green); color: var(--white);
+    font-size: 0.875rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+  /* HERO */
+  .learn-hero {
+    padding: 130px 5vw 70px;
+    text-align: center;
+    background: linear-gradient(160deg, #ecfdf5 0%, #d1fae5 50%, #ecfdf5 100%);
+    border-bottom: 1px solid rgba(39,199,111,0.15);
+  }
+  .learn-hero .badge {
+    display: inline-block;
+    background: rgba(16,185,129,0.1);
+    color: var(--green-dark);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 16px; border-radius: 50px;
+    border: 1px solid rgba(16,185,129,0.25);
+    margin-bottom: 20px;
+  }
+  .learn-hero h1 {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--text);
+    line-height: 1.25;
+    max-width: 680px;
+    margin: 0 auto 18px;
+  }
+  .learn-hero h1 em { color: var(--green); font-style: normal; }
+  .learn-hero p {
+    font-size: 1.05rem; color: var(--text-mid);
+    max-width: 520px; margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* CATEGORY NAV */
+  .cat-nav {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+    padding: 36px 5vw 0;
+  }
+  .cat-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 20px; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 600;
+    background: var(--white); color: var(--text-mid);
+    border: 1.5px solid rgba(39,199,111,0.22);
+    text-decoration: none; transition: all 0.18s;
+    cursor: pointer;
+  }
+  .cat-pill:hover, .cat-pill.active {
+    background: var(--green); color: var(--white);
+    border-color: var(--green);
+  }
+
+  /* MAIN CONTENT GRID */
+  .learn-main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 56px 5vw 100px;
+  }
+
+  .section-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.55rem; color: var(--text);
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(39,199,111,0.2);
+  }
+
+  /* FEATURED CARD */
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid rgba(39,199,111,0.18);
+    box-shadow: 0 4px 24px rgba(5,150,105,0.07);
+    margin-bottom: 48px;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .featured-card:hover {
+    box-shadow: 0 8px 36px rgba(5,150,105,0.14);
+    transform: translateY(-2px);
+  }
+  .featured-card-body {
+    padding: 40px 44px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .featured-tag {
+    display: inline-block;
+    background: rgba(16,185,129,0.1); color: var(--green-dark);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 12px; border-radius: 50px;
+    margin-bottom: 14px;
+  }
+  .featured-card h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.45rem; color: var(--text);
+    line-height: 1.35; margin-bottom: 14px;
+  }
+  .featured-card p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 22px; }
+  .read-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--green); font-weight: 600; font-size: 0.9rem;
+    text-decoration: none;
+  }
+  .read-link::after { content: '→'; }
+  .featured-card-visual {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 240px;
+    font-size: 5rem;
+  }
+
+  /* CARD GRID */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
+    margin-bottom: 56px;
+  }
+  .card {
+    background: var(--white);
+    border: 1px solid rgba(39,199,111,0.16);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .card:hover {
+    box-shadow: 0 6px 28px rgba(5,150,105,0.12);
+    transform: translateY(-2px);
+  }
+  .card-tag {
+    display: inline-block;
+    background: rgba(16,185,129,0.08); color: var(--green);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 3px 10px; border-radius: 50px;
+    margin-bottom: 12px; width: fit-content;
+  }
+  .card-tag.hifz { background: rgba(251,191,36,0.12); color: #92400e; }
+  .card-tag.ai { background: rgba(139,92,246,0.1); color: #5b21b6; }
+  .card-tag.compare { background: rgba(239,68,68,0.08); color: #991b1b; }
+  .card h3 {
+    font-size: 1.05rem; font-weight: 700; color: var(--text);
+    line-height: 1.4; margin-bottom: 10px;
+  }
+  .card p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.65; flex: 1; }
+  .card-arrow {
+    display: flex; align-items: center;
+    color: var(--green); font-size: 0.82rem; font-weight: 600;
+    margin-top: 18px; gap: 4px;
+  }
+  .card-arrow::after { content: '→'; }
+
+  /* COMING SOON CARDS */
+  .card.coming-soon {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+  }
+  .coming-badge {
+    display: inline-block;
+    background: var(--sand-warm); color: #78350f;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px; border-radius: 50px;
+    margin-top: auto; margin-bottom: 0;
+    width: fit-content;
+  }
+
+  /* TOPICS INDEX */
+  .topics-index {
+    background: var(--white);
+    border: 1px solid rgba(39,199,111,0.16);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    margin-bottom: 56px;
+  }
+  .topics-index h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1rem; margin-bottom: 24px; color: var(--text);
+  }
+  .topics-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px 32px;
+  }
+  .topic-link {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.875rem; color: var(--text-mid);
+    text-decoration: none; padding: 6px 0;
+    border-bottom: 1px solid rgba(39,199,111,0.1);
+    transition: color 0.15s;
+  }
+  .topic-link:hover { color: var(--green); }
+  .topic-link::before { content: '↳'; color: var(--accent); font-size: 0.8rem; }
+
+  /* NEWSLETTER STRIP */
+  .newsletter {
+    background: linear-gradient(135deg, var(--green-dark), var(--green));
+    border-radius: var(--radius);
+    padding: 44px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .newsletter-text h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.25rem; color: var(--white); margin-bottom: 6px;
+  }
+  .newsletter-text p { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+  .newsletter-form {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    padding: 28px 5vw;
+    font-size: 0.82rem;
+  }
+  footer a { color: rgba(255,255,255,0.9); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; flex-wrap: wrap; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-card-visual { min-height: 140px; }
+    .featured-card-body { padding: 28px 24px; }
+    .newsletter { padding: 32px 24px; }
+    .topics-index { padding: 24px; }
+  }
+  .nav-links{gap:1.2rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/fr">
+    <img src="/logo.png?v=20260923" alt="QariAI"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/fr#features">Fonctionnalités</a></li>
+    <li><a href="/fr/academy" class="active">Apprendre</a></li>
+    <li><a href="/fr/about">À propos</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="https://play.google.com/store/apps/details?id=app.qari.ai" class="btn-primary" target="_blank" rel="noopener">Télécharger</a>
+  </div>
+</nav>
+
+<section class="learn-hero">
+  <span class="badge">✦ Apprendre avec QariAI</span>
+  <h1>Commencez par les <em>bases.</em></h1>
+  <p>Étudiez le tajwid, renforcez votre hifz et apprenez à pratiquer avec l’IA, une étape claire à la fois.</p>
+</section>
+
+<main class="learn-main">
+
+  <p class="section-label">Commencer ici</p>
+  <a class="featured-card" href="/fr/tajwid-pour-debutants">
+    <div class="featured-card-body">
+      <span class="featured-tag">Fondations · Commencez ici</span>
+      <h2>Tajwid pour débutants : le parcours complet</h2>
+      <p>Un parcours structuré pour apprendre le tajwid depuis zéro : points d’articulation, règles de base et récitation pratique.</p>
+      <span class="read-link">Voir le parcours</span>
+    </div>
+    <div class="featured-card-visual">🌱</div>
+  </a>
+
+  <p class="section-label">Guides en français</p>
+  <div class="card-grid">
+    <a class="card" href="/fr/qu-est-ce-que-le-qalqalah">
+      <span class="card-tag tajweed">Règle</span>
+      <h3>Qu’est-ce que le qalqalah ?</h3>
+      <p>Le rebond des lettres ق ط ب ج د : sens, règles et exemples.</p>
+      <span class="card-arrow">Lire</span>
+    </a>
+    <a class="card" href="/fr/jeux-coraniques-pour-seniors">
+      <span class="card-tag hifz">Seniors</span>
+      <h3>Jeux coraniques pour seniors</h3>
+      <p>Six jeux calmes pour apprendre à son rythme.</p>
+      <span class="card-arrow">Lire</span>
+    </a>
+    <a class="card" href="/fr/types-de-tajwid">
+      <span class="card-tag tajweed">Tajwid</span>
+      <h3>Les types de tajwid</h3>
+      <p>Un aperçu des principales règles de tajwid.</p>
+      <span class="card-arrow">Lire</span>
+    </a>
+    <a class="card" href="/fr/erreurs-de-tajwid">
+      <span class="card-tag compare">Erreurs</span>
+      <h3>Erreurs de tajwid courantes</h3>
+      <p>Les erreurs les plus fréquentes et comment les corriger.</p>
+      <span class="card-arrow">Lire</span>
+    </a>
+    <a class="card" href="/fr/comment-ia-detecte-erreurs-tajwid">
+      <span class="card-tag ai">IA</span>
+      <h3>Comment l’IA détecte les erreurs de tajwid</h3>
+      <p>Du son à la correction, étape par étape.</p>
+      <span class="card-arrow">Lire</span>
+    </a>
+    <a class="card" href="/fr/quran-games">
+      <span class="card-tag hifz">Jeux</span>
+      <h3>Jeux coraniques QariAI</h3>
+      <p>Tous les jeux pour apprendre en s’amusant.</p>
+      <span class="card-arrow">Lire</span>
+    </a>
+  </div>
+
+  <p class="section-label">Plus de guides (en anglais)</p>
+  <p style="max-width:640px;line-height:1.8;color:var(--text-mid)">Le reste de l’Académie QariAI est pour l’instant disponible en anglais. <a href="/academy" hreflang="en" style="color:var(--green-dark);font-weight:600">Voir toutes les guides en anglais →</a> · <a href="/arabic-roots" hreflang="en" style="color:var(--green-dark);font-weight:600">Arabic Roots</a></p>
+
+  <div class="newsletter" style="margin-top:56px">
+    <div class="newsletter-text">
+      <h3>Prêt à passer à la pratique ?</h3>
+      <p>Poursuivez avec des leçons structurées, un retour sur le tajwid, la pratique du hifz et des jeux coraniques dans QariAI.</p>
+    </div>
+    <div class="newsletter-form">
+      <a class="btn-primary" href="https://play.google.com/store/apps/details?id=app.qari.ai" target="_blank" rel="noopener">Commencer gratuitement</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="/fr">Accueil</a>
+    <a href="/fr/academy">Apprendre</a>
+    <a href="/fr/about">À propos</a>
+    <a href="mailto:salam@qariai.app">Contact</a>
+    <a href="/privacy">Confidentialité</a>
+    <a href="/terms">Conditions</a>
+  </div>
+  <p>© 2026 QariAI</p>
+</footer>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

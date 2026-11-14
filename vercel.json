@@ -714,6 +714,26 @@
     {
       "source": "/ms/about",
       "destination": "/ms/about.html"
+    },
+    {
+      "source": "/ar/academy",
+      "destination": "/ar/academy.html"
+    },
+    {
+      "source": "/fr/academy",
+      "destination": "/fr/academy.html"
+    },
+    {
+      "source": "/ms/academy",
+      "destination": "/ms/academy.html"
+    },
+    {
+      "source": "/tr/academy",
+      "destination": "/tr/academy.html"
+    },
+    {
+      "source": "/ur/academy",
+      "destination": "/ur/academy.html"
     }
   ]
 }
