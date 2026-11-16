@@ -860,6 +860,12 @@
 
   <section id="reviews" style="background:#efe8d9; padding:96px max(24px,4vw);">
     <style>
+        .rv-stat{display:inline-flex;align-items:center;gap:12px;margin-top:20px;padding:10px 20px;background:#fffdf8;border:1px solid rgba(18,56,41,.1);border-radius:999px;box-shadow:0 8px 22px rgba(18,56,41,.07);}
+    .rv-stat b{font:800 1.5rem/1 'Spectral',serif;color:#0c6b48;letter-spacing:-.02em;}
+    .rv-stat span{font:600 13.5px Inter,system-ui,sans-serif;color:#4a544c;text-align:start;}
+    #reviews .qgrid2 p{font-size:16px !important;line-height:1.65 !important;}
+    #reviews .qgrid2>div:not(.rv-hud){padding:30px 32px !important;}
+    @media(max-width:640px){.rv-stat{flex-direction:column;gap:6px;border-radius:20px;padding:12px 22px;text-align:center}.rv-stat span{text-align:center}}
     #reviews .qgrid2{position:relative;}
     #reviews .qgrid2>div:not(.rv-hud){display:flex;flex-direction:column;}
     #reviews .qgrid2>div:not(.rv-hud)>div:last-child{margin-top:auto;}
@@ -873,6 +879,7 @@
   <div style="text-align:center; margin-bottom:48px;">
       <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">What reciters say</span>
       <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Loved on Google Play.</h2>
+      <div><div class="rv-stat"><b dir="ltr">16,000+</b><span>personnes ont utilisé QariAI ces 90 derniers jours</span></div></div>
     </div>
     <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:22px;" class="qgrid2">
       <div class="rv-hud"><img src="/uploads/hudhud-avatar.webp" alt="HudHud, le guide d’apprentissage de QariAI" width="300" height="300" loading="lazy"/><span>Les récitants adorent apprendre avec moi !</span></div>
