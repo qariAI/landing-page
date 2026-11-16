@@ -860,25 +860,22 @@
 
   <section id="reviews" style="background:#efe8d9; padding:96px max(24px,4vw);">
     <style>
-    .rv-head{position:relative;max-width:1100px;margin:0 auto 48px;}
-    .rv-head>div{text-align:center;}
-    .rv-hud{position:absolute;inset-inline-end:0;top:-18px;display:flex;align-items:flex-end;gap:10px;}
-    .rv-hud img{width:84px;height:84px;border-radius:50%;border:4px solid #fff;box-shadow:0 10px 26px rgba(18,56,41,.22);background:#fff;}
-    .rv-hud span{margin-bottom:58px;background:#fff;color:#123829;font:700 13px Inter,system-ui,sans-serif;padding:8px 13px;border-radius:14px 14px 3px 14px;box-shadow:0 6px 16px rgba(18,56,41,.14);max-width:190px;line-height:1.35;}
+    #reviews .qgrid2{position:relative;}
+    #reviews .qgrid2>div:not(.rv-hud){display:flex;flex-direction:column;}
+    #reviews .qgrid2>div:not(.rv-hud)>div:last-child{margin-top:auto;}
+    .rv-hud{position:absolute;inset-inline-end:30px;top:-38px;z-index:2;display:flex;flex-direction:row-reverse;align-items:flex-start;gap:10px;pointer-events:none;}
+    .rv-hud img{width:76px;height:76px;border-radius:50%;border:4px solid #fffdf8;box-shadow:0 10px 24px rgba(18,56,41,.2);background:#fff;}
+    .rv-hud span{margin-top:0;background:#fff;color:#123829;font:700 13px Inter,system-ui,sans-serif;padding:9px 14px;border-radius:14px 14px 3px 14px;box-shadow:0 6px 16px rgba(18,56,41,.12);white-space:nowrap;}
     [dir=rtl] .rv-hud span{border-radius:14px 14px 14px 3px;}
-    .rv-hud{flex-direction:row-reverse;}
-    [dir=rtl] .rv-hud{flex-direction:row-reverse;}
     @media(max-width:1180px){.rv-hud span{display:none}}
-    @media(max-width:640px){.rv-hud{position:static;justify-content:center;margin-bottom:14px}.rv-hud img{width:64px;height:64px}}
+    @media(max-width:640px){.rv-hud{inset-inline-end:18px;top:-30px}.rv-hud img{width:60px;height:60px}}
   </style>
-  <div class="rv-head">
-    <div class="rv-hud"><img src="/uploads/hudhud-avatar.webp" alt="هدهد، مرشد التعلّم في QariAI" width="300" height="300" loading="lazy"/><span>القرّاء يحبّون التعلّم معي!</span></div>
-    <div>
+  <div style="text-align:center; margin-bottom:48px;">
       <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">What reciters say</span>
       <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Loved on Google Play.</h2>
     </div>
-    </div>
     <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:22px;" class="qgrid2">
+      <div class="rv-hud"><img src="/uploads/hudhud-avatar.webp" alt="هدهد، مرشد التعلّم في QariAI" width="300" height="300" loading="lazy"/><span>القرّاء يحبّون التعلّم معي!</span></div>
       <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
         <span style="color:#c9973f; letter-spacing:2px; font-size:14px;">★★★★★</span>
         <p style="font-size:15px; color:#22302a; line-height:1.6; margin:12px 0 14px;">"إنه أفضل برنامج"</p>
