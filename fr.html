@@ -431,9 +431,6 @@
     .hm-glow{position:absolute;inset:-4% -6% 0;background:radial-gradient(ellipse 48% 46% at 52% 48%,rgba(11,110,82,.2),transparent 70%),radial-gradient(ellipse 30% 22% at 78% 30%,rgba(245,198,90,.4),transparent 70%);pointer-events:none}
     .hm-glow::after{content:"";position:absolute;left:4%;right:2%;top:58%;height:22%;border-top:1cqw solid rgba(222,170,60,.55);border-radius:50%;transform:rotate(-8deg)}
     .hm-drill{display:flex;justify-content:space-between;margin-top:2.2cqw;background:#eef5f0;border:.2cqw solid #d6e6dc;border-radius:2cqw;padding:1.6cqw 2cqw;font-size:1.6cqw;font-weight:800;color:#0b6e52}
-    .hm-hud{position:absolute;left:5%;top:60%;z-index:2;display:flex;align-items:flex-end;gap:1.2cqw}
-    .hm-hud img{width:16cqw;height:16cqw;border-radius:50%;border:.9cqw solid #fff;box-shadow:0 1.6cqw 3cqw rgba(18,56,41,.3)}
-    .hm-hud span{margin-bottom:11cqw;background:#fff;color:#123829;font:800 2.2cqw Inter,system-ui,sans-serif;padding:1.2cqw 2cqw;border-radius:2cqw 2cqw 2cqw .4cqw;box-shadow:0 1cqw 2.4cqw rgba(18,56,41,.22);white-space:nowrap}
     .hm-phone{position:absolute;left:27%;top:12%;width:46%;height:66%;transform:rotate(-6deg);background:#fff;border:1.1cqw solid #0f3d2c;border-radius:6cqw;box-shadow:0 3cqw 4cqw rgba(18,56,41,.28),0 .6cqw 1.2cqw rgba(18,56,41,.18);padding:3.2cqw 2.4cqw;overflow:hidden;font-family:Inter,system-ui,sans-serif;color:#123829}
     .hm-top{display:grid;grid-template-columns:1fr auto;align-items:center;border-bottom:.15cqw solid #e6efe9;padding-bottom:1.6cqw}
     .hm-top b{font-size:2.6cqw;font-weight:800;line-height:1}
@@ -844,7 +841,6 @@
             <div class="hm-done"><small>● SÉANCE TERMINÉE</small><p>Voici ce que nous avons remarqué dans votre récitation.</p><div><span>Réciter à nouveau</span><b>Corriger →</b></div></div>
             <div class="hm-drill"><span>Afficher ◂</span><b>Exercice du jour ⚡</b></div>
           </div>
-          <div class="hm-hud"><img src="/uploads/hudhud-avatar.webp" alt="HudHud, le guide d’apprentissage de QariAI" width="300" height="300" loading="lazy"/><span>Fais rebondir le ق !</span></div>
           <div class="hm-float">
             <div class="hm-meta"><span>Sourate 1:5</span><em>✓ Vérifié</em></div>
             <div class="hm-words" dir="rtl" lang="ar"><u>إِيَّاكَ</u><u class="bad">نَعْبُدُ</u><u>وَإِيَّاكَ</u><u>نَسْتَعِينُ</u></div>
@@ -863,9 +859,24 @@
   </section>
 
   <section id="reviews" style="background:#efe8d9; padding:96px max(24px,4vw);">
-    <div style="text-align:center; margin-bottom:48px;">
+    <style>
+    .rv-head{position:relative;max-width:1100px;margin:0 auto 48px;}
+    .rv-head>div{text-align:center;}
+    .rv-hud{position:absolute;inset-inline-end:0;top:-18px;display:flex;align-items:flex-end;gap:10px;}
+    .rv-hud img{width:84px;height:84px;border-radius:50%;border:4px solid #fff;box-shadow:0 10px 26px rgba(18,56,41,.22);background:#fff;}
+    .rv-hud span{margin-bottom:58px;background:#fff;color:#123829;font:700 13px Inter,system-ui,sans-serif;padding:8px 13px;border-radius:14px 14px 3px 14px;box-shadow:0 6px 16px rgba(18,56,41,.14);max-width:190px;line-height:1.35;}
+    [dir=rtl] .rv-hud span{border-radius:14px 14px 14px 3px;}
+    .rv-hud{flex-direction:row-reverse;}
+    [dir=rtl] .rv-hud{flex-direction:row-reverse;}
+    @media(max-width:1180px){.rv-hud span{display:none}}
+    @media(max-width:640px){.rv-hud{position:static;justify-content:center;margin-bottom:14px}.rv-hud img{width:64px;height:64px}}
+  </style>
+  <div class="rv-head">
+    <div class="rv-hud"><img src="/uploads/hudhud-avatar.webp" alt="HudHud, le guide d’apprentissage de QariAI" width="300" height="300" loading="lazy"/><span>Les récitants adorent apprendre avec moi !</span></div>
+    <div>
       <span style="display:inline-block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#0c6b48; margin-bottom:14px;">What reciters say</span>
       <h2 style="font-family:'Spectral',serif; font-weight:800; font-size:clamp(2rem,3.4vw,2.9rem); line-height:1.12; letter-spacing:-.02em; color:#12251b;">Loved on Google Play.</h2>
+    </div>
     </div>
     <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:22px;" class="qgrid2">
       <div style="background:#fffdf8; border-radius:20px; padding:26px 28px; box-shadow:0 16px 40px rgba(18,56,41,0.07);">
