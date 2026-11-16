@@ -734,6 +734,10 @@
     {
       "source": "/ur/academy",
       "destination": "/ur/academy.html"
+    },
+    {
+      "source": "/partners",
+      "destination": "/partners.html"
     }
   ]
 }
