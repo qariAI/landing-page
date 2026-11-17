@@ -292,6 +292,9 @@
     @media(max-width:640px){.q2-hero{padding:96px 14px 42px}.q2-hero::before,.q2-pattern{inset:72px 0 0;border-radius:0}.q2-copy{padding:34px 18px 6px}.q2-eyebrow{font-size:10px}.q2-title{font-size:clamp(2.75rem,14vw,4rem)}.q2-sub{font-size:15px;line-height:1.58}.q2-actions{display:grid;grid-template-columns:1fr}.q2-primary,.q2-secondary{width:100%;padding:15px 20px}.q2-divider{display:none}.q2-trust{gap:8px 14px}.q2-visual{min-height:530px;padding:8px 10px 20px}.q2-phone{width:min(320px,82vw);border-radius:42px}.q2-screen{border-radius:32px}.q2-chip{font-size:11px;padding:9px 11px}.q2-chip-one{left:2px;top:115px}.q2-chip-two{right:0;bottom:88px}.q2-mini-bird{width:82px;height:82px;right:0;bottom:16px}.q2-mini-bird::before{transform:scale(.73);transform-origin:left top}.q2-mini-bird::after{transform:scale(.73);transform-origin:left top}.q2-pattern::after{width:460px;height:260px;right:-220px;bottom:-135px}}
 
     body.qmodal-open{ overflow:hidden; }
+    .seo-hero-demo{display:inline-flex;align-items:center;gap:9px;font:600 15px Inter,system-ui,sans-serif;color:#0c6b48;background:#fffdf8;border:1.5px solid rgba(12,107,72,.28);border-radius:999px;padding:13px 22px;cursor:pointer;transition:background .15s,border-color .15s;}
+    .seo-hero-demo:hover{background:#e6f2ea;border-color:#0c6b48;}
+    .seo-hero-actions{flex-wrap:wrap;gap:12px;}
     .qmodal-overlay{ position:fixed; inset:0; z-index:200; background:rgba(15,21,18,0.72); backdrop-filter:blur(6px);
       display:none; align-items:center; justify-content:center; padding:24px; }
     .qmodal-overlay.qopen{ display:flex; animation:qRise .25s ease both; }
@@ -779,6 +782,7 @@
           <svg class="google-play-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg>
           Get it on Google Play
         </a>
+        <button type="button" id="qdemo-open" class="seo-hero-demo" data-ga-event="hero_demo_click"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#0c6b48"/><path d="M6.3 4.8L11.2 8l-4.9 3.2z" fill="#fff"/></svg>Watch the demo</button>
       </div>
       <div class="voice-wave" aria-hidden="true">
         <svg viewBox="0 0 220 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -1413,13 +1417,12 @@
   </footer>
 
   <!-- Demo modal — vanilla JS.
-       Trigger button (#qdemo-open) is hidden by default in the hero until a real video ID is confirmed. -->
+       Trigger button (#qdemo-open) sits in the hero next to the Play button. -->
   <div id="qdemo-overlay" class="qmodal-overlay" role="dialog" aria-modal="true" aria-labelledby="qdemo-title" aria-hidden="true">
-    <div id="qdemo-panel" style="background:#fffdf8; border-radius:24px; padding:20px; max-width:460px; width:100%; box-shadow:0 40px 90px rgba(0,0,0,0.4);">
+    <div id="qdemo-panel" style="background:#fffdf8; border-radius:24px; padding:20px; max-width:800px; width:100%; box-shadow:0 40px 90px rgba(0,0,0,0.4);">
       <h2 id="qdemo-title" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">QariAI demo video</h2>
       <div style="aspect-ratio:16/9; border-radius:16px; overflow:hidden; margin-bottom:16px; background:#0f1512;">
-        <!-- Replace YOUTUBE_VIDEO_ID_HERE with a confirmed real QariAI demo video before enabling the button above. -->
-        <iframe id="qdemo-frame" width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_HERE" title="QariAI demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+        <iframe id="qdemo-frame" width="100%" height="100%" src="" data-src="https://www.youtube-nocookie.com/embed/JlgXAFsEU-s?autoplay=1&rel=0" title="QariAI demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
       </div>
       <button type="button" id="qdemo-close" aria-label="Close demo video" style="width:100%; font-size:14.5px; font-weight:600; color:#fffdf8; background:#0c6b48; border:none; border-radius:40px; padding:13px; cursor:pointer;">Close</button>
     </div>
@@ -1476,7 +1479,7 @@
 
   function openModal() {
     lastFocused = document.activeElement;
-    if (frame && !frame.src) frame.src = frame.getAttribute('data-src'); // lazy-load the embed only on open
+    if (frame && !frame.getAttribute('src')) frame.setAttribute('src', frame.getAttribute('data-src')); // lazy-load the embed only on open
     overlay.classList.add('qopen');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.classList.add('qmodal-open');
@@ -1489,7 +1492,7 @@
     overlay.classList.remove('qopen');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('qmodal-open');
-    if (frame) frame.src = ''; // stop playback
+    if (frame) frame.setAttribute('src', ''); // stop playback
     document.removeEventListener('keydown', onKeydown);
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
     qTrack('demo_close', {});
