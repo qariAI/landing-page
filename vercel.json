@@ -746,6 +746,10 @@
     {
       "source": "/learn/madd-explained",
       "destination": "/madd-explained.html"
+    },
+    {
+      "source": "/learn/idgham-explained",
+      "destination": "/idgham-explained.html"
     }
   ]
 }
