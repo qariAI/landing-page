@@ -742,6 +742,26 @@
     {
       "source": "/partners",
       "destination": "/partners.html"
+    },
+    {
+      "source": "/ar/arabic-roots",
+      "destination": "/ar/arabic-roots.html"
+    },
+    {
+      "source": "/fr/arabic-roots",
+      "destination": "/fr/arabic-roots.html"
+    },
+    {
+      "source": "/ms/arabic-roots",
+      "destination": "/ms/arabic-roots.html"
+    },
+    {
+      "source": "/tr/arabic-roots",
+      "destination": "/tr/arabic-roots.html"
+    },
+    {
+      "source": "/ur/arabic-roots",
+      "destination": "/ur/arabic-roots.html"
     }
   ]
 }
