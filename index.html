@@ -379,6 +379,7 @@
     .seo-hero-copy p{font-size:clamp(1rem,1.42vw,1.16rem);line-height:1.68;color:#455149;max-width:590px;margin:0 0 30px}
     .seo-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px}
     .seo-hero-primary,.seo-hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:750;text-decoration:none;transition:.2s ease}
+    .seo-hero-demo{font-family:inherit;cursor:pointer}
     .seo-hero-primary{color:#fffdf8;background:#0b6e52;box-shadow:0 14px 30px rgba(11,110,82,.28)}
     .kt{position:fixed;right:20px;bottom:20px;z-index:90;width:min(320px,calc(100vw - 32px));padding:14px 16px 16px;border-radius:22px;border:1px solid rgba(18,56,41,.12);background:linear-gradient(145deg,#fffdf8 0%,#fbf3e4 70%,#eef4ec 100%);box-shadow:0 18px 50px rgba(18,56,41,.22);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .45s ease,transform .45s ease}
     .kt-beta{margin-top:12px;padding-top:12px;border-top:1px solid rgba(18,56,41,.12);text-align:start;font-size:.9rem;color:#2b3a33}
@@ -779,6 +780,7 @@
           <svg class="google-play-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.6 2.1L11.7 10 2.6 17.9Z" fill="#34A853"/><path d="M2.6 2.1L13.2 8.2 10.2 10.8Z" fill="#4285F4"/><path d="M2.6 17.9L13.2 11.8 10.2 9.2Z" fill="#FBBC04"/><path d="M13.2 8.2L17 10.4c.7.4.7 1 0 1.4l-3.8 2.2-3-4Z" fill="#EA4335"/></svg>
           Get it on Google Play
         </a>
+        <button type="button" id="qdemo-open" class="seo-hero-secondary seo-hero-demo" aria-haspopup="dialog">&#9654; Watch the demo</button>
       </div>
       <div class="voice-wave" aria-hidden="true">
         <svg viewBox="0 0 220 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -1414,13 +1416,12 @@
   </footer>
 
   <!-- Demo modal — vanilla JS.
-       Trigger button (#qdemo-open) is hidden by default in the hero until a real video ID is confirmed. -->
+       Trigger button: #qdemo-open in the hero. Video: QariAI demo Short, looped via playlist=<same id>. -->
   <div id="qdemo-overlay" class="qmodal-overlay" role="dialog" aria-modal="true" aria-labelledby="qdemo-title" aria-hidden="true">
-    <div id="qdemo-panel" style="background:#fffdf8; border-radius:24px; padding:20px; max-width:460px; width:100%; box-shadow:0 40px 90px rgba(0,0,0,0.4);">
+    <div id="qdemo-panel" style="background:#fffdf8; border-radius:24px; padding:20px; max-width:400px; width:100%; box-shadow:0 40px 90px rgba(0,0,0,0.4);">
       <h2 id="qdemo-title" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">QariAI demo video</h2>
-      <div style="aspect-ratio:16/9; border-radius:16px; overflow:hidden; margin-bottom:16px; background:#0f1512;">
-        <!-- Replace YOUTUBE_VIDEO_ID_HERE with a confirmed real QariAI demo video before enabling the button above. -->
-        <iframe id="qdemo-frame" width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_HERE" title="QariAI demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+      <div style="aspect-ratio:9/16; width:min(100%,calc(70vh * 9 / 16)); margin:0 auto 16px; border-radius:16px; overflow:hidden; background:#0f1512;">
+        <iframe id="qdemo-frame" width="100%" height="100%" src="" data-src="https://www.youtube-nocookie.com/embed/JlgXAFsEU-s?playlist=JlgXAFsEU-s&amp;loop=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1&amp;autoplay=1" title="QariAI demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
       </div>
       <button type="button" id="qdemo-close" aria-label="Close demo video" style="width:100%; font-size:14.5px; font-weight:600; color:#fffdf8; background:#0c6b48; border:none; border-radius:40px; padding:13px; cursor:pointer;">Close</button>
     </div>
@@ -1477,7 +1478,7 @@
 
   function openModal() {
     lastFocused = document.activeElement;
-    if (frame && !frame.src) frame.src = frame.getAttribute('data-src'); // lazy-load the embed only on open
+    if (frame && !frame.getAttribute('src')) frame.setAttribute('src', frame.getAttribute('data-src')); // lazy-load the embed only on open
     overlay.classList.add('qopen');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.classList.add('qmodal-open');
@@ -1490,7 +1491,7 @@
     overlay.classList.remove('qopen');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('qmodal-open');
-    if (frame) frame.src = ''; // stop playback
+    if (frame) frame.setAttribute('src', ''); // stop playback
     document.removeEventListener('keydown', onKeydown);
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
     qTrack('demo_close', {});
