@@ -63,6 +63,7 @@ complements — but does not replace — a qualified human teacher.
 - Maqamat in Quran recitation (the 7 maqamat with meanings, voice tips, how maqamat relate to tajweed, and FAQ): https://qariai.app/maqamat-quran-guide
 - Letters of Qalqalah explained (ق ط ب ج د, Qutb Jadd, the three levels, Quran examples, echo technique): https://qariai.app/learn/qalqalah-explained
 - Ghunnah in tajweed explained (the nasal sound on ن and م, two counts, the five rules, Quran examples): https://qariai.app/learn/ghunnah-explained
+- Madd in tajweed explained (prolongation of alif, waw and ya, the six types, counts, Quran examples): https://qariai.app/learn/madd-explained
 - What is Qalqalah? (meaning, when it applies, how it differs from sukoon and ghunnah, common mistakes, FAQ): https://qariai.app/learn/what-is-qalqalah
 - Quran games for seniors and older learners (six games, where to start, no health claims): https://qariai.app/learn/quran-games-for-seniors
 - Ayn (ع) pronunciation (where the sound forms, mistakes to avoid, Quranic practice words): https://qariai.app/learn/pronounce-ayn

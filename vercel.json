@@ -742,6 +742,10 @@
     {
       "source": "/partners",
       "destination": "/partners.html"
+    },
+    {
+      "source": "/learn/madd-explained",
+      "destination": "/madd-explained.html"
     }
   ]
 }
