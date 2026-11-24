@@ -11,6 +11,11 @@
       "permanent": false
     },
     {
+      "source": "/ayahdhikr",
+      "destination": "https://play.google.com/store/apps/details?id=app.qari.ai&referrer=utm_source%3Dayahdhikr%26utm_medium%3Dpartner",
+      "permanent": false
+    },
+    {
       "source": "/ar/al-nabr",
       "destination": "/ar",
       "permanent": false
