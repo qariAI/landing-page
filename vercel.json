@@ -441,6 +441,22 @@
       "destination": "/arabic-roots-app.html"
     },
     {
+      "source": "/arabic-roots/plugin",
+      "destination": "/arabic-roots/plugin/index.html"
+    },
+    {
+      "source": "/arabic-roots/plugin/privacy",
+      "destination": "/arabic-roots/plugin/privacy/index.html"
+    },
+    {
+      "source": "/arabic-roots/plugin/terms",
+      "destination": "/arabic-roots/plugin/terms/index.html"
+    },
+    {
+      "source": "/arabic-roots/plugin/support",
+      "destination": "/arabic-roots/plugin/support/index.html"
+    },
+    {
       "source": "/learn/beginner-tajweed-curriculum",
       "destination": "/beginner-tajweed-curriculum.html"
     },
