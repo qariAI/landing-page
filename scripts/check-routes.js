@@ -29,6 +29,7 @@ const SITE = 'https://qariai.app';
 const UTILITY = new Set([
   '/', '/privacy', '/khatti/privacy', '/terms', '/delete-account', '/feedback', '/thank-you',
   '/arabic-roots/app', // noindex app shell, linked from the landing page
+  '/arabic-roots/plugin/privacy', '/arabic-roots/plugin/terms', '/arabic-roots/plugin/support', // plugin legal and help pages, linked from the plugin landing page
   '/challenge', // retired page, deliberately not promoted
 ]);
 // Academy articles are discovered through the Academy hub link in llms.txt, so
@@ -146,7 +147,7 @@ for (const p of new Set(sitemap)) {
 // ---- check 5: analytics scripts ----
 const GA4_ID = 'G-D55KK2YBKH';
 // /khatti is a separate offline-first PWA with its own event tracking, so it does not load GA4 here.
-const TRACKING_EXEMPT = new Set(['/privacy', '/terms', '/challenge', '/khatti']);
+const TRACKING_EXEMPT = new Set(['/privacy', '/terms', '/challenge', '/khatti', '/arabic-roots/plugin/privacy', '/arabic-roots/plugin/terms']);
 const GA4_CONFIG_RE = new RegExp(String.raw`gtag\(\s*['"]config['"]\s*,\s*['"]${GA4_ID}['"]`);
 const VERCEL_INSIGHTS_RE = /<script\b[^>]*\bsrc=["']\/_vercel\/insights\/script\.js["']/i;
 for (const p of new Set(sitemap)) {
