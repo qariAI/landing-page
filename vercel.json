@@ -771,6 +771,10 @@
     {
       "source": "/learn/idgham-explained",
       "destination": "/idgham-explained.html"
+    },
+    {
+      "source": "/learn/ikhfa-explained",
+      "destination": "/ikhfa-explained.html"
     }
   ]
 }
