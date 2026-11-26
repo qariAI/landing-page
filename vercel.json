@@ -775,6 +775,18 @@
     {
       "source": "/learn/ikhfa-explained",
       "destination": "/ikhfa-explained.html"
+    },
+    {
+      "source": "/learn/iqlab-explained",
+      "destination": "/iqlab-explained.html"
+    },
+    {
+      "source": "/learn/sun-and-moon-letters",
+      "destination": "/sun-and-moon-letters.html"
+    },
+    {
+      "source": "/learn/noon-sakinah-and-tanween-rules",
+      "destination": "/noon-sakinah-and-tanween-rules.html"
     }
   ]
 }
