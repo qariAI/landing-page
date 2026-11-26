@@ -787,6 +787,10 @@
     {
       "source": "/learn/noon-sakinah-and-tanween-rules",
       "destination": "/noon-sakinah-and-tanween-rules.html"
+    },
+    {
+      "source": "/learn/izhar-explained",
+      "destination": "/izhar-explained.html"
     }
   ]
 }
